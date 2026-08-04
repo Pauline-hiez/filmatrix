@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-xl mx-auto mt-12 text-center">
+    {% if est_correct %}
+        <p class="text-2xl font-bold text-emerald-400 mb-6">Bonne réponse !</p>
+    {% else %}
+        <p class="text-2xl font-bold text-red-400 mb-6">Mauvaise réponse.</p>
+    {% endif %}
+
+    <a href="{{ url_for('quiz', question_id=question_suivante_id) }}"
+       class="inline-block bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-[0_0_15px_rgba(59,130,246,0.4)] transition">
+        Question suivante
+    </a>
+</div>
+{% endblock %}
