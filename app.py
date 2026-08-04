@@ -2,7 +2,6 @@
 
 from flask import Flask, render_template, request 
 
-from data.questions import QUESTIONS 
 from src.engine import check_answer
 from src.database import db
 from src.models import Question
@@ -17,10 +16,7 @@ with app.app_context():
 
 def trouver_question(question_id: int):
     """Cherche une question par son id dans la liste des QUESTIONS"""
-    for question in QUESTIONS:
-        if question.id == question_id:
-            return question
-    return None
+    return Question.query.get(question_id)
 
 def convertir_reponse(mode: str, valeur_brute: str):
     """Convertit la valeur texte du formulaire dans le type attendu par check_answer"""
