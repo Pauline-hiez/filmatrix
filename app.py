@@ -4,12 +4,27 @@ from flask import Flask, render_template, request
 
 from src.engine import check_answer
 from src.database import db
-from src.models import Question
+from src.models import Question, User
+import os
+from dotenv import load_dotenv
+from flask_login import LoginManager
+
+load_dotenv()
 
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///filmatrix.db"
+app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 db.init_app(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "connexion"
+
+@login_manager.user_loader
+def charger_utilisateur(user_id: str):
+    """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
+    return User.query.get(int(user_id))
 
 with app.app_context():
     db.create_all()
