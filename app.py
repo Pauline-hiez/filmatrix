@@ -4,8 +4,16 @@ from flask import Flask, render_template, request
 
 from data.questions import QUESTIONS 
 from src.engine import check_answer
+from src.database import db
+from src.models import Question
 
 app = Flask(__name__)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///filmatrix.db"
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
 
 def trouver_question(question_id: int):
     """Cherche une question par son id dans la liste des QUESTIONS"""
