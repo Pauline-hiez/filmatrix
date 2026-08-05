@@ -31,9 +31,17 @@ def charger_utilisateur(user_id: str):
     """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
     return User.query.get(int(user_id))
 
-def trouver_question(question_id: int):
-    """Cherche une question par son id dans la liste des QUESTIONS"""
-    return Question.query.get(question_id)
+def trouver_question(mode: str, position: int):
+    """Cherche la question à une position donnée, parmi celles d'un mode précis"""
+    questions_du_mode = (
+            Question.query.filter_by(mode=mode).order_by(Question.id).all()
+        )
+
+    index = position - 1
+    if index < 0 or index >= len(questions_du_mode):
+        return None
+
+    return questions_du_mode[index]
 
 def convertir_reponse(mode: str, valeur_brute: str):
     """Convertit la valeur texte du formulaire dans le type attendu par check_answer"""
@@ -95,28 +103,33 @@ def deconnexion() -> str:
     logout_user()
     return redirect(url_for("accueil"))
 
-@app.route("/quiz/<int:question_id>", methods=["GET", "POST"])
-def quiz(question_id: int) -> str:
-    """Affiche une question (GET) ou traite la réponse envoyée (POST)"""
-    question = trouver_question(question_id)
+@app.route("/modes")
+def modes() -> str:
+    """Affiche la liste des modes de jeu disponibles"""
+    return render_template("modes.html")
+
+@app.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
+def quiz(mode: str, position: int) -> str:
+    """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
+    question = trouver_question(mode, position)
 
     if question is None:
         return render_template("termine.html")
 
     if question.necessite_compte and not current_user.is_authenticated:
-        flash("Connecte-toi pour accèder à cette question.")
+        flash("Connecte-toi pour accéder à cette question.")
         return redirect(url_for("connexion"))
 
     if request.method == "POST":
         reponse_brute = request.form["reponse"]
         reponse_joueur = convertir_reponse(question.mode, reponse_brute)
         est_correct = check_answer(question, reponse_joueur)
-        question_suivante_id = question_id + 1
         return render_template(
             "resultat.html",
             est_correct=est_correct,
-            question_suivante_id=question_suivante_id,
-            )
+            mode=mode,
+            position_suivante=position + 1,
+        )
 
     return render_template("quiz.html", question=question)
 
