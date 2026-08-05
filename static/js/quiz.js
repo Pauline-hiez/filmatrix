@@ -40,14 +40,32 @@ async function sendAnswer(body) {
 document.querySelectorAll(".answer-button").forEach(function (button) {
     button.addEventListener("click", async function (event) {
         event.preventDefault();
-        const answer = button.dataset.answer;
+        let answer = button.dataset.answer;
+        const freeTextField = document.getElementById("free-text-answer");
+        if (freeTextField) {
+            answer = freeTextField.value;
+        }
+
         const result = await sendAnswer(`answer=${encodeURIComponent(answer)}`);
 
         if (result) {
+            button.classList.remove("bg-cyan-400", "hover:bg-cyan-300");
+
+            const freeTextField = document.getElementById("free-text-answer");
+            if (freeTextField) {
+                freeTextField.classList.remove("border-cyan-400/30");
+            }
+
             if (result.is_correct) {
                 button.classList.add("bg-emerald-500/30", "border-emerald-400");
+                if (freeTextField) {
+                    freeTextField.classList.add("border-emerald-400");
+                }
             } else {
                 button.classList.add("bg-red-500/30", "border-red-400");
+                if (freeTextField) {
+                    freeTextField.classList.add("border-red-400");
+                }
             }
             goToNextQuestion();
         }

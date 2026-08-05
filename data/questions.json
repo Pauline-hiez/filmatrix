@@ -133,7 +133,7 @@
         "correct_answer": {
             "film": "Terminator"
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 10,
@@ -145,6 +145,6 @@
         "correct_answer": {
             "film": "Star Wars"
         },
-        "necessite_compte": false
+        "requires_account": false
     }
 ]
