@@ -52,3 +52,5 @@ class Attempt(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
     is_correct = db.Column(db.Boolean, nullable=False)
     answered_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    question = db.relationship("Question")
+    user = db.relationship("User", backref="attempts")

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-8">
+    <h2 class="text-xl mb-2">Bonjour, {{ current_user.username }}</h2>
+    <p class="text-cyan-400 text-lg mb-8">
+        Score : {{ nombre_correctes }} / {{ nombre_total }}
+    </p>
+
+    <h3 class="text-lg mb-4 text-slate-300">Historique</h3>
+
+    {% if tentatives %}
+    <div class="flex flex-col gap-2">
+        {% for tentative in tentatives %}
+        <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+            <span class="text-sm">{{ tentative.question.prompt }}</span>
+            {% if tentative.is_correct %}
+                <span class="text-emerald-400 text-sm font-bold">Correct</span>
+            {% else %}
+                <span class="text-red-400 text-sm font-bold">Incorrect</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

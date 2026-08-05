@@ -103,6 +103,26 @@ def deconnexion() -> str:
     logout_user()
     return redirect(url_for("accueil"))
 
+@app.route("/profil")
+@login_required
+def profil() -> str:
+    """Affiche le score et l'historique du joueur connecté"""
+    tentatives = (
+            Attempt.query.filter_by(user_id=current_user.id)
+            .order_by(Attempt.answered_at.desc())
+            .all()
+        )
+
+    nombre_total = len(tentatives)
+    nombre_correctes = sum(1 for tentative in tentatives if tentative.is_correct)
+
+    return render_template(
+            "profil.html",
+            tentatives=tentatives, 
+            nombre_total=nombre_total,
+            nombre_correctes=nombre_correctes,
+        )
+
 @app.route("/modes")
 def modes() -> str:
     """Affiche la liste des modes de jeu disponibles"""
@@ -133,7 +153,7 @@ def quiz(mode: str, position: int) -> str:
                 )
             db.session.add(tentative)
             db.session.commit()
-            
+
         return render_template(
             "resultat.html",
             est_correct=est_correct,
