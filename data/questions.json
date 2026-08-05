@@ -20,6 +20,63 @@
     },
     {
         "id": 2,
+        "mode": "qcm",
+        "category": "realisateur",
+        "difficulty": "moyen",
+        "prompt": "Qui a réalisé Pulp Fiction ?",
+        "payload": {
+            "options": [
+                "Martin Scorsese",
+                "Quentin Tarantino",
+                "David Fincher",
+                "Guy Ritchie"
+            ]
+        },
+        "correct_answer": {
+            "index": 1
+        },
+        "necessite_compte": false
+    },
+    {
+        "id": 3,
+        "mode": "qcm",
+        "category": "acteur",
+        "difficulty": "facile",
+        "prompt": "Qui joue le rôle principal dans Le Loup de Wall Street ?",
+        "payload": {
+            "options": [
+                "Brad Pitt",
+                "Leonardo DiCaprio",
+                "Matt Damon",
+                "Tom Hanks"
+            ]
+        },
+        "correct_answer": {
+            "index": 1
+        },
+        "necessite_compte": false
+    },
+    {
+        "id": 4,
+        "mode": "qcm",
+        "category": "acteur",
+        "difficulty": "moyen",
+        "prompt": "Quel acteur incarne Tony Stark dans le Marvel Cinematic Universe ?",
+        "payload": {
+            "options": [
+                "Chris Evans",
+                "Chris Hemsworth",
+                "Robert Downey Jr.",
+                "Mark Ruffalo"
+            ]
+        },
+        "correct_answer": {
+            "index": 2
+        },
+        "necessite_compte": true
+    },
+    {
+        "id": 5,
         "mode": "vrai_faux",
         "category": "anecdote",
         "difficulty": "moyen",
@@ -27,6 +84,42 @@
         "payload": {},
         "correct_answer": {
             "value": true
+        },
+        "necessite_compte": false
+    },
+    {
+        "id": 6,
+        "mode": "vrai_faux",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "Le film Avatar (2009) est réalisé par Christopher Nolan.",
+        "payload": {},
+        "correct_answer": {
+            "value": false
+        },
+        "necessite_compte": false
+    },
+    {
+        "id": 7,
+        "mode": "vrai_faux",
+        "category": "realisateur",
+        "difficulty": "moyen",
+        "prompt": "Steven Spielberg a réalisé Jurassic Park.",
+        "payload": {},
+        "correct_answer": {
+            "value": true
+        },
+        "necessite_compte": false
+    },
+    {
+        "id": 8,
+        "mode": "vrai_faux",
+        "category": "acteur",
+        "difficulty": "moyen",
+        "prompt": "Leonardo DiCaprio a remporté l'Oscar du meilleur acteur pour Titanic.",
+        "payload": {},
+        "correct_answer": {
+            "value": false
         },
         "necessite_compte": true
     }
