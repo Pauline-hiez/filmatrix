@@ -31,11 +31,14 @@ def charger_utilisateur(user_id: str):
     """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
     return User.query.get(int(user_id))
 
-def trouver_question(mode: str, position: int):
-    """Cherche la question à une position donnée, parmi celles d'un mode précis"""
-    questions_du_mode = (
-            Question.query.filter_by(mode=mode).order_by(Question.id).all()
-        )
+def trouver_question(mode: str, position: int, category: str | None):
+    """Cherche la question à une position donnée, parmi celles d'un mode et d'une catégorie"""
+    requete = Question.query.filter_by(mode=mode)
+
+    if category:
+        requete = requete.filter_by(category=category)
+
+    questions_du_mode = requete.order_by(Question.id).all()
 
     index = position - 1
     if index < 0 or index >= len(questions_du_mode):
@@ -131,7 +134,8 @@ def modes() -> str:
 @app.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
 def quiz(mode: str, position: int) -> str:
     """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
-    question = trouver_question(mode, position)
+    category = request.args.get("category")
+    question = trouver_question(mode, position, category)
 
     if question is None:
         return render_template("termine.html")
@@ -147,19 +151,14 @@ def quiz(mode: str, position: int) -> str:
 
         if current_user.is_authenticated:
             tentative = Attempt(
-                    user_id=current_user.id,
-                    question_id=question.id,
-                    is_correct=est_correct,
-                )
+                user_id=current_user.id,
+                question_id=question.id,
+                is_correct=est_correct,
+            )
             db.session.add(tentative)
             db.session.commit()
 
-        return render_template(
-            "resultat.html",
-            est_correct=est_correct,
-            mode=mode,
-            position_suivante=position + 1,
-        )
+        return {"est_correct": est_correct}
 
     return render_template("quiz.html", question=question)
 
