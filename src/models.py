@@ -3,6 +3,7 @@
 from src.database import db
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 
 class Question(db.Model):
@@ -40,3 +41,14 @@ class User(db.Model, UserMixin):
     def verifier_mot_de_passe(self, mot_de_passe: str) -> bool:
         """Vérifie qu'un mot de passe correspond au hash stocké"""
         return check_password_hash(self.password_hash, mot_de_passe)
+
+class Attempt(db.Model):
+    """Représente une réponse donnée par un joueur à une question"""
+
+    __tablename__ = "attempts"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
+    is_correct = db.Column(db.Boolean, nullable=False)
+    answered_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
