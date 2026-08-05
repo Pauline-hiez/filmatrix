@@ -21,6 +21,7 @@ def importer_questions() -> None:
                 prompt=donnees["prompt"],
                 payload=donnees["payload"],
                 correct_answer=donnees["correct_answer"],
+                necessite_compte=donnees["necessite_compte"],
                 )
             db.session.merge(question)
         db.session.commit()

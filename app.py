@@ -9,8 +9,8 @@ import os
 from dotenv import load_dotenv
 from flask_login import LoginManager
 from src.validation import mot_de_passe_valide
-from flask import Flask, redirect, render_template, request, url_for
-from flask_login import login_user, login_required, logout_user
+from flask import Flask, redirect, render_template, request, url_for, flash
+from flask_login import login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 
 load_dotenv()
@@ -102,6 +102,10 @@ def quiz(question_id: int) -> str:
 
     if question is None:
         return render_template("termine.html")
+
+    if question.necessite_compte and not current_user.is_authenticated:
+        flash("Connecte-toi pour accèder à cette question.")
+        return redirect(url_for("connexion"))
 
     if request.method == "POST":
         reponse_brute = request.form["reponse"]

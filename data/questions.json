@@ -15,7 +15,8 @@
         },
         "correct_answer": {
             "index": 0
-        }
+        },
+        "necessite_compte": false
     },
     {
         "id": 2,
@@ -26,6 +27,7 @@
         "payload": {},
         "correct_answer": {
             "value": true
-        }
+        },
+        "necessite_compte": true
     }
 ]
