@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 
 from src.engine import check_answer
 from src.database import db
-from src.models import Question, User
+from src.models import Question, User, Attempt
 import os
 from dotenv import load_dotenv
 from flask_login import LoginManager
@@ -124,6 +124,16 @@ def quiz(mode: str, position: int) -> str:
         reponse_brute = request.form["reponse"]
         reponse_joueur = convertir_reponse(question.mode, reponse_brute)
         est_correct = check_answer(question, reponse_joueur)
+
+        if current_user.is_authenticated:
+            tentative = Attempt(
+                    user_id=current_user.id,
+                    question_id=question.id,
+                    is_correct=est_correct,
+                )
+            db.session.add(tentative)
+            db.session.commit()
+            
         return render_template(
             "resultat.html",
             est_correct=est_correct,

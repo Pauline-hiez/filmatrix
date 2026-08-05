@@ -9,17 +9,17 @@
         {% if question.mode == "qcm" %}
             {% for option in question.payload.options %}
             <button type="submit" name="reponse" value="{{ loop.index0 }}"
-                    class="bg-slate-900 hover:bg-slate-800 border border-blue-500/50 text-left px-4 py-3 rounded-lg transition">
+                    class="bg-slate-900 hover:bg-slate-800 border border-cyan-400/50 text-left px-4 py-3 rounded-lg transition">
                 {{ option }}
             </button>
             {% endfor %}
         {% elif question.mode == "vrai_faux" %}
             <button type="submit" name="reponse" value="true"
-                    class="bg-slate-900 hover:bg-slate-800 border border-blue-500/50 px-4 py-3 rounded-lg transition">
+                    class="bg-slate-900 hover:bg-slate-800 border border-cyan-400/50 px-4 py-3 rounded-lg transition">
                 Vrai
             </button>
             <button type="submit" name="reponse" value="false"
-                    class="bg-slate-900 hover:bg-slate-800 border border-blue-500/50 px-4 py-3 rounded-lg transition">
+                    class="bg-slate-900 hover:bg-slate-800 border border-cyan-400/50 px-4 py-3 rounded-lg transition">
                 Faux
             </button>
         {% endif %}

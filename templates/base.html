@@ -8,29 +8,29 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
 
-    <header class="border-b border-blue-500/50">
+    <header class="border-b border-cyan-400/50">
         <nav class="max-w-4xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-            <a href="{{ url_for('accueil') }}" class="text-xl font-bold text-blue-400">
+            <a href="{{ url_for('accueil') }}" class="text-xl font-bold text-cyan-400">
                 Filmatrix
             </a>
 
             <div class="flex items-center gap-4 text-sm">
-                <a href="{{ url_for('accueil') }}" class="text-slate-300 hover:text-blue-400 transition">
+                <a href="{{ url_for('accueil') }}" class="text-slate-300 hover:text-cyan-400 transition">
                     Accueil
                 </a>
 
                 {% if current_user.is_authenticated %}
                     <span class="text-slate-400">Bonjour, {{ current_user.username }}</span>
                     <a href="{{ url_for('deconnexion') }}"
-                       class="text-slate-300 hover:text-blue-400 transition">
+                       class="text-slate-300 hover:text-cyan-400 transition">
                         Déconnexion
                     </a>
                 {% else %}
-                    <a href="{{ url_for('connexion') }}" class="text-slate-300 hover:text-blue-400 transition">
+                    <a href="{{ url_for('connexion') }}" class="text-slate-300 hover:text-cyan-400 transition">
                         Connexion
                     </a>
                     <a href="{{ url_for('inscription') }}"
-                       class="bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition">
+                       class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition">
                         Inscription
                     </a>
                 {% endif %}
@@ -43,7 +43,7 @@
             {% if messages %}
             <div class="max-w-4xl mx-auto mb-4">
                 {% for message in messages %}
-                <p class="bg-blue-500/10 border border-blue-500/50 text-blue-300 text-sm rounded-lg px-4 py-3">
+                <p class="bg-cyan-400/10 border border-cyan-400/50 text-cyan-300 text-sm rounded-lg px-4 py-3">
                     {{ message }}
                 </p>
             {% endfor %}
@@ -53,7 +53,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="border-t border-blue-500/30 text-center text-slate-500 text-sm py-4">
+    <footer class="border-t border-cyan-400/30 text-center text-slate-500 text-sm py-4">
         Filmatrix — projet d'apprentissage Python
     </footer>
 
