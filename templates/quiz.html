@@ -3,6 +3,9 @@
 {% block content %}
 <div class="max-w-xl mx-auto mt-8">
     <p class="text-sm text-cyan-400 mb-2">Question {{ question.id }}</p>
+    <div class="w-full bg-slate-900 rounded-full h-2 mb-4 overflow-hidden">
+        <div id="barre-temps" class="bg-cyan-400 h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
+    </div>
     <h2 class="text-xl mb-6">{{ question.prompt }}</h2>
 
     <div class="flex flex-col gap-3">

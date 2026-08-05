@@ -145,16 +145,19 @@ def quiz(mode: str, position: int) -> str:
         return redirect(url_for("connexion"))
 
     if request.method == "POST":
-        reponse_brute = request.form["reponse"]
-        reponse_joueur = convertir_reponse(question.mode, reponse_brute)
-        est_correct = check_answer(question, reponse_joueur)
+        if request.form.get("timeout") == "true":
+            est_correct = False
+        else: 
+            reponse_brute = request.form["reponse"]
+            reponse_joueur = convertir_reponse(question.mode, reponse_brute)
+            est_correct = check_answer(question, reponse_joueur)
 
         if current_user.is_authenticated:
             tentative = Attempt(
                 user_id=current_user.id,
                 question_id=question.id,
                 is_correct=est_correct,
-            )
+                )
             db.session.add(tentative)
             db.session.commit()
 
