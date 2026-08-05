@@ -146,5 +146,29 @@
             "film": "Star Wars"
         },
         "requires_account": false
+    },
+    {
+        "id": 11,
+        "mode": "emoji",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "🦁👑🌍",
+        "payload": {},
+        "correct_answer": {
+            "film": "Le Roi Lion"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 12,
+        "mode": "emoji",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "🕷️🧑",
+        "payload": {},
+        "correct_answer": {
+            "film": "Spider-Man"
+        },
+        "requires_account": false
     }
 ]

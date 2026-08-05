@@ -68,6 +68,8 @@ def create_app(database_uri: str | None = None) -> Flask:
             return raw_value == "true"
         if mode == "citation":
             return raw_value
+        if mode == "emoji":
+            return raw_value
         raise ValueError(f"Mode inconnu : {mode}")
 
     @app.route("/")
