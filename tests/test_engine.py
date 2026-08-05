@@ -56,3 +56,25 @@ def test_unknown_mode_raises_error():
 
     with pytest.raises(ValueError):
         check_answer(question, 0)
+
+def make_citation_question() -> Question:
+    """Fabrique une question citation de test"""
+    return Question(
+            id=3,
+            mode="citation",
+            category="test",
+            difficulty="moyen",
+            prompt="test quote",
+            payload={},
+            correct_answer={"film": "Terminator"},
+        )
+
+def test_citation_correct_answer_case_insensitive():
+    """Une citation correcte doit être acceptée"""
+    question = make_citation_question()
+    assert check_answer(question, 'terminator') is True 
+
+def test_citation_wrong_answer():
+    """Une citation incorrecte doit retourner False"""
+    question = make_citation_question()
+    assert check_answer(question, "Avatar") is False
