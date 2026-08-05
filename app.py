@@ -12,6 +12,7 @@ from src.validation import mot_de_passe_valide
 from flask import Flask, redirect, render_template, request, url_for, flash
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
+from sqlalchemy import func
 
 load_dotenv()
 
@@ -164,6 +165,22 @@ def quiz(mode: str, position: int) -> str:
         return {"est_correct": est_correct}
 
     return render_template("quiz.html", question=question)
+
+@app.route("/classement")
+def classement() -> str:
+    """Affiche le classement général des joueurs par nombre de bonnes réponses"""
+    resultats = (
+            db.session.query(
+                    User.username,
+                    func.count(Attempt.id).label("total"),
+                    func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correctes"), 
+                )
+                .join(Attempt, Attempt.user_id == User.id)
+                .group_by(User.id)
+                .order_by(func.sum(db.case((Attempt.is_correct, 1), else_=0)).desc())
+                .all()
+        )
+    return render_template("classement.html", resultats=resultats)
 
 if __name__ == "__main__":
     app.run(debug=True)
