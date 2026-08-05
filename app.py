@@ -11,6 +11,7 @@ from flask_login import LoginManager
 from src.validation import mot_de_passe_valide
 from flask import Flask, redirect, render_template, request, url_for
 from flask_login import login_user, login_required, logout_user
+from flask_migrate import Migrate
 
 load_dotenv()
 
@@ -19,6 +20,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///filmatrix.db"
 app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 db.init_app(app)
+migrate = Migrate(app, db)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -28,9 +30,6 @@ login_manager.login_view = "connexion"
 def charger_utilisateur(user_id: str):
     """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
     return User.query.get(int(user_id))
-
-with app.app_context():
-    db.create_all()
 
 def trouver_question(question_id: int):
     """Cherche une question par son id dans la liste des QUESTIONS"""

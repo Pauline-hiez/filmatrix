@@ -22,6 +22,7 @@ class Question(db.Model):
     prompt = db.Column(db.Text, nullable=False)
     payload = db.Column(db.JSON, nullable=False)
     correct_answer = db.Column(db.JSON, nullable=False)
+    necessite_compte = db.Column(db.Boolean, nullable=False, default=False)
 
 class User(db.Model, UserMixin):
     """Représente un compte joueur"""
