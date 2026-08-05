@@ -1,7 +1,7 @@
-const boutonMenu = document.getElementById("bouton-menu");
-const menuMobile = document.getElementById("menu-mobile");
+const menuButton = document.getElementById("menu-button");
+const mobileMenu = document.getElementById("mobile-menu");
 
-boutonMenu.addEventListener("click", function () {
-    menuMobile.classList.toggle("hidden");
-    menuMobile.classList.toggle("flex");
+menuButton.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle("flex");
 });

@@ -16,7 +16,7 @@
         "correct_answer": {
             "index": 0
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 2,
@@ -35,7 +35,7 @@
         "correct_answer": {
             "index": 1
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 3,
@@ -54,7 +54,7 @@
         "correct_answer": {
             "index": 1
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 4,
@@ -73,7 +73,7 @@
         "correct_answer": {
             "index": 2
         },
-        "necessite_compte": true
+        "requires_account": true
     },
     {
         "id": 5,
@@ -85,7 +85,7 @@
         "correct_answer": {
             "value": true
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 6,
@@ -97,7 +97,7 @@
         "correct_answer": {
             "value": false
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 7,
@@ -109,7 +109,7 @@
         "correct_answer": {
             "value": true
         },
-        "necessite_compte": false
+        "requires_account": false
     },
     {
         "id": 8,
@@ -121,6 +121,6 @@
         "correct_answer": {
             "value": false
         },
-        "necessite_compte": true
+        "requires_account": true
     }
 ]

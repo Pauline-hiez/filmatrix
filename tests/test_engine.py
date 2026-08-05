@@ -1,9 +1,9 @@
 """Tests du moteur de vérification des réponses (src/engine.py)"""
 
-import pytest 
+import pytest
 
 from src.engine import check_answer
-from src.models import Question 
+from src.models import Question
 
 def make_qcm_question() -> Question:
     """Fabrique une question QCM de test, réutilisée dans plusieurs tests"""
@@ -29,27 +29,27 @@ def make_vrai_faux_question() -> Question:
         correct_answer={"value": True}
         )
 
-def test_qcm_bonne_reponse():
+def test_qcm_correct_answer():
     """Une réponse QCM correcte doit renvoyer True"""
     question = make_qcm_question()
     assert check_answer(question, 2) is True
 
-def test_qcm_mauvaise_reponse():
+def test_qcm_wrong_answer():
     """Une réponse QCM incorrecte doit renvoyer False"""
     question = make_qcm_question()
-    assert check_answer(question, 0) is False 
+    assert check_answer(question, 0) is False
 
-def test_vrai_faux_bonne_reponse():
+def test_vrai_faux_correct_answer():
     """Une réponse vrai/faux correcte doit renvoyer True"""
     question = make_vrai_faux_question()
     assert check_answer(question, True) is True
 
-def test_vrai_faux_mauvaise_reponse():
+def test_vrai_faux_wrong_answer():
     """Une réponse vrai/faux incorrecte doit renvoyer False"""
     question = make_vrai_faux_question()
     assert check_answer(question, False) is False
 
-def test_mode_inconnu_leve_une_erreur():
+def test_unknown_mode_raises_error():
     """Un mode non géré doit lever une ValueError explicite"""
     question = make_qcm_question()
     question.mode = "mode_qui_nexiste_pas"

@@ -1,66 +1,66 @@
-const DUREE_TOTALE = 10;
-let tempsRestant = DUREE_TOTALE;
-let dejaRepondu = false;
+const TOTAL_DURATION = 10;
+let remainingTime = TOTAL_DURATION;
+let alreadyAnswered = false;
 
-const barreTemps = document.getElementById("barre-temps");
+const timeBar = document.getElementById("time-bar");
 
-function allerALaQuestionSuivante() {
+function goToNextQuestion() {
     setTimeout(function () {
         window.location.href = window.location.href.replace(
             /\/(\d+)(\?|$)/,
-            function (correspondance, position, fin) {
-                return "/" + (parseInt(position) + 1) + fin;
+            function (match, position, end) {
+                return "/" + (parseInt(position) + 1) + end;
             }
         );
     }, 1500);
 }
 
-async function envoyerReponse(corps) {
-    if (dejaRepondu) {
+async function sendAnswer(body) {
+    if (alreadyAnswered) {
         return;
     }
-    dejaRepondu = true;
-    clearInterval(intervalleChrono);
+    alreadyAnswered = true;
+    clearInterval(timerInterval);
 
-    document.querySelectorAll(".bouton-reponse").forEach(function (b) {
+    document.querySelectorAll(".answer-button").forEach(function (b) {
         b.disabled = true;
     });
 
     const url = window.location.pathname + window.location.search;
-    const reponseServeur = await fetch(url, {
+    const serverResponse = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: corps,
+        body: body,
     });
 
-    const resultat = await reponseServeur.json();
-    return resultat;
+    const result = await serverResponse.json();
+    return result;
 }
 
-document.querySelectorAll(".bouton-reponse").forEach(function (bouton) {
-    bouton.addEventListener("click", async function (evenement) {
-        evenement.preventDefault();
-        const reponse = bouton.dataset.reponse;
-        const resultat = await envoyerReponse(`reponse=${encodeURIComponent(reponse)}`);
+document.querySelectorAll(".answer-button").forEach(function (button) {
+    button.addEventListener("click", async function (event) {
+        event.preventDefault();
+        const answer = button.dataset.answer;
+        const result = await sendAnswer(`answer=${encodeURIComponent(answer)}`);
 
-        if (resultat) {
-            if (resultat.est_correct) {
-                bouton.classList.add("bg-emerald-500/30", "border-emerald-400");
+        if (result) {
+            if (result.is_correct) {
+                button.classList.add("bg-emerald-500/30", "border-emerald-400");
             } else {
-                bouton.classList.add("bg-red-500/30", "border-red-400");
+                button.classList.add("bg-red-500/30", "border-red-400");
             }
-            allerALaQuestionSuivante();
+            goToNextQuestion();
         }
     });
 });
 
-const intervalleChrono = setInterval(async function () {
-    tempsRestant -= 1;
-    const pourcentage = (tempsRestant / DUREE_TOTALE) * 100;
-    barreTemps.style.width = pourcentage + "%";
+const timerInterval = setInterval(async function () {
+    remainingTime -= 1;
+    const percentage = (remainingTime / TOTAL_DURATION) * 100;
+    timeBar.style.width = percentage + "%";
 
-    if (tempsRestant <= 0) {
-        await envoyerReponse("timeout=true");
-        allerALaQuestionSuivante();
+    if (remainingTime <= 0) {
+        await sendAnswer("timeout=true");
+        goToNextQuestion();
     }
 }, 1000);

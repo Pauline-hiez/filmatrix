@@ -1,186 +1,204 @@
 """Application Flask : sert le quiz Filmatrix sous forme de page web"""
 
-from flask import Flask, render_template, request 
-
-from src.engine import check_answer
-from src.database import db
-from src.models import Question, User, Attempt
 import os
+
 from dotenv import load_dotenv
-from flask_login import LoginManager
-from src.validation import mot_de_passe_valide
-from flask import Flask, redirect, render_template, request, url_for, flash
-from flask_login import login_user, login_required, logout_user, current_user
+from flask import Flask, flash, redirect, render_template, request, url_for
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
 from flask_migrate import Migrate
 from sqlalchemy import func
 
+from src.database import db
+from src.engine import check_answer
+from src.models import Attempt, Question, User
+from src.validation import is_password_valid
+
 load_dotenv()
 
-app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///filmatrix.db"
-app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
-db.init_app(app)
-migrate = Migrate(app, db)
+def create_app(database_uri: str | None = None) -> Flask:
+    """Construit et configure une instance de l'application Flask.
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "connexion"
+    Le paramètre database_uri permet de fournir une base différente
+    (par exemple en mémoire, pour les tests) sans toucher à la vraie base.
+    """
+    app = Flask(__name__)
 
-@login_manager.user_loader
-def charger_utilisateur(user_id: str):
-    """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
-    return User.query.get(int(user_id))
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_uri or "sqlite:///filmatrix.db"
+    app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
-def trouver_question(mode: str, position: int, category: str | None):
-    """Cherche la question à une position donnée, parmi celles d'un mode et d'une catégorie"""
-    requete = Question.query.filter_by(mode=mode)
+    db.init_app(app)
+    Migrate(app, db)
 
-    if category:
-        requete = requete.filter_by(category=category)
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = "login"
 
-    questions_du_mode = requete.order_by(Question.id).all()
+    @login_manager.user_loader
+    def load_user(user_id: str):
+        """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
+        return User.query.get(int(user_id))
 
-    index = position - 1
-    if index < 0 or index >= len(questions_du_mode):
-        return None
+    def find_question(mode: str, position: int, category: str | None):
+        """Cherche la question à une position donnée, parmi celles d'un mode et d'une catégorie"""
+        query = Question.query.filter_by(mode=mode)
 
-    return questions_du_mode[index]
+        if category:
+            query = query.filter_by(category=category)
 
-def convertir_reponse(mode: str, valeur_brute: str):
-    """Convertit la valeur texte du formulaire dans le type attendu par check_answer"""
-    if mode == "qcm":
-        return int(valeur_brute)
-    if mode == "vrai_faux":
-        return valeur_brute == "true"
-    raise ValueError(f"Mode inconnu : {mode}")
+        mode_questions = query.order_by(Question.id).all()
 
-@app.route("/")
-def accueil() -> str:
-    """Page d'accueil du site"""
-    return render_template("accueil.html")
+        index = position - 1
+        if index < 0 or index >= len(mode_questions):
+            return None
 
-@app.route("/inscription", methods=["GET", "POST"])
-def inscription() -> str:
-    """Affiche le formulaire d'inscription (GET) ou crée le compte (POST)."""
-    if request.method == "POST":
-        username = request.form["username"]
-        email = request.form["email"]
-        password = request.form["password"]
+        return mode_questions[index]
 
-        if not mot_de_passe_valide(password):
-            erreur = "Le mot de passe ne respecte pas les règles de sécurité."
-            return render_template("inscription.html", erreur=erreur)
+    def convert_answer(mode: str, raw_value: str):
+        """Convertit la valeur texte du formulaire dans le type attendu par check_answer"""
+        if mode == "qcm":
+            return int(raw_value)
+        if mode == "vrai_faux":
+            return raw_value == "true"
+        raise ValueError(f"Mode inconnu : {mode}")
 
-        nouvel_utilisateur = User(username=username, email=email)
-        nouvel_utilisateur.set_password(password)
+    @app.route("/")
+    def home() -> str:
+        """Page d'accueil du site"""
+        return render_template("accueil.html")
 
-        db.session.add(nouvel_utilisateur)
-        db.session.commit()
+    @app.route("/inscription", methods=["GET", "POST"])
+    def register() -> str:
+        """Affiche le formulaire d'inscription (GET) ou crée le compte (POST)."""
+        if request.method == "POST":
+            username = request.form["username"]
+            email = request.form["email"]
+            password = request.form["password"]
 
-        return redirect(url_for("connexion"))
+            if not is_password_valid(password):
+                error = "Le mot de passe ne respecte pas les règles de sécurité."
+                return render_template("inscription.html", error=error)
 
-    return render_template("inscription.html", erreur=None)
+            new_user = User(username=username, email=email)
+            new_user.set_password(password)
 
-@app.route("/connexion", methods=["GET", "POST"])
-def connexion() -> str:
-    """Affiche le formulaire de connexion (GET) ou authentifie l'utilisateur (POST)"""
-    if request.method == "POST":
-        email = request.form["email"]
-        password = request.form["password"]
+            db.session.add(new_user)
+            db.session.commit()
 
-        utilisateur = User.query.filter_by(email=email).first()
+            return redirect(url_for("login"))
 
-        if utilisateur is None or not utilisateur.verifier_mot_de_passe(password):
-            erreur = "Email ou mot de passe incorrect."
-            return render_template("connexion.html", erreur=erreur)
+        return render_template("inscription.html", error=None)
 
-        login_user(utilisateur)
-        return redirect(url_for("accueil"))
+    @app.route("/connexion", methods=["GET", "POST"])
+    def login() -> str:
+        """Affiche le formulaire de connexion (GET) ou authentifie l'utilisateur (POST)"""
+        if request.method == "POST":
+            email = request.form["email"]
+            password = request.form["password"]
 
-    return render_template("connexion.html", erreur=None)
+            user = User.query.filter_by(email=email).first()
 
-@app.route("/deconnexion")
-@login_required
-def deconnexion() -> str:
-    """Déconnecte l'utilisateur courant"""
-    logout_user()
-    return redirect(url_for("accueil"))
+            if user is None or not user.verify_password(password):
+                error = "Email ou mot de passe incorrect."
+                return render_template("connexion.html", error=error)
 
-@app.route("/profil")
-@login_required
-def profil() -> str:
-    """Affiche le score et l'historique du joueur connecté"""
-    tentatives = (
+            login_user(user)
+            return redirect(url_for("home"))
+
+        return render_template("connexion.html", error=None)
+
+    @app.route("/deconnexion")
+    @login_required
+    def logout() -> str:
+        """Déconnecte l'utilisateur courant"""
+        logout_user()
+        return redirect(url_for("home"))
+
+    @app.route("/profil")
+    @login_required
+    def profile() -> str:
+        """Affiche le score et l'historique du joueur connecté"""
+        attempts = (
             Attempt.query.filter_by(user_id=current_user.id)
             .order_by(Attempt.answered_at.desc())
             .all()
         )
 
-    nombre_total = len(tentatives)
-    nombre_correctes = sum(1 for tentative in tentatives if tentative.is_correct)
+        total_count = len(attempts)
+        correct_count = sum(1 for attempt in attempts if attempt.is_correct)
 
-    return render_template(
+        return render_template(
             "profil.html",
-            tentatives=tentatives, 
-            nombre_total=nombre_total,
-            nombre_correctes=nombre_correctes,
+            attempts=attempts,
+            total_count=total_count,
+            correct_count=correct_count,
         )
 
-@app.route("/modes")
-def modes() -> str:
-    """Affiche la liste des modes de jeu disponibles"""
-    return render_template("modes.html")
+    @app.route("/modes")
+    def modes() -> str:
+        """Affiche la liste des modes de jeu disponibles"""
+        return render_template("modes.html")
 
-@app.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
-def quiz(mode: str, position: int) -> str:
-    """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
-    category = request.args.get("category")
-    question = trouver_question(mode, position, category)
+    @app.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
+    def quiz(mode: str, position: int) -> str:
+        """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
+        category = request.args.get("category")
+        question = find_question(mode, position, category)
 
-    if question is None:
-        return render_template("termine.html")
+        if question is None:
+            return render_template("termine.html")
 
-    if question.necessite_compte and not current_user.is_authenticated:
-        flash("Connecte-toi pour accéder à cette question.")
-        return redirect(url_for("connexion"))
+        if question.requires_account and not current_user.is_authenticated:
+            flash("Connecte-toi pour accéder à cette question.")
+            return redirect(url_for("login"))
 
-    if request.method == "POST":
-        if request.form.get("timeout") == "true":
-            est_correct = False
-        else: 
-            reponse_brute = request.form["reponse"]
-            reponse_joueur = convertir_reponse(question.mode, reponse_brute)
-            est_correct = check_answer(question, reponse_joueur)
+        if request.method == "POST":
+            if request.form.get("timeout") == "true":
+                is_correct = False
+            else:
+                raw_answer = request.form["answer"]
+                player_answer = convert_answer(question.mode, raw_answer)
+                is_correct = check_answer(question, player_answer)
 
-        if current_user.is_authenticated:
-            tentative = Attempt(
-                user_id=current_user.id,
-                question_id=question.id,
-                is_correct=est_correct,
+            if current_user.is_authenticated:
+                attempt = Attempt(
+                    user_id=current_user.id,
+                    question_id=question.id,
+                    is_correct=is_correct,
                 )
-            db.session.add(tentative)
-            db.session.commit()
+                db.session.add(attempt)
+                db.session.commit()
 
-        return {"est_correct": est_correct}
+            return {"is_correct": is_correct}
 
-    return render_template("quiz.html", question=question)
+        return render_template("quiz.html", question=question)
 
-@app.route("/classement")
-def classement() -> str:
-    """Affiche le classement général des joueurs par nombre de bonnes réponses"""
-    resultats = (
+    @app.route("/classement")
+    def leaderboard() -> str:
+        """Affiche le classement général des joueurs par nombre de bonnes réponses"""
+        results = (
             db.session.query(
-                    User.username,
-                    func.count(Attempt.id).label("total"),
-                    func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correctes"), 
-                )
-                .join(Attempt, Attempt.user_id == User.id)
-                .group_by(User.id)
-                .order_by(func.sum(db.case((Attempt.is_correct, 1), else_=0)).desc())
-                .all()
+                User.username,
+                func.count(Attempt.id).label("total"),
+                func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correct"),
+            )
+            .join(Attempt, Attempt.user_id == User.id)
+            .group_by(User.id)
+            .order_by(func.sum(db.case((Attempt.is_correct, 1), else_=0)).desc())
+            .all()
         )
-    return render_template("classement.html", resultats=resultats)
+        return render_template("classement.html", results=results)
+
+    return app
+
+
+app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True)

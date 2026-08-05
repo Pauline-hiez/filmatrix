@@ -23,7 +23,7 @@ class Question(db.Model):
     prompt = db.Column(db.Text, nullable=False)
     payload = db.Column(db.JSON, nullable=False)
     correct_answer = db.Column(db.JSON, nullable=False)
-    necessite_compte = db.Column(db.Boolean, nullable=False, default=False)
+    requires_account = db.Column(db.Boolean, nullable=False, default=False)
 
 class User(db.Model, UserMixin):
     """Représente un compte joueur"""
@@ -34,13 +34,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
 
-    def set_password(self, mot_de_passe: str) -> None:
+    def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"
-        self.password_hash = generate_password_hash(mot_de_passe)
+        self.password_hash = generate_password_hash(password)
 
-    def verifier_mot_de_passe(self, mot_de_passe: str) -> bool:
+    def verify_password(self, password: str) -> bool:
         """Vérifie qu'un mot de passe correspond au hash stocké"""
-        return check_password_hash(self.password_hash, mot_de_passe)
+        return check_password_hash(self.password_hash, password)
 
 class Attempt(db.Model):
     """Représente une réponse donnée par un joueur à une question"""
