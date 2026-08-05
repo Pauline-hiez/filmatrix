@@ -6,13 +6,45 @@
     <title>Filmatrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
-    <header class="p-4 border-b border-blue-500/50">
-        <h1 class="text-2xl font-bold text-blue-400">Filmatrix</h1>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <header class="border-b border-blue-500/50">
+        <nav class="max-w-4xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <a href="{{ url_for('accueil') }}" class="text-xl font-bold text-blue-400">
+                Filmatrix
+            </a>
+
+            <div class="flex items-center gap-4 text-sm">
+                <a href="{{ url_for('accueil') }}" class="text-slate-300 hover:text-blue-400 transition">
+                    Accueil
+                </a>
+
+                {% if current_user.is_authenticated %}
+                    <span class="text-slate-400">Bonjour, {{ current_user.username }}</span>
+                    <a href="{{ url_for('deconnexion') }}"
+                       class="text-slate-300 hover:text-blue-400 transition">
+                        Déconnexion
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('connexion') }}" class="text-slate-300 hover:text-blue-400 transition">
+                        Connexion
+                    </a>
+                    <a href="{{ url_for('inscription') }}"
+                       class="bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition">
+                        Inscription
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
     </header>
 
-    <main class="p-4">
+    <main class="flex-1 p-4">
         {% block content %}{% endblock %}
     </main>
+
+    <footer class="border-t border-blue-500/30 text-center text-slate-500 text-sm py-4">
+        Filmatrix — projet d'apprentissage Python
+    </footer>
+
 </body>
 </html>

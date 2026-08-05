@@ -8,6 +8,9 @@ from src.models import Question, User
 import os
 from dotenv import load_dotenv
 from flask_login import LoginManager
+from src.validation import mot_de_passe_valide
+from flask import Flask, redirect, render_template, request, url_for
+from flask_login import login_user, login_required, logout_user
 
 load_dotenv()
 
@@ -45,6 +48,53 @@ def convertir_reponse(mode: str, valeur_brute: str):
 def accueil() -> str:
     """Page d'accueil du site"""
     return render_template("accueil.html")
+
+@app.route("/inscription", methods=["GET", "POST"])
+def inscription() -> str:
+    """Affiche le formulaire d'inscription (GET) ou crée le compte (POST)."""
+    if request.method == "POST":
+        username = request.form["username"]
+        email = request.form["email"]
+        password = request.form["password"]
+
+        if not mot_de_passe_valide(password):
+            erreur = "Le mot de passe ne respecte pas les règles de sécurité."
+            return render_template("inscription.html", erreur=erreur)
+
+        nouvel_utilisateur = User(username=username, email=email)
+        nouvel_utilisateur.set_password(password)
+
+        db.session.add(nouvel_utilisateur)
+        db.session.commit()
+
+        return redirect(url_for("connexion"))
+
+    return render_template("inscription.html", erreur=None)
+
+@app.route("/connexion", methods=["GET", "POST"])
+def connexion() -> str:
+    """Affiche le formulaire de connexion (GET) ou authentifie l'utilisateur (POST)"""
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        utilisateur = User.query.filter_by(email=email).first()
+
+        if utilisateur is None or not utilisateur.verifier_mot_de_passe(password):
+            erreur = "Email ou mot de passe incorrect."
+            return render_template("connexion.html", erreur=erreur)
+
+        login_user(utilisateur)
+        return redirect(url_for("accueil"))
+
+    return render_template("connexion.html", erreur=None)
+
+@app.route("/deconnexion")
+@login_required
+def deconnexion() -> str:
+    """Déconnecte l'utilisateur courant"""
+    logout_user()
+    return redirect(url_for("accueil"))
 
 @app.route("/quiz/<int:question_id>", methods=["GET", "POST"])
 def quiz(question_id: int) -> str:
