@@ -55,3 +55,14 @@ class Attempt(db.Model):
     answered_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     question = db.relationship("Question")
     user = db.relationship("User", backref="attempts")
+
+class UserBadge(db.Model):
+    """Représente un badge obtenu par un joueur"""
+    __tablename__ = "user_badges"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    badge_code = db.Column(db.String(50), nullable = False)
+    earned_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship("User", backref="badges")
