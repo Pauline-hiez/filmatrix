@@ -40,19 +40,24 @@
 
     <h3 class="text-lg mb-4 text-slate-300">Historique</h3>
 
-    {% if attempts %}
-    <div class="flex flex-col gap-2">
-        {% for attempt in attempts %}
-        <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
-            <span class="text-sm">{{ attempt.question.prompt }}</span>
-            {% if attempt.is_correct %}
-                <span class="text-emerald-400 text-sm font-bold">Correct</span>
-            {% else %}
-                <span class="text-red-400 text-sm font-bold">Incorrect</span>
-            {% endif %}
+    {% if attempts_by_mode %}
+        {% for mode, mode_attempts in attempts_by_mode.items() %}
+        <div class="mb-6">
+            <h4 class="text-sm font-bold text-cyan-400 mb-2 uppercase tracking-wide">{{ mode }}</h4>
+            <div class="flex flex-col gap-2">
+                {% for attempt in mode_attempts %}
+                <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+                    <span class="text-sm">{{ attempt.question.prompt }}</span>
+                    {% if attempt.is_correct %}
+                        <span class="text-emerald-400 text-sm font-bold">Correct</span>
+                    {% else %}
+                        <span class="text-red-400 text-sm font-bold">Incorrect</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
         </div>
         {% endfor %}
-    </div>
     {% else %}
     <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
     {% endif %}

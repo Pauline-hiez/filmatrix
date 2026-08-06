@@ -172,7 +172,6 @@ def create_app(database_uri: str | None = None) -> Flask:
         return redirect(url_for("home"))
 
     @app.route("/profil")
-    @app.route("/profil")
     @login_required
     def profile() -> str:
         """Affiche le score et l'historique du joueur connecté"""
@@ -185,6 +184,11 @@ def create_app(database_uri: str | None = None) -> Flask:
         total_count = len(attempts)
         correct_count = sum(1 for attempt in attempts if attempt.is_correct)
         level_info = calculate_level(current_user.total_xp)
+
+        attempts_by_mode = {}
+        for attempt in attempts:
+            mode = attempt.question.mode
+            attempts_by_mode.setdefault(mode, []).append(attempt)
 
         earned_badge_codes = {badge.badge_code for badge in current_user.badges}
         all_badges = []
@@ -201,7 +205,7 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return render_template(
             "profil.html",
-            attempts=attempts,
+            attempts_by_mode=attempts_by_mode,
             total_count=total_count,
             correct_count=correct_count,
             level_info=level_info,
@@ -304,16 +308,16 @@ def create_app(database_uri: str | None = None) -> Flask:
         for result in results:
             level_info = calculate_level(result.total_xp)
             leaderboard_entries.append(
-                    {
-                        "username": result.username,
-                        "total_xp": result.total_xp,
-                        "level": level_info["level"],
-                        "total": result.total,
-                        "correct": result.correct,
-                        }
-                )
+                {
+                    "username": result.username,
+                    "total_xp": result.total_xp,
+                    "level": level_info["level"],
+                    "total": result.total,
+                    "correct": result.correct,
+                }
+            )
 
-            return render_template("classement.html", results=leaderboard_entries)
+        return render_template("classement.html", results=leaderboard_entries)
 
     return app
 
