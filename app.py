@@ -268,19 +268,34 @@ def create_app(database_uri: str | None = None) -> Flask:
 
     @app.route("/classement")
     def leaderboard() -> str:
-        """Affiche le classement général des joueurs par nombre de bonnes réponses"""
+        """Affiche le classement général des joueurs, trié par XP total"""
         results = (
-            db.session.query(
-                User.username,
-                func.count(Attempt.id).label("total"),
-                func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correct"),
+                db.session.query(
+                        User.username,
+                        User.total_xp,
+                        func.count(Attempt.id).label("total"),
+                        func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correct"),
+                    )
+                    .join(Attempt, Attempt.user_id == User.id)
+                    .group_by(User.id)
+                    .order_by(User.total_xp.desc())
+                    .all()
             )
-            .join(Attempt, Attempt.user_id == User.id)
-            .group_by(User.id)
-            .order_by(func.sum(db.case((Attempt.is_correct, 1), else_=0)).desc())
-            .all()
-        )
-        return render_template("classement.html", results=results)
+
+        leaderboard_entries = []
+        for result in results:
+            level_info = calculate_level(result.total_xp)
+            leaderboard_entries.append(
+                    {
+                        "username": result.username,
+                        "total_xp": result.total_xp,
+                        "level": level_info["level"],
+                        "total": result.total,
+                        "correct": result.correct,
+                        }
+                )
+
+            return render_template("classement.html", results=leaderboard_entries)
 
     return app
 

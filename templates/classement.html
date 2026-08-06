@@ -12,9 +12,10 @@
                 <span class="text-cyan-400 font-bold w-6 text-right">{{ loop.index }}</span>
                 <span>{{ result.username }}</span>
             </div>
-            <span class="text-slate-400 text-sm">
-                {{ result.correct }} / {{ result.total }} bonnes réponses
-            </span>
+            <div class="text-right">
+                <span class="text-cyan-400 font-bold text-sm">Niveau {{ result.level }}</span>
+                    <p class="text-slate-500 text-xs">{{ result.total_xp }} XP — {{ result.correct }} / {{ result.total }} bonnes réponses</p>
+            </div>
         </div>
         {% endfor %}
     </div>
