@@ -90,16 +90,30 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
     });
 });
 
-const timerInterval = setInterval(async function () {
-    remainingTime -= 1;
-    const percentage = (remainingTime / TOTAL_DURATION) * 100;
-    timeBar.style.width = percentage + "%";
+let timerInterval;
 
-    if (remainingTime <= 0) {
-        await sendAnswer("timeout=true");
-        goToNextQuestion();
-    }
-}, 1000);
+if (document.getElementById("riddle-submit")) {
+    timerInterval = setInterval(function () {
+        remainingTime -= 1;
+        const percentage = (remainingTime / TOTAL_DURATION) * 100;
+        timeBar.style.width = percentage + "%";
+
+        if (remainingTime <= 0) {
+            document.getElementById("riddle-submit").click();
+        }
+    }, 1000);
+} else {
+    timerInterval = setInterval(async function () {
+        remainingTime -= 1;
+        const percentage = (remainingTime / TOTAL_DURATION) * 100;
+        timeBar.style.width = percentage + "%";
+
+        if (remainingTime <= 0) {
+            await sendAnswer("timeout=true");
+            goToNextQuestion();
+        }
+    }, 1000);
+}
 
 const chronologyFilms = document.querySelectorAll(".chronology-film");
 const chosenOrder = [];
@@ -121,4 +135,59 @@ chronologyFilms.forEach(function (filmButton) {
             validateButton.disabled = false;
         }
     });
-}); 
+});
+
+const riddleButton = document.getElementById("riddle-submit");
+
+if (riddleButton) {
+    riddleButton.addEventListener("click", async function (event) {
+        event.preventDefault();
+
+        const freeTextField = document.getElementById("free-text-answer");
+        const answer = freeTextField.value;
+        const hintIndex = riddleButton.dataset.hintIndex;
+
+        const url = window.location.pathname + window.location.search;
+        const serverResponse = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `answer=${encodeURIComponent(answer)}&hint_index=${hintIndex}`,
+        });
+
+        const result = await serverResponse.json();
+
+        if (!result.give_up) {
+            const currentHint = document.getElementById("current-hint");
+            currentHint.textContent = result.next_hint;
+            riddleButton.dataset.hintIndex = parseInt(hintIndex) + 1;
+            freeTextField.value = "";
+            freeTextField.classList.remove("border-emerald-400", "border-red-400");
+            freeTextField.classList.add("border-red-400");
+
+            remainingTime = TOTAL_DURATION;
+            timeBar.style.width = "100%";
+            return;
+        }
+
+        clearInterval(timerInterval);
+        freeTextField.disabled = true;
+        riddleButton.disabled = true;
+
+        freeTextField.classList.remove("border-red-400", "border-emerald-400", "border-cyan-400/30");
+
+        if (result.is_correct) {
+            freeTextField.classList.add("border-emerald-400");
+        } else {
+            freeTextField.classList.add("border-red-400");
+        }
+
+        setTimeout(function () {
+            window.location.href = window.location.href.replace(
+                /\/(\d+)(\?|$)/,
+                function (match, position, end) {
+                    return "/" + (parseInt(position) + 1) + end;
+                }
+            );
+        }, 1500);
+    });
+}

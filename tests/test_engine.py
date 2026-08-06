@@ -153,4 +153,26 @@ def test_chronology_partial_order_wrong():
     question = make_chronology_question()
     assert check_answer(question, ["Titanic", "Avatar", "Inception"]) is False
 
+def make_riddle_question() -> Question:
+    """Fabrique une question devinette de test"""
+    return Question(
+            id=7,
+            mode="devinette",
+            category="test",
+            difficulty="moyen",
+            prompt="",
+            payload={"hints": ["Indice 1", "Indice 2", "Indice 3"]},
+            correct_answer={"film": "Titanic"},
+        )
+
+def test_riddle_correct_answer_case_insensitive():
+    """Une réponse correcte à une énigme doit être acceptée quelle que soit la casse"""
+    question = make_riddle_question()
+    assert check_answer(question, "titanic") is True
+
+def test_riddle_wrong_answer():
+    """Une réponse incorrecte doit retourner False"""
+    question = make_riddle_question()
+    assert check_answer(question, "Avatar") is False
+
 

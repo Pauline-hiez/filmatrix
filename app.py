@@ -1,6 +1,7 @@
 """Application Flask : sert le quiz Filmatrix sous forme de page web"""
 
 import os
+import random
 
 from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, url_for
@@ -18,7 +19,6 @@ from src.database import db
 from src.engine import check_answer
 from src.models import Attempt, Question, User
 from src.validation import is_password_valid
-import random
 
 load_dotenv()
 
@@ -75,6 +75,8 @@ def create_app(database_uri: str | None = None) -> Flask:
             return raw_value
         if mode == "chronologie":
             return raw_value.split("|")
+        if mode == "devinette":
+            return raw_value
         raise ValueError(f"Mode inconnu : {mode}")
 
     def scramble_title(title: str) -> str:
@@ -184,12 +186,26 @@ def create_app(database_uri: str | None = None) -> Flask:
             return redirect(url_for("login"))
 
         if request.method == "POST":
-            if request.form.get("timeout") == "true":
+            is_timeout = request.form.get("timeout") == "true"
+
+            if is_timeout:
                 is_correct = False
             else:
                 raw_answer = request.form["answer"]
                 player_answer = convert_answer(question.mode, raw_answer)
                 is_correct = check_answer(question, player_answer)
+
+            if question.mode == "devinette" and not is_correct:
+                hint_index = int(request.form.get("hint_index", 0))
+                hints = question.payload["hints"]
+
+                if hint_index < len(hints) - 1:
+                    return {
+                        "is_correct": False,
+                        "give_up": False,
+                        "next_hint": hints[hint_index + 1],
+                        "was_timeout": is_timeout,
+                    }
 
             if current_user.is_authenticated:
                 attempt = Attempt(
@@ -203,11 +219,16 @@ def create_app(database_uri: str | None = None) -> Flask:
             if question.mode == "chronologie":
                 correct_order = question.correct_answer["order"]
                 position_results = [
-                        player_answer[i] == correct_order[i]
-                        for i in range(len(correct_order))
-                    ]
-                return {"is_correct": is_correct, "position_results": position_results}
-            return {"is_correct": is_correct}
+                    player_answer[i] == correct_order[i]
+                    for i in range(len(correct_order))
+                ]
+                return {
+                    "is_correct": is_correct,
+                    "position_results": position_results,
+                    "give_up": True,
+                }
+
+            return {"is_correct": is_correct, "give_up": True}
 
         scrambled_title = None
         if question.mode == "film_melange":

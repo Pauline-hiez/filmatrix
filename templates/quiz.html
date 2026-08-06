@@ -70,6 +70,18 @@
             </button>
 
             <p id="chronology-summary" class="text-sm text-slate-400 mt-3"></p>
+
+        {% elif question.mode == "devinette" %}
+            <div id="hints-container" class="mb-4">
+                <p class="text-slate-300" id="current-hint">{{ question.payload.hints[0] }}</p>
+            </div>
+
+            <input type="text" id="free-text-answer" placeholder="Titre du film..."
+           class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
+                <button type="button" data-answer="" id="riddle-submit" data-hint-index="0"
+                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
+                    Valider
+                </button>
         {% endif %}
     </div>
 </div>

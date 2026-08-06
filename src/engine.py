@@ -40,6 +40,11 @@ def check_answer(question: Question, user_response: Any) -> bool:
         case "chronologie":
                 return user_response == question.correct_answer["order"]
 
+        case "devinette":
+                expected_answer = question.correct_answer["film"].strip().lower()
+                given_answer = user_response.strip().lower()
+                return given_answer == expected_answer
+
         case _:
             raise ValueError(f"Mode de question inconnu : {question.mode}")
 
