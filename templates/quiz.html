@@ -6,7 +6,11 @@
     <div class="w-full bg-slate-900 rounded-full h-2 mb-4 overflow-hidden">
         <div id="time-bar" class="bg-cyan-400 h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
     </div>
-    <h2 class="text-xl mb-6">{{ question.prompt }}</h2>
+    {% if question.mode == "film_melange" %}
+        <h2 class="text-xl mb-6">{{ scrambled_title }}</h2>
+    {% else %}
+        <h2 class="text-xl mb-6">{{ question.prompt }}</h2>
+    {% endif %}
 
     <div class="flex flex-col gap-3">
         {% if question.mode == "qcm" %}
@@ -40,7 +44,15 @@
                     class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
                     Valider
                 </button>
-        {% endif %}
+
+            {% elif question.mode == "film_melange" %}
+                <input type="text" id="free-text-answer" placeholder="Titre du film..."
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
+                    <button type="button" data-answer=""
+                        class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
+                            Valider
+                    </button>
+            {% endif %}
     </div>
 </div>
 

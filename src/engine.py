@@ -31,7 +31,11 @@ def check_answer(question: Question, user_response: Any) -> bool:
               expected_answer = question.correct_answer["film"].strip().lower()
               given_answer = user_response.strip().lower()
               return given_answer == expected_answer
-              
+
+        case "film_melange":
+              expected_answer = question.correct_answer["title"].strip().lower()
+              given_answer = user_response.strip().lower()      
+              return given_answer == expected_answer
 
         case _:
             raise ValueError(f"Mode de question inconnu : {question.mode}")

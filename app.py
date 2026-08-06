@@ -18,6 +18,7 @@ from src.database import db
 from src.engine import check_answer
 from src.models import Attempt, Question, User
 from src.validation import is_password_valid
+import random
 
 load_dotenv()
 
@@ -70,7 +71,25 @@ def create_app(database_uri: str | None = None) -> Flask:
             return raw_value
         if mode == "emoji":
             return raw_value
+        if mode == "film_melange":
+            return raw_value
         raise ValueError(f"Mode inconnu : {mode}")
+
+    def scramble_title(title: str) -> str:
+        """Mélange aléatoirement les lettres d'un titre en conservant les espaces à leur place"""
+        letters = [char for char in title if char != " "]
+        random.shuffle(letters)
+
+        scrambled = []
+        letter_index = 0
+        for char in title:
+            if char == " ":
+                scrambled.append(" ")
+            else:
+                scrambled.append(letters[letter_index])
+                letter_index += 1
+
+        return "".join(scrambled)
 
     @app.route("/")
     def home() -> str:
@@ -181,7 +200,11 @@ def create_app(database_uri: str | None = None) -> Flask:
 
             return {"is_correct": is_correct}
 
-        return render_template("quiz.html", question=question)
+        scrambled_title = None
+        if question.mode == "film_melange":
+            scrambled_title = scramble_title(question.correct_answer["title"])
+
+        return render_template("quiz.html", question=question, scrambled_title=scrambled_title)
 
     @app.route("/classement")
     def leaderboard() -> str:
