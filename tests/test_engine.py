@@ -123,4 +123,34 @@ def test_scrambled_title_wrong_answer():
     question = make_scrambled_title_question()
     assert check_answer(question, "Titanic") is False
 
+def make_chronology_question() -> Question:
+    """Fabrique une question chronologie de test."""
+    return Question(
+        id=6,
+        mode="chronologie",
+        category="test",
+        difficulty="moyen",
+        prompt="",
+        payload={"films": ["Avatar", "Inception", "Titanic"]},
+        correct_answer={"order": ["Titanic", "Inception", "Avatar"]},
+    )
+
+
+def test_chronology_correct_order():
+    """The correct chronological order should be accepted."""
+    question = make_chronology_question()
+    assert check_answer(question, ["Titanic", "Inception", "Avatar"]) is True
+
+
+def test_chronology_wrong_order():
+    """An incorrect order should return False."""
+    question = make_chronology_question()
+    assert check_answer(question, ["Avatar", "Inception", "Titanic"]) is False
+
+
+def test_chronology_partial_order_wrong():
+    """An order with only one swapped pair should still be rejected."""
+    question = make_chronology_question()
+    assert check_answer(question, ["Titanic", "Avatar", "Inception"]) is False
+
 
