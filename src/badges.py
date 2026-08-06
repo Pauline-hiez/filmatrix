@@ -46,15 +46,18 @@ def award_badge(user, badge_code: str) -> None:
         new_badge = UserBadge(badge_code=badge_code)
         user.badges.append(new_badge)
 
-def check_and_award_badges(user) -> None:
-    """Vérifie toutes les conditions de badges et attribue ceux récemment débloqués"""
+def check_and_award_badges(user) -> list[str]:
+    """Vérifie toutes les conditions de badges, attribue ceux nouvellement débloqués,
+    et renvoie la liste des codes de badges tout juste obtenus."""
+    badges_before = {badge.badge_code for badge in user.badges}
+
     all_attempts = Attempt.query.filter_by(user_id=user.id).order_by(Attempt.answered_at).all()
 
     if len(all_attempts) >= 1:
         award_badge(user, "first_step")
 
     if len(all_attempts) >= 100:
-        award_badge(user, "hudred_attempts")
+        award_badge(user, "hundred_attempts")
 
     last_five = all_attempts[-5:]
     if len(last_five) == 5 and all(attempt.is_correct for attempt in last_five):
@@ -66,18 +69,21 @@ def check_and_award_badges(user) -> None:
         award_badge(user, "level_5")
 
     played_modes = {
-        attempt.question.mode for attempt in all_attempts 
-        }
+        attempt.question.mode for attempt in all_attempts
+    }
 
     all_available_modes = {question.mode for question in Question.query.all()}
     if all_available_modes and played_modes >= all_available_modes:
         award_badge(user, "all_modes")
 
     citation_correct_count = sum(
-            1
-            for attempt in all_attempts
-            if attempt.is_correct and attempt.question.mode == "citation"
-        )
+        1
+        for attempt in all_attempts
+        if attempt.is_correct and attempt.question.mode == "citation"
+    )
 
     if citation_correct_count >= 10:
         award_badge(user, "citation_expert")
+
+    badges_after = {badge.badge_code for badge in user.badges}
+    return list(badges_after - badges_before)

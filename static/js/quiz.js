@@ -4,6 +4,28 @@ let alreadyAnswered = false;
 
 const timeBar = document.getElementById("time-bar");
 
+function showBadgeNotification(badge) {
+    const notification = document.createElement("div");
+    notification.className =
+        "fixed top-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-cyan-400 rounded-lg px-4 py-3 shadow-lg z-50 flex items-center gap-3 transition-opacity duration-500";
+    notification.innerHTML = `
+        <span class="text-2xl">${badge.icon}</span>
+        <div>
+            <p class="text-cyan-400 font-bold text-sm">Badge débloqué !</p>
+            <p class="text-slate-300 text-xs">${badge.name}</p>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(function () {
+        notification.style.opacity = "0";
+        setTimeout(function () {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}
+
 function goToNextQuestion() {
     setTimeout(function () {
         window.location.href = window.location.href.replace(
@@ -85,6 +107,13 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
                 const summary = document.getElementById("chronology-summary");
                 summary.textContent = correctCount + " / " + filmButtons.length + " films bien placés.";
             }
+
+            if (result.new_badges) {
+                result.new_badges.forEach(function (badge) {
+                    showBadgeNotification(badge);
+                });
+            }
+
             goToNextQuestion();
         }
     });
@@ -109,7 +138,12 @@ if (document.getElementById("riddle-submit")) {
         timeBar.style.width = percentage + "%";
 
         if (remainingTime <= 0) {
-            await sendAnswer("timeout=true");
+            const result = await sendAnswer("timeout=true");
+            if (result && result.new_badges) {
+                result.new_badges.forEach(function (badge) {
+                    showBadgeNotification(badge);
+                });
+            }
             goToNextQuestion();
         }
     }, 1000);
@@ -179,6 +213,12 @@ if (riddleButton) {
             freeTextField.classList.add("border-emerald-400");
         } else {
             freeTextField.classList.add("border-red-400");
+        }
+
+        if (result.new_badges) {
+            result.new_badges.forEach(function (badge) {
+                showBadgeNotification(badge);
+            });
         }
 
         setTimeout(function () {

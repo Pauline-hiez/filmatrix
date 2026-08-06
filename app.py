@@ -252,18 +252,31 @@ def create_app(database_uri: str | None = None) -> Flask:
                         "was_timeout": is_timeout,
                     }
 
+            new_badges = []
+
             if current_user.is_authenticated:
+                already_answered_correctly = Attempt.query.filter_by(
+                    user_id=current_user.id,
+                    question_id=question.id,
+                    is_correct=True,
+                ).first() is not None
+
                 attempt = Attempt(
-                        user_id=current_user.id,
-                        question_id=question.id,
-                        is_correct=is_correct,
-                    )
+                    user_id=current_user.id,
+                    question_id=question.id,
+                    is_correct=is_correct,
+                )
                 db.session.add(attempt)
 
-                if is_correct:
+                if is_correct and not already_answered_correctly:
                     current_user.total_xp += xp_for_difficulty(question.difficulty)
 
                 db.session.commit()
+
+                new_badge_codes = check_and_award_badges(current_user)
+                db.session.commit()
+
+                new_badges = [BADGES[code] for code in new_badge_codes]
 
                 check_and_award_badges(current_user)
                 db.session.commit()
@@ -278,9 +291,10 @@ def create_app(database_uri: str | None = None) -> Flask:
                     "is_correct": is_correct,
                     "position_results": position_results,
                     "give_up": True,
+                    "new_badges": new_badges,
                 }
 
-            return {"is_correct": is_correct, "give_up": True}
+            return {"is_correct": is_correct, "give_up": True, "new_badges": new_badges}
 
         scrambled_title = None
         if question.mode == "film_melange":
