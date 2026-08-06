@@ -19,9 +19,28 @@ from src.database import db
 from src.engine import check_answer
 from src.models import Attempt, Question, User
 from src.validation import is_password_valid
+from src.badges import check_and_award_badges, BADGES
 
 load_dotenv()
 
+def calculate_level(total_xp: int) -> dict:
+        """Calcule le niveau actuel et le progression vers le niveau suivant"""
+        level = 1
+        xp_for_next_level = 100
+        xp_already_spent = 0
+
+        while total_xp - xp_already_spent >= xp_for_next_level:
+            xp_already_spent += xp_for_next_level
+            level += 1
+            xp_for_next_level = 100 * level 
+
+        xp_in_current_level = total_xp - xp_already_spent
+
+        return {
+            "level": level,
+            "xp_in_current_level": xp_in_current_level,
+            "xp_for_next_level": xp_for_next_level,
+            }
 
 def create_app(database_uri: str | None = None) -> Flask:
     """Construit et configure une instance de l'application Flask.
@@ -100,25 +119,6 @@ def create_app(database_uri: str | None = None) -> Flask:
         xp_values = {"facile": 10, "moyen": 20, "difficile": 30}
         return xp_values.get(difficulty,10)
 
-    def calculate_level(total_xp: int) -> dict:
-        """Calcule le niveau actuel et le progression vers le niveau suivant"""
-        level = 1
-        xp_for_next_level = 100
-        xp_already_spent = 0
-
-        while total_xp - xp_already_spent >= xp_for_next_level:
-            xp_already_spent += xp_for_next_level
-            level += 1
-            xp_for_next_level = 100 * level 
-
-        xp_in_current_level = total_xp - xp_already_spent
-
-        return {
-            "level": level,
-            "xp_in_current_level": xp_in_current_level,
-            "xp_for_next_level": xp_for_next_level,
-            }
-
     @app.route("/")
     def home() -> str:
         """Page d'accueil du site"""
@@ -172,26 +172,41 @@ def create_app(database_uri: str | None = None) -> Flask:
         return redirect(url_for("home"))
 
     @app.route("/profil")
+    @app.route("/profil")
     @login_required
     def profile() -> str:
         """Affiche le score et l'historique du joueur connecté"""
         attempts = (
-                Attempt.query.filter_by(user_id=current_user.id)
-                .order_by(Attempt.answered_at.desc())
-                .all()
-            )
+            Attempt.query.filter_by(user_id=current_user.id)
+            .order_by(Attempt.answered_at.desc())
+            .all()
+        )
 
         total_count = len(attempts)
         correct_count = sum(1 for attempt in attempts if attempt.is_correct)
         level_info = calculate_level(current_user.total_xp)
 
-        return render_template(
-                "profil.html",
-                attempts=attempts,
-                total_count=total_count,
-                correct_count=correct_count,
-                level_info = level_info,
+        earned_badge_codes = {badge.badge_code for badge in current_user.badges}
+        all_badges = []
+        for code, info in BADGES.items():
+            all_badges.append(
+                {
+                    "code": code,
+                    "name": info["name"],
+                    "description": info["description"],
+                    "icon": info["icon"],
+                    "earned": code in earned_badge_codes,
+                }
             )
+
+        return render_template(
+            "profil.html",
+            attempts=attempts,
+            total_count=total_count,
+            correct_count=correct_count,
+            level_info=level_info,
+            all_badges=all_badges,
+        )
 
     @app.route("/modes")
     def modes() -> str:
@@ -244,6 +259,9 @@ def create_app(database_uri: str | None = None) -> Flask:
                 if is_correct:
                     current_user.total_xp += xp_for_difficulty(question.difficulty)
 
+                db.session.commit()
+
+                check_and_award_badges(current_user)
                 db.session.commit()
 
             if question.mode == "chronologie":
