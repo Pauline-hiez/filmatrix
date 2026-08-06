@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
+    total_xp = db.Column(db.Integer, nullable=False, default=0)
 
     def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"
