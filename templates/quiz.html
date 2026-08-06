@@ -6,6 +6,7 @@
     <div class="w-full bg-slate-900 rounded-full h-2 mb-4 overflow-hidden">
         <div id="time-bar" class="bg-cyan-400 h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
     </div>
+
     {% if question.mode == "film_melange" %}
         <h2 class="text-xl mb-6">{{ scrambled_title }}</h2>
     {% else %}
@@ -36,23 +37,40 @@
                     class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
                 Valider
             </button>
-
-            {% elif question.mode == "emoji" %}
-                <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-                <button type="button" data-answer=""
+        {% elif question.mode == "emoji" %}
+            <input type="text" id="free-text-answer" placeholder="Titre du film..."
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
+            <button type="button" data-answer=""
                     class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                    Valider
-                </button>
+                Valider
+            </button>
+        {% elif question.mode == "film_melange" %}
+            <input type="text" id="free-text-answer" placeholder="Titre du film..."
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
+            <button type="button" data-answer=""
+                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
+                Valider
+            </button>
+        {% elif question.mode == "chronologie" %}
+            <p class="text-sm text-slate-400 mb-3">Clique sur les films dans l'ordre chronologique (du plus ancien au plus récent) :</p>
 
-            {% elif question.mode == "film_melange" %}
-                <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-                    <button type="button" data-answer=""
-                        class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                            Valider
-                    </button>
-            {% endif %}
+            <div id="chronology-films" class="flex flex-col gap-2 mb-4">
+                {% for film in question.payload.films %}
+                <button type="button" data-film="{{ film }}"
+                        class="chronology-film bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 text-left px-4 py-3 rounded-lg transition flex items-center justify-between">
+                    <span>{{ film }}</span>
+                    <span class="chronology-order-badge text-cyan-400 font-bold"></span>
+                </button>
+                {% endfor %}
+            </div>
+
+            <button type="button" data-answer="" id="validate-order"
+                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition w-full" disabled>
+                Valider l'ordre
+            </button>
+
+            <p id="chronology-summary" class="text-sm text-slate-400 mt-3"></p>
+        {% endif %}
     </div>
 </div>
 

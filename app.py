@@ -73,6 +73,8 @@ def create_app(database_uri: str | None = None) -> Flask:
             return raw_value
         if mode == "film_melange":
             return raw_value
+        if mode == "chronologie":
+            return raw_value.split("|")
         raise ValueError(f"Mode inconnu : {mode}")
 
     def scramble_title(title: str) -> str:
@@ -198,6 +200,13 @@ def create_app(database_uri: str | None = None) -> Flask:
                 db.session.add(attempt)
                 db.session.commit()
 
+            if question.mode == "chronologie":
+                correct_order = question.correct_answer["order"]
+                position_results = [
+                        player_answer[i] == correct_order[i]
+                        for i in range(len(correct_order))
+                    ]
+                return {"is_correct": is_correct, "position_results": position_results}
             return {"is_correct": is_correct}
 
         scrambled_title = None

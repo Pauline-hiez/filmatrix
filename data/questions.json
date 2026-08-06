@@ -194,5 +194,29 @@
             "title": "Le Roi Lion"
         },
         "requires_account": false
+    },
+    {
+        "id": 15,
+        "mode": "chronologie",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "films": [
+                "Avatar",
+                "Le Roi Lion",
+                "Titanic",
+                "Inception"
+            ]
+        },
+        "correct_answer": {
+            "order": [
+                "Le Roi Lion",
+                "Titanic",
+                "Avatar",
+                "Inception"
+            ]
+        },
+        "requires_account": false
     }
 ]

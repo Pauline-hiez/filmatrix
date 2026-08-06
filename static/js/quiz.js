@@ -67,6 +67,24 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
                     freeTextField.classList.add("border-red-400");
                 }
             }
+
+            if (result.position_results) {
+                const filmButtons = document.querySelectorAll(".chronology-film");
+                let correctCount = 0;
+
+                filmButtons.forEach(function (filmButton, index) {
+                    filmButton.classList.remove("border-cyan-400/30");
+                    if (result.position_results[index]) {
+                        filmButton.classList.add("border-emerald-400", "bg-emerald-500/10");
+                        correctCount += 1;
+                    } else {
+                        filmButton.classList.add("border-red-400", "bg-red-500/10");
+                    }
+                });
+
+                const summary = document.getElementById("chronology-summary");
+                summary.textContent = correctCount + " / " + filmButtons.length + " films bien placés.";
+            }
             goToNextQuestion();
         }
     });
@@ -82,3 +100,25 @@ const timerInterval = setInterval(async function () {
         goToNextQuestion();
     }
 }, 1000);
+
+const chronologyFilms = document.querySelectorAll(".chronology-film");
+const chosenOrder = [];
+
+chronologyFilms.forEach(function (filmButton) {
+    filmButton.addEventListener("click", function () {
+        const film = filmButton.dataset.film;
+        chosenOrder.push(film);
+
+        const badge = filmButton.querySelector(".chronology-order-badge");
+        badge.textContent = chosenOrder.length;
+
+        filmButton.disabled = true;
+        filmButton.classList.add("opacity-50");
+
+        if (chosenOrder.length === chronologyFilms.length) {
+            const validateButton = document.getElementById("validate-order");
+            validateButton.dataset.answer = chosenOrder.join("|");
+            validateButton.disabled = false;
+        }
+    });
+}); 
