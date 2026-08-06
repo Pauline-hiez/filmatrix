@@ -3,9 +3,21 @@
 {% block content %}
 <div class="max-w-2xl mx-auto mt-8">
     <h2 class="text-xl mb-2">Bonjour, {{ current_user.username }}</h2>
-    <p class="text-cyan-400 text-lg mb-8">
-        Score : {{ correct_count }} / {{ total_count }}
-    </p>
+    
+    <div class="mb-8">
+        <p class="text-cyan-400 text-lg mb-2">
+            Niveau {{ level_info.level }}
+        </p>
+        <div class="w-full bg-slate-900 rounded-full h-3 overflow-hidden mb-1">
+            <div class="bg-cyan-400 h-3 rounded-full"
+             style="width: {{ (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) }}%"></div>
+            </div>
+        <p class="text-xs text-slate-500">{{ level_info.xp_in_current_level }} / {{ level_info.xp_for_next_level }} XP</p>
+
+        <p class="text-slate-400 text-sm mt-3">
+            Score : {{ nombre_correctes }} / {{ nombre_total }}
+        </p>
+    </div>
 
     <h3 class="text-lg mb-4 text-slate-300">Historique</h3>
 

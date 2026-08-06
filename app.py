@@ -95,6 +95,30 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return "".join(scrambled)
 
+    def xp_for_difficulty(difficulty: str) -> int:
+        """Retourne le montant d'XP gagné selon la difficulté de la question"""
+        xp_values = {"facile": 10, "moyen": 20, "difficile": 30}
+        return xp_values.get(difficulty,10)
+
+    def calculate_level(total_xp: int) -> dict:
+        """Calcule le niveau actuel et le progression vers le niveau suivant"""
+        level = 1
+        xp_for_next_level = 100
+        xp_already_spent = 0
+
+        while total_xp - xp_already_spent >= xp_for_next_level:
+            xp_already_spent += xp_for_next_level
+            level += 1
+            xp_for_next_level = 100 * level 
+
+        xp_in_current_level = total_xp - xp_already_spent
+
+        return {
+            "level": level,
+            "xp_in_current_level": xp_in_current_level,
+            "xp_for_next_level": xp_for_next_level,
+            }
+
     @app.route("/")
     def home() -> str:
         """Page d'accueil du site"""
@@ -152,20 +176,22 @@ def create_app(database_uri: str | None = None) -> Flask:
     def profile() -> str:
         """Affiche le score et l'historique du joueur connecté"""
         attempts = (
-            Attempt.query.filter_by(user_id=current_user.id)
-            .order_by(Attempt.answered_at.desc())
-            .all()
-        )
+                Attempt.query.filter_by(user_id=current_user.id)
+                .order_by(Attempt.answered_at.desc())
+                .all()
+            )
 
         total_count = len(attempts)
         correct_count = sum(1 for attempt in attempts if attempt.is_correct)
+        level_info = calculate_level(current_user.total_xp)
 
         return render_template(
-            "profil.html",
-            attempts=attempts,
-            total_count=total_count,
-            correct_count=correct_count,
-        )
+                "profil.html",
+                attempts=attempts,
+                total_count=total_count,
+                correct_count=correct_count,
+                level_info = level_info,
+            )
 
     @app.route("/modes")
     def modes() -> str:
@@ -209,11 +235,15 @@ def create_app(database_uri: str | None = None) -> Flask:
 
             if current_user.is_authenticated:
                 attempt = Attempt(
-                    user_id=current_user.id,
-                    question_id=question.id,
-                    is_correct=is_correct,
-                )
+                        user_id=current_user.id,
+                        question_id=question.id,
+                        is_correct=is_correct,
+                    )
                 db.session.add(attempt)
+
+                if is_correct:
+                    current_user.total_xp += xp_for_difficulty(question.difficulty)
+
                 db.session.commit()
 
             if question.mode == "chronologie":
