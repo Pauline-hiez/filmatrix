@@ -41,10 +41,10 @@ def has_badge(user, badge_code: str) -> bool:
     return any(badge.badge_code == badge_code for badge in user.badges)
 
 def award_badge(user, badge_code: str) -> None:
-    """Attribue un badge à un utilisateur s'il ne l'a pas déjà"""
+    """Attribue un badge à un utilisateur, s'il ne l'a pas déjà."""
     if not has_badge(user, badge_code):
-        new_badge = UserBadge(user_id=user.id, badge_code=badge_code)
-        db.session.add(new_badge)
+        new_badge = UserBadge(badge_code=badge_code)
+        user.badges.append(new_badge)
 
 def check_and_award_badges(user) -> None:
     """Vérifie toutes les conditions de badges et attribue ceux récemment débloqués"""
