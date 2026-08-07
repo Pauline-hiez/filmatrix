@@ -24,6 +24,82 @@ from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
 
 load_dotenv()
 
+# Description des modes de jeu, utilisée pour construire la grille de la page
+# d'accueil. `accent` sert de couleur d'accent CSS pour la carte du mode.
+GAME_MODES = [
+    {
+        "slug": "qcm",
+        "name": "Quiz",
+        "description": "Réponds à des questions sur tes films préférés.",
+        "icon": "?",
+        "accent": "#22d3ee",
+    },
+    {
+        "slug": "blindtest",
+        "name": "Blind Test",
+        "description": "Reconnais les musiques de films cultes.",
+        "icon": "♪",
+        "accent": "#60a5fa",
+    },
+    {
+        "slug": "devinette_affiche",
+        "name": "Devine le film",
+        "description": "Une image, un film à trouver !",
+        "icon": "▶",
+        "accent": "#34d399",
+    },
+    {
+        "slug": "citation",
+        "name": "Citations",
+        "description": "Retrouve le film grâce à une réplique.",
+        "icon": "❝",
+        "accent": "#fbbf24",
+    },
+    {
+        "slug": "casting",
+        "name": "Acteurs",
+        "description": "Reconnais les acteurs célèbres du cinéma.",
+        "icon": "★",
+        "accent": "#f472b6",
+    },
+    {
+        "slug": "emoji",
+        "name": "Emoji Quiz",
+        "description": "Devine le film à partir des emojis.",
+        "icon": "☺",
+        "accent": "#c084fc",
+    },
+    {
+        "slug": "film_melange",
+        "name": "Film mélangé",
+        "description": "Retrouve le titre à partir des lettres mélangées.",
+        "icon": "⤭",
+        "accent": "#a78bfa",
+    },
+    {
+        "slug": "chronologie",
+        "name": "Chronologie",
+        "description": "Remets les films dans leur ordre de sortie.",
+        "icon": "⏱",
+        "accent": "#38bdf8",
+    },
+    {
+        "slug": "devinette",
+        "name": "Devinette",
+        "description": "Devine le film grâce à des indices progressifs.",
+        "icon": "◎",
+        "accent": "#fb923c",
+    },
+    {
+        "slug": "vrai_faux",
+        "name": "Vrai / Faux",
+        "description": "Vraies ou fausses, à toi de trancher.",
+        "icon": "±",
+        "accent": "#2dd4bf",
+    },
+]
+
+
 def calculate_level(total_xp: int) -> dict:
         """Calcule le niveau actuel et le progression vers le niveau suivant"""
         level = 1
@@ -128,8 +204,40 @@ def create_app(database_uri: str | None = None) -> Flask:
 
     @app.route("/")
     def home() -> str:
-        """Page d'accueil du site"""
-        return render_template("accueil.html")
+        """Page d'accueil : vitrine des modes de jeu, progression et classement"""
+        question_counts = dict(
+            db.session.query(Question.mode, func.count(Question.id))
+            .group_by(Question.mode)
+            .all()
+        )
+
+        # On n'affiche que les modes qui ont au moins une question en base,
+        # pour ne pas envoyer le joueur vers un mode vide.
+        playable_modes = [
+            dict(mode, question_count=question_counts.get(mode["slug"], 0))
+            for mode in GAME_MODES
+            if question_counts.get(mode["slug"], 0) > 0
+        ]
+
+        top_players = User.query.order_by(User.total_xp.desc()).limit(5).all()
+
+        level_info = None
+        correct_count = 0
+        if current_user.is_authenticated:
+            level_info = calculate_level(current_user.total_xp)
+            correct_count = Attempt.query.filter_by(
+                user_id=current_user.id, is_correct=True
+            ).count()
+
+        return render_template(
+            "accueil.html",
+            modes=playable_modes,
+            top_players=top_players,
+            level_info=level_info,
+            correct_count=correct_count,
+            total_questions=sum(question_counts.values()),
+            total_players=User.query.count(),
+        )
 
     @app.route("/inscription", methods=["GET", "POST"])
     def register() -> str:

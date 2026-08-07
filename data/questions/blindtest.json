@@ -37,7 +37,7 @@
             "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/43/85/18/438518d0-8fd5-1a15-18c0-aad9f814845e/mzaf_11676418529425576487.plus.aac.p.m4a"
         },
         "correct_answer": {
-            "film": "Harry Potter à l'école des sorciers"
+            "film": "Harry Potter"
         },
         "requires_account": false
     },
@@ -65,7 +65,7 @@
             "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5e/14/f9/5e14f984-c6af-5dd4-e4ae-337d3a41ab31/mzaf_17811455529095579551.plus.aac.p.m4a"
         },
         "correct_answer": {
-            "film": "Pirates des Caraïbes : La Malédiction du Black Pearl"
+            "film": "Pirates des Caraïbes"
         },
         "requires_account": false
     }

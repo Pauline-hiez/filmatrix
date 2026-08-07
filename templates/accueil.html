@@ -1,11 +1,192 @@
 {% extends "base.html" %}
 
+{% block head %}
+<style>
+    /* Halo décoratif du hero : deux dégradés radiaux superposés au fond sombre */
+    .hero-glow {
+        background:
+            radial-gradient(60% 80% at 75% 30%, rgba(139, 92, 246, 0.28), transparent 70%),
+            radial-gradient(50% 70% at 20% 70%, rgba(34, 211, 238, 0.18), transparent 70%);
+    }
+
+    /* La couleur d'accent de chaque mode est injectée par Jinja via --accent,
+       ce qui évite de générer des classes Tailwind dynamiques (elles seraient purgées). */
+    .mode-card {
+        border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+    }
+
+    .mode-card:hover {
+        border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+        box-shadow: 0 0 24px -6px var(--accent);
+    }
+
+    .mode-card__icon {
+        color: var(--accent);
+        background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+        border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="text-center mt-12">
-    <h2 class="text-xl text-slate-300 mb-6">Prêt à tester tes connaissances cinéma ?</h2>
-    <a href="{{ url_for('modes') }}"
-       class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-[0_0_15px_rgba(34,211,238,0.4)] transition">
-        Commencer le quiz
-    </a>
+<div class="max-w-6xl mx-auto flex flex-col gap-6">
+
+    <div class="grid gap-6 xl:grid-cols-[1fr_20rem] items-start">
+
+        <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-12 sm:px-10 sm:py-16">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                LE CINÉMA<br>
+                EST TON
+                <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">UNIVERS</span>
+            </h1>
+
+            <p class="mt-4 max-w-md text-slate-300">
+                Affronte les autres joueurs, enchaîne les modes de jeu
+                et deviens une <span class="text-cyan-400">légende</span> du 7<sup>e</sup> art.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="{{ url_for('modes') }}"
+                   class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-[0_0_20px_rgba(34,211,238,0.35)] transition">
+                    Commencer à jouer
+                </a>
+                <a href="#modes"
+                   class="border border-slate-600 hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
+                    Découvrir les jeux
+                </a>
+            </div>
+
+            <dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4 text-sm">
+                <div>
+                    <dt class="text-slate-500">Questions</dt>
+                    <dd class="text-xl font-bold text-slate-100">{{ total_questions }}</dd>
+                </div>
+                <div>
+                    <dt class="text-slate-500">Modes de jeu</dt>
+                    <dd class="text-xl font-bold text-slate-100">{{ modes | length }}</dd>
+                </div>
+                <div>
+                    <dt class="text-slate-500">Joueurs</dt>
+                    <dd class="text-xl font-bold text-slate-100">{{ total_players }}</dd>
+                </div>
+            </dl>
+        </section>
+
+        <aside class="flex flex-col gap-6">
+            {% if current_user.is_authenticated %}
+            <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Progression</h2>
+
+                <div class="flex items-center gap-4">
+                    <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-cyan-400 text-2xl font-extrabold text-cyan-400">
+                        {{ level_info.level }}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="font-bold">Niveau {{ level_info.level }}</p>
+                        <div class="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                            <div class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
+                                 style="width: {{ (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) }}%"></div>
+                        </div>
+                        <p class="mt-1 text-xs text-slate-500">
+                            {{ level_info.xp_in_current_level }} / {{ level_info.xp_for_next_level }} XP
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-3 gap-2 border-t border-slate-800 pt-4 text-center">
+                    <div>
+                        <p class="text-lg font-bold text-amber-400">{{ current_user.coins }}</p>
+                        <p class="text-[0.65rem] uppercase tracking-wider text-slate-500">Pièces</p>
+                    </div>
+                    <div>
+                        <p class="text-lg font-bold text-violet-400">{{ current_user.badges | length }}</p>
+                        <p class="text-[0.65rem] uppercase tracking-wider text-slate-500">Badges</p>
+                    </div>
+                    <div>
+                        <p class="text-lg font-bold text-emerald-400">{{ correct_count }}</p>
+                        <p class="text-[0.65rem] uppercase tracking-wider text-slate-500">Réussies</p>
+                    </div>
+                </div>
+            </section>
+            {% else %}
+            <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Ta progression</h2>
+                <p class="text-sm text-slate-300">
+                    Crée un compte pour gagner de l'XP, débloquer des badges
+                    et apparaître au classement.
+                </p>
+                <a href="{{ url_for('register') }}"
+                   class="mt-4 block rounded-lg bg-cyan-400 px-4 py-2 text-center font-bold text-slate-950 transition hover:bg-cyan-300">
+                    Créer un compte
+                </a>
+                <a href="{{ url_for('login') }}"
+                   class="mt-2 block text-center text-sm text-slate-400 transition hover:text-cyan-400">
+                    J'ai déjà un compte
+                </a>
+            </section>
+            {% endif %}
+
+            <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <div class="mb-4 flex items-baseline justify-between">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Classement</h2>
+                    <a href="{{ url_for('leaderboard') }}" class="text-xs text-cyan-400 transition hover:text-cyan-300">
+                        Voir tout
+                    </a>
+                </div>
+
+                {% if top_players %}
+                <ol class="flex flex-col gap-1">
+                    {% for player in top_players %}
+                    {% set is_me = current_user.is_authenticated and player.id == current_user.id %}
+                    <li class="flex items-center gap-3 rounded-lg px-2 py-2 text-sm {% if is_me %}bg-cyan-400/10 ring-1 ring-cyan-400/40{% endif %}">
+                        <span class="w-5 shrink-0 text-center font-bold {% if loop.index <= 3 %}text-amber-400{% else %}text-slate-500{% endif %}">
+                            {{ loop.index }}
+                        </span>
+                        <span class="min-w-0 flex-1 truncate {% if is_me %}text-cyan-300 font-bold{% else %}text-slate-200{% endif %}">
+                            {{ player.username }}
+                        </span>
+                        <span class="shrink-0 text-xs text-slate-400">{{ player.total_xp }} XP</span>
+                    </li>
+                    {% endfor %}
+                </ol>
+                {% else %}
+                <p class="text-sm text-slate-500">Aucun joueur classé pour le moment.</p>
+                {% endif %}
+            </section>
+        </aside>
+    </div>
+
+    <section id="modes" class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <div class="mb-5 flex items-baseline justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Explore les jeux</h2>
+            <a href="{{ url_for('modes') }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
+                Tous les modes
+            </a>
+        </div>
+
+        {% if modes %}
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {% for mode in modes %}
+            <a href="{{ url_for('quiz', mode=mode.slug, position=1) }}"
+               style="--accent: {{ mode.accent }}"
+               class="mode-card flex flex-col rounded-xl border bg-slate-950/60 p-4 transition">
+                <span class="mode-card__icon mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg">
+                    {{ mode.icon }}
+                </span>
+                <p class="font-bold uppercase tracking-wide text-slate-100">{{ mode.name }}</p>
+                <p class="mt-1 flex-1 text-xs leading-relaxed text-slate-400">{{ mode.description }}</p>
+                <p class="mt-3 text-[0.7rem] text-slate-500">
+                    {{ mode.question_count }} question{{ 's' if mode.question_count > 1 else '' }}
+                </p>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-sm text-slate-500">
+            Aucune question en base pour le moment. Lance <code class="text-slate-400">seed_db.py</code> pour en charger.
+        </p>
+        {% endif %}
+    </section>
+
 </div>
 {% endblock %}
