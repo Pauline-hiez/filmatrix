@@ -17,7 +17,10 @@
 
             <div class="flex items-center gap-4">
                 {% if current_user.is_authenticated %}
-                <span class="text-slate-400 text-sm">Bonjour, {{ current_user.username }}</span>
+                    <span class="text-slate-400 text-sm">Bonjour, {{ current_user.username }}</span>
+                    <span class="text-cyan-400 text-sm font-bold flex items-center gap-1">
+                         🪙 {{ current_user.coins }}
+                    </span>
                 {% endif %}
 
                 <button id="menu-button" class="md:hidden text-slate-100" aria-label="Ouvrir le menu">
