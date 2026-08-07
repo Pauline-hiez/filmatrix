@@ -101,6 +101,8 @@ def create_app(database_uri: str | None = None) -> Flask:
             return raw_value
         if mode == "casting":
             return raw_value
+        if mode == "blindtest":
+            return raw_value
         raise ValueError(f"Mode inconnu : {mode}")
 
     def scramble_title(title: str) -> str:

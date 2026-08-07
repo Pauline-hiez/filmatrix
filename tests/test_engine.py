@@ -219,4 +219,26 @@ def test_casting_wrong_answer():
     question = make_casting_question()
     assert check_answer(question, "Titanic") is False
 
+def make_blindtest_question() -> Question:
+    """Fabrique une question blind test de test"""
+    return Question(
+        id=10,
+        mode="blindtest",
+        category="test",
+        difficulty="facile",
+        prompt="",
+        payload={"audio_url": "https://example.com/audio.m4a"},
+        correct_answer={"film": "Le Parrain"},
+        )
+
+def test_blindtest_correct_answer_case_insensitive():
+    """Une réponse correcte est acceptée, quelle que soit la casse"""
+    question = make_blindtest_question()
+    assert check_answer(question, "le parrain") is True
+
+def test_blindtest_wrong_answer():
+    """Une réponse incorrecte doit retourner False"""
+    question = make_blindtest_question()
+    assert check_answer(question, "Titanic") is False
+
 

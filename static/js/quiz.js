@@ -1,4 +1,4 @@
-const TOTAL_DURATION = 10;
+const TOTAL_DURATION = document.querySelector("audio") ? 30 : 10;
 let remainingTime = TOTAL_DURATION;
 let alreadyAnswered = false;
 

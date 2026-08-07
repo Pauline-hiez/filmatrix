@@ -1,0 +1,72 @@
+[
+    {
+        "id": 22,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f2/cb/1e/f2cb1ea2-4392-1946-5205-8b8ac8861a72/mzaf_18222629357993428376.plus.aac.p.m4a"
+        },
+        "correct_answer": {
+            "film": "Le Parrain"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 23,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/54/5b/f7/545bf75d-1ea1-07f0-0c4e-a6d3bca7c092/mzaf_1410328638164863411.plus.aac.p.m4a"
+        },
+        "correct_answer": {
+            "film": "Titanic"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 24,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/43/85/18/438518d0-8fd5-1a15-18c0-aad9f814845e/mzaf_11676418529425576487.plus.aac.p.m4a"
+        },
+        "correct_answer": {
+            "film": "Harry Potter à l'école des sorciers"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 25,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/10/e4/40/10e4402a-c859-9b70-9b94-89e7227167fa/mzaf_7839666039229638743.plus.aac.p.m4a"
+        },
+        "correct_answer": {
+            "film": "Le Roi Lion"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 26,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5e/14/f9/5e14f984-c6af-5dd4-e4ae-337d3a41ab31/mzaf_17811455529095579551.plus.aac.p.m4a"
+        },
+        "correct_answer": {
+            "film": "Pirates des Caraïbes : La Malédiction du Black Pearl"
+        },
+        "requires_account": false
+    }
+]
