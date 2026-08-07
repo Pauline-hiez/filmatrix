@@ -11,11 +11,14 @@ def get_api_key() -> str:
     return os.environ["TMDB_API_KEY"]
 
 def search_movie(title: str) -> dict | None:
-    """Recherche un film par son titre et renvoie ses informations principales. Renvoie None si aucun film trouvé"""
+    """Recherche un film par son titre et renvoie ses informations principales.
+
+    Renvoie None si aucun film n'est trouvé.
+    """
     response = requests.get(
-            f"{TMDB_BASE_URL}/search/movie",
-            params={"api_key": get_api_key(), "query": title, "language": "fr-FR"},
-        )
+        f"{TMDB_BASE_URL}/search/movie",
+        params={"api_key": get_api_key(), "query": title, "language": "fr-FR"},
+    )
     data = response.json()
 
     results = data.get("results", [])
@@ -27,7 +30,8 @@ def search_movie(title: str) -> dict | None:
         "id": movie["id"],
         "title": movie["title"],
         "poster_path": movie.get("poster_path"),
-        }
+        "backdrop_path": movie.get("backdrop_path"),
+    }
 
 def get_movie_cast(movie_id: int, limit: int = 5) -> list[dict]:
     """Récupère les principaux acteurs d'un film, avec leur photo"""

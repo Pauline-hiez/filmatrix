@@ -15,7 +15,7 @@ def generate_poster_question(movie_title: str, difficulty: str, category: str) -
     if movie is None:
         raise ValueError(f"Film introuvable sur TMDB : {movie_title}")
 
-    poster_url = build_image_url(movie["poster_path"])
+    poster_url = build_image_url(movie["backdrop_path"])
 
     return {
         "mode": "devinette_affiche",

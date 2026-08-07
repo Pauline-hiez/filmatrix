@@ -292,12 +292,13 @@
         "requires_account": false
     },
     {
+        "id": 20,
         "mode": "devinette_affiche",
         "category": "realisateur",
         "difficulty": "facile",
         "prompt": "",
         "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg",
+            "poster_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
             "hints": [
                 "Ce film commence par la lettre I."
             ]
@@ -308,6 +309,7 @@
         "requires_account": false
     },
     {
+        "id": 21,
         "mode": "casting",
         "category": "acteur",
         "difficulty": "moyen",
