@@ -175,4 +175,48 @@ def test_riddle_wrong_answer():
     question = make_riddle_question()
     assert check_answer(question, "Avatar") is False
 
+def make_poster_riddle_question() -> Question:
+    """Fabrique une question devinette-affiche de test"""
+    return Question(
+        id=8,
+        mode="devinette_affiche",
+        category="test",
+        difficulty="facile",
+        prompt="",
+        payload={"poster_url": "https://example.com/poster.jpg", "hints": ["Indice 1"]},
+        correct_answer={"film": "Inception"},
+        )
+
+def test_poster_riddle_correct_answer_case_insensitive():
+    """Une réponse correcte doit être acceptée quelle que soit la casse"""
+    question = make_poster_riddle_question()
+    assert check_answer(question, "inception") is True 
+
+def test_poster_riddle_wrong_answer():
+    """Une réponse incorrecte doit retourner False"""
+    question = make_poster_riddle_question()
+    assert check_answer(question, "Titanic") is False
+
+def make_casting_question() -> Question:
+    """Fabrique une question casting de test"""
+    return Question(
+            id=9,
+            mode="casting",
+            category="test",
+            difficulty="moyen",
+            prompt="",
+            payload={"actor_photos": ["http://example.com/actor1.jpg"]},
+            correct_answer={"film": "Inception"},
+        )
+
+def test_casting_correct_answer_case_insensitive():
+    """Une réponse correcte doit être acceptée quelle que soit la casse"""
+    question = make_casting_question()
+    assert check_answer(question, "inception") is True
+
+def test_casting_wrong_answer():
+    """Une réponse incorrecte doit retourner False"""
+    question = make_casting_question()
+    assert check_answer(question, "Titanic") is False
+
 

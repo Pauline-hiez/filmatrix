@@ -290,5 +290,38 @@
             "film": "Le Seigneur des Anneaux"
         },
         "requires_account": false
+    },
+    {
+        "mode": "devinette_affiche",
+        "category": "realisateur",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "poster_url": "https://image.tmdb.org/t/p/w500/aej3LRUga5rhgkmRP6XMFw3ejbl.jpg",
+            "hints": [
+                "Ce film commence par la lettre I."
+            ]
+        },
+        "correct_answer": {
+            "film": "Inception"
+        },
+        "requires_account": false
+    },
+    {
+        "mode": "casting",
+        "category": "acteur",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/wo2hJpn04vbtmh0B9utCFdsQhxM.jpg",
+                "https://image.tmdb.org/t/p/w500/z2FA8js799xqtfiFjBTicFYdfk.jpg",
+                "https://image.tmdb.org/t/p/w500/psAXOYp9SBOXvg6AXzARDedNQ9P.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Inception"
+        },
+        "requires_account": false
     }
 ]
