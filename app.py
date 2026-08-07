@@ -20,6 +20,7 @@ from src.engine import check_answer
 from src.models import Attempt, Question, User
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
+from src.shop import coins_for_difficulty
 
 load_dotenv()
 
@@ -270,6 +271,7 @@ def create_app(database_uri: str | None = None) -> Flask:
 
                 if is_correct and not already_answered_correctly:
                     current_user.total_xp += xp_for_difficulty(question.difficulty)
+                    current_user.coins += coins_for_difficulty(question.difficulty)
 
                 db.session.commit()
 
@@ -277,9 +279,6 @@ def create_app(database_uri: str | None = None) -> Flask:
                 db.session.commit()
 
                 new_badges = [BADGES[code] for code in new_badge_codes]
-
-                check_and_award_badges(current_user)
-                db.session.commit()
 
             if question.mode == "chronologie":
                 correct_order = question.correct_answer["order"]
