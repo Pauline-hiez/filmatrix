@@ -1,0 +1,78 @@
+[
+    {
+        "id": 1,
+        "mode": "qcm",
+        "category": "realisateur",
+        "difficulty": "facile",
+        "prompt": "Qui a réalisé le film Inception ?",
+        "payload": {
+            "options": [
+                "Christopher Nolan",
+                "Steven Spielberg",
+                "James Cameron",
+                "Ridley Scott"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 2,
+        "mode": "qcm",
+        "category": "realisateur",
+        "difficulty": "moyen",
+        "prompt": "Qui a réalisé Pulp Fiction ?",
+        "payload": {
+            "options": [
+                "Martin Scorsese",
+                "Quentin Tarantino",
+                "David Fincher",
+                "Guy Ritchie"
+            ]
+        },
+        "correct_answer": {
+            "index": 1
+        },
+        "requires_account": false
+    },
+    {
+        "id": 3,
+        "mode": "qcm",
+        "category": "acteur",
+        "difficulty": "facile",
+        "prompt": "Qui joue le rôle principal dans Le Loup de Wall Street ?",
+        "payload": {
+            "options": [
+                "Brad Pitt",
+                "Leonardo DiCaprio",
+                "Matt Damon",
+                "Tom Hanks"
+            ]
+        },
+        "correct_answer": {
+            "index": 1
+        },
+        "requires_account": false
+    },
+    {
+        "id": 4,
+        "mode": "qcm",
+        "category": "acteur",
+        "difficulty": "moyen",
+        "prompt": "Quel acteur incarne Tony Stark dans le Marvel Cinematic Universe ?",
+        "payload": {
+            "options": [
+                "Chris Evans",
+                "Chris Hemsworth",
+                "Robert Downey Jr.",
+                "Mark Ruffalo"
+            ]
+        },
+        "correct_answer": {
+            "index": 2
+        },
+        "requires_account": true
+    }
+]

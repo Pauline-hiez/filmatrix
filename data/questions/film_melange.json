@@ -1,0 +1,26 @@
+[
+    {
+        "id": 13,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Avatar"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 14,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Le Roi Lion"
+        },
+        "requires_account": false
+    }
+]

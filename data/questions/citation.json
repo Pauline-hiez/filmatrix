@@ -1,0 +1,26 @@
+[
+    {
+        "id": 9,
+        "mode": "citation",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "\"I'll be back.\" — De quel film vient cette réplique culte ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Terminator"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 10,
+        "mode": "citation",
+        "category": "anecdote",
+        "difficulty": "facile",
+        "prompt": "\"May the Force be with you.\" — De quel film vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Star Wars"
+        },
+        "requires_account": false
+    }
+]

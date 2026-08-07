@@ -1,0 +1,19 @@
+[
+    {
+        "id": 20,
+        "mode": "devinette_affiche",
+        "category": "realisateur",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "poster_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
+            "hints": [
+                "Ce film commence par la lettre I."
+            ]
+        },
+        "correct_answer": {
+            "film": "Inception"
+        },
+        "requires_account": false
+    }
+]

@@ -1,0 +1,74 @@
+[
+    {
+        "id": 16,
+        "mode": "devinette",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Ce film est sorti en 1997.",
+                "Il raconte le naufrage d'un paquebot légendaire.",
+                "Le film est réalisé par James Cameron."
+            ]
+        },
+        "correct_answer": {
+            "film": "Titanic"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 17,
+        "mode": "devinette",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Ce film est sorti en 1993.",
+                "Il met en scène des dinosaures recréés grâce à l'ADN.",
+                "Le film est réalisé par Steven Spielberg."
+            ]
+        },
+        "correct_answer": {
+            "film": "Jurassic Park"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 18,
+        "mode": "devinette",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Ce film est sorti en 1999.",
+                "Le personnage principal découvre que le monde qui l'entoure est une simulation.",
+                "Le héros est interprété par Keanu Reeves."
+            ]
+        },
+        "correct_answer": {
+            "film": "Matrix"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 19,
+        "mode": "devinette",
+        "category": "anecdote",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Ce film est sorti en 2001.",
+                "Une communauté entreprend un long voyage pour détruire un puissant anneau.",
+                "Il est réalisé par Peter Jackson."
+            ]
+        },
+        "correct_answer": {
+            "film": "Le Seigneur des Anneaux"
+        },
+        "requires_account": false
+    }
+]
