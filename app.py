@@ -204,6 +204,10 @@ def create_app(database_uri: str | None = None) -> Flask:
                 }
             )
 
+        equipped_title_name= None
+        if current_user.equipped_title:
+            equipped_title_name = TITLES.get(current_user.equipped_title, {}).get("name")
+
         return render_template(
             "profil.html",
             attempts_by_mode=attempts_by_mode,
@@ -211,6 +215,7 @@ def create_app(database_uri: str | None = None) -> Flask:
             correct_count=correct_count,
             level_info=level_info,
             all_badges=all_badges,
+            equipped_title_name=equipped_title_name,
         )
 
     @app.route("/modes")
@@ -225,16 +230,16 @@ def create_app(database_uri: str | None = None) -> Flask:
         shop_titles = []
         for code, info in TITLES.items():
             shop_titles.append(
-                    {
-                        "code": code,
-                        "name": info["name"],
-                        "price": info["price"],
-                        "owned": owns_title(current_user, code),
-                        "affordable": current_user.coins >= info["price"],
-                        }
-                )
+                {
+                    "code": code,
+                    "name": info["name"],
+                    "price": info["price"],
+                    "owned": owns_title(current_user, code),
+                    "affordable": current_user.coins >= info["price"],
+                }
+            )
 
-            return render_template("boutique.html", shop_titles=shop_titles)
+        return render_template("boutique.html", shop_titles=shop_titles)
 
     @app.route("/boutiques/acheter/<title_code>", methods=["POST"])
     @login_required
@@ -247,6 +252,19 @@ def create_app(database_uri: str | None = None) -> Flask:
             flash("Titre acheté avec succès.")
         else:
             flash("Achat impossible.")
+
+        return redirect(url_for("shop"))
+
+    @app.route("/boutique/equiper/<title_code>", methods=["POST"])
+    @login_required
+    def equip_title(title_code: str) -> str:
+        """Equipe un titre possédé par l'utilisateur connecté"""
+        if owns_title(current_user, title_code):
+            current_user.equipped_title = title_code
+            db.session.commit()
+            flash("Titre équipé.")
+        else:
+            flash("Tu ne possède pas ce titre.")
 
         return redirect(url_for("shop"))
 
