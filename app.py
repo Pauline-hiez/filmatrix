@@ -20,7 +20,7 @@ from src.engine import check_answer
 from src.models import Attempt, Question, User
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
-from src.shop import coins_for_difficulty
+from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
 
 load_dotenv()
 
@@ -217,6 +217,38 @@ def create_app(database_uri: str | None = None) -> Flask:
     def modes() -> str:
         """Affiche la liste des modes de jeu disponibles"""
         return render_template("modes.html")
+
+    @app.route("/boutique")
+    @login_required
+    def shop() -> str:
+        """Affiche la boutique de titres avec le statut d'achat pour chacun"""
+        shop_titles = []
+        for code, info in TITLES.items():
+            shop_titles.append(
+                    {
+                        "code": code,
+                        "name": info["name"],
+                        "price": info["price"],
+                        "owned": owns_title(current_user, code),
+                        "affordable": current_user.coins >= info["price"],
+                        }
+                )
+
+            return render_template("boutique.html", shop_titles=shop_titles)
+
+    @app.route("/boutiques/acheter/<title_code>", methods=["POST"])
+    @login_required
+    def buy_title(title_code: str) -> str:
+        """Traite l'achat d'un titre par un utilisateur connecté"""
+        success = purchase_title(current_user, title_code)
+        db.session.commit()
+
+        if success:
+            flash("Titre acheté avec succès.")
+        else:
+            flash("Achat impossible.")
+
+        return redirect(url_for("shop"))
 
     @app.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
     def quiz(mode: str, position: int) -> str:
