@@ -34,6 +34,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     total_xp = db.Column(db.Integer, nullable=False, default=0)
+    coins = db.Column(db.Integer, nullable=False, default=0)
+    equipped_title = db.Column(db.String(50), nullable=True)
 
     def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"
@@ -66,3 +68,15 @@ class UserBadge(db.Model):
     earned_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     user = db.relationship("User", backref="badges")
+
+class UserTitle(db.Model):
+    """Représente un titre possédé par un utilisateur"""
+
+    __tablename__ = "user_titles"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    title_code = db.Column(db.String(50), nullable=False)
+    purchassed_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship("User", backref="titles")
