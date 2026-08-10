@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-8">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl">Administration — Questions</h2>
+        <a href="{{ url_for('admin_questions_new') }}"
+           class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+            + Nouvelle question
+        </a>
+    </div>
+
+    <div class="flex flex-col gap-2">
+        {% for question in questions %}
+        <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+            <div>
+                <p class="text-xs text-cyan-400 uppercase">{{ question.mode }} — {{ question.category }} — {{ question.difficulty }}</p>
+                <p class="text-sm">
+                    {% if question.prompt %}
+                        {{ question.prompt }}
+                    {% else %}
+                        <span class="text-slate-500 italic">(sans texte affiché)</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <a href="{{ url_for('admin_questions_edit', question_id=question.id) }}"
+                   class="text-slate-300 hover:text-cyan-400 text-sm transition">Modifier</a>
+                <form method="POST" action="{{ url_for('admin_questions_delete', question_id=question.id) }}"
+                      onsubmit="return confirm('Supprimer cette question ?');">
+                    <button type="submit" class="text-red-400 hover:text-red-300 text-sm transition">Supprimer</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

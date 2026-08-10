@@ -2,6 +2,7 @@
 
 import os
 import random
+import json
 
 from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, url_for
@@ -21,6 +22,7 @@ from src.models import Attempt, Question, User
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
+from src.admin import admin_required 
 
 load_dotenv()
 
@@ -331,6 +333,43 @@ def create_app(database_uri: str | None = None) -> Flask:
             all_badges=all_badges,
             equipped_title_name=equipped_title_name,
         )
+
+    @app.route("/admin/questions")
+    @login_required 
+    @admin_required
+    def admin_questions_list() -> str:
+        """Affiche la liste de toutes les questions, pour l'admin"""
+        all_questions = Question.query.order_by(Question.mode, Question.id).all()
+        return render_template("admin/questions_list.html", questions=all_questions)
+
+    @app.route("/admin/questions/nouvelle", methods=["GET", "POST"])
+    @login_required
+    @admin_required
+    def admin_questions_new() -> str:
+        """Affiche le formulaire de création (GET) ou le crée (POST)"""
+        if request.method == "POST":
+            try:
+                payload = json.loads(request.form["payload"])
+                correct_answer = json.loads(request.form["correct_answer"])
+            except json.JSONDecodeError:
+                flash("La payload ou la réponse correcte n'est pas un JSON valide")
+                return render_template("admin/question_form.html", question=None)
+
+            new_question = Question(
+                    mode=request.form["mode"],
+                    category=request.form["category"],
+                    difficulty=request.form["difficulty"],
+                    prompt=request.form["prompt"],
+                    payload=payload,
+                    correct_answer=correct_answer,
+                    require_account=request.form.get("requires_account") == "on",
+                )
+            db.session.add(new_question)
+            db.session.commit()
+
+            flash("Question créée avec succès.")
+            return redirect(url_for("admin_questions_list"))
+        return render_template("admin/question_form.html", question=None)
 
     @app.route("/modes")
     def modes() -> str:
