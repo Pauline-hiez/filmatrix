@@ -99,7 +99,8 @@ function buildPayloadAndAnswer(mode) {
 
     if (mode === "casting") {
         const film = activeGroup.querySelector(".film-answer").value;
-        const actorPhotos = linesToArray(activeGroup.querySelector(".actor-photos").value);
+        const hiddenField = activeGroup.querySelector(".actor-photos-hidden").value;
+        const actorPhotos = hiddenField ? JSON.parse(hiddenField) : [];
         return {
             payload: { actor_photos: actorPhotos },
             correct_answer: { film: film },
@@ -141,3 +142,134 @@ form.addEventListener("submit", function (event) {
     document.getElementById("payload-input").value = JSON.stringify(result.payload);
     document.getElementById("correct-answer-input").value = JSON.stringify(result.correct_answer);
 });
+
+// ---- Autocomplétion de recherche de films (TMDB) ----
+
+let searchDebounceTimer = null;
+
+document.querySelectorAll(".movie-search-input").forEach(function (searchInput) {
+    const resultsBox = searchInput.parentElement.querySelector(".movie-search-results");
+    const target = searchInput.dataset.target;
+    const fieldsGroup = searchInput.closest(".mode-fields");
+
+    searchInput.addEventListener("input", function () {
+        const query = searchInput.value.trim();
+
+        clearTimeout(searchDebounceTimer);
+
+        if (query.length < 2) {
+            resultsBox.classList.add("hidden");
+            resultsBox.innerHTML = "";
+            return;
+        }
+
+        searchDebounceTimer = setTimeout(async function () {
+            const response = await fetch(
+                `/admin/api/recherche-film?query=${encodeURIComponent(query)}`
+            );
+            const data = await response.json();
+
+            displaySearchResults(data.results, resultsBox, target, fieldsGroup);
+        }, 350);
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!searchInput.contains(event.target) && !resultsBox.contains(event.target)) {
+            resultsBox.classList.add("hidden");
+        }
+    });
+});
+
+function displaySearchResults(movies, resultsBox, target, fieldsGroup) {
+    if (movies.length === 0) {
+        resultsBox.innerHTML =
+            '<p class="text-sm text-slate-500 px-3 py-2">Aucun résultat.</p>';
+        resultsBox.classList.remove("hidden");
+        return;
+    }
+
+    resultsBox.innerHTML = "";
+
+    movies.forEach(function (movie) {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className =
+            "w-full flex items-center gap-3 px-3 py-2 hover:bg-slate-800 transition text-left";
+
+        const thumbnailHtml = movie.thumbnail_url
+            ? `<img src="${movie.thumbnail_url}" class="w-8 h-12 object-cover rounded">`
+            : `<div class="w-8 h-12 bg-slate-800 rounded flex items-center justify-center text-xs text-slate-500">?</div>`;
+
+        item.innerHTML = `
+            ${thumbnailHtml}
+            <span class="text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+        `;
+
+        item.addEventListener("click", function () {
+            selectMovie(movie, target, fieldsGroup);
+            resultsBox.classList.add("hidden");
+        });
+
+        resultsBox.appendChild(item);
+    });
+
+    resultsBox.classList.remove("hidden");
+}
+
+async function selectMovie(movie, target, fieldsGroup) {
+    const filmAnswerField = fieldsGroup.querySelector(".film-answer");
+    filmAnswerField.value = movie.title;
+
+    if (target === "poster") {
+        const response = await fetch(`/admin/api/recherche-affiche?movie_id=${movie.id}`);
+        const data = await response.json();
+
+        if (data.success) {
+            fieldsGroup.querySelector(".poster-url").value = data.poster_url;
+            const preview = document.getElementById("poster-preview");
+            preview.innerHTML = `<img src="${data.poster_url}" class="w-full max-w-xs rounded-lg border border-cyan-400/30">`;
+        } else {
+            alert(data.error);
+        }
+    }
+
+    if (target === "casting") {
+        const response = await fetch(`/admin/api/recherche-casting?movie_id=${movie.id}`);
+        const data = await response.json();
+
+        if (data.success) {
+            fieldsGroup.querySelector(".actor-photos-hidden").value = JSON.stringify(
+                data.actor_photos
+            );
+            const preview = document.getElementById("cast-preview");
+            preview.innerHTML = data.actor_photos
+                .map(function (url) {
+                    return `<img src="${url}" class="w-16 h-24 object-cover rounded-lg border border-cyan-400/30">`;
+                })
+                .join("");
+        } else {
+            alert(data.error);
+        }
+    }
+
+    if (target === "audio") {
+        const searchTermField = fieldsGroup.querySelector(".audio-search-term");
+        const searchTerm = searchTermField ? searchTermField.value : "";
+
+        const params = new URLSearchParams({ title: movie.title });
+        if (searchTerm) {
+            params.set("search_term", searchTerm);
+        }
+
+        const response = await fetch(`/admin/api/recherche-audio?${params.toString()}`);
+        const data = await response.json();
+
+        if (data.success) {
+            fieldsGroup.querySelector(".audio-url").value = data.audio_url;
+            const preview = document.getElementById("audio-preview");
+            preview.innerHTML = `<audio controls src="${data.audio_url}" class="w-full mt-2"></audio>`;
+        } else {
+            alert(data.error);
+        }
+    }
+}
