@@ -355,7 +355,7 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return render_template("boutique.html", shop_titles=shop_titles)
 
-    @app.route("/boutiques/acheter/<title_code>", methods=["POST"])
+    @app.route("/boutique/acheter/<title_code>", methods=["POST"])
     @login_required
     def buy_title(title_code: str) -> str:
         """Traite l'achat d'un titre par un utilisateur connecté"""

@@ -16,7 +16,7 @@
     "mode": "citation",
     "category": "anecdote",
     "difficulty": "facile",
-    "prompt": "\"May the Force be with you.\" — De quel film vient cette réplique ?",
+    "prompt": "\"Que la Force soit avec toi.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Star Wars"
@@ -64,7 +64,7 @@
     "mode": "citation",
     "category": "anecdote",
     "difficulty": "moyen",
-    "prompt": "\"Houston, we have a problem.\" — De quel film vient cette réplique ?",
+    "prompt": "\"Houston, nous avons un problème.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Apollo 13"
@@ -76,7 +76,7 @@
     "mode": "citation",
     "category": "anecdote",
     "difficulty": "moyen",
-    "prompt": "\"You talkin' to me?\" — De quel film vient cette réplique ?",
+    "prompt": "\"C'est à moi que tu parles ?\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Taxi Driver"
@@ -88,10 +88,10 @@
     "mode": "citation",
     "category": "anecdote",
     "difficulty": "moyen",
-    "prompt": "\"Here's Johnny!\" — De quel film vient cette réplique ?",
+    "prompt": "\"Jusqu'ici tout va bien.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "Shining"
+      "film": "La Haine"
     },
     "requires_account": false
   },
@@ -99,11 +99,11 @@
     "id": 146,
     "mode": "citation",
     "category": "anecdote",
-    "difficulty": "moyen",
-    "prompt": "\"Say hello to my little friend!\" — De quel film vient cette réplique ?",
+    "difficulty": "difficile",
+    "prompt": "\"T'as de beaux yeux, tu sais.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "Scarface"
+      "film": "Quai des brumes"
     },
     "requires_account": false
   },

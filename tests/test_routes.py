@@ -163,3 +163,60 @@ def test_leaderboard_shows_all_players_sorted_by_xp(client, app):
     assert position_high != -1
     assert position_low != -1
     assert position_high < position_low
+
+def create_and_login_user_with_coins(client, app, coins: int = 100):
+    """Crée un utilisateur de test avec un solde de pièces donné, et le connecte"""
+    with app.app_context():
+        user = User(username="Acheteur", email="acheteur@filmatrix.fr", coins=coins)
+        user.set_password("Azerty1!")
+        db.session.add(user)
+        db.session.commit()
+
+    client.post(
+        "/connexion",
+        data={"email": "acheteur@filmatrix.fr", "password": "Azerty1!"},
+    )
+
+
+def test_buy_title_route_succeeds_with_enough_coins(client, app):
+    """La route d'achat doit reussir et deduire les pieces si le solde est suffisant"""
+    create_and_login_user_with_coins(client, app, coins=100)
+
+    response = client.post(
+        "/boutique/acheter/cinephile",
+        follow_redirects=True,
+    )
+
+    assert response.status_code == 200
+
+    with app.app_context():
+        user = User.query.filter_by(username="Acheteur").first()
+        assert user.coins == 50
+
+
+def test_equip_title_route_updates_equipped_title(client, app):
+    """La route d'equipement doit mettre a jour le titre affiche pour l'utilisateur"""
+    create_and_login_user_with_coins(client, app, coins=100)
+    client.post("/boutique/acheter/cinephile")
+
+    response = client.post(
+        "/boutique/equiper/cinephile",
+        follow_redirects=True,
+    )
+
+    assert response.status_code == 200
+
+    with app.app_context():
+        user = User.query.filter_by(username="Acheteur").first()
+        assert user.equipped_title == "cinephile"
+
+
+def test_equip_title_route_fails_if_not_owned(client, app):
+    """La route d'equipement doit refuser un titre non possede"""
+    create_and_login_user_with_coins(client, app, coins=0)
+
+    client.post("/boutique/equiper/cinephile", follow_redirects=True)
+
+    with app.app_context():
+        user = User.query.filter_by(username="Acheteur").first()
+        assert user.equipped_title is None
