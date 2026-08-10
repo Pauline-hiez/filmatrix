@@ -1,33 +1,5 @@
 {% extends "base.html" %}
 
-{% block head %}
-<style>
-    /* Halo décoratif du hero : deux dégradés radiaux superposés au fond sombre */
-    .hero-glow {
-        background:
-            radial-gradient(60% 80% at 75% 30%, rgba(139, 92, 246, 0.28), transparent 70%),
-            radial-gradient(50% 70% at 20% 70%, rgba(34, 211, 238, 0.18), transparent 70%);
-    }
-
-    /* La couleur d'accent de chaque mode est injectée par Jinja via --accent,
-       ce qui évite de générer des classes Tailwind dynamiques (elles seraient purgées). */
-    .mode-card {
-        border-color: color-mix(in srgb, var(--accent) 25%, transparent);
-    }
-
-    .mode-card:hover {
-        border-color: color-mix(in srgb, var(--accent) 70%, transparent);
-        box-shadow: 0 0 24px -6px var(--accent);
-    }
-
-    .mode-card__icon {
-        color: var(--accent);
-        background-color: color-mix(in srgb, var(--accent) 12%, transparent);
-        border-color: color-mix(in srgb, var(--accent) 30%, transparent);
-    }
-</style>
-{% endblock %}
-
 {% block content %}
 <div class="max-w-6xl mx-auto flex flex-col gap-6">
 
@@ -169,8 +141,8 @@
             {% for mode in modes %}
             <a href="{{ url_for('quiz', mode=mode.slug, position=1) }}"
                style="--accent: {{ mode.accent }}"
-               class="mode-card flex flex-col rounded-xl border bg-slate-950/60 p-4 transition">
-                <span class="mode-card__icon mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg">
+               class="accent-card flex flex-col rounded-xl border bg-slate-950/60 p-4 transition">
+                <span class="accent-icon mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg">
                     {{ mode.icon }}
                 </span>
                 <p class="font-bold uppercase tracking-wide text-slate-100">{{ mode.name }}</p>

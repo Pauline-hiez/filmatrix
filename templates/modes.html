@@ -1,72 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="max-w-xl mx-auto mt-8">
-    <h2 class="text-xl mb-6 text-center">Choisis un mode de jeu</h2>
+{# Métadonnées d'affichage des modes : icône et couleur d'accent de chaque carte.
+   L'ordre de cette liste est celui de la grille. #}
+{% set game_modes = [
+    {"slug": "qcm", "name": "Quiz", "description": "Questions à choix multiples", "icon": "?", "accent": "#22d3ee"},
+    {"slug": "blindtest", "name": "Blind Test", "description": "Devine le film à l'écoute de sa musique", "icon": "♪", "accent": "#60a5fa"},
+    {"slug": "devinette_affiche", "name": "Devinette-affiche", "description": "Devine le film à partir d'une scène", "icon": "▶", "accent": "#34d399"},
+    {"slug": "citation", "name": "Citations", "description": "Retrouve le film grâce à une réplique", "icon": "❝", "accent": "#fbbf24"},
+    {"slug": "casting", "name": "Casting", "description": "Devine le film grâce à son casting", "icon": "★", "accent": "#f472b6"},
+    {"slug": "emoji", "name": "Emoji Quiz", "description": "Devine le film à partir des emojis", "icon": "☺", "accent": "#c084fc"},
+    {"slug": "film_melange", "name": "Film mélangé", "description": "Retrouve le titre à partir des lettres mélangées", "icon": "⤭", "accent": "#a78bfa"},
+    {"slug": "chronologie", "name": "Chronologie", "description": "Remets les films dans l'ordre de sortie", "icon": "⏱", "accent": "#38bdf8"},
+    {"slug": "devinette", "name": "Devinette", "description": "Devine le film grâce à des indices progressifs", "icon": "◎", "accent": "#fb923c"},
+    {"slug": "vrai_faux", "name": "Vrai / Faux", "description": "Affirmations sur le cinéma", "icon": "±", "accent": "#2dd4bf"}
+] %}
 
-    <div class="mb-6">
-        <label class="block text-sm text-slate-400 mb-1">Catégorie (optionnel)</label>
-        <select id="category" class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
-            <option value="">Toutes les catégories</option>
-            <option value="realisateur">Réalisateur</option>
-            <option value="acteur">Acteur</option>
-            <option value="anecdote">Anecdote</option>
-        </select>
-    </div>
+<div class="max-w-5xl mx-auto flex flex-col gap-6">
 
-    <div class="flex flex-col gap-4">
-        <a href="#" data-mode="qcm" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Quiz</p>
-            <p class="text-sm text-slate-400">Questions à choix multiples</p>
-        </a>
+    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-8 sm:px-8 sm:py-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Choisis ton
+            <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">mode de jeu</span>
+        </h1>
+        <p class="mt-2 text-slate-300">Dix façons de tester ta culture cinéma.</p>
 
-        <a href="#" data-mode="vrai_faux" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Vrai / Faux</p>
-            <p class="text-sm text-slate-400">Affirmations sur le cinéma</p>
-        </a>
+        <div class="mt-6 max-w-sm">
+            <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                Catégorie
+            </label>
+            <select id="category"
+                    class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                <option value="">Toutes les catégories</option>
+                <option value="realisateur">Réalisateur</option>
+                <option value="acteur">Acteur</option>
+                <option value="anecdote">Anecdote</option>
+            </select>
+        </div>
+    </section>
 
-        <a href="#" data-mode="citation" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Citations</p>
-            <p class="text-sm text-slate-400">Réponse libre</p>
-        </a>
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-cyan-400">Tous les modes</h2>
 
-        <a href="#" data-mode="emoji" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Emoji Quiz</p>
-            <p class="text-sm text-slate-400">Devine le film à partir des emojis</p>
-        </a>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {% for mode in game_modes %}
+            <a href="#" data-mode="{{ mode.slug }}"
+               style="--accent: {{ mode.accent }}"
+               class="mode-link accent-card group flex items-start gap-4 rounded-xl border bg-slate-950/60 p-4 transition">
+                <span class="accent-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-lg">
+                    {{ mode.icon }}
+                </span>
+                <span class="min-w-0">
+                    <span class="block font-bold text-slate-100">{{ mode.name }}</span>
+                    <span class="mt-0.5 block text-xs leading-relaxed text-slate-400">{{ mode.description }}</span>
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
 
-        <a href="#" data-mode="film_melange" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Film mélangé</p>
-            <p class="text-sm text-slate-400">Retrouve le titre à partir des lettres mélangées</p>
-        </a>
-
-        <a href="#" data-mode="chronologie" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Chronologie</p>
-            <p class="text-sm text-slate-400">Remets les films dans l'ordre de sortie</p>
-        </a>
-
-        <a href="#" data-mode="devinette" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Devinette</p>
-            <p class="text-sm text-slate-400">Devine le film grâce à des indices progressifs</p>
-        </a>
-
-        <a href="#" data-mode="devinette_affiche" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Devinette-affiche</p>
-            <p class="text-sm text-slate-400">Devine le film à partir d'une scène</p>
-        </a>
-
-        <a href="#" data-mode="casting" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Casting</p>
-            <p class="text-sm text-slate-400">Devine le film grâce à son casting</p>
-        </a>
-
-        <a href="#" data-mode="blindtest" class="mode-link bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 rounded-lg px-4 py-4 transition">
-            <p class="font-bold text-cyan-400">Blind Test</p>
-            <p class="text-sm text-slate-400">Devine le film à l'écoute de sa musique</p>
-        </a>
-    </div>
-
-<script src="{{ url_for('static', filename='js/modes.js') }}"></script>
 </div>
 
+<script src="{{ url_for('static', filename='js/modes.js') }}"></script>
 {% endblock %}

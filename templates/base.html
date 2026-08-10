@@ -5,6 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmatrix</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+    <style>
+        /* Règles partagées par les pages de jeu. Elles reposent sur la variable
+           --accent, injectée par Jinja selon le mode : on ne peut pas passer par
+           des classes Tailwind dynamiques, elles seraient purgées au build. */
+        .hero-glow {
+            background:
+                radial-gradient(60% 80% at 75% 30%, rgba(139, 92, 246, 0.28), transparent 70%),
+                radial-gradient(50% 70% at 20% 70%, rgba(34, 211, 238, 0.18), transparent 70%);
+        }
+
+        .accent-card {
+            border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+        }
+
+        a.accent-card:hover,
+        button.accent-card:hover:not(:disabled) {
+            border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+            box-shadow: 0 0 24px -6px var(--accent);
+        }
+
+        .accent-icon {
+            color: var(--accent);
+            background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+            border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+        }
+
+        .accent-bar {
+            background-image: linear-gradient(
+                to right,
+                color-mix(in srgb, var(--accent) 50%, transparent),
+                var(--accent)
+            );
+        }
+    </style>
     {% block head %}{% endblock %}
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">

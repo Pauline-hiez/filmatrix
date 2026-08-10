@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="max-w-xl mx-auto mt-12 text-center">
-    <p class="text-2xl font-bold text-cyan-400 mb-6">Quiz terminé !</p>
-    <a href="{{ url_for('home') }}"
-       class="inline-block bg-slate-900 hover:bg-slate-800 border border-cyan-400/50 px-6 py-3 rounded-lg transition">
-        Retour à l'accueil
-    </a>
+<div class="mx-auto max-w-xl">
+    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-12 text-center sm:px-10 sm:py-16">
+        <span class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 text-3xl text-cyan-400">
+            ★
+        </span>
+
+        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Quiz
+            <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">terminé</span> !
+        </h1>
+
+        <p class="mt-3 text-slate-300">
+            Tu as répondu à toutes les questions de ce mode.
+        </p>
+
+        <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="{{ url_for('modes') }}"
+               class="rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
+                Choisir un autre mode
+            </a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('profile') }}"
+               class="rounded-lg border border-slate-600 px-6 py-3 font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                Voir mon profil
+            </a>
+            {% else %}
+            <a href="{{ url_for('home') }}"
+               class="rounded-lg border border-slate-600 px-6 py-3 font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                Retour à l'accueil
+            </a>
+            {% endif %}
+        </div>
+    </section>
 </div>
 {% endblock %}

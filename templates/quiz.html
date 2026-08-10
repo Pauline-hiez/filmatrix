@@ -1,134 +1,165 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="max-w-xl mx-auto mt-8">
-    <p class="text-sm text-cyan-400 mb-2">Question {{ question.id }}</p>
-    <div class="w-full bg-slate-900 rounded-full h-2 mb-4 overflow-hidden">
-        <div id="time-bar" class="bg-cyan-400 h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
-    </div>
+{# Couleur d'accent par mode, alignée sur les cartes de l'accueil et de la page modes. #}
+{% set accents = {
+    "qcm": "#22d3ee",
+    "vrai_faux": "#2dd4bf",
+    "citation": "#fbbf24",
+    "emoji": "#c084fc",
+    "film_melange": "#a78bfa",
+    "chronologie": "#38bdf8",
+    "devinette": "#fb923c",
+    "devinette_affiche": "#34d399",
+    "casting": "#f472b6",
+    "blindtest": "#60a5fa"
+} %}
+{% set labels = {
+    "qcm": "Quiz",
+    "vrai_faux": "Vrai / Faux",
+    "citation": "Citations",
+    "emoji": "Emoji Quiz",
+    "film_melange": "Film mélangé",
+    "chronologie": "Chronologie",
+    "devinette": "Devinette",
+    "devinette_affiche": "Devinette-affiche",
+    "casting": "Casting",
+    "blindtest": "Blind Test"
+} %}
+{% set accent = accents.get(question.mode, "#22d3ee") %}
 
-    {% if question.mode == "film_melange" %}
-        <h2 class="text-xl mb-6">{{ scrambled_title }}</h2>
-    {% else %}
-        <h2 class="text-xl mb-6">{{ question.prompt }}</h2>
-    {% endif %}
+{# Champ de réponse libre, partagé par les modes citation / emoji / film mélangé /
+   casting / blind test. Les classes bg-cyan-400, hover:bg-cyan-300 et
+   border-cyan-400/30 sont manipulées par quiz.js : ne pas les renommer. #}
+{% macro answer_field(label="Valider") %}
+<input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
+       class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none">
+<button type="button" data-answer=""
+        class="answer-button rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300">
+    {{ label }}
+</button>
+{% endmacro %}
 
-    <div class="flex flex-col gap-3">
-        {% if question.mode == "qcm" %}
-            {% for option in question.payload.options %}
-            <button type="button" data-answer="{{ loop.index0 }}"
-                    class="answer-button bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 text-left px-4 py-3 rounded-lg transition">
-                {{ option }}
-            </button>
-            {% endfor %}
-        {% elif question.mode == "vrai_faux" %}
-            <button type="button" data-answer="true"
-                    class="answer-button bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 px-4 py-3 rounded-lg transition">
-                Vrai
-            </button>
-            <button type="button" data-answer="false"
-                    class="answer-button bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 px-4 py-3 rounded-lg transition">
-                Faux
-            </button>
-        {% elif question.mode == "citation" %}
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-            <button type="button" data-answer=""
-                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                Valider
-            </button>
-        {% elif question.mode == "emoji" %}
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-            <button type="button" data-answer=""
-                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                Valider
-            </button>
-        {% elif question.mode == "film_melange" %}
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-            <button type="button" data-answer=""
-                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                Valider
-            </button>
-        {% elif question.mode == "chronologie" %}
-            <p class="text-sm text-slate-400 mb-3">Clique sur les films dans l'ordre chronologique (du plus ancien au plus récent) :</p>
+<div class="mx-auto flex max-w-2xl flex-col gap-5" style="--accent: {{ accent }}">
 
-            <div id="chronology-films" class="flex flex-col gap-2 mb-4">
-                {% for film in question.payload.films %}
-                <button type="button" data-film="{{ film }}"
-                        class="chronology-film bg-slate-900 hover:bg-slate-800 border border-cyan-400/30 text-left px-4 py-3 rounded-lg transition flex items-center justify-between">
-                    <span>{{ film }}</span>
-                    <span class="chronology-order-badge text-cyan-400 font-bold"></span>
-                </button>
-                {% endfor %}
-            </div>
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-7">
 
-            <button type="button" data-answer="" id="validate-order"
-                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition w-full" disabled>
-                Valider l'ordre
-            </button>
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <span class="accent-icon rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest">
+                {{ labels.get(question.mode, question.mode) }}
+            </span>
+            <span class="text-xs uppercase tracking-widest text-slate-500">
+                {{ question.category }} · {{ question.difficulty }}
+            </span>
+        </div>
 
-            <p id="chronology-summary" class="text-sm text-slate-400 mt-3"></p>
+        <div class="mb-6 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+            <div id="time-bar" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
+        </div>
 
-        {% elif question.mode == "devinette" %}
-            <div id="hints-container" class="mb-4">
-                <p class="text-slate-300" id="current-hint">{{ question.payload.hints[0] }}</p>
-            </div>
+        {% if question.mode == "film_melange" %}
+            <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100 sm:text-3xl">
+                {{ scrambled_title }}
+            </h1>
+        {% else %}
+            <h1 class="mb-6 text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
+                {{ question.prompt }}
+            </h1>
+        {% endif %}
 
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-           class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-                <button type="button" data-answer="" id="riddle-submit" data-hint-index="0"
-                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                    Valider
-                </button>
-        {% elif question.mode == "devinette_affiche" %}
+        {# Médias propres à certains modes, affichés avant le champ de réponse. #}
+        {% if question.mode == "devinette_affiche" %}
             <img src="{{ question.payload.poster_url }}" alt="Affiche du film à deviner"
-                 class="w-full max-w-xs mx-auto rounded-lg mb-4 border border-cyan-400/30">
-
-            <div id="hints-container" class="mb-4">
-                <p class="text-slate-300" id="current-hint">{{ question.payload.hints[0] }}</p>
-            </div>
-
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-            <button type="button" data-answer="" id="riddle-submit" data-hint-index="0"
-                    class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                Valider
-            </button>
-            {% elif question.mode == "casting" %}
-            <p class="text-sm text-slate-400 mb-3">Devine le film à partir de son casting :</p>
-
-            <div class="flex gap-3 mb-4 justify-center">
+                 class="mx-auto mb-5 w-full max-w-[16rem] rounded-xl border border-cyan-400/30">
+        {% elif question.mode == "casting" %}
+            <p class="mb-3 text-sm text-slate-400">Devine le film à partir de son casting :</p>
+            <div class="mb-5 flex flex-wrap justify-center gap-3">
                 {% for photo_url in question.payload.actor_photos %}
                 <img src="{{ photo_url }}" alt="Acteur du film à deviner"
-                     class="w-20 h-28 sm:w-24 sm:h-32 object-cover rounded-lg border border-cyan-400/30">
+                     class="h-28 w-20 rounded-lg border border-cyan-400/30 object-cover sm:h-32 sm:w-24">
                 {% endfor %}
             </div>
-
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-            <button type="button" data-answer=""
-                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                Valider
-            </button>
-
-            {% elif question.mode == "blindtest" %}
-            <p class="text-sm text-slate-400 mb-3">Écoute l'extrait et devine le film :</p>
-
-            <audio controls class="w-full mb-4">
+        {% elif question.mode == "blindtest" %}
+            <p class="mb-3 text-sm text-slate-400">Écoute l'extrait et devine le film :</p>
+            <audio controls autoplay class="mb-5 w-full">
                 <source src="{{ question.payload.audio_url }}" type="audio/mp4">
                 Ton navigateur ne supporte pas la lecture audio.
             </audio>
-
-            <input type="text" id="free-text-answer" placeholder="Titre du film..."
-                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
-            <button type="button" data-answer=""
-                    class="answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
-                Valider
-            </button>
         {% endif %}
-    </div>
+
+        {# Indices progressifs des modes devinette. #}
+        {% if question.mode in ["devinette", "devinette_affiche"] %}
+            <div id="hints-container" class="mb-5 rounded-xl border border-slate-700/60 bg-slate-950/50 px-4 py-3">
+                <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Indice</p>
+                <p class="text-slate-300" id="current-hint">{{ question.payload.hints[0] }}</p>
+            </div>
+        {% endif %}
+
+        <div class="flex flex-col gap-3">
+            {% if question.mode == "qcm" %}
+                <div class="grid gap-3 sm:grid-cols-2">
+                    {% for option in question.payload.options %}
+                    <button type="button" data-answer="{{ loop.index0 }}"
+                            class="answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
+                        {{ option }}
+                    </button>
+                    {% endfor %}
+                </div>
+
+            {% elif question.mode == "vrai_faux" %}
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <button type="button" data-answer="true"
+                            class="answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
+                        Vrai
+                    </button>
+                    <button type="button" data-answer="false"
+                            class="answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
+                        Faux
+                    </button>
+                </div>
+
+            {% elif question.mode == "chronologie" %}
+                <p class="mb-1 text-sm text-slate-400">
+                    Clique sur les films dans l'ordre chronologique, du plus ancien au plus récent :
+                </p>
+
+                <div id="chronology-films" class="mb-2 flex flex-col gap-2">
+                    {% for film in question.payload.films %}
+                    <button type="button" data-film="{{ film }}"
+                            class="chronology-film flex items-center justify-between rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
+                        <span>{{ film }}</span>
+                        <span class="chronology-order-badge flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-cyan-400"></span>
+                    </button>
+                    {% endfor %}
+                </div>
+
+                <button type="button" data-answer="" id="validate-order"
+                        class="answer-button w-full rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40"
+                        disabled>
+                    Valider l'ordre
+                </button>
+
+                <p id="chronology-summary" class="text-sm text-slate-400"></p>
+
+            {% elif question.mode in ["devinette", "devinette_affiche"] %}
+                {# Ce bouton a son propre gestionnaire dans quiz.js (indices successifs),
+                   il ne doit surtout pas porter la classe answer-button. #}
+                <input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
+                       class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none">
+                <button type="button" data-answer="" id="riddle-submit" data-hint-index="0"
+                        class="rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40">
+                    Valider
+                </button>
+
+            {% elif question.mode in ["citation", "emoji", "film_melange", "casting", "blindtest"] %}
+                {{ answer_field() }}
+            {% endif %}
+        </div>
+    </section>
+
+    <a href="{{ url_for('modes') }}" class="text-center text-sm text-slate-500 transition hover:text-cyan-400">
+        Changer de mode
+    </a>
 </div>
 
 <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
