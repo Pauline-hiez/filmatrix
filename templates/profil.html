@@ -1,70 +1,170 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto mt-8">
-    <h2 class="text-xl mb-2">
-        Bonjour, {{ current_user.username }}
-        {% if equipped_title_name %}
-            <span class="text-cyan-400 text-sm font-normal">— {{ equipped_title_name }}</span>
-        {% endif %}
-    </h2>
-    
-    <div class="mb-8">
-        <p class="text-cyan-400 text-lg mb-2">
-            Niveau {{ level_info.level }}
-        </p>
-        <div class="w-full bg-slate-900 rounded-full h-3 overflow-hidden mb-1">
-            <div class="bg-cyan-400 h-3 rounded-full"
-                 style="width: {{ (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) }}%"></div>
-        </div>
-        <p class="text-xs text-slate-500">{{ level_info.xp_in_current_level }} / {{ level_info.xp_for_next_level }} XP</p>
+{# Libellés et couleurs d'accent des modes, pour l'historique.
+   Mêmes valeurs que sur l'accueil et la page de quiz. #}
+{% set labels = {
+    "qcm": "Quiz",
+    "vrai_faux": "Vrai / Faux",
+    "citation": "Citations",
+    "emoji": "Emoji Quiz",
+    "film_melange": "Film mélangé",
+    "chronologie": "Chronologie",
+    "devinette": "Devinette",
+    "devinette_affiche": "Devinette-affiche",
+    "casting": "Casting",
+    "blindtest": "Blind Test"
+} %}
+{% set accents = {
+    "qcm": "#22d3ee",
+    "vrai_faux": "#2dd4bf",
+    "citation": "#fbbf24",
+    "emoji": "#c084fc",
+    "film_melange": "#a78bfa",
+    "chronologie": "#38bdf8",
+    "devinette": "#fb923c",
+    "devinette_affiche": "#34d399",
+    "casting": "#f472b6",
+    "blindtest": "#60a5fa"
+} %}
+{% set earned_count = all_badges | selectattr("earned") | list | length %}
 
-        <p class="text-slate-400 text-sm mt-3">
-            Score : {{ correct_count }} / {{ total_count }}
-        </p>
-    </div>
+<div class="mx-auto flex max-w-4xl flex-col gap-6">
 
-    <h3 class="text-lg mb-4 text-slate-300">Badges</h3>
+    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 sm:p-8">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-        {% for badge in all_badges %}
-        <div class="border rounded-lg px-3 py-4 text-center transition
-                    {% if badge.earned %}
-                        border-cyan-400/50 bg-slate-900
+            <div class="flex items-center gap-4">
+                <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 text-2xl font-extrabold text-slate-950">
+                    {{ current_user.username[0] | upper }}
+                </span>
+                <div class="min-w-0">
+                    <h1 class="truncate text-2xl font-extrabold tracking-tight">{{ current_user.username }}</h1>
+                    {% if equipped_title_name %}
+                    <p class="text-sm text-cyan-400">{{ equipped_title_name }}</p>
                     {% else %}
-                        border-slate-800 bg-slate-900/50 opacity-40
-                    {% endif %}">
-            <p class="text-2xl mb-1">{{ badge.icon }}</p>
-            <p class="text-sm font-bold {% if badge.earned %}text-cyan-400{% else %}text-slate-500{% endif %}">
-                {{ badge.name }}
-            </p>
-            <p class="text-xs text-slate-500 mt-1">{{ badge.description }}</p>
-        </div>
-        {% endfor %}
-    </div>
-
-    <h3 class="text-lg mb-4 text-slate-300">Historique</h3>
-
-    {% if attempts_by_mode %}
-        {% for mode, mode_attempts in attempts_by_mode.items() %}
-        <div class="mb-6">
-            <h4 class="text-sm font-bold text-cyan-400 mb-2 uppercase tracking-wide">{{ mode }}</h4>
-            <div class="flex flex-col gap-2">
-                {% for attempt in mode_attempts %}
-                <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
-                    <span class="text-sm">{{ attempt.question.prompt }}</span>
-                    {% if attempt.is_correct %}
-                        <span class="text-emerald-400 text-sm font-bold">Correct</span>
-                    {% else %}
-                        <span class="text-red-400 text-sm font-bold">Incorrect</span>
+                    <a href="{{ url_for('shop') }}" class="text-sm text-slate-500 transition hover:text-cyan-400">
+                        Choisir un titre
+                    </a>
                     {% endif %}
                 </div>
-                {% endfor %}
+            </div>
+
+            <div class="flex-1 sm:pl-6">
+                <div class="mb-2 flex items-baseline justify-between">
+                    <p class="font-bold">Niveau {{ level_info.level }}</p>
+                    <p class="text-xs text-slate-500">
+                        {{ level_info.xp_in_current_level }} / {{ level_info.xp_for_next_level }} XP
+                    </p>
+                </div>
+                <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div class="h-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
+                         style="width: {{ (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) }}%"></div>
+                </div>
+                <p class="mt-1 text-xs text-slate-500">{{ current_user.total_xp }} XP au total</p>
             </div>
         </div>
-        {% endfor %}
-    {% else %}
-    <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
-    {% endif %}
+    </section>
+
+    <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+            <p class="text-2xl font-extrabold text-slate-100">{{ correct_count }} / {{ total_count }}</p>
+            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Score</p>
+        </div>
+        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+            <p class="text-2xl font-extrabold text-emerald-400">
+                {% if total_count %}{{ (correct_count / total_count * 100) | round | int }}%{% else %}—{% endif %}
+            </p>
+            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Précision</p>
+        </div>
+        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+            <p class="text-2xl font-extrabold text-amber-400">{{ current_user.coins }}</p>
+            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Pièces</p>
+        </div>
+        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+            <p class="text-2xl font-extrabold text-violet-400">{{ earned_count }} / {{ all_badges | length }}</p>
+            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Badges</p>
+        </div>
+    </div>
+
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <div class="mb-5 flex items-baseline justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Badges</h2>
+            <span class="text-xs text-slate-500">{{ earned_count }} sur {{ all_badges | length }}</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {% for badge in all_badges %}
+            <div class="rounded-xl border px-3 py-4 text-center transition
+                        {% if badge.earned %}border-cyan-400/40 bg-slate-950/60{% else %}border-slate-800 bg-slate-950/30 opacity-40{% endif %}">
+                <p class="mb-1 text-2xl">{{ badge.icon }}</p>
+                <p class="text-sm font-bold {% if badge.earned %}text-cyan-400{% else %}text-slate-500{% endif %}">
+                    {{ badge.name }}
+                </p>
+                <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ badge.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <div class="mb-4 flex items-baseline justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Historique</h2>
+            <span class="text-xs text-slate-500">{{ total_count }} partie{{ 's' if total_count > 1 else '' }}</span>
+        </div>
+
+        {% if attempts_by_mode %}
+        {# Un accordéon par mode, replié par défaut : l'historique complet reste
+           consultable sans occuper toute la page. #}
+        <div class="flex flex-col gap-2">
+            {% for mode, mode_attempts in attempts_by_mode.items() %}
+            {% set mode_correct = mode_attempts | selectattr("is_correct") | list | length %}
+            {% set mode_total = mode_attempts | length %}
+            <details class="group rounded-xl border border-slate-800 bg-slate-950/40 transition hover:border-slate-700"
+                     style="--accent: {{ accents.get(mode, '#22d3ee') }}">
+                <summary class="flex cursor-pointer list-none items-center gap-3 px-4 py-3 [&::-webkit-details-marker]:hidden">
+                    <span class="accent-icon shrink-0 rounded-full border px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-widest">
+                        {{ labels.get(mode, mode) }}
+                    </span>
+
+                    <span class="hidden h-1.5 flex-1 overflow-hidden rounded-full bg-slate-800 sm:block">
+                        <span class="accent-bar block h-1.5 rounded-full"
+                              style="width: {{ (mode_correct / mode_total * 100) | round(1) }}%"></span>
+                    </span>
+
+                    <span class="ml-auto shrink-0 text-xs text-slate-400 sm:ml-0">
+                        {{ mode_correct }}/{{ mode_total }}
+                    </span>
+
+                    <svg class="h-4 w-4 shrink-0 text-slate-500 transition-transform group-open:rotate-180"
+                         fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </summary>
+
+                <ul class="border-t border-slate-800/80 px-4 py-2">
+                    {% for attempt in mode_attempts %}
+                    <li class="flex items-center gap-3 border-b border-slate-800/50 py-2 last:border-0">
+                        <span class="h-1.5 w-1.5 shrink-0 rounded-full {% if attempt.is_correct %}bg-emerald-400{% else %}bg-red-400{% endif %}"
+                              title="{{ 'Correct' if attempt.is_correct else 'Incorrect' }}"></span>
+                        <span class="min-w-0 flex-1 truncate text-sm text-slate-300">{{ attempt.question.prompt }}</span>
+                        <span class="shrink-0 text-xs text-slate-600">{{ attempt.answered_at.strftime('%d/%m/%y') }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </details>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="py-8 text-center">
+            <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
+            <a href="{{ url_for('modes') }}"
+               class="mt-4 inline-block rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 transition hover:bg-cyan-300">
+                Commencer à jouer
+            </a>
+        </div>
+        {% endif %}
+    </section>
+
 </div>
 {% endblock %}
