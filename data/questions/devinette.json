@@ -1,74 +1,254 @@
 [
-    {
-        "id": 16,
-        "mode": "devinette",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "hints": [
-                "Ce film est sorti en 1997.",
-                "Il raconte le naufrage d'un paquebot légendaire.",
-                "Le film est réalisé par James Cameron."
-            ]
-        },
-        "correct_answer": {
-            "film": "Titanic"
-        },
-        "requires_account": false
+  {
+    "id": 16,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1997.",
+        "Il raconte le naufrage d'un paquebot légendaire.",
+        "Le film est réalisé par James Cameron."
+      ]
     },
-    {
-        "id": 17,
-        "mode": "devinette",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "hints": [
-                "Ce film est sorti en 1993.",
-                "Il met en scène des dinosaures recréés grâce à l'ADN.",
-                "Le film est réalisé par Steven Spielberg."
-            ]
-        },
-        "correct_answer": {
-            "film": "Jurassic Park"
-        },
-        "requires_account": false
+    "correct_answer": {
+      "film": "Titanic"
     },
-    {
-        "id": 18,
-        "mode": "devinette",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "hints": [
-                "Ce film est sorti en 1999.",
-                "Le personnage principal découvre que le monde qui l'entoure est une simulation.",
-                "Le héros est interprété par Keanu Reeves."
-            ]
-        },
-        "correct_answer": {
-            "film": "Matrix"
-        },
-        "requires_account": false
+    "requires_account": false
+  },
+  {
+    "id": 17,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1993.",
+        "Il met en scène des dinosaures recréés grâce à l'ADN.",
+        "Le film est réalisé par Steven Spielberg."
+      ]
     },
-    {
-        "id": 19,
-        "mode": "devinette",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "hints": [
-                "Ce film est sorti en 2001.",
-                "Une communauté entreprend un long voyage pour détruire un puissant anneau.",
-                "Il est réalisé par Peter Jackson."
-            ]
-        },
-        "correct_answer": {
-            "film": "Le Seigneur des Anneaux"
-        },
-        "requires_account": false
-    }
+    "correct_answer": {
+      "film": "Jurassic Park"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 18,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1999.",
+        "Le personnage principal découvre que le monde qui l'entoure est une simulation.",
+        "Le héros est interprété par Keanu Reeves."
+      ]
+    },
+    "correct_answer": {
+      "film": "Matrix"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 19,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 2001.",
+        "Une communauté entreprend un long voyage pour détruire un puissant anneau.",
+        "Il est réalisé par Peter Jackson."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 220,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film d'animation Disney est sorti en 1994.",
+        "L'histoire se déroule dans la savane africaine.",
+        "Le jeune héros s'appelle Simba."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Roi Lion"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 221,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1985.",
+        "Une DeLorean sert de machine à voyager dans le temps.",
+        "Le héros s'appelle Marty McFly."
+      ]
+    },
+    "correct_answer": {
+      "film": "Retour vers le futur"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 222,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1994.",
+        "Le héros traverse l'histoire américaine sans jamais en mesurer la portée.",
+        "Tom Hanks a reçu l'Oscar du meilleur acteur pour ce rôle."
+      ]
+    },
+    "correct_answer": {
+      "film": "Forrest Gump"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 223,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1972.",
+        "Il suit une famille mafieuse italo-américaine à New York.",
+        "Marlon Brando y incarne le patriarche."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Parrain"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 224,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1994.",
+        "Le récit est raconté dans le désordre.",
+        "Quentin Tarantino l'a réalisé."
+      ]
+    },
+    "correct_answer": {
+      "film": "Pulp Fiction"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 225,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1979.",
+        "L'action se déroule à bord du vaisseau Nostromo.",
+        "Ridley Scott l'a réalisé."
+      ]
+    },
+    "correct_answer": {
+      "film": "Alien"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 226,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 2000.",
+        "Le héros est un général romain réduit en esclavage.",
+        "Russell Crowe y tient le rôle principal."
+      ]
+    },
+    "correct_answer": {
+      "film": "Gladiator"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 227,
+    "mode": "devinette",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 2014.",
+        "Des astronautes traversent un trou de ver pour sauver l'humanité.",
+        "Christopher Nolan l'a réalisé."
+      ]
+    },
+    "correct_answer": {
+      "film": "Interstellar"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 228,
+    "mode": "devinette",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film a reçu la Palme d'or en 2019.",
+        "Il oppose deux familles coréennes, l'une riche, l'autre pauvre.",
+        "Bong Joon-ho l'a réalisé."
+      ]
+    },
+    "correct_answer": {
+      "film": "Parasite"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 229,
+    "mode": "devinette",
+    "category": "realisateur",
+    "difficulty": "difficile",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film d'animation japonais est sorti en 2001.",
+        "Une fillette travaille dans des bains publics peuplés d'esprits.",
+        "Hayao Miyazaki l'a réalisé."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Voyage de Chihiro"
+    },
+    "requires_account": false
+  }
 ]

@@ -1,50 +1,182 @@
 [
-    {
-        "id": 5,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "Le film Titanic est sorti en 1997.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+  {
+    "id": 5,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Le film Titanic est sorti en 1997.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 6,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "difficulty": "facile",
-        "prompt": "Le film Avatar (2009) est réalisé par Christopher Nolan.",
-        "payload": {},
-        "correct_answer": {
-            "value": false
-        },
-        "requires_account": false
+    "requires_account": false
+  },
+  {
+    "id": 6,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Le film Avatar (2009) est réalisé par Christopher Nolan.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
     },
-    {
-        "id": 7,
-        "mode": "vrai_faux",
-        "category": "realisateur",
-        "difficulty": "moyen",
-        "prompt": "Steven Spielberg a réalisé Jurassic Park.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false
+  },
+  {
+    "id": 7,
+    "mode": "vrai_faux",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Steven Spielberg a réalisé Jurassic Park.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 8,
-        "mode": "vrai_faux",
-        "category": "acteur",
-        "difficulty": "moyen",
-        "prompt": "Leonardo DiCaprio a remporté l'Oscar du meilleur acteur pour Titanic.",
-        "payload": {},
-        "correct_answer": {
-            "value": false
-        },
-        "requires_account": true
-    }
+    "requires_account": false
+  },
+  {
+    "id": 8,
+    "mode": "vrai_faux",
+    "category": "acteur",
+    "difficulty": "moyen",
+    "prompt": "Leonardo DiCaprio a remporté l'Oscar du meilleur acteur pour Titanic.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": true
+  },
+  {
+    "id": 120,
+    "mode": "vrai_faux",
+    "category": "realisateur",
+    "difficulty": "facile",
+    "prompt": "Le Parrain (1972) est réalisé par Martin Scorsese.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false
+  },
+  {
+    "id": 121,
+    "mode": "vrai_faux",
+    "category": "realisateur",
+    "difficulty": "facile",
+    "prompt": "Quentin Tarantino a réalisé Kill Bill.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 122,
+    "mode": "vrai_faux",
+    "category": "realisateur",
+    "difficulty": "facile",
+    "prompt": "Christopher Nolan a réalisé Interstellar.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 123,
+    "mode": "vrai_faux",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Le film Alien (1979) est réalisé par Ridley Scott.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 124,
+    "mode": "vrai_faux",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Le film Psychose (1960) est réalisé par Alfred Hitchcock.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 125,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Le film Matrix est sorti en 1999.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 126,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Le Roi Lion (1994) est un film en prises de vues réelles.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false
+  },
+  {
+    "id": 127,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Jurassic Park est adapté d'un roman de Michael Crichton.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 128,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Parasite est le premier film non anglophone à remporter l'Oscar du meilleur film.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 129,
+    "mode": "vrai_faux",
+    "category": "acteur",
+    "difficulty": "difficile",
+    "prompt": "Tom Hanks a remporté deux Oscars du meilleur acteur deux années de suite.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false
+  },
+  {
+    "id": 130,
+    "mode": "vrai_faux",
+    "category": "acteur",
+    "difficulty": "difficile",
+    "prompt": "Marlon Brando est venu chercher en personne son Oscar pour Le Parrain.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false
+  }
 ]

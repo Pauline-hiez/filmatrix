@@ -1,26 +1,146 @@
 [
-    {
-        "id": 11,
-        "mode": "emoji",
-        "category": "anecdote",
-        "difficulty": "facile",
-        "prompt": "🦁👑🌍",
-        "payload": {},
-        "correct_answer": {
-            "film": "Le Roi Lion"
-        },
-        "requires_account": false
+  {
+    "id": 11,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "🦁👑🌍",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Roi Lion"
     },
-    {
-        "id": 12,
-        "mode": "emoji",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "🕷️🧑",
-        "payload": {},
-        "correct_answer": {
-            "film": "SpiderMan"
-        },
-        "requires_account": false
-    }
+    "requires_account": false
+  },
+  {
+    "id": 12,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "🕷️🧑",
+    "payload": {},
+    "correct_answer": {
+      "film": "SpiderMan"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 160,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "🚢🧊💔",
+    "payload": {},
+    "correct_answer": {
+      "film": "Titanic"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 161,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "🦖🏝️🧬",
+    "payload": {},
+    "correct_answer": {
+      "film": "Jurassic Park"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 162,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "🐠🔍🌊",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Monde de Nemo"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 163,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "🐭👨‍🍳🇫🇷",
+    "payload": {},
+    "correct_answer": {
+      "film": "Ratatouille"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 164,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "❄️👭⛄",
+    "payload": {},
+    "correct_answer": {
+      "film": "La Reine des neiges"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 165,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "👽📞🚲",
+    "payload": {},
+    "correct_answer": {
+      "film": "E.T."
+    },
+    "requires_account": false
+  },
+  {
+    "id": 166,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "🤖❤️🌱",
+    "payload": {},
+    "correct_answer": {
+      "film": "Wall-E"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 167,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "🏠🎈🌈",
+    "payload": {},
+    "correct_answer": {
+      "film": "Là-haut"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 168,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "🕶️💊🟩",
+    "payload": {},
+    "correct_answer": {
+      "film": "Matrix"
+    },
+    "requires_account": false
+  },
+  {
+    "id": 169,
+    "mode": "emoji",
+    "category": "anecdote",
+    "difficulty": "difficile",
+    "prompt": "🧙‍♂️💍🌋",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false
+  }
 ]

@@ -1,26 +1,170 @@
 [
-    {
-        "id": 15,
-        "mode": "chronologie",
-        "category": "anecdote",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "films": [
-                "Avatar",
-                "Le Roi Lion",
-                "Titanic",
-                "Inception"
-            ]
-        },
-        "correct_answer": {
-            "order": [
-                "Le Roi Lion",
-                "Titanic",
-                "Avatar",
-                "Inception"
-            ]
-        },
-        "requires_account": false
-    }
+  {
+    "id": 15,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "films": [
+        "Avatar",
+        "Le Roi Lion",
+        "Titanic",
+        "Inception"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Roi Lion",
+        "Titanic",
+        "Avatar",
+        "Inception"
+      ]
+    },
+    "requires_account": false
+  },
+  {
+    "id": 200,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "difficulty": "facile",
+    "prompt": "Remets ces films dans leur ordre de sortie.",
+    "payload": {
+      "films": [
+        "Toy Story",
+        "Là-haut",
+        "Le Roi Lion",
+        "Le Monde de Nemo"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Roi Lion",
+        "Toy Story",
+        "Le Monde de Nemo",
+        "Là-haut"
+      ]
+    },
+    "requires_account": false
+  },
+  {
+    "id": 201,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Remets ces films dans leur ordre de sortie.",
+    "payload": {
+      "films": [
+        "Matrix",
+        "Psychose",
+        "Retour vers le futur",
+        "Star Wars"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Psychose",
+        "Star Wars",
+        "Retour vers le futur",
+        "Matrix"
+      ]
+    },
+    "requires_account": false
+  },
+  {
+    "id": 202,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Remets ces films dans leur ordre de sortie.",
+    "payload": {
+      "films": [
+        "Jurassic Park",
+        "Avatar",
+        "Le Parrain",
+        "Alien"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Parrain",
+        "Alien",
+        "Jurassic Park",
+        "Avatar"
+      ]
+    },
+    "requires_account": false
+  },
+  {
+    "id": 203,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Remets ces films dans leur ordre de sortie.",
+    "payload": {
+      "films": [
+        "Inception",
+        "Pulp Fiction",
+        "Parasite",
+        "Fight Club"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Pulp Fiction",
+        "Fight Club",
+        "Inception",
+        "Parasite"
+      ]
+    },
+    "requires_account": false
+  },
+  {
+    "id": 204,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Remets ces films dans leur ordre de sortie.",
+    "payload": {
+      "films": [
+        "Titanic",
+        "Rocky",
+        "Gladiator",
+        "Terminator"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Rocky",
+        "Terminator",
+        "Titanic",
+        "Gladiator"
+      ]
+    },
+    "requires_account": false
+  },
+  {
+    "id": 205,
+    "mode": "chronologie",
+    "category": "realisateur",
+    "difficulty": "difficile",
+    "prompt": "Remets ces films dans leur ordre de sortie.",
+    "payload": {
+      "films": [
+        "E.T.",
+        "Il faut sauver le soldat Ryan",
+        "Les Dents de la mer",
+        "Jurassic Park"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Dents de la mer",
+        "E.T.",
+        "Jurassic Park",
+        "Il faut sauver le soldat Ryan"
+      ]
+    },
+    "requires_account": false
+  }
 ]

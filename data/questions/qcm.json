@@ -1,78 +1,306 @@
 [
-    {
-        "id": 1,
-        "mode": "qcm",
-        "category": "realisateur",
-        "difficulty": "facile",
-        "prompt": "Qui a réalisé le film Inception ?",
-        "payload": {
-            "options": [
-                "Christopher Nolan",
-                "Steven Spielberg",
-                "James Cameron",
-                "Ridley Scott"
-            ]
-        },
-        "correct_answer": {
-            "index": 0
-        },
-        "requires_account": false
+  {
+    "id": 1,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "facile",
+    "prompt": "Qui a réalisé le film Inception ?",
+    "payload": {
+      "options": [
+        "Christopher Nolan",
+        "Steven Spielberg",
+        "James Cameron",
+        "Ridley Scott"
+      ]
     },
-    {
-        "id": 2,
-        "mode": "qcm",
-        "category": "realisateur",
-        "difficulty": "moyen",
-        "prompt": "Qui a réalisé Pulp Fiction ?",
-        "payload": {
-            "options": [
-                "Martin Scorsese",
-                "Quentin Tarantino",
-                "David Fincher",
-                "Guy Ritchie"
-            ]
-        },
-        "correct_answer": {
-            "index": 1
-        },
-        "requires_account": false
+    "correct_answer": {
+      "index": 0
     },
-    {
-        "id": 3,
-        "mode": "qcm",
-        "category": "acteur",
-        "difficulty": "facile",
-        "prompt": "Qui joue le rôle principal dans Le Loup de Wall Street ?",
-        "payload": {
-            "options": [
-                "Brad Pitt",
-                "Leonardo DiCaprio",
-                "Matt Damon",
-                "Tom Hanks"
-            ]
-        },
-        "correct_answer": {
-            "index": 1
-        },
-        "requires_account": false
+    "requires_account": false
+  },
+  {
+    "id": 2,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Qui a réalisé Pulp Fiction ?",
+    "payload": {
+      "options": [
+        "Martin Scorsese",
+        "Quentin Tarantino",
+        "David Fincher",
+        "Guy Ritchie"
+      ]
     },
-    {
-        "id": 4,
-        "mode": "qcm",
-        "category": "acteur",
-        "difficulty": "moyen",
-        "prompt": "Quel acteur incarne Tony Stark dans le Marvel Cinematic Universe ?",
-        "payload": {
-            "options": [
-                "Chris Evans",
-                "Chris Hemsworth",
-                "Robert Downey Jr.",
-                "Mark Ruffalo"
-            ]
-        },
-        "correct_answer": {
-            "index": 2
-        },
-        "requires_account": true
-    }
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false
+  },
+  {
+    "id": 3,
+    "mode": "qcm",
+    "category": "acteur",
+    "difficulty": "facile",
+    "prompt": "Qui joue le rôle principal dans Le Loup de Wall Street ?",
+    "payload": {
+      "options": [
+        "Brad Pitt",
+        "Leonardo DiCaprio",
+        "Matt Damon",
+        "Tom Hanks"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false
+  },
+  {
+    "id": 4,
+    "mode": "qcm",
+    "category": "acteur",
+    "difficulty": "moyen",
+    "prompt": "Quel acteur incarne Tony Stark dans le Marvel Cinematic Universe ?",
+    "payload": {
+      "options": [
+        "Chris Evans",
+        "Chris Hemsworth",
+        "Robert Downey Jr.",
+        "Mark Ruffalo"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": true
+  },
+  {
+    "id": 100,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "facile",
+    "prompt": "Qui a réalisé Le Parrain (1972) ?",
+    "payload": {
+      "options": [
+        "Martin Scorsese",
+        "Francis Ford Coppola",
+        "Sergio Leone",
+        "Brian De Palma"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false
+  },
+  {
+    "id": 101,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "facile",
+    "prompt": "Qui a réalisé Titanic (1997) ?",
+    "payload": {
+      "options": [
+        "James Cameron",
+        "Steven Spielberg",
+        "Ron Howard",
+        "Robert Zemeckis"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false
+  },
+  {
+    "id": 102,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Qui a réalisé Le Voyage de Chihiro ?",
+    "payload": {
+      "options": [
+        "Isao Takahata",
+        "Mamoru Hosoda",
+        "Hayao Miyazaki",
+        "Makoto Shinkai"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false
+  },
+  {
+    "id": 103,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Qui a réalisé Parasite ?",
+    "payload": {
+      "options": [
+        "Park Chan-wook",
+        "Bong Joon-ho",
+        "Kim Jee-woon",
+        "Lee Chang-dong"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false
+  },
+  {
+    "id": 104,
+    "mode": "qcm",
+    "category": "realisateur",
+    "difficulty": "moyen",
+    "prompt": "Qui a réalisé Blade Runner (1982) ?",
+    "payload": {
+      "options": [
+        "Ridley Scott",
+        "John Carpenter",
+        "David Lynch",
+        "Paul Verhoeven"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false
+  },
+  {
+    "id": 105,
+    "mode": "qcm",
+    "category": "acteur",
+    "difficulty": "facile",
+    "prompt": "Quel acteur incarne Forrest Gump ?",
+    "payload": {
+      "options": [
+        "Kevin Costner",
+        "Tom Hanks",
+        "Robin Williams",
+        "Bill Murray"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false
+  },
+  {
+    "id": 106,
+    "mode": "qcm",
+    "category": "acteur",
+    "difficulty": "facile",
+    "prompt": "Quel acteur incarne Neo dans Matrix ?",
+    "payload": {
+      "options": [
+        "Will Smith",
+        "Nicolas Cage",
+        "Keanu Reeves",
+        "Brad Pitt"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false
+  },
+  {
+    "id": 107,
+    "mode": "qcm",
+    "category": "acteur",
+    "difficulty": "facile",
+    "prompt": "Quelle actrice incarne Hermione Granger dans Harry Potter ?",
+    "payload": {
+      "options": [
+        "Emma Watson",
+        "Emma Stone",
+        "Keira Knightley",
+        "Natalie Portman"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false
+  },
+  {
+    "id": 108,
+    "mode": "qcm",
+    "category": "acteur",
+    "difficulty": "difficile",
+    "prompt": "Quel acteur incarne Vito Corleone dans Le Parrain (1972) ?",
+    "payload": {
+      "options": [
+        "Al Pacino",
+        "Robert De Niro",
+        "James Caan",
+        "Marlon Brando"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false
+  },
+  {
+    "id": 109,
+    "mode": "qcm",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Qui a composé la musique de Star Wars ?",
+    "payload": {
+      "options": [
+        "Hans Zimmer",
+        "John Williams",
+        "Ennio Morricone",
+        "Danny Elfman"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false
+  },
+  {
+    "id": 110,
+    "mode": "qcm",
+    "category": "anecdote",
+    "difficulty": "moyen",
+    "prompt": "Quel film a remporté l'Oscar du meilleur film en 2020 ?",
+    "payload": {
+      "options": [
+        "1917",
+        "Joker",
+        "Parasite",
+        "Once Upon a Time in Hollywood"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false
+  },
+  {
+    "id": 111,
+    "mode": "qcm",
+    "category": "anecdote",
+    "difficulty": "difficile",
+    "prompt": "Dans quel quartier de Paris se déroule Le Fabuleux Destin d'Amélie Poulain ?",
+    "payload": {
+      "options": [
+        "Le Marais",
+        "Belleville",
+        "Montmartre",
+        "Saint-Germain-des-Prés"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false
+  }
 ]
