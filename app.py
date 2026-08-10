@@ -23,6 +23,14 @@ from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
 from src.admin import admin_required 
+from src.tmdb import (
+    build_image_url,
+    get_movie_by_id,
+    get_movie_cast,
+    search_movie,
+    search_movies_list,
+)
+from src.itunes import search_soundtrack_preview
 
 load_dotenv()
 
@@ -362,7 +370,7 @@ def create_app(database_uri: str | None = None) -> Flask:
                     prompt=request.form["prompt"],
                     payload=payload,
                     correct_answer=correct_answer,
-                    require_account=request.form.get("requires_account") == "on",
+                    requires_account=request.form.get("requires_account") == "on",
                 )
             db.session.add(new_question)
             db.session.commit()
@@ -370,6 +378,103 @@ def create_app(database_uri: str | None = None) -> Flask:
             flash("Question créée avec succès.")
             return redirect(url_for("admin_questions_list"))
         return render_template("admin/question_form.html", question=None)
+
+    @app.route("/admin/questions/<int:question_id>/modifier", methods=["GET", "POST"])
+    @login_required
+    @admin_required
+    def admin_questions_edit(question_id: int) -> str:
+        """Affiche le formulaire de modification (GET) ou applique les changements (POST)"""
+        question = Question.query.get_or_404(question_id)
+
+        if request.method == "POST":
+            try:
+                payload = json.loads(request.form["payload"])
+                correct_answer = json.loads(request.form["correct_answer"])
+            except json.JSONDecodeError:
+                flash("Le payload ou la réponse correcte n'est pas un JSON valide.")
+                return render_template("admin/question_form.html", question=question)
+
+            question.mode = request.form["mode"]
+            question.category = request.form["category"]
+            question.difficulty = request.form["difficulty"]
+            question.prompt = request.form["prompt"]
+            question.payload = payload
+            question.correct_answer = correct_answer
+            question.requires_account = request.form.get("requires_account") == "on"
+
+            db.session.commit()
+
+            flash("Question modifiée avec succès.")
+            return redirect(url_for("admin_questions_list"))
+
+        return render_template("admin/question_form.html", question=question)
+
+    @app.route("/admin/questions/<int:question_id>/supprimer", methods=["POST"])
+    @login_required
+    @admin_required
+    def admin_questions_delete(question_id: int) -> str:
+        """Supprime une question"""
+        question = Question.query.get_or_404(question_id)
+        db.session.delete(question)
+        db.session.commit()
+
+        flash("Question supprimée.")
+        return redirect(url_for("admin_questions_list"))
+
+    @app.route("/admin/api/recherche-film")
+    @login_required
+    @admin_required
+    def admin_api_search_movies() ->  dict:
+        """Recherche plusieurs films pour l'autocomplétion, avec miniatures"""
+        query = request.args.get("query", "")
+        results = search_movies_list(query)
+        return {"results": results}
+
+    @app.route("/admin/api/recherche-affiche")
+    @login_required
+    @admin_required
+    def admin_api_poster() -> dict:
+        """Récupère l'image de scène (backdrop) TMDB pour un film sélectionné"""
+        movie_id = request.args.get("movie_id", type=int)
+        movie = get_movie_by_id(movie_id) if movie_id else None
+
+        if movie is None:
+            return {"success": False, "error": "Film introuvable."}
+
+        poster_url = build_image_url(movie.get("backdrop_path"))
+        return {"success": True, "poster_url": poster_url, "official_title": movie["title"]}
+
+    @app.route("/admin/api/recherche-casting")
+    @login_required
+    @admin_required
+    def admin_api_cast() -> dict:
+        """Récupère les photos des principaux acteurs pour un film sélectionné"""
+        movie_id = request.args.get("movie_id", type=int)
+        movie = get_movie_by_id(movie_id) if movie_id else None
+
+        if movie is None:
+            return {"success": False, "error": "Film introuvable."}
+
+        cast = get_movie_cast(movie["id"], limit=3)
+        actor_photos = [
+            build_image_url(actor["profile_path"]) for actor in cast if actor["profile_path"]
+        ]
+        return {"success": True, "actor_photos": actor_photos, "official_title": movie["title"]}
+
+    @app.route("/admin/api/recherche-audio")
+    @login_required
+    @admin_required
+    def admin_api_audio() -> dict:
+        """Recherche un extrait audio via iTunes pour un film sélectionné"""
+        title = request.args.get("title", "")
+        search_term = request.args.get("search_term") or f"{title} soundtrack"
+
+        audio_url = search_soundtrack_preview(search_term)
+
+        if audio_url is None:
+            return {"success": False, "error": "Aucun extrait audio trouvé."}
+
+        return {"success": True, "audio_url": audio_url}
 
     @app.route("/modes")
     def modes() -> str:

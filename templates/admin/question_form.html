@@ -98,14 +98,17 @@
 
         <!-- Devinette-affiche -->
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="devinette_affiche">
-            <div>
-                <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="poster" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
             </div>
             <div>
-                <label class="block text-sm text-slate-400 mb-1">URL de l'image (générée via generate_image_question.py)</label>
-                <input type="text" class="poster-url w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
+                <input type="hidden" class="poster-url">
             </div>
+            <div id="poster-preview"></div>
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Indices (un par ligne)</label>
                 <textarea class="poster-hints w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" rows="3"></textarea>
@@ -114,26 +117,36 @@
 
         <!-- Casting -->
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="casting">
-            <div>
-                <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="casting" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
             </div>
             <div>
-                <label class="block text-sm text-slate-400 mb-1">URLs des photos d'acteurs (une par ligne, générées via generate_image_question.py)</label>
-                <textarea class="actor-photos w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" rows="3"></textarea>
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
+                <input type="hidden" class="actor-photos-hidden">
             </div>
+            <div id="cast-preview" class="flex gap-2"></div>
         </div>
 
         <!-- Blind Test -->
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="blindtest">
-            <div>
-                <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="audio" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
             </div>
             <div>
-                <label class="block text-sm text-slate-400 mb-1">URL de l'extrait audio (générée via generate_blindtest_question.py)</label>
-                <input type="text" class="audio-url w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
+                <input type="hidden" class="audio-url">
             </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Terme de recherche musical (optionnel, ex: compositeur)</label>
+                <input type="text" class="audio-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Laisse vide pour une recherche automatique">
+            </div>
+            <div id="audio-preview"></div>
         </div>
 
         <!-- Chronologie -->

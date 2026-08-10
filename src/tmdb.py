@@ -33,6 +33,28 @@ def search_movie(title: str) -> dict | None:
         "backdrop_path": movie.get("backdrop_path"),
     }
 
+def search_movies_list(query: str, limit: int = 5) -> list[dict]:
+    """Recherche plusieurs films correspondant à une requête, avec miniature"""
+    if not query:
+        return []
+
+    response = requests.get(
+        f"{TMDB_BASE_URL}/search/movie",
+        params={"api_key": get_api_key(), "query": query, "language": "fr-FR"},
+    )
+    data = response.json()
+
+    results = data.get("results", [])[:limit]
+    return [
+        {
+            "id": movie["id"],
+            "title": movie["title"],
+            "year": movie["release_date"][:4] if movie.get("release_date") else "",
+            "thumbnail_url": build_image_url(movie.get("poster_path")),
+        }
+        for movie in results
+    ]
+
 def get_movie_cast(movie_id: int, limit: int = 5) -> list[dict]:
     """Récupère les principaux acteurs d'un film, avec leur photo"""
     response = requests.get(
@@ -55,3 +77,20 @@ def build_image_url(image_path: str | None) -> str | None:
     if not image_path:
         return None
     return f"{TMDB_IMAGE_BASE_URL}{image_path}"
+
+def get_movie_by_id(movie_id: int) -> dict | None:
+    """Récupère les informations d'un film à partir de son id TMDB"""
+    response = requests.get(
+            f"{TMDB_BASE_URL}/movie/{movie_id}",
+            params={"api_key": get_api_key(), "language": "fr-FR"},
+        )
+    if response.status_code != 200:
+        return None
+
+    movie = response.json()
+    return {
+        "id": movie["id"],
+        "title": movie["title"],
+        "poster_path": movie.get("poster_path"),
+        "backdrop_path": movie.get("backdrop_path")
+        }
