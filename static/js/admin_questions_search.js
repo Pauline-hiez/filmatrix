@@ -1,54 +1,109 @@
-document.querySelectorAll(".mode-tab-button").forEach(function (tabButton) {
-    tabButton.addEventListener("click", function () {
-        const selectedMode = tabButton.dataset.mode;
-
-        document.querySelectorAll(".mode-tab-button").forEach(function (button) {
-            const isActive = button.dataset.mode === selectedMode;
-            button.classList.toggle("bg-cyan-400", isActive);
-            button.classList.toggle("text-slate-950", isActive);
-            button.classList.toggle("font-bold", isActive);
-            button.classList.toggle("bg-slate-900", !isActive);
-            button.classList.toggle("border", !isActive);
-            button.classList.toggle("border-cyan-400/30", !isActive);
-            button.classList.toggle("text-slate-300", !isActive);
-        });
-
-        document.querySelectorAll(".question-mode-panel").forEach(function (panel) {
-            panel.classList.toggle("hidden", panel.dataset.mode !== selectedMode);
-        });
-    });
-});
+const currentPageByMode = {};
 
 const searchInput = document.getElementById("question-search");
 const suggestionsBox = document.getElementById("search-suggestions");
+const rowsPerPageSelect = document.getElementById("rows-per-page-select");
 const allRows = document.querySelectorAll(".question-row");
-const allSections = document.querySelectorAll(".question-mode-section");
+const allPanels = document.querySelectorAll(".question-mode-panel");
+
+let ROWS_PER_PAGE = parseInt(rowsPerPageSelect.value);
+
+// ---- Nombre de lignes par page ----
+
+rowsPerPageSelect.addEventListener("change", function () {
+    ROWS_PER_PAGE = parseInt(rowsPerPageSelect.value);
+
+    allPanels.forEach(function (panel) {
+        const mode = panel.dataset.mode;
+        currentPageByMode[mode] = 1;
+        applySearchToPanel(panel, searchInput.value.toLowerCase().trim());
+    });
+});
+
+// ---- Onglets ----
+
+document.querySelectorAll(".mode-tab-button").forEach(function (tabButton) {
+    tabButton.addEventListener("click", function () {
+        activateTab(tabButton.dataset.mode);
+    });
+});
+
+function activateTab(selectedMode) {
+    document.querySelectorAll(".mode-tab-button").forEach(function (button) {
+        const isActive = button.dataset.mode === selectedMode;
+        button.classList.toggle("bg-cyan-400", isActive);
+        button.classList.toggle("text-slate-950", isActive);
+        button.classList.toggle("font-bold", isActive);
+        button.classList.toggle("bg-slate-900", !isActive);
+        button.classList.toggle("border", !isActive);
+        button.classList.toggle("border-cyan-400/30", !isActive);
+        button.classList.toggle("text-slate-300", !isActive);
+    });
+
+    allPanels.forEach(function (panel) {
+        panel.classList.toggle("hidden", panel.dataset.mode !== selectedMode);
+    });
+}
+
+// ---- Recherche et suggestions ----
 
 searchInput.addEventListener("input", function () {
     const searchTerm = searchInput.value.toLowerCase().trim();
 
-    filterTableRows(searchTerm);
+    allPanels.forEach(function (panel) {
+        const mode = panel.dataset.mode;
+        currentPageByMode[mode] = 1;
+        applySearchToPanel(panel, searchTerm);
+    });
+
     showSuggestions(searchTerm);
 });
 
-function filterTableRows(searchTerm) {
-    allSections.forEach(function (section) {
-        let visibleRowsInSection = 0;
+function applySearchToPanel(panel, searchTerm) {
+    const mode = panel.dataset.mode;
+    const rows = Array.from(panel.querySelectorAll(".question-row"));
 
-        section.querySelectorAll(".question-row").forEach(function (row) {
-            const rowText = row.dataset.searchText.toLowerCase();
-            const matches = rowText.includes(searchTerm);
-
-            row.classList.toggle("hidden", !matches);
-            if (matches) {
-                visibleRowsInSection += 1;
-            }
-        });
-
-        if (searchTerm) {
-            section.open = visibleRowsInSection > 0;
-        }
+    const matchingRows = rows.filter(function (row) {
+        return row.dataset.searchText.toLowerCase().includes(searchTerm);
     });
+
+    rows.forEach(function (row) {
+        row.classList.add("hidden");
+    });
+
+    const page = currentPageByMode[mode] || 1;
+    const startIndex = (page - 1) * ROWS_PER_PAGE;
+    const rowsForThisPage = matchingRows.slice(startIndex, startIndex + ROWS_PER_PAGE);
+
+    rowsForThisPage.forEach(function (row) {
+        row.classList.remove("hidden");
+    });
+
+    updatePaginationControls(panel, matchingRows.length, page);
+}
+
+function updatePaginationControls(panel, totalMatching, currentPage) {
+    const mode = panel.dataset.mode;
+    const controls = document.querySelector(`.pagination-controls[data-mode="${mode}"]`);
+    const totalPages = Math.max(1, Math.ceil(totalMatching / ROWS_PER_PAGE));
+
+    const prevButton = controls.querySelector(".pagination-prev");
+    const nextButton = controls.querySelector(".pagination-next");
+    const info = controls.querySelector(".pagination-info");
+
+    prevButton.disabled = currentPage <= 1;
+    nextButton.disabled = currentPage >= totalPages;
+    info.textContent = `Page ${currentPage} / ${totalPages} (${totalMatching} question${totalMatching > 1 ? "s" : ""})`;
+
+    prevButton.onclick = function () {
+        currentPageByMode[mode] = currentPage - 1;
+        applySearchToPanel(panel, searchInput.value.toLowerCase().trim());
+    };
+
+    nextButton.onclick = function () {
+        currentPageByMode[mode] = currentPage + 1;
+        applySearchToPanel(panel, searchInput.value.toLowerCase().trim());
+    };
 }
 
 function showSuggestions(searchTerm) {
@@ -94,12 +149,18 @@ function showSuggestions(searchTerm) {
 }
 
 function jumpToRow(row) {
-    const targetButton = document.querySelector(`.mode-tab-button[data-mode="${row.dataset.mode}"]`);
-    targetButton.click();
+    activateTab(row.dataset.mode);
 
     suggestionsBox.classList.add("hidden");
     searchInput.value = "";
-    filterTableRows("");
+
+    const panel = row.closest(".question-mode-panel");
+    const mode = panel.dataset.mode;
+    const rows = Array.from(panel.querySelectorAll(".question-row"));
+    const rowIndex = rows.indexOf(row);
+    currentPageByMode[mode] = Math.floor(rowIndex / ROWS_PER_PAGE) + 1;
+
+    applySearchToPanel(panel, "");
 
     row.scrollIntoView({ behavior: "smooth", block: "center" });
     row.classList.add("bg-cyan-400/20");
@@ -112,4 +173,12 @@ document.addEventListener("click", function (event) {
     if (!searchInput.contains(event.target) && !suggestionsBox.contains(event.target)) {
         suggestionsBox.classList.add("hidden");
     }
+});
+
+// ---- Initialisation : pagine chaque panneau des le chargement ----
+
+allPanels.forEach(function (panel) {
+    const mode = panel.dataset.mode;
+    currentPageByMode[mode] = 1;
+    applySearchToPanel(panel, "");
 });

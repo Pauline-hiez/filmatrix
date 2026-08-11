@@ -9,11 +9,20 @@
     </a>
 </div>
 
-<div class="relative mb-6">
-    <input type="text" id="question-search" placeholder="Rechercher dans les questions..."
-           class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
-           autocomplete="off">
-    <div id="search-suggestions" class="hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-72 overflow-y-auto"></div>
+<div class="flex flex-col sm:flex-row gap-3 mb-6">
+    <div class="relative flex-1">
+        <input type="text" id="question-search" placeholder="Rechercher dans les questions..."
+               class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+               autocomplete="off">
+        <div id="search-suggestions" class="hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-72 overflow-y-auto"></div>
+    </div>
+
+    <select id="rows-per-page-select"
+            class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100 text-sm">
+        <option value="10">10 / page</option>
+        <option value="30">30 / page</option>
+        <option value="50">50 / page</option>
+    </select>
 </div>
 
 <!-- Onglets par mode -->
