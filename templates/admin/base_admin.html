@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-4 flex flex-col md:flex-row gap-6">
+    <aside class="md:w-48 shrink-0">
+        <nav class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+            <a href="{{ url_for('admin_questions_list') }}"
+               class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
+                      {% if active_admin_section == 'questions' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
+                Questions
+            </a>
+            <a href="{{ url_for('admin_users_list') }}"
+               class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
+                      {% if active_admin_section == 'users' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
+                Utilisateurs
+            </a>
+            <a href="{{ url_for('admin_reports_list') }}"
+               class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
+                      {% if active_admin_section == 'reports' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
+                Signalements
+            </a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 min-w-0">
+        {% block admin_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

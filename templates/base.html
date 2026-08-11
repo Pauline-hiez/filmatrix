@@ -71,6 +71,9 @@
                     {% if current_user.is_authenticated %}
                         <a href="{{ url_for('profile') }}" class="text-slate-300 hover:text-cyan-400 transition">Mon profil</a>
                         <a href="{{ url_for('shop') }}" class="text-slate-300 hover:text-cyan-400 transition">Boutique</a>
+                        {% if current_user.is_admin %}
+                            <a href="{{ url_for('admin_questions_list') }}" class="text-amber-400 hover:text-amber-300 transition">Admin</a>
+                        {% endif %}
                         <a href="{{ url_for('logout') }}" class="text-slate-300 hover:text-cyan-400 transition">Déconnexion</a>
                     {% else %}
                         <a href="{{ url_for('login') }}" class="text-slate-300 hover:text-cyan-400 transition">Connexion</a>
@@ -87,6 +90,9 @@
             {% if current_user.is_authenticated %}
                 <a href="{{ url_for('profile') }}" class="text-slate-300 hover:text-cyan-400 transition">Mon profil</a>
                 <a href="{{ url_for('shop') }}" class="text-slate-300 hover:text-cyan-400 transition">Boutique</a>
+                {% if current_user.is_admin %}
+                    <a href="{{ url_for('admin_questions_list') }}" class="text-amber-400 hover:text-amber-300 transition">Admin</a>
+                {% endif %}
                 <a href="{{ url_for('logout') }}" class="text-slate-300 hover:text-cyan-400 transition">Déconnexion</a>
             {% else %}
                 <a href="{{ url_for('login') }}" class="text-slate-300 hover:text-cyan-400 transition">Connexion</a>

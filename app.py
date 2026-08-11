@@ -346,9 +346,19 @@ def create_app(database_uri: str | None = None) -> Flask:
     @login_required 
     @admin_required
     def admin_questions_list() -> str:
-        """Affiche la liste de toutes les questions, pour l'admin"""
+        """Affiche la liste de toutes les questions, groupées par mode pour l'admin"""
         all_questions = Question.query.order_by(Question.mode, Question.id).all()
-        return render_template("admin/questions_list.html", questions=all_questions)
+
+        questions_by_mode = {}
+        for question in all_questions:
+            questions_by_mode.setdefault(question.mode, []).append(question)
+
+        return render_template(
+                "admin/questions_list.html",
+                questions_by_mode=questions_by_mode,
+                total_count=len(all_questions),
+                active_admin_section="questions"
+            )
 
     @app.route("/admin/questions/nouvelle", methods=["GET", "POST"])
     @login_required
@@ -475,6 +485,20 @@ def create_app(database_uri: str | None = None) -> Flask:
             return {"success": False, "error": "Aucun extrait audio trouvé."}
 
         return {"success": True, "audio_url": audio_url}
+
+    @app.route("/admin/utilisateurs")
+    @login_required
+    @admin_required
+    def admin_users_list() -> str:
+        """Affiche la liste des utilisateurs pour l'admin"""
+        return render_template("admin/coming_soon.html", active_admin_section="users", title="Utilisateurs")
+
+    @app.route("/admin/signalements")
+    @login_required
+    @admin_required
+    def admin_reports_list() -> str:
+        """Affiche la liste des signalements pour l'admin"""
+        return render_template("admin/coming_soon.html", active_admin_section="reports", title="Signalements")
 
     @app.route("/modes")
     def modes() -> str:

@@ -1,38 +1,79 @@
-{% extends "base.html" %}
+{% extends "admin/base_admin.html" %}
 
-{% block content %}
-<div class="max-w-4xl mx-auto mt-8">
-    <div class="flex items-center justify-between mb-6">
-        <h2 class="text-xl">Administration — Questions</h2>
-        <a href="{{ url_for('admin_questions_new') }}"
-           class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
-            + Nouvelle question
-        </a>
-    </div>
+{% block admin_content %}
+<div class="flex items-center justify-between mb-4">
+    <h2 class="text-xl">Questions ({{ total_count }})</h2>
+    <a href="{{ url_for('admin_questions_new') }}"
+       class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+        + Nouvelle question
+    </a>
+</div>
 
-    <div class="flex flex-col gap-2">
-        {% for question in questions %}
-        <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
-            <div>
-                <p class="text-xs text-cyan-400 uppercase">{{ question.mode }} — {{ question.category }} — {{ question.difficulty }}</p>
-                <p class="text-sm">
-                    {% if question.prompt %}
-                        {{ question.prompt }}
-                    {% else %}
-                        <span class="text-slate-500 italic">(sans texte affiché)</span>
-                    {% endif %}
-                </p>
-            </div>
-            <div class="flex gap-2">
-                <a href="{{ url_for('admin_questions_edit', question_id=question.id) }}"
-                   class="text-slate-300 hover:text-cyan-400 text-sm transition">Modifier</a>
-                <form method="POST" action="{{ url_for('admin_questions_delete', question_id=question.id) }}"
-                      onsubmit="return confirm('Supprimer cette question ?');">
-                    <button type="submit" class="text-red-400 hover:text-red-300 text-sm transition">Supprimer</button>
-                </form>
-            </div>
-        </div>
-        {% endfor %}
+<div class="relative mb-6">
+    <input type="text" id="question-search" placeholder="Rechercher dans les questions..."
+           class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+           autocomplete="off">
+    <div id="search-suggestions" class="hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-72 overflow-y-auto"></div>
+</div>
+
+<!-- Onglets par mode -->
+<div class="flex flex-wrap gap-2 mb-4 border-b border-cyan-400/30 pb-3">
+    {% for mode, questions in questions_by_mode.items() %}
+    <button type="button" class="mode-tab-button text-xs px-3 py-1.5 rounded-full transition
+                                  {% if loop.first %}bg-cyan-400 text-slate-950 font-bold{% else %}bg-slate-900 border border-cyan-400/30 text-slate-300 hover:border-cyan-400{% endif %}"
+            data-mode="{{ mode }}">
+        {{ mode }} ({{ questions | length }})
+    </button>
+    {% endfor %}
+</div>
+
+{% for mode, questions in questions_by_mode.items() %}
+<div class="question-mode-panel {% if not loop.first %}hidden{% endif %}" data-mode="{{ mode }}">
+    <div class="overflow-x-auto rounded-lg border border-cyan-400/30">
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="bg-slate-900 text-slate-400 text-left">
+                    <th class="px-3 py-2">Texte / contenu</th>
+                    <th class="px-3 py-2">Catégorie</th>
+                    <th class="px-3 py-2">Difficulté</th>
+                    <th class="px-3 py-2">Compte requis</th>
+                    <th class="px-3 py-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in questions %}
+                <tr class="border-t border-cyan-400/10 hover:bg-slate-900/50 question-row"
+                    id="question-row-{{ question.id }}"
+                    data-search-text="{{ question.prompt }} {{ question.category }}"
+                    data-mode="{{ mode }}"
+                    data-display-text="{{ question.prompt if question.prompt else '(' + question.category + ')' }}">
+                    <td class="px-3 py-2">
+                        {% if question.prompt %}
+                            {{ question.prompt }}
+                        {% else %}
+                            <span class="text-slate-500 italic">(sans texte affiché)</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-3 py-2 text-slate-400">{{ question.category }}</td>
+                    <td class="px-3 py-2 text-slate-400">{{ question.difficulty }}</td>
+                    <td class="px-3 py-2 text-slate-400">{{ "Oui" if question.requires_account else "Non" }}</td>
+                    <td class="px-3 py-2">
+                        <div class="flex gap-2 justify-end">
+                            <a href="{{ url_for('admin_questions_edit', question_id=question.id) }}"
+                               class="text-slate-300 hover:text-cyan-400 transition">Modifier</a>
+                            <form method="POST" action="{{ url_for('admin_questions_delete', question_id=question.id) }}"
+                                  onsubmit="return confirm('Supprimer cette question ?');">
+                                <button type="submit" class="text-red-400 hover:text-red-300 transition">Supprimer</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
+{% endfor %}
+
+<script src="{{ url_for('static', filename='js/admin_questions_search.js') }}"></script>
 {% endblock %}
