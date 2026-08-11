@@ -81,3 +81,18 @@ class UserTitle(db.Model):
     purchassed_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     user = db.relationship("User", backref="titles")
+
+class Report(db.Model):
+    """Représente un signalement fait par un joueur sur une question"""
+
+    __tablename__ = "reports"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
+    reason = db.Column(db.String(50), nullable=False)
+    is_resolved = db.Column(db.Boolean, nullable=False, default=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship("User", backref="reports")
+    question = db.relationship("Question", backref="reports")
