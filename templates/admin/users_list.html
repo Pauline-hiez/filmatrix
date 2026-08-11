@@ -1,0 +1,78 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<h2 class="text-xl mb-6">Utilisateurs ({{ users | length }})</h2>
+
+<div class="flex flex-col sm:flex-row gap-3 mb-6">
+    <input type="text" id="user-search" placeholder="Rechercher un utilisateur..."
+           class="flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+           autocomplete="off">
+
+    <select id="user-rows-per-page-select"
+            class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100 text-sm">
+        <option value="10">10 / page</option>
+        <option value="30">30 / page</option>
+        <option value="50">50 / page</option>
+    </select>
+</div>
+
+<div class="overflow-x-auto rounded-lg border border-cyan-400/30">
+    <table class="w-full text-sm">
+        <thead>
+            <tr class="bg-slate-900 text-slate-400 text-left">
+                <th class="px-3 py-2">Pseudo</th>
+                <th class="px-3 py-2">Email</th>
+                <th class="px-3 py-2">XP</th>
+                <th class="px-3 py-2">Pièces</th>
+                <th class="px-3 py-2">Bonnes réponses</th>
+                <th class="px-3 py-2">Statut</th>
+                <th class="px-3 py-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="border-t border-cyan-400/10 hover:bg-slate-900/50 user-row"
+                data-search-text="{{ user.username }} {{ user.email }}">
+                <td class="px-3 py-2 font-bold">{{ user.username }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ user.email }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ user.total_xp }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ user.coins }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ user.correct_count }}</td>
+                <td class="px-3 py-2">
+                    {% if user.is_admin %}
+                        <span class="text-amber-400 text-xs font-bold">Admin</span>
+                    {% else %}
+                        <span class="text-slate-500 text-xs">Joueur</span>
+                    {% endif %}
+                </td>
+                <td class="px-3 py-2">
+                    <div class="flex gap-2 justify-end">
+                        <form method="POST" action="{{ url_for('admin_toggle_admin', user_id=user.id) }}">
+                            <button type="submit" class="text-slate-300 hover:text-cyan-400 transition text-xs">
+                                {% if user.is_admin %}Retirer admin{% else %}Promouvoir{% endif %}
+                            </button>
+                        </form>
+                        <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}"
+                              onsubmit="return confirm('Supprimer definitivement ce compte et tout son historique ?');">
+                            <button type="submit" class="text-red-400 hover:text-red-300 transition text-xs">Supprimer</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="pagination-controls flex items-center justify-between mt-3 text-sm">
+    <button type="button" id="user-pagination-prev" class="text-slate-300 hover:text-cyan-400 transition disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+        ← Précédent
+    </button>
+    <span id="user-pagination-info" class="text-slate-500"></span>
+    <button type="button" id="user-pagination-next" class="text-slate-300 hover:text-cyan-400 transition disabled:opacity-30 disabled:cursor-not-allowed">
+        Suivant →
+    </button>
+</div>
+
+<script src="{{ url_for('static', filename='js/admin_users_search.js') }}"></script>
+{% endblock %}

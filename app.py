@@ -491,7 +491,61 @@ def create_app(database_uri: str | None = None) -> Flask:
     @admin_required
     def admin_users_list() -> str:
         """Affiche la liste des utilisateurs pour l'admin"""
-        return render_template("admin/coming_soon.html", active_admin_section="users", title="Utilisateurs")
+        all_users = User.query.order_by(User.username).all()
+
+        users_data = []
+        for user in all_users:
+            correct_count = Attempt.query.filter_by(user_id=user.id, is_correct=True).count()
+            users_data.append(
+                {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                    "is_admin": user.is_admin,
+                    "total_xp": user.total_xp,
+                    "coins": user.coins,
+                    "correct_count": correct_count,
+                }
+            )
+
+        return render_template(
+            "admin/users_list.html",
+            users=users_data,
+            active_admin_section="users",
+        )
+
+    @app.route("/admin/utilisateurs/<int:user_id>/basculer-admin", methods=["POST"])
+    @login_required
+    @admin_required
+    def admin_toggle_admin(user_id: int) -> str:
+        """Bascule le statut admin d'un utilisateur"""
+        if user_id == current_user.id:
+            flash("Tu ne peux pas modifier ton propre statut administrateur.")
+            return redirect(url_for("admin_users_list"))
+
+        user = User.query.get_or_404(user_id)
+        user.is_admin = not user.is_admin
+        db.session.commit()
+
+        flash(f"Statut administrateur de {user.username} mis à jour.")
+        return redirect(url_for("admin_users_list"))
+
+    @app.route("/admin/utilisateurs/<int:user_id>/supprimer", methods=["POST"])
+    @login_required
+    @admin_required
+    def admin_delete_user(user_id: int) -> str:
+        """Supprime un utilisateur et tout son historique"""
+        if user_id == current_user.id:
+            flash("Tu ne peux pas supprimer ton propre compte depuis cette page.")
+            return redirect(url_for("admin_users_list"))
+
+        user = User.query.get_or_404(user_id)
+        Attempt.query.filter_by(user_id=user.id).delete()
+        db.session.delete(user)
+        db.session.commit()
+
+        flash(f"Le compte de {user.username} a été supprimé.")
+        return redirect(url_for("admin_users_list"))
 
     @app.route("/admin/signalements")
     @login_required
