@@ -553,7 +553,40 @@ def create_app(database_uri: str | None = None) -> Flask:
     @admin_required
     def admin_reports_list() -> str:
         """Affiche la liste des signalements pour l'admin"""
-        return render_template("admin/coming_soon.html", active_admin_section="reports", title="Signalements")
+        all_reports = Report.query.order_by(Report.is_resolved, Report.created_at.desc()).all()
+
+        reports_data = []
+        for report in all_reports:
+            reports_data.append(
+                    {
+                        "id": report.id,
+                        "reporter_username": report.user.username,
+                        "question_id": report.question_id,
+                        "question_prompt": report.question.prompt,
+                        "question_mode": report.question.mode,
+                        "reason_label": REPORT_REASON.get(report.reason, report.reason),
+                        "is_resolved": report.is_resolved,
+                        "created_at": report.created_at,
+                        }
+                )
+
+            return render_template(
+                    "admin/reports_list.html",
+                    reports=reports_data,
+                    active_admin_section="reports",
+                )
+
+    @app.route("/admin/signalements/<int:report_id>/traiter", methods=["POST"]) 
+    @login_required
+    @admin_required
+    def admin_resolve_report(report_id: int) -> str:
+        """Marque un signalement comme traité"""
+        report = Report.query.get_or_404(report_id)
+        report.is_resolved = True
+        db.session.commit()
+
+        flash("Signalement marqué comme traité.")
+        return redirect(url_for("admin_reports_list"))   
 
     @app.route("/modes")
     def modes() -> str:

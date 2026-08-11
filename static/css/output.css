@@ -1592,6 +1592,11 @@ video {
   color: rgb(226 232 240 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-emerald-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(110 231 183 / var(--tw-text-opacity, 1));
+}
+
 .focus\:border-cyan-400:focus {
   --tw-border-opacity: 1;
   border-color: rgb(34 211 238 / var(--tw-border-opacity, 1));
