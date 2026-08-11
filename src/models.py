@@ -96,3 +96,17 @@ class Report(db.Model):
 
     user = db.relationship("User", backref="reports")
     question = db.relationship("Question", backref="reports")
+
+class Friendship(db.Model):
+    """Représente une relation d'amitié entre deux utilisateurs"""
+
+    __tablename__ = "friendships"
+
+    id = db.Column(db.Integer, primary_key=True)
+    requester_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    receiver_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    status = db.Column(db.String(20), nullable=False, default="pending")
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    requester = db.relationship("User", foreign_keys=[requester_id], backref="sent_friend_requests")
+    receiver = db.relationship("User", foreign_keys=[receiver_id], backref="received_friend_requests")
