@@ -54,7 +54,7 @@
         </div>
 
         <div class="mb-6 h-2 w-full overflow-hidden rounded-full bg-slate-800">
-            <div id="time-bar" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
+            <div id="time-bar" data-question-id="{{ question.id }}" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
         </div>
 
         {% if question.mode == "film_melange" %}
@@ -157,9 +157,42 @@
         </div>
     </section>
 
+    <button type="button" id="report-button"
+                class="mt-4 text-xs text-slate-500 transition hover:text-red-400">
+            🚩 Signaler cette question
+        </button>
+    </section>
+
     <a href="{{ url_for('modes') }}" class="text-center text-sm text-slate-500 transition hover:text-cyan-400">
         Changer de mode
     </a>
+</div>
+
+<!-- Fenêtre modale de signalement -->
+<div id="report-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+    <div class="w-full max-w-sm rounded-xl border border-cyan-400/30 bg-slate-900 p-5">
+        <h3 class="mb-4 text-lg font-bold text-slate-100">Signaler cette question</h3>
+
+        <div class="flex flex-col gap-2 mb-4">
+            {% for code, label in report_reasons.items() %}
+            <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
+                <input type="radio" name="report-reason" value="{{ code }}">
+                {{ label }}
+            </label>
+            {% endfor %}
+        </div>
+
+        <p id="report-feedback" class="mb-3 text-sm"></p>
+
+        <div class="flex justify-end gap-2">
+            <button type="button" id="report-cancel" class="px-3 py-1.5 text-sm text-slate-400 hover:text-slate-200 transition">
+                Annuler
+            </button>
+            <button type="button" id="report-submit" class="rounded-lg bg-red-500 hover:bg-red-400 text-slate-950 font-bold px-4 py-1.5 text-sm transition">
+                Envoyer
+            </button>
+        </div>
+    </div>
 </div>
 
 <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>

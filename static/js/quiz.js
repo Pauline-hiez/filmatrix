@@ -231,3 +231,54 @@ if (riddleButton) {
         }, 1500);
     });
 }
+
+const reportButton = document.getElementById("report-button");
+const reportModal = document.getElementById("report-modal");
+const reportCancelButton = document.getElementById("report-cancel");
+const reportSubmitButton = document.getElementById("report-submit");
+const reportFeedback = document.getElementById("report-feedback");
+
+if (reportButton) {
+    reportButton.addEventListener("click", function () {
+        reportModal.classList.remove("hidden");
+        reportModal.classList.add("flex");
+        reportFeedback.textContent = "";
+    });
+
+    reportCancelButton.addEventListener("click", function () {
+        reportModal.classList.add("hidden");
+        reportModal.classList.remove("flex");
+    });
+
+    reportSubmitButton.addEventListener("click", async function () {
+        const selectedReason = document.querySelector('input[name="report-reason"]:checked');
+
+        if (!selectedReason) {
+            reportFeedback.textContent = "Choisis un motif avant d'envoyer.";
+            reportFeedback.className = "mb-3 text-sm text-red-400";
+            return;
+        }
+
+        const currentQuestionId = document.getElementById("time-bar").dataset.questionId;
+
+        const response = await fetch(`/signaler/${currentQuestionId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `reason=${encodeURIComponent(selectedReason.value)}`,
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            reportFeedback.textContent = "Signalement envoyé, merci !";
+            reportFeedback.className = "mb-3 text-sm text-emerald-400";
+            setTimeout(function () {
+                reportModal.classList.add("hidden");
+                reportModal.classList.remove("flex");
+            }, 1200);
+        } else {
+            reportFeedback.textContent = "Une erreur est survenue.";
+            reportFeedback.className = "mb-3 text-sm text-red-400";
+        }
+    });
+}

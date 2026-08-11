@@ -18,7 +18,7 @@ from sqlalchemy import func
 
 from src.database import db
 from src.engine import check_answer
-from src.models import Attempt, Question, User
+from src.models import Attempt, Question, User, Report
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
@@ -31,6 +31,7 @@ from src.tmdb import (
     search_movies_list,
 )
 from src.itunes import search_soundtrack_preview
+from src.reports import REPORT_REASON
 
 load_dotenv()
 
@@ -685,7 +686,29 @@ def create_app(database_uri: str | None = None) -> Flask:
         if question.mode == "film_melange":
             scrambled_title = scramble_title(question.correct_answer["title"])
 
-        return render_template("quiz.html", question=question, scrambled_title=scrambled_title)
+        return render_template(
+                "quiz.html",
+                question=question,
+                scrambled_title=scrambled_title,
+                report_reasons=REPORT_REASON,
+            )
+
+    @app.route("/signaler/<int:question_id>", methods=["POST"])
+    @login_required
+    def report_question(question_id: int) -> str:
+        """Enregistre un signalement sur une question"""
+        reason = request.form.get("reason", "other")
+
+        report = Report(
+                user_id=current_user.id,
+                question_id=question_id,
+                reason=reason,
+            )
+        db.session.add(report)
+        db.session.commit()
+
+        return {"success": True}
+
 
     @app.route("/classement")
     def leaderboard() -> str:
