@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-8">
+    <div class="flex items-center gap-4 mb-6">
+        <span class="text-5xl">{{ viewed_user.avatar or "🎬" }}</span>
+        <div>
+            <h2 class="text-xl font-bold">{{ viewed_user.username }}</h2>
+            {% if viewed_user.equipped_title %}
+                <p class="text-cyan-400 text-sm">{{ viewed_user.equipped_title }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if viewed_user.bio %}
+    <p class="text-slate-300 text-sm mb-6 italic">"{{ viewed_user.bio }}"</p>
+    {% endif %}
+
+    <div class="mb-8">
+        <p class="text-cyan-400 text-lg mb-2">Niveau {{ level_info.level }}</p>
+        <div class="w-full bg-slate-900 rounded-full h-3 overflow-hidden mb-1">
+            <div class="bg-cyan-400 h-3 rounded-full"
+                 style="width: {{ (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) }}%"></div>
+        </div>
+        <p class="text-xs text-slate-500">{{ level_info.xp_in_current_level }} / {{ level_info.xp_for_next_level }} XP</p>
+        <p class="text-slate-400 text-sm mt-3">Score : {{ correct_count }} / {{ total_count }}</p>
+    </div>
+
+    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Badges</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+        {% for badge in all_badges %}
+        <div class="border rounded-lg px-3 py-4 text-center transition
+                    {% if badge.earned %}
+                        border-cyan-400/50 bg-slate-900
+                    {% else %}
+                        border-slate-800 bg-slate-900/50 opacity-40
+                    {% endif %}">
+            <p class="text-2xl mb-1">{{ badge.icon }}</p>
+            <p class="text-xs font-bold {% if badge.earned %}text-cyan-400{% else %}text-slate-500{% endif %}">
+                {{ badge.name }}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Activité par mode</h3>
+    {% if attempts_by_mode %}
+    <div class="flex flex-col gap-2">
+        {% for mode, count in attempts_by_mode.items() %}
+        <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-2">
+            <span class="text-sm text-slate-300">{{ mode }}</span>
+            <span class="text-sm text-slate-500">{{ count }} question{{ "s" if count > 1 else "" }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

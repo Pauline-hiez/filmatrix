@@ -49,10 +49,11 @@
         {% if friends %}
         <div class="flex flex-col gap-2">
             {% for friend in friends %}
-            <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+            <a href="{{ url_for('public_profile', user_id=friend.id) }}"
+               class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 hover:border-cyan-400 rounded-lg px-4 py-3 transition">
                 <span>{{ friend.username }}</span>
                 <span class="text-slate-500 text-xs">Niveau {{ friend.total_xp // 100 + 1 }}</span>
-            </div>
+            </a>
             {% endfor %}
         </div>
         {% else %}

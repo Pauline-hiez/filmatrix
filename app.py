@@ -843,6 +843,52 @@ def create_app(database_uri: str | None = None) -> Flask:
                 sent_requests=sent_requests,
             )
 
+    @app.route("/joueur/<int:user_id>")
+    @login_required
+    def public_profile(user_id: int) -> str:
+        """Affiche le profil public d'un joueur, uniquement entre amis"""
+        if user_id == current_user.id:
+            return redirect(url_for("profile"))
+
+        viewed_user = User.query.get_or_404(user_id)
+
+        friendship = get_friendship_between(current_user.id, user_id)
+        if friendship is None or friendship.status != "accepted":
+            flash("Tu dois être ami avec ce joueur pour voir son profil.")
+            return redirect(url_for("friends_list"))
+
+        attempts = Attempt.query.filter_by(user_id=viewed_user.id).all()
+        total_count = len(attempts)
+        correct_count = sum(1 for attempt in attempts if attempt.is_correct)
+        level_info = calculate_level(viewed_user.total_xp)
+
+        attempts_by_mode = {}
+        for attempt in attempts:
+            mode = attempt.question.mode
+            attempts_by_mode.setdefault(mode, 0)
+            attempts_by_mode[mode] += 1
+
+        earned_badge_codes = {badge.badge_code for badge in viewed_user.badges}
+        all_badges = []
+        for code, info in BADGES.items():
+            all_badges.append(
+                    {
+                        "name": info["name"],
+                        "icon": info["icon"],
+                        "earned": code in earned_badge_codes,
+                        }
+                )
+
+            return render_template(
+                    "profil_public.html",
+                    viewed_user=viewed_user,
+                    total_count=total_count,
+                    correct_count=correct_count,
+                    level_info=level_info,
+                    attempts_by_mode=attempts_by_mode,
+                    all_badges=all_badges,
+                )
+
     @app.route("/notifications")
     @login_required
     def get_notifications() -> dict:
