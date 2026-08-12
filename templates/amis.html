@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-8">
+    <h2 class="text-xl mb-6">Amis</h2>
+
+    {% if received_requests %}
+    <div class="mb-8">
+        <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Demandes reçues</h3>
+        <div class="flex flex-col gap-2">
+            {% for friendship in received_requests %}
+            <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+                <span>{{ friendship.requester.username }}</span>
+                <div class="flex gap-2">
+                    <form method="POST" action="{{ url_for('accept_friend_request_route', friendship_id=friendship.id) }}">
+                        <button type="submit" class="text-emerald-400 hover:text-emerald-300 transition text-sm">Accepter</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('decline_friend_request_route', friendship_id=friendship.id) }}">
+                        <button type="submit" class="text-red-400 hover:text-red-300 transition text-sm">Refuser</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if sent_requests %}
+    <div class="mb-8">
+        <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">Demandes envoyées</h3>
+        <div class="flex flex-col gap-2">
+            {% for friendship in sent_requests %}
+            <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+                <span>{{ friendship.receiver.username }}</span>
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-500 text-xs">En attente</span>
+                    <form method="POST" action="{{ url_for('decline_friend_request_route', friendship_id=friendship.id) }}">
+                        <button type="submit" class="text-red-400 hover:text-red-300 transition text-sm">Annuler</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div>
+        <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Mes amis ({{ friends | length }})</h3>
+        {% if friends %}
+        <div class="flex flex-col gap-2">
+            {% for friend in friends %}
+            <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+                <span>{{ friend.username }}</span>
+                <span class="text-slate-500 text-xs">Niveau {{ friend.total_xp // 100 + 1 }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-slate-500">Tu n'as pas encore d'amis. Trouve des joueurs depuis le classement !</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

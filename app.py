@@ -32,6 +32,13 @@ from src.tmdb import (
 )
 from src.itunes import search_soundtrack_preview
 from src.reports import REPORT_REASON
+from src.friends import (
+        accept_friend_request,
+        decline_friend_request,
+        get_friends_list,
+        send_friend_request,
+        get_friendship_between
+    )
 
 load_dotenv()
 
@@ -742,35 +749,114 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return {"success": True}
 
+    @app.route("/amis/demander/<int:user_id>", methods=["POST"])
+    @login_required
+    def send_friend_request_route(user_id: int) -> str:
+        """Envoie une demande d'amis à un utilisateur"""
+        target_user = User.query.get_or_404(user_id)
+
+        success = send_friend_request(current_user, target_user)
+        db.session.commit()
+
+        if success:
+            flash(f"Demande d'ami envoyée à {target_user.username}.")
+        else:
+            flash("Impossible d'envoyer cette demabde.")
+
+        return redirect(request.referrer or url_for("friends_list"))
+
+    @app.route("/amis/accepter/<int:friendship_id>", methods=["POST"])
+    @login_required
+    def accept_friend_request_route(friendship_id: int) -> str:
+        """Accepte une demande d'ami reçue"""
+        success = accept_friend_request(friendship_id, current_user.id)
+        db.session.commit()
+
+        if success:
+            flash("Demande d'ami acceptée.")
+        else:
+            flash("Impossible d'accepter cette demande.")
+
+        return redirect(url_for("friends_list"))
+
+    @app.route("/amis/refuser/<int:friendship_id>", methods=["POST"])
+    @login_required
+    def decline_friend_request_route(friendship_id: int) -> str:
+        """Refuse ou annule une demande d'ami"""
+        success = decline_friend_request(friendship_id, current_user.id)
+        db.session.commit()
+
+        if success:
+            flash("Demande supprimée.")
+        else:
+            flash("Impossible de supprimer cette demande.")
+
+        return redirect(url_for("friends_list"))
+
+    @app.route("/amis")
+    @login_required
+    def friends_list() -> str:
+        """Affiche la liste d'amis, les demandes reçues et envoyées"""
+        friends = get_friends_list(current_user.id)
+
+        received_requests = [
+                friendship
+                for friendship in current_user.received_friend_requests
+                if friendship.status == "pending"
+            ]
+
+        sent_requests = [
+                friendship
+                for friendship in current_user.sent_friend_requests
+                if friendship.status == "pending"
+            ]
+
+        return render_template(
+                "amis.html",
+                friends=friends,
+                received_requests=received_requests,
+                sent_requests=sent_requests,
+            )
+
 
     @app.route("/classement")
     def leaderboard() -> str:
         """Affiche le classement général des joueurs, trié par XP total"""
         results = (
                 db.session.query(
-                        User.username,
-                        User.total_xp,
-                        func.count(Attempt.id).label("total"),
-                        func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correct"),
-                    )
-                    .join(Attempt, Attempt.user_id == User.id)
-                    .group_by(User.id)
-                    .order_by(User.total_xp.desc())
-                    .all()
+                    User.id,
+                    User.username,
+                    User.total_xp,
+                    func.count(Attempt.id).label("total"),
+                    func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correct"),
+                )
+                .join(Attempt, Attempt.user_id == User.id)
+                .group_by(User.id)
+                .order_by(User.total_xp.desc())
+                .all()
             )
 
         leaderboard_entries = []
         for result in results:
             level_info = calculate_level(result.total_xp)
+
+            friendship_status = None
+            if current_user.is_authenticated and current_user.id != result.id:
+                friendship = get_friendship_between(current_user.id, result.id)
+                if friendship is not None:
+                    friendship_status = friendship.status
+
             leaderboard_entries.append(
-                {
-                    "username": result.username,
-                    "total_xp": result.total_xp,
-                    "level": level_info["level"],
-                    "total": result.total,
-                    "correct": result.correct,
-                }
-            )
+                    {
+                        "user_id": result.id,
+                        "username": result.username,
+                        "total_xp": result.total_xp,
+                        "level": level_info["level"],
+                        "total": result.total,
+                        "correct": result.correct,
+                        "friendship_status": friendship_status,
+                        }
+                )
 
         return render_template("classement.html", results=leaderboard_entries)
 
