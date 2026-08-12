@@ -56,6 +56,19 @@
                     <span class="text-cyan-400 text-sm font-bold flex items-center gap-1">
                          🪙 {{ current_user.coins }}
                     </span>
+
+                    <div class="relative">
+                        <button id="notification-bell" class="relative text-slate-300 hover:text-cyan-400 transition" aria-label="Notifications">
+                            🔔
+                            {% if unread_notifications_count > 0 %}
+                            <span id="notification-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                                {{ unread_notifications_count if unread_notifications_count < 10 else "9+" }}
+                            </span>
+                            {% endif %}
+                        </button>
+
+                        <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-slate-900 border border-cyan-400/50 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto"></div>
+                    </div>
                 {% endif %}
 
                 <button id="menu-button" class="md:hidden text-slate-100" aria-label="Ouvrir le menu">
@@ -125,5 +138,6 @@
         Filmatrix — projet d'apprentissage Python
     </footer>
 
+    <script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
 </body>
 </html>

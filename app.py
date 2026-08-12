@@ -18,7 +18,7 @@ from sqlalchemy import func
 
 from src.database import db
 from src.engine import check_answer
-from src.models import Attempt, Question, User, Report
+from src.models import Attempt, Question, User, Report, Friendship, Notification
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
@@ -39,6 +39,7 @@ from src.friends import (
         send_friend_request,
         get_friendship_between
     )
+from src.notifications import create_notification, get_unread_count, mark_all_as_read
 
 load_dotenv()
 
@@ -174,6 +175,13 @@ def create_app(database_uri: str | None = None) -> Flask:
             return None
 
         return mode_questions[index]
+
+    @app.context_processor
+    def inject_notifications():
+        """Rend le nombre de notifications non lues disponibles dans tous les templates"""
+        if current_user.is_authenticated:
+            return {"unread_notifications_count": get_unread_count(current_user.id)}
+        return {"unread_notifications_count": 0}
 
     def convert_answer(mode: str, raw_value: str):
         """Convertit la valeur texte du formulaire dans le type attendu par check_answer"""
@@ -756,12 +764,20 @@ def create_app(database_uri: str | None = None) -> Flask:
         target_user = User.query.get_or_404(user_id)
 
         success = send_friend_request(current_user, target_user)
+
+        if success:
+            create_notification(
+                target_user,
+                f"{current_user.username} t'a envoyé une demande d'ami.",
+                link=url_for("friends_list"),
+            )
+
         db.session.commit()
 
         if success:
             flash(f"Demande d'ami envoyée à {target_user.username}.")
         else:
-            flash("Impossible d'envoyer cette demabde.")
+            flash("Impossible d'envoyer cette demande.")
 
         return redirect(request.referrer or url_for("friends_list"))
 
@@ -769,7 +785,16 @@ def create_app(database_uri: str | None = None) -> Flask:
     @login_required
     def accept_friend_request_route(friendship_id: int) -> str:
         """Accepte une demande d'ami reçue"""
+        friendship = Friendship.query.get(friendship_id)
         success = accept_friend_request(friendship_id, current_user.id)
+
+        if success:
+            create_notification(
+                friendship.requester,
+                f"{current_user.username} a accepté ta demande d'ami.",
+                link=url_for("friends_list"),
+            )
+
         db.session.commit()
 
         if success:
@@ -817,6 +842,31 @@ def create_app(database_uri: str | None = None) -> Flask:
                 received_requests=received_requests,
                 sent_requests=sent_requests,
             )
+
+    @app.route("/notifications")
+    @login_required
+    def get_notifications() -> dict:
+        """Renvoie les notifications recentes de l'utilisateur et les marque comme lues"""
+        notifications = (
+            Notification.query.filter_by(user_id=current_user.id)
+            .order_by(Notification.created_at.desc())
+            .limit(10)
+            .all()
+        )
+
+        notifications_data = [
+            {
+                "message": notification.message,
+                "link": notification.link,
+                "is_read": notification.is_read,
+            }
+            for notification in notifications
+        ]
+
+        mark_all_as_read(current_user.id)
+        db.session.commit()
+
+        return {"notifications": notifications_data}
 
 
     @app.route("/classement")
