@@ -126,3 +126,35 @@ class Notification(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     user = db.relationship("User", backref="notifications")
+
+class GameSession(db.Model):
+    """Représente une partie multijoueur 1v1 en mode rapidité"""
+
+    __tablename__ = "game_sessions"
+
+    id = db.Column(db.Integer, primary_key=True)
+    host_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    guest_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    mode = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(20), nullable=False, default="invited")
+    host_score = db.Column(db.Integer, nullable=False, default=0)
+    guest_score = db.Column(db.Integer, nullable=False, default=0)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, nullable=False)
+
+    host = db.relationship("User", foreign_keys=[host_id])
+    guest = db.relationship("User", foreign_keys=[guest_id])
+
+
+class GameSessionQuestion(db.Model):
+    """Représente une question précise dans une partie multijoueur, avec son ordre"""
+
+    __tablename__ = "game_session_questions"
+
+    id = db.Column(db.Integer, primary_key=True)
+    game_session_id = db.Column(db.Integer, db.ForeignKey("game_sessions.id"), nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
+    order_index = db.Column(db.Integer, nullable=False)
+
+    game_session = db.relationship("GameSession", backref="session_questions")
+    question = db.relationship("Question")
