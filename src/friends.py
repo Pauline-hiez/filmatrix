@@ -1,0 +1,74 @@
+"""Logique métier du système d'amis"""
+
+from src.database import db 
+from src.models import Friendship
+
+def get_friendship_between(user_a_id: int, user_b_id: int) -> Friendship | None:
+    """Cherche une relation d'amitié existante entre deux utilisateurs, dans les deux sens"""
+    return Friendship.query.filter(
+            db.or_(
+                db.and_(
+                    Friendship.requester_id == user_a_id,
+                    Friendship.receiver_id == user_b_id,
+                    ),
+                db.and_(
+                    Friendship.requester_id == user_b_id,
+                    Friendship.receiver_id == user_a_id,
+                    ),
+                )
+        ).first()
+
+def send_friend_request(requester, receiver) -> bool:
+    """Envoie une demande d'ami, renvoie False si déjà amis"""
+    if requester.id == receiver.id:
+        return False
+
+    existing = get_friendship_between(requester.id, receiver.id)
+    if existing is not None:
+        return False
+
+    new_friendship = Friendship(requester_id=requester.id, receiver_id=receiver.id)
+    db.session.add(new_friendship)
+    return True
+
+def accept_friend_request(friendship_id: int, current_user_id: int) -> bool:
+    """Accepte une demande d'amis reçue, renvoie False si non autorisé ou introuvable"""
+    friendship = Friendship.query.get(friendship_id)
+
+    if friendship is None or friendship.receiver_id != current_user_id:
+        return False
+
+    friendship.status = "accepted"
+    return True
+
+def decline_friend_request(friendship_id: int, current_user_id: int) -> bool:
+    """Refuse (supprime) une demande d'ami reçue ou annule une demande envoyée"""
+    friendship = Friendship.query.get(friendship_id)
+
+    if friendship is None:
+        return False
+
+    if friendship.receiver_id != current_user_id and friendship.requester_id != current_user_id:
+        return False
+
+    db.session.delete(friendship)
+    return True 
+
+def get_friends_list(user_id: int) -> list:
+    """Renvoie la liste des amis confirmés d'un utilisateur"""
+    accepted = Friendship.query.filter(
+            db.and_(
+                Friendship.status == "accepted",
+                db.or_(
+                    Friendship.requester_id == user_id,
+                    Friendship.receiver_id == user_id,
+                    ),
+                )
+        ).all()
+
+    friends = []
+    for friendship in accepted:
+        friend = friendship.receiver if friendship.requester_id == user_id else friendship.requester
+        friends.append(friend)
+
+    return friends
