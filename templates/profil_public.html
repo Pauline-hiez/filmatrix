@@ -56,5 +56,41 @@
     {% else %}
     <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
     {% endif %}
+
+    {% if mutual_friends %}
+    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3 mt-8">
+        Amis en commun ({{ mutual_friends | length }})
+    </h3>
+    <div class="flex flex-wrap gap-2 mb-8">
+        {% for friend in mutual_friends %}
+        <a href="{{ url_for('public_profile', user_id=friend.id) }}"
+           class="text-xs bg-slate-900 border border-cyan-400/30 hover:border-cyan-400 text-slate-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition">
+            {{ friend.avatar or "🎬" }} {{ friend.username }}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">
+        Amis de {{ viewed_user.username }} ({{ viewed_user_friends | length }})
+    </h3>
+    {% if viewed_user_friends %}
+    <div class="flex flex-wrap gap-2">
+        {% for friend in viewed_user_friends %}
+        {% if friend.id == current_user.id %}
+            <span class="text-xs bg-cyan-400/10 border border-cyan-400/50 text-cyan-400 px-3 py-1.5 rounded-full">
+                {{ friend.avatar or "🎬" }} {{ friend.username }} (toi)
+            </span>
+        {% else %}
+            <a href="{{ url_for('public_profile', user_id=friend.id) }}"
+               class="text-xs bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-400 hover:text-cyan-400 px-3 py-1.5 rounded-full transition">
+                {{ friend.avatar or "🎬" }} {{ friend.username }}
+            </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-slate-500 text-sm">Aucun ami pour le moment.</p>
+    {% endif %}
 </div>
 {% endblock %}

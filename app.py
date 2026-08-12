@@ -879,6 +879,14 @@ def create_app(database_uri: str | None = None) -> Flask:
                         }
                 )
 
+            viewed_user_friends = get_friends_list(viewed_user.id)
+            current_user_friends = get_friends_list(current_user.id)
+
+            current_user_friend_ids = {friend.id for friend in current_user_friends}
+            mutual_friends = [
+                    friend for friend in viewed_user_friends if friend.id in current_user_friend_ids
+                ]
+
             return render_template(
                     "profil_public.html",
                     viewed_user=viewed_user,
@@ -887,6 +895,8 @@ def create_app(database_uri: str | None = None) -> Flask:
                     level_info=level_info,
                     attempts_by_mode=attempts_by_mode,
                     all_badges=all_badges,
+                    viewed_user_friends=viewed_user_friends,
+                    mutual_friends=mutual_friends,
                 )
 
     @app.route("/notifications")
