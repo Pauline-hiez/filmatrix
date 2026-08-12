@@ -41,8 +41,11 @@ from src.friends import (
     )
 from src.notifications import create_notification, get_unread_count, mark_all_as_read
 from src.avatars import AVATARS
+from flask_socketio import SocketIO
 
 load_dotenv()
+
+socketio = SocketIO()
 
 # Description des modes de jeu, utilisée pour construire la grille de la page
 # d'accueil. `accent` sert de couleur d'accent CSS pour la carte du mode.
@@ -152,6 +155,7 @@ def create_app(database_uri: str | None = None) -> Flask:
 
     db.init_app(app)
     Migrate(app, db)
+    socketio.init_app(app, cors_allowed_origins="*")
 
     login_manager = LoginManager()
     login_manager.init_app(app)
@@ -992,4 +996,4 @@ def create_app(database_uri: str | None = None) -> Flask:
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app, debug=True)
