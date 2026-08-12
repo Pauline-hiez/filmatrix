@@ -40,6 +40,7 @@ from src.friends import (
         get_friendship_between
     )
 from src.notifications import create_notification, get_unread_count, mark_all_as_read
+from src.avatars import AVATARS
 
 load_dotenv()
 
@@ -357,6 +358,25 @@ def create_app(database_uri: str | None = None) -> Flask:
             all_badges=all_badges,
             equipped_title_name=equipped_title_name,
         )
+
+    @app.route("/profil/modifier", methods=["GET", "POST"])
+    @login_required
+    def edit_profile() -> str:
+        """Permet de mofifier son avatar et sa bio"""
+        if request.method == "POST":
+            selected_avatar = request.form.get("avatar")
+            if selected_avatar in AVATARS:
+                current_user.avatar = selected_avatar
+
+            bio = request.form.get("bio", "").strip()
+            current_user.bio = bio[:280] if bio else None
+
+            db.session.commit()
+
+            flash("Profil mis à jour.")
+            return redirect(url_for("profile"))
+
+        return render_template("edit_profile.html", avatars=AVATARS)
 
     @app.route("/admin/questions")
     @login_required 

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-xl mx-auto mt-8">
+    <h2 class="text-xl mb-6">Modifier mon profil</h2>
+
+    <form method="POST" class="flex flex-col gap-6">
+        <div>
+            <label class="block text-sm text-slate-400 mb-2">Choisis ton avatar</label>
+            <div class="grid grid-cols-6 gap-2" id="avatar-gallery">
+                {% for avatar in avatars %}
+                <button type="button" data-avatar="{{ avatar }}"
+                        class="avatar-choice text-3xl rounded-lg border-2 p-2 transition
+                               {% if current_user.avatar == avatar %}border-cyan-400 bg-slate-900{% else %}border-transparent hover:border-cyan-400/50{% endif %}">
+                    {{ avatar }}
+                </button>
+                {% endfor %}
+            </div>
+            <input type="hidden" name="avatar" id="selected-avatar" value="{{ current_user.avatar or '' }}">
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Bio (280 caractères max)</label>
+            <textarea name="bio" maxlength="280" rows="3"
+                      class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">{{ current_user.bio or '' }}</textarea>
+        </div>
+
+        <button type="submit"
+                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition">
+            Enregistrer
+        </button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/edit_profile.js') }}"></script>
+{% endblock %}

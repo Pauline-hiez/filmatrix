@@ -36,10 +36,19 @@
 
             <div class="flex items-center gap-4">
                 <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 text-2xl font-extrabold text-slate-950">
-                    {{ current_user.username[0] | upper }}
+                    {% if current_user.avatar %}
+                        {{ current_user.avatar }}
+                    {% else %}
+                        {{ current_user.username[0] | upper }}
+                    {% endif %}
                 </span>
                 <div class="min-w-0">
-                    <h1 class="truncate text-2xl font-extrabold tracking-tight">{{ current_user.username }}</h1>
+                    <div class="flex items-center gap-2">
+                        <h1 class="truncate text-2xl font-extrabold tracking-tight">{{ current_user.username }}</h1>
+                        <a href="{{ url_for('edit_profile') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
+                            Modifier
+                        </a>
+                    </div>
                     {% if equipped_title_name %}
                     <p class="text-sm text-cyan-400">{{ equipped_title_name }}</p>
                     {% else %}
