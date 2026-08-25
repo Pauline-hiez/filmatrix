@@ -158,3 +158,18 @@ class GameSessionQuestion(db.Model):
 
     game_session = db.relationship("GameSession", backref="session_questions")
     question = db.relationship("Question")
+
+class GameAnswer(db.Model):
+    """Représente la réponse d'un joueur à une question dans une partie multijoueur"""
+
+    __tablename__ = "game_answers"
+
+    id = db.Column(db.Integer, primary_key=True)
+    game_session_id = db.Column(db.Integer, db.ForeignKey("game_sessions.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    question_index = db.Column(db.Integer, nullable=False)
+    is_correct = db.Column(db.Boolean, nullable=False)
+    answered_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    game_session = db.relationship("GameSession", backref="answers")
+    user = db.relationship("User")
