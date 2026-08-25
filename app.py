@@ -18,7 +18,7 @@ from sqlalchemy import func
 
 from src.database import db
 from src.engine import check_answer
-from src.models import Attempt, Question, User, Report, Friendship, Notification
+from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
@@ -42,6 +42,8 @@ from src.friends import (
 from src.notifications import create_notification, get_unread_count, mark_all_as_read
 from src.avatars import AVATARS
 from flask_socketio import SocketIO
+from src.multiplayer import create_game_invitation, get_ordered_questions, is_invitation_expired
+from src.socket_events import register_socket_events
 
 load_dotenv()
 
@@ -156,6 +158,7 @@ def create_app(database_uri: str | None = None) -> Flask:
     db.init_app(app)
     Migrate(app, db)
     socketio.init_app(app, cors_allowed_origins="*")
+    register_socket_events(socketio)
 
     login_manager = LoginManager()
     login_manager.init_app(app)
@@ -866,6 +869,101 @@ def create_app(database_uri: str | None = None) -> Flask:
                 received_requests=received_requests,
                 sent_requests=sent_requests,
             )
+
+    @app.route("/multijoueur/inviter/<int:user_id>", methods=["POST"])
+    @login_required
+    def invite_to_game(user_id: int) -> str:
+        """Invite un ami à une partie multijoueur en mode rapidité"""
+        friendship = get_friendship_between(current_user.id, user_id)
+        if friendship is None or friendship.status != "accepted":
+            flash("Tu dois être ami avec ce joueur pour l'inviter.")
+            return redirect(url_for("friends_list"))
+
+        guest = User.query.get_or_404(user_id)
+        mode = request.form.get("mode", "qcm")
+
+        game_session = create_game_invitation(current_user, guest, mode)
+
+        if game_session is None:
+            flash("Pas assez de questions disponibles pour ce mode.")
+            return redirect(url_for("friends_list"))
+
+        db.session.commit()
+
+        create_notification(
+                guest,
+                f"{current_user.username} t'invite à une partie !",
+                link=url_for("game_lobby", game_session_id=game_session.id),
+            )
+        db.session.commit()
+
+        flash(f"Invitation envoyée à {guest.username}.")
+        return redirect(url_for("game_lobby", game_session_id=game_session.id))
+
+    @app.route("/multijoueur/<int:game_session_id>")
+    @login_required
+    def game_lobby(game_session_id: int) -> str:
+        """Affiche la salle d'attente d'une partie multijoueur"""
+        game_session = GameSession.query.get_or_404(game_session_id)
+
+        if current_user.id not in (game_session.host_id, game_session.guest_id):
+            flash("Tu ne fais pas partie de cette partie.")
+            return redirect(url_for("friends_list"))
+
+        if game_session.status == "invited" and is_invitation_expired(game_session):
+            game_session.status = "expired"
+            db.session.commit()
+
+        return render_template("multiplayer_lobby.html", game_session=game_session)
+
+    @app.route("/multijoueur/<int:game_session_id>/accepter", methods=["POST"])
+    @login_required
+    def accept_game_invitation(game_session_id: int) -> str:
+        """Accepte une invitation de partie multijoueur"""
+        game_session = GameSession.query.get_or_404(game_session_id)
+
+        if current_user.id != game_session.guest_id or game_session.status != "invited":
+            flash("Impossible d'accepter cette invitation.")
+            return redirect(url_for("friends_list"))
+
+        if is_invitation_expired(game_session):
+            game_session.status = "expired"
+            db.session.commit()
+            flash("Cette invitation a expiré.")
+            redirect(url_for("game_lobby", game_session_id=game_session.id))
+
+        game_session.status = "active"
+        db.session.commit()
+
+        create_notification(
+                game_session.host,
+                f"{current_user.username} a accepté ta partie !",
+                link=url_for("game_lobby", game_session_id=game_session.id),
+            )
+        db.session.commit()
+
+        socketio.emit(
+                "game_started",
+                {"redirect_url": url_for("game_lobby", game_session_id=game_session.id)},
+                room=f"user_{game_session.host_id}",
+            )
+
+        return redirect(url_for("game_lobby", game_session_id=game_session.id))
+
+    @app.route("/multijoueur/<int:game_session_id>/refuser", methods=["POST"])
+    @login_required
+    def decline_game_invitation(game_session_id: int) -> str:
+        """Refuse une invitation de partie multijoueur"""
+        game_session = GameSession.query.get_or_404(game_session_id)
+
+        if current_user.id != game_session.guest_id or game_session.status != "invited":
+            flash("Impossible de refuser cette invitation.")
+            return redirect(url_for("friends_list"))
+
+        game_session.status = "declined"
+        db.session.commit()
+
+        return redirect(url_for("game_lobby", game_session_id=game_session.id))
 
     @app.route("/joueur/<int:user_id>")
     @login_required

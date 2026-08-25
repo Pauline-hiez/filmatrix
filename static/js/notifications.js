@@ -1,6 +1,5 @@
 const notificationBell = document.getElementById("notification-bell");
 const notificationDropdown = document.getElementById("notification-dropdown");
-const notificationBadge = document.getElementById("notification-badge");
 
 if (notificationBell) {
     notificationBell.addEventListener("click", async function () {
@@ -13,6 +12,8 @@ if (notificationBell) {
             displayNotifications(data.notifications);
             notificationDropdown.classList.remove("hidden");
 
+            // Relu a chaque clic : realtime.js peut avoir recree le badge depuis.
+            const notificationBadge = document.getElementById("notification-badge");
             if (notificationBadge) {
                 notificationBadge.remove();
             }

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-12 text-center">
+
+    {% if game_session.status == "expired" %}
+        <div class="rounded-2xl border border-red-500/30 bg-slate-900/60 p-8">
+            <p class="text-4xl mb-4">⏱️</p>
+            <h2 class="text-xl font-bold mb-2">Invitation expirée</h2>
+            <p class="text-slate-500 text-sm mb-6">Le délai de 15 minutes est dépassé.</p>
+            <a href="{{ url_for('friends_list') }}"
+               class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition">
+                Retour aux amis
+            </a>
+        </div>
+
+        {% elif current_user.id == game_session.host_id %}
+        <div id="waiting-for-guest" class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-8">
+            <div class="relative w-20 h-20 mx-auto mb-6">
+                <span class="absolute inset-0 rounded-full bg-cyan-400/30 animate-ping"></span>
+                <span class="relative flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
+                    {{ game_session.guest.avatar or "🎬" }}
+                </span>
+            </div>
+            <h2 class="text-xl font-bold mb-1">En attente de {{ game_session.guest.username }}</h2>
+            <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>
+            <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
+            <p class="text-slate-600 text-xs">Cette page se rafraîchira automatiquement</p>
+        </div>
+
+    {% elif game_session.status == "invited" %}
+        <div class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-8">
+            <span class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
+                {{ game_session.host.avatar or "🎬" }}
+            </span>
+            <h2 class="text-xl font-bold mb-1">{{ game_session.host.username }} t'invite à jouer !</h2>
+            <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>
+            <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
+
+            <div class="flex gap-3 justify-center">
+                <form method="POST" action="{{ url_for('accept_game_invitation', game_session_id=game_session.id) }}">
+                    <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
+                        Accepter
+                    </button>
+                </form>
+                <form method="POST" action="{{ url_for('decline_game_invitation', game_session_id=game_session.id) }}">
+                    <button type="submit" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-6 py-2.5 rounded-lg transition">
+                        Refuser
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    {% elif game_session.status == "declined" %}
+        <div class="rounded-2xl border border-slate-700 bg-slate-900/60 p-8">
+            <p class="text-4xl mb-4">👋</p>
+            <h2 class="text-xl font-bold mb-6">Invitation refusée</h2>
+            <a href="{{ url_for('friends_list') }}"
+               class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition">
+                Retour aux amis
+            </a>
+        </div>
+
+    {% elif game_session.status == "active" %}
+        <div class="rounded-2xl border border-emerald-500/30 bg-slate-900/60 p-8">
+            <p class="text-4xl mb-4 animate-bounce">🎮</p>
+            <h2 class="text-xl font-bold mb-6">La partie commence !</h2>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/multiplayer_lobby.js') }}"></script>
+{% endblock %}

@@ -16,6 +16,19 @@
     <p class="text-slate-300 text-sm mb-6 italic">"{{ viewed_user.bio }}"</p>
     {% endif %}
 
+    <form method="POST" action="{{ url_for('invite_to_game', user_id=viewed_user.id) }}"
+          class="flex items-center gap-2 mb-6">
+        <select name="mode" class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100 text-sm">
+            <option value="qcm">Quiz</option>
+            <option value="vrai_faux">Vrai / Faux</option>
+            <option value="citation">Citations</option>
+            <option value="emoji">Emoji Quiz</option>
+        </select>
+        <button type="submit" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">
+            🎮 Inviter à jouer
+        </button>
+    </form>
+
     <div class="mb-8">
         <p class="text-cyan-400 text-lg mb-2">Niveau {{ level_info.level }}</p>
         <div class="w-full bg-slate-900 rounded-full h-3 overflow-hidden mb-1">

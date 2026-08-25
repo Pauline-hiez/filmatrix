@@ -5,9 +5,23 @@ from src.models import Notification
 
 
 def create_notification(user, message: str, link: str | None = None) -> None:
-    """Crée une notification pour un utilisateur donné."""
+    """Crée une notification pour un utilisateur donné et l'envoie en temps réel.
+
+    La notification est enregistrée avant d'être émise : si le commit échoue,
+    aucun évènement n'est envoyé, et le client qui recharge la liste au clic
+    retrouve bien la notification en base.
+    """
     notification = Notification(user_id=user.id, message=message, link=link)
     db.session.add(notification)
+    db.session.commit()
+
+    from app import socketio
+
+    socketio.emit(
+        "new_notification",
+        {"message": message, "link": link},
+        room=f"user_{user.id}",
+    )
 
 
 def get_unread_count(user_id: int) -> int:
