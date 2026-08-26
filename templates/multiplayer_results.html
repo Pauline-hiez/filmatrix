@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-12 text-center">
+    <div class="rounded-2xl border p-8
+                {% if winner is none %}
+                    border-slate-700 bg-slate-900/60
+                {% elif winner.id == current_user.id %}
+                    border-emerald-500/50 bg-slate-900/60
+                {% else %}
+                    border-red-500/30 bg-slate-900/60
+                {% endif %}">
+
+        {% if winner is none %}
+            <p class="text-4xl mb-4">🤝</p>
+            <h2 class="text-xl font-bold mb-6">Égalité !</h2>
+        {% elif winner.id == current_user.id %}
+            <p class="text-4xl mb-4">🏆</p>
+            <h2 class="text-xl font-bold text-emerald-400 mb-6">Tu as gagné !</h2>
+        {% else %}
+            <p class="text-4xl mb-4">😔</p>
+            <h2 class="text-xl font-bold text-red-400 mb-6">{{ opponent.username }} a gagné</h2>
+        {% endif %}
+
+        <div class="flex items-center justify-center gap-6 mb-6">
+            <div>
+                <p class="text-2xl">{{ current_user.avatar or "🎬" }}</p>
+                <p class="text-sm text-slate-400">{{ current_user.username }}</p>
+                <p class="text-cyan-400 font-bold text-2xl">{{ my_score }}</p>
+            </div>
+            <p class="text-slate-600 text-xl">—</p>
+            <div>
+                <p class="text-2xl">{{ opponent.avatar or "🎬" }}</p>
+                <p class="text-sm text-slate-400">{{ opponent.username }}</p>
+                <p class="text-cyan-400 font-bold text-2xl">{{ opponent_score }}</p>
+            </div>
+        </div>
+
+        <div class="flex gap-3 justify-center">
+            <a href="{{ url_for('public_profile', user_id=opponent.id) }}"
+               class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-2 rounded-lg text-sm transition">
+                Voir le profil
+            </a>
+            <a href="{{ url_for('friends_list') }}"
+               class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">
+                Retour aux amis
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

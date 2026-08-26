@@ -1004,6 +1004,40 @@ def create_app(database_uri: str | None = None) -> Flask:
             return {"status": "forbidden"}
         return {"status": game_session.status}
 
+    @app.route("/multijoueur/<int:game_session_id>/resultats")
+    @login_required
+    def game_results(game_session_id: int) -> str:
+        """Affiche les résultats finaux d'une partie multijoueur avec mort subite si égalité"""
+        game_session = GameSession.query.get_or_404(game_session_id)
+
+        if current_user.id not in (game_session.host_id, game_session.guest_id):
+            flash("Tu ne fais pas partie de cette partie.")
+            return redirect(url_for("friends_list"))
+
+        if game_session.status != "finished":
+            game_session.status = "finished"
+            db.session.commit()
+
+        if game_session.host_score == game_session.guest_score:
+            winner = None
+        elif game_session.host_score > game_session.guest_score:
+            winner = game_session.host
+        else:
+            winner = game_session.guest
+
+        opponent = game_session.guest if current_user.id == game_session.host_id else game_session.host
+        my_score = game_session.host_score if current_user.id == game_session.host_id else game_session.guest_score
+        opponent_score = game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score
+
+        return render_template(
+                "multiplayer_results.html",
+                game_session=game_session,
+                winner=winner,
+                opponent=opponent,
+                my_score=my_score,
+                opponent_score=opponent_score,
+            ) 
+
     @app.route("/joueur/<int:user_id>")
     @login_required
     def public_profile(user_id: int) -> str:
