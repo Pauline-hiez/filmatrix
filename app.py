@@ -1,3 +1,7 @@
+from gevent import monkey
+
+monkey.patch_all()
+
 """Application Flask : sert le quiz Filmatrix sous forme de page web"""
 
 import os
