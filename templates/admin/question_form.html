@@ -164,6 +164,20 @@
             Réservée aux comptes
         </label>
 
+                <div>
+            <label class="block text-sm text-slate-400 mb-2">Tags</label>
+            <div class="flex flex-wrap gap-2">
+                {% for tag in all_tags %}
+                <label class="flex items-center gap-1.5 text-xs bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 cursor-pointer">
+                    <input type="checkbox" name="tags" value="{{ tag.id }}"
+                           {% if question and tag in question.tags %}checked{% endif %}>
+                    {{ tag.name }}
+                    <span class="text-slate-600">({{ tag.tag_type }})</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
         <!-- Champs cachés remplis automatiquement par le JS avant envoi -->
         <input type="hidden" name="payload" id="payload-input">
         <input type="hidden" name="correct_answer" id="correct-answer-input">

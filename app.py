@@ -18,7 +18,7 @@ from sqlalchemy import func
 
 from src.database import db
 from src.engine import check_answer
-from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession
+from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
@@ -417,20 +417,26 @@ def create_app(database_uri: str | None = None) -> Flask:
                 return render_template("admin/question_form.html", question=None)
 
             new_question = Question(
-                    mode=request.form["mode"],
-                    category=request.form["category"],
-                    difficulty=request.form["difficulty"],
-                    prompt=request.form["prompt"],
-                    payload=payload,
-                    correct_answer=correct_answer,
-                    requires_account=request.form.get("requires_account") == "on",
-                )
+                mode=request.form["mode"],
+                category=request.form["category"],
+                difficulty=request.form["difficulty"],
+                prompt=request.form["prompt"],
+                payload=payload,
+                correct_answer=correct_answer,
+                requires_account=request.form.get("requires_account") == "on",
+            )
+
+            selected_tag_ids = request.form.getlist("tags")
+            new_question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
+
             db.session.add(new_question)
             db.session.commit()
 
             flash("Question créée avec succès.")
             return redirect(url_for("admin_questions_list"))
-        return render_template("admin/question_form.html", question=None)
+
+        all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+        return render_template("admin/question_form.html", question=None, all_tags=all_tags)
 
     @app.route("/admin/questions/<int:question_id>/modifier", methods=["GET", "POST"])
     @login_required
@@ -455,12 +461,16 @@ def create_app(database_uri: str | None = None) -> Flask:
             question.correct_answer = correct_answer
             question.requires_account = request.form.get("requires_account") == "on"
 
+            selected_tag_ids = request.form.getlist("tags")
+            question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
+
             db.session.commit()
 
             flash("Question modifiée avec succès.")
             return redirect(url_for("admin_questions_list"))
 
-        return render_template("admin/question_form.html", question=question)
+        all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+        return render_template("admin/question_form.html", question=question, all_tags=all_tags)
 
     @app.route("/admin/questions/<int:question_id>/supprimer", methods=["POST"])
     @login_required
@@ -617,6 +627,45 @@ def create_app(database_uri: str | None = None) -> Flask:
                     reports=reports_data,
                     active_admin_section="reports",
                 )
+
+    @app.route("/admin/tags")
+    @login_required
+    @admin_required
+    def admin_tags_list() -> str:
+        """Affiche la liste des tags disponibles"""
+        all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+        return render_template("admin/tags_list.html", tags=all_tags, active_admin_section="tags")
+
+    @app.route("/admin/tags/nouveau", methods=["POST"])
+    @login_required
+    @admin_required
+    def admin_tags_new() -> str:
+        """Crée un nouveau tag"""
+        name = request.form.get("name", "").strip()
+        tag_type = request.form.get("tag_type", "genre")
+
+        if name:
+            existing = Tag.query.filter_by(name=name).first()
+            if existing is None:
+                new_tag = Tag(name=name, tag_type=tag_type)
+                db.session.add(new_tag)
+                db.session.commit()
+                flash(f"Tag '{name}' crée.")
+            else:
+                flash("Ce tag existe déjà.")
+        return redirect(url_for("admin_tags_list"))
+
+    @app.route("/admin/tags/<int:tag_id>/supprimer", methods=["POST"])
+    @login_required
+    @admin_required
+    def admin_tags_delete(tag_id: int) -> str:
+        """Supprime un tag"""
+        tag = Tag.query.get_or_404(tag_id)
+        db.session.delete(tag)
+        db.session.commit()
+
+        flash("Tag supprimé.")
+        return redirect(url_for("admin_tags_list"))
 
     @app.route("/admin/signalements/<int:report_id>/traiter", methods=["POST"]) 
     @login_required

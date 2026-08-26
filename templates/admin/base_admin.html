@@ -19,6 +19,11 @@
                       {% if active_admin_section == 'reports' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
                 Signalements
             </a>
+            <a href="{{ url_for('admin_tags_list') }}"
+                class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
+                    {% if active_admin_section == 'tags' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
+                Tags
+            </a>
         </nav>
     </aside>
 
