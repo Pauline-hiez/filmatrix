@@ -152,7 +152,14 @@ def create_app(database_uri: str | None = None) -> Flask:
     """
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_uri or "sqlite:///filmatrix.db"
+    production_database_url = os.environ.get("DATABASE_URL")
+    if production_database_url and production_database_url.startswith("postgres://"):
+        production_database_url = production_database_url.replace("postgres://", "postgresql://", 1)
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
+        database_uri or production_database_url or "sqlite:///filmatrix.db"
+    ) 
+
     app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
     db.init_app(app)
