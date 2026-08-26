@@ -25,17 +25,32 @@
         </h1>
         <p class="mt-2 text-slate-300">Dix façons de tester ta culture cinéma.</p>
 
-        <div class="mt-6 max-w-sm">
-            <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                Catégorie
-            </label>
-            <select id="category"
-                    class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                <option value="">Toutes les catégories</option>
-                <option value="realisateur">Réalisateur</option>
-                <option value="acteur">Acteur</option>
-                <option value="anecdote">Anecdote</option>
-            </select>
+                <div class="mt-6 flex flex-col sm:flex-row gap-4 max-w-2xl">
+            <div class="flex-1">
+                <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Catégorie
+                </label>
+                <select id="category"
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="">Toutes les catégories</option>
+                    <option value="realisateur">Réalisateur</option>
+                    <option value="acteur">Acteur</option>
+                    <option value="anecdote">Anecdote</option>
+                </select>
+            </div>
+
+            <div class="flex-1">
+                <label for="tag" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Thème / Saga
+                </label>
+                <select id="tag"
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="">Tous les thèmes</option>
+                    {% for tag in all_tags %}
+                    <option value="{{ tag.id }}">{{ tag.name }} ({{ tag.tag_type }})</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
     </section>
 

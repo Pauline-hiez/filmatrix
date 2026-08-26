@@ -169,12 +169,15 @@ def create_app(database_uri: str | None = None) -> Flask:
         """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
         return User.query.get(int(user_id))
 
-    def find_question(mode: str, position: int, category: str | None):
-        """Cherche la question à une position donnée, parmi celles d'un mode et d'une catégorie"""
+    def find_question(mode: str, position: int, category: str | None, tag_id: int | None = None):
+        """Cherche la question à une position donnée, parmi celles d'un mode, categorie et tag"""
         query = Question.query.filter_by(mode=mode)
 
         if category:
             query = query.filter_by(category=category)
+
+        if tag_id:
+            query = query.filter(Question.tags.any(Tag.id == tag_id))
 
         mode_questions = query.order_by(Question.id).all()
 
@@ -682,7 +685,8 @@ def create_app(database_uri: str | None = None) -> Flask:
     @app.route("/modes")
     def modes() -> str:
         """Affiche la liste des modes de jeu disponibles"""
-        return render_template("modes.html")
+        all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+        return render_template("modes.html", all_tags=all_tags)
 
     @app.route("/boutique")
     @login_required
@@ -733,7 +737,8 @@ def create_app(database_uri: str | None = None) -> Flask:
     def quiz(mode: str, position: int) -> str:
         """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
         category = request.args.get("category")
-        question = find_question(mode, position, category)
+        tag_id = request.args.get("tag_id", type=int)
+        question = find_question(mode, position, category, tag_id)
 
         if question is None:
             return render_template("termine.html")
