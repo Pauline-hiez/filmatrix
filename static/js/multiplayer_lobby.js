@@ -21,8 +21,32 @@ if (countdownEl) {
 
 const waitingIndicator = document.getElementById("waiting-for-guest");
 
-if (waitingIndicator && typeof socket !== "undefined") {
-    socket.on("game_started", function (data) {
-        window.location.href = data.redirect_url;
-    });
+if (waitingIndicator) {
+    const gameSessionId = waitingIndicator.dataset.gameSessionId;
+
+    // Voie principale : l'invité accepte, le serveur prévient l'hôte immédiatement.
+    if (typeof socket !== "undefined") {
+        socket.on("game_started", function (data) {
+            window.location.href = data.redirect_url;
+        });
+    }
+
+    // Filet de sécurité si le websocket est indisponible ou la notification perdue.
+    const statusPolling = setInterval(async function () {
+        const response = await fetch(`/multijoueur/${gameSessionId}/statut`);
+        const data = await response.json();
+
+        if (data.status !== "invited") {
+            clearInterval(statusPolling);
+            window.location.reload();
+        }
+    }, 2000);
+}
+
+const gameStartingEl = document.getElementById("game-starting");
+
+if (gameStartingEl) {
+    setTimeout(function () {
+        window.location.href = gameStartingEl.dataset.playUrl;
+    }, 1500);
 }

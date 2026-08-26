@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-xl mx-auto mt-8" id="game-container"
+     data-game-session-id="{{ game_session.id }}"
+     data-question-index="{{ game_session.current_question_index }}"
+     data-question-mode="{{ question.mode }}">
+
+    <div class="flex items-center justify-between mb-6">
+        <div class="text-center">
+            <p class="text-2xl">{{ current_user.avatar or "🎬" }}</p>
+            <p class="text-sm text-slate-400">{{ current_user.username }}</p>
+            <p id="my-score" class="text-cyan-400 font-bold text-lg">
+                {{ game_session.host_score if current_user.id == game_session.host_id else game_session.guest_score }}
+            </p>
+        </div>
+
+        <p class="text-slate-500 text-sm">Question {{ game_session.current_question_index + 1 }} / {{ total_questions }}</p>
+
+        <div class="text-center">
+            <p class="text-2xl">{{ opponent.avatar or "🎬" }}</p>
+            <p class="text-sm text-slate-400">{{ opponent.username }}</p>
+            <p id="opponent-score" class="text-cyan-400 font-bold text-lg">
+                {{ game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score }}
+            </p>
+        </div>
+    </div>
+
+    <section class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-6">
+        <h1 class="text-xl font-bold mb-6 text-center" id="question-prompt">{{ question.prompt }}</h1>
+
+        <div class="flex flex-col gap-3" id="answer-zone">
+            {% if question.mode == "qcm" %}
+                {% for option in question.payload.options %}
+                <button type="button" data-answer="{{ loop.index0 }}"
+                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
+                    {{ option }}
+                </button>
+                {% endfor %}
+            {% elif question.mode == "vrai_faux" %}
+                <button type="button" data-answer="true"
+                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800">
+                    Vrai
+                </button>
+                <button type="button" data-answer="false"
+                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800">
+                    Faux
+                </button>
+            {% else %}
+                <input type="text" id="game-free-text-answer" placeholder="Ta réponse..."
+                       class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3 text-slate-100">
+                <button type="button" data-answer="" id="game-free-text-submit"
+                        class="game-answer-button bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-3 rounded-lg transition">
+                    Valider
+                </button>
+            {% endif %}
+        </div>
+
+        <p id="game-status-message" class="text-center text-sm text-slate-500 mt-4"></p>
+    </section>
+</div>
+
+<script src="{{ url_for('static', filename='js/multiplayer_game.js') }}"></script>
+{% endblock %}

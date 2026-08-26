@@ -930,7 +930,7 @@ def create_app(database_uri: str | None = None) -> Flask:
             game_session.status = "expired"
             db.session.commit()
             flash("Cette invitation a expiré.")
-            redirect(url_for("game_lobby", game_session_id=game_session.id))
+            return redirect(url_for("game_lobby", game_session_id=game_session.id))
 
         game_session.status = "active"
         db.session.commit()
@@ -964,6 +964,45 @@ def create_app(database_uri: str | None = None) -> Flask:
         db.session.commit()
 
         return redirect(url_for("game_lobby", game_session_id=game_session.id))
+
+    @app.route("/multijoueur/<int:game_session_id>/jouer")
+    @login_required
+    def play_game(game_session_id: int) -> str:
+        """Affiche la salle de jeu synchronisée d'une partie multijoueur"""
+        game_session = GameSession.query.get_or_404(game_session_id)
+
+        if current_user.id not in (game_session.host_id, game_session.guest_id):
+            flash("Tu ne fais pas partie de cette partie.")
+            return redirect(url_for("friends_list"))
+
+        if game_session.status != "active":
+            return redirect(url_for("game_lobby", game_session_id=game_session.id))
+
+        questions = get_ordered_questions(game_session)
+
+        if game_session.current_question_index >= len(questions):
+            return redirect(url_for("game_results", game_session_id=game_session.id))
+
+        current_question = questions[game_session.current_question_index]
+        opponent = game_session.guest if current_user.id == game_session.host_id else game_session.host
+
+        return render_template(
+                "multiplayer_game.html",
+                game_session=game_session,
+                question=current_question,
+                opponent=opponent,
+                total_questions=len(questions)
+            )
+
+    @app.route("/multijoueur/<int:game_session_id>/statut")
+    @login_required
+    def game_session_status(game_session_id: int) -> dict:
+        """Renvoie le statut actuel d'une partie"""
+        game_session = GameSession.query.get_or_404(game_session_id)
+
+        if current_user.id not in (game_session.host_id, game_session.guest_id):
+            return {"status": "forbidden"}
+        return {"status": game_session.status}
 
     @app.route("/joueur/<int:user_id>")
     @login_required
