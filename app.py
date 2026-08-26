@@ -164,7 +164,7 @@ def create_app(database_uri: str | None = None) -> Flask:
 
     db.init_app(app)
     Migrate(app, db)
-    socketio.init_app(app, cors_allowed_origins="*", async_mode="eventlet")
+    socketio.init_app(app, cors_allowed_origins="*", async_mode="gevent")
     register_socket_events(socketio)
 
     login_manager = LoginManager()
