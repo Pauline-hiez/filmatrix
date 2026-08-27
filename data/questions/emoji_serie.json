@@ -1,0 +1,28 @@
+[
+    {
+        "id": 297,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "👑🐉⚔️",
+        "payload": {},
+        "correct_answer": {
+            "film": "Game of Thrones"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 298,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "🧪🔵👨‍🔬",
+        "payload": {},
+        "correct_answer": {
+            "film": "Breaking Bad"
+        },
+        "requires_account": false
+    }
+]

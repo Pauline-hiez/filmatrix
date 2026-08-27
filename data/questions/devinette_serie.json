@@ -1,0 +1,40 @@
+[
+    {
+        "id": 301,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série se déroule dans les années 1980.",
+                "L'action se passe dans une petite ville appelée Hawkins.",
+                "Elle mêle science-fiction et horreur, avec un monde parallèle appelé le Monde à l'envers."
+            ]
+        },
+        "correct_answer": {
+            "film": "Stranger Things"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 302,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série suit un groupe d'amis à New York.",
+                "L'un des personnages s'appelle Ross et travaille comme paléontologue.",
+                "Le titre est un simple mot anglais signifiant \"amis\"."
+            ]
+        },
+        "correct_answer": {
+            "film": "Friends"
+        },
+        "requires_account": false
+    }
+]

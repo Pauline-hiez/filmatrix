@@ -1,0 +1,28 @@
+[
+    {
+        "id": 299,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Friends"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 300,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Stranger Things"
+        },
+        "requires_account": false
+    }
+]

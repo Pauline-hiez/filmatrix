@@ -1,0 +1,28 @@
+[
+    {
+        "id": 293,
+        "mode": "vrai_faux",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Game of Thrones est adaptée de romans de George R.R. Martin.",
+        "payload": {},
+        "correct_answer": {
+            "value": true
+        },
+        "requires_account": false
+    },
+    {
+        "id": 294,
+        "mode": "vrai_faux",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Friends compte 12 saisons.",
+        "payload": {},
+        "correct_answer": {
+            "value": false
+        },
+        "requires_account": false
+    }
+]

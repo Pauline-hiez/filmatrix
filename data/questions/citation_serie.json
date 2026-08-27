@@ -1,0 +1,28 @@
+[
+    {
+        "id": 295,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "\"Winter is coming.\" — De quelle série vient cette réplique culte ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Game of Thrones"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 296,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"How you doin'?\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Friends"
+        },
+        "requires_account": false
+    }
+]

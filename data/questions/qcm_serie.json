@@ -1,0 +1,42 @@
+[
+    {
+        "id": 291,
+        "mode": "qcm",
+        "category": "acteur",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Qui incarne Walter White dans Breaking Bad ?",
+        "payload": {
+            "options": [
+                "Bryan Cranston",
+                "Aaron Paul",
+                "Dean Norris",
+                "RJ Mitte"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 292,
+        "mode": "qcm",
+        "category": "realisateur",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Qui a créé la série Stranger Things ?",
+        "payload": {
+            "options": [
+                "Les frères Duffer",
+                "Vince Gilligan",
+                "David Benioff",
+                "Shonda Rhimes"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    }
+]
