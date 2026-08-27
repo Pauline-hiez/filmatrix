@@ -260,3 +260,77 @@ def test_mode_cards_lead_to_the_setup_screen(client, app):
 
     assert b'href="/quiz/qcm"' in response.data
     assert b'href="/quiz/qcm/1"' not in response.data
+
+
+def create_questions(app, count, mode="qcm"):
+    """Crée plusieurs questions jouables dans un mode, dans la base de test"""
+    with app.app_context():
+        for number in range(count):
+            db.session.add(
+                Question(
+                    mode=mode,
+                    category="test",
+                    difficulty="facile",
+                    prompt=f"Question de test {number}",
+                    payload={"options": ["A", "B"]},
+                    correct_answer={"index": 0},
+                    requires_account=False,
+                )
+            )
+        db.session.commit()
+
+
+def test_quiz_shows_progress_within_the_run(client, app):
+    """Chaque question doit indiquer où en est le joueur et ce qu'il lui reste"""
+    create_questions(app, 12)
+
+    response = client.get("/quiz/qcm/3")
+
+    assert response.status_code == 200
+    assert "Question 3".encode() in response.data
+    assert b"/ 10" in response.data
+    assert "Encore 7 questions".encode() in response.data
+
+
+def test_quiz_run_stops_after_ten_questions(client, app):
+    """Au-delà de la dixième question, la partie doit s'achever même s'il en reste en base"""
+    create_questions(app, 12)
+
+    assert client.get("/quiz/qcm/10").status_code == 200
+
+    response = client.get("/quiz/qcm/11")
+
+    assert response.status_code == 200
+    assert "terminé".encode() in response.data
+
+
+def test_quiz_progress_follows_a_short_mode(client, app):
+    """Un mode qui compte moins de dix questions annonce son vrai total"""
+    create_questions(app, 3, mode="citation")
+
+    response = client.get("/quiz/citation/1")
+
+    assert response.status_code == 200
+    assert b"/ 3" in response.data
+    assert "Encore 2 questions".encode() in response.data
+
+
+def test_quiz_progress_announces_the_last_question(client, app):
+    """La dernière question doit être annoncée comme telle, sans reste à zéro"""
+    create_questions(app, 3, mode="citation")
+
+    response = client.get("/quiz/citation/3")
+
+    assert response.status_code == 200
+    assert "Dernière question".encode() in response.data
+
+
+def test_setup_screen_announces_the_run_length(client, app):
+    """L'écran de préparation doit annoncer la longueur d'une partie"""
+    create_questions(app, 12)
+
+    response = client.get("/quiz/qcm")
+
+    assert response.status_code == 200
+    assert "Partie de 10 questions".encode() in response.data
+    assert "12 disponibles".encode() in response.data

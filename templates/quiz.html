@@ -53,6 +53,35 @@
             </span>
         </div>
 
+        {# Avancement dans la partie : une partie fait QUESTIONS_PER_RUN questions
+           (moins si les filtres du joueur en laissent moins), cf. src/score.py.
+           À ne pas confondre avec la barre de chrono, juste en dessous. #}
+        <div class="mb-4">
+            <div class="mb-1.5 flex items-baseline justify-between gap-3">
+                <p class="text-sm font-bold text-slate-200">
+                    Question {{ position }}<span class="text-slate-500"> / {{ total_questions }}</span>
+                </p>
+                <p class="text-xs uppercase tracking-widest text-slate-500">
+                    {% set remaining = total_questions - position %}
+                    {% if remaining == 0 %}
+                        Dernière question
+                    {% else %}
+                        Encore {{ remaining }} question{{ 's' if remaining > 1 }}
+                    {% endif %}
+                </p>
+            </div>
+
+            {# Une case par question : le joueur voit d'un coup d'œil le chemin
+               parcouru et ce qu'il lui reste, sans avoir à lire le compteur. #}
+            <div class="flex gap-1" role="progressbar"
+                 aria-valuenow="{{ position }}" aria-valuemin="1" aria-valuemax="{{ total_questions }}"
+                 aria-label="Question {{ position }} sur {{ total_questions }}">
+                {% for step in range(1, total_questions + 1) %}
+                <span class="h-1.5 flex-1 rounded-full {% if step < position %}accent-bar{% elif step == position %}accent-bar opacity-60{% else %}bg-slate-800{% endif %}"></span>
+                {% endfor %}
+            </div>
+        </div>
+
         <div class="mb-6 h-2 w-full overflow-hidden rounded-full bg-slate-800">
             <div id="time-bar" data-question-id="{{ question.id }}" data-duration="{{ duration }}" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
         </div>
@@ -77,8 +106,12 @@
 
         {# Médias propres à certains modes, affichés avant le champ de réponse. #}
         {% if question.mode == "devinette_affiche" %}
-            <img src="{{ question.payload.poster_url }}" alt="Affiche du film à deviner"
-                 class="mx-auto mb-5 w-full max-w-[16rem] rounded-xl border border-cyan-400/30">
+            {# Image de plateau en 16:9, et non la jaquette : celle-ci porte le
+               titre et donnerait la réponse. Le cadrage est donc large, pas le
+               portrait d'une affiche. #}
+            <p class="mb-3 text-sm text-slate-400">Devine le titre à partir de cette image :</p>
+            <img src="{{ question.payload.poster_url }}" alt="Image du film à deviner"
+                 class="mx-auto mb-5 w-full rounded-xl border border-cyan-400/30">
         {% elif question.mode == "casting" %}
             <p class="mb-3 text-sm text-slate-400">Devine le film à partir de son casting :</p>
             <div class="mb-5 flex flex-wrap justify-center gap-3">

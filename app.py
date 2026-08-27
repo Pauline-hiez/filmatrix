@@ -23,7 +23,7 @@ from sqlalchemy import func
 from src.database import db
 from src.engine import check_answer
 from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
-from src.score import read_run, record_answer, start_run
+from src.score import QUESTIONS_PER_RUN, read_run, record_answer, start_run
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import TITLES, owns_title, purchase_title
@@ -195,14 +195,17 @@ def create_app(database_uri: str | None = None) -> Flask:
         """Ne garde que les types de contenu connus, une chaîne vide sinon"""
         return value if value in ("film", "serie") else ""
 
-    def find_question(
+    def build_question_query(
         mode: str,
-        position: int,
-        category: str | None,
+        category: str | None = None,
         tag_id: int | None = None,
         content_type: str | None = None,
     ):
-        """Cherche la question à une position donnée, parmi celles d'un mode, categorie, tag et type de contenu"""
+        """Construit la requête des questions jouables pour un mode et ses filtres
+
+        L'ordre est fixé par l'id : deux appels successifs pour la même partie
+        doivent renvoyer les questions dans le même ordre, sans quoi le joueur
+        rejouerait la même à des positions différentes"""
         query = Question.query.filter_by(mode=mode)
 
         if category:
@@ -214,13 +217,39 @@ def create_app(database_uri: str | None = None) -> Flask:
         if content_type:
             query = query.filter_by(content_type=content_type)
 
-        mode_questions = query.order_by(Question.id).all()
+        return query.order_by(Question.id)
 
-        index = position - 1
-        if index < 0 or index >= len(mode_questions):
+    def count_run_questions(
+        mode: str,
+        category: str | None = None,
+        tag_id: int | None = None,
+        content_type: str | None = None,
+    ) -> int:
+        """Retourne le nombre de questions que comptera la partie
+
+        Une partie fait QUESTIONS_PER_RUN questions, sauf si les filtres du
+        joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
+        servir"""
+        available = build_question_query(mode, category, tag_id, content_type).count()
+        return min(QUESTIONS_PER_RUN, available)
+
+    def find_question(
+        mode: str,
+        position: int,
+        category: str | None,
+        tag_id: int | None = None,
+        content_type: str | None = None,
+    ):
+        """Cherche la question à une position donnée, parmi celles d'un mode, categorie, tag et type de contenu
+
+        Renvoie None au-delà de la dernière position de la partie : c'est ce qui
+        met fin à la partie et renvoie le joueur vers l'écran de score"""
+        if position < 1 or position > QUESTIONS_PER_RUN:
             return None
 
-        return mode_questions[index]
+        query = build_question_query(mode, category, tag_id, content_type)
+
+        return query.offset(position - 1).limit(1).first()
 
     @app.context_processor
     def inject_notifications():
@@ -823,6 +852,7 @@ def create_app(database_uri: str | None = None) -> Flask:
                 "quiz_setup.html",
                 mode=mode_info,
                 question_count=question_query.count(),
+                run_length=min(QUESTIONS_PER_RUN, question_query.count()),
                 content_type=content_type,
                 all_tags=mode_tags,
                 levels=LEVELS,
@@ -841,6 +871,11 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         if question is None:
             return render_template("termine.html", score=read_run(session, mode))
+
+        # Le total d'une partie dépend des filtres : il est recalculé à chaque
+        # question plutôt que retenu en session, pour rester juste même si le
+        # joueur arrive par un lien direct au milieu d'une partie.
+        total_questions = count_run_questions(mode, category, tag_id, content_type)
 
         if question.requires_account and not current_user.is_authenticated:
             flash("Connecte-toi pour accéder à cette question.")
@@ -941,6 +976,8 @@ def create_app(database_uri: str | None = None) -> Flask:
                 report_reasons=REPORT_REASON,
                 level=LEVELS[level],
                 duration=duration_for(level, question.mode),
+                position=position,
+                total_questions=total_questions,
             )
 
     @app.route("/signaler/<int:question_id>", methods=["POST"])

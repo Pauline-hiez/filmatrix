@@ -8,6 +8,11 @@ d'aller le chercher elles-mêmes, pour rester testables avec un simple dict.
 
 SESSION_KEY = "run"
 
+# Une partie solo tient en un nombre fixe de questions : le joueur sait dès le
+# départ où il en est et quand cela s'arrête. Un mode qui en propose moins
+# (filtre serré, catégorie peu fournie) fait forcément une partie plus courte.
+QUESTIONS_PER_RUN = 10
+
 
 def start_run(store, mode: str) -> None:
     """Démarre le suivi d'une nouvelle partie, en écrasant la précédente"""
