@@ -26,6 +26,31 @@ function showBadgeNotification(badge) {
     }, 3000);
 }
 
+function showAnswerFeedback(isCorrect, correctAnswer) {
+    const feedback = document.getElementById("answer-feedback");
+    const label = document.getElementById("answer-feedback-label");
+    const text = document.getElementById("answer-feedback-text");
+
+    if (isCorrect) {
+        // Vert, et l'intitulé "Bonne réponse" n'a plus lieu d'être : rien à révéler.
+        feedback.classList.add("border-emerald-400", "bg-emerald-500/10");
+        text.classList.add("text-emerald-400");
+        label.classList.add("hidden");
+        text.textContent = "✓ Bonne réponse !";
+    } else if (correctAnswer) {
+        // Rouge pour marquer l'échec, mais la solution reste en blanc : elle est
+        // une information, pas l'erreur du joueur.
+        feedback.classList.add("border-red-400", "bg-red-500/10");
+        label.classList.add("text-red-300");
+        text.classList.add("text-slate-100");
+        text.textContent = correctAnswer;
+    } else {
+        return;
+    }
+
+    feedback.classList.remove("hidden");
+}
+
 function goToNextQuestion() {
     setTimeout(function () {
         window.location.href = window.location.href.replace(
@@ -73,7 +98,6 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
         if (result) {
             button.classList.remove("bg-cyan-400", "hover:bg-cyan-300");
 
-            const freeTextField = document.getElementById("free-text-answer");
             if (freeTextField) {
                 freeTextField.classList.remove("border-cyan-400/30");
             }
@@ -89,6 +113,8 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
                     freeTextField.classList.add("border-red-400");
                 }
             }
+
+            showAnswerFeedback(result.is_correct, result.correct_answer);
 
             if (result.position_results) {
                 const filmButtons = document.querySelectorAll(".chronology-film");
@@ -132,19 +158,27 @@ if (document.getElementById("riddle-submit")) {
         }
     }, 1000);
 } else {
-    timerInterval = setInterval(async function () {
+    timerInterval = setInterval(function () {
         remainingTime -= 1;
         const percentage = (remainingTime / TOTAL_DURATION) * 100;
         timeBar.style.width = percentage + "%";
 
         if (remainingTime <= 0) {
-            const result = await sendAnswer("timeout=true");
-            if (result && result.new_badges) {
-                result.new_badges.forEach(function (badge) {
-                    showBadgeNotification(badge);
-                });
-            }
-            goToNextQuestion();
+            (async function () {
+                const result = await sendAnswer("timeout=true");
+                if (!result) {
+                    return;
+                }
+
+                if (result.new_badges) {
+                    result.new_badges.forEach(function (badge) {
+                        showBadgeNotification(badge);
+                    });
+                }
+
+                showAnswerFeedback(result.is_correct, result.correct_answer);
+                goToNextQuestion();
+            })();
         }
     }, 1000);
 }
@@ -214,6 +248,8 @@ if (riddleButton) {
         } else {
             freeTextField.classList.add("border-red-400");
         }
+
+        showAnswerFeedback(result.is_correct, result.correct_answer);
 
         if (result.new_badges) {
             result.new_badges.forEach(function (badge) {

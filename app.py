@@ -229,6 +229,17 @@ def create_app(database_uri: str | None = None) -> Flask:
             return raw_value
         raise ValueError(f"Mode inconnu : {mode}")
 
+    def format_correct_answer(question) -> str:
+        """Formate la bonne réponse d'une question en texte lisible pour tous les modes"""
+        if question.mode == "qcm":
+            index = question.correct_answer["index"]
+            return question.payload["options"][index]
+        if question.mode == "vrai_faux":
+            return  "Vrai" if question.correct_answer["value"] else "Faux"
+        if question.mode == "chronologie":
+            return "→".join(question.correct_answer["order"])
+        return question.correct_answer.get("film") or question.correct_answer.get("title") or ""
+
     def scramble_title(title: str) -> str:
         """Mélange aléatoirement les lettres d'un titre en conservant les espaces à leur place"""
         letters = [char for char in title if char != " "]
@@ -807,20 +818,31 @@ def create_app(database_uri: str | None = None) -> Flask:
 
                 new_badges = [BADGES[code] for code in new_badge_codes]
 
+            correct_answer_text = None if is_correct else format_correct_answer(question)
+
             if question.mode == "chronologie":
                 correct_order = question.correct_answer["order"]
-                position_results = [
-                    player_answer[i] == correct_order[i]
-                    for i in range(len(correct_order))
-                ]
+                if is_timeout:
+                    position_results = [False] * len(correct_order)
+                else:
+                    position_results = [
+                        player_answer[i] == correct_order[i]
+                        for i in range(len(correct_order))
+                    ]
                 return {
                     "is_correct": is_correct,
                     "position_results": position_results,
                     "give_up": True,
                     "new_badges": new_badges,
+                    "correct_answer": correct_answer_text,
                 }
 
-            return {"is_correct": is_correct, "give_up": True, "new_badges": new_badges}
+            return {
+                "is_correct": is_correct,
+                "give_up": True,
+                "new_badges": new_badges,
+                "correct_answer": correct_answer_text,
+            }
 
         scrambled_title = None
         if question.mode == "film_melange":
