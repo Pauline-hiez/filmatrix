@@ -33,7 +33,7 @@
    border-cyan-400/30 sont manipulées par quiz.js : ne pas les renommer. #}
 {% macro answer_field(label="Valider") %}
 <input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
-       class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none">
+       class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
 <button type="button" data-answer=""
         class="answer-button rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300">
     {{ label }}
@@ -189,7 +189,7 @@
                 {# Ce bouton a son propre gestionnaire dans quiz.js (indices successifs),
                    il ne doit surtout pas porter la classe answer-button. #}
                 <input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
-                       class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none">
+                       class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
                 <button type="button" data-answer="" id="riddle-submit" data-hint-index="0"
                         class="rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40">
                     Valider

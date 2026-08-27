@@ -321,6 +321,19 @@ if (reportButton) {
     });
 }
 
+// Le champ doit être prêt dès l'affichage de la question : chaque question est
+// une nouvelle page, et sans cela il faut cliquer dedans à chaque fois alors que
+// le chrono tourne déjà.
+//
+// preventScroll est indispensable : sur les modes à média — affiche, casting,
+// blind test — le navigateur ferait défiler la page jusqu'au champ et masquerait
+// l'image ou le lecteur qu'il faut justement regarder ou écouter.
+const answerField = document.getElementById("free-text-answer");
+
+if (answerField) {
+    answerField.focus({ preventScroll: true });
+}
+
 document.addEventListener("keydown", function (event) {
     if (event.key !== "Enter") {
         return;
