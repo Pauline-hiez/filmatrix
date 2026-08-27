@@ -6,10 +6,7 @@
     "difficulty": "facile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
-      "hints": [
-        "Ce film commence par la lettre I."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"
     },
     "correct_answer": {
       "film": "Inception"
@@ -23,10 +20,7 @@
     "difficulty": "facile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg",
-      "hints": [
-        "Ce film commence par la lettre T."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
     },
     "correct_answer": {
       "film": "Titanic"
@@ -40,10 +34,7 @@
     "difficulty": "moyen",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg",
-      "hints": [
-        "Ce film commence par la lettre L."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
     },
     "correct_answer": {
       "film": "Le Parrain"
@@ -57,10 +48,7 @@
     "difficulty": "facile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg",
-      "hints": [
-        "Ce film commence par la lettre J."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
     },
     "correct_answer": {
       "film": "Jurassic Park"
@@ -74,10 +62,7 @@
     "difficulty": "facile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg",
-      "hints": [
-        "Ce film commence par la lettre M."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
     },
     "correct_answer": {
       "film": "Matrix"
@@ -91,10 +76,7 @@
     "difficulty": "moyen",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg",
-      "hints": [
-        "Ce film commence par la lettre F."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
     },
     "correct_answer": {
       "film": "Forrest Gump"
@@ -108,10 +90,7 @@
     "difficulty": "moyen",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg",
-      "hints": [
-        "Ce film commence par la lettre G."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
     },
     "correct_answer": {
       "film": "Gladiator"
@@ -125,10 +104,7 @@
     "difficulty": "moyen",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg",
-      "hints": [
-        "Ce film commence par la lettre I."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg"
     },
     "correct_answer": {
       "film": "Interstellar"
@@ -142,10 +118,7 @@
     "difficulty": "difficile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg",
-      "hints": [
-        "Ce film commence par la lettre P."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
     },
     "correct_answer": {
       "film": "Parasite"
@@ -159,10 +132,7 @@
     "difficulty": "facile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg",
-      "hints": [
-        "Ce film commence par la lettre L."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
     },
     "correct_answer": {
       "film": "Le Roi lion"
@@ -176,10 +146,7 @@
     "difficulty": "difficile",
     "prompt": "",
     "payload": {
-      "poster_url": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
-      "hints": [
-        "Ce film commence par la lettre P."
-      ]
+      "poster_url": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
     },
     "correct_answer": {
       "film": "Pulp Fiction"

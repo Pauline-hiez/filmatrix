@@ -183,7 +183,7 @@ def make_poster_riddle_question() -> Question:
         category="test",
         difficulty="facile",
         prompt="",
-        payload={"poster_url": "https://example.com/poster.jpg", "hints": ["Indice 1"]},
+        payload={"poster_url": "https://example.com/poster.jpg"},
         correct_answer={"film": "Inception"},
         )
 

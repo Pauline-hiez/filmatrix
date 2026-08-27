@@ -25,6 +25,7 @@ def import_questions() -> None:
                     id=data["id"],
                     mode=data["mode"],
                     category=data["category"],
+                    content_type=data.get("content_type", "film"),
                     difficulty=data["difficulty"],
                     prompt=data["prompt"],
                     payload=data["payload"],

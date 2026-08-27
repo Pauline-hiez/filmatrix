@@ -90,9 +90,8 @@ function buildPayloadAndAnswer(mode) {
     if (mode === "devinette_affiche") {
         const film = activeGroup.querySelector(".film-answer").value;
         const posterUrl = activeGroup.querySelector(".poster-url").value;
-        const hints = linesToArray(activeGroup.querySelector(".poster-hints").value);
         return {
-            payload: { poster_url: posterUrl, hints: hints },
+            payload: { poster_url: posterUrl },
             correct_answer: { film: film },
         };
     }

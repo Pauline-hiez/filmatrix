@@ -29,7 +29,7 @@
 {% set accent = accents.get(question.mode, "#22d3ee") %}
 
 {# Champ de réponse libre, partagé par les modes citation / emoji / film mélangé /
-   casting / blind test. Les classes bg-cyan-400, hover:bg-cyan-300 et
+   casting / blind test / devinette-affiche. Les classes bg-cyan-400, hover:bg-cyan-300 et
    border-cyan-400/30 sont manipulées par quiz.js : ne pas les renommer. #}
 {% macro answer_field(label="Valider") %}
 <input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
@@ -95,8 +95,8 @@
             </audio>
         {% endif %}
 
-        {# Indices progressifs des modes devinette. #}
-        {% if question.mode in ["devinette", "devinette_affiche"] %}
+        {# Indices progressifs, réservés au mode devinette. #}
+        {% if question.mode == "devinette" %}
             <div id="hints-container" class="mb-5 rounded-xl border border-slate-700/60 bg-slate-950/50 px-4 py-3">
                 <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Indice</p>
                 <p class="text-slate-300" id="current-hint">{{ question.payload.hints[0] }}</p>
@@ -149,7 +149,7 @@
 
                 <p id="chronology-summary" class="text-sm text-slate-400"></p>
 
-            {% elif question.mode in ["devinette", "devinette_affiche"] %}
+            {% elif question.mode == "devinette" %}
                 {# Ce bouton a son propre gestionnaire dans quiz.js (indices successifs),
                    il ne doit surtout pas porter la classe answer-button. #}
                 <input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
@@ -159,7 +159,7 @@
                     Valider
                 </button>
 
-            {% elif question.mode in ["citation", "emoji", "film_melange", "casting", "blindtest"] %}
+            {% elif question.mode in ["citation", "emoji", "film_melange", "casting", "blindtest", "devinette_affiche"] %}
                 {{ answer_field() }}
             {% endif %}
         </div>
