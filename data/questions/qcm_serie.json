@@ -38,5 +38,205 @@
             "index": 0
         },
         "requires_account": false
+    },
+    {
+        "id": 343,
+        "mode": "qcm",
+        "category": "acteur",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Qui incarne Sherlock Holmes dans la série Sherlock ?",
+        "payload": {
+            "options": [
+                "Benedict Cumberbatch",
+                "Martin Freeman",
+                "Tom Hiddleston",
+                "Eddie Redmayne"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 344,
+        "mode": "qcm",
+        "category": "realisateur",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Qui a créé la série Peaky Blinders ?",
+        "payload": {
+            "options": [
+                "Steven Knight",
+                "Guy Ritchie",
+                "Christopher Nolan",
+                "Matthew Vaughn"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 345,
+        "mode": "qcm",
+        "category": "acteur",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Qui interprète Eleven dans Stranger Things ?",
+        "payload": {
+            "options": [
+                "Millie Bobby Brown",
+                "Sadie Sink",
+                "Natalia Dyer",
+                "Maya Hawke"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 346,
+        "mode": "qcm",
+        "category": "personnage",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Comment s'appelle le personnage principal de la série Dexter ?",
+        "payload": {
+            "options": [
+                "Dexter Morgan",
+                "Debra Morgan",
+                "Harry Morgan",
+                "Angel Batista"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 347,
+        "mode": "qcm",
+        "category": "serie",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Dans quelle série trouve-t-on le personnage de Rue Bennett ?",
+        "payload": {
+            "options": [
+                "Euphoria",
+                "Skins",
+                "13 Reasons Why",
+                "Sex Education"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 348,
+        "mode": "qcm",
+        "category": "acteur",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Qui incarne le personnage de Thomas Shelby dans Peaky Blinders ?",
+        "payload": {
+            "options": [
+                "Cillian Murphy",
+                "Tom Hardy",
+                "Sam Claflin",
+                "Aidan Gillen"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 349,
+        "mode": "qcm",
+        "category": "serie",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Dans quelle série suit-on les aventures de Geralt de Riv ?",
+        "payload": {
+            "options": [
+                "The Witcher",
+                "Shadow and Bone",
+                "Vikings",
+                "His Dark Materials"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 350,
+        "mode": "qcm",
+        "category": "acteur",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "Qui interprète le personnage de Wednesday Addams dans la série Wednesday ?",
+        "payload": {
+            "options": [
+                "Jenna Ortega",
+                "Emma Myers",
+                "Anya Taylor-Joy",
+                "Sadie Sink"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 351,
+        "mode": "qcm",
+        "category": "serie",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Dans quelle série française retrouve-t-on le personnage d'Assane Diop ?",
+        "payload": {
+            "options": [
+                "Lupin",
+                "Engrenages",
+                "Dix pour cent",
+                "Le Bureau des Légendes"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
+    },
+    {
+        "id": 352,
+        "mode": "qcm",
+        "category": "realisateur",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "Qui est le créateur de la série The Haunting of Hill House ?",
+        "payload": {
+            "options": [
+                "Mike Flanagan",
+                "Jordan Peele",
+                "James Wan",
+                "Guillermo del Toro"
+            ]
+        },
+        "correct_answer": {
+            "index": 0
+        },
+        "requires_account": false
     }
 ]

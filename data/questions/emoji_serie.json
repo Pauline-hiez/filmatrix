@@ -24,5 +24,135 @@
             "film": "Breaking Bad"
         },
         "requires_account": false
+    },
+    {
+        "id": 313,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "👬☕🗽",
+        "payload": {},
+        "correct_answer": {
+            "film": "Friends"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 314,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "🧟‍♂️🔫🚶",
+        "payload": {},
+        "correct_answer": {
+            "film": "The Walking Dead"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 315,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "🏥🩺😂",
+        "payload": {},
+        "correct_answer": {
+            "film": "Scrubs"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 316,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "🕵️👽🛸",
+        "payload": {},
+        "correct_answer": {
+            "film": "X files"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 317,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "💰🎭🏦",
+        "payload": {},
+        "correct_answer": {
+            "film": "La Casa de Papel"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 318,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "👨‍🔬🧠💥😂",
+        "payload": {},
+        "correct_answer": {
+            "film": "The Big Bang Theory"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 319,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "👑🏰🗡️🧙",
+        "payload": {},
+        "correct_answer": {
+            "film": "The Witcher"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 320,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "🪓⚔️🧔‍♂️",
+        "payload": {},
+        "correct_answer": {
+            "film": "Vikings"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 321,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "👮‍♂️🔪🩸",
+        "payload": {},
+        "correct_answer": {
+            "film": "Dexter"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 322,
+        "mode": "emoji",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "👹🏙️😈🚓",
+        "payload": {},
+        "correct_answer": {
+            "film": "Lucifer"
+        },
+        "requires_account": false
     }
 ]

@@ -24,5 +24,135 @@
             "title": "Stranger Things"
         },
         "requires_account": false
+    },
+    {
+        "id": 333,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Breaking Bad"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 334,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Dexter"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 335,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "The Big Bang Theory"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 336,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Shameless"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 337,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "The Witcher"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 338,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Dr House"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 339,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "La Casa de Papel"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 340,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Lucifer"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 341,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "The X-Files"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 342,
+        "mode": "film_melange",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {},
+        "correct_answer": {
+            "title": "Vikings"
+        },
+        "requires_account": false
     }
 ]

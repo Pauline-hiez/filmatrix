@@ -24,5 +24,135 @@
             "film": "Friends"
         },
         "requires_account": false
+    },
+    {
+        "id": 323,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"Bazinga!\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "The Big Bang Theory"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 324,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"Je suis l'homme qui frappe à la porte.\" — De quelle série vient cette réplique culte ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Breaking Bad"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 325,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "\"Tu ne sais rien, Jon Snow.\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Game of Thrones"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 326,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"Mais on avait rompu !\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Friends"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 327,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"Béni soit le fruit.\" — De quelle série vient cette phrase culte ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "The handmaid's tale"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 328,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "\"Le passager noir.\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Dexter"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 329,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"Titre de ta sex-tape\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Brooklyn 99"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 330,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "\"Hallu, attends la suite...\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "How I Met Your Mother"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 331,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "\"Respecte mon autorité !\" — De quelle série vient cette réplique ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "South Park"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 332,
+        "mode": "citation",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "\"Doh !\" — De quelle série vient cette citation ?",
+        "payload": {},
+        "correct_answer": {
+            "film": "Les Simpson"
+        },
+        "requires_account": false
     }
 ]

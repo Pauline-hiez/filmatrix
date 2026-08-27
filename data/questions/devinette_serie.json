@@ -36,5 +36,195 @@
             "film": "Friends"
         },
         "requires_account": false
+    },
+    {
+        "id": 303,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série raconte l'histoire d'un homme qui mène une double vie.",
+                "Le personnage principal travaille pour la police de Miami comme expert en analyse de sang.",
+                "La nuit, il traque des criminels qui ont échappé à la justice."
+            ]
+        },
+        "correct_answer": {
+            "film": "Dexter"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 304,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série raconte les aventures d'un guerrier viking et de sa famille.",
+                "Le personnage principal s'appelle Ragnar Lothbrok.",
+                "La série met en scène des raids, des batailles et la conquête de nouveaux territoires."
+            ]
+        },
+        "correct_answer": {
+            "film": "Vikings"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 305,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série raconte l'histoire de survivants après une apocalypse.",
+                "Les personnages doivent affronter des morts-vivants appelés les Walkers.",
+                "Rick Grimes est l'un des personnages principaux au début de la série."
+            ]
+        },
+        "correct_answer": {
+            "film": "The Walking Dead"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 306,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série suit une adolescente au caractère très particulier.",
+                "Elle possède des pouvoirs psychiques et étudie dans une académie appelée Nevermore.",
+                "Le personnage principal est la fille de Morticia et Gomez Addams."
+            ]
+        },
+        "correct_answer": {
+            "film": "Wednesday"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 307,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série se déroule dans une entreprise de papier appelée Dunder Mifflin.",
+                "Elle suit le quotidien souvent absurde des employés d'une agence de Scranton.",
+                "Le patron de l'agence s'appelle Michael Scott."
+            ]
+        },
+        "correct_answer": {
+            "film": "The Office"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 308,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série suit un homme capable de combattre des créatures et des monstres.",
+                "Le personnage principal est un sorceleur nommé Geralt de Riv.",
+                "L'histoire se déroule dans un univers fantastique rempli de magie, de monstres et de royaumes."
+            ]
+        },
+        "correct_answer": {
+            "film": "The Witcher"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 309,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série commence après le crash d'un avion sur une île mystérieuse.",
+                "Les survivants découvrent rapidement que l'île cache de nombreux secrets.",
+                "Parmi les personnages principaux se trouvent Jack, Kate et Sawyer."
+            ]
+        },
+        "correct_answer": {
+            "film": "Lost"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 310,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série suit plusieurs familles vivant dans une banlieue américaine.",
+                "Les habitantes de cette rue cachent de nombreux secrets.",
+                "L'histoire commence après la mort mystérieuse de Mary Alice Young."
+            ]
+        },
+        "correct_answer": {
+            "film": "Desperate Housewives"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 311,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série suit un homme accusé à tort d'un crime qu'il n'a pas commis.",
+                "Il se fait volontairement incarcérer pour aider son frère à s'évader.",
+                "Le personnage principal s'appelle Michael Scofield."
+            ]
+        },
+        "correct_answer": {
+            "film": "Prison Break"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 312,
+        "mode": "devinette",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "hints": [
+                "Cette série suit un groupe de médecins et de chirurgiens dans un hôpital de Seattle.",
+                "L'un des personnages principaux s'appelle Meredith.",
+                "La série mélange médecine, relations amoureuses et drames personnels."
+            ]
+        },
+        "correct_answer": {
+            "film": "Grey's Anatomy"
+        },
+        "requires_account": false
     }
 ]
