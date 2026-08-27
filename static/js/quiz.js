@@ -282,3 +282,23 @@ if (reportButton) {
         }
     });
 }
+
+document.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter") {
+        return;
+    }
+
+    const freeTextField = document.getElementById("free-text-answer");
+    if (!freeTextField || document.activeElement !== freeTextField) {
+        return;
+    }
+
+    event.preventDefault();
+
+    const riddleButton = document.getElementById("riddle-submit");
+    const validateButton = riddleButton || document.querySelector(".answer-button");
+
+    if (validateButton && !validateButton.disabled) {
+        validateButton.click();
+    }
+});
