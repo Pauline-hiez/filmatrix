@@ -5,6 +5,8 @@ from src.friends import (
     accept_friend_request,
     decline_friend_request,
     get_friends_list,
+    get_friendship_between,
+    remove_friend,
     send_friend_request,
 )
 from src.models import Friendship, User
@@ -128,3 +130,63 @@ def test_decline_friend_request_removes_it(app):
 
         assert success is True
         assert Friendship.query.count() == 0
+
+def test_remove_friend_deletes_the_friendship(app):
+    """Retirer un ami doit supprimer la relation, dans les deux sens"""
+    from src.friends import get_friendship_between, remove_friend
+
+    with app.app_context():
+        requester = User(username="Demandeur", email="d@filmatrix.fr")
+        requester.set_password("Azerty1!")
+        receiver = User(username="Receveur", email="r@filmatrix.fr")
+        receiver.set_password("Azerty1!")
+        db.session.add_all([requester, receiver])
+        db.session.commit()
+
+        db.session.add(
+            Friendship(
+                requester_id=requester.id, receiver_id=receiver.id, status="accepted"
+            )
+        )
+        db.session.commit()
+
+        # Le receveur retire le demandeur : le sens de la demande ne compte pas.
+        assert remove_friend(receiver.id, requester.id) is True
+        db.session.commit()
+
+        assert get_friendship_between(requester.id, receiver.id) is None
+
+
+def test_remove_friend_ignores_a_pending_request(app):
+    """Une demande en attente n'est pas une amitié : elle se refuse, elle ne se retire pas"""
+    from src.friends import remove_friend
+
+    with app.app_context():
+        requester = User(username="Demandeur", email="d@filmatrix.fr")
+        requester.set_password("Azerty1!")
+        receiver = User(username="Receveur", email="r@filmatrix.fr")
+        receiver.set_password("Azerty1!")
+        db.session.add_all([requester, receiver])
+        db.session.commit()
+
+        db.session.add(
+            Friendship(requester_id=requester.id, receiver_id=receiver.id)
+        )
+        db.session.commit()
+
+        assert remove_friend(requester.id, receiver.id) is False
+
+
+def test_remove_friend_ignores_a_stranger(app):
+    """Retirer un joueur avec qui on n'a aucun lien ne doit rien faire"""
+    from src.friends import remove_friend
+
+    with app.app_context():
+        one = User(username="Un", email="un@filmatrix.fr")
+        one.set_password("Azerty1!")
+        two = User(username="Deux", email="deux@filmatrix.fr")
+        two.set_password("Azerty1!")
+        db.session.add_all([one, two])
+        db.session.commit()
+
+        assert remove_friend(one.id, two.id) is False

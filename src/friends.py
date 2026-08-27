@@ -54,6 +54,19 @@ def decline_friend_request(friendship_id: int, current_user_id: int) -> bool:
     db.session.delete(friendship)
     return True 
 
+def remove_friend(user_id: int, friend_id: int) -> bool:
+    """Supprime une amitié confirmée, renvoie False s'il n'y en a pas
+
+    Distinct de decline_friend_request, qui porte sur une demande en attente et
+    s'identifie par la relation ; ici on part des deux joueurs"""
+    friendship = get_friendship_between(user_id, friend_id)
+
+    if friendship is None or friendship.status != "accepted":
+        return False
+
+    db.session.delete(friendship)
+    return True
+
 def get_friends_list(user_id: int) -> list:
     """Renvoie la liste des amis confirmés d'un utilisateur"""
     accepted = Friendship.query.filter(

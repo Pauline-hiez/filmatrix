@@ -50,11 +50,22 @@
         {% if friends %}
         <div class="flex flex-col gap-2">
             {% for friend in friends %}
-            <a href="{{ url_for('public_profile', user_id=friend.id) }}"
-               class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 hover:border-cyan-400 rounded-lg px-4 py-3 transition">
-                <span>{{ friend.username }}</span>
-                <span class="text-slate-500 text-xs">Niveau {{ friend.total_xp // 100 + 1 }}</span>
-            </a>
+            {# Ligne cliquable + bouton : un <form> ne peut pas vivre dans un <a>,
+               le lien ne couvre donc que le pseudo et le niveau. #}
+            <div class="flex items-center gap-3 rounded-lg border border-cyan-400/30 bg-slate-900 px-4 py-3 transition hover:border-cyan-400">
+                <a href="{{ url_for('public_profile', user_id=friend.id) }}"
+                   class="flex min-w-0 flex-1 items-center justify-between gap-3">
+                    <span class="truncate">{{ friend.username }}</span>
+                    <span class="text-xs text-slate-500">Niveau {{ friend.level }}</span>
+                </a>
+
+                <form method="POST" action="{{ url_for('remove_friend_route', user_id=friend.id) }}"
+                      onsubmit="return confirm('Retirer {{ friend.username }} de tes amis ?');">
+                    <button type="submit" class="text-xs text-slate-500 transition hover:text-red-400">
+                        Retirer
+                    </button>
+                </form>
+            </div>
             {% endfor %}
         </div>
         {% else %}

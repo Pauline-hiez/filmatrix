@@ -185,3 +185,46 @@ def test_friends_sit_at_the_same_place_on_every_profile(client, app):
 
     theirs = client.get(f"/joueur/{other}").get_data(as_text=True)
     assert theirs.index(">Badges</h2>") < theirs.index("Amis de ") < theirs.index(">Activité par mode</h2>")
+
+
+def test_a_friend_profile_offers_to_remove_them(client, app):
+    """Le profil d'un ami doit proposer de le retirer"""
+    me = create_player(app, "Moi")
+    other = create_player(app, "Autre")
+    link(app, me, other, "accepted")
+    login(client, "Moi")
+
+    page = client.get(f"/joueur/{other}")
+
+    assert f'action="/amis/supprimer/{other}"'.encode() in page.data
+    assert b"Retirer" in page.data
+
+
+def test_a_stranger_profile_does_not_offer_to_remove_them(client, app):
+    """Sans lien d'amitié, il n'y a rien à retirer"""
+    create_player(app, "Moi")
+    other = create_player(app, "Autre")
+    login(client, "Moi")
+
+    page = client.get(f"/joueur/{other}")
+
+    assert f'action="/amis/supprimer/{other}"'.encode() not in page.data
+
+
+def test_removing_a_friend_updates_both_profiles(client, app):
+    """Après retrait, le profil repasse à l'état « pas encore amis » des deux côtés"""
+    me = create_player(app, "Moi")
+    other = create_player(app, "Autre")
+    link(app, me, other, "accepted")
+    login(client, "Moi")
+
+    client.post(f"/amis/supprimer/{other}")
+
+    page = client.get(f"/joueur/{other}")
+    assert "Ajouter un ami".encode() in page.data
+    assert "Vous êtes amis".encode() not in page.data
+
+    # Et l'ancien ami ne me voit plus dans ses amis non plus.
+    client.get("/deconnexion")
+    login(client, "Autre")
+    assert "Trouve des joueurs depuis le classement".encode() in client.get("/profil").data

@@ -50,6 +50,7 @@ from src.friends import (
         accept_friend_request,
         decline_friend_request,
         get_friends_list,
+    remove_friend,
         send_friend_request,
         get_friendship_between
     )
@@ -956,6 +957,20 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return redirect(request.referrer or url_for("friends_list"))
 
+    @app.route("/amis/supprimer/<int:user_id>", methods=["POST"])
+    @login_required
+    def remove_friend_route(user_id: int) -> str:
+        """Retire un joueur de la liste d'amis de l'utilisateur connecté"""
+        former_friend = User.query.get_or_404(user_id)
+
+        if remove_friend(current_user.id, former_friend.id):
+            db.session.commit()
+            flash(f"{former_friend.username} ne fait plus partie de tes amis.")
+        else:
+            flash("Impossible de retirer cet ami.")
+
+        return redirect(request.referrer or url_for("friends_list"))
+
     @app.route("/amis/accepter/<int:friendship_id>", methods=["POST"])
     @login_required
     def accept_friend_request_route(friendship_id: int) -> str:
@@ -997,7 +1012,7 @@ def create_app(database_uri: str | None = None) -> Flask:
     @login_required
     def friends_list() -> str:
         """Affiche la liste d'amis, les demandes reçues et envoyées"""
-        friends = get_friends_list(current_user.id)
+        friends = friend_cards(get_friends_list(current_user.id))
 
         received_requests = [
                 friendship

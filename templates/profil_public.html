@@ -114,6 +114,15 @@
                 🎮 Inviter à jouer
             </button>
         </form>
+
+        {# Action destructrice : on demande confirmation, comme dans l'admin. #}
+        <form method="POST" action="{{ url_for('remove_friend_route', user_id=viewed_user.id) }}"
+              onsubmit="return confirm('Retirer {{ viewed_user.username }} de tes amis ?');">
+            <button type="submit"
+                    class="rounded-lg border border-slate-700 px-4 py-2.5 text-sm font-bold text-slate-400 transition hover:border-red-400 hover:text-red-400">
+                Retirer
+            </button>
+        </form>
         {% endif %}
     </section>
 
