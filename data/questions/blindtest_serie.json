@@ -1,0 +1,17 @@
+[
+    {
+        "id": 315,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b9/9f/25/b99f25b7-6a91-bafe-a7c2-3713280c76ec/mzaf_1253886062618074322.plus.aac.p.m4a"
+        },
+        "correct_answer": {
+            "film": "Game of Thrones"
+        },
+        "requires_account": false
+    }
+]

@@ -1,0 +1,21 @@
+[
+    {
+        "id": 314,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/npIIZJGSrcJIJ6yHdmbqO6Jzo5I.jpg",
+                "https://image.tmdb.org/t/p/w500/8Ac9uuoYwZoYVAIJfRLzzLsGGJn.jpg",
+                "https://image.tmdb.org/t/p/w500/adppyeu1a4REN3khtgmXusrapFi.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Breaking Bad"
+        },
+        "requires_account": false
+    }
+]

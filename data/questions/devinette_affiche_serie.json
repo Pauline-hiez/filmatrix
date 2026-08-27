@@ -1,0 +1,17 @@
+[
+    {
+        "id": 313,
+        "mode": "devinette_affiche",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "poster_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+        },
+        "correct_answer": {
+            "film": "Stranger Things"
+        },
+        "requires_account": false
+    }
+]
