@@ -194,9 +194,9 @@ if (riddleButton) {
             const currentHint = document.getElementById("current-hint");
             currentHint.textContent = result.next_hint;
             riddleButton.dataset.hintIndex = parseInt(hintIndex) + 1;
-            freeTextField.value = "";
             freeTextField.classList.remove("border-emerald-400", "border-red-400");
             freeTextField.classList.add("border-red-400");
+            freeTextField.focus();
 
             remainingTime = TOTAL_DURATION;
             timeBar.style.width = "100%";
