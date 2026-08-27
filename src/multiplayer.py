@@ -9,12 +9,41 @@ from src.models import GameSession, GameSessionQuestion, Question
 INVITATION_DURATION_MINUTES = 15
 QUESTIONS_PER_GAME = 5
 
+# Nombre de propositions offertes par question en duel.
+CHOICES_PER_QUESTION = 4
+
+# Modes qui composent eux-mêmes leurs réponses : le QCM a ses options en base,
+# le vrai/faux ses deux boutons, et la chronologie attend un ordre, pas un titre.
+MODES_WITHOUT_CHOICES = ("qcm", "vrai_faux", "chronologie")
+
+
+def offers_real_choices(mode: str) -> bool:
+    """Vérifie qu'un mode a de quoi composer un vrai choix multiple
+
+    Les modes à titre unique proposent le bon titre au milieu de leurres tirés
+    des autres questions. Faute de titres distincts en nombre suffisant, le
+    joueur se retrouverait devant une seule proposition — c'est-à-dire devant
+    la réponse. Mieux vaut refuser le duel que le fausser."""
+    if mode in MODES_WITHOUT_CHOICES:
+        return True
+
+    titles = {
+        title
+        for title in (answer_title(question) for question in Question.query.filter_by(mode=mode))
+        if title is not None
+    }
+
+    return len(titles) >= CHOICES_PER_QUESTION
+
 
 def create_game_invitation(host, guest, mode: str) -> GameSession | None:
-    """Crée une invitation de partie. Renvoie None si pas assez de questions disponibles."""
+    """Crée une invitation de partie. Renvoie None si le mode ne peut pas être joué en duel."""
     available_questions = Question.query.filter_by(mode=mode).all()
 
     if len(available_questions) < QUESTIONS_PER_GAME:
+        return None
+
+    if not offers_real_choices(mode):
         return None
 
     selected_questions = random.sample(available_questions, QUESTIONS_PER_GAME)
@@ -52,3 +81,63 @@ def get_ordered_questions(game_session: GameSession) -> list[Question]:
         .all()
     )
     return [sq.question for sq in session_questions]
+
+def answer_title(question: Question) -> str | None:
+    """Retourne le titre attendu par une question, ou None si elle n'en a pas
+
+    Les modes à réponse libre rangent ce titre sous "film", sauf le film mélangé
+    qui parle de "title". La chronologie, elle, attend un ordre : elle n'a aucun
+    titre unique à proposer et n'entre donc pas dans ce cadre."""
+    return question.correct_answer.get("film") or question.correct_answer.get("title")
+
+
+def build_choices(question: Question, seed, count: int = CHOICES_PER_QUESTION) -> list[str]:
+    """Propose le bon titre au milieu de leurres, pour une question de duel
+
+    En duel le joueur n'a droit qu'à un seul essai : le faire écrire lui coûterait
+    le point sur une faute de frappe ou une variante de titre, et la manche
+    départagerait la vitesse de frappe plutôt que la culture cinéma.
+
+    Les leurres sortent du même mode et du même type de contenu : une série isolée
+    au milieu de trois films se repérerait sans rien connaître. Le tirage est
+    reproductible, pour que les deux adversaires voient les mêmes propositions
+    dans le même ordre."""
+    correct = answer_title(question)
+
+    if correct is None:
+        return []
+
+    def titles_of(query):
+        return {
+            title
+            for title in (answer_title(other) for other in query.all())
+            if title is not None and title != correct
+        }
+
+    decoys = titles_of(
+        Question.query.filter(
+            Question.mode == question.mode,
+            Question.content_type == question.content_type,
+            Question.id != question.id,
+        )
+    )
+
+    # Trop peu de titres du même type : mieux vaut élargir au mode entier que
+    # de servir un choix à deux propositions.
+    if len(decoys) < count - 1:
+        decoys |= titles_of(
+            Question.query.filter(
+                Question.mode == question.mode,
+                Question.id != question.id,
+            )
+        )
+
+    picker = random.Random(seed)
+    # sorted() avant le tirage : l'ordre d'un ensemble varie d'un processus à
+    # l'autre, et les deux joueurs sont servis par deux requêtes distinctes.
+    chosen = picker.sample(sorted(decoys), min(count - 1, len(decoys)))
+
+    choices = [correct] + chosen
+    picker.shuffle(choices)
+
+    return choices

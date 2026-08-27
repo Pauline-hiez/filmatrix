@@ -4,7 +4,7 @@ from flask_login import current_user
 from flask_socketio import join_room, emit
 
 from src.database import db
-from src.engine import check_answer
+from src.engine import check_answer, convert_answer
 from src.models import GameAnswer, GameSession
 from src.multiplayer import get_ordered_questions
 
@@ -54,13 +54,14 @@ def register_socket_events(socketio):
         questions = get_ordered_questions(game_session)
         current_question = questions[game_session.current_question_index]
 
-        is_correct = False
-        if isinstance(raw_answer, str) and current_question.mode == "qcm":
-            is_correct = check_answer(current_question, int(raw_answer))
-        elif current_question.mode == "vrai_faux":
-            is_correct = check_answer(current_question, raw_answer == "true")
-        else:
-            is_correct = check_answer(current_question, raw_answer)
+        # Une réponse mal formée ne doit jamais remonter en exception : elle
+        # laisserait la manche ouverte et bloquerait les deux joueurs. On la
+        # compte comme fausse, la partie continue.
+        try:
+            player_answer = convert_answer(current_question.mode, raw_answer)
+            is_correct = check_answer(current_question, player_answer)
+        except (ValueError, AttributeError, TypeError):
+            is_correct = False
 
         game_answer = GameAnswer(
             game_session_id=game_session.id,

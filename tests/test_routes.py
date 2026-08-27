@@ -1,7 +1,8 @@
+import html
 import re
 
 from src.database import db
-from src.models import Question, User, Attempt
+from src.models import Question, User, Attempt, Friendship
 
 """Test des routes Flask principales"""
 
@@ -465,3 +466,73 @@ def test_a_shuffled_option_is_still_judged_correctly(client, app):
 
     assert client.post("/quiz/qcm/1", data={"answer": "0"}).get_json()["is_correct"] is True
     assert client.post("/quiz/qcm/1", data={"answer": "2"}).get_json()["is_correct"] is False
+
+
+def test_multiplayer_page_is_open_to_a_visitor(client, app):
+    """Un visiteur doit pouvoir découvrir le duel avant même d'avoir un compte"""
+    response = client.get("/multijoueur")
+
+    assert response.status_code == 200
+    assert "Défie tes amis".encode() in response.data
+    assert "Créer un compte".encode() in response.data
+
+
+def test_the_home_page_advertises_the_multiplayer(client, app):
+    """Le multijoueur ne doit plus se mériter : l'accueil doit y mener"""
+    create_test_question(app)
+
+    response = client.get("/").get_data(as_text=True)
+
+    assert 'href="/multijoueur"' in response
+    assert "Défie un ami en temps réel" in response
+
+
+def test_the_navbar_leads_to_the_multiplayer(client, app):
+    """Le lien doit suivre le joueur de page en page, pas seulement sur l'accueil"""
+    for url in ["/", "/modes", "/classement"]:
+        assert 'href="/multijoueur"' in client.get(url).get_data(as_text=True)
+
+
+def test_every_mode_explains_its_rule(client, app):
+    """Chaque mode doit dire ce qu'on attend du joueur, page modes et préparation"""
+    from app import GAME_MODES
+
+    create_test_question(app)
+    modes_page = html.unescape(client.get("/modes").get_data(as_text=True))
+
+    for mode in GAME_MODES:
+        setup_page = html.unescape(client.get(f"/quiz/{mode['slug']}").get_data(as_text=True))
+
+        assert mode["how"] in modes_page, f"règle absente de la page des modes : {mode['slug']}"
+        assert mode["how"] in setup_page, f"règle absente de la préparation : {mode['slug']}"
+
+
+def test_the_modes_page_agrees_with_the_setup_screen(client, app):
+    """Les deux pages lisent la même source : elles ne peuvent plus diverger"""
+    from app import GAME_MODES
+
+    modes_page = client.get("/modes").get_data(as_text=True)
+
+    for mode in GAME_MODES:
+        assert mode["name"] in modes_page
+
+
+def test_multiplayer_page_offers_a_duel_to_a_player_with_friends(client, app):
+    """Un joueur qui a des amis doit pouvoir les défier depuis cette page"""
+    create_user_and_login(client, app)
+
+    with app.app_context():
+        friend = User(username="Adversaire", email="adversaire@filmatrix.fr")
+        friend.set_password("Azerty1!")
+        db.session.add(friend)
+        db.session.commit()
+        me = User.query.filter_by(username="Joueur").first()
+        db.session.add(Friendship(requester_id=me.id, receiver_id=friend.id, status="accepted"))
+        db.session.commit()
+        friend_id = friend.id
+
+    page = client.get("/multijoueur").get_data(as_text=True)
+
+    assert "Adversaire" in page
+    assert f'action="/multijoueur/inviter/{friend_id}"' in page
+    assert "Défier".encode().decode() in page

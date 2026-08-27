@@ -21,7 +21,7 @@ from flask_migrate import Migrate
 from sqlalchemy import func
 
 from src.database import db
-from src.engine import check_answer
+from src.engine import check_answer, convert_answer, scramble_title
 from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
 from src.score import (
     QUESTIONS_PER_RUN,
@@ -64,7 +64,14 @@ from src.friends import (
 from src.notifications import create_notification, get_unread_count, mark_all_as_read
 from src.avatars import AVATARS
 from flask_socketio import SocketIO
-from src.multiplayer import create_game_invitation, get_ordered_questions, is_invitation_expired
+from src.multiplayer import (
+    INVITATION_DURATION_MINUTES,
+    QUESTIONS_PER_GAME,
+    build_choices,
+    create_game_invitation,
+    get_ordered_questions,
+    is_invitation_expired,
+)
 from src.socket_events import register_socket_events
 
 load_dotenv()
@@ -73,11 +80,17 @@ socketio = SocketIO()
 
 # Description des modes de jeu, utilisée pour construire la grille de la page
 # d'accueil. `accent` sert de couleur d'accent CSS pour la carte du mode.
+# Métadonnées d'affichage des modes solo : nom, pitch et règle du jeu.
+# Cette liste est la seule source : l'accueil, la page des modes et l'écran de
+# préparation la lisent tous, pour ne pas décrire le même jeu de trois façons.
+# "how" répond à la question que se pose un joueur qui découvre le mode : que
+# vais-je voir à l'écran, et qu'attend-on de moi ?
 GAME_MODES = [
     {
         "slug": "qcm",
         "name": "Quiz",
         "description": "Réponds à des questions sur tes films préférés.",
+        "how": "Une question, quatre propositions. Une seule est la bonne, et leur ordre change à chaque partie.",
         "icon": "?",
         "accent": "#22d3ee",
     },
@@ -85,6 +98,7 @@ GAME_MODES = [
         "slug": "blindtest",
         "name": "Blind Test",
         "description": "Reconnais les musiques de films cultes.",
+        "how": "Un extrait de bande originale se lance. Tape le titre du film ou de la série qu'il accompagne.",
         "icon": "♪",
         "accent": "#60a5fa",
     },
@@ -92,6 +106,7 @@ GAME_MODES = [
         "slug": "devinette_affiche",
         "name": "Devine le film",
         "description": "Une image, un film à trouver !",
+        "how": "Une image tirée du tournage s'affiche, sans le titre. À toi de reconnaître l'œuvre et de l'écrire.",
         "icon": "▶",
         "accent": "#34d399",
     },
@@ -99,6 +114,7 @@ GAME_MODES = [
         "slug": "citation",
         "name": "Citations",
         "description": "Retrouve le film grâce à une réplique.",
+        "how": "Une réplique restée célèbre s'affiche. Retrouve l'œuvre d'où elle sort.",
         "icon": "❝",
         "accent": "#fbbf24",
     },
@@ -106,6 +122,7 @@ GAME_MODES = [
         "slug": "casting",
         "name": "Acteurs",
         "description": "Reconnais les acteurs célèbres du cinéma.",
+        "how": "Trois visages du casting principal, sans leur nom. Trouve ce qu'ils ont tourné ensemble.",
         "icon": "★",
         "accent": "#f472b6",
     },
@@ -113,6 +130,7 @@ GAME_MODES = [
         "slug": "emoji",
         "name": "Emoji Quiz",
         "description": "Devine le film à partir des emojis.",
+        "how": "Une poignée d'emojis raconte l'intrigue à leur manière. Décode-les et donne le titre.",
         "icon": "☺",
         "accent": "#c084fc",
     },
@@ -120,6 +138,7 @@ GAME_MODES = [
         "slug": "film_melange",
         "name": "Film mélangé",
         "description": "Retrouve le titre à partir des lettres mélangées.",
+        "how": "Les lettres du titre sont dans le désordre, les espaces à leur place. Remets-les dans l'ordre.",
         "icon": "⤭",
         "accent": "#a78bfa",
     },
@@ -127,6 +146,7 @@ GAME_MODES = [
         "slug": "chronologie",
         "name": "Chronologie",
         "description": "Remets les films dans leur ordre de sortie.",
+        "how": "Plusieurs titres s'affichent. Clique dessus du plus ancien au plus récent, puis valide.",
         "icon": "⏱",
         "accent": "#38bdf8",
     },
@@ -134,6 +154,7 @@ GAME_MODES = [
         "slug": "devinette",
         "name": "Devinette",
         "description": "Devine le film grâce à des indices progressifs.",
+        "how": "Un premier indice, puis un autre à chaque erreur. Plus tu trouves tôt, plus c'est fort.",
         "icon": "◎",
         "accent": "#fb923c",
     },
@@ -141,10 +162,16 @@ GAME_MODES = [
         "slug": "vrai_faux",
         "name": "Vrai / Faux",
         "description": "Vraies ou fausses, à toi de trancher.",
+        "how": "Une affirmation sur le cinéma s'affiche. Un seul geste : vrai, ou faux.",
         "icon": "±",
         "accent": "#2dd4bf",
     },
 ]
+
+# Les modes ouverts au multijoueur. Ils le sont tous, mais la liste reste
+# explicite : un mode dont l'écran de duel ne saurait pas afficher le média ou
+# recueillir la réponse doit pouvoir en être retiré sans toucher au reste.
+MULTIPLAYER_MODES = [entry["slug"] for entry in GAME_MODES]
 
 
 def calculate_level(total_xp: int) -> dict:
@@ -329,30 +356,6 @@ def create_app(database_uri: str | None = None) -> Flask:
             return {"unread_notifications_count": get_unread_count(current_user.id)}
         return {"unread_notifications_count": 0}
 
-    def convert_answer(mode: str, raw_value: str):
-        """Convertit la valeur texte du formulaire dans le type attendu par check_answer"""
-        if mode == "qcm":
-            return int(raw_value)
-        if mode == "vrai_faux":
-            return raw_value == "true"
-        if mode == "citation":
-            return raw_value
-        if mode == "emoji":
-            return raw_value
-        if mode == "film_melange":
-            return raw_value
-        if mode == "chronologie":
-            return raw_value.split("|")
-        if mode == "devinette":
-            return raw_value
-        if mode == "devinette_affiche":
-            return raw_value
-        if mode == "casting":
-            return raw_value
-        if mode == "blindtest":
-            return raw_value
-        raise ValueError(f"Mode inconnu : {mode}")
-
     def format_correct_answer(question) -> str:
         """Formate la bonne réponse d'une question en texte lisible pour tous les modes"""
         if question.mode == "qcm":
@@ -363,22 +366,6 @@ def create_app(database_uri: str | None = None) -> Flask:
         if question.mode == "chronologie":
             return "→".join(question.correct_answer["order"])
         return question.correct_answer.get("film") or question.correct_answer.get("title") or ""
-
-    def scramble_title(title: str) -> str:
-        """Mélange aléatoirement les lettres d'un titre en conservant les espaces à leur place"""
-        letters = [char for char in title if char != " "]
-        random.shuffle(letters)
-
-        scrambled = []
-        letter_index = 0
-        for char in title:
-            if char == " ":
-                scrambled.append(" ")
-            else:
-                scrambled.append(letters[letter_index])
-                letter_index += 1
-
-        return "".join(scrambled)
 
     @app.route("/")
     def home() -> str:
@@ -845,7 +832,12 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         Le sélecteur films / séries ne filtre pas la grille (tous les modes
         restent jouables) : il suit le joueur jusqu'à l'écran de préparation."""
-        return render_template("modes.html", content_type=resolve_content_type(request.args.get("content_type")))
+        return render_template(
+            "modes.html",
+            modes=GAME_MODES,
+            content_type=resolve_content_type(request.args.get("content_type")),
+            questions_per_run=QUESTIONS_PER_RUN,
+        )
 
     @app.route("/boutique")
     @login_required
@@ -1179,6 +1171,46 @@ def create_app(database_uri: str | None = None) -> Flask:
                 sent_requests=sent_requests,
             )
 
+    @app.route("/multijoueur")
+    def multiplayer_home() -> str:
+        """Présente le mode multijoueur et permet de lancer un défi
+
+        Le multijoueur n'avait aucune porte d'entrée : il fallait passer par la
+        fiche publique d'un ami pour découvrir qu'il existait. Cette page lui
+        donne une adresse, explique la règle, et met le défi à un clic."""
+        multiplayer_modes = [
+            entry for entry in GAME_MODES if entry["slug"] in MULTIPLAYER_MODES
+        ]
+
+        if not current_user.is_authenticated:
+            return render_template(
+                "multijoueur.html",
+                modes=multiplayer_modes,
+                friends=[],
+                pending_invitations=[],
+                questions_per_game=QUESTIONS_PER_GAME,
+                invitation_minutes=INVITATION_DURATION_MINUTES,
+            )
+
+        # Invitations reçues et encore valides : sans elles, le joueur ne peut
+        # les retrouver que dans la cloche de notifications.
+        pending_invitations = [
+            game
+            for game in GameSession.query.filter_by(
+                guest_id=current_user.id, status="invited"
+            ).all()
+            if not is_invitation_expired(game)
+        ]
+
+        return render_template(
+            "multijoueur.html",
+            modes=multiplayer_modes,
+            friends=friend_cards(get_friends_list(current_user.id)),
+            pending_invitations=pending_invitations,
+            questions_per_game=QUESTIONS_PER_GAME,
+            invitation_minutes=INVITATION_DURATION_MINUTES,
+        )
+
     @app.route("/multijoueur/inviter/<int:user_id>", methods=["POST"])
     @login_required
     def invite_to_game(user_id: int) -> str:
@@ -1194,7 +1226,7 @@ def create_app(database_uri: str | None = None) -> Flask:
         game_session = create_game_invitation(current_user, guest, mode)
 
         if game_session is None:
-            flash("Pas assez de questions disponibles pour ce mode.")
+            flash("Ce mode n'a pas assez de questions pour un duel.")
             return redirect(url_for("friends_list"))
 
         db.session.commit()
@@ -1295,12 +1327,43 @@ def create_app(database_uri: str | None = None) -> Flask:
         current_question = questions[game_session.current_question_index]
         opponent = game_session.guest if current_user.id == game_session.host_id else game_session.host
 
+        # Le mélange doit tomber pareil chez les deux adversaires, sinon l'un
+        # des deux hérite d'un titre plus lisible que l'autre. La graine est
+        # propre à la partie et à la question : elle change d'un duel à l'autre.
+        # Graine sous forme de texte : seeder sur un tuple passe par le hachage,
+        # déprécié depuis Python 3.9, et rien ne garantit le même résultat d'un
+        # processus à l'autre. Une chaîne, elle, donne toujours la même suite.
+        shared_seed = f"{game_session.id}-{current_question.id}"
+
+        scrambled_title = None
+        if current_question.mode == "film_melange":
+            scrambled_title = scramble_title(
+                current_question.correct_answer["title"], seed=shared_seed
+            )
+
+        # Même exigence pour l'ordre des propositions d'un QCM : mêmes cases,
+        # dans le même ordre, pour que la course reste à la loyale.
+        options = None
+        if current_question.mode == "qcm":
+            options = list(enumerate(current_question.payload["options"]))
+            random.Random(shared_seed).shuffle(options)
+
+        # En solo le joueur écrit le titre ; en duel il le choisit. Il n'a droit
+        # qu'à un essai, et une faute de frappe lui coûterait le point sans
+        # recours. Le QCM a déjà ses options, la chronologie attend un ordre.
+        choices = None
+        if current_question.mode not in ("qcm", "vrai_faux", "chronologie"):
+            choices = build_choices(current_question, seed=shared_seed)
+
         return render_template(
                 "multiplayer_game.html",
                 game_session=game_session,
                 question=current_question,
                 opponent=opponent,
-                total_questions=len(questions)
+                total_questions=len(questions),
+                scrambled_title=scrambled_title,
+                options=options,
+                choices=choices,
             )
 
     @app.route("/multijoueur/<int:game_session_id>/statut")
@@ -1415,6 +1478,9 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return render_template(
                 "profil_public.html",
+                multiplayer_modes=[
+                    entry for entry in GAME_MODES if entry["slug"] in MULTIPLAYER_MODES
+                ],
                 viewed_user=viewed_user,
                 equipped_title_name=equipped_title_name,
                 total_count=total_count,

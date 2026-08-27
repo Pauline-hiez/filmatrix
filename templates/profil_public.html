@@ -102,12 +102,13 @@
 
         <form method="POST" action="{{ url_for('invite_to_game', user_id=viewed_user.id) }}"
               class="flex items-center gap-2">
+            {# La liste des modes vient de la route : elle ne peut plus se
+               désynchroniser de ce que le duel sait réellement jouer. #}
             <select name="mode"
                     class="rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                <option value="qcm">Quiz</option>
-                <option value="vrai_faux">Vrai / Faux</option>
-                <option value="citation">Citations</option>
-                <option value="emoji">Emoji Quiz</option>
+                {% for mode in multiplayer_modes %}
+                <option value="{{ mode.slug }}">{{ mode.name }}</option>
+                {% endfor %}
             </select>
             <button type="submit"
                     class="shrink-0 rounded-lg bg-cyan-400 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">

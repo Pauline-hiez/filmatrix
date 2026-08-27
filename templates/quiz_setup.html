@@ -19,6 +19,9 @@
             <div class="min-w-0">
                 <h1 class="text-2xl font-extrabold tracking-tight text-slate-100">{{ mode.name }}</h1>
                 <p class="mt-1 text-sm text-slate-400">{{ mode.description }}</p>
+                {# Dernier écran avant que le chrono ne parte : c'est ici que la
+                   règle sert, pas une fois la première question affichée. #}
+                <p class="mt-2 text-sm leading-relaxed text-slate-300">{{ mode.how }}</p>
                 {# Une partie fait un nombre fixe de questions (cf. src/score.py) :
                    on annonce d'abord ce que le joueur va jouer, le stock total
                    ne venant qu'en second. #}

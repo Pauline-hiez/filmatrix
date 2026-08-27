@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block content %}
+{# Porte d'entrée du multijoueur. Le mode existait déjà, mais n'était atteignable
+   que depuis la fiche publique d'un ami : un joueur qui ne fouillait pas ignorait
+   jusqu'à son existence. #}
+<div class="mx-auto flex max-w-4xl flex-col gap-6" style="--accent: #f472b6">
+
+    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-10 sm:px-10">
+        <span class="accent-icon mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full border text-2xl">
+            ⚔
+        </span>
+
+        <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Défie tes amis en
+            <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">temps réel</span>
+        </h1>
+
+        <p class="mt-3 max-w-xl text-slate-300">
+            Le duel est une course à la vitesse : vous recevez la même question au
+            même instant, et le premier à répondre juste rafle le point.
+        </p>
+
+        {# Les trois étapes répondent à la question que se pose un joueur qui n'a
+           jamais vu ce mode : concrètement, il se passe quoi si je clique ? #}
+        <ol class="mt-8 grid gap-4 sm:grid-cols-3">
+            {% set steps = [
+                ("1", "Invite un ami", "Choisis un mode et envoie ton défi. Ton adversaire reçoit une notification."),
+                ("2", "Il accepte", "Dès qu'il rejoint la salle d'attente, la partie démarre pour vous deux."),
+                ("3", "Le plus rapide gagne", "Sur chaque question, le premier à répondre juste marque le point.")
+            ] %}
+            {% for number, title, detail in steps %}
+            <li class="rounded-xl border border-slate-800 bg-slate-950/50 p-4">
+                <span class="accent-icon flex h-8 w-8 items-center justify-center rounded-full border text-sm font-bold">
+                    {{ number }}
+                </span>
+                <p class="mt-3 font-bold text-slate-100">{{ title }}</p>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400">{{ detail }}</p>
+            </li>
+            {% endfor %}
+        </ol>
+
+        <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-3 text-sm">
+            <div>
+                <dt class="text-slate-500">Questions par duel</dt>
+                <dd class="text-xl font-bold text-slate-100">{{ questions_per_game }}</dd>
+            </div>
+            <div>
+                <dt class="text-slate-500">Joueurs</dt>
+                <dd class="text-xl font-bold text-slate-100">2</dd>
+            </div>
+            <div>
+                <dt class="text-slate-500">Invitation valable</dt>
+                <dd class="text-xl font-bold text-slate-100">{{ invitation_minutes }} min</dd>
+            </div>
+        </dl>
+    </section>
+
+    {# Invitations en attente : sans ce rappel, elles ne vivent que dans la cloche
+       de notifications et se perdent dès qu'on l'a refermée. #}
+    {% if pending_invitations %}
+    <section class="rounded-2xl border border-cyan-400/40 bg-cyan-400/5 p-5 sm:p-6">
+        <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-cyan-400">
+            On t'attend
+        </h2>
+        <div class="flex flex-col gap-2">
+            {% for invitation in pending_invitations %}
+            <a href="{{ url_for('game_lobby', game_session_id=invitation.id) }}"
+               class="flex items-center justify-between gap-3 rounded-xl border border-cyan-400/30 bg-slate-950/60 px-4 py-3 transition hover:border-cyan-400">
+                <span class="min-w-0 truncate text-sm text-slate-200">
+                    <span class="font-bold text-cyan-300">{{ invitation.host.username }}</span>
+                    t'invite à un duel
+                </span>
+                <span class="shrink-0 text-xs font-bold text-cyan-400">Rejoindre →</span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <h2 class="mb-1 text-sm font-bold uppercase tracking-widest text-cyan-400">Lance un défi</h2>
+
+        {% if not current_user.is_authenticated %}
+        <p class="mt-3 text-sm text-slate-300">
+            Le duel se joue entre amis : il te faut un compte pour en ajouter et
+            être défié en retour.
+        </p>
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+            <a href="{{ url_for('register') }}"
+               class="rounded-lg bg-cyan-400 px-6 py-3 text-center font-bold text-slate-950 transition hover:bg-cyan-300">
+                Créer un compte
+            </a>
+            <a href="{{ url_for('login') }}"
+               class="rounded-lg border border-slate-600 px-6 py-3 text-center font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                J'ai déjà un compte
+            </a>
+        </div>
+
+        {% elif not friends %}
+        <p class="mt-3 text-sm text-slate-300">
+            Tu n'as encore personne à défier. Ajoute des joueurs à ta liste d'amis,
+            puis reviens leur lancer un duel.
+        </p>
+        <a href="{{ url_for('leaderboard') }}"
+           class="mt-5 inline-block rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 transition hover:bg-cyan-300">
+            Trouver des joueurs
+        </a>
+
+        {% else %}
+        <p class="mb-5 text-sm text-slate-400">
+            Choisis un mode, puis l'ami que tu veux affronter.
+        </p>
+
+        <div class="flex flex-col gap-2">
+            {% for friend in friends %}
+            <form method="POST" action="{{ url_for('invite_to_game', user_id=friend.id) }}"
+                  class="flex flex-wrap items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-900 text-lg">
+                    {{ friend.avatar }}
+                </span>
+                <span class="min-w-0 flex-1">
+                    <span class="block truncate text-sm font-bold text-slate-100">{{ friend.username }}</span>
+                    <span class="block text-xs text-slate-500">Niveau {{ friend.level }}</span>
+                </span>
+                <select name="mode"
+                        class="rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    {% for mode in modes %}
+                    <option value="{{ mode.slug }}">{{ mode.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit"
+                        class="shrink-0 rounded-lg bg-cyan-400 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
+                    Défier
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <h2 class="mb-1 text-sm font-bold uppercase tracking-widest text-cyan-400">
+            Modes jouables en duel
+        </h2>
+        <p class="mb-5 text-sm text-slate-400">
+            Le duel se joue à la vitesse : seuls les modes à réponse immédiate y
+            sont proposés. Les autres restent jouables en solo.
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+            {% for mode in modes %}
+            <div style="--accent: {{ mode.accent }}"
+                 class="flex items-start gap-4 rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+                <span class="accent-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-lg">
+                    {{ mode.icon }}
+                </span>
+                <div class="min-w-0">
+                    <p class="font-bold text-slate-100">{{ mode.name }}</p>
+                    <p class="mt-1 text-xs leading-relaxed text-slate-400">{{ mode.how }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}

@@ -46,16 +46,30 @@ function submitGameAnswer(answer) {
     }
 }
 
-document.querySelectorAll(".game-answer-button:not(#game-free-text-submit)").forEach(function (button) {
+document.querySelectorAll(".game-answer-button").forEach(function (button) {
     button.addEventListener("click", function () {
         submitGameAnswer(button.dataset.answer);
     });
 });
 
-const freeTextSubmit = document.getElementById("game-free-text-submit");
-if (freeTextSubmit) {
-    freeTextSubmit.addEventListener("click", function () {
-        const freeTextField = document.getElementById("game-free-text-answer");
-        submitGameAnswer(freeTextField.value);
+// Chronologie : le joueur numérote les films en cliquant dessus, et le bouton
+// de validation ne s'active qu'une fois l'ordre complet. La réponse part comme
+// une chaîne, le serveur la redécoupe (voir convert_answer dans src/engine.py).
+const chronologyFilms = document.querySelectorAll(".game-chronology-film");
+const chosenOrder = [];
+
+chronologyFilms.forEach(function (filmButton) {
+    filmButton.addEventListener("click", function () {
+        chosenOrder.push(filmButton.dataset.film);
+
+        filmButton.querySelector(".game-chronology-badge").textContent = chosenOrder.length;
+        filmButton.disabled = true;
+        filmButton.classList.add("opacity-50");
+
+        if (chosenOrder.length === chronologyFilms.length) {
+            const validateButton = document.getElementById("game-validate-order");
+            validateButton.dataset.answer = chosenOrder.join("|");
+            validateButton.disabled = false;
+        }
     });
-}
+});
