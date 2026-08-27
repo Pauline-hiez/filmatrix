@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% from "_player_link.html" import player_link with context %}
 <div class="max-w-6xl mx-auto flex flex-col gap-6">
 
     <div class="grid gap-6 xl:grid-cols-[1fr_20rem] items-start">
@@ -115,7 +116,7 @@
                             {{ loop.index }}
                         </span>
                         <span class="min-w-0 flex-1 truncate {% if is_me %}text-cyan-300 font-bold{% else %}text-slate-200{% endif %}">
-                            {{ player.username }}
+                            {{ player_link(player.id, player.username) }}
                         </span>
                         <span class="shrink-0 text-xs text-slate-400">{{ player.total_xp }} XP</span>
                     </li>

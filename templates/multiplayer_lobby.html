@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% from "_player_link.html" import player_link with context %}
 <div class="max-w-md mx-auto mt-12 text-center">
 
     {% if game_session.status == "expired" %}
@@ -38,7 +39,7 @@
                     {{ game_session.guest.avatar or "🎬" }}
                 </span>
             </div>
-            <h2 class="text-xl font-bold mb-1">En attente de {{ game_session.guest.username }}</h2>
+            <h2 class="text-xl font-bold mb-1">En attente de {{ player_link(game_session.guest.id, game_session.guest.username) }}</h2>
             <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>
             <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
             <p class="text-slate-600 text-xs">Cette page se rafraîchira automatiquement</p>
@@ -49,7 +50,7 @@
             <span class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
                 {{ game_session.host.avatar or "🎬" }}
             </span>
-            <h2 class="text-xl font-bold mb-1">{{ game_session.host.username }} t'invite à jouer !</h2>
+            <h2 class="text-xl font-bold mb-1">{{ player_link(game_session.host.id, game_session.host.username) }} t'invite à jouer !</h2>
             <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>
             <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
 

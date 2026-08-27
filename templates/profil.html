@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% from "_friends_grid.html" import friends_grid with context %}
 {# Libellés et couleurs d'accent des modes, pour l'historique.
    Mêmes valeurs que sur l'accueil et la page de quiz. #}
 {% set labels = {
@@ -114,6 +115,17 @@
             </div>
             {% endfor %}
         </div>
+    </section>
+
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <div class="mb-5 flex items-baseline justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Amis</h2>
+            <a href="{{ url_for('friends_list') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
+                {{ friends | length }} — gérer
+            </a>
+        </div>
+
+        {{ friends_grid(friends, "Tu n'as pas encore d'amis. Trouve des joueurs depuis le classement !") }}
     </section>
 
     <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">

@@ -1,0 +1,17 @@
+{# Lien vers le profil public d'un joueur, à utiliser partout où un pseudo s'affiche.
+
+   À importer « with context » : la macro s'appuie sur current_user, que
+   Flask-Login injecte dans le contexte de rendu et qu'un import sans contexte
+   ne verrait pas.
+
+   Le profil public exige une connexion : pour un visiteur anonyme on rend donc
+   un simple texte, plutôt qu'un lien qui le renverrait vers la page de
+   connexion sans qu'il comprenne pourquoi. #}
+{% macro player_link(user_id, username) -%}
+{%- if current_user.is_authenticated -%}
+<a href="{{ url_for('public_profile', user_id=user_id) }}"
+   class="transition hover:text-cyan-400 hover:underline">{{ username }}</a>
+{%- else -%}
+{{ username }}
+{%- endif -%}
+{%- endmacro %}

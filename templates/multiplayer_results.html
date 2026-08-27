@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% from "_player_link.html" import player_link with context %}
 <div class="max-w-md mx-auto mt-12 text-center">
     <div class="rounded-2xl border p-8
                 {% if winner is none %}
@@ -19,7 +20,7 @@
             <h2 class="text-xl font-bold text-emerald-400 mb-6">Tu as gagné !</h2>
         {% else %}
             <p class="text-4xl mb-4">😔</p>
-            <h2 class="text-xl font-bold text-red-400 mb-6">{{ opponent.username }} a gagné</h2>
+            <h2 class="text-xl font-bold text-red-400 mb-6">{{ player_link(opponent.id, opponent.username) }} a gagné</h2>
         {% endif %}
 
         <div class="flex items-center justify-center gap-6 mb-6">
@@ -31,7 +32,7 @@
             <p class="text-slate-600 text-xl">—</p>
             <div>
                 <p class="text-2xl">{{ opponent.avatar or "🎬" }}</p>
-                <p class="text-sm text-slate-400">{{ opponent.username }}</p>
+                <p class="text-sm text-slate-400">{{ player_link(opponent.id, opponent.username) }}</p>
                 <p class="text-cyan-400 font-bold text-2xl">{{ opponent_score }}</p>
             </div>
         </div>

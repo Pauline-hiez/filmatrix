@@ -350,6 +350,21 @@ def create_app(database_uri: str | None = None) -> Flask:
         logout_user()
         return redirect(url_for("home"))
 
+    def friend_cards(users: list) -> list:
+        """Prépare l'affichage d'une liste d'amis : pseudo, avatar et niveau
+
+        Le niveau est calculé ici plutôt que dans le template, pour que les deux
+        profils affichent exactement la même chose"""
+        return [
+            {
+                "id": user.id,
+                "username": user.username,
+                "avatar": user.avatar or "🎬",
+                "level": calculate_level(user.total_xp)["level"],
+            }
+            for user in users
+        ]
+
     @app.route("/profil")
     @login_required
     def profile() -> str:
@@ -388,6 +403,7 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return render_template(
             "profil.html",
+            friends=friend_cards(get_friends_list(current_user.id)),
             attempts_by_mode=attempts_by_mode,
             total_count=total_count,
             correct_count=correct_count,
@@ -1173,16 +1189,26 @@ def create_app(database_uri: str | None = None) -> Flask:
     @app.route("/joueur/<int:user_id>")
     @login_required
     def public_profile(user_id: int) -> str:
-        """Affiche le profil public d'un joueur, uniquement entre amis"""
+        """Affiche le profil public d'un joueur
+
+        Le profil est visible de n'importe quel joueur connecté : c'est de là
+        qu'on envoie une demande d'ami. Seul le réseau social du joueur (sa
+        liste d'amis, les amis en commun) reste réservé à ses amis"""
         if user_id == current_user.id:
             return redirect(url_for("profile"))
 
         viewed_user = User.query.get_or_404(user_id)
 
         friendship = get_friendship_between(current_user.id, user_id)
-        if friendship is None or friendship.status != "accepted":
-            flash("Tu dois être ami avec ce joueur pour voir son profil.")
-            return redirect(url_for("friends_list"))
+
+        if friendship is None:
+            friendship_state = "none"
+        elif friendship.status == "accepted":
+            friendship_state = "friends"
+        elif friendship.requester_id == current_user.id:
+            friendship_state = "request_sent"
+        else:
+            friendship_state = "request_received"
 
         attempts = Attempt.query.filter_by(user_id=viewed_user.id).all()
         total_count = len(attempts)
@@ -1206,25 +1232,39 @@ def create_app(database_uri: str | None = None) -> Flask:
                         }
                 )
 
+        # Le réseau d'amis du joueur n'est montré qu'à ses amis.
+        viewed_user_friends = []
+        mutual_friends = []
+
+        if friendship_state == "friends":
             viewed_user_friends = get_friends_list(viewed_user.id)
             current_user_friends = get_friends_list(current_user.id)
 
             current_user_friend_ids = {friend.id for friend in current_user_friends}
-            mutual_friends = [
-                    friend for friend in viewed_user_friends if friend.id in current_user_friend_ids
-                ]
-
-            return render_template(
-                    "profil_public.html",
-                    viewed_user=viewed_user,
-                    total_count=total_count,
-                    correct_count=correct_count,
-                    level_info=level_info,
-                    attempts_by_mode=attempts_by_mode,
-                    all_badges=all_badges,
-                    viewed_user_friends=viewed_user_friends,
-                    mutual_friends=mutual_friends,
+            mutual_friends = friend_cards(
+                    [friend for friend in viewed_user_friends if friend.id in current_user_friend_ids]
                 )
+            viewed_user_friends = friend_cards(viewed_user_friends)
+
+        # Le titre équipé est stocké sous forme de code : on affiche son libellé,
+        # comme le fait déjà le profil personnel.
+        equipped_title_name = None
+        if viewed_user.equipped_title:
+            equipped_title_name = TITLES.get(viewed_user.equipped_title, {}).get("name")
+
+        return render_template(
+                "profil_public.html",
+                viewed_user=viewed_user,
+                equipped_title_name=equipped_title_name,
+                total_count=total_count,
+                correct_count=correct_count,
+                level_info=level_info,
+                attempts_by_mode=attempts_by_mode,
+                all_badges=all_badges,
+                viewed_user_friends=viewed_user_friends,
+                mutual_friends=mutual_friends,
+                friendship_state=friendship_state,
+            )
 
     @app.route("/notifications")
     @login_required
