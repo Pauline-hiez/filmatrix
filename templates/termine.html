@@ -16,6 +16,37 @@
             Tu as répondu à toutes les questions de ce mode.
         </p>
 
+        {# Score de la partie qui vient de s'achever, suivi en session (cf. src/score.py).
+           Absent si le joueur atterrit ici sans avoir répondu à une seule question. #}
+        {% if score %}
+        <div class="mx-auto mt-8 max-w-sm rounded-xl border border-cyan-400/20 bg-slate-950/60 px-6 py-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Ton score</p>
+
+            <p class="mt-2 text-5xl font-extrabold text-slate-100">
+                {{ score.correct }}<span class="text-2xl text-slate-500"> / {{ score.total }}</span>
+            </p>
+
+            <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                <div class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
+                     style="width: {{ score.percentage }}%"></div>
+            </div>
+
+            <p class="mt-2 text-sm text-slate-400">
+                {{ score.percentage }} % de bonnes réponses —
+                {% if score.percentage == 100 %}sans-faute !
+                {% elif score.percentage >= 50 %}beau parcours.
+                {% else %}il y a de la marge.
+                {% endif %}
+            </p>
+
+            {% if score.xp %}
+            <p class="mt-4 text-sm font-bold text-cyan-400">
+                + {{ score.xp }} XP · + {{ score.coins }} pièces
+            </p>
+            {% endif %}
+        </div>
+        {% endif %}
+
         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <a href="{{ url_for('modes') }}"
                class="rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">

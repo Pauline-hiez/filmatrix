@@ -9,7 +9,7 @@ import random
 import json
 
 from dotenv import load_dotenv
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_login import (
     LoginManager,
     current_user,
@@ -23,6 +23,7 @@ from sqlalchemy import func
 from src.database import db
 from src.engine import check_answer
 from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
+from src.score import read_run, record_answer, start_run
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import TITLES, owns_title, purchase_title
@@ -796,11 +797,14 @@ def create_app(database_uri: str | None = None) -> Flask:
         question = find_question(mode, position, category, tag_id)
 
         if question is None:
-            return render_template("termine.html")
+            return render_template("termine.html", score=read_run(session, mode))
 
         if question.requires_account and not current_user.is_authenticated:
             flash("Connecte-toi pour accéder à cette question.")
             return redirect(url_for("login"))
+
+        if request.method == "GET" and position == 1:
+            start_run(session, mode)
 
         if request.method == "POST":
             is_timeout = request.form.get("timeout") == "true"
@@ -825,6 +829,8 @@ def create_app(database_uri: str | None = None) -> Flask:
                     }
 
             new_badges = []
+            earned_xp = 0
+            earned_coins = 0
 
             if current_user.is_authenticated:
                 already_answered_correctly = Attempt.query.filter_by(
@@ -841,8 +847,10 @@ def create_app(database_uri: str | None = None) -> Flask:
                 db.session.add(attempt)
 
                 if is_correct and not already_answered_correctly:
-                    current_user.total_xp += xp_for_level(level)
-                    current_user.coins += coins_for_level(level)
+                    earned_xp = xp_for_level(level)
+                    earned_coins = coins_for_level(level)
+                    current_user.total_xp += earned_xp
+                    current_user.coins += earned_coins
 
                 db.session.commit()
 
@@ -852,6 +860,8 @@ def create_app(database_uri: str | None = None) -> Flask:
                 new_badges = [BADGES[code] for code in new_badge_codes]
 
             correct_answer_text = None if is_correct else format_correct_answer(question)
+
+            record_answer(session, mode, question.id, is_correct, earned_xp, earned_coins)
 
             if question.mode == "chronologie":
                 correct_order = question.correct_answer["order"]
