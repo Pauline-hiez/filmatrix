@@ -23,7 +23,14 @@ from sqlalchemy import func
 from src.database import db
 from src.engine import check_answer
 from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
-from src.score import QUESTIONS_PER_RUN, read_run, record_answer, start_run
+from src.score import (
+    QUESTIONS_PER_RUN,
+    read_run,
+    record_answer,
+    run_length,
+    run_question_id,
+    start_run,
+)
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
 from src.shop import TITLES, owns_title, purchase_title
@@ -219,6 +226,24 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return query.order_by(Question.id)
 
+    def playable_question_query(
+        mode: str,
+        category: str | None = None,
+        tag_id: int | None = None,
+        content_type: str | None = None,
+    ):
+        """Restreint aux questions que le joueur peut réellement jouer
+
+        Une question réservée aux comptes renverrait un visiteur vers la page de
+        connexion en pleine partie, sa progression perdue : elle n'a rien à faire
+        ni dans le tirage, ni dans les compteurs qu'on lui annonce"""
+        query = build_question_query(mode, category, tag_id, content_type)
+
+        if not current_user.is_authenticated:
+            query = query.filter_by(requires_account=False)
+
+        return query
+
     def count_run_questions(
         mode: str,
         category: str | None = None,
@@ -230,8 +255,34 @@ def create_app(database_uri: str | None = None) -> Flask:
         Une partie fait QUESTIONS_PER_RUN questions, sauf si les filtres du
         joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
         servir"""
-        available = build_question_query(mode, category, tag_id, content_type).count()
+        available = playable_question_query(mode, category, tag_id, content_type).count()
         return min(QUESTIONS_PER_RUN, available)
+
+    def run_filters(
+        category: str | None = None,
+        tag_id: int | None = None,
+        content_type: str | None = None,
+    ) -> dict:
+        """Décrit les réglages d'une partie, sous une forme rangeable en session"""
+        return {"category": category, "tag_id": tag_id, "content_type": content_type}
+
+    def draw_run_questions(
+        mode: str,
+        category: str | None = None,
+        tag_id: int | None = None,
+        content_type: str | None = None,
+    ) -> list[int]:
+        """Tire au sort les questions d'une nouvelle partie
+
+        Le tirage a lieu une seule fois, au lancement : deux parties du même mode
+        ne se ressemblent pas, mais à l'intérieur d'une partie l'ordre ne bouge
+        plus, sans quoi avancer d'une question en ramènerait une déjà posée"""
+        question_ids = [
+            row.id for row in playable_question_query(mode, category, tag_id, content_type).all()
+        ]
+        random.shuffle(question_ids)
+
+        return question_ids[:QUESTIONS_PER_RUN]
 
     def find_question(
         mode: str,
@@ -247,9 +298,29 @@ def create_app(database_uri: str | None = None) -> Flask:
         if position < 1 or position > QUESTIONS_PER_RUN:
             return None
 
+        filters = run_filters(category, tag_id, content_type)
+        question_id = run_question_id(session, mode, position, filters)
+
+        if question_id is not None:
+            return Question.query.get(question_id)
+
+        # Aucun tirage en session : lien direct vers une question, session
+        # expirée ou navigation manuelle. On sert alors l'ordre stable par id,
+        # plutôt que de refuser la question au joueur.
         query = build_question_query(mode, category, tag_id, content_type)
 
         return query.offset(position - 1).limit(1).first()
+
+    def shuffle_options(question) -> list[tuple[int, str]]:
+        """Mélange les propositions d'un QCM, chacune gardant son index d'origine
+
+        La bonne réponse est l'option 0 dans la majorité des questions : sans
+        mélange, le joueur finit par répondre au réflexe. C'est bien l'index
+        d'origine qui repart au serveur, la vérification reste donc inchangée"""
+        options = list(enumerate(question.payload["options"]))
+        random.shuffle(options)
+
+        return options
 
     @app.context_processor
     def inject_notifications():
@@ -843,16 +914,16 @@ def create_app(database_uri: str | None = None) -> Flask:
         content_type = resolve_content_type(request.args.get("content_type"))
 
         # Le compteur doit refléter le filtre : sinon le bouton reste actif
-        # alors que la sélection films / séries ne renvoie aucune question.
-        question_query = Question.query.filter_by(mode=mode)
-        if content_type:
-            question_query = question_query.filter_by(content_type=content_type)
+        # alors que la sélection films / séries ne renvoie aucune question. Il
+        # ne compte que le jouable : un visiteur ne doit pas se voir promettre
+        # des questions réservées aux comptes.
+        available = playable_question_query(mode, content_type=content_type).count()
 
         return render_template(
                 "quiz_setup.html",
                 mode=mode_info,
-                question_count=question_query.count(),
-                run_length=min(QUESTIONS_PER_RUN, question_query.count()),
+                question_count=available,
+                run_length=min(QUESTIONS_PER_RUN, available),
                 content_type=content_type,
                 all_tags=mode_tags,
                 levels=LEVELS,
@@ -867,22 +938,31 @@ def create_app(database_uri: str | None = None) -> Flask:
         tag_id = request.args.get("tag_id", type=int)
         content_type = request.args.get("content_type")
         level = resolve_level(request.args.get("level"))
+
+        # Le tirage doit précéder la recherche de la question : c'est lui qui
+        # décide quelle question occupe la position 1.
+        if request.method == "GET" and position == 1:
+            start_run(
+                session,
+                mode,
+                question_ids=draw_run_questions(mode, category, tag_id, content_type),
+                filters=run_filters(category, tag_id, content_type),
+            )
+
         question = find_question(mode, position, category, tag_id, content_type)
 
         if question is None:
             return render_template("termine.html", score=read_run(session, mode))
 
-        # Le total d'une partie dépend des filtres : il est recalculé à chaque
-        # question plutôt que retenu en session, pour rester juste même si le
-        # joueur arrive par un lien direct au milieu d'une partie.
-        total_questions = count_run_questions(mode, category, tag_id, content_type)
+        # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
+        # session expirée — on retombe sur ce que les filtres permettent.
+        total_questions = run_length(
+            session, mode, run_filters(category, tag_id, content_type)
+        ) or count_run_questions(mode, category, tag_id, content_type)
 
         if question.requires_account and not current_user.is_authenticated:
             flash("Connecte-toi pour accéder à cette question.")
             return redirect(url_for("login"))
-
-        if request.method == "GET" and position == 1:
-            start_run(session, mode)
 
         if request.method == "POST":
             is_timeout = request.form.get("timeout") == "true"
@@ -969,10 +1049,13 @@ def create_app(database_uri: str | None = None) -> Flask:
         if question.mode == "film_melange":
             scrambled_title = scramble_title(question.correct_answer["title"])
 
+        options = shuffle_options(question) if question.mode == "qcm" else None
+
         return render_template(
                 "quiz.html",
                 question=question,
                 scrambled_title=scrambled_title,
+                options=options,
                 report_reasons=REPORT_REASON,
                 level=LEVELS[level],
                 duration=duration_for(level, question.mode),

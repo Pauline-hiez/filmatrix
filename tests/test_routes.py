@@ -1,3 +1,5 @@
+import re
+
 from src.database import db
 from src.models import Question, User, Attempt
 
@@ -334,3 +336,132 @@ def test_setup_screen_announces_the_run_length(client, app):
     assert response.status_code == 200
     assert "Partie de 10 questions".encode() in response.data
     assert "12 disponibles".encode() in response.data
+
+
+def question_ids_of_a_run(client, mode="qcm", length=10):
+    """Joue une partie du début à la fin et retourne les questions servies"""
+    ids = []
+    for position in range(1, length + 1):
+        page = client.get(f"/quiz/{mode}/{position}").get_data(as_text=True)
+        ids.append(re.search(r'data-question-id="(\d+)"', page).group(1))
+    return ids
+
+
+def test_each_run_draws_a_different_question_order(client, app):
+    """Deux parties du même mode ne doivent pas dérouler les mêmes questions"""
+    create_questions(app, 30)
+
+    runs = {tuple(question_ids_of_a_run(client)) for _ in range(5)}
+
+    assert len(runs) > 1
+
+
+def test_a_run_never_repeats_the_same_question(client, app):
+    """Le tirage ne doit pas servir deux fois la même question dans une partie"""
+    create_questions(app, 30)
+
+    ids = question_ids_of_a_run(client)
+
+    assert len(set(ids)) == len(ids)
+
+
+def test_the_question_order_holds_during_the_run(client, app):
+    """Avancer puis revenir sur une question doit retrouver la même"""
+    create_questions(app, 30)
+
+    ids = question_ids_of_a_run(client)
+    # On relit sans repasser par la position 1, qui relance volontairement une partie.
+    again = [
+        re.search(r'data-question-id="(\d+)"', client.get(f"/quiz/qcm/{p}").get_data(as_text=True)).group(1)
+        for p in range(2, 11)
+    ]
+
+    assert again == ids[1:]
+
+
+def test_the_draw_respects_the_content_filter(client, app):
+    """Une partie séries ne doit tirer que des questions de séries"""
+    with app.app_context():
+        for index in range(12):
+            db.session.add(
+                Question(
+                    mode="qcm",
+                    category="test",
+                    content_type="serie" if index % 2 else "film",
+                    difficulty="facile",
+                    prompt=f"Question {index}",
+                    payload={"options": ["A", "B"]},
+                    correct_answer={"index": 0},
+                    requires_account=False,
+                )
+            )
+        db.session.commit()
+
+    ids = [
+        re.search(r'data-question-id="(\d+)"', client.get(f"/quiz/qcm/{p}?content_type=serie").get_data(as_text=True)).group(1)
+        for p in range(1, 7)
+    ]
+
+    with app.app_context():
+        assert {Question.query.get(int(i)).content_type for i in ids} == {"serie"}
+
+
+def test_the_draw_spares_a_visitor_the_account_only_questions(client, app):
+    """Un visiteur ne doit pas être éjecté vers la connexion en pleine partie"""
+    create_questions(app, 12)
+    create_protected_question(app)
+
+    with app.app_context():
+        protected = {q.id for q in Question.query.filter_by(requires_account=True)}
+
+    drawn = set()
+    for _ in range(10):
+        drawn |= {int(i) for i in question_ids_of_a_run(client)}
+
+    assert not (drawn & protected)
+
+
+def test_qcm_options_are_shuffled(client, app):
+    """L'ordre d'affichage des propositions doit varier d'une partie à l'autre"""
+    with app.app_context():
+        db.session.add(
+            Question(
+                mode="qcm",
+                category="test",
+                difficulty="facile",
+                prompt="Seule question du mode",
+                payload={"options": ["A", "B", "C", "D"]},
+                correct_answer={"index": 0},
+                requires_account=False,
+            )
+        )
+        db.session.commit()
+
+    orders = set()
+    for _ in range(20):
+        page = client.get("/quiz/qcm/1").get_data(as_text=True)
+        orders.add(tuple(re.findall(r'data-answer="(\d+)"', page)))
+
+    assert len(orders) > 1
+
+
+def test_a_shuffled_option_is_still_judged_correctly(client, app):
+    """Le mélange ne doit pas fausser la correction : le bouton porte l'index d'origine"""
+    with app.app_context():
+        db.session.add(
+            Question(
+                mode="qcm",
+                category="test",
+                difficulty="facile",
+                prompt="Seule question du mode",
+                payload={"options": ["Bonne", "Mauvaise", "Mauvaise", "Mauvaise"]},
+                correct_answer={"index": 0},
+                requires_account=False,
+            )
+        )
+        db.session.commit()
+
+    client.get("/quiz/qcm/1")
+
+    assert client.post("/quiz/qcm/1", data={"answer": "0"}).get_json()["is_correct"] is True
+    assert client.post("/quiz/qcm/1", data={"answer": "2"}).get_json()["is_correct"] is False

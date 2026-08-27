@@ -14,15 +14,55 @@ SESSION_KEY = "run"
 QUESTIONS_PER_RUN = 10
 
 
-def start_run(store, mode: str) -> None:
-    """Démarre le suivi d'une nouvelle partie, en écrasant la précédente"""
+def start_run(store, mode: str, question_ids: list[int] | None = None, filters: dict | None = None) -> None:
+    """Démarre le suivi d'une nouvelle partie, en écrasant la précédente
+
+    Les questions tirées au sort sont retenues telles quelles : la partie doit
+    garder le même ordre d'une question à l'autre, sinon le joueur retomberait
+    sur des questions déjà vues en avançant. Les filtres qui ont servi au tirage
+    sont retenus avec, pour ne pas resservir cette liste à une partie lancée
+    avec d'autres réglages"""
     store[SESSION_KEY] = {
         "mode": mode,
         "correct": 0,
         "answered": [],
         "xp": 0,
         "coins": 0,
+        "questions": question_ids or [],
+        "filters": filters or {},
     }
+
+
+def run_question_id(store, mode: str, position: int, filters: dict | None = None) -> int | None:
+    """Retourne l'id de la question tirée pour cette position, ou None
+
+    None veut dire qu'aucun tirage ne s'applique ici — partie d'un autre mode,
+    réglages différents, session expirée ou lien direct — et que l'appelant doit
+    retomber sur l'ordre stable des questions"""
+    run = store.get(SESSION_KEY)
+
+    if run is None or run["mode"] != mode:
+        return None
+
+    if run.get("filters", {}) != (filters or {}):
+        return None
+
+    questions = run.get("questions", [])
+
+    if position < 1 or position > len(questions):
+        return None
+
+    return questions[position - 1]
+
+
+def run_length(store, mode: str, filters: dict | None = None) -> int | None:
+    """Retourne le nombre de questions tirées pour la partie en cours, ou None"""
+    run = store.get(SESSION_KEY)
+
+    if run is None or run["mode"] != mode or run.get("filters", {}) != (filters or {}):
+        return None
+
+    return len(run.get("questions", [])) or None
 
 
 def record_answer(
