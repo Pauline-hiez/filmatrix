@@ -1,6 +1,6 @@
 [
     {
-        "id": 366,
+        "id": 386,
         "mode": "blindtest",
         "category": "anecdote",
         "content_type": "serie",
@@ -11,6 +11,156 @@
         },
         "correct_answer": {
             "film": "Game of Thrones"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 387,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "Friends"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 388,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "Stranger Things"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 389,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "The Walking Dead"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 390,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "The Office"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 391,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "Peaky Blinders"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 392,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "The Big Bang Theory"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 393,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "Vikings"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 394,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "The Simpsons"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 395,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "Lost"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 396,
+        "mode": "blindtest",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "audio_url": "URL_AUDIO_A_REMPLACER"
+        },
+        "correct_answer": {
+            "film": "Malcolm"
         },
         "requires_account": false
     }

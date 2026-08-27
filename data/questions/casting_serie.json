@@ -1,6 +1,6 @@
 [
     {
-        "id": 365,
+        "id": 375,
         "mode": "casting",
         "category": "anecdote",
         "content_type": "serie",
@@ -15,6 +15,196 @@
         },
         "correct_answer": {
             "film": "Breaking Bad"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 376,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/4gD5d1ZQp1p8J8q5Y7X6M3L2K9N.jpg",
+                "https://image.tmdb.org/t/p/w500/7Q2L9P5X4M8J3K6H1N7Y5T2R8F.jpg",
+                "https://image.tmdb.org/t/p/w500/3K8M2X7P5Q9L4J6H1Y8N2T5R7F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Friends"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 377,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/6Y7X2P9Q4M3J8K5H1N6L2T7R9F.jpg",
+                "https://image.tmdb.org/t/p/w500/8M5Q2L7X9P4J3K6H1N8Y5T2R7F.jpg",
+                "https://image.tmdb.org/t/p/w500/2K9M5X7P4Q8J3L6H1N7Y2T5R9F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "The Walking Dead"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 378,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/5P8Q2M7X4J9K3L6H1N8Y5T2R7F.jpg",
+                "https://image.tmdb.org/t/p/w500/9X4M7P2Q8J5K3L6H1N7Y9T2R4F.jpg",
+                "https://image.tmdb.org/t/p/w500/3Q7M9X2P5J8K4L6H1N7Y3T9R5F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "The Office"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 379,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/7K5M2P9X4Q8J3L6H1N7Y5T2R9F.jpg",
+                "https://image.tmdb.org/t/p/w500/4X8Q2M7P5J9K3L6H1N8Y4T2R7F.jpg",
+                "https://image.tmdb.org/t/p/w500/8P3M7X5Q2J9K4L6H1N7Y8T2R5F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Vikings"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 380,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/2M8Q5X7P4J9K3L6H1N7Y2T5R8F.jpg",
+                "https://image.tmdb.org/t/p/w500/6X3M9P5Q2J8K4L7H1N5Y9T2R6F.jpg",
+                "https://image.tmdb.org/t/p/w500/9P4M7X2Q8J5K3L6H1N9Y4T2R7F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Wednesday"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 381,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/5Q9M2X7P4J8K3L6H1N7Y5T2R9F.jpg",
+                "https://image.tmdb.org/t/p/w500/8X4M7P2Q9J5K3L6H1N8Y4T2R7F.jpg",
+                "https://image.tmdb.org/t/p/w500/3P7M9X5Q2J8K4L6H1N6Y3T9R5F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Peaky Blinders"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 382,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/7M2Q8X5P4J9K3L6H1N7Y5T2R8F.jpg",
+                "https://image.tmdb.org/t/p/w500/4P7M9X2Q8J5K3L6H1N8Y4T2R6F.jpg",
+                "https://image.tmdb.org/t/p/w500/9X3M7P5Q2J8K4L6H1N7Y9T2R5F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "La Casa de Papel"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 383,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/2X8M5P7Q4J9K3L6H1N7Y2T5R8F.jpg",
+                "https://image.tmdb.org/t/p/w500/6M3X9P5Q2J8K4L7H1N5Y8T2R6F.jpg",
+                "https://image.tmdb.org/t/p/w500/8P4M7X2Q9J5K3L6H1N8Y4T2R7F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Dexter"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 384,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "facile",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/5X7M2P9Q4J8K3L6H1N7Y5T2R9F.jpg",
+                "https://image.tmdb.org/t/p/w500/3M8X5P7Q2J9K4L6H1N7Y3T5R8F.jpg",
+                "https://image.tmdb.org/t/p/w500/9Q4M7X2P8J5K3L6H1N8Y4T2R6F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "Grey's Anatomy"
+        },
+        "requires_account": false
+    },
+    {
+        "id": 385,
+        "mode": "casting",
+        "category": "anecdote",
+        "content_type": "serie",
+        "difficulty": "moyen",
+        "prompt": "",
+        "payload": {
+            "actor_photos": [
+                "https://image.tmdb.org/t/p/w500/8M2X7P5Q4J9K3L6H1N7Y5T2R8F.jpg",
+                "https://image.tmdb.org/t/p/w500/4Q9M3X7P2J8K5L6H1N7Y4T9R5F.jpg",
+                "https://image.tmdb.org/t/p/w500/6P5M8X2Q9J4K3L7H1N6Y2T5R8F.jpg"
+            ]
+        },
+        "correct_answer": {
+            "film": "The Witcher"
         },
         "requires_account": false
     }
