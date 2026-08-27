@@ -49,12 +49,12 @@
                 {{ labels.get(question.mode, question.mode) }}
             </span>
             <span class="text-xs uppercase tracking-widest text-slate-500">
-                {{ question.category }} · {{ question.difficulty }}
+                {{ question.category }} · {{ level.label }}
             </span>
         </div>
 
         <div class="mb-6 h-2 w-full overflow-hidden rounded-full bg-slate-800">
-            <div id="time-bar" data-question-id="{{ question.id }}" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
+            <div id="time-bar" data-question-id="{{ question.id }}" data-duration="{{ duration }}" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
         </div>
 
         {# Bandeau de résultat, rempli par quiz.js une fois la question tranchée.

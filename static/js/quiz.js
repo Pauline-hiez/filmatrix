@@ -1,8 +1,10 @@
-const TOTAL_DURATION = document.querySelector("audio") ? 30 : 10;
+const timeBar = document.getElementById("time-bar");
+
+// Durée calculée par le serveur d'après le niveau choisi par le joueur
+// (et forcée à 30 s pour le blindtest) : voir src/levels.py.
+const TOTAL_DURATION = parseInt(timeBar.dataset.duration, 10);
 let remainingTime = TOTAL_DURATION;
 let alreadyAnswered = false;
-
-const timeBar = document.getElementById("time-bar");
 
 function showBadgeNotification(badge) {
     const notification = document.createElement("div");

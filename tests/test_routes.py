@@ -104,16 +104,17 @@ def create_test_question(app, difficulty="facile", mode="qcm"):
 
 def test_xp_awarded_only_once_per_question(client, app):
     """L'XP ne doit être gagnée qu'à la première bonne réponse d'une question donnée"""
-    create_test_question(app, difficulty="facile")
+    create_test_question(app)
     create_user_and_login(client, app)
 
-    client.post("/quiz/qcm/1", data={"answer": "0"})
+    # L'XP dépend désormais du niveau choisi par le joueur, porté par l'URL.
+    client.post("/quiz/qcm/1?level=facile", data={"answer": "0"})
 
     with app.app_context():
         user = User.query.filter_by(username="Joueur").first()
         xp_after_first_answer = user.total_xp
 
-    client.post("/quiz/qcm/1", data={"answer": 0})
+    client.post("/quiz/qcm/1?level=facile", data={"answer": 0})
 
     with app.app_context():
         user = User.query.filter_by(username="Joueur").first()
@@ -220,3 +221,42 @@ def test_equip_title_route_fails_if_not_owned(client, app):
     with app.app_context():
         user = User.query.filter_by(username="Acheteur").first()
         assert user.equipped_title is None
+def test_setup_screen_offers_the_game_settings(client, app):
+    """L'écran de préparation doit proposer catégorie, thème et niveau avant de jouer"""
+    create_test_question(app)
+
+    response = client.get("/quiz/qcm")
+
+    assert response.status_code == 200
+    assert b'id="category"' in response.data
+    assert b'id="tag"' in response.data
+    assert b'id="level"' in response.data
+    assert "Commencer".encode() in response.data
+
+
+def test_setup_screen_refuses_to_start_a_mode_without_questions(client, app):
+    """Un mode vide doit afficher un bouton désactivé plutôt qu'une partie sans question"""
+    create_test_question(app, mode="qcm")
+
+    response = client.get("/quiz/blindtest")
+
+    assert response.status_code == 200
+    assert "Aucune question disponible".encode() in response.data
+
+
+def test_setup_screen_redirects_for_an_unknown_mode(client, app):
+    """Un mode inexistant dans l'URL doit ramener au catalogue des modes"""
+    response = client.get("/quiz/nawak")
+
+    assert response.status_code == 302
+    assert "/modes" in response.location
+
+
+def test_mode_cards_lead_to_the_setup_screen(client, app):
+    """Les cartes de l'accueil ne doivent plus lancer la partie directement"""
+    create_test_question(app)
+
+    response = client.get("/")
+
+    assert b'href="/quiz/qcm"' in response.data
+    assert b'href="/quiz/qcm/1"' not in response.data

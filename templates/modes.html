@@ -23,35 +23,9 @@
             Choisis ton
             <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">mode de jeu</span>
         </h1>
-        <p class="mt-2 text-slate-300">Dix façons de tester ta culture cinéma.</p>
+        <p class="mt-2 text-slate-300">Dix façons de tester ta culture cinéma.
+           Choisis un mode, puis règle ta partie.</p>
 
-                <div class="mt-6 flex flex-col sm:flex-row gap-4 max-w-2xl">
-            <div class="flex-1">
-                <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Catégorie
-                </label>
-                <select id="category"
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">Toutes les catégories</option>
-                    <option value="realisateur">Réalisateur</option>
-                    <option value="acteur">Acteur</option>
-                    <option value="anecdote">Anecdote</option>
-                </select>
-            </div>
-
-            <div class="flex-1">
-                <label for="tag" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Thème / Saga
-                </label>
-                <select id="tag"
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">Tous les thèmes</option>
-                    {% for tag in all_tags %}
-                    <option value="{{ tag.id }}">{{ tag.name }} ({{ tag.tag_type }})</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
     </section>
 
     <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
@@ -59,9 +33,9 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {% for mode in game_modes %}
-            <a href="#" data-mode="{{ mode.slug }}"
+            <a href="{{ url_for('quiz_setup', mode=mode.slug) }}"
                style="--accent: {{ mode.accent }}"
-               class="mode-link accent-card group flex items-start gap-4 rounded-xl border bg-slate-950/60 p-4 transition">
+               class="accent-card group flex items-start gap-4 rounded-xl border bg-slate-950/60 p-4 transition">
                 <span class="accent-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-lg">
                     {{ mode.icon }}
                 </span>
@@ -76,5 +50,4 @@
 
 </div>
 
-<script src="{{ url_for('static', filename='js/modes.js') }}"></script>
 {% endblock %}

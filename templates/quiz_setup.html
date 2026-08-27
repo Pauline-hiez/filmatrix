@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+{# Écran de préparation : le joueur règle sa partie avant que le chrono ne démarre.
+   C'est le seul point d'entrée vers une partie, depuis l'accueil comme depuis
+   la page des modes. Le formulaire est traduit en URL par quiz_setup.js. #}
+<div class="max-w-2xl mx-auto flex flex-col gap-6" style="--accent: {{ mode.accent }}">
+
+    <a href="{{ url_for('modes') }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
+        ← Tous les modes
+    </a>
+
+    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-7">
+
+        <div class="mb-6 flex items-start gap-4">
+            <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-full border text-2xl">
+                {{ mode.icon }}
+            </span>
+            <div class="min-w-0">
+                <h1 class="text-2xl font-extrabold tracking-tight text-slate-100">{{ mode.name }}</h1>
+                <p class="mt-1 text-sm text-slate-400">{{ mode.description }}</p>
+                <p class="mt-1 text-xs uppercase tracking-widest text-slate-500">
+                    {{ question_count }} question{{ 's' if question_count > 1 else '' }}
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+            <div>
+                <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Catégorie
+                </label>
+                <select id="category"
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="">Toutes les catégories</option>
+                    <option value="realisateur">Réalisateur</option>
+                    <option value="acteur">Acteur</option>
+                    <option value="anecdote">Anecdote</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="tag" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Thème / Saga
+                </label>
+                <select id="tag"
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="">Tous les thèmes</option>
+                    {% for tag in all_tags %}
+                    <option value="{{ tag.id }}">{{ tag.name }} ({{ tag.tag_type }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="level" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Niveau
+                </label>
+                {# Le niveau fixe le chrono et les gains, cf. src/levels.py. #}
+                <select id="level"
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    {% for code, level in levels.items() %}
+                    <option value="{{ code }}" {% if code == default_level %}selected{% endif %}>
+                        {{ level.label }} — {{ level.duration }} s, {{ level.xp }} XP
+                    </option>
+                    {% endfor %}
+                </select>
+                <p class="mt-2 text-xs leading-relaxed text-slate-500">
+                    {% if mode.slug == "blindtest" %}
+                    Le blind test laisse toujours {{ blindtest_duration }} secondes, le temps d'écouter
+                    l'extrait ; le niveau ne change ici que les gains.
+                    {% else %}
+                    Plus le niveau est élevé, moins tu as de temps pour répondre, et plus
+                    une bonne réponse rapporte.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <button type="button" id="start-game" data-mode="{{ mode.slug }}"
+                class="mt-6 w-full rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40"
+                {% if question_count == 0 %}disabled{% endif %}>
+            {% if question_count == 0 %}Aucune question disponible{% else %}Commencer{% endif %}
+        </button>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/quiz_setup.js') }}"></script>
+{% endblock %}

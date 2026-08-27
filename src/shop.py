@@ -18,11 +18,6 @@ TITLES = {
     },
 }
 
-def coins_for_difficulty(difficulty: str) -> int:
-    """Retourne les montant de pièces gagnées selon la difficulté de la question"""
-    coin_values = {"facile": 2, "moyen": 4, "difficile": 6}
-    return coin_values.get(difficulty, 2)
-
 def owns_title(user, title_code: str) -> bool:
     """Vérifie si un utilisateur possède déjà un titre donné"""
     return any(title.title_code == title_code for title in user.titles)

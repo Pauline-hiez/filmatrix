@@ -25,7 +25,16 @@ from src.engine import check_answer
 from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
 from src.validation import is_password_valid
 from src.badges import check_and_award_badges, BADGES
-from src.shop import coins_for_difficulty, TITLES, owns_title, purchase_title
+from src.shop import TITLES, owns_title, purchase_title
+from src.levels import (
+    BLINDTEST_DURATION,
+    DEFAULT_LEVEL,
+    LEVELS,
+    coins_for_level,
+    duration_for,
+    resolve_level,
+    xp_for_level,
+)
 from src.admin import admin_required 
 from src.tmdb import (
     build_image_url,
@@ -255,11 +264,6 @@ def create_app(database_uri: str | None = None) -> Flask:
                 letter_index += 1
 
         return "".join(scrambled)
-
-    def xp_for_difficulty(difficulty: str) -> int:
-        """Retourne le montant d'XP gagné selon la difficulté de la question"""
-        xp_values = {"facile": 10, "moyen": 20, "difficile": 30}
-        return xp_values.get(difficulty,10)
 
     @app.route("/")
     def home() -> str:
@@ -707,8 +711,7 @@ def create_app(database_uri: str | None = None) -> Flask:
     @app.route("/modes")
     def modes() -> str:
         """Affiche la liste des modes de jeu disponibles"""
-        all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
-        return render_template("modes.html", all_tags=all_tags)
+        return render_template("modes.html")
 
     @app.route("/boutique")
     @login_required
@@ -755,11 +758,41 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         return redirect(url_for("shop"))
 
+    @app.route("/quiz/<mode>")
+    def quiz_setup(mode: str) -> str:
+        """Écran de préparation : le joueur règle sa partie avant de la lancer
+
+        C'est le seul point d'entrée vers une partie. Tant qu'il n'a pas cliqué
+        sur Commencer, aucun chrono ne tourne"""
+        mode_info = next((entry for entry in GAME_MODES if entry["slug"] == mode), None)
+
+        if mode_info is None:
+            return redirect(url_for("modes"))
+
+        # On ne propose que les thèmes qui ont au moins une question dans ce mode :
+        # ailleurs, le joueur choisirait un filtre qui ne renvoie rien.
+        mode_tags = (
+            Tag.query.filter(Tag.questions.any(Question.mode == mode))
+            .order_by(Tag.tag_type, Tag.name)
+            .all()
+        )
+
+        return render_template(
+                "quiz_setup.html",
+                mode=mode_info,
+                question_count=Question.query.filter_by(mode=mode).count(),
+                all_tags=mode_tags,
+                levels=LEVELS,
+                default_level=DEFAULT_LEVEL,
+                blindtest_duration=BLINDTEST_DURATION,
+            )
+
     @app.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
     def quiz(mode: str, position: int) -> str:
         """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
         category = request.args.get("category")
         tag_id = request.args.get("tag_id", type=int)
+        level = resolve_level(request.args.get("level"))
         question = find_question(mode, position, category, tag_id)
 
         if question is None:
@@ -808,8 +841,8 @@ def create_app(database_uri: str | None = None) -> Flask:
                 db.session.add(attempt)
 
                 if is_correct and not already_answered_correctly:
-                    current_user.total_xp += xp_for_difficulty(question.difficulty)
-                    current_user.coins += coins_for_difficulty(question.difficulty)
+                    current_user.total_xp += xp_for_level(level)
+                    current_user.coins += coins_for_level(level)
 
                 db.session.commit()
 
@@ -853,6 +886,8 @@ def create_app(database_uri: str | None = None) -> Flask:
                 question=question,
                 scrambled_title=scrambled_title,
                 report_reasons=REPORT_REASON,
+                level=LEVELS[level],
+                duration=duration_for(level, question.mode),
             )
 
     @app.route("/signaler/<int:question_id>", methods=["POST"])
