@@ -191,8 +191,18 @@ def create_app(database_uri: str | None = None) -> Flask:
         """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
         return User.query.get(int(user_id))
 
-    def find_question(mode: str, position: int, category: str | None, tag_id: int | None = None):
-        """Cherche la question à une position donnée, parmi celles d'un mode, categorie et tag"""
+    def resolve_content_type(value: str | None) -> str:
+        """Ne garde que les types de contenu connus, une chaîne vide sinon"""
+        return value if value in ("film", "serie") else ""
+
+    def find_question(
+        mode: str,
+        position: int,
+        category: str | None,
+        tag_id: int | None = None,
+        content_type: str | None = None,
+    ):
+        """Cherche la question à une position donnée, parmi celles d'un mode, categorie, tag et type de contenu"""
         query = Question.query.filter_by(mode=mode)
 
         if category:
@@ -200,6 +210,9 @@ def create_app(database_uri: str | None = None) -> Flask:
 
         if tag_id:
             query = query.filter(Question.tags.any(Tag.id == tag_id))
+
+        if content_type:
+            query = query.filter_by(content_type=content_type)
 
         mode_questions = query.order_by(Question.id).all()
 
@@ -728,8 +741,11 @@ def create_app(database_uri: str | None = None) -> Flask:
 
     @app.route("/modes")
     def modes() -> str:
-        """Affiche la liste des modes de jeu disponibles"""
-        return render_template("modes.html")
+        """Affiche la liste des modes de jeu disponibles
+
+        Le sélecteur films / séries ne filtre pas la grille (tous les modes
+        restent jouables) : il suit le joueur jusqu'à l'écran de préparation."""
+        return render_template("modes.html", content_type=resolve_content_type(request.args.get("content_type")))
 
     @app.route("/boutique")
     @login_required
@@ -795,10 +811,19 @@ def create_app(database_uri: str | None = None) -> Flask:
             .all()
         )
 
+        content_type = resolve_content_type(request.args.get("content_type"))
+
+        # Le compteur doit refléter le filtre : sinon le bouton reste actif
+        # alors que la sélection films / séries ne renvoie aucune question.
+        question_query = Question.query.filter_by(mode=mode)
+        if content_type:
+            question_query = question_query.filter_by(content_type=content_type)
+
         return render_template(
                 "quiz_setup.html",
                 mode=mode_info,
-                question_count=Question.query.filter_by(mode=mode).count(),
+                question_count=question_query.count(),
+                content_type=content_type,
                 all_tags=mode_tags,
                 levels=LEVELS,
                 default_level=DEFAULT_LEVEL,
@@ -810,8 +835,9 @@ def create_app(database_uri: str | None = None) -> Flask:
         """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
         category = request.args.get("category")
         tag_id = request.args.get("tag_id", type=int)
+        content_type = request.args.get("content_type")
         level = resolve_level(request.args.get("level"))
-        question = find_question(mode, position, category, tag_id)
+        question = find_question(mode, position, category, tag_id, content_type)
 
         if question is None:
             return render_template("termine.html", score=read_run(session, mode))

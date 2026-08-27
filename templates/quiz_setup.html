@@ -6,7 +6,7 @@
    la page des modes. Le formulaire est traduit en URL par quiz_setup.js. #}
 <div class="max-w-2xl mx-auto flex flex-col gap-6" style="--accent: {{ mode.accent }}">
 
-    <a href="{{ url_for('modes') }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
+    <a href="{{ url_for('modes', content_type=content_type or None) }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
         ← Tous les modes
     </a>
 
@@ -26,6 +26,19 @@
         </div>
 
         <div class="flex flex-col gap-4">
+            <div>
+                <label for="content-type" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Films / Séries
+                </label>
+                {# Pré-réglé par le sélecteur de la page des modes, modifiable ici. #}
+                <select id="content-type"
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="" {% if not content_type %}selected{% endif %}>Films et séries</option>
+                    <option value="film" {% if content_type == "film" %}selected{% endif %}>Films uniquement</option>
+                    <option value="serie" {% if content_type == "serie" %}selected{% endif %}>Séries uniquement</option>
+                </select>
+            </div>
+
             <div>
                 <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
                     Catégorie

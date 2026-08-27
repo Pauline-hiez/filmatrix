@@ -5,6 +5,7 @@ startButton.addEventListener("click", function () {
     const category = document.getElementById("category").value;
     const tag = document.getElementById("tag").value;
     const level = document.getElementById("level").value;
+    const contentType = document.getElementById("content-type").value;
 
     const params = new URLSearchParams();
 
@@ -13,6 +14,9 @@ startButton.addEventListener("click", function () {
     }
     if (tag) {
         params.set("tag_id", tag);
+    }
+    if (contentType) {
+        params.set("content_type", contentType);
     }
     // Le niveau est toujours transmis : il suit ensuite le joueur d'une question
     // à l'autre, puisque quiz.js conserve la query string en changeant de position.

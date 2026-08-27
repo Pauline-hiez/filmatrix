@@ -26,6 +26,23 @@
         <p class="mt-2 text-slate-300">Dix façons de tester ta culture cinéma.
            Choisis un mode, puis règle ta partie.</p>
 
+        {# Sélecteur films / séries : il ne masque aucun mode, il pré-règle le
+           filtre de l'écran de préparation, où le joueur peut encore le changer. #}
+        {% set content_types = [
+            {"value": "", "label": "Tout"},
+            {"value": "film", "label": "Films"},
+            {"value": "serie", "label": "Séries"}
+        ] %}
+        <div class="mt-6 inline-flex gap-1 rounded-lg border border-cyan-400/20 bg-slate-950/60 p-1">
+            {% for option in content_types %}
+            <a href="{{ url_for('modes', content_type=option.value or None) }}"
+               class="rounded-md px-4 py-1.5 text-sm font-bold transition
+                      {% if option.value == content_type %}bg-cyan-400 text-slate-950{% else %}text-slate-400 hover:text-cyan-400{% endif %}">
+                {{ option.label }}
+            </a>
+            {% endfor %}
+        </div>
+
     </section>
 
     <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
@@ -33,7 +50,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {% for mode in game_modes %}
-            <a href="{{ url_for('quiz_setup', mode=mode.slug) }}"
+            <a href="{{ url_for('quiz_setup', mode=mode.slug, content_type=content_type or None) }}"
                style="--accent: {{ mode.accent }}"
                class="accent-card group flex items-start gap-4 rounded-xl border bg-slate-950/60 p-4 transition">
                 <span class="accent-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-lg">
