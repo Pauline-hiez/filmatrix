@@ -134,7 +134,7 @@ function showSuggestions(searchTerm) {
         suggestion.className =
             "w-full text-left px-3 py-2 hover:bg-slate-800 transition flex items-center gap-2";
         suggestion.innerHTML = `
-            <span class="text-xs text-cyan-400 uppercase shrink-0">${row.dataset.mode}</span>
+            <span class="text-xs text-cyan-400 uppercase shrink-0">${row.dataset.mode.replaceAll("_", " ")}</span>
             <span class="text-sm text-slate-200 truncate">${row.dataset.displayText}</span>
         `;
 

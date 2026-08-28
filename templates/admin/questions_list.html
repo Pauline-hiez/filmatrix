@@ -1,5 +1,18 @@
 {% extends "admin/base_admin.html" %}
 
+{% set mode_labels = {
+    "qcm": "Quiz",
+    "vrai_faux": "Vrai / Faux",
+    "citation": "Citations",
+    "emoji": "Emoji Quiz",
+    "film_melange": "Titre mélangé",
+    "chronologie": "Chronologie",
+    "devinette": "Devinette",
+    "devinette_affiche": "Image à deviner",
+    "casting": "Casting",
+    "blindtest": "Blind Test"
+} %}
+
 {% block admin_content %}
 <div class="flex items-center justify-between mb-4">
     <h2 class="text-xl">Questions ({{ total_count }})</h2>
@@ -31,7 +44,7 @@
     <button type="button" class="mode-tab-button text-xs px-3 py-1.5 rounded-full transition
                                   {% if loop.first %}bg-cyan-400 text-slate-950 font-bold{% else %}bg-slate-900 border border-cyan-400/30 text-slate-300 hover:border-cyan-400{% endif %}"
             data-mode="{{ mode }}">
-        {{ mode }} ({{ questions | length }})
+        {{ mode_labels.get(mode, mode) }} ({{ questions | length }})
     </button>
     {% endfor %}
 </div>
@@ -42,9 +55,10 @@
         <table class="w-full text-sm">
             <thead>
                 <tr class="bg-slate-900 text-slate-400 text-left">
-                    <th class="px-3 py-2">Texte / contenu</th>
+                    <th class="px-3 py-2">Question / contenu</th>
                     <th class="px-3 py-2">Type</th>
-                    <th class="px-3 py-2">Compte requis</th>
+                    <th class="px-3 py-2">Tags</th>
+                    <th class="px-3 py-2">Accès</th>
                     <th class="px-3 py-2"></th>
                 </tr>
             </thead>
@@ -52,18 +66,25 @@
                 {% for question in questions %}
                 <tr class="border-t border-cyan-400/10 hover:bg-slate-900/50 question-row"
                     id="question-row-{{ question.id }}"
-                    data-search-text="{{ question.prompt }} {{ question.mode }}"
+                    data-search-text="{{ question.prompt }} {{ question.mode }} {{ question.correct_answer.get('film', '') }} {{ question.correct_answer.get('title', '') }}"
                     data-mode="{{ mode }}"
-                    data-display-text="{{ question.prompt if question.prompt else '(sans texte affiché)' }}">
+                    data-display-text="{{ question.prompt if question.prompt else question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}">
                     <td class="px-3 py-2">
-                        {% if question.prompt %}
-                            {{ question.prompt }}
-                        {% else %}
-                            <span class="text-slate-500 italic">(sans texte affiché)</span>
-                        {% endif %}
+                        <p class="max-w-xl truncate font-medium text-slate-200">
+                            {% if question.prompt %}{{ question.prompt }}{% else %}{{ question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}{% endif %}
+                        </p>
+                        <p class="mt-1 text-xs text-slate-500">ID {{ question.id }} · {{ mode_labels.get(mode, mode) }}</p>
                     </td>
-                    <td class="px-3 py-2 text-slate-400">{{ "Série" if question.content_type == "serie" else "Film" }}</td>
-                    <td class="px-3 py-2 text-slate-400">{{ "Oui" if question.requires_account else "Non" }}</td>
+                    <td class="px-3 py-2">
+                        <span class="rounded-full border border-cyan-400/20 bg-cyan-400/5 px-2 py-1 text-xs text-cyan-300">{{ "Série" if question.content_type == "serie" else "Film" }}</span>
+                    </td>
+                    <td class="px-3 py-2">
+                        <div class="flex max-w-xs flex-wrap gap-1">
+                            {% for tag in question.tags[:3] %}<span class="rounded-full bg-slate-800 px-2 py-1 text-[11px] text-slate-400">{{ tag.name }}</span>{% endfor %}
+                            {% if question.tags|length > 3 %}<span class="text-xs text-slate-500">+{{ question.tags|length - 3 }}</span>{% endif %}
+                        </div>
+                    </td>
+                    <td class="px-3 py-2 text-slate-400">{{ "Compte" if question.requires_account else "Libre" }}</td>
                     <td class="px-3 py-2">
                         <div class="flex gap-2 justify-end">
                             <a href="{{ url_for('admin.admin_questions_edit', question_id=question.id) }}"
