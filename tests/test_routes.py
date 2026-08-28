@@ -424,6 +424,18 @@ def test_the_question_order_holds_during_the_run(client, app):
     assert again == ids[1:]
 
 
+def test_question_displays_its_content_type(client, app):
+    """Une question doit indiquer clairement s'il s'agit d'un film ou d'une série."""
+    with app.app_context():
+        db.session.add(Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"}, requires_account=False))
+        db.session.commit()
+
+    response = client.get("/quiz/citation/1")
+
+    assert response.status_code == 200
+    assert "Série" in response.get_data(as_text=True)
+
+
 def test_the_draw_respects_the_content_filter(client, app):
     """Une partie séries ne doit tirer que des questions de séries"""
     with app.app_context():

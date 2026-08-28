@@ -45,9 +45,14 @@
     <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-7">
 
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <span class="accent-icon rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest">
-                {{ labels.get(question.mode, question.mode) }}
-            </span>
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="accent-icon rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest">
+                    {{ labels.get(question.mode, question.mode) }}
+                </span>
+                <span class="rounded-full border border-slate-600 bg-slate-950/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-300">
+                    {% if question.content_type == "serie" %}Série{% else %}Film{% endif %}
+                </span>
+            </div>
             <span class="text-xs uppercase tracking-widest text-slate-500">
                 {{ level.label }}
             </span>
