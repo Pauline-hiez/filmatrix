@@ -214,6 +214,7 @@ def quiz(mode: str, position: int) -> str:
             duration=duration_for(level, question.mode),
             position=position,
             total_questions=total_questions,
+            is_mix=mode == MIX_MODE_SLUG,
         )
 
 @bp.route("/signaler/<int:question_id>", methods=["POST"])
