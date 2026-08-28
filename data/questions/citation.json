@@ -642,5 +642,876 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 22000,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« La première règle du Fight Club, c'est qu'on ne parle pas du Fight Club. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Fight Club"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22001,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Un Anneau pour les gouverner tous, un Anneau pour les trouver, un Anneau pour les amener tous et dans les ténèbres les lier. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22002,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Vous ne passerez pas ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22003,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Non, je suis ton père. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Star Wars"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22004,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Aidez-moi, Obi-Wan Kenobi, vous êtes mon seul espoir. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Star Wars"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22005,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Harry, tu es un sorcier. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Harry Potter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22006,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Il n'y a pas de cuillère. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Matrix"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "matrix",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22007,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Tu flotteras aussi... » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Ça"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22008,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Je ne suis pas raciste, j'ai un ami noir. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "OSS 117 : Le Caire, nid d'espions"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "oss-117",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22009,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Il va nous falloir un plus gros bateau. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Les Dents de la mer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-dents-de-la-mer",
+        "type": "saga"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22010,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Bond. James Bond. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "James Bond"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "james-bond",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22011,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Les serpents. Pourquoi fallait-il que ce soit des serpents ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Indiana Jones et les Aventuriers de l'arche perdue"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "indiana-jones",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22012,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« J'ai mangé son foie avec des fèves et un bon Chianti. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Silence des agneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22013,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Hasta la vista, baby. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Terminator 2 : Le Jugement dernier"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terminator",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22014,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Pas de femmes, pas d'enfants. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Léon"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22015,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Ils appellent ça le Royal Cheese. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Pulp Fiction"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22016,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Qu'est-ce qu'il y a dans la boîte ?! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22017,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Père d'un fils assassiné, mari d'une femme assassinée, et je me vengerai, dans cette vie ou dans l'autre. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Gladiator"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22018,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« J'ai vu des choses que vous, humains, ne croiriez pas... » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Blade Runner"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22019,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Yippee-ki-yay, pauvre con ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Piège de cristal"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "die-hard",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22020,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Salut, je m'appelle Chucky. Tu veux jouer avec moi ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Chucky"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chucky",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22021,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Quel est ton film d'horreur préféré ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Scream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22022,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Bas les pattes, sale garce ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Aliens, le retour"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22023,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Là où on va, on n'a pas besoin de route. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Retour vers le futur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22024,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Nom de Zeus ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Retour vers le futur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22025,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Bienvenue... à Jurassic Park. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Jurassic Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "jurassic-park",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22026,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« S'il saigne, on peut le tuer. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Predator"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "predator",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22027,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Ils sont fous ces Romains ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Astérix et Obélix : Mission Cléopâtre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "asterix",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22028,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Pourquoi si sérieux ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Dark Knight : Le Chevalier noir"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "christopher-nolan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 22029,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Garde la monnaie, sale bête ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Maman, j'ai raté l'avion !"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22030,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Que les probabilités soient toujours en votre faveur. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Hunger Games"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hunger-games",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

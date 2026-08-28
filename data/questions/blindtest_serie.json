@@ -641,5 +641,222 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 29501,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/ee/c7/f2eec7de-4985-dc8f-2a00-6152aa390910/mzaf_8791361472222490835.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29502,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/52/cf/d3/52cfd3aa-6482-5292-8166-db88dea833ee/mzaf_6952324014693830255.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "How I Met Your Mother"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29503,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e2/6e/05/e26e0594-3ab3-e068-d81b-c2be00c1a308/mzaf_3692129303798161724.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "La Casa de Papel"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29504,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/7f/0f/dd7f0ffe-c481-7467-661c-c335492bc9f6/mzaf_2554435804366445165.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Better Call Saul"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29505,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/df/6e/f5/df6ef5b7-b039-a941-9533-ac30a62c0228/mzaf_10809814154367718181.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Charmed"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29506,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fc/2d/e4/fc2de4b6-db54-7ac4-4815-3e3240cab157/mzaf_6456254464806279736.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Le Prince de Bel-Air"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-prince-de-bel-air",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29600,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6d/f4/c0/6df4c0ab-3bd0-3a45-30b0-6e37d41cdd30/mzaf_16468720910558544176.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "South Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

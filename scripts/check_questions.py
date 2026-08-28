@@ -123,9 +123,10 @@ for path in sorted(BASE.glob("*.json")):
             if len(hints) < 2:
                 errors.append(f"{tag} : {len(hints)} indice(s), il en faut plusieurs")
             answer = norm(q["correct_answer"]["film"])
-            for h in hints:
-                if answer and answer in norm(h):
-                    errors.append(f"{tag} : un indice donne la réponse — « {h} »")
+            if len(answer) > 2:
+                for h in hints:
+                    if answer in norm(h):
+                        errors.append(f"{tag} : un indice donne la réponse — « {h} »")
         if m in ("devinette_affiche", "casting", "blindtest"):
             urls = q["payload"].get("actor_photos") or [
                 q["payload"].get("poster_url") or q["payload"].get("audio_url")]

@@ -698,5 +698,4171 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 21000,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Bohemian Rhapsody, Rami Malek a remporté l'Oscar du meilleur acteur pour son interprétation de Freddie Mercury.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21001,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Bohemian Rhapsody se conclut par la reconstitution du concert du Live Aid.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21002,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film The Dirt retrace l'histoire du groupe Guns N' Roses.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21003,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Bob Marley: One Love, le rôle-titre est tenu par Daniel Kaluuya.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21004,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Aline est réalisé par Valérie Lemercier, qui en tient aussi le rôle principal.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21005,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Wayne's World, Wayne et Garth animent leur émission depuis un sous-sol.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21006,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Maman, j'ai raté l'avion !, la famille de Kevin part en vacances à Londres.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21007,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Maman, j'ai encore raté l'avion !, Kevin se retrouve seul à New York.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21008,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Austin Powers, le héros est cryogénisé dans les années 1960 avant d'être réveillé bien plus tard.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "austin-powers",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21009,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Les Visiteurs, Jacquouille est le cousin de Godefroy de Montmirail.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21010,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Les Visiteurs, Godefroy de Montmirail est projeté du Moyen Âge à l'époque contemporaine.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jean-reno",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21011,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ted, l'ours en peluche prend vie à la suite d'un vœu formulé par un enfant.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ted",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21012,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Projet X, la fête est organisée pendant l'absence des parents.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21013,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Le Cercle est le remake américain d'un film japonais.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21014,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Cercle, il reste treize jours à vivre à celui qui a regardé la cassette.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21015,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Hostel se déroule principalement en Slovaquie.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "eli-roth",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21016,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "La Colline a des yeux (2006) est le remake d'un film de Wes Craven.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21017,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Ça est adapté d'un roman de Stephen King.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21018,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ça, le clown resurgit tous les vingt-sept ans.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21019,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ça, l'action se déroule dans la ville de Castle Rock.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21020,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans L'Exorciste, la fillette possédée se prénomme Rosemary.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21021,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Silent Hill est adapté d'une bande dessinée.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21022,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans La Maison de cire (2005), Paris Hilton fait partie de la distribution.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21023,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Simetierre est adapté d'un roman de Dean Koontz.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21024,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Misery, Annie Wilkes se présente comme la plus grande admiratrice de l'écrivain qu'elle séquestre.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "kathy-bates",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21025,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Hérédité et Midsommar sont tous deux réalisés par Ari Aster.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21026,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Midsommar se déroule majoritairement de nuit.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21027,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans The Descent, l'expédition est exclusivement composée de femmes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21028,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film The Descent se déroule dans les Alpes françaises.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21029,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans American Psycho, Patrick Bateman travaille dans la finance à New York.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21030,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Fight Club, Edward Norton incarne Tyler Durden.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      },
+      {
+        "name": "edward-norton",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21031,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Suicide Squad (2016), Jared Leto incarne le Joker.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21032,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Seigneur des Anneaux, Sean Bean incarne Boromir.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21033,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Seigneur des Anneaux : La Communauté de l'Anneau, Boromir survit jusqu'au générique de fin.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21034,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Hobbit, le dragon Smaug est doublé en version originale par Benedict Cumberbatch.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21035,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Star Wars, le Faucon Millenium appartient à Luke Skywalker.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "george-lucas",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21036,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "George Lucas a réalisé lui-même les trois films de la trilogie Star Wars d'origine.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "george-lucas",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21037,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Les deux premiers films Harry Potter sont réalisés par Chris Columbus.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21038,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Pirates des Caraïbes, Johnny Depp incarne le capitaine Jack Sparrow.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "pirates-des-caraibes",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "johnny-depp",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21039,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le premier film de la saga Saw est réalisé par James Wan.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "saw",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21040,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans X-Men, Patrick Stewart incarne le professeur Charles Xavier.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-men",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21041,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Hunger Games, Katniss Everdeen est originaire du district 1.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hunger-games",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21042,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Hunger Games, Katniss se porte volontaire pour prendre la place de sa sœur.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hunger-games",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21043,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Men in Black, l'agent K est interprété par Will Smith.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "men-in-black",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21044,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Astérix et Obélix : Mission Cléopâtre est réalisé par Alain Chabat.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "asterix",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21045,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Very Bad Trip, l'action se déroule principalement à Las Vegas.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "very-bad-trip",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "bradley-cooper",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21046,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Indiana Jones et la Dernière Croisade, Sean Connery incarne le père d'Indiana Jones.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "indiana-jones",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21047,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "OSS 117 : Le Caire, nid d'espions est réalisé par Michel Hazanavicius.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "oss-117",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21048,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Gremlins, il ne faut jamais mouiller un Mogwaï.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "gremlins",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21049,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ace Ventura, Jim Carrey incarne un détective spécialisé dans les animaux.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ace-ventura",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21050,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Alien, le vaisseau des héros s'appelle le Sulaco.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21051,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Alien, le personnage de Ripley est interprété par Sigourney Weaver.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21052,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Predator (1987) est réalisé par James Cameron.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "predator",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21053,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Terminator 2 : Le Jugement dernier est réalisé par Ridley Scott.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terminator",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "james-cameron",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21054,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Rocky (1976), le héros remporte le combat final contre Apollo Creed.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "rocky",
+        "type": "saga"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21055,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Halloween (1978) est réalisé par John Carpenter.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "john-carpenter",
+        "type": "realisateur"
+      },
+      {
+        "name": "jamie-lee-curtis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21056,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Halloween, le tueur masqué se nomme Jason Voorhees.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "john-carpenter",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21057,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Freddy, les griffes de la nuit, le tueur atteint ses victimes pendant leur sommeil.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "freddy",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21058,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Evil Dead (1981) est réalisé par Wes Craven.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "evil-dead",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21059,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Destination finale, les héros échappent d'abord à un accident grâce à une prémonition.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "destination-finale",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21060,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Massacre à la tronçonneuse, le tueur est surnommé Leatherface.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "massacre-a-la-tronconneuse",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21061,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Les Dents de la mer, le requin est montré en entier dès les premières minutes.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-dents-de-la-mer",
+        "type": "saga"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21062,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Scream, le tueur porte un masque inspiré du tableau Le Cri.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21063,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Scream, le tueur masqué est surnommé Jigsaw.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21064,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Détour mortel, l'action se déroule en Virginie-Occidentale.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "detour-mortel",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21065,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Chucky, la poupée est habitée par l'âme d'un tueur en série.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chucky",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21066,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Terrifier, le clown Art ne prononce jamais un mot.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terrifier",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21067,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Anthony Hopkins a remporté un Oscar pour son interprétation d'Hannibal Lecter.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hannibal-lecter",
+        "type": "saga"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21068,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Tim Burton a réalisé Le Labyrinthe de Pan.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "tim-burton",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21069,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Johnny Depp a tourné à plusieurs reprises sous la direction de Tim Burton.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tim-burton",
+        "type": "realisateur"
+      },
+      {
+        "name": "johnny-depp",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21070,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Quentin Tarantino a réalisé Reservoir Dogs avant Pulp Fiction.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "quentin-tarantino",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21071,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Christopher Nolan a réalisé Zodiac.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "christopher-nolan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21072,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Christopher Nolan a réalisé Memento avant Inception.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "christopher-nolan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21073,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "David Fincher a réalisé Seven puis Zodiac.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21074,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Ridley Scott a réalisé Alien 3.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21075,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "James Cameron a réalisé Aliens, le retour, suite du premier Alien.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "james-cameron",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21076,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Guy Ritchie a réalisé Snatch.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "guy-ritchie",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21077,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Guillermo del Toro a remporté l'Oscar du meilleur réalisateur pour La Forme de l'eau.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "guillermo-del-toro",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21078,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "M. Night Shyamalan a réalisé Sixième Sens.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "m-night-shyamalan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21079,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "John Carpenter a composé lui-même la musique de plusieurs de ses films.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "john-carpenter",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21080,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Sofia Coppola est la fille de Francis Ford Coppola.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sofia-coppola",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21081,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Luc Besson a réalisé Léon et Le Cinquième Élément.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "luc-besson",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21082,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans The Mask, Jim Carrey incarne Stanley Ipkiss.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21083,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Jim Carrey tient le rôle principal de The Truman Show.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21084,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Mike Myers prête sa voix à Shrek en version originale.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21085,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Edward Norton incarne le narrateur de Fight Club.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "edward-norton",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21086,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Kathy Bates a remporté l'Oscar de la meilleure actrice pour Misery.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "kathy-bates",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21087,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Bradley Cooper a réalisé A Star Is Born (2018) en plus d'y jouer.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "bradley-cooper",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21088,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Al Pacino a remporté l'Oscar du meilleur acteur pour Le Parrain.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "al-pacino",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21089,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Al Pacino et Robert De Niro se donnent la réplique dans Heat.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "al-pacino",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21090,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Robert De Niro incarne Travis Bickle dans Taxi Driver.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "robert-de-niro",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21091,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Tom Hanks a remporté l'Oscar du meilleur acteur deux années consécutives.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tom-hanks",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21092,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Bruce Willis fait partie de la distribution de Pulp Fiction.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "quentin-tarantino",
+        "type": "realisateur"
+      },
+      {
+        "name": "bruce-willis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21093,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Louis de Funès et Bourvil sont réunis à l'écran dans La Grande Vadrouille.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      },
+      {
+        "name": "louis-de-funes",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21094,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Corniaud, Bourvil incarne Léopold Saroyan.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      },
+      {
+        "name": "bourvil",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21095,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Ben Stiller incarne Greg Focker dans Mon beau-père et moi.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "ben-stiller",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21096,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Jamie Lee Curtis est la fille de Janet Leigh, l'actrice de Psychose.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "jamie-lee-curtis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21097,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Emma Thompson a remporté un Oscar du meilleur scénario adapté.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "emma-thompson",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21098,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Jean Reno incarne Enzo Molinari dans Le Grand Bleu.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "luc-besson",
+        "type": "realisateur"
+      },
+      {
+        "name": "jean-reno",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21099,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Keanu Reeves incarne le tueur à gages John Wick.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "john-wick",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "keanu-reeves",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21100,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Helena Bonham Carter incarne Bellatrix Lestrange dans Harry Potter.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "helena-bonham-carter",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21101,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Chris Columbus a réalisé Maman, j'ai raté l'avion !",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21102,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Insidious et Conjuring sont tous deux réalisés par James Wan.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "conjuring",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21103,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans American Nightmare, tous les crimes sont légaux pendant une nuit par an.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-nightmare",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21104,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans American Pie, l'intrigue se déroule pendant la dernière année de lycée des héros.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-pie",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21105,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Rob Zombie mène en parallèle une carrière de musicien et de réalisateur.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "rob-zombie",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21200,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Bohemian Rhapsody, le concert du Live Aid reconstitué en fin de film s'est déroulé à Londres en 1984.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21201,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Aline est un biopic autorisé qui utilise le vrai nom de Céline Dion.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21202,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Wayne's World, Wayne et Garth animent leur émission depuis un studio de télévision professionnel.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21203,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Austin Powers, le personnage du Docteur Denfer est interprété par un acteur différent d'Austin Powers.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "austin-powers",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21204,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ted, l'ours en peluche ne parle jamais et communique par gestes.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ted",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21205,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Le Cercle (2002) est un film original américain, sans version antérieure à l'étranger.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21206,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans La Colline a des yeux (2006), l'action se déroule dans une forêt européenne.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21207,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ça, le clown resurgit tous les dix ans.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21208,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Silent Hill (2006) est réalisé par un cinéaste américain.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21209,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Simetierre est un roman original de Dean Koontz adapté au cinéma.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21210,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Misery, Annie Wilkes est présentée comme infirmière de métier.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "kathy-bates",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21211,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Midsommar se déroule presque entièrement en pleine nuit polaire.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21212,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Fight Club, le narrateur et Tyler Durden sont interprétés par le même acteur.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      },
+      {
+        "name": "edward-norton",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21213,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Seigneur des Anneaux, Boromir est membre de la Communauté depuis Fondcombe et survit jusqu'au dernier film.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21214,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "George Lucas a personnellement réalisé les six premiers films Star Wars.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "george-lucas",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21215,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans X-Men, Wolverine est présenté comme le fondateur historique de l'équipe des X-Men.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-men",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21216,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Men in Black, le neuralyseur sert à effacer la mémoire des agents entre deux missions.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "men-in-black",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21217,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "La saga Saw a été lancée par un réalisateur américain sans lien avec l'horreur auparavant.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "saw",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21218,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Alien, Ripley est interprétée par Jamie Lee Curtis.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21219,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Predator (1987) est réalisé par le même cinéaste que Terminator 2.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "predator",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21220,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Halloween, Michael Myers s'exprime longuement au téléphone avec Laurie Strode.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "john-carpenter",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21221,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Freddy Krueger, dans Freddy - Les Griffes de la nuit, attaque exclusivement ses victimes en plein jour.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "freddy",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21222,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le premier Evil Dead (1981) bénéficiait d'un budget hollywoodien conséquent.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "evil-dead",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21223,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Massacre à la tronçonneuse, le masque de Leatherface est en métal.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "massacre-a-la-tronconneuse",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21224,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Les Dents de la mer, le requin mécanique fonctionne parfaitement dès le premier jour de tournage.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-dents-de-la-mer",
+        "type": "saga"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21225,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Scream, l'identité du tueur reste sans explication à la fin du film.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21226,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Terrifier met en scène un tueur particulièrement bavard.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terrifier",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21227,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Christopher Nolan a réalisé Seven.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "christopher-nolan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21228,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Ridley Scott a réalisé Predator.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "predator",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21229,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Guillermo del Toro a réalisé Kill Bill.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "guillermo-del-toro",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21230,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans The Truman Show, Jim Carrey découvre dès la première scène qu'il est filmé en permanence.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21231,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Al Pacino et Robert De Niro se sont donné la réplique dans Le Parrain (1972).",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "al-pacino",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21232,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Tom Hanks a remporté l'Oscar du meilleur acteur pour Forrest Gump et pour Le Terminal la même décennie consécutive.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tom-hanks",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21233,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Corniaud, Louis de Funès et Bourvil incarnent deux frères.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      },
+      {
+        "name": "bourvil",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21234,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Jamie Lee Curtis n'a aucun lien de parenté avec l'actrice principale de Psychose.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "jamie-lee-curtis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21235,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Harry Potter, Helena Bonham Carter incarne le professeur McGonagall.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "helena-bonham-carter",
+        "type": "acteur"
+      }
+    ]
   }
 ]

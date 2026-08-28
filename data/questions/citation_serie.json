@@ -1506,5 +1506,237 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 22500,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« J'ai appris quelque chose aujourd'hui. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "South Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22501,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« D'oh ! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Les Simpson"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22502,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Que le Seigneur ouvre. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Handmaid's Tale"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22503,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« C'est ma place. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Big Bang Theory"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22504,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Défi accepté ! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "How I Met Your Mother"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22505,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Dis-moi, que désires-tu vraiment ? » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Lucifer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22506,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Par ordre des Peaky Blinders. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Peaky Blinders"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 22507,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Le Pouvoir des Trois nous libérera. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Charmed"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

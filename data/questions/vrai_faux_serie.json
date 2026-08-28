@@ -2086,5 +2086,3041 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 21500,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans South Park, Kenny meurt dans de très nombreux épisodes des premières saisons.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21501,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série South Park se déroule dans l'État de l'Utah.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21502,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Les Simpson, Ned Flanders est le voisin de la famille.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21503,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Les Simpson sont nés de courts métrages diffusés dans le Tracey Ullman Show.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21504,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Game of Thrones, Sean Bean incarne Eddard Stark.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21505,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Game of Thrones, la maison Greyjoy a pour devise « Nous ne semons pas ».",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21506,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Vikings, Rollo est le frère de Ragnar Lothbrok.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21507,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Vikings, Floki est charpentier de navires.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21508,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Vikings a été lancée par la chaîne HBO.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21509,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Handmaid's Tale, le régime théocratique s'appelle Panem.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21510,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "The Handmaid's Tale est adaptée d'un roman de Margaret Atwood.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21511,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Kaamelott a d'abord été diffusée sous forme d'épisodes de quelques minutes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21512,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, Perceval et Karadoc sont chevaliers de la Table Ronde.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21513,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, Léodagan est le roi de Carmélide.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21514,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Malcolm, Francis est le frère aîné de Malcolm.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "malcolm",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21515,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Malcolm, la famille vit dans un quartier très aisé.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "malcolm",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21516,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Friends, Joey et Chandler sont colocataires.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21517,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Big Bang Theory, Sheldon et Leonard partagent le même appartement.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21518,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Big Bang Theory, Howard Wolowitz est astrophysicien.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21519,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans How I Met Your Mother, Barney Stinson est interprété par Neil Patrick Harris.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21520,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans How I Met Your Mother, toute l'histoire est racontée en flash-back.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21521,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, l'action se déroule à Miami.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21522,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, Debra est la sœur adoptive du héros.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21523,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série That '70s Show se déroule dans les années 1980.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "that-70s-show",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21524,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans That '70s Show, Ashton Kutcher incarne Michael Kelso.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "that-70s-show",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21525,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans La Casa de Papel, les membres du groupe se donnent des noms de villes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21526,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Squid Game, les gardiens portent des combinaisons roses et des masques ornés de formes géométriques.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21527,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Stranger Things, Eddie Munson apparaît dès la première saison.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21528,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Stranger Things, le Hellfire Club est un club de jeu de rôle.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21529,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "American Horror Story est une série d'anthologie dont chaque saison raconte une histoire close.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21530,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Black Mirror est britannique à l'origine.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "black-mirror",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21531,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Mindhunter compte cinq saisons.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21532,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Mindhunter, l'intrigue se déroule dans les années 1970.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21533,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Breaking Bad, Walter White rachète un lavage de voitures pour blanchir son argent.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21534,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Lucifer est adaptée d'un personnage de comics.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21535,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Lucifer, le héros prête main-forte à la police de Los Angeles.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21536,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Peaky Blinders, Cillian Murphy incarne Thomas Shelby.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21537,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Euphoria est diffusée par HBO.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "euphoria",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21538,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Boys, les super-héros sont présentés comme des modèles de vertu.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21539,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Boys, Karl Urban incarne Billy Butcher.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21540,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Famille d'abord met en scène une famille afro-américaine.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "famille-dabord",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21541,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Dr House, le personnage principal dirige le service de chirurgie de l'hôpital.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21542,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Scrubs, J.D. est interne en médecine au début de la série.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scrubs",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21543,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Better Call Saul est un spin-off de Breaking Bad.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21544,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Better Call Saul, le personnage de Mike Ehrmantraut est également présent.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21545,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Chaque saison de The White Lotus se déroule dans un établissement différent.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-white-lotus",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21546,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La Flamme est une parodie d'émission de télé-réalité sentimentale.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-flamme",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21547,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Le Flambeau reprend l'univers et l'équipe de La Flamme.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-flambeau",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21548,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Dark est une production allemande diffusée par Netflix.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21549,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série française H se déroule dans un hôpital.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "h",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21550,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans la série H, Jamel Debbouze, Éric Judor et Ramzy Bedia tiennent les rôles principaux.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "h",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21551,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La Petite Maison dans la prairie est adaptée des récits de Laura Ingalls Wilder.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-petite-maison-dans-la-prairie",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21552,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans La Petite Maison dans la prairie, Michael Landon incarne Charles Ingalls.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-petite-maison-dans-la-prairie",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21553,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Notre belle famille met en scène une famille recomposée.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "notre-belle-famille",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21554,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Une nounou d'enfer, Fran Fine est originaire du Bronx.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "une-nounou-denfer",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21555,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans X-Files, Mulder est le sceptique du duo et Scully celle qui croit au paranormal.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21556,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Charmed, les trois sœurs vivent à San Francisco.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21557,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans You, Joe Goldberg est un libraire aux obsessions inquiétantes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "you",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21558,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Once Upon a Time mêle personnages de contes de fées et monde contemporain.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "once-upon-a-time",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21559,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Bates Motel est une préquelle du film Psychose.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bates-motel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21560,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Young Sheldon raconte l'enfance de Sheldon Cooper au Texas.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "young-sheldon",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21561,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Mon oncle Charlie, Ashton Kutcher rejoint la série après le départ de Charlie Sheen.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mon-oncle-charlie",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21562,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série The Middle se déroule en Californie.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-middle",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21563,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans New Girl, Jess emménage avec trois colocataires masculins.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "new-girl",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21564,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Le Prince de Bel-Air, la famille de l'oncle Phil vit à Brooklyn.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-prince-de-bel-air",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21565,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Le Prince de Bel-Air, Will Smith joue un personnage qui porte son propre prénom.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-prince-de-bel-air",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21566,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La version américaine de Shameless est adaptée d'une série britannique.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shameless",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21567,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Shameless, la famille Gallagher vit à Détroit.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shameless",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21568,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans South Park, Eric Cartman est présenté comme le plus altruiste de la bande.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21569,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Les Simpson, Bart est le plus âgé des enfants de la famille.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21570,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans American Horror Story, tous les épisodes suivent les mêmes personnages d'une saison à l'autre.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21571,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans La Casa de Papel, le premier braquage vise le musée du Prado.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21572,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, le héros est expert en balistique.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21573,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Charmed, le grimoire familial s'appelle le Livre des Ombres.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21574,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Scrubs, l'hôpital se nomme Princeton-Plainsboro.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scrubs",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21575,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Young Sheldon, le personnage principal est déjà professeur d'université.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "young-sheldon",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21700,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans South Park, Kenny est le personnage le plus riche du groupe.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21701,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Les Simpson ont été créés directement en tant que série, sans passer par des courts métrages.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21702,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Game of Thrones, Ned Stark survit jusqu'à la dernière saison.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 21703,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Vikings, Floki est présenté comme un guerrier sans aucun talent artisanal.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21704,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "The Handmaid's Tale est une série originale sans support littéraire.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21705,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, Léodagan est le roi d'Orcanie.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21706,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Malcolm, la famille Wilkerson vit dans un quartier huppé.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "malcolm",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21707,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Friends, Chandler et Joey vivent chacun seuls dans des appartements différents.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21708,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Big Bang Theory, Howard Wolowitz est titulaire d'un doctorat en physique.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21709,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans How I Met Your Mother, l'histoire est racontée en temps réel, sans retour en arrière.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21710,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, l'action se déroule à Boston.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21711,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "That '70s Show se déroule dans les années 1990.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "that-70s-show",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21712,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans La Casa de Papel, les braqueurs utilisent leurs vrais noms pendant l'opération.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21713,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Squid Game est une production nord-américaine.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21714,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "American Horror Story reprend les mêmes personnages et la même intrigue à chaque saison.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21715,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Mindhunter se déroule dans les années 2000.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 21716,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Breaking Bad, Walter White est agent de la DEA au début de la série.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21717,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Lucifer est un personnage entièrement original, sans lien avec les comics DC.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21718,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Peaky Blinders, l'intrigue se déroule au XXIe siècle.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21719,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Boys, Vought est présentée comme une organisation caritative sans but lucratif.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21720,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Dr House, le personnage principal se déplace sans aucune difficulté physique.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21721,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Better Call Saul se déroule après les événements de Breaking Bad.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21722,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans la série H, l'action se déroule dans un commissariat.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "h",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21723,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La Petite Maison dans la prairie est une série entièrement originale, sans œuvre littéraire à l'origine.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-petite-maison-dans-la-prairie",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21724,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans X-Files, Dana Scully est présentée comme crédule face au paranormal, à l'inverse de Mulder.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21725,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Bates Motel est une suite du film Psychose, se déroulant après son intrigue.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bates-motel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21726,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Le Prince de Bel-Air se déroule intégralement à Philadelphie.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-prince-de-bel-air",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 21727,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La version américaine de Shameless est une série totalement originale, sans version antérieure.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shameless",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

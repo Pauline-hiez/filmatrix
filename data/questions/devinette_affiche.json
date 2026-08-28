@@ -639,5 +639,508 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 27000,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
+    },
+    "correct_answer": {
+      "film": "Bohemian Rhapsody"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27001,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/lAvf5zzyOgTZmpRBRJFa7IVVqCK.jpg"
+    },
+    "correct_answer": {
+      "film": "Wayne's World"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27002,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/ih2xVgeMS8R5WUetYE8Mr9hVTlB.jpg"
+    },
+    "correct_answer": {
+      "film": "Maman, j'ai raté l'avion !"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27003,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/wSm5McaHSAyOx4gGRYdlDHzj00y.jpg"
+    },
+    "correct_answer": {
+      "film": "Austin Powers"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "austin-powers",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27004,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
+    },
+    "correct_answer": {
+      "film": "Les Visiteurs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27005,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/hkAVgWvAMmM8tj9CDEvGqMdNQBE.jpg"
+    },
+    "correct_answer": {
+      "film": "Ted"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ted",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27006,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/qVGpxnjrGlHaSTCqTQI6viBDSfp.jpg"
+    },
+    "correct_answer": {
+      "film": "Ça"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27007,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/xcjJ5khg2yzOa282mza39Lbrm7j.jpg"
+    },
+    "correct_answer": {
+      "film": "L'Exorciste"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27008,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/gJbTXKNTL6O7r7PzF6ZRkJGBlPp.jpg"
+    },
+    "correct_answer": {
+      "film": "Hérédité"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27009,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
+    },
+    "correct_answer": {
+      "film": "Midsommar"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27010,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
+    },
+    "correct_answer": {
+      "film": "Fight Club"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27011,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/1XAC6RPT01UX9EQGy2JVn5c8pgy.jpg"
+    },
+    "correct_answer": {
+      "film": "Harry Potter à l'école des sorciers"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27012,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/uRNgkJSkNBFbbn9fPsEjDIy8Sh3.jpg"
+    },
+    "correct_answer": {
+      "film": "Pirates des Caraïbes : La Malédiction du Black Pearl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "pirates-des-caraibes",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27013,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/zPACwR32amTNvzId9qyapCWXYDJ.jpg"
+    },
+    "correct_answer": {
+      "film": "Les Aventuriers de l'arche perdue"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "indiana-jones",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27014,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/2kpPVHLvkHfsc9uurzmEB1PoC6R.jpg"
+    },
+    "correct_answer": {
+      "film": "Astérix et Obélix : Mission Cléopâtre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "asterix",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27015,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/sHI9xlFRWCJ38AIIfOqnGjuEvXz.jpg"
+    },
+    "correct_answer": {
+      "film": "Halloween"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27016,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
+    },
+    "correct_answer": {
+      "film": "Scream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

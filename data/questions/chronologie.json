@@ -916,5 +916,560 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 25000,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Vendredi 13",
+        "Les Dents de la mer",
+        "Halloween",
+        "Alien"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Dents de la mer",
+        "Halloween",
+        "Alien",
+        "Vendredi 13"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25001,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Predator",
+        "L'Exorciste",
+        "Rocky",
+        "Terminator"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "L'Exorciste",
+        "Rocky",
+        "Terminator",
+        "Predator"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25002,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Beetlejuice",
+        "Retour vers le futur",
+        "Gremlins",
+        "Les Aventuriers de l'arche perdue"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Aventuriers de l'arche perdue",
+        "Gremlins",
+        "Retour vers le futur",
+        "Beetlejuice"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25003,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Le Cinquième Élément",
+        "Blade Runner",
+        "Jurassic Park",
+        "Matrix"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Blade Runner",
+        "Jurassic Park",
+        "Le Cinquième Élément",
+        "Matrix"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25004,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Seven",
+        "American Psycho",
+        "Scream",
+        "Le Silence des agneaux"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Silence des agneaux",
+        "Seven",
+        "Scream",
+        "American Psycho"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25005,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Very Bad Trip",
+        "Gladiator",
+        "Kill Bill",
+        "Fight Club"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Fight Club",
+        "Gladiator",
+        "Kill Bill",
+        "Very Bad Trip"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25006,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Hunger Games",
+        "Harry Potter et la Chambre des secrets",
+        "Le Seigneur des Anneaux : La Communauté de l'anneau",
+        "Pirates des Caraïbes : La Malédiction du Black Pearl"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Seigneur des Anneaux : La Communauté de l'anneau",
+        "Harry Potter et la Chambre des secrets",
+        "Pirates des Caraïbes : La Malédiction du Black Pearl",
+        "Hunger Games"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25007,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Hostel",
+        "Saw",
+        "American Nightmare",
+        "La Colline a des yeux"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Saw",
+        "Hostel",
+        "La Colline a des yeux",
+        "American Nightmare"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25008,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Insidious",
+        "The Descent",
+        "Conjuring",
+        "Détour mortel"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Détour mortel",
+        "The Descent",
+        "Insidious",
+        "Conjuring"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25009,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Very Bad Trip",
+        "Les Visiteurs",
+        "Astérix et Obélix : Mission Cléopâtre",
+        "OSS 117 : Le Caire, nid d'espions"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Visiteurs",
+        "Astérix et Obélix : Mission Cléopâtre",
+        "OSS 117 : Le Caire, nid d'espions",
+        "Very Bad Trip"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25010,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Zodiac",
+        "Midsommar",
+        "Hérédité",
+        "Memento"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Memento",
+        "Zodiac",
+        "Hérédité",
+        "Midsommar"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25011,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Chucky",
+        "Terrifier",
+        "Ça",
+        "Massacre à la tronçonneuse"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Massacre à la tronçonneuse",
+        "Chucky",
+        "Terrifier",
+        "Ça"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25012,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Psychose",
+        "Apocalypse Now",
+        "Le Parrain",
+        "Autant en emporte le vent"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Autant en emporte le vent",
+        "Psychose",
+        "Le Parrain",
+        "Apocalypse Now"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25013,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Simetierre",
+        "Le Cercle",
+        "Misery",
+        "La Maison de cire"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Simetierre",
+        "Misery",
+        "Le Cercle",
+        "La Maison de cire"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25014,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Gladiator",
+        "Le Labyrinthe de Pan",
+        "300",
+        "Le Seigneur des Anneaux : Le Retour du roi"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Gladiator",
+        "Le Seigneur des Anneaux : Le Retour du roi",
+        "Le Labyrinthe de Pan",
+        "300"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
   }
 ]

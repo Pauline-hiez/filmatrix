@@ -776,5 +776,285 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 28500,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/vZDe22EtLtcHvPr28l4ZM0b7qjG.jpg",
+        "https://image.tmdb.org/t/p/w500/2IQEjn5T8urx6ikXM87QGs5MrWg.jpg",
+        "https://image.tmdb.org/t/p/w500/m45A0hYcpnGckwxqs7j0I6Sp2Dj.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "The Handmaid's Tale"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28501,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/3kmnYKAzSc3Lp7iK5pcj97Hx9Cm.jpg",
+        "https://image.tmdb.org/t/p/w500/xHnvYcJv6YEku9pIg8LoDNHWQy.jpg",
+        "https://image.tmdb.org/t/p/w500/2oOYpdlQyNQfXvtyaoAHNsWhqZz.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Mindhunter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28502,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/zhjIyqpk5bsYgxsh5bSeS6VZtHm.jpg",
+        "https://image.tmdb.org/t/p/w500/if1TbO8dSfPiDCMfy52nH7A2D7.jpg",
+        "https://image.tmdb.org/t/p/w500/bh4aQqP7kJzL2Ls9tj5OmhsBlqi.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Lucifer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28503,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/1qup8tSt95HLbcy2c2xrx4iJNxv.jpg",
+        "https://image.tmdb.org/t/p/w500/AilBKow2NuvPBQbvGRx69RxKUBi.jpg",
+        "https://image.tmdb.org/t/p/w500/qYiaSl0Eb7G3VaxOg8PxExCFwon.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Euphoria"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "euphoria",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28504,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/7Y96dAfg0HcFrcLjlD5eD9N0uj4.jpg",
+        "https://image.tmdb.org/t/p/w500/320qW5yEbxpmyxQ3evmClJbtKag.jpg",
+        "https://image.tmdb.org/t/p/w500/xx3As5SWcE8vYOKZgtjDjqmT3jc.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "The Boys"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28506,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/g3a1O9lOTZvrwQupUtg4Fc3CdTd.jpg",
+        "https://image.tmdb.org/t/p/w500/vWChiHhXFjZVKC6HbACyyRFmdW4.jpg",
+        "https://image.tmdb.org/t/p/w500/5lcVMJbWrNDFiWa1WxK4oR8zwev.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "The White Lotus"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-white-lotus",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28507,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/smZy91UWhB8bZib6A28kTQ8w9sT.jpg",
+        "https://image.tmdb.org/t/p/w500/q5RAaX57dLvlpigAhbX3lCb2dkZ.jpg",
+        "https://image.tmdb.org/t/p/w500/eNy014gMBmG8MOEsb4N3p1zj2Er.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Charmed"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28508,
+    "mode": "casting",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/3ekfkoj3YmRlCtez4OOZoVPiO7a.jpg",
+        "https://image.tmdb.org/t/p/w500/kcggpFclTsPSm5YRNxRboTNt84R.jpg",
+        "https://image.tmdb.org/t/p/w500/qM2cgMy0J5NKsa05s1ZvkWwqcI6.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "You"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "you",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

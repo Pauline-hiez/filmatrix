@@ -669,5 +669,419 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 29000,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8f/11/52/8f1152a9-fd5f-0021-f546-b97579c22ec3/mzaf_3962258993076347789.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Bohemian Rhapsody"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29001,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8a/ad/63/8aad639b-e8dc-5b8f-fcc1-0705e0faa6d9/mzaf_17812895585055370633.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Ça"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29002,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/42/95/9e/42959e26-8ea4-6409-81ee-e719ae9ea11f/mzaf_7735702895119846041.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "L'Exorciste"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29003,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8d/20/5e/8d205e82-b86f-17ba-0b29-9e5c3999d5ee/mzaf_8257256400604904055.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Fight Club"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29004,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/fe/e5/31/fee53108-9e1d-edbc-e090-7518323af80c/mzaf_12716105245550605672.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Matrix"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "matrix",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29005,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/2d/8e/a6/2d8ea6df-d2d4-df0c-e20d-dd26b7691aae/mzaf_14815561527577254419.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Les Aventuriers de l'arche perdue"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "indiana-jones",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29007,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/14/bd/c5/14bdc540-4adc-c06e-30e5-0c4750d2cbf1/mzaf_8965594552637261786.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Gremlins"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "gremlins",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29008,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/33/ff/19/33ff194a-2fa6-914b-02ed-e59b1af36225/mzaf_11153808036911240242.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Terminator"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terminator",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29009,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e9/25/cd/e925cd21-73f5-8220-c6a7-beaf71960f32/mzaf_16514897033700028383.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Halloween"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29010,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/24/71/49/247149dc-5108-c343-c221-d4e1a592434a/mzaf_15859361937471650185.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Le Cinquième Élément"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29102,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/db/58/1e/db581ebf-5b79-8780-f8a1-b0857ca46c30/mzaf_12861844530395990829.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Scream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29101,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6d/48/dc/6d48dc65-2b24-7056-5237-020eff15981d/mzaf_1155193189338859645.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "American Pie"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-pie",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29200,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/06/72/23/067223d3-48bb-a2d9-2c5d-0a07a6c2266e/mzaf_4447374998433111803.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "James Bond"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "james-bond",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 29201,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2f/a3/5b/2fa35bd0-65e4-3bf6-647e-8e00890cf9bc/mzaf_11112935418018835796.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Léon"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

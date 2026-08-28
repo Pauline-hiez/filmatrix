@@ -703,5 +703,377 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 27500,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
+    "correct_answer": {
+      "film": "South Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27501,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/sokTOq0zAmPS7wCR4qd4Kca35x7.jpg"
+    },
+    "correct_answer": {
+      "film": "The Handmaid's Tale"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27502,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/6TSJRc77dDOesKzcNqkz0KeXdLz.jpg"
+    },
+    "correct_answer": {
+      "film": "American Horror Story"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27503,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/lpDVJuIro21gtMj9iXMFKHuroZN.jpg"
+    },
+    "correct_answer": {
+      "film": "Mindhunter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27504,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/mAXOCbZzvmDa6PCh5dcIPOB51Qc.jpg"
+    },
+    "correct_answer": {
+      "film": "Lucifer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27505,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/mez2Z3WqlPKNXpi7mWoiiE5guE9.jpg"
+    },
+    "correct_answer": {
+      "film": "Euphoria"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "euphoria",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27506,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/n6vVs6z8obNbExdD3QHTr4Utu1Z.jpg"
+    },
+    "correct_answer": {
+      "film": "The Boys"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27508,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/qVBIAcZkK5j6WRq7JehJcOMbdgb.jpg"
+    },
+    "correct_answer": {
+      "film": "The White Lotus"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-white-lotus",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27509,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/w00lfexrsOeR25dO4hsWhbcUnmD.jpg"
+    },
+    "correct_answer": {
+      "film": "X-Files"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27510,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/ueZFcwAUvkjyAB9beaiqJyg0M8H.jpg"
+    },
+    "correct_answer": {
+      "film": "Charmed"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27511,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/gzOIymABxmetAECXtazEYCpMmfb.jpg"
+    },
+    "correct_answer": {
+      "film": "You"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "you",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 27512,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/nSJvwZziYaGMbftSDQqQ5GIb47a.jpg"
+    },
+    "correct_answer": {
+      "film": "Once Upon a Time"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "once-upon-a-time",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

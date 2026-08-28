@@ -760,5 +760,948 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 24000,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Bohemian Rhapsody"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24001,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Aline"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24002,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Wayne's World"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24003,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Ted"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ted",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24004,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Projet X"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24005,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Le Cercle"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24006,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Hostel"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24007,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Ça"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24008,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "L'Exorciste"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24009,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Silent Hill"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24010,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Simetierre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24011,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Misery"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24012,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Hérédité"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24013,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Midsommar"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24014,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "American Psycho"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24016,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Retour vers le futur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24017,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Star Wars"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24018,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Harry Potter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24019,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Saw"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "saw",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24020,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Hunger Games"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hunger-games",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24022,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "American Pie"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-pie",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24023,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Bridget Jones"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bridget-jones",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24025,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "La Momie"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-momie",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24026,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Gremlins"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "gremlins",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24028,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Predator"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "predator",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24030,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Halloween"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24031,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Evil Dead"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "evil-dead",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24032,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Chucky"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chucky",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24033,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Scream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24034,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Terrifier"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terrifier",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24035,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Beetlejuice"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24036,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Snatch"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24039,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Zodiac"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24040,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Blade Runner"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24041,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Léon"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

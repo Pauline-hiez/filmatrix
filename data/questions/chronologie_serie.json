@@ -952,5 +952,338 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 25500,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Notre belle famille",
+        "La Petite Maison dans la prairie",
+        "Le Prince de Bel-Air",
+        "Une nounou d'enfer"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "La Petite Maison dans la prairie",
+        "Le Prince de Bel-Air",
+        "Notre belle famille",
+        "Une nounou d'enfer"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25501,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Friends",
+        "Charmed",
+        "Malcolm",
+        "X-Files"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "X-Files",
+        "Friends",
+        "Charmed",
+        "Malcolm"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25502,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "South Park",
+        "Dr House",
+        "Dexter",
+        "Les Simpson"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Simpson",
+        "South Park",
+        "Dr House",
+        "Dexter"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25503,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Scrubs",
+        "Better Call Saul",
+        "Vikings",
+        "Mon oncle Charlie"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Scrubs",
+        "Mon oncle Charlie",
+        "Vikings",
+        "Better Call Saul"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25504,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Once Upon a Time",
+        "The Handmaid's Tale",
+        "Lucifer",
+        "Peaky Blinders"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Once Upon a Time",
+        "Peaky Blinders",
+        "Lucifer",
+        "The Handmaid's Tale"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25505,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Euphoria",
+        "You",
+        "Bates Motel",
+        "Mindhunter"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Bates Motel",
+        "Mindhunter",
+        "You",
+        "Euphoria"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25506,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Vikings",
+        "Famille d'abord",
+        "New Girl",
+        "The Middle"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Famille d'abord",
+        "The Middle",
+        "New Girl",
+        "Vikings"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25507,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Malcolm",
+        "Charmed",
+        "X-Files",
+        "Notre belle famille"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Notre belle famille",
+        "X-Files",
+        "Charmed",
+        "Malcolm"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 25508,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Better Call Saul",
+        "Dr House",
+        "Breaking Bad",
+        "Young Sheldon"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Dr House",
+        "Breaking Bad",
+        "Better Call Saul",
+        "Young Sheldon"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

@@ -716,5 +716,378 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 28000,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/8ykTeTRSYd2MKF5uLBvD93X5KMJ.jpg",
+        "https://image.tmdb.org/t/p/w500/bHSmjJLJyrg5Q0tC0W2FFreuOnO.jpg",
+        "https://image.tmdb.org/t/p/w500/b20ijbr2tbqlGvqZgkCpNZ5AYvS.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Bohemian Rhapsody"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28001,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/5We9Y4zUJ5TUnRgfmkzWQx0mLIF.jpg",
+        "https://image.tmdb.org/t/p/w500/pEHQoL8yOndOq59iXlgsOpUTcTk.jpg",
+        "https://image.tmdb.org/t/p/w500/939oerf8bJPrqT2a0N0oGuM1bjn.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Maman, j'ai raté l'avion !"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28002,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/gjfDl52Kk02MPgUYFjs9bOy33OY.jpg",
+        "https://image.tmdb.org/t/p/w500/1z6bx9I3J8gTQAQPrA5cJgzkiqt.jpg",
+        "https://image.tmdb.org/t/p/w500/ha9Nh8We778sUg8QyDE1IRATzDY.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Austin Powers"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "austin-powers",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28003,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/mw0EZJYz3kiFq9fNxsML773gotF.jpg",
+        "https://image.tmdb.org/t/p/w500/9WsvKjheeizXCcZrFjZCrCoItqO.jpg",
+        "https://image.tmdb.org/t/p/w500/2WMtL9SFIWmOIL2P6PdfHncSLXP.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Visiteurs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28004,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/1Oc3XSLyb8hxmjmlgFENu582Kqw.jpg",
+        "https://image.tmdb.org/t/p/w500/cJAHQWX9hVadDFx5WTSBIW0VjvP.jpg",
+        "https://image.tmdb.org/t/p/w500/8oQJqM51Z0Qtdb7sE6ZfX1peNCB.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Ted"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ted",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28005,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/lzXRh16qe4HHeBN6tMyw0DHvaMn.jpg",
+        "https://image.tmdb.org/t/p/w500/7PMu5zFOEH7PqFDzrKThgKD4Ndf.jpg",
+        "https://image.tmdb.org/t/p/w500/9r9oDGENg92VYYFMkV4C09IUlrb.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Hérédité"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28006,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/1Uvfh7xL4U2evkhs0M3C7BbBYFf.jpg",
+        "https://image.tmdb.org/t/p/w500/hl0zOfOU9tiBT4znHIB9jpxrJaM.jpg",
+        "https://image.tmdb.org/t/p/w500/5Oy037YttIweiqNGaErkalNmH0G.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Midsommar"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28007,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/uUFfo8RANo7tuckB6AZAnESne55.jpg",
+        "https://image.tmdb.org/t/p/w500/q2KZZ0ltTEl7Sf8volNFV1JDEP4.jpg",
+        "https://image.tmdb.org/t/p/w500/mf0OANvWYSzU1d8yggrhyw8IbIz.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Harry Potter à l'école des sorciers"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28008,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/k2xt6EUxQDwYRKIyI4IBdZxfs8n.jpg",
+        "https://image.tmdb.org/t/p/w500/npXFjaFQzBNroCEPllGPTZ5IisA.jpg",
+        "https://image.tmdb.org/t/p/w500/lwQoA0qJTCZ6l2FH6PjmhRQjiaB.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Pirates des Caraïbes : La Malédiction du Black Pearl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "pirates-des-caraibes",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28009,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/pjBMJVPpcZK23Vt1nzr1zEBTWrP.jpg",
+        "https://image.tmdb.org/t/p/w500/eJszpndpRzrXbSlz7RUlApoTykn.jpg",
+        "https://image.tmdb.org/t/p/w500/qrjgLfuNdXektuBwNL6onZBkbHw.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Aventuriers de l'arche perdue"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "indiana-jones",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 28010,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/cibkIAJN6ctlqHohhdDEcfbiCAL.jpg",
+        "https://image.tmdb.org/t/p/w500/9WsvKjheeizXCcZrFjZCrCoItqO.jpg",
+        "https://image.tmdb.org/t/p/w500/aiqWSWbRJ6rrjxxVE6y2Xb3KdSp.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Astérix et Obélix : Mission Cléopâtre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "asterix",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
   }
 ]

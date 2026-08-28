@@ -868,5 +868,556 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 24500,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "South Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24501,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Les Simpson"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24503,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Malcolm"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "malcolm",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24505,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Squid Game"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24506,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "American Horror Story"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24508,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Lucifer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24509,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Peaky Blinders"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24511,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Famille d'abord"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "famille-dabord",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24513,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "La Flamme"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-flamme",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24514,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Le Flambeau"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-flambeau",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24515,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Notre belle famille"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "notre-belle-famille",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24516,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Charmed"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24517,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Bates Motel"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bates-motel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24518,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Young Sheldon"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "young-sheldon",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24519,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "The Middle"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-middle",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24520,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "New Girl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "new-girl",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24521,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Shameless"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shameless",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24522,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "The Big Bang Theory"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 24523,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "That '70s Show"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "that-70s-show",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]
