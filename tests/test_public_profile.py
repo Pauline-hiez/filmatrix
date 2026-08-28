@@ -111,6 +111,17 @@ def test_profile_lists_every_badge(client, app):
         assert info["name"] in page
 
 
+def test_own_profile_lists_every_defined_badge(client, app):
+    """Le profil doit afficher les badges définis dans le code, même non gagnés."""
+    create_player(app, "Moi")
+    login(client, "Moi")
+
+    page = client.get("/profil").get_data(as_text=True)
+
+    for info in BADGES.values():
+        assert info["name"] in page
+
+
 def test_player_names_link_to_their_profile_once_logged_in(client, app):
     """Les pseudos du classement et de l'accueil doivent mener au profil"""
     create_player(app, "Moi")

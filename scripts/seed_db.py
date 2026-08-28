@@ -8,9 +8,14 @@ from filmatrix.extensions import db
 from filmatrix.models import Question, Tag, question_tags
 
 
+def project_root() -> Path:
+    """Retourne la racine du projet, quel que soit le répertoire courant."""
+    return Path(__file__).resolve().parents[1]
+
+
 def import_questions() -> None:
     """Charge les questions de tous les fichiers JSON du dossier et les insère dans la base"""
-    questions_folder = Path("data/questions")
+    questions_folder = project_root() / "data" / "questions"
     json_files = sorted(questions_folder.glob("*.json"))
 
     total_imported = 0

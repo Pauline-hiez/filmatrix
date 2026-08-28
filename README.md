@@ -56,7 +56,7 @@ npm install
 # Appliquer les migrations de base de données
 flask db upgrade
  
-# Importer les questions depuis data/questions/
+# Importer les questions et synchroniser les tags depuis data/questions/
 python -m scripts.seed_db
 ```
 
@@ -145,8 +145,8 @@ tests/                          # tests pytest
 
 ## Notes
 
-- Les questions sont éditées dans `data/questions/*.json` puis importées en base via `scripts/seed_db.py` - ce fichier JSON n'est jamais lu directement par le site.
-- L'`id` d'une question est sa clé primaire et doit être unique **dans l'ensemble du dossier**, pas seulement dans son fichier : deux questions partageant un id s'écrasent silencieusement à l'import.
+- Les questions sont éditées dans `data/questions/*.json` puis importées en base via `scripts/seed_db.py` - ce fichier JSON n'est jamais lu directement par le site.
+- L'`id` d'une question est sa clé primaire et doit être unique **dans l'ensemble du dossier**, pas seulement dans son fichier : deux questions partageant un id s'écrasent silencieusement à l'import.
 - L'import est un upsert : il ne supprime rien. Une question retirée d'un JSON reste jouable tant qu'elle n'est pas effacée de la base - `seed_db.py` les liste en fin d'import.
 - Les URLs audio d'iTunes ont une durée de vie limitée : relancer `scripts/refresh_audio_urls.py` régulièrement pour éviter les extraits cassés.
 - Le CSS compilé (`static/css/output.css`) doit être régénéré après toute modification de classe Tailwind dans les templates - voir la commande `--watch` ci-dessus.
