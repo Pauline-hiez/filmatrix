@@ -43,3 +43,28 @@ def xp_for_level(level: str) -> int:
 def coins_for_level(level: str) -> int:
     """Retourne les pièces gagnées pour une bonne réponse au niveau donné"""
     return LEVELS[resolve_level(level)]["coins"]
+
+
+def calculate_level(total_xp: int) -> dict:
+    """Calcule le niveau actuel et la progression vers le niveau suivant
+
+    Cette fonction vivait dans app.py, que src/badges.py devait alors importer :
+    un « from app import ... » depuis src/ recharge toute l'application quand le
+    serveur est lancé par « python app.py ». Elle parle d'XP et de niveaux, sa
+    place est ici."""
+    level = 1
+    xp_for_next_level = 100
+    xp_already_spent = 0
+
+    while total_xp - xp_already_spent >= xp_for_next_level:
+        xp_already_spent += xp_for_next_level
+        level += 1
+        xp_for_next_level = 100 * level
+
+    xp_in_current_level = total_xp - xp_already_spent
+
+    return {
+        "level": level,
+        "xp_in_current_level": xp_in_current_level,
+        "xp_for_next_level": xp_for_next_level,
+    }

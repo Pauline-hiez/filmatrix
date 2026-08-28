@@ -1,6 +1,7 @@
 """Définition des badges et logique de déblocage"""
 
 from src.database import db
+from src.levels import calculate_level
 from src.models import Attempt, Question, UserBadge
 
 BADGES = {
@@ -63,7 +64,6 @@ def check_and_award_badges(user) -> list[str]:
     if len(last_five) == 5 and all(attempt.is_correct for attempt in last_five):
         award_badge(user, "five_in_a_row")
 
-    from app import calculate_level
     level_info = calculate_level(user.total_xp)
     if level_info["level"] >= 5:
         award_badge(user, "level_5")

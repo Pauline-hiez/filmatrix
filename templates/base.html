@@ -40,7 +40,11 @@
         }
     </style>
     {% block head %}{% endblock %}
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    {# Bibliothèque servie par l'application, pas par un CDN : une coupure réseau,
+       un bloqueur ou un proxy d'entreprise suffisait à rendre « io » indéfini, et
+       avec lui les notifications en direct comme le multijoueur. La copie de
+       static/js/vendor est identique au fichier 4.7.5 du CDN. #}
+    <script src="{{ url_for('static', filename='js/vendor/socket.io.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/realtime.js') }}"></script>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">

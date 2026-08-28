@@ -21,6 +21,7 @@ from flask_migrate import Migrate
 from sqlalchemy import func
 
 from src.database import db
+from src.realtime import socketio
 from src.engine import check_answer, convert_answer, scramble_title
 from src.models import Attempt, Question, User, Report, Friendship, Notification, GameSession, Tag
 from src.score import (
@@ -36,6 +37,7 @@ from src.badges import check_and_award_badges, BADGES
 from src.shop import TITLES, owns_title, purchase_title
 from src.levels import (
     BLINDTEST_DURATION,
+    calculate_level,
     DEFAULT_LEVEL,
     LEVELS,
     coins_for_level,
@@ -63,7 +65,6 @@ from src.friends import (
     )
 from src.notifications import create_notification, get_unread_count, mark_all_as_read
 from src.avatars import AVATARS
-from flask_socketio import SocketIO
 from src.multiplayer import (
     INVITATION_DURATION_MINUTES,
     QUESTIONS_PER_GAME,
@@ -76,7 +77,7 @@ from src.socket_events import register_socket_events
 
 load_dotenv()
 
-socketio = SocketIO()
+
 
 # Description des modes de jeu, utilisée pour construire la grille de la page
 # d'accueil. `accent` sert de couleur d'accent CSS pour la carte du mode.
@@ -173,25 +174,6 @@ GAME_MODES = [
 # recueillir la réponse doit pouvoir en être retiré sans toucher au reste.
 MULTIPLAYER_MODES = [entry["slug"] for entry in GAME_MODES]
 
-
-def calculate_level(total_xp: int) -> dict:
-        """Calcule le niveau actuel et le progression vers le niveau suivant"""
-        level = 1
-        xp_for_next_level = 100
-        xp_already_spent = 0
-
-        while total_xp - xp_already_spent >= xp_for_next_level:
-            xp_already_spent += xp_for_next_level
-            level += 1
-            xp_for_next_level = 100 * level 
-
-        xp_in_current_level = total_xp - xp_already_spent
-
-        return {
-            "level": level,
-            "xp_in_current_level": xp_in_current_level,
-            "xp_for_next_level": xp_for_next_level,
-            }
 
 def create_app(database_uri: str | None = None) -> Flask:
     """Construit et configure une instance de l'application Flask.

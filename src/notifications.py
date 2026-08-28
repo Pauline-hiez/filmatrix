@@ -2,6 +2,7 @@
 
 from src.database import db
 from src.models import Notification
+from src.realtime import socketio
 
 
 def create_notification(user, message: str, link: str | None = None) -> None:
@@ -14,8 +15,6 @@ def create_notification(user, message: str, link: str | None = None) -> None:
     notification = Notification(user_id=user.id, message=message, link=link)
     db.session.add(notification)
     db.session.commit()
-
-    from app import socketio
 
     socketio.emit(
         "new_notification",

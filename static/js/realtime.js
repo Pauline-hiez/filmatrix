@@ -1,16 +1,28 @@
+// Le garde-fou doit interrompre le script : se contenter de journaliser laissait
+// io() lever une ReferenceError, et « socket » n'était jamais défini — ce que
+// multiplayer_game.js interprète silencieusement comme « pas de temps réel ».
+let socket;
+
 if (typeof io === "undefined") {
     console.error(
         "Socket.IO n'a pas pu être chargé : les notifications en temps réel sont désactivées."
     );
+} else {
+    socket = io();
+
+    socket.on("new_notification", function (data) {
+        updateBadge();
+        showToast(data);
+        insertIntoOpenDropdown(data);
+    });
+
+    // Une déconnexion passait totalement inaperçue : la page semblait vivante
+    // alors que plus rien n'arrivait. Socket.IO se reconnecte seul, et le
+    // serveur réinscrit alors le joueur dans son salon.
+    socket.on("connect_error", function (error) {
+        console.warn("Notifications en direct : connexion impossible —", error.message);
+    });
 }
-
-const socket = io();
-
-socket.on("new_notification", function (data) {
-    updateBadge();
-    showToast(data);
-    insertIntoOpenDropdown(data);
-});
 
 /** Crée le badge de la cloche, ou incrémente celui déjà présent. */
 function updateBadge() {
@@ -20,8 +32,11 @@ function updateBadge() {
     if (notificationBell && !notificationBadge) {
         const badge = document.createElement("span");
         badge.id = "notification-badge";
+        // Mêmes classes que le badge rendu par base.html : sans cela un badge
+        // apparu en direct ne se place pas au même endroit qu'après un
+        // rechargement de page.
         badge.className =
-            "absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center";
+            "absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white";
         badge.textContent = "1";
         notificationBell.appendChild(badge);
     } else if (notificationBadge) {
