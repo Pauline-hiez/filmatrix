@@ -207,7 +207,7 @@
     "id": 4000,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🧙‍♂️⚡🏰",
+    "prompt": "🧙‍♂️⚡🏰🇬🇧",
     "payload": {},
     "correct_answer": {
       "film": "Harry Potter"
@@ -236,7 +236,7 @@
     "id": 4001,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🦈🏖️🎶",
+    "prompt": "🦈🏖️🎶🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Les Dents de la mer"
@@ -261,7 +261,7 @@
     "id": 4002,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "👨‍🚀🌽🕳️",
+    "prompt": "👨‍🚀🌽🕳️🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Interstellar"
@@ -286,7 +286,7 @@
     "id": 4003,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🃏🎭🪜",
+    "prompt": "🃏🎭🪜🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Joker"
@@ -340,7 +340,7 @@
     "id": 4005,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "👽🚀🥚",
+    "prompt": "👽🚀🥚🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Alien"
@@ -369,7 +369,7 @@
     "id": 4006,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🎩🍫🏭",
+    "prompt": "🎩🍫🏭🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Charlie et la chocolaterie"
@@ -394,7 +394,7 @@
     "id": 4007,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🚗⚡🕐",
+    "prompt": "🚗⚡🕐🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Retour vers le futur"
@@ -448,7 +448,7 @@
     "id": 4009,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🚀🌕🧑‍🚀",
+    "prompt": "🚀🌕🧑‍🚀🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Apollo 13"
@@ -473,7 +473,7 @@
     "id": 4010,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🦇🤡🌃",
+    "prompt": "🦇🤡🌃🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "The Dark Knight"
@@ -502,7 +502,7 @@
     "id": 4011,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🚿🔪🏨",
+    "prompt": "🚿🔪🏨🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Psychose"
@@ -527,7 +527,7 @@
     "id": 4012,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🗡️👘7️⃣",
+    "prompt": "🗡️👘7️⃣🇯🇵",
     "payload": {},
     "correct_answer": {
       "film": "Les Sept Samouraïs"
@@ -552,7 +552,7 @@
     "id": 4013,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "💃🎷🌃",
+    "prompt": "💃🎷🌃🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "La La Land"
@@ -602,7 +602,7 @@
     "id": 4015,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🐑🤫🕵️‍♀️",
+    "prompt": "🐑🤫🕵️‍♀️🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Le Silence des agneaux"
@@ -627,7 +627,7 @@
     "id": 4016,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🎈🤡🕳️",
+    "prompt": "🎈🤡🕳️🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Ça"
@@ -652,7 +652,7 @@
     "id": 4017,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "🐺💵📈",
+    "prompt": "🐺💵📈🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Le Loup de Wall Street"
@@ -702,7 +702,7 @@
     "id": 4019,
     "mode": "emoji",
     "content_type": "film",
-    "prompt": "⚔️🛡️🏛️",
+    "prompt": "⚔️🛡️🏛️🇺🇸",
     "payload": {},
     "correct_answer": {
       "film": "Gladiator"

@@ -3,7 +3,7 @@
     "id": 3500,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« How you doin'? » — De quelle série vient cette réplique ?",
+    "prompt": "« Comment tu vas ? » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Friends"
@@ -32,7 +32,7 @@
     "id": 3501,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« We were on a break! » — De quelle série vient cette réplique ?",
+    "prompt": "« On avait rompu ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Friends"
@@ -61,7 +61,7 @@
     "id": 3502,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Could I BE any more… ? » — De quelle série vient cette réplique ?",
+    "prompt": "« Est-ce que je pourrais être plus… ? » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Friends"
@@ -119,7 +119,7 @@
     "id": 3504,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« I'll be there for you » — De quelle série vient cette réplique ?",
+    "prompt": "« Je serai toujours là pour toi » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Friends"
@@ -148,7 +148,7 @@
     "id": 3505,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« I am the one who knocks! » — De quelle série vient cette réplique ?",
+    "prompt": "« Je suis celui qui frappe à la porte ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Breaking Bad"
@@ -177,7 +177,7 @@
     "id": 3506,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Say my name. » — De quelle série vient cette réplique ?",
+    "prompt": "« Dis mon nom. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Breaking Bad"
@@ -206,7 +206,7 @@
     "id": 3507,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Yeah, science! » — De quelle série vient cette réplique ?",
+    "prompt": "« Oui, la science ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Breaking Bad"
@@ -235,7 +235,7 @@
     "id": 3508,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« I am the danger. » — De quelle série vient cette réplique ?",
+    "prompt": "« Je suis le danger. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Breaking Bad"
@@ -264,7 +264,7 @@
     "id": 3509,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Tread lightly. » — De quelle série vient cette réplique ?",
+    "prompt": "« Marche doucement. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Breaking Bad"
@@ -293,7 +293,7 @@
     "id": 3510,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Winter is coming. » — De quelle série vient cette réplique ?",
+    "prompt": "« L’hiver arrive. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Game of Thrones"
@@ -322,7 +322,7 @@
     "id": 3511,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« You know nothing, Jon Snow. » — De quelle série vient cette réplique ?",
+    "prompt": "« Tu ne sais rien, Jon Snow. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Game of Thrones"
@@ -380,7 +380,7 @@
     "id": 3513,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Hold the door! » — De quelle série vient cette réplique ?",
+    "prompt": "« Tiens la porte ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Game of Thrones"
@@ -409,7 +409,7 @@
     "id": 3514,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« A Lannister always pays his debts. » — De quelle série vient cette réplique ?",
+    "prompt": "« Un Lannister paie toujours ses dettes. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Game of Thrones"
@@ -525,7 +525,7 @@
     "id": 3518,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Friends don't lie. » — De quelle série vient cette réplique ?",
+    "prompt": "« Les amis ne mentent pas. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Stranger Things"
@@ -554,7 +554,7 @@
     "id": 3519,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« She's our friend and she's crazy! » — De quelle série vient cette réplique ?",
+    "prompt": "« C’est notre amie et elle est folle ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Stranger Things"
@@ -583,7 +583,7 @@
     "id": 3520,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Mornings are for coffee and contemplation. » — De quelle série vient cette réplique ?",
+    "prompt": "« Les matins sont faits pour le café et la contemplation. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Stranger Things"
@@ -612,7 +612,7 @@
     "id": 3521,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Why are you keeping this curiosity door locked? » — De quelle série vient cette réplique ?",
+    "prompt": "« Pourquoi gardes-tu cette porte de curiosité fermée à clé ? » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Stranger Things"
@@ -670,7 +670,7 @@
     "id": 3523,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« That's what she said. » — De quelle série vient cette réplique ?",
+    "prompt": "« C’est ce qu’elle a dit. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "The Office"
@@ -699,7 +699,7 @@
     "id": 3524,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« You come at the king, you best not miss. » — De quelle série vient cette réplique ?",
+    "prompt": "« Si tu t’attaques au roi, tu as intérêt à ne pas le rater. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "The Wire"
@@ -728,7 +728,7 @@
     "id": 3525,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« So say we all. » — De quelle série vient cette réplique ?",
+    "prompt": "« Ainsi soit-il pour nous tous. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Battlestar Galactica"
@@ -757,7 +757,7 @@
     "id": 3526,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Exterminate! » — De quelle série vient cette réplique ?",
+    "prompt": "« Exterminez ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Doctor Who"
@@ -902,7 +902,7 @@
     "id": 3531,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« The game is on! » — De quelle série vient cette réplique ?",
+    "prompt": "« Le jeu est lancé ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Sherlock"
@@ -1018,7 +1018,7 @@
     "id": 3535,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Damn fine coffee! » — De quelle série vient cette réplique ?",
+    "prompt": "« Un café sacrément bon ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Twin Peaks"
@@ -1047,7 +1047,7 @@
     "id": 3536,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« We have to go back! » — De quelle série vient cette réplique ?",
+    "prompt": "« Il faut qu’on y retourne ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Lost"
@@ -1076,7 +1076,7 @@
     "id": 3537,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Tonight's the night. » — De quelle série vient cette réplique ?",
+    "prompt": "« Ce soir, c’est le grand soir. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Dexter"
@@ -1105,7 +1105,7 @@
     "id": 3538,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Time is a flat circle. » — De quelle série vient cette réplique ?",
+    "prompt": "« Le temps est un cercle plat. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "True Detective"
@@ -1134,7 +1134,7 @@
     "id": 3539,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« This is the Way. » — De quelle série vient cette réplique ?",
+    "prompt": "« C’est la voie. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "The Mandalorian"
@@ -1192,7 +1192,7 @@
     "id": 3541,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« What is the cost of lies? » — De quelle série vient cette réplique ?",
+    "prompt": "« Quel est le prix des mensonges ? » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Chernobyl"
@@ -1337,7 +1337,7 @@
     "id": 3546,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« These violent delights have violent ends. » — De quelle série vient cette réplique ?",
+    "prompt": "« Ces plaisirs violents ont des fins violentes. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Westworld"
@@ -1395,7 +1395,7 @@
     "id": 3548,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Treat yo self! » — De quelle série vient cette réplique ?",
+    "prompt": "« Fais-toi plaisir ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Parks and Recreation"
@@ -1424,7 +1424,7 @@
     "id": 3549,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« No soup for you! » — De quelle série vient cette réplique ?",
+    "prompt": "« Pas de soupe pour toi ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Seinfeld"
@@ -1453,7 +1453,7 @@
     "id": 3550,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« Pick me, choose me, love me. » — De quelle série vient cette réplique ?",
+    "prompt": "« Choisis-moi, aime-moi. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Grey's Anatomy"
@@ -1482,7 +1482,7 @@
     "id": 3551,
     "mode": "citation",
     "content_type": "serie",
-    "prompt": "« I couldn't help but wonder… » — De quelle série vient cette réplique ?",
+    "prompt": "« Je ne pouvais m’empêcher de me demander… » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Sex and the City"
