@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 from filmatrix.extensions import db
 from filmatrix.catalog import REPORT_REASON
 from filmatrix.models import Attempt, Question, Report, Tag
-from filmatrix.game_modes import GAME_MODES
+from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.levels import (
@@ -52,9 +52,11 @@ def quiz_setup(mode: str) -> str:
         return redirect(url_for("main.modes"))
 
     # On ne propose que les thèmes qui ont au moins une question dans ce mode :
-    # ailleurs, le joueur choisirait un filtre qui ne renvoie rien.
+    # ailleurs, le joueur choisirait un filtre qui ne renvoie rien. Le mix
+    # pioche dans tous les modes : n'importe quel thème utilisé y a sa place.
+    tag_condition = Tag.questions.any() if mode == MIX_MODE_SLUG else Tag.questions.any(Question.mode == mode)
     mode_tags = (
-        Tag.query.filter(Tag.questions.any(Question.mode == mode))
+        Tag.query.filter(tag_condition)
         .order_by(Tag.tag_type, Tag.name)
         .all()
     )

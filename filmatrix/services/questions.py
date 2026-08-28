@@ -10,6 +10,7 @@ import random
 from flask import session
 from flask_login import current_user
 
+from filmatrix.game_modes import MIX_MODE_SLUG
 from filmatrix.models import Question, Tag
 from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
 
@@ -29,8 +30,9 @@ def build_question_query(
 
     L'ordre est fixé par l'id : deux appels successifs pour la même partie
     doivent renvoyer les questions dans le même ordre, sans quoi le joueur
-    rejouerait la même à des positions différentes"""
-    query = Question.query.filter_by(mode=mode)
+    rejouerait la même à des positions différentes. Le mode mix pioche parmi
+    toutes les questions, quel que soit leur mode réel."""
+    query = Question.query if mode == MIX_MODE_SLUG else Question.query.filter_by(mode=mode)
 
     selected_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
     for selected_tag_id in selected_tag_ids:

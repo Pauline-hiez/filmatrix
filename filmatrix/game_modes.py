@@ -1,5 +1,10 @@
 """Catalogue des modes de jeu : nom, pitch, règle, icône et couleur."""
 
+# Mode virtuel : aucune question ne porte ce mode en base. Il pioche parmi
+# toutes les autres (cf. services/questions.py), chaque question gardant son
+# vrai mode pour son affichage, son chrono et la vérification de sa réponse.
+MIX_MODE_SLUG = "mixte"
+
 # Métadonnées d'affichage des modes solo : nom, pitch et règle du jeu.
 # Cette liste est la seule source : l'accueil, la page des modes et l'écran de
 # préparation la lisent tous, pour ne pas décrire le même jeu de trois façons.
@@ -86,9 +91,18 @@ GAME_MODES = [
         "icon": "±",
         "accent": "#2dd4bf",
     },
+    {
+        "slug": MIX_MODE_SLUG,
+        "name": "Mix",
+        "description": "Tous les modes mélangés, dans la même partie.",
+        "how": "Chaque question peut venir de n'importe quel mode : QCM, Vrai/Faux, devinette... Le jeu s'adapte à chacune, question après question.",
+        "icon": "✳",
+        "accent": "#fb7185",
+    },
 ]
 
-# Les modes ouverts au multijoueur. Ils le sont tous, mais la liste reste
-# explicite : un mode dont l'écran de duel ne saurait pas afficher le média ou
-# recueillir la réponse doit pouvoir en être retiré sans toucher au reste.
-MULTIPLAYER_MODES = [entry["slug"] for entry in GAME_MODES]
+# Les modes ouverts au multijoueur. Le mix n'y figure pas : un duel tire ses
+# leurres parmi les autres questions du même mode (cf. services/multiplayer.py),
+# ce qui suppose des lignes en base portant réellement ce mode — le mix n'en a
+# aucune, il pioche parmi celles des autres.
+MULTIPLAYER_MODES = [entry["slug"] for entry in GAME_MODES if entry["slug"] != MIX_MODE_SLUG]

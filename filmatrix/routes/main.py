@@ -6,7 +6,7 @@ from sqlalchemy import func
 
 from filmatrix.extensions import db
 from filmatrix.models import Attempt, Question, User
-from filmatrix.game_modes import GAME_MODES
+from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.questions import resolve_content_type
 from filmatrix.services.score import QUESTIONS_PER_RUN
@@ -25,11 +25,17 @@ def home() -> str:
     )
 
     # On n'affiche que les modes qui ont au moins une question en base,
-    # pour ne pas envoyer le joueur vers un mode vide.
+    # pour ne pas envoyer le joueur vers un mode vide. Le mix ne porte aucune
+    # ligne à son propre nom : son compte est celui de toutes les questions.
+    def question_count_for(slug: str) -> int:
+        if slug == MIX_MODE_SLUG:
+            return sum(question_counts.values())
+        return question_counts.get(slug, 0)
+
     playable_modes = [
-        dict(mode, question_count=question_counts.get(mode["slug"], 0))
+        dict(mode, question_count=question_count_for(mode["slug"]))
         for mode in GAME_MODES
-        if question_counts.get(mode["slug"], 0) > 0
+        if question_count_for(mode["slug"]) > 0
     ]
 
     top_players = User.query.order_by(User.total_xp.desc()).limit(5).all()

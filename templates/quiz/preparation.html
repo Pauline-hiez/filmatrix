@@ -119,6 +119,10 @@
                     {% if mode.slug == "blindtest" %}
                     Le blind test laisse toujours {{ blindtest_duration }} secondes, le temps d'écouter
                     l'extrait ; le niveau ne change ici que les gains.
+                    {% elif mode.slug == "mixte" %}
+                    Plus le niveau est élevé, moins tu as de temps pour répondre, et plus
+                    une bonne réponse rapporte — sauf sur une question de blind test, qui
+                    garde toujours {{ blindtest_duration }} secondes le temps d'écouter l'extrait.
                     {% else %}
                     Plus le niveau est élevé, moins tu as de temps pour répondre, et plus
                     une bonne réponse rapporte.
