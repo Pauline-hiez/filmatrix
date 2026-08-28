@@ -1,158 +1,230 @@
 [
-    {
-        "id": 293,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "Game of Thrones est adaptée de romans de George R.R. Martin.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+  {
+    "id": 293,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "Game of Thrones est adaptée de romans de George R.R. Martin.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 294,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "Friends compte 12 saisons.",
-        "payload": {},
-        "correct_answer": {
-            "value": false
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 294,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "Friends compte 12 saisons.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
     },
-    {
-        "id": 353,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "Dexter Morgan travaille comme analyste spécialisé dans les projections de sang pour la police de Miami.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 353,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "Dexter Morgan travaille comme analyste spécialisé dans les projections de sang pour la police de Miami.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 354,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "The Office se déroule principalement dans une entreprise appelée Dunder Mifflin.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 354,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "The Office se déroule principalement dans une entreprise appelée Dunder Mifflin.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 355,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "Peaky Blinders se déroule principalement à Manchester.",
-        "payload": {},
-        "correct_answer": {
-            "value": false
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 355,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "Peaky Blinders se déroule principalement à Manchester.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
     },
-    {
-        "id": 356,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "Dans The Witcher, Geralt de Riv est un sorceleur spécialisé dans la chasse aux monstres.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 356,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "Dans The Witcher, Geralt de Riv est un sorceleur spécialisé dans la chasse aux monstres.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 357,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "La série Lupin s'inspire du personnage créé par Maurice Leblanc.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 357,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "La série Lupin s'inspire du personnage créé par Maurice Leblanc.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 358,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "Meredith Grey est chirurgienne dans la série Grey's Anatomy.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "france",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 358,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "Meredith Grey est chirurgienne dans la série Grey's Anatomy.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 359,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "La série Sherlock se déroule entièrement au XIXe siècle.",
-        "payload": {},
-        "correct_answer": {
-            "value": false
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 359,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "La série Sherlock se déroule entièrement au XIXe siècle.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
     },
-    {
-        "id": 360,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "Dans Euphoria, Zendaya interprète le personnage de Rue Bennett.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 360,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "Dans Euphoria, Zendaya interprète le personnage de Rue Bennett.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 361,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "La série The Haunting of Hill House est réalisée par Mike Flanagan.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 361,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "La série The Haunting of Hill House est réalisée par Mike Flanagan.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
-    {
-        "id": 362,
-        "mode": "vrai_faux",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "Wednesday Addams est le personnage principal de la série Wednesday.",
-        "payload": {},
-        "correct_answer": {
-            "value": true
-        },
-        "requires_account": false
-    }
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      }
+    ]
+  },
+  {
+    "id": 362,
+    "mode": "vrai_faux",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "Wednesday Addams est le personnage principal de la série Wednesday.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  }
 ]

@@ -11,7 +11,13 @@
     "correct_answer": {
       "film": "Le Parrain"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 23,
@@ -25,7 +31,13 @@
     "correct_answer": {
       "film": "Titanic"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 24,
@@ -39,7 +51,17 @@
     "correct_answer": {
       "film": "Harry Potter"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      }
+    ]
   },
   {
     "id": 25,
@@ -53,7 +75,13 @@
     "correct_answer": {
       "film": "Le Roi Lion"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 26,
@@ -67,7 +95,13 @@
     "correct_answer": {
       "film": "Pirates des Caraïbes"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 280,
@@ -81,7 +115,17 @@
     "correct_answer": {
       "film": "Star Wars"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 281,
@@ -95,7 +139,13 @@
     "correct_answer": {
       "film": "Jurassic Park"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 282,
@@ -109,7 +159,13 @@
     "correct_answer": {
       "film": "Rocky"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 283,
@@ -123,7 +179,13 @@
     "correct_answer": {
       "film": "Retour vers le futur"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 284,
@@ -137,7 +199,13 @@
     "correct_answer": {
       "film": "Indiana Jones"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 285,
@@ -151,7 +219,13 @@
     "correct_answer": {
       "film": "Gladiator"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 286,
@@ -165,7 +239,13 @@
     "correct_answer": {
       "film": "Interstellar"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 287,
@@ -179,7 +259,13 @@
     "correct_answer": {
       "film": "Le Bon, la Brute et le Truand"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 288,
@@ -193,7 +279,13 @@
     "correct_answer": {
       "film": "La La Land"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 289,
@@ -207,6 +299,12 @@
     "correct_answer": {
       "film": "Amélie"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   }
 ]

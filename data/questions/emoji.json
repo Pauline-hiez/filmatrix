@@ -9,7 +9,13 @@
     "correct_answer": {
       "film": "Le Roi Lion"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 12,
@@ -21,7 +27,13 @@
     "correct_answer": {
       "film": "SpiderMan"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 160,
@@ -33,7 +45,13 @@
     "correct_answer": {
       "film": "Titanic"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 161,
@@ -45,7 +63,13 @@
     "correct_answer": {
       "film": "Jurassic Park"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 162,
@@ -57,7 +81,13 @@
     "correct_answer": {
       "film": "Le Monde de Nemo"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 163,
@@ -69,7 +99,13 @@
     "correct_answer": {
       "film": "Ratatouille"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 164,
@@ -81,7 +117,13 @@
     "correct_answer": {
       "film": "La Reine des neiges"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 165,
@@ -93,7 +135,13 @@
     "correct_answer": {
       "film": "E.T."
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 166,
@@ -105,7 +153,13 @@
     "correct_answer": {
       "film": "Wall-E"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 167,
@@ -117,7 +171,13 @@
     "correct_answer": {
       "film": "Là-haut"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 168,
@@ -129,7 +189,13 @@
     "correct_answer": {
       "film": "Matrix"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 169,
@@ -141,6 +207,12 @@
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "seigneur-des-anneaux",
+        "type": "univers"
+      }
+    ]
   }
 ]

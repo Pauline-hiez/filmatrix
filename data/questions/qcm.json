@@ -16,7 +16,13 @@
     "correct_answer": {
       "index": 0
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 2,
@@ -35,7 +41,13 @@
     "correct_answer": {
       "index": 1
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 3,
@@ -54,7 +66,13 @@
     "correct_answer": {
       "index": 1
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 4,
@@ -73,7 +91,13 @@
     "correct_answer": {
       "index": 2
     },
-    "requires_account": true
+    "requires_account": true,
+    "tags": [
+      {
+        "name": "marvel",
+        "type": "univers"
+      }
+    ]
   },
   {
     "id": 100,
@@ -92,7 +116,13 @@
     "correct_answer": {
       "index": 1
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 101,
@@ -111,7 +141,13 @@
     "correct_answer": {
       "index": 0
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 102,
@@ -130,7 +166,13 @@
     "correct_answer": {
       "index": 2
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "japon",
+        "type": "pays"
+      }
+    ]
   },
   {
     "id": 103,
@@ -149,7 +191,13 @@
     "correct_answer": {
       "index": 1
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 104,
@@ -168,7 +216,13 @@
     "correct_answer": {
       "index": 0
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 105,
@@ -187,7 +241,13 @@
     "correct_answer": {
       "index": 1
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 106,
@@ -206,7 +266,13 @@
     "correct_answer": {
       "index": 2
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 107,
@@ -225,7 +291,17 @@
     "correct_answer": {
       "index": 0
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      }
+    ]
   },
   {
     "id": 108,
@@ -244,7 +320,13 @@
     "correct_answer": {
       "index": 3
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 109,
@@ -263,7 +345,17 @@
     "correct_answer": {
       "index": 1
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 110,
@@ -282,7 +374,13 @@
     "correct_answer": {
       "index": 2
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 111,
@@ -301,6 +399,12 @@
     "correct_answer": {
       "index": 2
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "france",
+        "type": "pays"
+      }
+    ]
   }
 ]

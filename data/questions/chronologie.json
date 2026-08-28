@@ -21,7 +21,13 @@
         "Inception"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 200,
@@ -45,7 +51,13 @@
         "Là-haut"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 201,
@@ -69,7 +81,21 @@
         "Matrix"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 202,
@@ -93,7 +119,17 @@
         "Avatar"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 203,
@@ -117,7 +153,13 @@
         "Parasite"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 204,
@@ -141,7 +183,13 @@
         "Gladiator"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 205,
@@ -165,6 +213,12 @@
         "Il faut sauver le soldat Ryan"
       ]
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   }
 ]

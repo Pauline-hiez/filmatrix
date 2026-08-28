@@ -8,7 +8,15 @@
            class="flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
     <select name="tag_type" class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
         <option value="genre">Genre</option>
+        <option value="univers">Univers</option>
         <option value="saga">Saga</option>
+        <option value="pays">Pays</option>
+        <option value="epoque">Époque</option>
+        <option value="annee">Année</option>
+        <option value="realisateur">Réalisateur</option>
+        <option value="acteur">Acteur</option>
+        <option value="studio">Studio</option>
+        <option value="autre">Autre</option>
     </select>
     <button type="submit" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
         Ajouter
@@ -28,6 +36,23 @@
         </div>
         {% else %}
         <p class="text-slate-500 text-sm">Aucun genre pour le moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="mb-8">
+    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Univers / Sagas</h3>
+    <div class="flex flex-wrap gap-2">
+        {% for tag in tags if tag.tag_type in ["univers", "saga"] %}
+        <div class="flex items-center gap-2 bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 text-sm">
+            {{ tag.name }}
+            <form method="POST" action="{{ url_for('admin.admin_tags_delete', tag_id=tag.id) }}"
+                  onsubmit="return confirm('Supprimer ce tag ?');">
+                <button type="submit" class="text-red-400 hover:text-red-300 transition">×</button>
+            </form>
+        </div>
+        {% else %}
+        <p class="text-slate-500 text-sm">Aucun univers pour le moment.</p>
         {% endfor %}
     </div>
 </div>

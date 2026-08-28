@@ -9,7 +9,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 6,
@@ -21,7 +27,13 @@
     "correct_answer": {
       "value": false
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 7,
@@ -33,7 +45,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 8,
@@ -45,7 +63,13 @@
     "correct_answer": {
       "value": false
     },
-    "requires_account": true
+    "requires_account": true,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 120,
@@ -57,7 +81,13 @@
     "correct_answer": {
       "value": false
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 121,
@@ -69,7 +99,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 122,
@@ -81,7 +117,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 123,
@@ -93,7 +135,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 124,
@@ -105,7 +153,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 125,
@@ -117,7 +171,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 126,
@@ -129,7 +189,13 @@
     "correct_answer": {
       "value": false
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 127,
@@ -141,7 +207,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 128,
@@ -153,7 +225,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 129,
@@ -165,7 +243,13 @@
     "correct_answer": {
       "value": true
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 130,
@@ -177,6 +261,12 @@
     "correct_answer": {
       "value": false
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   }
 ]

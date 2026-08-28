@@ -5,7 +5,7 @@ from pathlib import Path
 
 from wsgi import app
 from filmatrix.extensions import db
-from filmatrix.models import Question
+from filmatrix.models import Question, Tag
 
 
 def import_questions() -> None:
@@ -32,7 +32,40 @@ def import_questions() -> None:
                     correct_answer=data["correct_answer"],
                     requires_account=data["requires_account"],
                 )
-                db.session.merge(question)
+
+                # Les tags restent dans la base afin d'être réutilisables par
+                # plusieurs questions et sélectionnables depuis l'écran de jeu.
+                existing_question = Question.query.get(data["id"])
+                if existing_question is not None:
+                    existing_question.mode = question.mode
+                    existing_question.category = question.category
+                    existing_question.content_type = question.content_type
+                    existing_question.difficulty = question.difficulty
+                    existing_question.prompt = question.prompt
+                    existing_question.payload = question.payload
+                    existing_question.correct_answer = question.correct_answer
+                    existing_question.requires_account = question.requires_account
+                    existing_question.tags = []
+                    question = existing_question
+                else:
+                    db.session.add(question)
+
+                for tag_data in data.get("tags", []):
+                    if isinstance(tag_data, str):
+                        tag_name = tag_data
+                        tag_type = "autre"
+                    else:
+                        tag_name = tag_data["name"]
+                        tag_type = tag_data.get("type", "autre")
+
+                    tag = Tag.query.filter_by(name=tag_name).first()
+                    if tag is None:
+                        tag = Tag(name=tag_name, tag_type=tag_type)
+                        db.session.add(tag)
+                    elif tag.tag_type == "autre" and tag_type != "autre":
+                        tag.tag_type = tag_type
+
+                    question.tags.append(tag)
 
             total_imported += len(questions_json)
             print(f"  {json_file.name} : {len(questions_json)} question(s)")

@@ -15,7 +15,13 @@
     "correct_answer": {
       "film": "Inception"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 260,
@@ -33,7 +39,13 @@
     "correct_answer": {
       "film": "Titanic"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 261,
@@ -51,7 +63,13 @@
     "correct_answer": {
       "film": "Pulp Fiction"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 262,
@@ -69,7 +87,13 @@
     "correct_answer": {
       "film": "Forrest Gump"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 263,
@@ -87,7 +111,13 @@
     "correct_answer": {
       "film": "Le Parrain"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 264,
@@ -105,7 +135,13 @@
     "correct_answer": {
       "film": "Matrix"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 265,
@@ -123,7 +159,13 @@
     "correct_answer": {
       "film": "Gladiator"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 266,
@@ -141,7 +183,13 @@
     "correct_answer": {
       "film": "Fight Club"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 267,
@@ -159,7 +207,13 @@
     "correct_answer": {
       "film": "Interstellar"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 268,
@@ -177,7 +231,13 @@
     "correct_answer": {
       "film": "Django Unchained"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 269,
@@ -195,6 +255,12 @@
     "correct_answer": {
       "film": "Le Loup de Wall Street"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   }
 ]

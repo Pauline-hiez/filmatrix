@@ -71,8 +71,15 @@
                 <select id="tag"
                         class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
                     <option value="">Tous les thèmes</option>
-                    {% for tag in all_tags %}
-                    <option value="{{ tag.id }}">{{ tag.name }} ({{ tag.tag_type }})</option>
+                    {% for tag_type, label in [("genre", "Genres"), ("univers", "Univers"), ("saga", "Sagas"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+                    {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+                    {% if typed_tags %}
+                    <optgroup label="{{ label }}">
+                        {% for tag in typed_tags %}
+                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    {% endif %}
                     {% endfor %}
                 </select>
             </div>

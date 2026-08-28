@@ -15,7 +15,13 @@
     "correct_answer": {
       "film": "Titanic"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 17,
@@ -33,7 +39,13 @@
     "correct_answer": {
       "film": "Jurassic Park"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 18,
@@ -51,7 +63,13 @@
     "correct_answer": {
       "film": "Matrix"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 19,
@@ -69,7 +87,13 @@
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "seigneur-des-anneaux",
+        "type": "univers"
+      }
+    ]
   },
   {
     "id": 220,
@@ -87,7 +111,13 @@
     "correct_answer": {
       "film": "Le Roi Lion"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 221,
@@ -105,7 +135,13 @@
     "correct_answer": {
       "film": "Retour vers le futur"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 222,
@@ -123,7 +159,13 @@
     "correct_answer": {
       "film": "Forrest Gump"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 223,
@@ -141,7 +183,13 @@
     "correct_answer": {
       "film": "Le Parrain"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 224,
@@ -159,7 +207,13 @@
     "correct_answer": {
       "film": "Pulp Fiction"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 225,
@@ -177,7 +231,13 @@
     "correct_answer": {
       "film": "Alien"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 226,
@@ -195,7 +255,13 @@
     "correct_answer": {
       "film": "Gladiator"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
   },
   {
     "id": 227,
@@ -213,7 +279,13 @@
     "correct_answer": {
       "film": "Interstellar"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 228,
@@ -231,7 +303,13 @@
     "correct_answer": {
       "film": "Parasite"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 229,
@@ -249,6 +327,12 @@
     "correct_answer": {
       "film": "Le Voyage de Chihiro"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "japon",
+        "type": "pays"
+      }
+    ]
   }
 ]

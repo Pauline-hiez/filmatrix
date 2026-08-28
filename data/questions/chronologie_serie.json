@@ -1,27 +1,33 @@
 [
-    {
-        "id": 363,
-        "mode": "chronologie",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "difficile",
-        "prompt": "",
-        "payload": {
-            "films": [
-                "Stranger Things",
-                "Breaking Bad",
-                "Game of Thrones",
-                "Friends"
-            ]
-        },
-        "correct_answer": {
-            "order": [
-                "Friends",
-                "Breaking Bad",
-                "Game of Thrones",
-                "Stranger Things"
-            ]
-        },
-        "requires_account": false
-    }
+  {
+    "id": 363,
+    "mode": "chronologie",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "difficile",
+    "prompt": "",
+    "payload": {
+      "films": [
+        "Stranger Things",
+        "Breaking Bad",
+        "Game of Thrones",
+        "Friends"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Friends",
+        "Breaking Bad",
+        "Game of Thrones",
+        "Stranger Things"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  }
 ]

@@ -279,6 +279,9 @@ def admin_tags_new() -> str:
     """Crée un nouveau tag"""
     name = request.form.get("name", "").strip()
     tag_type = request.form.get("tag_type", "genre")
+    allowed_types = {"genre", "saga", "univers", "pays", "epoque", "annee", "realisateur", "acteur", "studio", "autre"}
+    if tag_type not in allowed_types:
+        tag_type = "autre"
 
     if name:
         existing = Tag.query.filter_by(name=name).first()

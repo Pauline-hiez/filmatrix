@@ -9,7 +9,13 @@
     "correct_answer": {
       "title": "Avatar"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 14,
@@ -21,7 +27,13 @@
     "correct_answer": {
       "title": "Le Roi Lion"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 180,
@@ -33,7 +45,13 @@
     "correct_answer": {
       "title": "Titanic"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 181,
@@ -45,7 +63,13 @@
     "correct_answer": {
       "title": "Inception"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 182,
@@ -57,7 +81,13 @@
     "correct_answer": {
       "title": "Matrix"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 183,
@@ -69,7 +99,13 @@
     "correct_answer": {
       "title": "Gladiator"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 184,
@@ -81,7 +117,13 @@
     "correct_answer": {
       "title": "Parasite"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 185,
@@ -93,7 +135,13 @@
     "correct_answer": {
       "title": "Le Parrain"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 186,
@@ -105,7 +153,13 @@
     "correct_answer": {
       "title": "Interstellar"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 187,
@@ -117,7 +171,13 @@
     "correct_answer": {
       "title": "Ratatouille"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   },
   {
     "id": 188,
@@ -129,7 +189,13 @@
     "correct_answer": {
       "title": "Jurassic Park"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      }
+    ]
   },
   {
     "id": 189,
@@ -141,6 +207,12 @@
     "correct_answer": {
       "title": "Pulp Fiction"
     },
-    "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
   }
 ]

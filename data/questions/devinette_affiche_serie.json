@@ -1,167 +1,233 @@
 [
-    {
-        "id": 364,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
-        },
-        "correct_answer": {
-            "film": "Stranger Things"
-        },
-        "requires_account": false
+  {
+    "id": 364,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
     },
-    {
-        "id": 365,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
-        },
-        "correct_answer": {
-            "film": "Friends"
-        },
-        "requires_account": false
+    "correct_answer": {
+      "film": "Stranger Things"
     },
-    {
-        "id": 366,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
-        },
-        "correct_answer": {
-            "film": "Breaking Bad"
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 365,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
     },
-    {
-        "id": 367,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/rAOjnEFTuNysY7bot8zonhImGMh.jpg"
-        },
-        "correct_answer": {
-            "film": "The Walking Dead"
-        },
-        "requires_account": false
+    "correct_answer": {
+      "film": "Friends"
     },
-    {
-        "id": 368,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
-        },
-        "correct_answer": {
-            "film": "Vikings"
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 366,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
     },
-    {
-        "id": 369,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
-        },
-        "correct_answer": {
-            "film": "Dexter"
-        },
-        "requires_account": false
+    "correct_answer": {
+      "film": "Breaking Bad"
     },
-    {
-        "id": 370,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg"
-        },
-        "correct_answer": {
-            "film": "Wednesday"
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 367,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/rAOjnEFTuNysY7bot8zonhImGMh.jpg"
     },
-    {
-        "id": 371,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
-        },
-        "correct_answer": {
-            "film": "The Office"
-        },
-        "requires_account": false
+    "correct_answer": {
+      "film": "The Walking Dead"
     },
-    {
-        "id": 372,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
-        },
-        "correct_answer": {
-            "film": "Peaky Blinders"
-        },
-        "requires_account": false
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 368,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
     },
-    {
-        "id": 373,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "facile",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
-        },
-        "correct_answer": {
-            "film": "La Casa de Papel"
-        },
-        "requires_account": false
+    "correct_answer": {
+      "film": "Vikings"
     },
-    {
-        "id": 374,
-        "mode": "devinette_affiche",
-        "category": "anecdote",
-        "content_type": "serie",
-        "difficulty": "moyen",
-        "prompt": "",
-        "payload": {
-            "poster_url": "https://image.tmdb.org/t/p/w500/foGkPxpw9h8zln81j63mix5B7m8.jpg"
-        },
-        "correct_answer": {
-            "film": "The Witcher"
-        },
-        "requires_account": false
-    }
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 369,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
+    "correct_answer": {
+      "film": "Dexter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 370,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg"
+    },
+    "correct_answer": {
+      "film": "Wednesday"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 371,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
+    },
+    "correct_answer": {
+      "film": "The Office"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 372,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
+    },
+    "correct_answer": {
+      "film": "Peaky Blinders"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 373,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "facile",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
+    "correct_answer": {
+      "film": "La Casa de Papel"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 374,
+    "mode": "devinette_affiche",
+    "category": "anecdote",
+    "content_type": "serie",
+    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/foGkPxpw9h8zln81j63mix5B7m8.jpg"
+    },
+    "correct_answer": {
+      "film": "The Witcher"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "cinema-general",
+        "type": "autre"
+      }
+    ]
+  }
 ]
