@@ -10,7 +10,10 @@
 {% macro player_link(user_id, username) -%}
 {%- if current_user.is_authenticated -%}
 <a href="{{ url_for('profile.public_profile', user_id=user_id) }}"
-   class="transition hover:text-cyan-400 hover:underline">{{ username }}</a>
+   class="inline-flex items-center gap-2 transition hover:text-cyan-400 hover:underline">
+    <span class="presence-dot bg-slate-600" data-user-id="{{ user_id }}" title="Hors ligne" aria-label="Statut de {{ username }}"></span>
+    <span>{{ username }}</span>
+</a>
 {%- else -%}
 {{ username }}
 {%- endif -%}

@@ -99,6 +99,7 @@ def friend_cards(users: list) -> list:
             "username": user.username,
             "avatar": user.avatar or "🎬",
             "level": calculate_level(user.total_xp)["level"],
+            "online": False,
         }
         for user in users
     ]

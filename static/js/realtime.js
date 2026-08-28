@@ -10,6 +10,31 @@ if (typeof io === "undefined") {
 } else {
     socket = io();
 
+    function applyPresence(userIds) {
+        document.querySelectorAll("[data-user-id]").forEach(function (element) {
+            const online = userIds.includes(Number(element.dataset.userId));
+            element.classList.toggle("bg-emerald-400", online);
+            element.classList.toggle("bg-slate-600", !online);
+            element.title = online ? "En ligne" : "Hors ligne";
+        });
+    }
+
+    socket.on("presence_snapshot", function (data) {
+        applyPresence(data.user_ids || []);
+    });
+
+    socket.on("presence_update", function (data) {
+        document.querySelectorAll(`.presence-dot[data-user-id="${data.user_id}"]`).forEach(function (dot) {
+            dot.classList.toggle("bg-emerald-400", data.online);
+            dot.classList.toggle("bg-slate-600", !data.online);
+            dot.title = data.online ? "En ligne" : "Hors ligne";
+        });
+    });
+
+    socket.on("connect", function () {
+        socket.emit("request_presence");
+    });
+
     socket.on("new_notification", function (data) {
         updateBadge();
         showToast(data);

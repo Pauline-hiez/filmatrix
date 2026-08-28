@@ -22,7 +22,7 @@
 
         <div class="text-center">
             <p class="text-2xl">{{ opponent.avatar or "🎬" }}</p>
-            <p class="text-sm text-slate-400">{{ opponent.username }}</p>
+            <p class="inline-flex items-center gap-2 text-sm text-slate-400"><span class="presence-dot inline-block h-2 w-2 rounded-full bg-slate-600" data-user-id="{{ opponent.id }}" title="Hors ligne" aria-label="Statut de {{ opponent.username }}"></span>{{ opponent.username }}</p>
             <p id="opponent-score" class="text-cyan-400 font-bold text-lg">
                 {{ game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score }}
             </p>

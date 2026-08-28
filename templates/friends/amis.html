@@ -55,7 +55,10 @@
             <div class="flex items-center gap-3 rounded-lg border border-cyan-400/30 bg-slate-900 px-4 py-3 transition hover:border-cyan-400">
                 <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}"
                    class="flex min-w-0 flex-1 items-center justify-between gap-3">
-                    <span class="truncate">{{ friend.username }}</span>
+                    <span class="flex min-w-0 items-center gap-2 truncate">
+                        <span class="presence-dot bg-slate-600" data-user-id="{{ friend.id }}" title="Hors ligne" aria-label="Statut de {{ friend.username }}"></span>
+                        <span class="truncate">{{ friend.username }}</span>
+                    </span>
                     <span class="text-xs text-slate-500">Niveau {{ friend.level }}</span>
                 </a>
 

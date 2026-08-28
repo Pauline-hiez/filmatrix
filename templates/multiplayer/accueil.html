@@ -68,7 +68,7 @@
             <a href="{{ url_for('multiplayer.game_lobby', game_session_id=invitation.id) }}"
                class="flex items-center justify-between gap-3 rounded-xl border border-cyan-400/30 bg-slate-950/60 px-4 py-3 transition hover:border-cyan-400">
                 <span class="min-w-0 truncate text-sm text-slate-200">
-                    <span class="font-bold text-cyan-300">{{ invitation.host.username }}</span>
+                    <span class="inline-flex items-center gap-2 font-bold text-cyan-300"><span class="presence-dot bg-slate-600" data-user-id="{{ invitation.host.id }}" title="Hors ligne" aria-label="Statut de {{ invitation.host.username }}"></span>{{ invitation.host.username }}</span>
                     t'invite à un duel
                 </span>
                 <span class="shrink-0 text-xs font-bold text-cyan-400">Rejoindre →</span>
@@ -120,7 +120,7 @@
                     {{ friend.avatar }}
                 </span>
                 <span class="min-w-0 flex-1">
-                    <span class="block truncate text-sm font-bold text-slate-100">{{ friend.username }}</span>
+                    <span class="flex items-center gap-2 truncate text-sm font-bold text-slate-100"><span class="presence-dot bg-slate-600" data-user-id="{{ friend.id }}" title="Hors ligne" aria-label="Statut de {{ friend.username }}"></span>{{ friend.username }}</span>
                     <span class="block text-xs text-slate-500">Niveau {{ friend.level }}</span>
                 </span>
                 <select name="mode"

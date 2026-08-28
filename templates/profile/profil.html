@@ -45,7 +45,7 @@
                 </span>
                 <div class="min-w-0">
                     <div class="flex items-center gap-2">
-                        <h1 class="truncate text-2xl font-extrabold tracking-tight">{{ current_user.username }}</h1>
+                        <h1 class="inline-flex items-center gap-2 truncate text-2xl font-extrabold tracking-tight"><span class="presence-dot bg-emerald-400" data-user-id="{{ current_user.id }}" title="En ligne"></span>{{ current_user.username }}</h1>
                         <a href="{{ url_for('profile.edit_profile') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
                             Modifier
                         </a>

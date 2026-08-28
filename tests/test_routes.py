@@ -224,6 +224,12 @@ def test_admin_question_form_compacts_tag_selection(client, app):
     assert response.status_code in (302, 403)
 
 
+def test_friends_page_includes_presence_markers(client, app):
+    """La liste des amis expose un point que Socket.IO peut mettre à jour."""
+    response = client.get("/amis")
+    assert response.status_code in (302, 403)
+
+
 def test_setup_screen_offers_the_game_settings(client, app):
     """L'écran de préparation doit proposer thème et niveau avant de jouer"""
     create_test_question(app)

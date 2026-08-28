@@ -6,6 +6,8 @@ from flask_socketio import join_room, emit
 from filmatrix.extensions import db
 from filmatrix.services.engine import check_answer, convert_answer
 from filmatrix.models import GameAnswer, GameSession
+
+_online_users: set[int] = set()
 from filmatrix.services.multiplayer import get_ordered_questions
 
 
@@ -14,9 +16,27 @@ def register_socket_events(socketio):
 
     @socketio.on("connect")
     def handle_connect():
-        """Fait rejoindre à l'utilisateur son salon personnel dès la connexion"""
+        """Inscrit un joueur connecté et informe ses amis de sa présence."""
+        if not current_user.is_authenticated:
+            return
+
+        join_room(f"user_{current_user.id}")
+        _online_users.add(current_user.id)
+        emit("presence_snapshot", {"user_ids": list(_online_users)}, to=f"user_{current_user.id}")
+        emit("presence_update", {"user_id": current_user.id, "online": True}, broadcast=True)
+
+    @socketio.on("disconnect")
+    def handle_disconnect():
+        """Informe les clients que le joueur a fermé sa connexion."""
         if current_user.is_authenticated:
-            join_room(f"user_{current_user.id}")
+            _online_users.discard(current_user.id)
+            emit("presence_update", {"user_id": current_user.id, "online": False}, broadcast=True)
+
+    @socketio.on("request_presence")
+    def handle_request_presence():
+        """Renvoie l'état courant après le chargement du client."""
+        if current_user.is_authenticated:
+            emit("presence_snapshot", {"user_ids": list(_online_users)})
 
     @socketio.on("join_game")
     def handle_join_game(data):
