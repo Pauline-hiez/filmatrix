@@ -2,8 +2,7 @@
   {
     "id": 21,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -26,8 +25,7 @@
   {
     "id": 260,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -50,8 +48,7 @@
   {
     "id": 261,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -74,8 +71,7 @@
   {
     "id": 262,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -98,8 +94,7 @@
   {
     "id": 263,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -122,8 +117,7 @@
   {
     "id": 264,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -146,8 +140,7 @@
   {
     "id": 265,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -170,8 +163,7 @@
   {
     "id": 266,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -194,8 +186,7 @@
   {
     "id": 267,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -218,8 +209,7 @@
   {
     "id": 268,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -242,8 +232,7 @@
   {
     "id": 269,
     "mode": "casting",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "actor_photos": [
@@ -260,6 +249,471 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 9000,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/5emVgsLFlU6SmeBIFsF2Y7aqwtG.jpg",
+        "https://image.tmdb.org/t/p/w500/cbFWUHhk6pZKTEm48OKVM5awNNn.jpg",
+        "https://image.tmdb.org/t/p/w500/8DHORod2l6ZFS9KR0gNAAM3WZfI.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Silence des agneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9001,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/oWFCyBLm1lsbsbT5Nmx3SPMaqFZ.jpg",
+        "https://image.tmdb.org/t/p/w500/wTSnfktNBLd6kwQxgvkqYw6vEon.jpg",
+        "https://image.tmdb.org/t/p/w500/1CiknHO8ssMM4bWPsIMMzCTVHeB.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Alien"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9002,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/2JB4FMgQmnhbBlQ4SxWFN9EIVDi.jpg",
+        "https://image.tmdb.org/t/p/w500/nxVjpyb3UrfbPZnEyDNlQVlFAs5.jpg",
+        "https://image.tmdb.org/t/p/w500/imBnLpSXvg61qDDdEfvL6R4ITKt.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Retour vers le futur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9003,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/hBHcQIEa6P48HQAlLZkh0eKSSkG.jpg",
+        "https://image.tmdb.org/t/p/w500/zwscEWl7QLiOsfsvzGXFjAQCVp3.jpg",
+        "https://image.tmdb.org/t/p/w500/5pEmugZ6m25RB0cXbL4t5D4kZAO.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Shining"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9004,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/f6PO7Lkrem1N4UmklxHro2k6Jto.jpg",
+        "https://image.tmdb.org/t/p/w500/Uuy6WuizieB4fOIGFp0gY90Yq2.jpg",
+        "https://image.tmdb.org/t/p/w500/eyvOUlmpllkSTRRT2mmGcUUrKZR.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Intouchables"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9005,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/d81K0RH8UX7tZj49tZaQhZ9ewH.jpg",
+        "https://image.tmdb.org/t/p/w500/gd7ShD0yt4bsR2STeQ19KQ6hvXL.jpg",
+        "https://image.tmdb.org/t/p/w500/pXm8GWTm9eIA8pUGOjvmYjlxamu.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Mad Max : Fury Road"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "australie",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9006,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/lyUyVARQKhGxaxy0FbPJCQRpiaW.jpg",
+        "https://image.tmdb.org/t/p/w500/t7EYLBMWQiIDtCoOYZjvqXV84S5.jpg",
+        "https://image.tmdb.org/t/p/w500/cCv0YBy2YFFWp9h3kvNPmwWwrCD.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "La La Land"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9007,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/u38k3hQBDwNX0VA22aQceDp9Iyv.jpg",
+        "https://image.tmdb.org/t/p/w500/cT8htcckIuyI1Lqwt1CvD02ynTh.jpg",
+        "https://image.tmdb.org/t/p/w500/sgxzT54GnvgeMnOZgpQQx9csAdd.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Joker"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9008,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/kDf3sW3USjEBDQ3Ua7lbwOfwty6.jpg",
+        "https://image.tmdb.org/t/p/w500/ScmKoJ9eiSUOthAt1PDNLi8Fkw.jpg",
+        "https://image.tmdb.org/t/p/w500/rGryzG00uSk8LsidacSBXVgo3iv.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Whiplash"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9009,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/pjBMJVPpcZK23Vt1nzr1zEBTWrP.jpg",
+        "https://image.tmdb.org/t/p/w500/xyag0LbjocTwx2Ht7B3RofvCNMT.jpg",
+        "https://image.tmdb.org/t/p/w500/yfJADYt6xYPpg1g7Z7TTW0bcL2s.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Blade Runner"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9010,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/3FfJMIVwXgsIXbAT8ECBSZJAncR.jpg",
+        "https://image.tmdb.org/t/p/w500/905k0RFzH0Kd6gx8oSxRdnr6FL.jpg",
+        "https://image.tmdb.org/t/p/w500/ulbVvuBToBN3aCGcV028hwO0MOP.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Évadés"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9011,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/905k0RFzH0Kd6gx8oSxRdnr6FL.jpg",
+        "https://image.tmdb.org/t/p/w500/ajNaPmXVVMJFg9GWmu6MJzTaXdV.jpg",
+        "https://image.tmdb.org/t/p/w500/r4wbWWEEjmtRFZ0GU10XbLTgp47.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9012,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/dFxpwRpmzpVfP1zjluH68DeQhyj.jpg",
+        "https://image.tmdb.org/t/p/w500/ty8ZPzaCBBlqIr5qzpOXI24iC8j.jpg",
+        "https://image.tmdb.org/t/p/w500/dW5U5yrIIPmMjRThR9KT2xH6nTz.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Dune"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9013,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/4pk2VbOb2td7iBZyir6Ji46HH4N.jpg",
+        "https://image.tmdb.org/t/p/w500/jXEE0P6705JbMAJ2nwtHjmqkd5F.jpg",
+        "https://image.tmdb.org/t/p/w500/kqlDSharpQjqeNVS5BZkqqJl3ZF.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Casablanca"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 9014,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/7UKRbJBNG7mxBl2QQc5XsAh6F8B.jpg",
+        "https://image.tmdb.org/t/p/w500/5cnnnpnJG6TiYUSS7qgJheUZgnv.jpg",
+        "https://image.tmdb.org/t/p/w500/vH5gVSpHAMhDaFWfh0Q7BG61O1y.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   }

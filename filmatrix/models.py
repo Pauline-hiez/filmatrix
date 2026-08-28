@@ -18,8 +18,6 @@ class Question(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     mode = db.Column(db.String(50), nullable=False)
-    category = db.Column(db.String(50), nullable=False)
-    difficulty = db.Column(db.String(20), nullable=False)
     prompt = db.Column(db.Text, nullable=False)
     payload = db.Column(db.JSON, nullable=False)
     correct_answer = db.Column(db.JSON, nullable=False)

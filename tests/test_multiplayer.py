@@ -30,8 +30,6 @@ def create_test_questions(mode: str, count: int) -> None:
     for i in range(count):
         question = Question(
             mode=mode,
-            category="test",
-            difficulty="facile",
             prompt=f"Question de test {i}",
             payload={"options": ["A", "B"]},
             correct_answer={"index": 0},
@@ -140,9 +138,7 @@ def create_duel(app, mode, question_count=6, **question_kwargs):
             db.session.add(
                 Question(
                     mode=mode,
-                    category="test",
                     content_type="film",
-                    difficulty="facile",
                     prompt=f"Question {index}",
                     **titles_apart(question_kwargs, index),
                 )
@@ -236,9 +232,7 @@ def test_the_duel_choices_include_the_right_answer(app):
             db.session.add(
                 Question(
                     mode="citation",
-                    category="test",
                     content_type="film",
-                    difficulty="facile",
                     prompt=f"Réplique {index}",
                     payload={},
                     correct_answer={"film": f"Film {index}"},
@@ -259,8 +253,6 @@ def test_a_malformed_duel_answer_does_not_stall_the_round(app):
     with app.app_context():
         question = Question(
             mode="qcm",
-            category="test",
-            difficulty="facile",
             prompt="Question",
             payload={"options": ["A", "B"]},
             correct_answer={"index": 0},
@@ -287,8 +279,6 @@ def test_a_duel_is_refused_when_the_choices_would_give_it_away(app):
             db.session.add(
                 Question(
                     mode="blindtest",
-                    category="test",
-                    difficulty="facile",
                     prompt=f"Extrait {index}",
                     payload={"audio_url": "https://example.test/extrait.m4a"},
                     correct_answer={"film": "Toujours le même film"},

@@ -52,19 +52,6 @@
             </div>
 
             <div>
-                <label for="category" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Catégorie
-                </label>
-                <select id="category"
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">Toutes les catégories</option>
-                    <option value="realisateur">Réalisateur</option>
-                    <option value="acteur">Acteur</option>
-                    <option value="anecdote">Anecdote</option>
-                </select>
-            </div>
-
-            <div>
                 <label for="tag" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
                     Thème / Saga
                 </label>
@@ -76,7 +63,7 @@
                     {% if typed_tags %}
                     <optgroup label="{{ label }}">
                         {% for tag in typed_tags %}
-                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                        <option value="{{ tag.id }}" {% if tag.id == selected_tag_id %}selected{% endif %}>{{ tag.name }}</option>
                         {% endfor %}
                     </optgroup>
                     {% endif %}

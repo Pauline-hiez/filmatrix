@@ -16,9 +16,7 @@ from filmatrix.integrations.tmdb import (
 load_dotenv()
 
 
-def generate_poster_question(
-    title: str, difficulty: str, category: str, content_type: str = "film"
-) -> dict:
+def generate_poster_question(title: str, content_type: str = "film") -> dict:
     """Génère le JSON d'une question Devinette-affiche pour un film ou une série donné"""
     result = search_tv_show(title) if content_type == "serie" else search_movie(title)
     if result is None:
@@ -28,9 +26,7 @@ def generate_poster_question(
 
     return {
         "mode": "devinette_affiche",
-        "category": category,
         "content_type": content_type,
-        "difficulty": difficulty,
         "prompt": "",
         "payload": {"poster_url": poster_url},
         "correct_answer": {"film": result["title"]},
@@ -38,9 +34,7 @@ def generate_poster_question(
     }
 
 
-def generate_casting_question(
-    title: str, difficulty: str, category: str, content_type: str = "film"
-) -> dict:
+def generate_casting_question(title: str, content_type: str = "film") -> dict:
     """Génère le JSON d'une question casting pour un film ou une série donné"""
     result = search_tv_show(title) if content_type == "serie" else search_movie(title)
     if result is None:
@@ -57,9 +51,7 @@ def generate_casting_question(
 
     return {
         "mode": "casting",
-        "category": category,
         "content_type": content_type,
-        "difficulty": difficulty,
         "prompt": "",
         "payload": {"actor_photos": actor_photos},
         "correct_answer": {"film": result["title"]},
@@ -70,14 +62,12 @@ def generate_casting_question(
 if __name__ == "__main__":
     mode = sys.argv[1]
     title = sys.argv[2]
-    difficulty = sys.argv[3] if len(sys.argv) > 3 else "moyen"
-    category = sys.argv[4] if len(sys.argv) > 4 else "anecdote"
-    content_type = sys.argv[5] if len(sys.argv) > 5 else "film"
+    content_type = sys.argv[3] if len(sys.argv) > 3 else "film"
 
     if mode == "affiche":
-        question = generate_poster_question(title, difficulty, category, content_type)
+        question = generate_poster_question(title, content_type)
     elif mode == "casting":
-        question = generate_casting_question(title, difficulty, category, content_type)
+        question = generate_casting_question(title, content_type)
     else:
         raise ValueError("Mode inconnu, utilise 'affiche' ou 'casting'")
 

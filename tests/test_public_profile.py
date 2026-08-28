@@ -119,8 +119,6 @@ def test_player_names_link_to_their_profile_once_logged_in(client, app):
     with app.app_context():
         question = Question(
             mode="qcm",
-            category="test",
-            difficulty="facile",
             prompt="?",
             payload={"options": ["A", "B"]},
             correct_answer={"index": 0},

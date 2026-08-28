@@ -2,9 +2,8 @@
   {
     "id": 16,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
-    "prompt": "",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
         "Ce film est sorti en 1997.",
@@ -26,9 +25,8 @@
   {
     "id": 17,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
-    "prompt": "",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
         "Ce film est sorti en 1993.",
@@ -50,9 +48,8 @@
   {
     "id": 18,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
-    "prompt": "",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
         "Ce film est sorti en 1999.",
@@ -74,9 +71,8 @@
   {
     "id": 19,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
-    "prompt": "",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
         "Ce film est sorti en 2001.",
@@ -98,8 +94,7 @@
   {
     "id": 220,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -122,8 +117,7 @@
   {
     "id": 221,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -146,8 +140,7 @@
   {
     "id": 222,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -170,8 +163,7 @@
   {
     "id": 223,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -194,8 +186,7 @@
   {
     "id": 224,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -218,8 +209,7 @@
   {
     "id": 225,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -242,8 +232,7 @@
   {
     "id": 226,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -266,8 +255,7 @@
   {
     "id": 227,
     "mode": "devinette",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -290,8 +278,7 @@
   {
     "id": 228,
     "mode": "devinette",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -314,8 +301,7 @@
   {
     "id": 229,
     "mode": "devinette",
-    "category": "realisateur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "Quel film se cache derrière ces indices ?",
     "payload": {
       "hints": [
@@ -332,6 +318,440 @@
       {
         "name": "japon",
         "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 7000,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film en noir et blanc est sorti en 1942.",
+        "L'action se déroule au Maroc pendant la Seconde Guerre mondiale.",
+        "Humphrey Bogart y tient un bar et retrouve Ingrid Bergman."
+      ]
+    },
+    "correct_answer": {
+      "film": "Casablanca"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7001,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film d'horreur est sorti en 1980.",
+        "Une famille passe l'hiver seule dans un grand hôtel de montagne désert.",
+        "Il est réalisé par Stanley Kubrick, avec Jack Nicholson."
+      ]
+    },
+    "correct_answer": {
+      "film": "Shining"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7002,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce thriller est sorti en 1991.",
+        "Une jeune recrue du FBI consulte un tueur en série pour en traquer un autre.",
+        "Jodie Foster et Anthony Hopkins y ont tous deux remporté un Oscar."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Silence des agneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7003,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1975.",
+        "Une station balnéaire est terrorisée par un grand requin blanc.",
+        "Il est réalisé par Steven Spielberg."
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Dents de la mer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7004,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1982.",
+        "Un enfant cache une créature venue d'ailleurs chez lui et l'aide à rentrer.",
+        "Il est réalisé par Steven Spielberg."
+      ]
+    },
+    "correct_answer": {
+      "film": "E.T. l'extra-terrestre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7005,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film français est sorti en 2011.",
+        "Il raconte la rencontre entre un aristocrate tétraplégique et son aide à domicile.",
+        "François Cluzet et Omar Sy en tiennent les rôles principaux."
+      ]
+    },
+    "correct_answer": {
+      "film": "Intouchables"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7006,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film français est sorti en 2001.",
+        "Une jeune serveuse de Montmartre décide de faire le bonheur des autres en secret.",
+        "Audrey Tautou y tient le rôle-titre, sous la direction de Jean-Pierre Jeunet."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Fabuleux Destin d'Amélie Poulain"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7007,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 2014.",
+        "Un jeune batteur de jazz est poussé à bout par un professeur tyrannique.",
+        "J. K. Simmons y a remporté l'Oscar du meilleur second rôle."
+      ]
+    },
+    "correct_answer": {
+      "film": "Whiplash"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7008,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 1982.",
+        "Un policier traque des androïdes dans un Los Angeles pluvieux et surpeuplé.",
+        "Il est réalisé par Ridley Scott, avec Harrison Ford."
+      ]
+    },
+    "correct_answer": {
+      "film": "Blade Runner"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7009,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film est sorti en 2015.",
+        "Une immense poursuite dans le désert oppose un convoi à un tyran nommé Immortan Joe.",
+        "Charlize Theron y incarne Furiosa, aux côtés de Tom Hardy."
+      ]
+    },
+    "correct_answer": {
+      "film": "Mad Max: Fury Road"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "australie",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7010,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film en noir et blanc est sorti en 1993.",
+        "Un industriel allemand sauve plus d'un millier de Juifs pendant la Seconde Guerre mondiale.",
+        "Il a valu à Steven Spielberg son premier Oscar de meilleur réalisateur."
+      ]
+    },
+    "correct_answer": {
+      "film": "La Liste de Schindler"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7011,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film d'animation est sorti en 2017.",
+        "Un jeune garçon passionné de musique se retrouve au pays des morts.",
+        "Il s'inspire de la fête mexicaine du Día de Muertos."
+      ]
+    },
+    "correct_answer": {
+      "film": "Coco"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7012,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film sud-coréen est sorti en 2003.",
+        "Un homme est enfermé quinze ans sans explication, puis relâché sans raison.",
+        "Il est réalisé par Park Chan-wook."
+      ]
+    },
+    "correct_answer": {
+      "film": "Old Boy"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7013,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Ce film japonais en noir et blanc est sorti en 1954.",
+        "Des villageois engagent des guerriers pour les défendre contre des bandits.",
+        "Il est réalisé par Akira Kurosawa."
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Sept Samouraïs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
       }
     ]
   }

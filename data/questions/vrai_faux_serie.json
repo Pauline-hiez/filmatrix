@@ -1,19 +1,12 @@
 [
   {
-    "id": 1500,
-    "mode": "qcm",
+    "id": 2500,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Friends, quel membre du groupe est paléontologue ?",
-    "payload": {
-      "options": [
-        "Ross Geller",
-        "Joey Tribbiani",
-        "Chandler Bing",
-        "Mike Hannigan"
-      ]
-    },
+    "prompt": "Dans Friends, Ross et Monica sont frère et sœur.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -36,20 +29,13 @@
     ]
   },
   {
-    "id": 1501,
-    "mode": "qcm",
+    "id": 2501,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Friends, quel métier Monica Geller exerce-t-elle ?",
-    "payload": {
-      "options": [
-        "Avocate",
-        "Journaliste",
-        "Médecin",
-        "Chef cuisinière"
-      ]
-    },
+    "prompt": "La série Friends compte dix saisons.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -72,20 +58,13 @@
     ]
   },
   {
-    "id": 1502,
-    "mode": "qcm",
+    "id": 2502,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Friends, comment s'appelle le singe de Ross ?",
-    "payload": {
-      "options": [
-        "Milo",
-        "Max",
-        "Marcel",
-        "Maurice"
-      ]
-    },
+    "prompt": "Dans Friends, Joey décroche un rôle de médecin dans un feuilleton, le docteur Drake Ramoray.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -108,20 +87,13 @@
     ]
   },
   {
-    "id": 1503,
-    "mode": "qcm",
+    "id": 2503,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Friends, qui Chandler Bing épouse-t-il ?",
-    "payload": {
-      "options": [
-        "Emily",
-        "Monica",
-        "Phoebe",
-        "Rachel"
-      ]
-    },
+    "prompt": "Dans Friends, Phoebe Buffay exerce le métier d'avocate.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -144,20 +116,13 @@
     ]
   },
   {
-    "id": 1504,
-    "mode": "qcm",
+    "id": 2504,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Friends, de quel instrument Phoebe Buffay joue-t-elle au Central Perk ?",
-    "payload": {
-      "options": [
-        "Guitare",
-        "Piano",
-        "Violon",
-        "Batterie"
-      ]
-    },
+    "prompt": "Dans Friends, Chandler finit par épouser Rachel.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -180,20 +145,13 @@
     ]
   },
   {
-    "id": 1505,
-    "mode": "qcm",
+    "id": 2505,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Friends, quel est le prénom de la sœur jumelle de Phoebe ?",
-    "payload": {
-      "options": [
-        "Emily",
-        "Susan",
-        "Carol",
-        "Ursula"
-      ]
-    },
+    "prompt": "Dans Friends, Monica est la sœur de Joey.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -216,20 +174,13 @@
     ]
   },
   {
-    "id": 1506,
-    "mode": "qcm",
+    "id": 2506,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Breaking Bad, quel est le prénom de l'ancien élève devenu l'associé de Walter White ?",
-    "payload": {
-      "options": [
-        "Saul",
-        "Mike",
-        "Jesse",
-        "Hank"
-      ]
-    },
+    "prompt": "Dans Breaking Bad, Walter White enseigne la chimie avant de basculer dans le trafic.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -252,20 +203,13 @@
     ]
   },
   {
-    "id": 1507,
-    "mode": "qcm",
+    "id": 2507,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Breaking Bad, quel est le métier de Hank Schrader ?",
-    "payload": {
-      "options": [
-        "Journaliste",
-        "Agent de la DEA",
-        "Avocat",
-        "Professeur"
-      ]
-    },
+    "prompt": "Dans Breaking Bad, Hank Schrader est agent de la DEA.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -288,20 +232,13 @@
     ]
   },
   {
-    "id": 1508,
-    "mode": "qcm",
+    "id": 2508,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Breaking Bad, comment s'appelle la femme de Walter White ?",
-    "payload": {
-      "options": [
-        "Skyler",
-        "Marie",
-        "Jane",
-        "Andrea"
-      ]
-    },
+    "prompt": "La série Breaking Bad compte cinq saisons.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -324,20 +261,13 @@
     ]
   },
   {
-    "id": 1509,
-    "mode": "qcm",
+    "id": 2509,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Breaking Bad, quel avocat véreux conseille Walter et Jesse ?",
-    "payload": {
-      "options": [
-        "Harvey Specter",
-        "Matt Murdock",
-        "Mike Ross",
-        "Saul Goodman"
-      ]
-    },
+    "prompt": "Dans Breaking Bad, Gus Fring dirige une chaîne de pizzerias.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -360,20 +290,13 @@
     ]
   },
   {
-    "id": 1510,
-    "mode": "qcm",
+    "id": 2510,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Breaking Bad, quel personnage dirige la chaîne Los Pollos Hermanos ?",
-    "payload": {
-      "options": [
-        "Hector Salamanca",
-        "Mike Ehrmantraut",
-        "Gus Fring",
-        "Tuco Salamanca"
-      ]
-    },
+    "prompt": "Dans Breaking Bad, Jesse Pinkman est le frère de Walter White.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -396,20 +319,13 @@
     ]
   },
   {
-    "id": 1511,
-    "mode": "qcm",
+    "id": 2511,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Breaking Bad, comment s'appelle le fils de Walter White ?",
-    "payload": {
-      "options": [
-        "Jack",
-        "Walter Jr.",
-        "Thomas",
-        "Henry"
-      ]
-    },
+    "prompt": "Dans Breaking Bad, l'essentiel de l'action se déroule à Miami.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -432,20 +348,13 @@
     ]
   },
   {
-    "id": 1512,
-    "mode": "qcm",
+    "id": 2512,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Game of Thrones, quel est le nom du continent où se trouvent les Sept Couronnes ?",
-    "payload": {
-      "options": [
-        "Westeros",
-        "Essos",
-        "Sothoryos",
-        "Ulthos"
-      ]
-    },
+    "prompt": "Game of Thrones est adaptée des romans de George R. R. Martin.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -468,20 +377,13 @@
     ]
   },
   {
-    "id": 1513,
-    "mode": "qcm",
+    "id": 2513,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Game of Thrones, quelle maison a le loup-garou pour emblème ?",
-    "payload": {
-      "options": [
-        "Lannister",
-        "Targaryen",
-        "Baratheon",
-        "Stark"
-      ]
-    },
+    "prompt": "Dans Game of Thrones, Winterfell est le fief de la maison Stark.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -504,20 +406,13 @@
     ]
   },
   {
-    "id": 1514,
-    "mode": "qcm",
+    "id": 2514,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Game of Thrones, quel personnage est proclamé Roi du Nord après Robb Stark ?",
-    "payload": {
-      "options": [
-        "Jaime Lannister",
-        "Samwell Tarly",
-        "Jon Snow",
-        "Tyrion Lannister"
-      ]
-    },
+    "prompt": "Dans Game of Thrones, Tyrion et Cersei Lannister sont frère et sœur.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -540,20 +435,13 @@
     ]
   },
   {
-    "id": 1515,
-    "mode": "qcm",
+    "id": 2515,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Game of Thrones, comment s'appelle l'épée de Jon Snow ?",
-    "payload": {
-      "options": [
-        "Aiguille",
-        "Grand-Griffe",
-        "Glace",
-        "Féale"
-      ]
-    },
+    "prompt": "Dans Game of Thrones, Jon Snow est élevé comme un membre de la maison Lannister.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -576,20 +464,13 @@
     ]
   },
   {
-    "id": 1516,
-    "mode": "qcm",
+    "id": 2516,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Game of Thrones, quel personnage est surnommé « le Limier » ?",
-    "payload": {
-      "options": [
-        "Sandor Clegane",
-        "Gregor Clegane",
-        "Bronn",
-        "Jorah Mormont"
-      ]
-    },
+    "prompt": "Dans Game of Thrones, Tyrion est l'aîné de la fratrie Lannister.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -612,20 +493,13 @@
     ]
   },
   {
-    "id": 1517,
-    "mode": "qcm",
+    "id": 2517,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Game of Thrones, quelle construction la Garde de Nuit est-elle chargée de défendre ?",
-    "payload": {
-      "options": [
-        "Le Trône de Fer",
-        "Port-Réal",
-        "Peyredragon",
-        "Le Mur"
-      ]
-    },
+    "prompt": "Dans Game of Thrones, le Trône de Fer se trouve à Winterfell.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -648,20 +522,13 @@
     ]
   },
   {
-    "id": 1518,
-    "mode": "qcm",
+    "id": 2518,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Kaamelott, quel acteur interprète le roi Arthur ?",
-    "payload": {
-      "options": [
-        "Lionnel Astier",
-        "Jean-Christophe Hembert",
-        "Alexandre Astier",
-        "Franck Pitiot"
-      ]
-    },
+    "prompt": "Kaamelott est une série française créée par Alexandre Astier.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -684,20 +551,13 @@
     ]
   },
   {
-    "id": 1519,
-    "mode": "qcm",
+    "id": 2519,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Kaamelott, comment s'appelle le château d'Arthur ?",
-    "payload": {
-      "options": [
-        "Logres",
-        "Kaamelott",
-        "Tintagel",
-        "Carmélide"
-      ]
-    },
+    "prompt": "Dans Kaamelott, Léodagan est le beau-père d'Arthur.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -720,20 +580,13 @@
     ]
   },
   {
-    "id": 1520,
-    "mode": "qcm",
+    "id": 2520,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Kaamelott, quel chevalier est célèbre pour ses raisonnements incompréhensibles ?",
-    "payload": {
-      "options": [
-        "Perceval",
-        "Lancelot",
-        "Bohort",
-        "Yvain"
-      ]
-    },
+    "prompt": "Dans Kaamelott, Karadoc est bien plus préoccupé par la nourriture que par la quête du Graal.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -756,20 +609,13 @@
     ]
   },
   {
-    "id": 1521,
-    "mode": "qcm",
+    "id": 2521,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Kaamelott, quel chevalier est obsédé par la nourriture ?",
-    "payload": {
-      "options": [
-        "Gauvain",
-        "Bohort",
-        "Calogrenant",
-        "Karadoc"
-      ]
-    },
+    "prompt": "Dans Kaamelott, Perceval est présenté dès le départ comme le meilleur stratège de la Table Ronde.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -792,20 +638,13 @@
     ]
   },
   {
-    "id": 1522,
-    "mode": "qcm",
+    "id": 2522,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Kaamelott, quel chevalier devient le rival d'Arthur par amour pour Guenièvre ?",
-    "payload": {
-      "options": [
-        "Yvain",
-        "Bohort",
-        "Lancelot",
-        "Gauvain"
-      ]
-    },
+    "prompt": "Dans Kaamelott, Guenièvre est la sœur de Séli.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -828,20 +667,13 @@
     ]
   },
   {
-    "id": 1523,
-    "mode": "qcm",
+    "id": 2523,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Kaamelott, que cherchent inlassablement les chevaliers de la Table Ronde ?",
-    "payload": {
-      "options": [
-        "La Dame du Lac",
-        "Le Graal",
-        "L'épée Excalibur",
-        "Le trésor des Romains"
-      ]
-    },
+    "prompt": "Dans Kaamelott, Lancelot reste jusqu'au bout l'allié le plus fidèle d'Arthur.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -864,20 +696,13 @@
     ]
   },
   {
-    "id": 1524,
-    "mode": "qcm",
+    "id": 2524,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Stranger Things, dans quelle ville de l'Indiana se déroule la série ?",
-    "payload": {
-      "options": [
-        "Hawkins",
-        "Sunnydale",
-        "Riverdale",
-        "Mystic Falls"
-      ]
-    },
+    "prompt": "Dans Stranger Things, l'intrigue se déroule principalement dans les années 1980.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -900,20 +725,13 @@
     ]
   },
   {
-    "id": 1525,
-    "mode": "qcm",
+    "id": 2525,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Stranger Things, quel surnom porte la jeune fille aux pouvoirs psychiques ?",
-    "payload": {
-      "options": [
-        "Max",
-        "Nancy",
-        "Robin",
-        "Eleven"
-      ]
-    },
+    "prompt": "Dans Stranger Things, la disparition de Will Byers lance l'intrigue de la première saison.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -936,20 +754,13 @@
     ]
   },
   {
-    "id": 1526,
-    "mode": "qcm",
+    "id": 2526,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Stranger Things, comment s'appelle la dimension parallèle découverte par les héros ?",
-    "payload": {
-      "options": [
-        "La Zone",
-        "Le Sous-Monde",
-        "Le Monde à l'envers",
-        "Le Néant"
-      ]
-    },
+    "prompt": "Dans Stranger Things, Eleven possède des pouvoirs télékinésiques.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -972,20 +783,13 @@
     ]
   },
   {
-    "id": 1527,
-    "mode": "qcm",
+    "id": 2527,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Stranger Things, quel personnage est le chef de la police de Hawkins ?",
-    "payload": {
-      "options": [
-        "Murray Bauman",
-        "Jim Hopper",
-        "Bob Newby",
-        "Steve Harrington"
-      ]
-    },
+    "prompt": "Dans Stranger Things, Hawkins est une véritable ville de Californie.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1008,20 +812,13 @@
     ]
   },
   {
-    "id": 1528,
-    "mode": "qcm",
+    "id": 2528,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Stranger Things, à quel jeu de rôle la bande d'amis joue-t-elle dès le premier épisode ?",
-    "payload": {
-      "options": [
-        "Donjons et Dragons",
-        "Monopoly",
-        "Cluedo",
-        "Risk"
-      ]
-    },
+    "prompt": "Dans Stranger Things, Dustin est le frère de Nancy Wheeler.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1044,20 +841,13 @@
     ]
   },
   {
-    "id": 1529,
-    "mode": "qcm",
+    "id": 2529,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Stranger Things, quel nom les enfants donnent-ils à la créature de la première saison ?",
-    "payload": {
-      "options": [
-        "Mind Flayer",
-        "Vecna",
-        "Bête de l'Ombre",
-        "Demogorgon"
-      ]
-    },
+    "prompt": "Dans Stranger Things, Jim Hopper est le médecin de la ville.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1080,20 +870,71 @@
     ]
   },
   {
-    "id": 1530,
-    "mode": "qcm",
+    "id": 2530,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans The Office (version américaine), quel poste Michael Scott occupe-t-il à la succursale de Scranton ?",
-    "payload": {
-      "options": [
-        "Comptable",
-        "Réceptionniste",
-        "Directeur régional",
-        "Commercial"
-      ]
-    },
+    "prompt": "Dans The Last of Us, Joel est chargé d'escorter Ellie à travers les États-Unis.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-last-of-us",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2531,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série The Last of Us est adaptée d'un jeu vidéo.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-last-of-us",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2532,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Office (version américaine), Michael Scott dirige la succursale de Scranton.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1116,65 +957,22 @@
     ]
   },
   {
-    "id": 1531,
-    "mode": "qcm",
+    "id": 2533,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Les Soprano, quel trouble pousse Tony Soprano à consulter la psychiatre Jennifer Melfi ?",
-    "payload": {
-      "options": [
-        "Des acouphènes",
-        "Des crises de panique",
-        "Une insomnie chronique",
-        "Une amnésie"
-      ]
-    },
+    "prompt": "La série The Office américaine est une adaptation d'une série britannique.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": true
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "les-soprano",
+        "name": "the-office",
         "type": "univers"
       },
       {
-        "name": "drame",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-1990",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1532,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans quelle ville américaine se déroule la série The Wire ?",
-    "payload": {
-      "options": [
-        "Baltimore",
-        "Detroit",
-        "Philadelphie",
-        "Newark"
-      ]
-    },
-    "correct_answer": {
-      "index": 0
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "the-wire",
-        "type": "univers"
-      },
-      {
-        "name": "policier",
+        "name": "comédie",
         "type": "genre"
       },
       {
@@ -1188,92 +986,13 @@
     ]
   },
   {
-    "id": 1533,
-    "mode": "qcm",
+    "id": 2534,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Mad Men, dans quel secteur d'activité Don Draper fait-il carrière ?",
-    "payload": {
-      "options": [
-        "La presse écrite",
-        "La finance",
-        "L'immobilier",
-        "La publicité"
-      ]
-    },
+    "prompt": "Dans Dr House, le docteur House est spécialisé en chirurgie esthétique.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "mad-men",
-        "type": "univers"
-      },
-      {
-        "name": "drame",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2000",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1534,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Better Call Saul, quel est le véritable nom de Saul Goodman ?",
-    "payload": {
-      "options": [
-        "Howard Hamlin",
-        "Nacho Varga",
-        "Jimmy McGill",
-        "Chuck McGill"
-      ]
-    },
-    "correct_answer": {
-      "index": 2
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "better-call-saul",
-        "type": "univers"
-      },
-      {
-        "name": "drame",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2010",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1535,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Dr House, de quelle infirmité le docteur Gregory House souffre-t-il ?",
-    "payload": {
-      "options": [
-        "Un tremblement de la main droite",
-        "Une jambe qui l'oblige à marcher avec une canne",
-        "Une surdité progressive",
-        "Une cécité partielle"
-      ]
-    },
-    "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1296,20 +1015,13 @@
     ]
   },
   {
-    "id": 1536,
-    "mode": "qcm",
+    "id": 2535,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans la série Sherlock produite par la BBC, quel acteur incarne Sherlock Holmes ?",
-    "payload": {
-      "options": [
-        "Benedict Cumberbatch",
-        "Martin Freeman",
-        "Andrew Scott",
-        "Tom Hiddleston"
-      ]
-    },
+    "prompt": "Dans Sherlock, John Watson est un ancien médecin militaire.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1332,92 +1044,13 @@
     ]
   },
   {
-    "id": 1537,
-    "mode": "qcm",
+    "id": 2536,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Peaky Blinders, quelle famille dirige le gang de Birmingham ?",
-    "payload": {
-      "options": [
-        "Les Solomons",
-        "Les Lee",
-        "Les Changretta",
-        "Les Shelby"
-      ]
-    },
+    "prompt": "La série Squid Game est une production japonaise.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "peaky-blinders",
-        "type": "univers"
-      },
-      {
-        "name": "drame",
-        "type": "genre"
-      },
-      {
-        "name": "royaume-uni",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2010",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1538,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans La Casa de Papel, quel surnom porte celui qui organise le braquage ?",
-    "payload": {
-      "options": [
-        "Tokyo",
-        "Nairobi",
-        "Le Professeur",
-        "Berlin"
-      ]
-    },
-    "correct_answer": {
-      "index": 2
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "la-casa-de-papel",
-        "type": "univers"
-      },
-      {
-        "name": "thriller",
-        "type": "genre"
-      },
-      {
-        "name": "espagne",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2010",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1539,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Squid Game, à quel jeu d'enfance les participants sont-ils confrontés en premier ?",
-    "payload": {
-      "options": [
-        "Le pont de verre",
-        "Un, deux, trois, soleil",
-        "Le tir à la corde",
-        "Les billes"
-      ]
-    },
-    "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1440,20 +1073,71 @@
     ]
   },
   {
-    "id": 1540,
-    "mode": "qcm",
+    "id": 2537,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans la série allemande Dark, quel phénomène relie les quatre familles de Winden ?",
-    "payload": {
-      "options": [
-        "Les voyages dans le temps",
-        "Une épidémie",
-        "Un héritage contesté",
-        "Un culte religieux"
-      ]
-    },
+    "prompt": "Dans La Casa de Papel, les braqueurs portent des masques à l'effigie de Salvador Dalí.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2538,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans La Casa de Papel, le premier braquage vise la Banque d'Espagne.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2539,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Dark est une production allemande.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1476,20 +1160,13 @@
     ]
   },
   {
-    "id": 1541,
-    "mode": "qcm",
+    "id": 2540,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans la mini-série Chernobyl, quel scientifique soviétique est chargé d'analyser les causes de l'accident ?",
-    "payload": {
-      "options": [
-        "Anatoli Diatlov",
-        "Boris Chtcherbina",
-        "Viktor Brioukhanov",
-        "Valeri Legassov"
-      ]
-    },
+    "prompt": "La mini-série Chernobyl raconte la catastrophe nucléaire de 1986.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1512,20 +1189,13 @@
     ]
   },
   {
-    "id": 1542,
-    "mode": "qcm",
+    "id": 2541,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Quel thème traverse tous les épisodes de la série d'anthologie Black Mirror ?",
-    "payload": {
-      "options": [
-        "La médecine légale",
-        "Les procès politiques",
-        "Les dérives de la technologie",
-        "La conquête spatiale"
-      ]
-    },
+    "prompt": "Black Mirror est une série feuilletonnante dont chaque épisode suit les mêmes personnages.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1548,20 +1218,42 @@
     ]
   },
   {
-    "id": 1543,
-    "mode": "qcm",
+    "id": 2542,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans The Crown, quelle souveraine britannique la série suit-elle depuis son couronnement ?",
-    "payload": {
-      "options": [
-        "Anne",
-        "Élisabeth II",
-        "Victoria",
-        "Élisabeth Ire"
-      ]
-    },
+    "prompt": "Dans Peaky Blinders, l'action se déroule principalement à Londres.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2543,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Crown, chaque saison fait appel à de nouveaux acteurs pour incarner les personnages vieillissants.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1584,92 +1276,13 @@
     ]
   },
   {
-    "id": 1544,
-    "mode": "qcm",
+    "id": 2544,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Twin Peaks, sur le meurtre de quelle adolescente l'agent Dale Cooper enquête-t-il ?",
-    "payload": {
-      "options": [
-        "Laura Palmer",
-        "Audrey Horne",
-        "Donna Hayward",
-        "Shelly Johnson"
-      ]
-    },
+    "prompt": "Dans Les Simpson, Homer travaille dans une centrale nucléaire.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "twin-peaks",
-        "type": "univers"
-      },
-      {
-        "name": "policier",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-1990",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1545,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans X-Files : Aux frontières du réel, comment s'appelle la coéquipière de Fox Mulder ?",
-    "payload": {
-      "options": [
-        "Monica Reyes",
-        "Diana Fowley",
-        "Marita Covarrubias",
-        "Dana Scully"
-      ]
-    },
-    "correct_answer": {
-      "index": 3
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "x-files",
-        "type": "univers"
-      },
-      {
-        "name": "science-fiction",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-1990",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1546,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Les Simpson, dans quelle ville la famille Simpson habite-t-elle ?",
-    "payload": {
-      "options": [
-        "Ogdenville",
-        "Capital City",
-        "Springfield",
-        "Shelbyville"
-      ]
-    },
-    "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1692,29 +1305,138 @@
     ]
   },
   {
-    "id": 1547,
-    "mode": "qcm",
+    "id": 2545,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Rick et Morty, quel lien de parenté unit Rick Sanchez à Morty Smith ?",
-    "payload": {
-      "options": [
-        "Il est son cousin",
-        "Il est son grand-père",
-        "Il est son père",
-        "Il est son oncle"
-      ]
-    },
+    "prompt": "Dans Les Simpson, Bart est le plus jeune enfant de la famille.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "rick-et-morty",
+        "name": "les-simpson",
         "type": "univers"
       },
       {
         "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2546,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans How I Met Your Mother, Barney Stinson est célèbre pour sa collection de costumes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2547,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans X-Files, Dana Scully est médecin de formation.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2548,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Twin Peaks, l'agent Dale Cooper enquête sur une disparition à Portland.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "twin-peaks",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2549,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Better Call Saul, l'intrigue se déroule avant les événements de Breaking Bad.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -1728,128 +1450,13 @@
     ]
   },
   {
-    "id": 1548,
-    "mode": "qcm",
+    "id": 2550,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "De quel jeu vidéo la série animée Arcane adapte-t-elle l'univers ?",
-    "payload": {
-      "options": [
-        "League of Legends",
-        "Overwatch",
-        "Valorant",
-        "Dota 2"
-      ]
-    },
+    "prompt": "La série Lupin est une adaptation directe des romans de Maurice Leblanc.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "arcane",
-        "type": "univers"
-      },
-      {
-        "name": "animation",
-        "type": "genre"
-      },
-      {
-        "name": "france",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2020",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1549,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans la série française Dix pour cent, quel métier exercent les personnages principaux ?",
-    "payload": {
-      "options": [
-        "Producteurs de cinéma",
-        "Journalistes people",
-        "Réalisateurs",
-        "Agents artistiques"
-      ]
-    },
-    "correct_answer": {
-      "index": 3
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "dix-pour-cent",
-        "type": "univers"
-      },
-      {
-        "name": "comédie",
-        "type": "genre"
-      },
-      {
-        "name": "france",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2010",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1550,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Le Bureau des légendes, pour quel service de renseignement les personnages travaillent-ils ?",
-    "payload": {
-      "options": [
-        "La CIA",
-        "Le Mossad",
-        "La DGSE",
-        "Le MI6"
-      ]
-    },
-    "correct_answer": {
-      "index": 2
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "le-bureau-des-legendes",
-        "type": "univers"
-      },
-      {
-        "name": "thriller",
-        "type": "genre"
-      },
-      {
-        "name": "france",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2010",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1551,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans la série Lupin, quel acteur incarne Assane Diop ?",
-    "payload": {
-      "options": [
-        "Vincent Cassel",
-        "Omar Sy",
-        "Jean Dujardin",
-        "Tahar Rahim"
-      ]
-    },
-    "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -1872,29 +1479,80 @@
     ]
   },
   {
-    "id": 1552,
-    "mode": "qcm",
+    "id": 2551,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans The Mandalorian, quelle règle le héros s'impose-t-il à propos de son casque ?",
-    "payload": {
-      "options": [
-        "Ne jamais le retirer devant quelqu'un",
-        "Ne jamais le nettoyer",
-        "Ne le porter qu'au combat",
-        "Ne jamais le poser au sol"
-      ]
-    },
+    "prompt": "Dans Le Bureau des légendes, les agents travaillent pour les services secrets français.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "the-mandalorian",
+        "name": "le-bureau-des-legendes",
         "type": "univers"
       },
       {
-        "name": "science-fiction",
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2552,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série animée Arcane est produite en France par le studio Fortiche.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "arcane",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2553,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Rick et Morty, Rick est un savant qui voyage entre les dimensions.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "rick-et-morty",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
         "type": "genre"
       },
       {
@@ -1908,20 +1566,13 @@
     ]
   },
   {
-    "id": 1553,
-    "mode": "qcm",
+    "id": 2554,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Succession, quelle famille se dispute le contrôle du groupe Waystar Royco ?",
-    "payload": {
-      "options": [
-        "Les Pierce",
-        "Les Hearst",
-        "Les Sporus",
-        "Les Roy"
-      ]
-    },
+    "prompt": "Dans Succession, la famille Roy dirige un groupe de médias.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -1944,56 +1595,13 @@
     ]
   },
   {
-    "id": 1554,
-    "mode": "qcm",
+    "id": 2555,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans The Bear, quel métier exerce Carmen Berzatto ?",
-    "payload": {
-      "options": [
-        "Médecin urgentiste",
-        "Avocat",
-        "Chef cuisinier",
-        "Musicien"
-      ]
-    },
+    "prompt": "Dans Severance, les employés gardent le souvenir de leur vie privée pendant leurs heures de travail.",
+    "payload": {},
     "correct_answer": {
-      "index": 2
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "the-bear",
-        "type": "univers"
-      },
-      {
-        "name": "drame",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2020",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1555,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Severance, pour quelle entreprise travaillent les employés soumis à la dissociation ?",
-    "payload": {
-      "options": [
-        "Vought International",
-        "Lumon Industries",
-        "Umbrella Corporation",
-        "Initech"
-      ]
-    },
-    "correct_answer": {
-      "index": 1
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -2016,20 +1624,71 @@
     ]
   },
   {
-    "id": 1556,
-    "mode": "qcm",
+    "id": 2556,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans la première saison de Narcos, quel baron de la drogue colombien est au cœur de l'intrigue ?",
-    "payload": {
-      "options": [
-        "Pablo Escobar",
-        "Amado Carrillo Fuentes",
-        "Joaquín Guzmán",
-        "Rafael Caro Quintero"
-      ]
-    },
+    "prompt": "La série The Wire se déroule à Baltimore.",
+    "payload": {},
     "correct_answer": {
-      "index": 0
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-wire",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2557,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Mad Men, l'intrigue démarre dans les années 1960.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mad-men",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2558,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Narcos, la première saison est centrée sur le cartel de Sinaloa.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
     },
     "requires_account": false,
     "tags": [
@@ -2052,56 +1711,13 @@
     ]
   },
   {
-    "id": 1557,
-    "mode": "qcm",
+    "id": 2559,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans Six Feet Under, quelle entreprise familiale la série met-elle en scène ?",
-    "payload": {
-      "options": [
-        "Un restaurant",
-        "Une clinique privée",
-        "Un domaine viticole",
-        "Une maison de pompes funèbres"
-      ]
-    },
+    "prompt": "Dans Buffy contre les vampires, Buffy est la Tueuse chargée de combattre les forces démoniaques.",
+    "payload": {},
     "correct_answer": {
-      "index": 3
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "six-feet-under",
-        "type": "univers"
-      },
-      {
-        "name": "drame",
-        "type": "genre"
-      },
-      {
-        "name": "etats-unis",
-        "type": "pays"
-      },
-      {
-        "name": "annees-2000",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 1558,
-    "mode": "qcm",
-    "content_type": "serie",
-    "prompt": "Dans Buffy contre les vampires, quelle ville est bâtie au-dessus d'une Bouche de l'Enfer ?",
-    "payload": {
-      "options": [
-        "Riverdale",
-        "Mystic Falls",
-        "Sunnydale",
-        "Hawkins"
-      ]
-    },
-    "correct_answer": {
-      "index": 2
+      "value": true
     },
     "requires_account": false,
     "tags": [
@@ -2124,25 +1740,221 @@
     ]
   },
   {
-    "id": 1559,
-    "mode": "qcm",
+    "id": 2560,
+    "mode": "vrai_faux",
     "content_type": "serie",
-    "prompt": "Dans How I Met Your Mother, à qui Ted Mosby raconte-t-il toute son histoire ?",
-    "payload": {
-      "options": [
-        "À sa femme",
-        "À ses deux enfants",
-        "À son psychiatre",
-        "À un journaliste"
-      ]
-    },
+    "prompt": "Dans The Mandalorian, le personnage surnommé « Bébé Yoda » se prénomme en réalité Grogu.",
+    "payload": {},
     "correct_answer": {
-      "index": 1
+      "value": true
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "how-i-met-your-mother",
+        "name": "the-mandalorian",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2561,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Six Feet Under, la famille Fisher tient un restaurant.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "six-feet-under",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2562,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Bear, le restaurant se trouve à Chicago.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-bear",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2563,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Les Soprano, Tony Soprano consulte une psychiatre.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-soprano",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2564,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Game of Thrones, Daenerys Targaryen élève quatre dragons.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2565,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Friends, le café où le groupe se retrouve s'appelle le Café Central.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2566,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Stranger Things, Eleven doit son surnom au numéro tatoué sur son bras.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2567,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Office (version américaine), la succursale de Dunder Mifflin se trouve à Philadelphie.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-office",
         "type": "univers"
       },
       {
@@ -2155,6 +1967,122 @@
       },
       {
         "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2568,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Breaking Bad, Saul Goodman est le beau-frère de Walter White.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2569,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, les épisodes de la première saison durent environ quarante-cinq minutes.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2570,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "La série Les Simpson a été lancée dans les années 2000.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2571,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Sherlock, l'action est transposée à l'époque victorienne.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
         "type": "epoque"
       }
     ]

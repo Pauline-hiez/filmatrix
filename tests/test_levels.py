@@ -39,8 +39,6 @@ def create_question(app, mode="qcm"):
         db.session.add(
             Question(
                 mode=mode,
-                category="test",
-                difficulty="facile",
                 prompt="Question de test niveau",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
@@ -92,8 +90,6 @@ def create_tagged_question(app, mode, tag_name):
 
         question = Question(
             mode=mode,
-            category="test",
-            difficulty="facile",
             prompt="Question de test thème",
             payload={"options": ["A", "B"]},
             correct_answer={"index": 0},

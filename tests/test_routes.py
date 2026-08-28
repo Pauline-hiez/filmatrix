@@ -2,7 +2,7 @@ import html
 import re
 
 from filmatrix.extensions import db
-from filmatrix.models import Question, User, Attempt, Friendship
+from filmatrix.models import Question, User, Attempt, Friendship, Tag
 
 """Test des routes Flask principales"""
 
@@ -61,8 +61,6 @@ def create_protected_question(app):
     with app.app_context():
         question = Question(
                 mode="qcm",
-                category="test",
-                difficulty="facile",
                 prompt="Question protégée de test",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
@@ -90,13 +88,11 @@ def test_protected_question_accessible_when_logged_in(client, app):
     assert response.status_code == 200
     assert b"Question prot" in response.data
 
-def create_test_question(app, difficulty="facile", mode="qcm"):
+def create_test_question(app, mode="qcm"):
     """Crée une question test non protégée, dans la base de test"""
     with app.app_context():
         question = Question(
                 mode=mode,
-                category="test",
-                difficulty=difficulty,
                 prompt="Question de test XP",
                 payload={"option": 0},
                 correct_answer={"index": 0},
@@ -141,8 +137,6 @@ def test_leaderboard_shows_all_players_sorted_by_xp(client, app):
 
         question = Question(
                 mode="qcm",
-                category="test",
-                difficulty="facile",
                 prompt="Question de test classement",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
@@ -225,16 +219,37 @@ def test_equip_title_route_fails_if_not_owned(client, app):
         user = User.query.filter_by(username="Acheteur").first()
         assert user.equipped_title is None
 def test_setup_screen_offers_the_game_settings(client, app):
-    """L'écran de préparation doit proposer catégorie, thème et niveau avant de jouer"""
+    """L'écran de préparation doit proposer thème et niveau avant de jouer"""
     create_test_question(app)
 
     response = client.get("/quiz/qcm")
 
     assert response.status_code == 200
-    assert b'id="category"' in response.data
     assert b'id="tag"' in response.data
     assert b'id="level"' in response.data
     assert "Commencer".encode() in response.data
+
+
+def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, app):
+    """Le thème choisi doit être conservé et limiter le compteur de la préparation"""
+    with app.app_context():
+        tag = Tag(name="kaamelott", tag_type="univers")
+        question = Question(
+            mode="citation", content_type="serie", prompt="Une réplique culte",
+            payload={}, correct_answer={"film": "Kaamelott"}, requires_account=False,
+        )
+        question.tags.append(tag)
+        db.session.add(question)
+        db.session.commit()
+        tag_id = tag.id
+
+    response = client.get(f"/quiz/citation?content_type=serie&tag_id={tag_id}")
+    page = response.get_data(as_text=True)
+
+    assert response.status_code == 200
+    assert f'value="{tag_id}" selected' in page
+    assert "Partie de 1 question" in page
+    assert "1 disponible" in page
 
 
 def test_setup_screen_refuses_to_start_a_mode_without_questions(client, app):
@@ -272,8 +287,6 @@ def create_questions(app, count, mode="qcm"):
             db.session.add(
                 Question(
                     mode=mode,
-                    category="test",
-                    difficulty="facile",
                     prompt=f"Question de test {number}",
                     payload={"options": ["A", "B"]},
                     correct_answer={"index": 0},
@@ -387,9 +400,7 @@ def test_the_draw_respects_the_content_filter(client, app):
             db.session.add(
                 Question(
                     mode="qcm",
-                    category="test",
                     content_type="serie" if index % 2 else "film",
-                    difficulty="facile",
                     prompt=f"Question {index}",
                     payload={"options": ["A", "B"]},
                     correct_answer={"index": 0},
@@ -428,8 +439,6 @@ def test_qcm_options_are_shuffled(client, app):
         db.session.add(
             Question(
                 mode="qcm",
-                category="test",
-                difficulty="facile",
                 prompt="Seule question du mode",
                 payload={"options": ["A", "B", "C", "D"]},
                 correct_answer={"index": 0},
@@ -452,8 +461,6 @@ def test_a_shuffled_option_is_still_judged_correctly(client, app):
         db.session.add(
             Question(
                 mode="qcm",
-                category="test",
-                difficulty="facile",
                 prompt="Seule question du mode",
                 payload={"options": ["Bonne", "Mauvaise", "Mauvaise", "Mauvaise"]},
                 correct_answer={"index": 0},

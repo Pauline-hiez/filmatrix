@@ -2,8 +2,7 @@
   {
     "id": 20,
     "mode": "devinette_affiche",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"
@@ -22,8 +21,7 @@
   {
     "id": 240,
     "mode": "devinette_affiche",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
@@ -42,8 +40,7 @@
   {
     "id": 241,
     "mode": "devinette_affiche",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
@@ -62,8 +59,7 @@
   {
     "id": 242,
     "mode": "devinette_affiche",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
@@ -82,8 +78,7 @@
   {
     "id": 243,
     "mode": "devinette_affiche",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
@@ -102,8 +97,7 @@
   {
     "id": 244,
     "mode": "devinette_affiche",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
@@ -122,8 +116,7 @@
   {
     "id": 245,
     "mode": "devinette_affiche",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
@@ -142,8 +135,7 @@
   {
     "id": 246,
     "mode": "devinette_affiche",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg"
@@ -162,8 +154,7 @@
   {
     "id": 247,
     "mode": "devinette_affiche",
-    "category": "realisateur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
@@ -182,8 +173,7 @@
   {
     "id": 248,
     "mode": "devinette_affiche",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
@@ -202,8 +192,7 @@
   {
     "id": 249,
     "mode": "devinette_affiche",
-    "category": "realisateur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
@@ -216,6 +205,438 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 8000,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/dyJvKsNs2KP8qQnAXbRwDjblViy.jpg"
+    },
+    "correct_answer": {
+      "film": "Le Voyage de Chihiro"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8001,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/AdKA2F1SzYPhSZdEbjH1Zh75UVQ.jpg"
+    },
+    "correct_answer": {
+      "film": "Shining"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8002,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
+    "correct_answer": {
+      "film": "Alien"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8003,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/hJ5R9d6QuH3tzr8L8neZZTuzNXm.jpg"
+    },
+    "correct_answer": {
+      "film": "Blade Runner"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8004,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
+    },
+    "correct_answer": {
+      "film": "Retour vers le futur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8005,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
+    },
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8006,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/q6OGlZ1KMEb14AC8KbPCxyNOal6.jpg"
+    },
+    "correct_answer": {
+      "film": "Intouchables"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8007,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/6n53UI4mX9QMfe2S0Pgt8mGebY1.jpg"
+    },
+    "correct_answer": {
+      "film": "Amélie Poulain"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8008,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/wbQa0EnWUyRzQ5d1pHLNRlmsCUP.jpg"
+    },
+    "correct_answer": {
+      "film": "Whiplash"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8009,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/uT895WNwm0aIJRtGizcQhrejWUo.jpg"
+    },
+    "correct_answer": {
+      "film": "Mad Max : Fury Road"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "australie",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8010,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/rlay2M5QYvi6igbGcFjq8jxeusY.jpg"
+    },
+    "correct_answer": {
+      "film": "Joker"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8011,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/h3HsfV8Kn9Sz2QWUYYdP5ya23hx.jpg"
+    },
+    "correct_answer": {
+      "film": "Dune"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8012,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/nlPCdZlHtRNcF6C9hzUH4ebmV1w.jpg"
+    },
+    "correct_answer": {
+      "film": "La La Land"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8013,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
+    },
+    "correct_answer": {
+      "film": "Les Dents de la mer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8014,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/g7CHF8gTLGooTbP4GznIGwaqAGL.jpg"
+    },
+    "correct_answer": {
+      "film": "Coco"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8015,
+    "mode": "devinette_affiche",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg"
+    },
+    "correct_answer": {
+      "film": "Le Silence des agneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   }

@@ -2,8 +2,7 @@
   {
     "id": 9,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "\"I'll be back.\" — De quel film vient cette réplique culte ?",
     "payload": {},
     "correct_answer": {
@@ -12,7 +11,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "horreur",
+        "name": "science-fiction",
         "type": "genre"
       }
     ]
@@ -20,8 +19,7 @@
   {
     "id": 10,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "\"Que la Force soit avec toi.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -42,8 +40,7 @@
   {
     "id": 140,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "\"La vie, c'est comme une boîte de chocolats.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -60,8 +57,7 @@
   {
     "id": 141,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "\"Je suis le roi du monde !\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -78,8 +74,7 @@
   {
     "id": 142,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "\"Je vais lui faire une offre qu'il ne pourra pas refuser.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -96,8 +91,7 @@
   {
     "id": 143,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "\"Houston, nous avons un problème.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -114,8 +108,7 @@
   {
     "id": 144,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "\"C'est à moi que tu parles ?\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -132,8 +125,7 @@
   {
     "id": 145,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "\"Jusqu'ici tout va bien.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -150,8 +142,7 @@
   {
     "id": 146,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "\"T'as de beaux yeux, tu sais.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -168,8 +159,7 @@
   {
     "id": 147,
     "mode": "citation",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "\"Carpe diem. Cueillez le jour.\" — De quel film vient cette réplique ?",
     "payload": {},
     "correct_answer": {
@@ -180,6 +170,476 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 3000,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Toto, j'ai l'impression que nous ne sommes plus au Kansas. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Magicien d'Oz"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3001,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Vous voulez la vérité ? Vous ne pouvez pas supporter la vérité ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Des hommes d'honneur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3002,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Dites bonjour à mon petit ami ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Scarface"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3003,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« E.T. téléphone maison. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "E.T. l'extra-terrestre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3004,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Je vois des gens morts. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Sixième Sens"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3005,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Mon précieux. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "seigneur-des-anneaux",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3006,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Hakuna Matata. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Roi Lion"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-roi-lion",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3007,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Vers l'infini et au-delà ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Toy Story"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "toy-story",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3008,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« La vie trouve toujours un chemin. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Jurassic Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "jurassic-park",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3009,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Franchement, ma chère, c'est le cadet de mes soucis. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Autant en emporte le vent"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3010,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Here's Johnny! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Shining"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3011,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« On ne laisse pas Bébé dans un coin. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dirty Dancing"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3012,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Continue à nager. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Monde de Nemo"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3013,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« J'adore l'odeur du napalm au petit matin. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Apocalypse Now"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3014,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Que trépasse si je faiblis ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Les Visiteurs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3015,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Les cons, ça ose tout. C'est même à ça qu'on les reconnaît. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Les Tontons flingueurs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3016,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Ils pourront nous prendre nos vies, mais ils ne nous prendront jamais notre liberté ! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Braveheart"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3017,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Vous avez déjà dansé avec le diable au clair de lune ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Batman"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "batman",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
       }
     ]
   }

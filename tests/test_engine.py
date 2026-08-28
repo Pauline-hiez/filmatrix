@@ -10,8 +10,6 @@ def make_qcm_question() -> Question:
     return Question(
         id=1,
         mode="qcm",
-        category="test",
-        difficulty="facile",
         prompt="Question de test",
         payload={"options": ["A", "B", "C", "D"]},
         correct_answer={"index": 2},
@@ -22,8 +20,6 @@ def make_vrai_faux_question() -> Question:
     return Question(
         id=2,
         mode="vrai_faux",
-        category="test",
-        difficulty="facile",
         prompt="Affirmation de test",
         payload={},
         correct_answer={"value": True}
@@ -62,8 +58,6 @@ def make_citation_question() -> Question:
     return Question(
             id=3,
             mode="citation",
-            category="test",
-            difficulty="moyen",
             prompt="test quote",
             payload={},
             correct_answer={"film": "Terminator"},
@@ -84,8 +78,6 @@ def make_emoji_question() -> Question:
     return Question(
             id=4,
             mode="emoji",
-            category="test",
-            difficulty="facile",
             prompt="🦁👑🌍",
             payload={},
             correct_answer={"film": "Le Roi Lion"},
@@ -106,8 +98,6 @@ def make_scrambled_title_question() -> Question:
     return Question(
             id=5,
             mode="film_melange",
-            category="test",
-            difficulty="facile",
             prompt="",
             payload={},
             correct_answer={"title": "Avatar"},
@@ -128,8 +118,6 @@ def make_chronology_question() -> Question:
     return Question(
         id=6,
         mode="chronologie",
-        category="test",
-        difficulty="moyen",
         prompt="",
         payload={"films": ["Avatar", "Inception", "Titanic"]},
         correct_answer={"order": ["Titanic", "Inception", "Avatar"]},
@@ -158,8 +146,6 @@ def make_riddle_question() -> Question:
     return Question(
             id=7,
             mode="devinette",
-            category="test",
-            difficulty="moyen",
             prompt="",
             payload={"hints": ["Indice 1", "Indice 2", "Indice 3"]},
             correct_answer={"film": "Titanic"},
@@ -180,8 +166,6 @@ def make_poster_riddle_question() -> Question:
     return Question(
         id=8,
         mode="devinette_affiche",
-        category="test",
-        difficulty="facile",
         prompt="",
         payload={"poster_url": "https://example.com/poster.jpg"},
         correct_answer={"film": "Inception"},
@@ -202,8 +186,6 @@ def make_casting_question() -> Question:
     return Question(
             id=9,
             mode="casting",
-            category="test",
-            difficulty="moyen",
             prompt="",
             payload={"actor_photos": ["http://example.com/actor1.jpg"]},
             correct_answer={"film": "Inception"},
@@ -224,8 +206,6 @@ def make_blindtest_question() -> Question:
     return Question(
         id=10,
         mode="blindtest",
-        category="test",
-        difficulty="facile",
         prompt="",
         payload={"audio_url": "https://example.com/audio.m4a"},
         correct_answer={"film": "Le Parrain"},

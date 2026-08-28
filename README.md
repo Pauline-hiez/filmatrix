@@ -10,7 +10,7 @@ Plateforme de jeux cinématographiques développé en Python avec Flask, dans le
 - Classement général des joueurs
 - Badges à débloquer (6 pour l'instant)
 - Monnaie virtuelle et boutique de titres
-- Filtrage des questions par catégories
+- Filtrage des questions par type (films / séries) et par thème, univers, pays ou époque
 - Chronomètres par question, adapté à chaque mode
 - Interface responsive (mobile-first), thème néon noir/turquoise
 
@@ -82,12 +82,13 @@ Recompile automatiquement le CSS à chaque modification d'un template.
 |---|---|
 | `python -m pytest -v` | Lance tous les tests automatisés |
 | `python -m scripts.seed_db` | Réimporte les questions depuis `data/questions/*.json` vers la base |
+| `python -m scripts.check_questions` | Vérifie les fichiers de questions (schéma, unicité des id, doublons) avant import |
 | `python -m scripts.refresh_audio_urls` | Vérifie et régénère les URLs audio expirées du mode Blind Test |
 | `flask db migrate -m "message"` | Génère une nouvelle migration après modification d'un modèle |
 | `flask db upgrade` | Applique les migrations en attente |
-| `python -m scripts.generate_image_question affiche "Titre" difficulte categorie` | Génère le JSON d'une question Devinette-affiche via TMDB |
-| `python -m scripts.generate_image_question casting "Titre" difficulte categorie` | Génère le JSON d'une question Casting via TMDB |
-| `python -m scripts.generate_blindtest_question "Titre" difficulte categorie "terme de recherche"` | Génère le JSON d'une question Blind Test via iTunes |
+| `python -m scripts.generate_image_question affiche "Titre" [film\|serie]` | Génère le JSON d'une question Devinette-affiche via TMDB |
+| `python -m scripts.generate_image_question casting "Titre" [film\|serie]` | Génère le JSON d'une question Casting via TMDB |
+| `python -m scripts.generate_blindtest_question "Titre" "terme de recherche" [film\|serie]` | Génère le JSON d'une question Blind Test via iTunes |
 
 ## Structure du projet
 
@@ -137,13 +138,15 @@ tests/                          # tests pytest
 
 ## Modèle de données (aperçu)
 
-- **Question** : mode, catégorie, difficulté, contenu (`payload`), bonne réponse (`correct_answer`), accès restreint ou non
+- **Question** : mode, type de contenu (`content_type` : `film` ou `serie`), contenu (`payload`), bonne réponse (`correct_answer`), accès restreint ou non. La difficulté n'est pas portée par la question : c'est un niveau choisi par le joueur avant la partie, qui fixe le chrono et les récompenses (voir `services/levels.py`).
 - **User** : compte joueur, XP, niveau (calculé), pièces, titre équipé
 - **Attempt** : historique des réponses d'un joueur
 - **UserBadge** / **UserTitle** : badges et titres obtenus par un joueur
 
 ## Notes
 
-- Les questions sont éditées dans `data/questions/*.json` puis importées en base via `scripts/seed_db.py` - ce fichier JSON n'est jamais lu directement par le site.
+- Les questions sont éditées dans `data/questions/*.json` puis importées en base via `scripts/seed_db.py` - ce fichier JSON n'est jamais lu directement par le site.
+- L'`id` d'une question est sa clé primaire et doit être unique **dans l'ensemble du dossier**, pas seulement dans son fichier : deux questions partageant un id s'écrasent silencieusement à l'import.
+- L'import est un upsert : il ne supprime rien. Une question retirée d'un JSON reste jouable tant qu'elle n'est pas effacée de la base - `seed_db.py` les liste en fin d'import.
 - Les URLs audio d'iTunes ont une durée de vie limitée : relancer `scripts/refresh_audio_urls.py` régulièrement pour éviter les extraits cassés.
 - Le CSS compilé (`static/css/output.css`) doit être régénéré après toute modification de classe Tailwind dans les templates - voir la commande `--watch` ci-dessus.

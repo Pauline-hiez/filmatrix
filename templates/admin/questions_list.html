@@ -43,8 +43,7 @@
             <thead>
                 <tr class="bg-slate-900 text-slate-400 text-left">
                     <th class="px-3 py-2">Texte / contenu</th>
-                    <th class="px-3 py-2">Catégorie</th>
-                    <th class="px-3 py-2">Difficulté</th>
+                    <th class="px-3 py-2">Type</th>
                     <th class="px-3 py-2">Compte requis</th>
                     <th class="px-3 py-2"></th>
                 </tr>
@@ -53,9 +52,9 @@
                 {% for question in questions %}
                 <tr class="border-t border-cyan-400/10 hover:bg-slate-900/50 question-row"
                     id="question-row-{{ question.id }}"
-                    data-search-text="{{ question.prompt }} {{ question.category }}"
+                    data-search-text="{{ question.prompt }} {{ question.mode }}"
                     data-mode="{{ mode }}"
-                    data-display-text="{{ question.prompt if question.prompt else '(' + question.category + ')' }}">
+                    data-display-text="{{ question.prompt if question.prompt else '(sans texte affiché)' }}">
                     <td class="px-3 py-2">
                         {% if question.prompt %}
                             {{ question.prompt }}
@@ -63,8 +62,7 @@
                             <span class="text-slate-500 italic">(sans texte affiché)</span>
                         {% endif %}
                     </td>
-                    <td class="px-3 py-2 text-slate-400">{{ question.category }}</td>
-                    <td class="px-3 py-2 text-slate-400">{{ question.difficulty }}</td>
+                    <td class="px-3 py-2 text-slate-400">{{ "Série" if question.content_type == "serie" else "Film" }}</td>
                     <td class="px-3 py-2 text-slate-400">{{ "Oui" if question.requires_account else "Non" }}</td>
                     <td class="px-3 py-2">
                         <div class="flex gap-2 justify-end">

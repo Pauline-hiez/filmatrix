@@ -70,8 +70,6 @@ def create_questions(app, count):
             db.session.add(
                 Question(
                     mode="qcm",
-                    category="test",
-                    difficulty="facile",
                     prompt=f"Question {index}",
                     payload={"options": ["A", "B"]},
                     correct_answer={"index": 0},

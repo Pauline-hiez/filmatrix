@@ -2,8 +2,7 @@
   {
     "id": 1,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Qui a réalisé le film Inception ?",
     "payload": {
       "options": [
@@ -27,8 +26,7 @@
   {
     "id": 2,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Qui a réalisé Pulp Fiction ?",
     "payload": {
       "options": [
@@ -52,8 +50,7 @@
   {
     "id": 3,
     "mode": "qcm",
-    "category": "acteur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Qui joue le rôle principal dans Le Loup de Wall Street ?",
     "payload": {
       "options": [
@@ -77,8 +74,7 @@
   {
     "id": 4,
     "mode": "qcm",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel acteur incarne Tony Stark dans le Marvel Cinematic Universe ?",
     "payload": {
       "options": [
@@ -102,8 +98,7 @@
   {
     "id": 100,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Qui a réalisé Le Parrain (1972) ?",
     "payload": {
       "options": [
@@ -127,8 +122,7 @@
   {
     "id": 101,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Qui a réalisé Titanic (1997) ?",
     "payload": {
       "options": [
@@ -152,8 +146,7 @@
   {
     "id": 102,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Qui a réalisé Le Voyage de Chihiro ?",
     "payload": {
       "options": [
@@ -177,8 +170,7 @@
   {
     "id": 103,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Qui a réalisé Parasite ?",
     "payload": {
       "options": [
@@ -202,8 +194,7 @@
   {
     "id": 104,
     "mode": "qcm",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Qui a réalisé Blade Runner (1982) ?",
     "payload": {
       "options": [
@@ -227,8 +218,7 @@
   {
     "id": 105,
     "mode": "qcm",
-    "category": "acteur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quel acteur incarne Forrest Gump ?",
     "payload": {
       "options": [
@@ -252,8 +242,7 @@
   {
     "id": 106,
     "mode": "qcm",
-    "category": "acteur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quel acteur incarne Neo dans Matrix ?",
     "payload": {
       "options": [
@@ -277,8 +266,7 @@
   {
     "id": 107,
     "mode": "qcm",
-    "category": "acteur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quelle actrice incarne Hermione Granger dans Harry Potter ?",
     "payload": {
       "options": [
@@ -306,8 +294,7 @@
   {
     "id": 108,
     "mode": "qcm",
-    "category": "acteur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "Quel acteur incarne Vito Corleone dans Le Parrain (1972) ?",
     "payload": {
       "options": [
@@ -331,8 +318,7 @@
   {
     "id": 109,
     "mode": "qcm",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Qui a composé la musique de Star Wars ?",
     "payload": {
       "options": [
@@ -360,8 +346,7 @@
   {
     "id": 110,
     "mode": "qcm",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Quel film a remporté l'Oscar du meilleur film en 2020 ?",
     "payload": {
       "options": [
@@ -385,8 +370,7 @@
   {
     "id": 111,
     "mode": "qcm",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "Dans quel quartier de Paris se déroule Le Fabuleux Destin d'Amélie Poulain ?",
     "payload": {
       "options": [
@@ -404,6 +388,306 @@
       {
         "name": "france",
         "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 1000,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Silence des agneaux (1991), quel est le nom du psychiatre cannibale interrogé par Clarice Starling ?",
+    "payload": {
+      "options": [
+        "Norman Bates",
+        "Hannibal Lecter",
+        "Patrick Bateman",
+        "Jack Torrance"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1001,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Qui a réalisé Le Labyrinthe de Pan (2006) ?",
+    "payload": {
+      "options": [
+        "Alejandro González Iñárritu",
+        "Pedro Almodóvar",
+        "Guillermo del Toro",
+        "Alfonso Cuarón"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Retour vers le futur (1985), quel véhicule sert de machine à voyager dans le temps ?",
+    "payload": {
+      "options": [
+        "Une DeLorean DMC-12",
+        "Une Ford Mustang",
+        "Une Chevrolet Camaro",
+        "Un bus scolaire"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Qui a réalisé Mad Max: Fury Road (2015) ?",
+    "payload": {
+      "options": [
+        "Zack Snyder",
+        "Neill Blomkamp",
+        "Doug Liman",
+        "George Miller"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mad-max",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "australie",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1004,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quelle actrice a remporté l'Oscar de la meilleure actrice pour La La Land ?",
+    "payload": {
+      "options": [
+        "Natalie Portman",
+        "Emma Stone",
+        "Amy Adams",
+        "Ryan Gosling"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1005,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Seigneur des Anneaux, quel personnage porte l'Anneau unique jusqu'au Mordor ?",
+    "payload": {
+      "options": [
+        "Aragorn",
+        "Gandalf",
+        "Frodon Sacquet",
+        "Boromir"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "seigneur-des-anneaux",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1006,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel studio d'animation japonais a produit Mon voisin Totoro (1988) ?",
+    "payload": {
+      "options": [
+        "Studio Ghibli",
+        "Toei Animation",
+        "Madhouse",
+        "Studio Pierrot"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1007,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Les Évadés (1994), comment s'appelle le pénitencier où Andy Dufresne est incarcéré ?",
+    "payload": {
+      "options": [
+        "Alcatraz",
+        "Sing Sing",
+        "Rikers Island",
+        "Shawshank"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 1008,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel film a remporté l'Oscar du meilleur film en 2023 ?",
+    "payload": {
+      "options": [
+        "Top Gun: Maverick",
+        "Everything Everywhere All at Once",
+        "Les Banshees d'Inisherin",
+        "Tár"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   }

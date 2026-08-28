@@ -1,30 +1,9 @@
 [
   {
-    "id": 295,
+    "id": 3500,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "\"Winter is coming.\" — De quelle série vient cette réplique culte ?",
-    "payload": {},
-    "correct_answer": {
-      "film": "Game of Thrones"
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "cinema-general",
-        "type": "autre"
-      }
-    ]
-  },
-  {
-    "id": 296,
-    "mode": "citation",
-    "category": "anecdote",
-    "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"How you doin'?\" — De quelle série vient cette réplique ?",
+    "prompt": "« How you doin'? » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Friends"
@@ -32,37 +11,144 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 323,
+    "id": 3501,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"Bazinga!\" — De quelle série vient cette réplique ?",
+    "prompt": "« We were on a break! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "The Big Bang Theory"
+      "film": "Friends"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 324,
+    "id": 3502,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"Je suis l'homme qui frappe à la porte.\" — De quelle série vient cette réplique culte ?",
+    "prompt": "« Could I BE any more… ? » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3503,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Pivot ! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3504,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« I'll be there for you » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3505,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« I am the one who knocks! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Breaking Bad"
@@ -70,18 +156,144 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 325,
+    "id": 3506,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "\"Tu ne sais rien, Jon Snow.\" — De quelle série vient cette réplique ?",
+    "prompt": "« Say my name. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3507,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Yeah, science! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3508,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« I am the danger. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3509,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Tread lightly. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3510,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Winter is coming. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Game of Thrones"
@@ -89,132 +301,521 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 326,
+    "id": 3511,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"Mais on avait rompu !\" — De quelle série vient cette réplique ?",
+    "prompt": "« You know nothing, Jon Snow. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "Friends"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 327,
+    "id": 3512,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"Béni soit le fruit.\" — De quelle série vient cette phrase culte ?",
+    "prompt": "« Dracarys ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "The handmaid's tale"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 328,
+    "id": 3513,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "\"Le passager noir.\" — De quelle série vient cette réplique ?",
+    "prompt": "« Hold the door! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "Dexter"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 329,
+    "id": 3514,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"Titre de ta sex-tape\" — De quelle série vient cette réplique ?",
+    "prompt": "« A Lannister always pays his debts. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "Brooklyn 99"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 330,
+    "id": 3515,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "\"Hallu, attends la suite...\" — De quelle série vient cette réplique ?",
+    "prompt": "« C'est pas faux. » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "How I Met Your Mother"
+      "film": "Kaamelott"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 331,
+    "id": 3516,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "\"Respecte mon autorité !\" — De quelle série vient cette réplique ?",
+    "prompt": "« On en a gros ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
-      "film": "South Park"
+      "film": "Kaamelott"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 332,
+    "id": 3517,
     "mode": "citation",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "\"Doh !\" — De quelle série vient cette citation ?",
+    "prompt": "« Le gras, c'est la vie. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3518,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Friends don't lie. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3519,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« She's our friend and she's crazy! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3520,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Mornings are for coffee and contemplation. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3521,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Why are you keeping this curiosity door locked? » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3522,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Chrissy, wake up! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3523,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« That's what she said. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Office"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-office",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3524,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« You come at the king, you best not miss. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Wire"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-wire",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3525,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« So say we all. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Battlestar Galactica"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "battlestar-galactica",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3526,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Exterminate! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Doctor Who"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "doctor-who",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3527,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Longue vie et prospérité. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Star Trek"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-trek",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3528,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Mange mon short ! » — De quelle série vient cette réplique ?",
     "payload": {},
     "correct_answer": {
       "film": "Les Simpson"
@@ -222,8 +823,687 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3529,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Oh mon Dieu, ils ont tué Kenny ! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "South Park"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3530,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Tout le monde ment. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dr House"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3531,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« The game is on! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Sherlock"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3532,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Legen… wait for it… dary! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "How I Met Your Mother"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3533,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Bazinga ! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Big Bang Theory"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3534,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« La vérité est ailleurs. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "X-Files"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3535,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Damn fine coffee! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Twin Peaks"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "twin-peaks",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3536,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« We have to go back! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Lost"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lost",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3537,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Tonight's the night. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dexter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3538,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Time is a flat circle. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "True Detective"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "true-detective",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3539,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« This is the Way. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Mandalorian"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-mandalorian",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3540,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Plata o plomo. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Narcos"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "narcos",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3541,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« What is the cost of lies? » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Chernobyl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chernobyl",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3542,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Ah, encore une chose… » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Columbo"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "columbo",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3543,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« J'adore quand un plan se déroule sans accroc. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "L'Agence tous risques"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "l-agence-tous-risques",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3544,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Wubba lubba dub dub! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Rick et Morty"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "rick-et-morty",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3545,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Béni soit le fruit. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Handmaid's Tale"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3546,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« These violent delights have violent ends. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Westworld"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "westworld",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3547,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Cool cool cool cool cool. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Brooklyn Nine-Nine"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "brooklyn-nine-nine",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3548,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Treat yo self! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Parks and Recreation"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "parks-and-recreation",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3549,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« No soup for you! » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Seinfeld"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "seinfeld",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3550,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« Pick me, choose me, love me. » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Grey's Anatomy"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "greys-anatomy",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 3551,
+    "mode": "citation",
+    "content_type": "serie",
+    "prompt": "« I couldn't help but wonder… » — De quelle série vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Sex and the City"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sex-and-the-city",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   }

@@ -1,10 +1,8 @@
 [
   {
-    "id": 299,
+    "id": 5500,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -13,36 +11,27 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
-      }
-    ]
-  },
-  {
-    "id": 300,
-    "mode": "film_melange",
-    "category": "anecdote",
-    "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "",
-    "payload": {},
-    "correct_answer": {
-      "title": "Stranger Things"
-    },
-    "requires_account": false,
-    "tags": [
+        "name": "friends",
+        "type": "univers"
+      },
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 333,
+    "id": 5501,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -51,17 +40,143 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 334,
+    "id": 5502,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Game of Thrones"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5503,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5504,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5505,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Sherlock"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5506,
+    "mode": "film_melange",
+    "content_type": "serie",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -70,150 +185,346 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 335,
+    "id": 5507,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "The Big Bang Theory"
+      "title": "Lost"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "lost",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 336,
+    "id": 5508,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "Shameless"
+      "title": "Narcos"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "narcos",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 337,
+    "id": 5509,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "The Witcher"
+      "title": "Westworld"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "westworld",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 338,
+    "id": 5510,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "Dr House"
+      "title": "Severance"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "severance",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 339,
+    "id": 5511,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "La Casa de Papel"
+      "title": "Succession"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "succession",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 340,
+    "id": 5512,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "Lucifer"
+      "title": "Dark"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 341,
+    "id": 5513,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {},
     "correct_answer": {
-      "title": "The X-Files"
+      "title": "Arcane"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "arcane",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 342,
+    "id": 5514,
     "mode": "film_melange",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Lupin"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lupin",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5515,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Chernobyl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chernobyl",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5516,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Seinfeld"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "seinfeld",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5517,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Columbo"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "columbo",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5518,
+    "mode": "film_melange",
+    "content_type": "serie",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -222,8 +533,339 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5519,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Ozark"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ozark",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5520,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Homeland"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "homeland",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5521,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Mindhunter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5522,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Twin Peaks"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "twin-peaks",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5523,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Black Mirror"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "black-mirror",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5524,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Fringe"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fringe",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5525,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Bridgerton"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bridgerton",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5526,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Shogun"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shogun",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5527,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Euphoria"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "euphoria",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5528,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Scrubs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scrubs",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5529,
+    "mode": "film_melange",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Community"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "community",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   }

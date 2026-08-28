@@ -2,8 +2,7 @@
   {
     "id": 22,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f2/cb/1e/f2cb1ea2-4392-1946-5205-8b8ac8861a72/mzaf_18222629357993428376.plus.aac.p.m4a"
@@ -22,8 +21,7 @@
   {
     "id": 23,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/54/5b/f7/545bf75d-1ea1-07f0-0c4e-a6d3bca7c092/mzaf_1410328638164863411.plus.aac.p.m4a"
@@ -42,8 +40,7 @@
   {
     "id": 24,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/43/85/18/438518d0-8fd5-1a15-18c0-aad9f814845e/mzaf_11676418529425576487.plus.aac.p.m4a"
@@ -66,8 +63,7 @@
   {
     "id": 25,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/10/e4/40/10e4402a-c859-9b70-9b94-89e7227167fa/mzaf_7839666039229638743.plus.aac.p.m4a"
@@ -86,8 +82,7 @@
   {
     "id": 26,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5e/14/f9/5e14f984-c6af-5dd4-e4ae-337d3a41ab31/mzaf_17811455529095579551.plus.aac.p.m4a"
@@ -106,8 +101,7 @@
   {
     "id": 280,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e3/e1/fd/e3e1fdec-3483-fb83-3041-d01577fd1415/mzaf_13690916780854407664.plus.aac.p.m4a"
@@ -130,8 +124,7 @@
   {
     "id": 281,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f1/df/86/f1df8697-0cd1-2b2e-4156-774c42d52f02/mzaf_6088124320270724230.plus.aac.p.m4a"
@@ -150,8 +143,7 @@
   {
     "id": 282,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/29/51/7f/29517f62-b7e2-b7e2-4e90-e36e3621f477/mzaf_9744106977063652586.plus.aac.p.m4a"
@@ -170,8 +162,7 @@
   {
     "id": 283,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2a/9f/44/2a9f445b-680f-6033-cf5c-a37e13083283/mzaf_10536028076646424887.plus.aac.p.m4a"
@@ -190,8 +181,7 @@
   {
     "id": 284,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/10/35/8d/10358da4-a78d-ed52-a917-0d7d703ebe29/mzaf_2165998093319779390.plus.aac.p.m4a"
@@ -210,8 +200,7 @@
   {
     "id": 285,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/08/1c/62/081c6242-de2e-80ef-d1d6-51c21620fbf1/mzaf_8911425336835289037.plus.aac.p.m4a"
@@ -230,8 +219,7 @@
   {
     "id": 286,
     "mode": "blindtest",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/ee/23/3aee2300-f6f7-a006-e20f-28092e814cbe/mzaf_1624587954644600228.plus.aac.p.m4a"
@@ -250,8 +238,7 @@
   {
     "id": 287,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/80/e4/e5/80e4e587-4c20-a8d2-b64f-f20a152a6860/mzaf_6952850442416805453.plus.aac.p.m4a"
@@ -270,8 +257,7 @@
   {
     "id": 288,
     "mode": "blindtest",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/c7/fa/ce/c7face67-3ff9-9b8e-2932-0a5db69ad051/mzaf_6269194343571084138.plus.aac.p.m4a"
@@ -290,8 +276,7 @@
   {
     "id": 289,
     "mode": "blindtest",
-    "category": "realisateur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/24/9a/0e/249a0ef2-97b8-1972-5e4a-1c8eca5a5504/mzaf_11695909361712800808.plus.aac.p.m4a"
@@ -304,6 +289,384 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 10000,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c4/a4/f5/c4a4f504-850e-1e97-0d4d-ff5211b58dfb/mzaf_12737248089344295369.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Le Voyage de Chihiro"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10001,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/cd/1e/2c/cd1e2c74-a074-aa60-ec24-8abee7dcec43/mzaf_12399500222028997548.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Le Seigneur des Anneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10002,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e0/1d/a4/e01da4a2-a75f-7ebf-9971-3d49e17efc57/mzaf_10500078769097048384.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Inception"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10003,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/33/0d/03/330d03ef-b390-162c-2d59-73f64f46fd64/mzaf_16555155758962279955.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Les Dents de la mer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10004,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7f/a0/f8/7fa0f8c3-447c-c58c-bd15-43afd9e4552d/mzaf_10800302035165426762.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "E.T. l'extra-terrestre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10005,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f8/9c/94/f89c94c9-fd59-c189-efc4-29e1d527e2ff/mzaf_11628690441246579008.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Psychose"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10006,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/22/ed/9a/22ed9a9e-8fc9-79b7-7f16-14d8f600bd75/mzaf_11846903090645193810.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "La Liste de Schindler"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10007,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/72/88/22/728822ef-b771-c428-1ab2-ee03d00a46a1/mzaf_13808897337086984847.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Braveheart"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10008,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/04/52/15/045215a3-c83d-5a0d-b755-c42920b82dde/mzaf_9139441711068693123.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Le Grand Bleu"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10009,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/8b/ec/fb/8becfb24-9c67-9f22-5ec6-dfa7ec7b69cb/mzaf_9120314095004548767.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Les Choristes"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10010,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3e/42/2b/3e422bfa-8336-5ed9-b414-a5787c7e3bf8/mzaf_7613063526766571751.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Il était une fois dans l'Ouest"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "italie",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10011,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4c/11/81/4c1181fa-128f-3061-c781-130801f65165/mzaf_7284051771409419981.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Forrest Gump"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10012,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d9/0a/c2/d90ac2c5-d7d9-6ba3-c2a9-bcd410111178/mzaf_8697108248129803919.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Intouchables"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10013,
+    "mode": "blindtest",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b9/5b/95/b95b95b9-6df4-26dd-3b1e-b2310e62a354/mzaf_4112986017103799430.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Requiem for a Dream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   }

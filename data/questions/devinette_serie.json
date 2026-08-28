@@ -1,49 +1,14 @@
 [
   {
-    "id": 301,
+    "id": 7500,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série se déroule dans les années 1980.",
-        "L'action se passe dans une petite ville appelée Hawkins.",
-        "Elle mêle science-fiction et horreur, avec un monde parallèle appelé le Monde à l'envers."
-      ]
-    },
-    "correct_answer": {
-      "film": "Stranger Things"
-    },
-    "requires_account": false,
-    "tags": [
-      {
-        "name": "horreur",
-        "type": "genre"
-      },
-      {
-        "name": "science-fiction",
-        "type": "genre"
-      },
-      {
-        "name": "annees-1980",
-        "type": "epoque"
-      }
-    ]
-  },
-  {
-    "id": 302,
-    "mode": "devinette",
-    "category": "anecdote",
-    "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
-    "payload": {
-      "hints": [
-        "Cette série suit un groupe d'amis à New York.",
-        "L'un des personnages s'appelle Ross et travaille comme paléontologue.",
-        "Le titre est un simple mot anglais signifiant \"amis\"."
+        "Cette sitcom américaine suit six trentenaires à New York.",
+        "Ils se retrouvent en permanence dans un café appelé Central Perk.",
+        "Ross, Rachel, Monica, Chandler, Joey et Phoebe en sont les héros."
       ]
     },
     "correct_answer": {
@@ -52,123 +17,418 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 303,
+    "id": 7501,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série raconte l'histoire d'un homme qui mène une double vie.",
-        "Le personnage principal travaille pour la police de Miami comme expert en analyse de sang.",
-        "La nuit, il traque des criminels qui ont échappé à la justice."
+        "Dans cette série, un paléontologue enchaîne les divorces.",
+        "Sa sœur, maniaque et cheffe cuisinière, finit par épouser son meilleur ami.",
+        "Son générique est la chanson « I'll Be There For You »."
       ]
     },
     "correct_answer": {
-      "film": "Dexter"
+      "film": "Friends"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 304,
+    "id": 7502,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série raconte les aventures d'un guerrier viking et de sa famille.",
-        "Le personnage principal s'appelle Ragnar Lothbrok.",
-        "La série met en scène des raids, des batailles et la conquête de nouveaux territoires."
+        "Cette série suit un professeur de chimie à qui l'on diagnostique un cancer.",
+        "Il fabrique de la méthamphétamine avec un ancien élève, Jesse Pinkman.",
+        "L'action se déroule à Albuquerque, au Nouveau-Mexique."
       ]
     },
     "correct_answer": {
-      "film": "Vikings"
+      "film": "Breaking Bad"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 305,
+    "id": 7503,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série raconte l'histoire de survivants après une apocalypse.",
-        "Les personnages doivent affronter des morts-vivants appelés les Walkers.",
-        "Rick Grimes est l'un des personnages principaux au début de la série."
+        "Dans cette série, un homme effacé se choisit le pseudonyme d'Heisenberg.",
+        "Son beau-frère, agent de la DEA, le traque sans le savoir.",
+        "Elle a été créée par Vince Gilligan pour AMC."
       ]
     },
     "correct_answer": {
-      "film": "The Walking Dead"
+      "film": "Breaking Bad"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 306,
+    "id": 7504,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série suit une adolescente au caractère très particulier.",
-        "Elle possède des pouvoirs psychiques et étudie dans une académie appelée Nevermore.",
-        "Le personnage principal est la fille de Morticia et Gomez Addams."
+        "Cette série oppose plusieurs maisons nobles autour d'un trône de métal.",
+        "Une devise annonce sans cesse l'arrivée de l'hiver.",
+        "Elle est adaptée des romans de George R. R. Martin."
       ]
     },
     "correct_answer": {
-      "film": "Wednesday"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 307,
+    "id": 7505,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série se déroule dans une entreprise de papier appelée Dunder Mifflin.",
-        "Elle suit le quotidien souvent absurde des employés d'une agence de Scranton.",
-        "Le patron de l'agence s'appelle Michael Scott."
+        "Dans cette série, une jeune exilée fait éclore trois dragons.",
+        "Une muraille de glace protège le royaume du nord des Sept Couronnes.",
+        "Winterfell et Port-Réal en sont deux lieux majeurs."
+      ]
+    },
+    "correct_answer": {
+      "film": "Game of Thrones"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7506,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série française revisite la légende arthurienne sur le ton de la comédie.",
+        "Ses premiers épisodes durent à peine quelques minutes.",
+        "Alexandre Astier en est l'auteur et incarne le roi."
+      ]
+    },
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7507,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Dans cette série, deux chevaliers peu doués s'appellent Perceval et Karadoc.",
+        "Le roi cherche le Graal avec une Table Ronde désespérément incompétente.",
+        "« C'est pas faux » en est la réplique la plus reprise."
+      ]
+    },
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7508,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série se déroule dans une petite ville de l'Indiana au milieu des années 1980.",
+        "Un garçon disparaît et ses amis rencontrent une fille aux pouvoirs psychiques.",
+        "Elle a été créée par les frères Duffer pour Netflix."
+      ]
+    },
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7509,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Dans cette série, une dimension parallèle double la ville de Hawkins.",
+        "Une bande d'adolescents affronte une créature surnommée le Demogorgon.",
+        "Le personnage d'Eleven en est la figure centrale."
+      ]
+    },
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7510,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série suit en parallèle des policiers et des dealers de Baltimore.",
+        "Chaque saison change d'institution : le port, la mairie, l'école, la presse.",
+        "Elle a été créée par l'ancien journaliste David Simon."
+      ]
+    },
+    "correct_answer": {
+      "film": "The Wire"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-wire",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7511,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série suit un chef mafieux du New Jersey.",
+        "Il consulte une psychiatre pour ses crises de panique.",
+        "James Gandolfini en tenait le rôle principal."
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Soprano"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-soprano",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7512,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette sitcom est filmée comme un faux documentaire d'entreprise.",
+        "Elle se déroule dans une société de vente de papier à Scranton.",
+        "Steve Carell y incarne un patron maladroit nommé Michael Scott."
       ]
     },
     "correct_answer": {
@@ -177,48 +437,453 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "the-office",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 308,
+    "id": 7513,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série suit un homme capable de combattre des créatures et des monstres.",
-        "Le personnage principal est un sorceleur nommé Geralt de Riv.",
-        "L'histoire se déroule dans un univers fantastique rempli de magie, de monstres et de royaumes."
+        "Cette série médicale suit un diagnosticien misanthrope.",
+        "Il marche avec une canne et répète que tout le monde ment.",
+        "Hugh Laurie en tient le rôle-titre."
       ]
     },
     "correct_answer": {
-      "film": "The Witcher"
+      "film": "Dr House"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 309,
+    "id": 7514,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série commence après le crash d'un avion sur une île mystérieuse.",
-        "Les survivants découvrent rapidement que l'île cache de nombreux secrets.",
-        "Parmi les personnages principaux se trouvent Jack, Kate et Sawyer."
+        "Cette série britannique transpose un détective du XIXe siècle à l'époque contemporaine.",
+        "Son colocataire est un ancien médecin militaire nommé John Watson.",
+        "Benedict Cumberbatch et Martin Freeman en tiennent les rôles principaux."
+      ]
+    },
+    "correct_answer": {
+      "film": "Sherlock"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7515,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série espagnole raconte un braquage hors norme.",
+        "Les braqueurs portent des combinaisons rouges et des masques de Dalí.",
+        "Ils se donnent des noms de villes : Tokyo, Berlin, Nairobi."
+      ]
+    },
+    "correct_answer": {
+      "film": "La Casa de Papel"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7516,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série sud-coréenne enferme des surendettés dans des jeux d'enfance devenus mortels.",
+        "Les gardiens portent des combinaisons roses et des masques géométriques.",
+        "Le premier jeu est « un, deux, trois, soleil »."
+      ]
+    },
+    "correct_answer": {
+      "film": "Squid Game"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7517,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série allemande se déroule dans la ville fictive de Winden.",
+        "Une grotte proche de la centrale nucléaire relie plusieurs époques.",
+        "Quatre familles y sont enchevêtrées par des voyages dans le temps."
+      ]
+    },
+    "correct_answer": {
+      "film": "Dark"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7518,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette mini-série retrace une catastrophe nucléaire survenue en 1986.",
+        "Elle suit les liquidateurs, les pompiers et les scientifiques soviétiques.",
+        "Elle a été diffusée par HBO en 2019 et compte cinq épisodes."
+      ]
+    },
+    "correct_answer": {
+      "film": "Chernobyl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chernobyl",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7519,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série britannique suit une famille de gangsters de Birmingham.",
+        "L'intrigue démarre juste après la Première Guerre mondiale.",
+        "Cillian Murphy y incarne Thomas Shelby."
+      ]
+    },
+    "correct_answer": {
+      "film": "Peaky Blinders"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7520,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série d'anthologie britannique change de personnages à chaque épisode.",
+        "Elle imagine les dérives des technologies contemporaines.",
+        "Charlie Brooker en est le créateur."
+      ]
+    },
+    "correct_answer": {
+      "film": "Black Mirror"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "black-mirror",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7521,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série retrace le règne d'une souveraine britannique.",
+        "Les acteurs changent toutes les deux saisons pour suivre le vieillissement des personnages.",
+        "Elle est diffusée par Netflix depuis 2016."
+      ]
+    },
+    "correct_answer": {
+      "film": "The Crown"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-crown",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7522,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série commence par la découverte d'un corps enveloppé dans du plastique.",
+        "Un agent du FBI y dicte ses notes à une certaine Diane, entre deux cafés.",
+        "Elle a été créée par David Lynch et Mark Frost en 1990."
+      ]
+    },
+    "correct_answer": {
+      "film": "Twin Peaks"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "twin-peaks",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7523,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série suit deux agents du FBI chargés des affaires inexpliquées.",
+        "L'un croit aux extraterrestres, l'autre est médecin et sceptique.",
+        "Sa devise est « la vérité est ailleurs »."
+      ]
+    },
+    "correct_answer": {
+      "film": "X-Files"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7524,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série animée américaine est diffusée sans interruption depuis 1989.",
+        "La famille vit à Springfield et le père travaille dans une centrale nucléaire.",
+        "Elle a été créée par Matt Groening."
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Simpson"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7525,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série commence par le crash d'un avion sur une île du Pacifique.",
+        "Les survivants découvrent une trappe et une organisation nommée DHARMA.",
+        "Elle a été diffusée entre 2004 et 2010 sur ABC."
       ]
     },
     "correct_answer": {
@@ -227,83 +892,300 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "lost",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 310,
+    "id": 7526,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série suit plusieurs familles vivant dans une banlieue américaine.",
-        "Les habitantes de cette rue cachent de nombreux secrets.",
-        "L'histoire commence après la mort mystérieuse de Mary Alice Young."
+        "Cette série retrace la traque des grands cartels de la drogue.",
+        "Sa première saison est centrée sur Pablo Escobar en Colombie.",
+        "Elle est diffusée par Netflix depuis 2015."
       ]
     },
     "correct_answer": {
-      "film": "Desperate Housewives"
+      "film": "Narcos"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "narcos",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 311,
+    "id": 7527,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série suit un homme accusé à tort d'un crime qu'il n'a pas commis.",
-        "Il se fait volontairement incarcérer pour aider son frère à s'évader.",
-        "Le personnage principal s'appelle Michael Scofield."
+        "Cette série est adaptée d'un jeu vidéo post-apocalyptique.",
+        "Un champignon parasite transforme les humains en créatures infectées.",
+        "Pedro Pascal y escorte une adolescente nommée Ellie."
       ]
     },
     "correct_answer": {
-      "film": "Prison Break"
+      "film": "The Last of Us"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "the-last-of-us",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 312,
+    "id": 7528,
     "mode": "devinette",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "",
+    "prompt": "Quelle série se cache derrière ces indices ?",
     "payload": {
       "hints": [
-        "Cette série suit un groupe de médecins et de chirurgiens dans un hôpital de Seattle.",
-        "L'un des personnages principaux s'appelle Meredith.",
-        "La série mélange médecine, relations amoureuses et drames personnels."
+        "Dans cette série, une opération chirurgicale sépare les souvenirs du travail et ceux de la vie privée.",
+        "Les employés travaillent dans les sous-sols d'une entreprise nommée Lumon.",
+        "Ben Stiller en a réalisé la plupart des épisodes."
       ]
     },
     "correct_answer": {
-      "film": "Grey's Anatomy"
+      "film": "Severance"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "severance",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7529,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série française suit des agents clandestins sous identité d'emprunt.",
+        "Ils rendent des comptes à la DGSE entre deux missions au Moyen-Orient.",
+        "Mathieu Kassovitz y tient le rôle principal."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Bureau des légendes"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-bureau-des-legendes",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7530,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série française suit un gentleman cambrioleur d'aujourd'hui.",
+        "Le héros s'inspire des romans de Maurice Leblanc pour préparer ses coups.",
+        "Omar Sy y incarne Assane Diop."
+      ]
+    },
+    "correct_answer": {
+      "film": "Lupin"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lupin",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7531,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série est le préquel d'un grand drame criminel du Nouveau-Mexique.",
+        "Elle suit un avocat magouilleur avant qu'il ne change de nom.",
+        "Bob Odenkirk y incarne Jimmy McGill."
+      ]
+    },
+    "correct_answer": {
+      "film": "Better Call Saul"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7532,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série suit les héritiers d'un magnat des médias vieillissant.",
+        "Leur groupe familial s'appelle Waystar Royco.",
+        "Elle a été diffusée par HBO entre 2018 et 2023."
+      ]
+    },
+    "correct_answer": {
+      "film": "Succession"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "succession",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 7533,
+    "mode": "devinette",
+    "content_type": "serie",
+    "prompt": "Quelle série se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Cette série animée est produite en France par le studio Fortiche.",
+        "Elle se déroule entre les cités de Piltover et de Zaun.",
+        "Elle adapte l'univers du jeu vidéo League of Legends."
+      ]
+    },
+    "correct_answer": {
+      "film": "Arcane"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "arcane",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   }

@@ -2,16 +2,12 @@ const startButton = document.getElementById("start-game");
 
 startButton.addEventListener("click", function () {
     const mode = startButton.dataset.mode;
-    const category = document.getElementById("category").value;
     const tag = document.getElementById("tag").value;
     const level = document.getElementById("level").value;
     const contentType = document.getElementById("content-type").value;
 
     const params = new URLSearchParams();
 
-    if (category) {
-        params.set("category", category);
-    }
     if (tag) {
         params.set("tag_id", tag);
     }

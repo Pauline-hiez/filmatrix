@@ -13,8 +13,6 @@ load_dotenv()
 
 def generate_blindtest_question(
     title: str,
-    difficulty: str,
-    category: str,
     music_search_term: str | None = None,
     content_type: str = "film",
 ) -> dict:
@@ -30,9 +28,7 @@ def generate_blindtest_question(
 
     return {
         "mode": "blindtest",
-        "category": category,
         "content_type": content_type,
-        "difficulty": difficulty,
         "prompt": "",
         "payload": {"audio_url": preview_url},
         "correct_answer": {"film": result["title"]},
@@ -42,13 +38,9 @@ def generate_blindtest_question(
 
 if __name__ == "__main__":
     title = sys.argv[1]
-    difficulty = sys.argv[2] if len(sys.argv) > 2 else "moyen"
-    category = sys.argv[3] if len(sys.argv) > 3 else "anecdote"
-    music_search_term = sys.argv[4] if len(sys.argv) > 4 else None
-    content_type = sys.argv[5] if len(sys.argv) > 5 else "film"
+    music_search_term = sys.argv[2] if len(sys.argv) > 2 else None
+    content_type = sys.argv[3] if len(sys.argv) > 3 else "film"
 
-    question = generate_blindtest_question(
-        title, difficulty, category, music_search_term, content_type
-    )
+    question = generate_blindtest_question(title, music_search_term, content_type)
 
     print(json.dumps(question, indent=2, ensure_ascii=False))

@@ -2,9 +2,7 @@
   {
     "id": 386,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cb/92/90/cb92902c-c2ea-f522-af53-188ea787e9eb/mzaf_1944123792286238815.plus.aac.p.m4a"
@@ -23,9 +21,7 @@
   {
     "id": 387,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/64/8e/84/648e84d9-d491-a92d-5a06-b4c1e6457671/mzaf_18405791090191220886.plus.aac.p.m4a"
@@ -44,9 +40,7 @@
   {
     "id": 388,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/00/7a/98007a61-5912-d8e6-2d05-0a8378611124/mzaf_5025701178983290939.plus.aac.p.m4a"
@@ -65,9 +59,7 @@
   {
     "id": 389,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/55/c9/29/55c92901-3cce-0c3a-fadf-d012129694a5/mzaf_4986614812499583417.plus.aac.p.m4a"
@@ -86,9 +78,7 @@
   {
     "id": 390,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/c9/7d/7e/c97d7e69-ad72-0712-59d2-eacbdb19c722/mzaf_5371619454947923328.plus.aac.p.m4a"
@@ -107,9 +97,7 @@
   {
     "id": 391,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a2/1c/b7/a21cb773-d025-0a8a-8310-aa76b510f90a/mzaf_10903901519658217425.plus.aac.p.m4a"
@@ -128,9 +116,7 @@
   {
     "id": 392,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/45/a4/ba/45a4baa3-1da9-acdc-afae-9e84bb7ce564/mzaf_3834111253252534589.plus.aac.p.m4a"
@@ -149,9 +135,7 @@
   {
     "id": 393,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e9/83/1c/e9831c27-d055-cd83-2193-75df1e98a8a0/mzaf_4801507969539090564.plus.aac.p.m4a"
@@ -170,15 +154,13 @@
   {
     "id": 394,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/61/6b/10/616b106f-9b56-6590-a876-0bace4df6f0c/mzaf_7390914710714591669.plus.aac.p.m4a"
     },
     "correct_answer": {
-      "film": "The Simpsons"
+      "film": "Les Simpson"
     },
     "requires_account": false,
     "tags": [
@@ -191,9 +173,7 @@
   {
     "id": 395,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/74/c0/45/74c04595-462b-488f-2bc0-7bef17da3a4f/mzaf_11386669178347258163.plus.aac.p.m4a"
@@ -212,9 +192,7 @@
   {
     "id": 396,
     "mode": "blindtest",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/a9/8a/7f/a98a7f36-a1ac-18c4-7f48-f55c2040ed54/mzaf_13061913459660185675.plus.aac.p.m4a"
@@ -227,6 +205,440 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 10500,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c5/cc/2b/c5cc2b98-73f9-c096-1fcc-165f518cd680/mzaf_10989311721462789293.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10501,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/84/f3/22/84f32250-60b3-663a-7f0f-22076de1b202/mzaf_1752963107812549298.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Sherlock"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10502,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a3/a6/91/a3a691b0-8e49-399d-2585-ddcd6694c9f2/mzaf_16325826545413166648.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Dr House"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10503,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/06/38/3a/06383a11-2fa3-b8cd-9417-8ab97937f322/mzaf_16430335714998866157.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Twin Peaks"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "twin-peaks",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10504,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/75/b8/fe/75b8fe5b-9181-fc79-1854-32910af234d2/mzaf_8131742655989754808.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "X-Files"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10505,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6a/79/81/6a798109-d58a-bd99-a489-68044b81bfc3/mzaf_3547309973478464909.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Dexter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10506,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d5/e0/dd/d5e0dd47-84aa-fe4f-b9fc-6bf1f1f90c3f/mzaf_7388236101060986368.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Narcos"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "narcos",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10507,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ce/de/8b/cede8b3f-4137-c6f1-e17a-3b0f619f7ed4/mzaf_9634988424484271208.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Westworld"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "westworld",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10508,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/82/15/a3/8215a36e-3a29-9782-4e0f-2d52b06dce17/mzaf_11962067028557607736.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Succession"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "succession",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10509,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7d/14/72/7d147299-52bb-7293-2ed3-01dcf4641263/mzaf_11352443980258880488.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Dark"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10510,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/7b/6e/54/7b6e548c-1302-3214-d965-d0c531700e4c/mzaf_8004842094480279053.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "The Last of Us"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-last-of-us",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10511,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f9/8b/d9/f98bd9a6-96d2-b8fd-1848-0de12814aec6/mzaf_18165369050311284240.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Arcane"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "arcane",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10512,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3f/dc/ba/3fdcbae7-f0fb-defd-7e0c-3f090fc330f3/mzaf_16117848475029615800.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "The Crown"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-crown",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 10513,
+    "mode": "blindtest",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a3/ed/14/a3ed14f2-7c2e-890d-a543-0f936ffe79e5/mzaf_1205860486635650020.plus.aac.p.m4a"
+    },
+    "correct_answer": {
+      "film": "Squid Game"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   }

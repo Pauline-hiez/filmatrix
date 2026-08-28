@@ -18,8 +18,6 @@ def create_test_question(mode: str = "qcm") -> Question:
     """Crée une question de test en base."""
     question = Question(
         mode=mode,
-        category="test",
-        difficulty="facile",
         prompt="Question de test",
         payload={"options": ["A", "B"]},
         correct_answer={"index": 0},

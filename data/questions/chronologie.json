@@ -2,9 +2,8 @@
   {
     "id": 15,
     "mode": "chronologie",
-    "category": "anecdote",
-    "difficulty": "moyen",
-    "prompt": "",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
     "payload": {
       "films": [
         "Avatar",
@@ -32,8 +31,7 @@
   {
     "id": 200,
     "mode": "chronologie",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Remets ces films dans leur ordre de sortie.",
     "payload": {
       "films": [
@@ -62,8 +60,7 @@
   {
     "id": 201,
     "mode": "chronologie",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Remets ces films dans leur ordre de sortie.",
     "payload": {
       "films": [
@@ -100,8 +97,7 @@
   {
     "id": 202,
     "mode": "chronologie",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Remets ces films dans leur ordre de sortie.",
     "payload": {
       "films": [
@@ -134,8 +130,7 @@
   {
     "id": 203,
     "mode": "chronologie",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Remets ces films dans leur ordre de sortie.",
     "payload": {
       "films": [
@@ -164,8 +159,7 @@
   {
     "id": 204,
     "mode": "chronologie",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Remets ces films dans leur ordre de sortie.",
     "payload": {
       "films": [
@@ -194,8 +188,7 @@
   {
     "id": 205,
     "mode": "chronologie",
-    "category": "realisateur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "Remets ces films dans leur ordre de sortie.",
     "payload": {
       "films": [
@@ -218,6 +211,709 @@
       {
         "name": "science-fiction",
         "type": "genre"
+      }
+    ]
+  },
+  {
+    "id": 6000,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Le Parrain",
+        "Les Temps modernes",
+        "Casablanca",
+        "Psychose"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Temps modernes",
+        "Casablanca",
+        "Psychose",
+        "Le Parrain"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6001,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Star Wars",
+        "Le Magicien d'Oz",
+        "Les Sept Samouraïs",
+        "2001, l'Odyssée de l'espace"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Magicien d'Oz",
+        "Les Sept Samouraïs",
+        "2001, l'Odyssée de l'espace",
+        "Star Wars"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6002,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Retour vers le futur",
+        "Blade Runner",
+        "Alien",
+        "Les Dents de la mer"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Dents de la mer",
+        "Alien",
+        "Blade Runner",
+        "Retour vers le futur"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6003,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "La Liste de Schindler",
+        "E.T. l'extra-terrestre",
+        "Rain Man",
+        "Forrest Gump"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "E.T. l'extra-terrestre",
+        "Rain Man",
+        "La Liste de Schindler",
+        "Forrest Gump"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6004,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Toy Story",
+        "Matrix",
+        "Titanic",
+        "Le Roi Lion"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Roi Lion",
+        "Toy Story",
+        "Titanic",
+        "Matrix"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6005,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Le Monde de Nemo",
+        "Gladiator",
+        "Shrek",
+        "Fight Club"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Fight Club",
+        "Gladiator",
+        "Shrek",
+        "Le Monde de Nemo"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6006,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Toy Story 3",
+        "Wall-E",
+        "Ratatouille",
+        "Là-haut"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Ratatouille",
+        "Wall-E",
+        "Là-haut",
+        "Toy Story 3"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6007,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Inception",
+        "The Dark Knight",
+        "Dunkerque",
+        "Interstellar"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "The Dark Knight",
+        "Inception",
+        "Interstellar",
+        "Dunkerque"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6008,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Mad Max: Fury Road",
+        "Gravity",
+        "Premier Contact",
+        "Avatar"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Avatar",
+        "Gravity",
+        "Mad Max: Fury Road",
+        "Premier Contact"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6009,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Everything Everywhere All at Once",
+        "La La Land",
+        "Parasite",
+        "Nomadland"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "La La Land",
+        "Parasite",
+        "Nomadland",
+        "Everything Everywhere All at Once"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6010,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Les Choristes",
+        "Intouchables",
+        "Bienvenue chez les Ch'tis",
+        "Le Fabuleux Destin d'Amélie Poulain"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Fabuleux Destin d'Amélie Poulain",
+        "Les Choristes",
+        "Bienvenue chez les Ch'tis",
+        "Intouchables"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6011,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Les Bronzés",
+        "Le Père Noël est une ordure",
+        "Les Visiteurs",
+        "La Grande Vadrouille"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "La Grande Vadrouille",
+        "Les Bronzés",
+        "Le Père Noël est une ordure",
+        "Les Visiteurs"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6012,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Terminator",
+        "Speed",
+        "Piège de cristal",
+        "Rocky"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Rocky",
+        "Terminator",
+        "Piège de cristal",
+        "Speed"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6013,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Shining",
+        "Seven",
+        "Le Silence des agneaux",
+        "Sixième Sens"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Shining",
+        "Le Silence des agneaux",
+        "Seven",
+        "Sixième Sens"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6014,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Pulp Fiction",
+        "Inglourious Basterds",
+        "Django Unchained",
+        "Kill Bill"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Pulp Fiction",
+        "Kill Bill",
+        "Inglourious Basterds",
+        "Django Unchained"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6015,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Princesse Mononoké",
+        "Mon voisin Totoro",
+        "Le Voyage de Chihiro",
+        "Le Château ambulant"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Mon voisin Totoro",
+        "Princesse Mononoké",
+        "Le Voyage de Chihiro",
+        "Le Château ambulant"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6016,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Le Labyrinthe de Pan",
+        "Avatar",
+        "Le Seigneur des Anneaux : Le Retour du roi",
+        "Harry Potter à l'école des sorciers"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Harry Potter à l'école des sorciers",
+        "Le Seigneur des Anneaux : Le Retour du roi",
+        "Le Labyrinthe de Pan",
+        "Avatar"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6017,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Dernier train pour Busan",
+        "Old Boy",
+        "The Host",
+        "Parasite"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Old Boy",
+        "The Host",
+        "Dernier train pour Busan",
+        "Parasite"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6018,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Dune",
+        "Oppenheimer",
+        "Whiplash",
+        "Joker"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Whiplash",
+        "Joker",
+        "Dune",
+        "Oppenheimer"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   }

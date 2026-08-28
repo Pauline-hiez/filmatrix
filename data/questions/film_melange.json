@@ -2,8 +2,7 @@
   {
     "id": 13,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -20,8 +19,7 @@
   {
     "id": 14,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -38,8 +36,7 @@
   {
     "id": 180,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -56,8 +53,7 @@
   {
     "id": 181,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -74,8 +70,7 @@
   {
     "id": 182,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -92,8 +87,7 @@
   {
     "id": 183,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -110,8 +104,7 @@
   {
     "id": 184,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -128,8 +121,7 @@
   {
     "id": 185,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -146,8 +138,7 @@
   {
     "id": 186,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -164,8 +155,7 @@
   {
     "id": 187,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -182,8 +172,7 @@
   {
     "id": 188,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -200,8 +189,7 @@
   {
     "id": 189,
     "mode": "film_melange",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "",
     "payload": {},
     "correct_answer": {
@@ -212,6 +200,564 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 5000,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Casablanca"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5001,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Amadeus"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5002,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Alien"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5003,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Shining"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5004,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Terminator"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5005,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Braveheart"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5006,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Forrest Gump"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5007,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Rocky"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5008,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Psychose"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5009,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Intouchables"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5010,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Whiplash"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5011,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Oppenheimer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5012,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Dune"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dune",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5013,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Coco"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5014,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Memento"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5015,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5016,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Barbie"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5017,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Gravity"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5018,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Fight Club"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5019,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Le Grand Bleu"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5020,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "Les Choristes"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 5021,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "",
+    "payload": {},
+    "correct_answer": {
+      "title": "La Haine"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   }

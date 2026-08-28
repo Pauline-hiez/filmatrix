@@ -1,10 +1,298 @@
 [
   {
-    "id": 297,
+    "id": 4500,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
+    "prompt": "☕🛋️👫",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4501,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🦖🧪🧑‍🔬",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4502,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎸🐱☕",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4503,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "💍🏃‍♀️☕",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4504,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🛋️↩️↪️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Friends"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4505,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🧪🔵👨‍🏫",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4506,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎩⚗️💰",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4507,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🍗🌮🕴️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4508,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🚐🏜️🧪",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4509,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "👨‍👦‍👦💊🚔",
+    "payload": {},
+    "correct_answer": {
+      "film": "Breaking Bad"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4510,
+    "mode": "emoji",
+    "content_type": "serie",
     "prompt": "👑🐉⚔️",
     "payload": {},
     "correct_answer": {
@@ -13,113 +301,492 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 298,
+    "id": 4511,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "🧪🔵👨‍🔬",
+    "prompt": "❄️🧱🗡️",
     "payload": {},
     "correct_answer": {
-      "film": "Breaking Bad"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 313,
+    "id": 4512,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "👬☕🗽",
+    "prompt": "🐺🏰👨‍👩‍👧‍👦",
     "payload": {},
     "correct_answer": {
-      "film": "Friends"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 314,
+    "id": 4513,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "🧟‍♂️🔫🚶",
+    "prompt": "🪑⚔️👑",
     "payload": {},
     "correct_answer": {
-      "film": "The Walking Dead"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 315,
+    "id": 4514,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "🏥🩺😂",
+    "prompt": "🐉🔥👸",
     "payload": {},
     "correct_answer": {
-      "film": "Scrubs"
+      "film": "Game of Thrones"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 316,
+    "id": 4515,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "🕵️👽🛸",
+    "prompt": "👑⚔️🏰",
     "payload": {},
     "correct_answer": {
-      "film": "X files"
+      "film": "Kaamelott"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 317,
+    "id": 4516,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "💰🎭🏦",
+    "prompt": "🍖🍗😂",
+    "payload": {},
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4517,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🧙‍♂️✨📜",
+    "payload": {},
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4518,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "⚔️🏆❓",
+    "payload": {},
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4519,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🚲👦🌲",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4520,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🔢👧🩸",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4521,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎲🐉🕳️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4522,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "☕🚔🧔",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4523,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🌌👹⚡",
+    "payload": {},
+    "correct_answer": {
+      "film": "Stranger Things"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4524,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "📄🖨️🏢",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Office"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-office",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4525,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🕵️‍♂️🎻🇬🇧",
+    "payload": {},
+    "correct_answer": {
+      "film": "Sherlock"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4526,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🏥💊🦯",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dr House"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4527,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎭🔴🏦💰",
     "payload": {},
     "correct_answer": {
       "film": "La Casa de Papel"
@@ -127,103 +794,745 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 318,
+    "id": 4528,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "👨‍🔬🧠💥😂",
+    "prompt": "🔴🟢🎎",
     "payload": {},
     "correct_answer": {
-      "film": "The Big Bang Theory"
+      "film": "Squid Game"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 319,
+    "id": 4529,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "👑🏰🗡️🧙",
+    "prompt": "☢️🧑‍🔬🇺🇦",
     "payload": {},
     "correct_answer": {
-      "film": "The Witcher"
+      "film": "Chernobyl"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "chernobyl",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 320,
+    "id": 4530,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "🪓⚔️🧔‍♂️",
+    "prompt": "👑🇬🇧👸",
     "payload": {},
     "correct_answer": {
-      "film": "Vikings"
+      "film": "The Crown"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "the-crown",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 321,
+    "id": 4531,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
-    "prompt": "👮‍♂️🔪🩸",
+    "prompt": "🍩🟡👨‍👩‍👧‍👦",
     "payload": {},
     "correct_answer": {
-      "film": "Dexter"
+      "film": "Les Simpson"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
       }
     ]
   },
   {
-    "id": 322,
+    "id": 4532,
     "mode": "emoji",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
-    "prompt": "👹🏙️😈🚓",
+    "prompt": "🛸👴👦",
     "payload": {},
     "correct_answer": {
-      "film": "Lucifer"
+      "film": "Rick et Morty"
     },
     "requires_account": false,
     "tags": [
       {
-        "name": "cinema-general",
-        "type": "autre"
+        "name": "rick-et-morty",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4533,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎩🔫🇬🇧",
+    "payload": {},
+    "correct_answer": {
+      "film": "Peaky Blinders"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4534,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "📱🖤🪞",
+    "payload": {},
+    "correct_answer": {
+      "film": "Black Mirror"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "black-mirror",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4535,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🕳️⏳🇩🇪",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dark"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4536,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🧛‍♀️🪵🏫",
+    "payload": {},
+    "correct_answer": {
+      "film": "Buffy contre les vampires"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "buffy-contre-les-vampires",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4537,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "👽🔦🕵️",
+    "payload": {},
+    "correct_answer": {
+      "film": "X-Files"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4538,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "☕🍒🌲",
+    "payload": {},
+    "correct_answer": {
+      "film": "Twin Peaks"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "twin-peaks",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4539,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🏝️✈️💥",
+    "payload": {},
+    "correct_answer": {
+      "film": "Lost"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lost",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4540,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "👨‍🍳🔥🏙️",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Bear"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-bear",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4541,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎮🍄🧟",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Last of Us"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-last-of-us",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4542,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🤠🤖🎡",
+    "payload": {},
+    "correct_answer": {
+      "film": "Westworld"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "westworld",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4543,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🕵️🇫🇷🗂️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Bureau des légendes"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-bureau-des-legendes",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4544,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎩🃏🇫🇷💎",
+    "payload": {},
+    "correct_answer": {
+      "film": "Lupin"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lupin",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4545,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "💼📞🎬🇫🇷",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dix pour cent"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dix-pour-cent",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4546,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🪖🛸👶",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Mandalorian"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-mandalorian",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4547,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "💵🇨🇴🌿",
+    "payload": {},
+    "correct_answer": {
+      "film": "Narcos"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "narcos",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4548,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🧠🏢🔄",
+    "payload": {},
+    "correct_answer": {
+      "film": "Severance"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "severance",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4549,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "📺👨‍👧‍👦💼",
+    "payload": {},
+    "correct_answer": {
+      "film": "Succession"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "succession",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4550,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🎨🎮⚙️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Arcane"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "arcane",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4551,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🏙️👠💕",
+    "payload": {},
+    "correct_answer": {
+      "film": "Sex and the City"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sex-and-the-city",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4552,
+    "mode": "emoji",
+    "content_type": "serie",
+    "prompt": "🚑🏥👩‍⚕️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Grey's Anatomy"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "greys-anatomy",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   }

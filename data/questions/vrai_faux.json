@@ -2,8 +2,7 @@
   {
     "id": 5,
     "mode": "vrai_faux",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Le film Titanic est sorti en 1997.",
     "payload": {},
     "correct_answer": {
@@ -20,8 +19,7 @@
   {
     "id": 6,
     "mode": "vrai_faux",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Le film Avatar (2009) est réalisé par Christopher Nolan.",
     "payload": {},
     "correct_answer": {
@@ -38,8 +36,7 @@
   {
     "id": 7,
     "mode": "vrai_faux",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Steven Spielberg a réalisé Jurassic Park.",
     "payload": {},
     "correct_answer": {
@@ -56,8 +53,7 @@
   {
     "id": 8,
     "mode": "vrai_faux",
-    "category": "acteur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Leonardo DiCaprio a remporté l'Oscar du meilleur acteur pour Titanic.",
     "payload": {},
     "correct_answer": {
@@ -74,8 +70,7 @@
   {
     "id": 120,
     "mode": "vrai_faux",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Le Parrain (1972) est réalisé par Martin Scorsese.",
     "payload": {},
     "correct_answer": {
@@ -92,8 +87,7 @@
   {
     "id": 121,
     "mode": "vrai_faux",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Quentin Tarantino a réalisé Kill Bill.",
     "payload": {},
     "correct_answer": {
@@ -110,8 +104,7 @@
   {
     "id": 122,
     "mode": "vrai_faux",
-    "category": "realisateur",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Christopher Nolan a réalisé Interstellar.",
     "payload": {},
     "correct_answer": {
@@ -128,8 +121,7 @@
   {
     "id": 123,
     "mode": "vrai_faux",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Le film Alien (1979) est réalisé par Ridley Scott.",
     "payload": {},
     "correct_answer": {
@@ -146,8 +138,7 @@
   {
     "id": 124,
     "mode": "vrai_faux",
-    "category": "realisateur",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Le film Psychose (1960) est réalisé par Alfred Hitchcock.",
     "payload": {},
     "correct_answer": {
@@ -164,8 +155,7 @@
   {
     "id": 125,
     "mode": "vrai_faux",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Le film Matrix est sorti en 1999.",
     "payload": {},
     "correct_answer": {
@@ -182,8 +172,7 @@
   {
     "id": 126,
     "mode": "vrai_faux",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "Le Roi Lion (1994) est un film en prises de vues réelles.",
     "payload": {},
     "correct_answer": {
@@ -200,8 +189,7 @@
   {
     "id": 127,
     "mode": "vrai_faux",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Jurassic Park est adapté d'un roman de Michael Crichton.",
     "payload": {},
     "correct_answer": {
@@ -218,8 +206,7 @@
   {
     "id": 128,
     "mode": "vrai_faux",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "Parasite est le premier film non anglophone à remporter l'Oscar du meilleur film.",
     "payload": {},
     "correct_answer": {
@@ -236,8 +223,7 @@
   {
     "id": 129,
     "mode": "vrai_faux",
-    "category": "acteur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "Tom Hanks a remporté deux Oscars du meilleur acteur deux années de suite.",
     "payload": {},
     "correct_answer": {
@@ -254,8 +240,7 @@
   {
     "id": 130,
     "mode": "vrai_faux",
-    "category": "acteur",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "Marlon Brando est venu chercher en personne son Oscar pour Le Parrain.",
     "payload": {},
     "correct_answer": {
@@ -266,6 +251,451 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 2000,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Voyage de Chihiro, les parents de Chihiro sont transformés en cochons.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2001,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Shining (1980) est adapté d'un roman de Stephen King.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2002,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Retour vers le futur, Marty McFly voyage dans le temps à bord d'une Ford Mustang.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2003,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Intouchables est inspiré d'une histoire vraie.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2004,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Ridley Scott a réalisé Blade Runner 2049.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2005,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Silence des agneaux, Anthony Hopkins remporte l'Oscar du meilleur acteur pour un rôle de moins de vingt minutes à l'écran.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2006,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Les Dents de la mer est réalisé par Steven Spielberg.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2007,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Alien, le personnage de Ripley est interprété par Jodie Foster.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2008,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film d'animation Toy Story est le premier long métrage entièrement réalisé en images de synthèse.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "toy-story",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2009,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Quentin Tarantino a réalisé Fight Club.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2010,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans La La Land, Ryan Gosling incarne un pianiste de jazz.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2011,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Amélie Poulain a remporté l'Oscar du meilleur film étranger.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2012,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Matrix, Neo choisit la pilule bleue que lui tend Morpheus.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "matrix",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2013,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Parasite a été tourné en japonais.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2014,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Forrest Gump, Forrest devient champion de boxe.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2015,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Gladiator est réalisé par Steven Spielberg.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 2016,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Roi Lion, Scar est le frère de Simba.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-roi-lion",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
       }
     ]
   }

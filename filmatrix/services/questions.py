@@ -15,12 +15,12 @@ from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
 
 
 def resolve_content_type(value: str | None) -> str:
-    """Ne garde que les types de contenu connus, une chaîne vide sinon"""
-    return value if value in ("film", "serie") else ""
+    """Normalise les libellés de contenu utilisés par l'interface."""
+    aliases = {"film": "film", "films": "film", "serie": "serie", "série": "serie", "series": "serie", "séries": "serie"}
+    return aliases.get((value or "").strip().lower(), "")
 
 def build_question_query(
     mode: str,
-    category: str | None = None,
     tag_id: int | None = None,
     content_type: str | None = None,
 ):
@@ -30,9 +30,6 @@ def build_question_query(
     doivent renvoyer les questions dans le même ordre, sans quoi le joueur
     rejouerait la même à des positions différentes"""
     query = Question.query.filter_by(mode=mode)
-
-    if category:
-        query = query.filter_by(category=category)
 
     if tag_id:
         query = query.filter(Question.tags.any(Tag.id == tag_id))
@@ -44,7 +41,6 @@ def build_question_query(
 
 def playable_question_query(
     mode: str,
-    category: str | None = None,
     tag_id: int | None = None,
     content_type: str | None = None,
 ):
@@ -53,7 +49,7 @@ def playable_question_query(
     Une question réservée aux comptes renverrait un visiteur vers la page de
     connexion en pleine partie, sa progression perdue : elle n'a rien à faire
     ni dans le tirage, ni dans les compteurs qu'on lui annonce"""
-    query = build_question_query(mode, category, tag_id, content_type)
+    query = build_question_query(mode, tag_id, content_type)
 
     if not current_user.is_authenticated:
         query = query.filter_by(requires_account=False)
@@ -62,7 +58,6 @@ def playable_question_query(
 
 def count_run_questions(
     mode: str,
-    category: str | None = None,
     tag_id: int | None = None,
     content_type: str | None = None,
 ) -> int:
@@ -71,20 +66,18 @@ def count_run_questions(
     Une partie fait QUESTIONS_PER_RUN questions, sauf si les filtres du
     joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
     servir"""
-    available = playable_question_query(mode, category, tag_id, content_type).count()
+    available = playable_question_query(mode, tag_id, content_type).count()
     return min(QUESTIONS_PER_RUN, available)
 
 def run_filters(
-    category: str | None = None,
     tag_id: int | None = None,
     content_type: str | None = None,
 ) -> dict:
     """Décrit les réglages d'une partie, sous une forme rangeable en session"""
-    return {"category": category, "tag_id": tag_id, "content_type": content_type}
+    return {"tag_id": tag_id, "content_type": content_type}
 
 def draw_run_questions(
     mode: str,
-    category: str | None = None,
     tag_id: int | None = None,
     content_type: str | None = None,
 ) -> list[int]:
@@ -94,7 +87,7 @@ def draw_run_questions(
     ne se ressemblent pas, mais à l'intérieur d'une partie l'ordre ne bouge
     plus, sans quoi avancer d'une question en ramènerait une déjà posée"""
     question_ids = [
-        row.id for row in playable_question_query(mode, category, tag_id, content_type).all()
+        row.id for row in playable_question_query(mode, tag_id, content_type).all()
     ]
     random.shuffle(question_ids)
 
@@ -103,18 +96,17 @@ def draw_run_questions(
 def find_question(
     mode: str,
     position: int,
-    category: str | None,
     tag_id: int | None = None,
     content_type: str | None = None,
 ):
-    """Cherche la question à une position donnée, parmi celles d'un mode, categorie, tag et type de contenu
+    """Cherche la question à une position donnée, parmi celles d'un mode, tag et type de contenu
 
     Renvoie None au-delà de la dernière position de la partie : c'est ce qui
     met fin à la partie et renvoie le joueur vers l'écran de score"""
     if position < 1 or position > QUESTIONS_PER_RUN:
         return None
 
-    filters = run_filters(category, tag_id, content_type)
+    filters = run_filters(tag_id, content_type)
     question_id = run_question_id(session, mode, position, filters)
 
     if question_id is not None:
@@ -123,7 +115,7 @@ def find_question(
     # Aucun tirage en session : lien direct vers une question, session
     # expirée ou navigation manuelle. On sert alors l'ordre stable par id,
     # plutôt que de refuser la question au joueur.
-    query = build_question_query(mode, category, tag_id, content_type)
+    query = build_question_query(mode, tag_id, content_type)
 
     return query.offset(position - 1).limit(1).first()
 

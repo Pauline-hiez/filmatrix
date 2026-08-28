@@ -54,8 +54,6 @@ def admin_questions_new() -> str:
 
         new_question = Question(
             mode=request.form["mode"],
-            category=request.form["category"],
-            difficulty=request.form["difficulty"],
             prompt=request.form["prompt"],
             payload=payload,
             correct_answer=correct_answer,
@@ -90,8 +88,6 @@ def admin_questions_edit(question_id: int) -> str:
             return render_template("admin/question_form.html", question=question)
 
         question.mode = request.form["mode"]
-        question.category = request.form["category"]
-        question.difficulty = request.form["difficulty"]
         question.prompt = request.form["prompt"]
         question.payload = payload
         question.correct_answer = correct_answer

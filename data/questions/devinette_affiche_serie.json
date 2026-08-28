@@ -2,9 +2,7 @@
   {
     "id": 364,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
@@ -23,9 +21,7 @@
   {
     "id": 365,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
@@ -44,9 +40,7 @@
   {
     "id": 366,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
@@ -65,9 +59,7 @@
   {
     "id": 367,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/rAOjnEFTuNysY7bot8zonhImGMh.jpg"
@@ -86,9 +78,7 @@
   {
     "id": 368,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
@@ -107,9 +97,7 @@
   {
     "id": 369,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
@@ -128,9 +116,7 @@
   {
     "id": 370,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg"
@@ -149,9 +135,7 @@
   {
     "id": 371,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
@@ -170,9 +154,7 @@
   {
     "id": 372,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
@@ -191,9 +173,7 @@
   {
     "id": 373,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "facile",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
@@ -212,9 +192,7 @@
   {
     "id": 374,
     "mode": "devinette_affiche",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "moyen",
     "prompt": "",
     "payload": {
       "poster_url": "https://image.tmdb.org/t/p/w500/foGkPxpw9h8zln81j63mix5B7m8.jpg"
@@ -227,6 +205,502 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 8500,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
+    "correct_answer": {
+      "film": "Game of Thrones"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8501,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
+    },
+    "correct_answer": {
+      "film": "Sherlock"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8502,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/r0Q6eeN9L1ORL9QsV0Sg8ZV3vnv.jpg"
+    },
+    "correct_answer": {
+      "film": "Dr House"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8503,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/yUOFocKDW7MCC5isx4FK8A68QFp.jpg"
+    },
+    "correct_answer": {
+      "film": "Lost"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lost",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8504,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/3URK0z9PzpVNJrGE7XOuyy6KFzk.jpg"
+    },
+    "correct_answer": {
+      "film": "Chernobyl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chernobyl",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8505,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/2meX1nMdScFOoV4370rqHWKmXhY.jpg"
+    },
+    "correct_answer": {
+      "film": "Squid Game"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8506,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/3jDXL4Xvj3AzDOF6UH1xeyHW8MH.jpg"
+    },
+    "correct_answer": {
+      "film": "Dark"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8507,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/y9ekzkPFmWSqUU3Kj0wHmYUM8qu.jpg"
+    },
+    "correct_answer": {
+      "film": "Narcos"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "narcos",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8508,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/dg3OindVAGZBjlT3xYKqIAdukPL.jpg"
+    },
+    "correct_answer": {
+      "film": "Black Mirror"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "black-mirror",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8509,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/8VXhcrl5z2I1zEU9X3pkkNrZlD.jpg"
+    },
+    "correct_answer": {
+      "film": "The Crown"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-crown",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8510,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/rfxryDIv8huejujg4JueDJx8zCz.jpg"
+    },
+    "correct_answer": {
+      "film": "Better Call Saul"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8511,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/bcdUYUFk8GdpZJPiSAas9UeocLH.jpg"
+    },
+    "correct_answer": {
+      "film": "Succession"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "succession",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8512,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/lY2DhbA7Hy44fAKddr06UrXWWaQ.jpg"
+    },
+    "correct_answer": {
+      "film": "The Last of Us"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-last-of-us",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8513,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
+    "correct_answer": {
+      "film": "Kaamelott"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8514,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
+    "correct_answer": {
+      "film": "Les Simpson"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 8515,
+    "mode": "devinette_affiche",
+    "content_type": "serie",
+    "prompt": "",
+    "payload": {
+      "poster_url": "https://image.tmdb.org/t/p/w500/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg"
+    },
+    "correct_answer": {
+      "film": "Arcane"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "arcane",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
       }
     ]
   }

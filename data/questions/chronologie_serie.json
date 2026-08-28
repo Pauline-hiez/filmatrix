@@ -2,10 +2,8 @@
   {
     "id": 363,
     "mode": "chronologie",
-    "category": "anecdote",
     "content_type": "serie",
-    "difficulty": "difficile",
-    "prompt": "",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
     "payload": {
       "films": [
         "Stranger Things",
@@ -27,6 +25,931 @@
       {
         "name": "cinema-general",
         "type": "autre"
+      }
+    ]
+  },
+  {
+    "id": 6500,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Urgences",
+        "Columbo",
+        "Dallas",
+        "Les Simpson"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Columbo",
+        "Dallas",
+        "Les Simpson",
+        "Urgences"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6501,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Les Soprano",
+        "X-Files",
+        "Friends",
+        "Buffy contre les vampires"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "X-Files",
+        "Friends",
+        "Buffy contre les vampires",
+        "Les Soprano"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6502,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Dexter",
+        "Lost",
+        "The Wire",
+        "Six Feet Under"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Six Feet Under",
+        "The Wire",
+        "Lost",
+        "Dexter"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6503,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Sherlock",
+        "Mad Men",
+        "Breaking Bad",
+        "Game of Thrones"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Mad Men",
+        "Breaking Bad",
+        "Sherlock",
+        "Game of Thrones"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6504,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Peaky Blinders",
+        "Narcos",
+        "True Detective",
+        "Black Mirror"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Black Mirror",
+        "Peaky Blinders",
+        "True Detective",
+        "Narcos"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6505,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Squid Game",
+        "Dark",
+        "Chernobyl",
+        "The Crown"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "The Crown",
+        "Dark",
+        "Chernobyl",
+        "Squid Game"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6506,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "The Last of Us",
+        "The Mandalorian",
+        "Succession",
+        "Severance"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Succession",
+        "The Mandalorian",
+        "Severance",
+        "The Last of Us"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6507,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "MASH",
+        "Star Trek",
+        "Twin Peaks",
+        "Magnum"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Star Trek",
+        "MASH",
+        "Magnum",
+        "Twin Peaks"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6508,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Scrubs",
+        "Friends",
+        "How I Met Your Mother",
+        "Seinfeld"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Seinfeld",
+        "Friends",
+        "Scrubs",
+        "How I Met Your Mother"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6509,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Dix pour cent",
+        "Kaamelott",
+        "Braquo",
+        "Les Revenants"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Kaamelott",
+        "Braquo",
+        "Les Revenants",
+        "Dix pour cent"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6510,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Kaamelott",
+        "Lupin",
+        "Un village français",
+        "Plus belle la vie"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Plus belle la vie",
+        "Kaamelott",
+        "Un village français",
+        "Lupin"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6511,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "South Park",
+        "Futurama",
+        "Rick et Morty",
+        "Les Simpson"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Simpson",
+        "South Park",
+        "Futurama",
+        "Rick et Morty"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6512,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Charmed",
+        "Supernatural",
+        "Smallville",
+        "Buffy contre les vampires"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Buffy contre les vampires",
+        "Charmed",
+        "Smallville",
+        "Supernatural"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6513,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Prison Break",
+        "The Big Bang Theory",
+        "Dexter",
+        "The Walking Dead"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Prison Break",
+        "Dexter",
+        "The Big Bang Theory",
+        "The Walking Dead"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6514,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Doctor Who",
+        "Black Mirror",
+        "Broadchurch",
+        "Downton Abbey"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Doctor Who",
+        "Downton Abbey",
+        "Black Mirror",
+        "Broadchurch"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6515,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Élite",
+        "Dark",
+        "Le Jeu de la dame",
+        "Squid Game"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Dark",
+        "Élite",
+        "Le Jeu de la dame",
+        "Squid Game"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6516,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Lost",
+        "Fringe",
+        "X-Files",
+        "Twin Peaks"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Twin Peaks",
+        "X-Files",
+        "Lost",
+        "Fringe"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6517,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Grey's Anatomy",
+        "Urgences",
+        "Dr House",
+        "The Good Doctor"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Urgences",
+        "Dr House",
+        "Grey's Anatomy",
+        "The Good Doctor"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6518,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Mad Men",
+        "Boardwalk Empire",
+        "Les Soprano",
+        "The Wire"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Les Soprano",
+        "The Wire",
+        "Mad Men",
+        "Boardwalk Empire"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6519,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Severance",
+        "The Expanse",
+        "Battlestar Galactica",
+        "Westworld"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Battlestar Galactica",
+        "The Expanse",
+        "Westworld",
+        "Severance"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6520,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "The Last of Us",
+        "Wednesday",
+        "Shogun",
+        "Arcane"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Arcane",
+        "Wednesday",
+        "The Last of Us",
+        "Shogun"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6521,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "The Witcher",
+        "House of the Dragon",
+        "Vikings",
+        "Outlander"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Vikings",
+        "Outlander",
+        "The Witcher",
+        "House of the Dragon"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6522,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Succession",
+        "Better Call Saul",
+        "Fargo",
+        "Ozark"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Fargo",
+        "Better Call Saul",
+        "Ozark",
+        "Succession"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6523,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Parks and Recreation",
+        "The Office",
+        "Malcolm",
+        "Scrubs"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Malcolm",
+        "Scrubs",
+        "The Office",
+        "Parks and Recreation"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 6524,
+    "mode": "chronologie",
+    "content_type": "serie",
+    "prompt": "Remets ces titres dans leur ordre de sortie, du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Desperate Housewives",
+        "Gossip Girl",
+        "Sex and the City",
+        "Girls"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Sex and the City",
+        "Desperate Housewives",
+        "Gossip Girl",
+        "Girls"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   }

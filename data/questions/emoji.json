@@ -2,8 +2,7 @@
   {
     "id": 11,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "🦁👑🌍",
     "payload": {},
     "correct_answer": {
@@ -20,12 +19,11 @@
   {
     "id": 12,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "🕷️🧑",
     "payload": {},
     "correct_answer": {
-      "film": "SpiderMan"
+      "film": "Spider-Man"
     },
     "requires_account": false,
     "tags": [
@@ -38,8 +36,7 @@
   {
     "id": 160,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "🚢🧊💔",
     "payload": {},
     "correct_answer": {
@@ -56,8 +53,7 @@
   {
     "id": 161,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "🦖🏝️🧬",
     "payload": {},
     "correct_answer": {
@@ -74,8 +70,7 @@
   {
     "id": 162,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "🐠🔍🌊",
     "payload": {},
     "correct_answer": {
@@ -92,8 +87,7 @@
   {
     "id": 163,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "🐭👨‍🍳🇫🇷",
     "payload": {},
     "correct_answer": {
@@ -110,8 +104,7 @@
   {
     "id": 164,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "facile",
+    "content_type": "film",
     "prompt": "❄️👭⛄",
     "payload": {},
     "correct_answer": {
@@ -128,8 +121,7 @@
   {
     "id": 165,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "👽📞🚲",
     "payload": {},
     "correct_answer": {
@@ -146,8 +138,7 @@
   {
     "id": 166,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "🤖❤️🌱",
     "payload": {},
     "correct_answer": {
@@ -164,8 +155,7 @@
   {
     "id": 167,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "🏠🎈🌈",
     "payload": {},
     "correct_answer": {
@@ -182,8 +172,7 @@
   {
     "id": 168,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "moyen",
+    "content_type": "film",
     "prompt": "🕶️💊🟩",
     "payload": {},
     "correct_answer": {
@@ -200,8 +189,7 @@
   {
     "id": 169,
     "mode": "emoji",
-    "category": "anecdote",
-    "difficulty": "difficile",
+    "content_type": "film",
     "prompt": "🧙‍♂️💍🌋",
     "payload": {},
     "correct_answer": {
@@ -212,6 +200,526 @@
       {
         "name": "seigneur-des-anneaux",
         "type": "univers"
+      }
+    ]
+  },
+  {
+    "id": 4000,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🧙‍♂️⚡🏰",
+    "payload": {},
+    "correct_answer": {
+      "film": "Harry Potter"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4001,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🦈🏖️🎶",
+    "payload": {},
+    "correct_answer": {
+      "film": "Les Dents de la mer"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4002,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "👨‍🚀🌽🕳️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Interstellar"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4003,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🃏🎭🪜",
+    "payload": {},
+    "correct_answer": {
+      "film": "Joker"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "batman",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4004,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🥊🇺🇸🏃",
+    "payload": {},
+    "correct_answer": {
+      "film": "Rocky"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4005,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "👽🚀🥚",
+    "payload": {},
+    "correct_answer": {
+      "film": "Alien"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4006,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🎩🍫🏭",
+    "payload": {},
+    "correct_answer": {
+      "film": "Charlie et la chocolaterie"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4007,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🚗⚡🕐",
+    "payload": {},
+    "correct_answer": {
+      "film": "Retour vers le futur"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4008,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🧟‍♂️🚄🇰🇷",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dernier train pour Busan"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4009,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🚀🌕🧑‍🚀",
+    "payload": {},
+    "correct_answer": {
+      "film": "Apollo 13"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4010,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🦇🤡🌃",
+    "payload": {},
+    "correct_answer": {
+      "film": "The Dark Knight"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "batman",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4011,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🚿🔪🏨",
+    "payload": {},
+    "correct_answer": {
+      "film": "Psychose"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4012,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🗡️👘7️⃣",
+    "payload": {},
+    "correct_answer": {
+      "film": "Les Sept Samouraïs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1950",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4013,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "💃🎷🌃",
+    "payload": {},
+    "correct_answer": {
+      "film": "La La Land"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4014,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🏠🪳🇰🇷",
+    "payload": {},
+    "correct_answer": {
+      "film": "Parasite"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4015,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🐑🤫🕵️‍♀️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Silence des agneaux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4016,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🎈🤡🕳️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Ça"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4017,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🐺💵📈",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Loup de Wall Street"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4018,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "🎹🇵🇱🎖️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Le Pianiste"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 4019,
+    "mode": "emoji",
+    "content_type": "film",
+    "prompt": "⚔️🛡️🏛️",
+    "payload": {},
+    "correct_answer": {
+      "film": "Gladiator"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
       }
     ]
   }
