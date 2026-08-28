@@ -38,6 +38,7 @@
         </div>
 
         <div class="flex flex-col gap-4">
+            <div class="grid gap-4 sm:grid-cols-2">
             <div>
                 <label for="content-type" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
                     Films / Séries
@@ -51,25 +52,55 @@
                 </select>
             </div>
 
+            {% for tag_type, label, empty_label in [
+                ("genre", "Genre", "Tous les genres"),
+                ("univers", "Univers", "Tous les univers")
+            ] %}
+            {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
             <div>
-                <label for="tag" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Thème / Saga
+                <label for="tag-{{ tag_type }}" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    {{ label }}
                 </label>
-                <select id="tag"
+                <select id="tag-{{ tag_type }}" data-tag-filter
                         class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">Tous les thèmes</option>
-                    {% for tag_type, label in [("genre", "Genres"), ("univers", "Univers"), ("saga", "Sagas"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
-                    {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
-                    {% if typed_tags %}
-                    <optgroup label="{{ label }}">
-                        {% for tag in typed_tags %}
-                        <option value="{{ tag.id }}" {% if tag.id == selected_tag_id %}selected{% endif %}>{{ tag.name }}</option>
-                        {% endfor %}
-                    </optgroup>
-                    {% endif %}
+                    <option value="">{{ empty_label }}</option>
+                    {% for tag in typed_tags %}
+                    <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
                     {% endfor %}
                 </select>
             </div>
+            {% endfor %}
+            </div>
+
+            <details class="group rounded-xl border border-slate-700/70 bg-slate-950/30 px-4 py-3">
+                <summary class="cursor-pointer list-none text-sm font-bold text-slate-300 marker:hidden">
+                    <span class="flex items-center justify-between">
+                        Filtres avancés
+                        <span class="text-xs font-normal text-slate-500 transition group-open:rotate-180">⌄</span>
+                    </span>
+                </summary>
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                {% for tag_type, label, empty_label in [
+                    ("saga", "Saga", "Toutes les sagas"),
+                    ("pays", "Pays", "Tous les pays"),
+                    ("epoque", "Époque", "Toutes les époques"),
+                    ("annee", "Année", "Toutes les années"),
+                    ("realisateur", "Réalisateur", "Tous les réalisateurs"),
+                    ("acteur", "Acteur", "Tous les acteurs"),
+                    ("studio", "Studio", "Tous les studios"),
+                    ("autre", "Autre", "Tous les autres thèmes")
+                ] %}
+                {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+                <div>
+                    <label for="tag-{{ tag_type }}" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">{{ label }}</label>
+                    <select id="tag-{{ tag_type }}" data-tag-filter class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                        <option value="">{{ empty_label }}</option>
+                        {% for tag in typed_tags %}<option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>{% endfor %}
+                    </select>
+                </div>
+                {% endfor %}
+                </div>
+            </details>
 
             <div>
                 <label for="level" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">

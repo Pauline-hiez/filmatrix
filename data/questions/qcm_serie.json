@@ -2158,5 +2158,2505 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 20500,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans South Park, quel personnage meurt dans presque chaque épisode des premières saisons ?",
+    "payload": {
+      "options": [
+        "Kenny",
+        "Cartman",
+        "Kyle",
+        "Stan"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20501,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans quel État américain se situe la ville de South Park ?",
+    "payload": {
+      "options": [
+        "Le Wyoming",
+        "Le Montana",
+        "L'Utah",
+        "Le Colorado"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "south-park",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20502,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Les Simpson, qui dirige la centrale nucléaire de Springfield ?",
+    "payload": {
+      "options": [
+        "Ned Flanders",
+        "Moe Szyslak",
+        "Monsieur Burns",
+        "Waylon Smithers"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20503,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Les Simpson, quel est le prénom de la plus jeune enfant de la famille ?",
+    "payload": {
+      "options": [
+        "Selma",
+        "Maggie",
+        "Lisa",
+        "Patty"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-simpson",
+        "type": "univers"
+      },
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20504,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Game of Thrones, quelle maison a pour devise « Nous ne semons pas » ?",
+    "payload": {
+      "options": [
+        "Greyjoy",
+        "Tully",
+        "Martell",
+        "Tyrell"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20505,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Game of Thrones, quel personnage Sean Bean incarne-t-il ?",
+    "payload": {
+      "options": [
+        "Robert Baratheon",
+        "Jorah Mormont",
+        "Tywin Lannister",
+        "Eddard Stark"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "game-of-thrones",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20506,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Vikings, quel guerrier légendaire la série suit-elle en premier lieu ?",
+    "payload": {
+      "options": [
+        "Harald à la Belle Chevelure",
+        "Rollon",
+        "Ragnar Lothbrok",
+        "Erik le Rouge"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20507,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Vikings, quel personnage est le frère de Ragnar ?",
+    "payload": {
+      "options": [
+        "Torstein",
+        "Rollo",
+        "Floki",
+        "Bjorn"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "vikings",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "irlande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20508,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Handmaid's Tale, quel nom porte le régime théocratique ?",
+    "payload": {
+      "options": [
+        "Gilead",
+        "Panem",
+        "Oceania",
+        "Sion"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20509,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Handmaid's Tale, quelle actrice incarne June Osborne ?",
+    "payload": {
+      "options": [
+        "Yvonne Strahovski",
+        "Alexis Bledel",
+        "Madeline Brewer",
+        "Elisabeth Moss"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-handmaids-tale",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20510,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, de quel royaume Léodagan est-il le roi ?",
+    "payload": {
+      "options": [
+        "La Calédonie",
+        "Le Vannes",
+        "La Carmélide",
+        "L'Orcanie"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20511,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, comment se prénomme la tavernière dont Arthur est épris ?",
+    "payload": {
+      "options": [
+        "Azénor",
+        "Demetra",
+        "Aconia",
+        "Mevanwi"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20512,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Malcolm, quelle particularité vaut à Malcolm d'être placé dans une classe à part ?",
+    "payload": {
+      "options": [
+        "Un quotient intellectuel très élevé",
+        "Une surdité partielle",
+        "Un trouble du sommeil",
+        "Une santé fragile"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "malcolm",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20513,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Malcolm, quel est le prénom de la mère de famille ?",
+    "payload": {
+      "options": [
+        "Piama",
+        "Kitty",
+        "Polly",
+        "Loïs"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "malcolm",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20514,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Friends, quel est le métier de Chandler Bing, que personne n'arrive à retenir ?",
+    "payload": {
+      "options": [
+        "Publicitaire",
+        "Expert-comptable",
+        "Analyste de données statistiques",
+        "Avocat d'affaires"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "friends",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20515,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Big Bang Theory, quel métier Penny exerce-t-elle au début de la série ?",
+    "payload": {
+      "options": [
+        "Vendeuse en pharmacie",
+        "Serveuse au Cheesecake Factory",
+        "Infirmière",
+        "Actrice confirmée"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20516,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Big Bang Theory, quelle discipline Sheldon Cooper pratique-t-il ?",
+    "payload": {
+      "options": [
+        "La physique théorique",
+        "La biologie moléculaire",
+        "L'ingénierie aérospatiale",
+        "L'astrophysique"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-big-bang-theory",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20517,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans How I Met Your Mother, quel bar la bande fréquente-t-elle sans relâche ?",
+    "payload": {
+      "options": [
+        "Le Central Perk",
+        "Le Paddy's Pub",
+        "Le Moe's",
+        "Le MacLaren's"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20518,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans How I Met Your Mother, quel est le métier de Ted Mosby ?",
+    "payload": {
+      "options": [
+        "Journaliste",
+        "Médecin",
+        "Architecte",
+        "Avocat"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "how-i-met-your-mother",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20519,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, quelle est la spécialité de Dexter Morgan à la police de Miami ?",
+    "payload": {
+      "options": [
+        "La balistique",
+        "L'analyse des traces de sang",
+        "La médecine légale",
+        "L'informatique"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20520,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, quel code moral le héros s'impose-t-il ?",
+    "payload": {
+      "options": [
+        "Le Code de Harry",
+        "La loi du talion",
+        "Le serment d'Hippocrate",
+        "La règle des trois"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dexter",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20521,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans quel État américain se déroule That '70s Show ?",
+    "payload": {
+      "options": [
+        "L'Ohio",
+        "Le Michigan",
+        "L'Illinois",
+        "Le Wisconsin"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "that-70s-show",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20522,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans That '70s Show, quel acteur incarne Michael Kelso ?",
+    "payload": {
+      "options": [
+        "Danny Masterson",
+        "Wilmer Valderrama",
+        "Ashton Kutcher",
+        "Topher Grace"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "that-70s-show",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20523,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans La Casa de Papel, quel bâtiment est braqué dans la première partie ?",
+    "payload": {
+      "options": [
+        "Le palais royal de Madrid",
+        "La Fabrique nationale de la monnaie et du timbre",
+        "La Banque d'Espagne",
+        "Le musée du Prado"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-casa-de-papel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "espagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20524,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Squid Game, quel est le nom du joueur numéro 456 ?",
+    "payload": {
+      "options": [
+        "Seong Gi-hun",
+        "Cho Sang-woo",
+        "Kang Sae-byeok",
+        "Oh Il-nam"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "squid-game",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "coree-du-sud",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20525,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Stranger Things, quel club Eddie Munson préside-t-il au lycée de Hawkins ?",
+    "payload": {
+      "options": [
+        "Le Club des Ratés",
+        "La Garde de Nuit",
+        "Le Scoops Troop",
+        "Le Hellfire Club"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "stranger-things",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20526,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Quelle particularité de format American Horror Story a-t-elle imposée à la télévision ?",
+    "payload": {
+      "options": [
+        "La série est diffusée en direct",
+        "Les épisodes sont muets",
+        "Chaque saison raconte une histoire close, avec les mêmes acteurs dans de nouveaux rôles",
+        "Chaque épisode dure deux heures"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20527,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Quelle actrice, récompensée d'un Emmy, est l'un des visages récurrents des premières saisons d'American Horror Story ?",
+    "payload": {
+      "options": [
+        "Glenn Close",
+        "Jessica Lange",
+        "Meryl Streep",
+        "Susan Sarandon"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-horror-story",
+        "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20528,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Quel épisode de Black Mirror laisse le spectateur choisir le déroulement de l'histoire ?",
+    "payload": {
+      "options": [
+        "Bandersnatch",
+        "San Junipero",
+        "Chute libre",
+        "USS Callister"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "black-mirror",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20529,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Mindhunter, quelle unité du FBI les héros contribuent-ils à fonder ?",
+    "payload": {
+      "options": [
+        "La cellule antiterroriste",
+        "La brigade des stupéfiants",
+        "La police scientifique",
+        "L'unité des sciences du comportement"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20530,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Quel réalisateur est à l'origine de la série Mindhunter et en a réalisé plusieurs épisodes ?",
+    "payload": {
+      "options": [
+        "Jonathan Demme",
+        "Michael Mann",
+        "David Fincher",
+        "Martin Scorsese"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mindhunter",
+        "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20531,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Breaking Bad, quel commerce sert de couverture au blanchiment de Walter White ?",
+    "payload": {
+      "options": [
+        "Une salle de sport",
+        "Un lavage de voitures",
+        "Une laverie automatique",
+        "Un restaurant mexicain"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "breaking-bad",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20532,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Lucifer, quel établissement Lucifer Morningstar tient-il à Los Angeles ?",
+    "payload": {
+      "options": [
+        "Une boîte de nuit",
+        "Un cabinet d'avocats",
+        "Un restaurant gastronomique",
+        "Un casino"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20533,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Lucifer, quel pouvoir le héros exerce-t-il sur les humains ?",
+    "payload": {
+      "options": [
+        "Il lit dans leurs pensées",
+        "Il les rend invisibles",
+        "Il remonte le temps",
+        "Il leur fait avouer leur désir le plus profond"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "lucifer",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20534,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Peaky Blinders, d'où vient le surnom du gang ?",
+    "payload": {
+      "options": [
+        "De la couleur de leurs costumes",
+        "Du pub qu'ils possèdent",
+        "Des lames de rasoir cousues dans la visière de leurs casquettes",
+        "Du nom de leur quartier"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "peaky-blinders",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20535,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Euphoria, quelle actrice incarne Rue Bennett ?",
+    "payload": {
+      "options": [
+        "Maude Apatow",
+        "Zendaya",
+        "Sydney Sweeney",
+        "Hunter Schafer"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "euphoria",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20536,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Boys, quel nom porte l'équipe de super-héros vedette de Vought ?",
+    "payload": {
+      "options": [
+        "Les Sept",
+        "La Ligue",
+        "Les Vengeurs",
+        "La Patrouille"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20537,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Boys, quel super-héros dirige l'équipe et se révèle le plus dangereux ?",
+    "payload": {
+      "options": [
+        "A-Train",
+        "Black Noir",
+        "Le Protecteur adjoint",
+        "Homelander"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-boys",
+        "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20538,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Famille d'abord, quel humoriste tient le rôle du père de famille ?",
+    "payload": {
+      "options": [
+        "Martin Lawrence",
+        "Chris Rock",
+        "Damon Wayans",
+        "Eddie Murphy"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "famille-dabord",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20539,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Dr House, quel est le nom de l'hôpital où exerce le docteur House ?",
+    "payload": {
+      "options": [
+        "Le County General",
+        "Princeton-Plainsboro",
+        "Le Seattle Grace",
+        "Le Sacré-Cœur"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dr-house",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20540,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Scrubs, comment le docteur Cox s'adresse-t-il systématiquement à J.D. ?",
+    "payload": {
+      "options": [
+        "En l'appelant par des prénoms féminins",
+        "En l'appelant « Bambi »",
+        "En l'appelant « le Bleu »",
+        "En ne l'appelant jamais autrement que « docteur »"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scrubs",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20541,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Scrubs, quel est le nom de l'hôpital ?",
+    "payload": {
+      "options": [
+        "Princeton-Plainsboro",
+        "Le County General",
+        "Le Seattle Grace",
+        "Le Sacré-Cœur"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scrubs",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20542,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Better Call Saul, quel lien unit Jimmy McGill à Chuck ?",
+    "payload": {
+      "options": [
+        "Ce sont père et fils",
+        "Ce sont deux cousins",
+        "Ce sont deux frères",
+        "Ce sont deux associés sans lien de parenté"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "better-call-saul",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20543,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The White Lotus, quel type de lieu chaque saison prend-elle pour décor ?",
+    "payload": {
+      "options": [
+        "Un cabinet d'avocats",
+        "Un hôtel de luxe",
+        "Un hôpital privé",
+        "Un lycée huppé"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-white-lotus",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20544,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "De quel genre d'émission la série La Flamme est-elle la parodie ?",
+    "payload": {
+      "options": [
+        "Une télé-réalité sentimentale",
+        "Un jeu d'aventure et de survie",
+        "Un télé-crochet musical",
+        "Un magazine d'investigation"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-flamme",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20545,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Quel humoriste a créé La Flamme et en tient le rôle principal ?",
+    "payload": {
+      "options": [
+        "Kyan Khojandi",
+        "Fary",
+        "Ahmed Sylla",
+        "Jonathan Cohen"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-flamme",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20546,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Le Flambeau, quelle épreuve les candidats affrontent-ils ?",
+    "payload": {
+      "options": [
+        "Un hiver en refuge de montagne",
+        "Un camping en Corse",
+        "Un raid d'aventure en Amérique du Sud",
+        "Une croisière en Méditerranée"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-flambeau",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20547,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Dark, quelle année sert de point de départ à l'intrigue ?",
+    "payload": {
+      "options": [
+        "2052",
+        "2019",
+        "1986",
+        "1953"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "dark",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "allemagne",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20548,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans quel lieu se déroule la série française H ?",
+    "payload": {
+      "options": [
+        "Un hôpital",
+        "Un lycée",
+        "Un commissariat",
+        "Une agence de publicité"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "h",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20549,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Quelle chaîne a diffusé la série H de 1998 à 2002 ?",
+    "payload": {
+      "options": [
+        "TF1",
+        "France 2",
+        "M6",
+        "Canal+"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "h",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20550,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans La Petite Maison dans la prairie, quel est le nom de la famille principale ?",
+    "payload": {
+      "options": [
+        "Les Garvey",
+        "Les Edwards",
+        "Les Ingalls",
+        "Les Oleson"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-petite-maison-dans-la-prairie",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20551,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans La Petite Maison dans la prairie, dans quelle localité la famille s'installe-t-elle ?",
+    "payload": {
+      "options": [
+        "Silver Lake",
+        "Walnut Grove",
+        "Springfield",
+        "Green Bay"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-petite-maison-dans-la-prairie",
+        "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20552,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Notre belle famille, quelle situation réunit les deux familles ?",
+    "payload": {
+      "options": [
+        "Un veuf et une divorcée se marient et réunissent leurs enfants",
+        "Deux familles se partagent une même maison",
+        "Une famille adopte trois enfants",
+        "Deux frères élèvent leurs enfants ensemble"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "notre-belle-famille",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20553,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Une nounou d'enfer, quel métier Fran Fine exerçait-elle avant de devenir nounou ?",
+    "payload": {
+      "options": [
+        "Coiffeuse",
+        "Serveuse",
+        "Chanteuse de cabaret",
+        "Vendeuse dans une boutique de mariage"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "une-nounou-denfer",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20554,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Une nounou d'enfer, quel est le métier de Maxwell Sheffield ?",
+    "payload": {
+      "options": [
+        "Chirurgien",
+        "Banquier",
+        "Producteur de théâtre à Broadway",
+        "Avocat d'affaires"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "une-nounou-denfer",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20555,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans X-Files, quel est le prénom de la sœur de Fox Mulder, disparue quand il était enfant ?",
+    "payload": {
+      "options": [
+        "Teena",
+        "Samantha",
+        "Melissa",
+        "Diana"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-files",
+        "type": "univers"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20556,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Charmed, quel lien unit les trois sorcières ?",
+    "payload": {
+      "options": [
+        "Ce sont trois sœurs",
+        "Ce sont des cousines",
+        "Ce sont des amies d'enfance",
+        "Ce sont une mère et ses filles"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20557,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Charmed, comment se nomme le grimoire de la famille Halliwell ?",
+    "payload": {
+      "options": [
+        "Le Grimoire des Anciens",
+        "Le Codex",
+        "Le Livre des Sorts",
+        "Le Livre des Ombres"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "charmed",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20558,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans You, quel métier Joe Goldberg exerce-t-il au début de la série ?",
+    "payload": {
+      "options": [
+        "Photographe",
+        "Barman",
+        "Libraire",
+        "Professeur de lettres"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "you",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20559,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Once Upon a Time, dans quelle ville les personnages de contes sont-ils exilés ?",
+    "payload": {
+      "options": [
+        "Mystic Falls",
+        "Storybrooke",
+        "Sleepy Hollow",
+        "Hawkins"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "once-upon-a-time",
+        "type": "univers"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20560,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "De quel film la série Bates Motel est-elle la préquelle ?",
+    "payload": {
+      "options": [
+        "Psychose",
+        "Shining",
+        "L'Exorciste",
+        "Les Oiseaux"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bates-motel",
+        "type": "univers"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20561,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "De quelle série Young Sheldon est-elle le spin-off ?",
+    "payload": {
+      "options": [
+        "Friends",
+        "Mon oncle Charlie",
+        "Malcolm",
+        "The Big Bang Theory"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "young-sheldon",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20562,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Mon oncle Charlie, quel acteur a quitté la série au terme de la huitième saison ?",
+    "payload": {
+      "options": [
+        "Ashton Kutcher",
+        "Angus T. Jones",
+        "Charlie Sheen",
+        "Jon Cryer"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "mon-oncle-charlie",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20563,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Middle, dans quel État américain la famille Heck vit-elle ?",
+    "payload": {
+      "options": [
+        "Le Nebraska",
+        "L'Indiana",
+        "L'Ohio",
+        "Le Kansas"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "the-middle",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20564,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans New Girl, quelle particularité de la colocation de Jess la série met-elle en scène ?",
+    "payload": {
+      "options": [
+        "Elle emménage avec trois hommes",
+        "Elle vit avec sa sœur jumelle",
+        "Elle habite seule au-dessus d'un bar",
+        "Elle loge chez ses parents"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "new-girl",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20565,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Le Prince de Bel-Air, de quelle ville Will arrive-t-il chez son oncle ?",
+    "payload": {
+      "options": [
+        "Détroit",
+        "Chicago",
+        "Baltimore",
+        "Philadelphie"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-prince-de-bel-air",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20566,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Le Prince de Bel-Air, quel est le métier de l'oncle Phil ?",
+    "payload": {
+      "options": [
+        "Banquier",
+        "Producteur de disques",
+        "Avocat, puis juge",
+        "Médecin"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-prince-de-bel-air",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20567,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans quelle ville se déroule la version américaine de Shameless ?",
+    "payload": {
+      "options": [
+        "Baltimore",
+        "Chicago",
+        "Manchester",
+        "Détroit"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shameless",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20568,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Shameless, quel acteur incarne le père alcoolique Frank Gallagher ?",
+    "payload": {
+      "options": [
+        "William H. Macy",
+        "Kevin Bacon",
+        "Steve Buscemi",
+        "Woody Harrelson"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "shameless",
+        "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

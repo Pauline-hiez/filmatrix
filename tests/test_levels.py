@@ -121,5 +121,8 @@ def test_setup_screen_lists_no_tag_for_a_mode_without_tagged_questions(client, a
 
     page_emoji = client.get("/quiz/emoji").data
 
-    assert "Tous les thèmes".encode() in page_emoji
+    assert "Tous les genres".encode() in page_emoji
+    assert "Tous les univers".encode() in page_emoji
+    assert "Tous les pays".encode() in page_emoji
+    assert "Toutes les époques".encode() in page_emoji
     assert "Star Wars".encode() not in page_emoji

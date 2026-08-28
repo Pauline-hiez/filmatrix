@@ -690,5 +690,4257 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 20000,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Bohemian Rhapsody, quel acteur incarne Freddie Mercury ?",
+    "payload": {
+      "options": [
+        "Rami Malek",
+        "Ben Whishaw",
+        "Joseph Mazzello",
+        "Gwilym Lee"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20001,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "De quel groupe de rock le film The Dirt raconte-t-il l'ascension ?",
+    "payload": {
+      "options": [
+        "Guns N' Roses",
+        "Poison",
+        "Twisted Sister",
+        "Mötley Crüe"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20002,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Bob Marley: One Love, quel acteur incarne Bob Marley ?",
+    "payload": {
+      "options": [
+        "John Boyega",
+        "Damson Idris",
+        "Kingsley Ben-Adir",
+        "Daniel Kaluuya"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20003,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Le film Aline transpose librement le destin de quelle chanteuse ?",
+    "payload": {
+      "options": [
+        "France Gall",
+        "Céline Dion",
+        "Mylène Farmer",
+        "Lara Fabian"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20004,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Qui a réalisé le film Aline et en tient également le rôle principal ?",
+    "payload": {
+      "options": [
+        "Valérie Lemercier",
+        "Josiane Balasko",
+        "Agnès Jaoui",
+        "Julie Delpy"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20005,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Wayne's World, quelle chanson Wayne et sa bande reprennent-ils en headbangant dans la voiture ?",
+    "payload": {
+      "options": [
+        "Stairway to Heaven",
+        "Paradise City",
+        "Smoke on the Water",
+        "Bohemian Rhapsody"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20006,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Maman, j'ai raté l'avion !, quel est le prénom de l'enfant oublié à la maison ?",
+    "payload": {
+      "options": [
+        "Peter",
+        "Marv",
+        "Kevin",
+        "Buzz"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20007,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Maman, j'ai encore raté l'avion !, dans quelle ville Kevin atterrit-il par erreur ?",
+    "payload": {
+      "options": [
+        "Paris",
+        "New York",
+        "Miami",
+        "Chicago"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "maman-jai-rate-lavion",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20008,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Austin Powers, comment se nomme l'ennemi juré du héros ?",
+    "payload": {
+      "options": [
+        "Le Docteur Denfer",
+        "Le Docteur No",
+        "Ernst Blofeld",
+        "Le Docteur Fatalis"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "austin-powers",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20009,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel acteur interprète à la fois Austin Powers et le Docteur Denfer ?",
+    "payload": {
+      "options": [
+        "Rob Lowe",
+        "Michael Caine",
+        "Seth Green",
+        "Mike Myers"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "austin-powers",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "mike-myers",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20010,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Les Visiteurs, quel est le nom du serviteur de Godefroy de Montmirail ?",
+    "payload": {
+      "options": [
+        "Prosper",
+        "Ganelon",
+        "Jacquouille la Fripouille",
+        "Jacquasse le Crasseux"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20011,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel duo d'acteurs tient les rôles principaux des Visiteurs ?",
+    "payload": {
+      "options": [
+        "Thierry Lhermitte et Christian Clavier",
+        "Jean Reno et Christian Clavier",
+        "Gérard Depardieu et Christian Clavier",
+        "Jean Reno et Gérard Jugnot"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jean-reno",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20012,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Ted, quelle est la particularité de l'ours en peluche de John ?",
+    "payload": {
+      "options": [
+        "Il est vivant, parle et boit",
+        "Il est télécommandé",
+        "Il est hanté",
+        "C'est un prototype militaire"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ted",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20013,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Projet X, quel événement échappe totalement à ses organisateurs ?",
+    "payload": {
+      "options": [
+        "Un mariage",
+        "Un enterrement de vie de garçon à Las Vegas",
+        "Un bal de promo",
+        "Une fête d'anniversaire donnée en l'absence des parents"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20014,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Cercle, combien de jours reste-t-il à vivre à celui qui a regardé la cassette ?",
+    "payload": {
+      "options": [
+        "Treize",
+        "Vingt-huit",
+        "Sept",
+        "Trois"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20015,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Hostel (2005) ?",
+    "payload": {
+      "options": [
+        "Alexandre Aja",
+        "Eli Roth",
+        "Rob Zombie",
+        "James Wan"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "eli-roth",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20016,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur français a signé le remake de 2006 de La Colline a des yeux ?",
+    "payload": {
+      "options": [
+        "Alexandre Aja",
+        "Pascal Laugier",
+        "Xavier Gens",
+        "Julien Maury"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20017,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Ça, quel nom porte le clown qui hante Derry ?",
+    "payload": {
+      "options": [
+        "Art",
+        "Captain Spaulding",
+        "Twisty",
+        "Grippe-Sou"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20018,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Ça, comment le groupe d'enfants se surnomme-t-il lui-même ?",
+    "payload": {
+      "options": [
+        "La Bande à Georgie",
+        "Les Enfants de Derry",
+        "Le Club des Ratés",
+        "Le Club des Cinq"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ca",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20019,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans L'Exorciste (1973), quel est le prénom de la fillette possédée ?",
+    "payload": {
+      "options": [
+        "Danielle",
+        "Regan",
+        "Carrie",
+        "Rosemary"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20020,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "De quel média le film Silent Hill (2006) est-il adapté ?",
+    "payload": {
+      "options": [
+        "Un jeu vidéo",
+        "Un roman de Stephen King",
+        "Une bande dessinée",
+        "Une série télévisée"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20021,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans La Maison de cire (2005), quelle est la véritable nature des statues du musée ?",
+    "payload": {
+      "options": [
+        "Elles s'animent la nuit",
+        "Elles sont creuses et piégées",
+        "Ce sont des automates",
+        "Ce sont des personnes recouvertes de cire"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20022,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "De quel auteur le film Simetierre est-il adapté ?",
+    "payload": {
+      "options": [
+        "Clive Barker",
+        "H. P. Lovecraft",
+        "Stephen King",
+        "Dean Koontz"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20023,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Misery, quel métier exerce l'homme retenu prisonnier par Annie Wilkes ?",
+    "payload": {
+      "options": [
+        "Policier",
+        "Écrivain",
+        "Médecin",
+        "Journaliste"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "kathy-bates",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20024,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quelle actrice a remporté l'Oscar de la meilleure actrice pour Misery ?",
+    "payload": {
+      "options": [
+        "Kathy Bates",
+        "Jessica Lange",
+        "Sissy Spacek",
+        "Kathleen Turner"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "kathy-bates",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20025,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé coup sur coup Hérédité et Midsommar ?",
+    "payload": {
+      "options": [
+        "Robert Eggers",
+        "Jordan Peele",
+        "Ti West",
+        "Ari Aster"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20026,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans quel pays se déroule la fête au cœur de Midsommar ?",
+    "payload": {
+      "options": [
+        "En Finlande",
+        "Au Danemark",
+        "En Suède",
+        "En Norvège"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20027,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans The Descent, où le groupe de spéléologues se retrouve-t-il piégé ?",
+    "payload": {
+      "options": [
+        "Dans une mine désaffectée",
+        "Dans un réseau de grottes",
+        "Dans un chalet isolé",
+        "Dans un bunker"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20028,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans American Psycho, quel métier Patrick Bateman exerce-t-il le jour ?",
+    "payload": {
+      "options": [
+        "Banquier d'affaires à Wall Street",
+        "Avocat",
+        "Chirurgien esthétique",
+        "Publicitaire"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20029,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Fight Club, quelle est la première règle du club ?",
+    "payload": {
+      "options": [
+        "On ne se bat qu'à deux",
+        "Un seul combat à la fois",
+        "Ni chaussures ni chemise",
+        "Il est interdit de parler du Fight Club"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      },
+      {
+        "name": "edward-norton",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20030,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Suicide Squad (2016), quelle actrice incarne Harley Quinn ?",
+    "payload": {
+      "options": [
+        "Viola Davis",
+        "Karen Fukuhara",
+        "Margot Robbie",
+        "Cara Delevingne"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20031,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Seigneur des Anneaux, quel personnage est également appelé Grands-Pas ?",
+    "payload": {
+      "options": [
+        "Gandalf",
+        "Aragorn",
+        "Boromir",
+        "Faramir"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20032,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Hobbit, quel est le nom du dragon installé sous la Montagne Solitaire ?",
+    "payload": {
+      "options": [
+        "Smaug",
+        "Glaurung",
+        "Ancalagon",
+        "Scatha"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20033,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Retour vers le futur, quelle vitesse la DeLorean doit-elle atteindre pour voyager dans le temps ?",
+    "payload": {
+      "options": [
+        "100 miles à l'heure",
+        "66 miles à l'heure",
+        "121 miles à l'heure",
+        "88 miles à l'heure"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "retour-vers-le-futur",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20034,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Star Wars, quel est le nom du vaisseau de Han Solo ?",
+    "payload": {
+      "options": [
+        "L'Étoile noire",
+        "Le Razor Crest",
+        "Le Faucon Millenium",
+        "Le Tantive IV"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "star-wars",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "george-lucas",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20035,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel est le premier long métrage réalisé par George Lucas ?",
+    "payload": {
+      "options": [
+        "Willow",
+        "THX 1138",
+        "American Graffiti",
+        "Star Wars"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "george-lucas",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20036,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Harry Potter, qui dirige Poudlard à l'arrivée de Harry ?",
+    "payload": {
+      "options": [
+        "Albus Dumbledore",
+        "Severus Rogue",
+        "Minerva McGonagall",
+        "Cornelius Fudge"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20037,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a mis en scène les deux premiers films Harry Potter ?",
+    "payload": {
+      "options": [
+        "Alfonso Cuarón",
+        "Mike Newell",
+        "David Yates",
+        "Chris Columbus"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "chris-columbus",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20038,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Pirates des Caraïbes, quel est le nom du navire de Jack Sparrow ?",
+    "payload": {
+      "options": [
+        "L'Interceptor",
+        "La Vengeance de la reine Anne",
+        "Le Black Pearl",
+        "Le Hollandais volant"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "pirates-des-caraibes",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "johnny-depp",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20039,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans la saga Saw, quel surnom la presse donne-t-elle au tueur ?",
+    "payload": {
+      "options": [
+        "Le Marionnettiste",
+        "Jigsaw",
+        "Ghostface",
+        "Le Croquemitaine"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "saw",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20040,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans X-Men, quel est le véritable prénom de Wolverine ?",
+    "payload": {
+      "options": [
+        "Logan",
+        "Scott",
+        "Erik",
+        "Hank"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "x-men",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20041,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Hunger Games, de quel district Katniss Everdeen est-elle originaire ?",
+    "payload": {
+      "options": [
+        "Le district 1",
+        "Le district 7",
+        "Le Capitole",
+        "Le district 12"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hunger-games",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20042,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Men in Black, quel objet les agents utilisent-ils pour effacer la mémoire des témoins ?",
+    "payload": {
+      "options": [
+        "Le désintégrateur",
+        "Le rayon zêta",
+        "Le neuralyseur",
+        "Le flash-mémoire"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "men-in-black",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20043,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Spider-Man (2002), quel acteur incarne Peter Parker ?",
+    "payload": {
+      "options": [
+        "Topher Grace",
+        "Tobey Maguire",
+        "Andrew Garfield",
+        "Tom Holland"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "spider-man",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20044,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Matrix, quelle pilule Neo choisit-il face à Morpheus ?",
+    "payload": {
+      "options": [
+        "La rouge",
+        "La bleue",
+        "La verte",
+        "Il refuse les deux"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "matrix",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "keanu-reeves",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20045,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans American Pie, quel dessert Jim utilise-t-il pour s'entraîner, donnant son titre au film ?",
+    "payload": {
+      "options": [
+        "Un gâteau au chocolat",
+        "Une pastèque",
+        "Un pot de confiture",
+        "Une tarte aux pommes"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-pie",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20046,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Astérix et Obélix : Mission Cléopâtre, quel acteur incarne l'architecte Numérobis ?",
+    "payload": {
+      "options": [
+        "Gérard Darmon",
+        "Alain Chabat",
+        "Jamel Debbouze",
+        "Édouard Baer"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "asterix",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20047,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Qui a réalisé Astérix et Obélix : Mission Cléopâtre ?",
+    "payload": {
+      "options": [
+        "Laurent Tirard",
+        "Alain Chabat",
+        "Claude Zidi",
+        "Frédéric Forestier"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "asterix",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20048,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quelle actrice incarne Bridget Jones à l'écran ?",
+    "payload": {
+      "options": [
+        "Renée Zellweger",
+        "Kate Winslet",
+        "Emma Thompson",
+        "Sandra Bullock"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "bridget-jones",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20049,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Very Bad Trip, dans quelle ville les héros se réveillent-ils sans aucun souvenir ?",
+    "payload": {
+      "options": [
+        "Bangkok",
+        "Los Angeles",
+        "Atlantic City",
+        "Las Vegas"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "very-bad-trip",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "bradley-cooper",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20050,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Jurassic Park, comment les dinosaures ont-ils été recréés ?",
+    "payload": {
+      "options": [
+        "À partir d'œufs retrouvés congelés",
+        "En reconstituant leurs ossements",
+        "À partir d'ADN prélevé sur des moustiques fossilisés",
+        "Par clonage d'oiseaux actuels"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "jurassic-park",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20051,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Les Aventuriers de l'arche perdue, quel objet Indiana Jones recherche-t-il ?",
+    "payload": {
+      "options": [
+        "Un crâne de cristal",
+        "L'Arche d'alliance",
+        "Le Saint Graal",
+        "Les pierres de Sankara"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "indiana-jones",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20052,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Piège de cristal, quel acteur incarne le policier John McClane ?",
+    "payload": {
+      "options": [
+        "Bruce Willis",
+        "Mel Gibson",
+        "Kurt Russell",
+        "Nicolas Cage"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "die-hard",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "bruce-willis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20053,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans La Momie (1999), quelle momie les héros réveillent-ils ?",
+    "payload": {
+      "options": [
+        "Toutânkhamon",
+        "Ramsès",
+        "Anck-Su-Namun",
+        "Imhotep"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "la-momie",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20054,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel acteur incarne Hubert Bonisseur de La Bath dans OSS 117 : Le Caire, nid d'espions ?",
+    "payload": {
+      "options": [
+        "Guillaume Canet",
+        "Édouard Baer",
+        "Jean Dujardin",
+        "Gad Elmaleh"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "oss-117",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20055,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Gremlins, quelle règle ne doit surtout pas être enfreinte après minuit ?",
+    "payload": {
+      "options": [
+        "Ne pas le laisser seul",
+        "Ne pas nourrir Gizmo",
+        "Ne pas le mouiller",
+        "Ne pas l'exposer à la lumière vive"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "gremlins",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20056,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel acteur a incarné James Bond le premier dans la série produite par EON ?",
+    "payload": {
+      "options": [
+        "Sean Connery",
+        "Roger Moore",
+        "George Lazenby",
+        "Timothy Dalton"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "james-bond",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20057,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Ace Ventura, quelle est la spécialité du héros ?",
+    "payload": {
+      "options": [
+        "Vétérinaire de zoo",
+        "Dresseur de dauphins",
+        "Inspecteur de police",
+        "Détective spécialisé dans les animaux"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "ace-ventura",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20058,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Alien, quel est le nom du vaisseau commercial du premier film ?",
+    "payload": {
+      "options": [
+        "Le Prometheus",
+        "Le Betty",
+        "Le Nostromo",
+        "Le Sulaco"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "alien",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20059,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Predator (1987), quel acteur incarne le commando Dutch ?",
+    "payload": {
+      "options": [
+        "Dolph Lundgren",
+        "Arnold Schwarzenegger",
+        "Sylvester Stallone",
+        "Jean-Claude Van Damme"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "predator",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20060,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Terminator 2, quel modèle de Terminator protège John Connor ?",
+    "payload": {
+      "options": [
+        "Le T-800",
+        "Le T-1000",
+        "Le T-X",
+        "Le T-3000"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terminator",
+        "type": "saga"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "james-cameron",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20061,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Rocky, quelle ville le héros traverse-t-il en courant pendant son entraînement ?",
+    "payload": {
+      "options": [
+        "New York",
+        "Chicago",
+        "Boston",
+        "Philadelphie"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "rocky",
+        "type": "saga"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20062,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans American Nightmare, quelle est la règle de la nuit annuelle ?",
+    "payload": {
+      "options": [
+        "Chaque famille doit désigner un membre",
+        "La police a tous les droits",
+        "Tous les crimes sont autorisés pendant douze heures",
+        "Il est interdit de sortir de chez soi"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "american-nightmare",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20063,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a lancé coup sur coup les sagas Insidious et Conjuring ?",
+    "payload": {
+      "options": [
+        "Ari Aster",
+        "James Wan",
+        "Eli Roth",
+        "Rob Zombie"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "conjuring",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20064,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Halloween, quel est le nom du tueur masqué ?",
+    "payload": {
+      "options": [
+        "Michael Myers",
+        "Jason Voorhees",
+        "Freddy Krueger",
+        "Leatherface"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "john-carpenter",
+        "type": "realisateur"
+      },
+      {
+        "name": "jamie-lee-curtis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20065,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quelle actrice incarne Laurie Strode dans Halloween (1978) ?",
+    "payload": {
+      "options": [
+        "Sigourney Weaver",
+        "Adrienne King",
+        "Heather Langenkamp",
+        "Jamie Lee Curtis"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "halloween",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "jamie-lee-curtis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20066,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Freddy, les griffes de la nuit, comment le tueur atteint-il ses victimes ?",
+    "payload": {
+      "options": [
+        "À travers les miroirs",
+        "Pendant les orages",
+        "Dans leurs rêves",
+        "Par téléphone"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "freddy",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20067,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Evil Dead (1981) ?",
+    "payload": {
+      "options": [
+        "Tobe Hooper",
+        "Sam Raimi",
+        "John Carpenter",
+        "Wes Craven"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "evil-dead",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20068,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Destination finale, à quoi les personnages tentent-ils d'échapper ?",
+    "payload": {
+      "options": [
+        "À la mort elle-même",
+        "À un tueur en série",
+        "À une malédiction familiale",
+        "À un virus"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "destination-finale",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20069,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Massacre à la tronçonneuse, en quoi est fait le masque du tueur ?",
+    "payload": {
+      "options": [
+        "En cuir de vache",
+        "En bois",
+        "En plastique blanc",
+        "En peau humaine"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "massacre-a-la-tronconneuse",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20070,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Chucky, quel est le nom du tueur dont l'âme habite la poupée ?",
+    "payload": {
+      "options": [
+        "Norman Bates",
+        "Billy Loomis",
+        "Charles Lee Ray",
+        "Michael Myers"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "chucky",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20071,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Les Dents de la mer, quel est le nom du bateau parti chasser le requin ?",
+    "payload": {
+      "options": [
+        "L'Amity",
+        "L'Orca",
+        "Le Nautilus",
+        "Le Pequod"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "les-dents-de-la-mer",
+        "type": "saga"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20072,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Scream, quel surnom porte le tueur masqué ?",
+    "payload": {
+      "options": [
+        "Ghostface",
+        "Jigsaw",
+        "Le Croquemitaine",
+        "Art"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scream",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20073,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quelle saga d'horreur Scary Movie parodie-t-il en premier lieu ?",
+    "payload": {
+      "options": [
+        "Halloween",
+        "Vendredi 13",
+        "Saw",
+        "Scream"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "scary-movie",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20074,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Souviens-toi... l'été dernier, quel secret les quatre amis partagent-ils ?",
+    "payload": {
+      "options": [
+        "Ils ont incendié une maison",
+        "Ils ont truqué un concours",
+        "Ils ont renversé un homme et caché son corps",
+        "Ils ont volé une voiture"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "souviens-toi-lete-dernier",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20075,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Détour mortel, à qui les héros ont-ils affaire dans les bois ?",
+    "payload": {
+      "options": [
+        "À une secte",
+        "À une famille de dégénérés cannibales",
+        "À un tueur masqué",
+        "À des loups-garous"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "detour-mortel",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20076,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Terrifier, quel nom porte le clown tueur ?",
+    "payload": {
+      "options": [
+        "Art le Clown",
+        "Grippe-Sou",
+        "Twisty",
+        "Captain Spaulding"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terrifier",
+        "type": "saga"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20077,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel acteur a incarné Hannibal Lecter à l'écran avant Anthony Hopkins ?",
+    "payload": {
+      "options": [
+        "Mads Mikkelsen",
+        "Gary Oldman",
+        "William Petersen",
+        "Brian Cox"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "hannibal-lecter",
+        "type": "saga"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 20078,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Beetlejuice et Edward aux mains d'argent ?",
+    "payload": {
+      "options": [
+        "Sam Raimi",
+        "Guillermo del Toro",
+        "Tim Burton",
+        "Terry Gilliam"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tim-burton",
+        "type": "realisateur"
+      },
+      {
+        "name": "johnny-depp",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20079,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans L'Étrange Noël de monsieur Jack, quel est le nom du héros ?",
+    "payload": {
+      "options": [
+        "Barnabas Collins",
+        "Jack Skellington",
+        "Oogie Boogie",
+        "Victor Van Dort"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tim-burton",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20080,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Reservoir Dogs, quels noms de code les braqueurs se voient-ils attribuer ?",
+    "payload": {
+      "options": [
+        "Des noms de couleurs",
+        "Des noms d'animaux",
+        "Des noms de villes",
+        "Des chiffres"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "quentin-tarantino",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20081,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Kill Bill, quelle actrice incarne La Mariée ?",
+    "payload": {
+      "options": [
+        "Lucy Liu",
+        "Daryl Hannah",
+        "Vivica A. Fox",
+        "Uma Thurman"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "quentin-tarantino",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20082,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Memento, de quel trouble le personnage principal souffre-t-il ?",
+    "payload": {
+      "options": [
+        "Une cécité progressive",
+        "Une insomnie chronique",
+        "Une amnésie antérograde",
+        "Une schizophrénie"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "christopher-nolan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20083,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Prestige, quel métier exercent les deux rivaux ?",
+    "payload": {
+      "options": [
+        "Horlogers",
+        "Magiciens",
+        "Peintres",
+        "Boxeurs"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "christopher-nolan",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20084,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Seven, autour de quel thème le tueur organise-t-il ses meurtres ?",
+    "payload": {
+      "options": [
+        "Les sept péchés capitaux",
+        "Les dix commandements",
+        "Les signes du zodiaque",
+        "Les jours de la semaine"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20085,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Zodiac, sur quelle affaire criminelle réelle l'enquête porte-t-elle ?",
+    "payload": {
+      "options": [
+        "L'Étrangleur de Boston",
+        "Le Golden State Killer",
+        "Jack l'Éventreur",
+        "Le tueur du Zodiaque"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "david-fincher",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20086,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel musicien de metal a réalisé La Maison des 1000 morts ?",
+    "payload": {
+      "options": [
+        "Trent Reznor",
+        "Glenn Danzig",
+        "Rob Zombie",
+        "Marilyn Manson"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "rob-zombie",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20087,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Alien, Blade Runner et Gladiator ?",
+    "payload": {
+      "options": [
+        "Paul Verhoeven",
+        "Ridley Scott",
+        "James Cameron",
+        "Tony Scott"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "ridley-scott",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20088,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Snatch, quel acteur incarne le boxeur gitan Mickey O'Neil ?",
+    "payload": {
+      "options": [
+        "Brad Pitt",
+        "Jason Statham",
+        "Vinnie Jones",
+        "Benicio del Toro"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "guy-ritchie",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20089,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel film de Guillermo del Toro a remporté l'Oscar du meilleur film ?",
+    "payload": {
+      "options": [
+        "Le Labyrinthe de Pan",
+        "Crimson Peak",
+        "Nightmare Alley",
+        "La Forme de l'eau"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "guillermo-del-toro",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20090,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Sixième Sens, Signes et Le Village ?",
+    "payload": {
+      "options": [
+        "Sam Mendes",
+        "Bryan Singer",
+        "M. Night Shyamalan",
+        "Robert Zemeckis"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "m-night-shyamalan",
+        "type": "realisateur"
+      },
+      {
+        "name": "bruce-willis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20091,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Halloween (1978) puis The Thing (1982) ?",
+    "payload": {
+      "options": [
+        "George A. Romero",
+        "John Carpenter",
+        "Wes Craven",
+        "Tobe Hooper"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "john-carpenter",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20092,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel film de Steven Spielberg lui a valu son premier Oscar du meilleur réalisateur ?",
+    "payload": {
+      "options": [
+        "La Liste de Schindler",
+        "Jurassic Park",
+        "Les Dents de la mer",
+        "E.T. l'extra-terrestre"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "steven-spielberg",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20093,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Titanic et Avatar ?",
+    "payload": {
+      "options": [
+        "Ridley Scott",
+        "Roland Emmerich",
+        "Michael Bay",
+        "James Cameron"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "james-cameron",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20094,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quelle réalisatrice, fille de Francis Ford Coppola, a signé Lost in Translation ?",
+    "payload": {
+      "options": [
+        "Kathryn Bigelow",
+        "Jane Campion",
+        "Sofia Coppola",
+        "Greta Gerwig"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sofia-coppola",
+        "type": "realisateur"
+      }
+    ]
+  },
+  {
+    "id": 20095,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Léon, quel acteur incarne le tueur à gages du titre ?",
+    "payload": {
+      "options": [
+        "Tchéky Karyo",
+        "Jean Reno",
+        "Gérard Depardieu",
+        "Vincent Cassel"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "luc-besson",
+        "type": "realisateur"
+      },
+      {
+        "name": "jean-reno",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20096,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Cinquième Élément, quelle actrice incarne Leeloo ?",
+    "payload": {
+      "options": [
+        "Milla Jovovich",
+        "Charlize Theron",
+        "Uma Thurman",
+        "Famke Janssen"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "luc-besson",
+        "type": "realisateur"
+      },
+      {
+        "name": "bruce-willis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20097,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans The Mask, que provoque le masque trouvé par Stanley Ipkiss ?",
+    "payload": {
+      "options": [
+        "Il le rend invisible",
+        "Il lui permet de lire les pensées",
+        "Il le rajeunit de vingt ans",
+        "Il le transforme en personnage cartoonesque tout-puissant"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20098,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans The Truman Show, que finit par découvrir Truman Burbank ?",
+    "payload": {
+      "options": [
+        "Qu'il est en train de rêver",
+        "Qu'il est un clone",
+        "Que toute sa vie est une émission de télévision",
+        "Qu'il a été adopté"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "jim-carrey",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20099,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans American History X, quel acteur incarne Derek Vinyard ?",
+    "payload": {
+      "options": [
+        "Christian Bale",
+        "Edward Norton",
+        "Ed Harris",
+        "Ryan Gosling"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "edward-norton",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20100,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans A Star Is Born (2018), quel acteur réalise le film et en tient le premier rôle ?",
+    "payload": {
+      "options": [
+        "Bradley Cooper",
+        "Ben Affleck",
+        "Sam Elliott",
+        "Ryan Gosling"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "bradley-cooper",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20101,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Scarface, quel est le nom du personnage joué par Al Pacino ?",
+    "payload": {
+      "options": [
+        "Michael Corleone",
+        "Carlito Brigante",
+        "Frank Slade",
+        "Tony Montana"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "al-pacino",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20102,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Pour quel film Al Pacino a-t-il remporté son unique Oscar du meilleur acteur ?",
+    "payload": {
+      "options": [
+        "Scarface",
+        "Heat",
+        "Le Temps d'un week-end",
+        "Le Parrain"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "al-pacino",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20103,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Taxi Driver, quel est le nom du personnage joué par Robert De Niro ?",
+    "payload": {
+      "options": [
+        "Vito Corleone",
+        "Travis Bickle",
+        "Jake LaMotta",
+        "Jimmy Conway"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      },
+      {
+        "name": "robert-de-niro",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20104,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Edward aux mains d'argent, quelle est la particularité d'Edward ?",
+    "payload": {
+      "options": [
+        "Il a des lames à la place des doigts",
+        "Il est invisible",
+        "Il ne vieillit pas",
+        "Il ne peut pas parler"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tim-burton",
+        "type": "realisateur"
+      },
+      {
+        "name": "johnny-depp",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20105,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Seigneur des Anneaux, quel personnage Sean Bean incarne-t-il ?",
+    "payload": {
+      "options": [
+        "Aragorn",
+        "Faramir",
+        "Théoden",
+        "Boromir"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "terre-du-milieu",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "nouvelle-zelande",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "sean-bean",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20106,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Pour quels deux films Tom Hanks a-t-il remporté l'Oscar du meilleur acteur deux années de suite ?",
+    "payload": {
+      "options": [
+        "Big et Philadelphia",
+        "Forrest Gump et Il faut sauver le soldat Ryan",
+        "Philadelphia et Forrest Gump",
+        "Forrest Gump et Apollo 13"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      },
+      {
+        "name": "tom-hanks",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20107,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans La Grande Vadrouille, quel métier exerce le personnage de Louis de Funès ?",
+    "payload": {
+      "options": [
+        "Restaurateur",
+        "Chef d'orchestre",
+        "Peintre en bâtiment",
+        "Gendarme"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      },
+      {
+        "name": "louis-de-funes",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20108,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Gendarme de Saint-Tropez, quel grade Ludovic Cruchot porte-t-il au début du film ?",
+    "payload": {
+      "options": [
+        "Maréchal des logis-chef",
+        "Adjudant",
+        "Brigadier",
+        "Capitaine"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "le-gendarme",
+        "type": "saga"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      },
+      {
+        "name": "louis-de-funes",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20109,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Corniaud, quel acteur incarne Antoine Maréchal ?",
+    "payload": {
+      "options": [
+        "Louis de Funès",
+        "Jean Gabin",
+        "Fernandel",
+        "Bourvil"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      },
+      {
+        "name": "bourvil",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20110,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Mon beau-père et moi, quel métier exerce Greg Focker, au grand dam de son beau-père ?",
+    "payload": {
+      "options": [
+        "Comptable",
+        "Professeur des écoles",
+        "Infirmier",
+        "Vétérinaire"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "ben-stiller",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20111,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Pour quel film Jamie Lee Curtis a-t-elle remporté l'Oscar du meilleur second rôle ?",
+    "payload": {
+      "options": [
+        "Freaky Friday",
+        "Everything Everywhere All at Once",
+        "Halloween",
+        "Un poisson nommé Wanda"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2020",
+        "type": "epoque"
+      },
+      {
+        "name": "jamie-lee-curtis",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20112,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Harry Potter, quel personnage Emma Thompson incarne-t-elle ?",
+    "payload": {
+      "options": [
+        "Sibylle Trelawney",
+        "Minerva McGonagall",
+        "Dolores Ombrage",
+        "Molly Weasley"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "emma-thompson",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20113,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Grand Bleu, quel plongeur Jean Reno incarne-t-il ?",
+    "payload": {
+      "options": [
+        "Jacques Mayol",
+        "Roberto",
+        "Duc",
+        "Enzo Molinari"
+      ]
+    },
+    "correct_answer": {
+      "index": 3
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      },
+      {
+        "name": "luc-besson",
+        "type": "realisateur"
+      },
+      {
+        "name": "jean-reno",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20114,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans John Wick, quelle est l'ancienne profession du héros ?",
+    "payload": {
+      "options": [
+        "Cascadeur",
+        "Garde du corps",
+        "Tueur à gages",
+        "Policier"
+      ]
+    },
+    "correct_answer": {
+      "index": 2
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "john-wick",
+        "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      },
+      {
+        "name": "keanu-reeves",
+        "type": "acteur"
+      }
+    ]
+  },
+  {
+    "id": 20115,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Harry Potter, quel personnage Helena Bonham Carter incarne-t-elle ?",
+    "payload": {
+      "options": [
+        "Nymphadora Tonks",
+        "Bellatrix Lestrange",
+        "Narcissa Malefoy",
+        "Dolores Ombrage"
+      ]
+    },
+    "correct_answer": {
+      "index": 1
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "harry-potter",
+        "type": "saga"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      },
+      {
+        "name": "helena-bonham-carter",
+        "type": "acteur"
+      }
+    ]
   }
 ]

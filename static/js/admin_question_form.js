@@ -1,6 +1,36 @@
 const modeSelect = document.getElementById("mode-select");
 const allModeFieldGroups = document.querySelectorAll(".mode-fields");
 const form = document.getElementById("question-form");
+const tagSearch = document.getElementById("tag-search");
+const tagCount = document.getElementById("selected-tags-count");
+
+function updateTagCount() {
+    const count = document.querySelectorAll(".tag-checkbox:checked").length;
+    tagCount.textContent = `${count} sélectionné${count > 1 ? "s" : ""}`;
+}
+
+document.querySelectorAll(".tag-checkbox").forEach(function (checkbox) {
+    checkbox.addEventListener("change", updateTagCount);
+});
+
+if (tagSearch) {
+    tagSearch.addEventListener("input", function () {
+        const query = tagSearch.value.trim().toLowerCase();
+        document.querySelectorAll(".tag-option").forEach(function (option) {
+            const visible = !query || option.dataset.tagName.includes(query);
+            option.classList.toggle("hidden", !visible);
+        });
+        document.querySelectorAll(".tag-group").forEach(function (group) {
+            const hasVisibleOption = group.querySelector(".tag-option:not(.hidden)");
+            if (query && hasVisibleOption) {
+                group.open = true;
+            }
+            group.classList.toggle("hidden", !hasVisibleOption);
+        });
+    });
+}
+
+updateTagCount();
 
 function showFieldsForMode(mode) {
     allModeFieldGroups.forEach(function (group) {

@@ -2,15 +2,17 @@ const startButton = document.getElementById("start-game");
 
 startButton.addEventListener("click", function () {
     const mode = startButton.dataset.mode;
-    const tag = document.getElementById("tag").value;
+    const tagIds = Array.from(document.querySelectorAll("[data-tag-filter]"))
+        .map(function (select) { return select.value; })
+        .filter(Boolean);
     const level = document.getElementById("level").value;
     const contentType = document.getElementById("content-type").value;
 
     const params = new URLSearchParams();
 
-    if (tag) {
-        params.set("tag_id", tag);
-    }
+    tagIds.forEach(function (tagId) {
+        params.append("tag_id", tagId);
+    });
     if (contentType) {
         params.set("content_type", contentType);
     }

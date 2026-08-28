@@ -23,6 +23,7 @@ def build_question_query(
     mode: str,
     tag_id: int | None = None,
     content_type: str | None = None,
+    tag_ids: list[int] | None = None,
 ):
     """Construit la requête des questions jouables pour un mode et ses filtres
 
@@ -31,8 +32,9 @@ def build_question_query(
     rejouerait la même à des positions différentes"""
     query = Question.query.filter_by(mode=mode)
 
-    if tag_id:
-        query = query.filter(Question.tags.any(Tag.id == tag_id))
+    selected_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
+    for selected_tag_id in selected_tag_ids:
+        query = query.filter(Question.tags.any(Tag.id == selected_tag_id))
 
     if content_type:
         query = query.filter_by(content_type=content_type)
@@ -43,13 +45,14 @@ def playable_question_query(
     mode: str,
     tag_id: int | None = None,
     content_type: str | None = None,
+    tag_ids: list[int] | None = None,
 ):
     """Restreint aux questions que le joueur peut réellement jouer
 
     Une question réservée aux comptes renverrait un visiteur vers la page de
     connexion en pleine partie, sa progression perdue : elle n'a rien à faire
     ni dans le tirage, ni dans les compteurs qu'on lui annonce"""
-    query = build_question_query(mode, tag_id, content_type)
+    query = build_question_query(mode, tag_id, content_type, tag_ids)
 
     if not current_user.is_authenticated:
         query = query.filter_by(requires_account=False)
@@ -60,26 +63,30 @@ def count_run_questions(
     mode: str,
     tag_id: int | None = None,
     content_type: str | None = None,
+    tag_ids: list[int] | None = None,
 ) -> int:
     """Retourne le nombre de questions que comptera la partie
 
     Une partie fait QUESTIONS_PER_RUN questions, sauf si les filtres du
     joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
     servir"""
-    available = playable_question_query(mode, tag_id, content_type).count()
+    available = playable_question_query(mode, tag_id, content_type, tag_ids).count()
     return min(QUESTIONS_PER_RUN, available)
 
 def run_filters(
     tag_id: int | None = None,
     content_type: str | None = None,
+    tag_ids: list[int] | None = None,
 ) -> dict:
     """Décrit les réglages d'une partie, sous une forme rangeable en session"""
-    return {"tag_id": tag_id, "content_type": content_type}
+    normalized_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
+    return {"tag_ids": normalized_tag_ids, "content_type": content_type}
 
 def draw_run_questions(
     mode: str,
     tag_id: int | None = None,
     content_type: str | None = None,
+    tag_ids: list[int] | None = None,
 ) -> list[int]:
     """Tire au sort les questions d'une nouvelle partie
 
@@ -87,7 +94,7 @@ def draw_run_questions(
     ne se ressemblent pas, mais à l'intérieur d'une partie l'ordre ne bouge
     plus, sans quoi avancer d'une question en ramènerait une déjà posée"""
     question_ids = [
-        row.id for row in playable_question_query(mode, tag_id, content_type).all()
+        row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids).all()
     ]
     random.shuffle(question_ids)
 
@@ -98,6 +105,7 @@ def find_question(
     position: int,
     tag_id: int | None = None,
     content_type: str | None = None,
+    tag_ids: list[int] | None = None,
 ):
     """Cherche la question à une position donnée, parmi celles d'un mode, tag et type de contenu
 
@@ -106,7 +114,7 @@ def find_question(
     if position < 1 or position > QUESTIONS_PER_RUN:
         return None
 
-    filters = run_filters(tag_id, content_type)
+    filters = run_filters(tag_id, content_type, tag_ids)
     question_id = run_question_id(session, mode, position, filters)
 
     if question_id is not None:
@@ -115,7 +123,7 @@ def find_question(
     # Aucun tirage en session : lien direct vers une question, session
     # expirée ou navigation manuelle. On sert alors l'ordre stable par id,
     # plutôt que de refuser la question au joueur.
-    query = build_question_query(mode, tag_id, content_type)
+    query = build_question_query(mode, tag_id, content_type, tag_ids)
 
     return query.offset(position - 1).limit(1).first()
 

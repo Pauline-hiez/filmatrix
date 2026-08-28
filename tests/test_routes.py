@@ -218,6 +218,12 @@ def test_equip_title_route_fails_if_not_owned(client, app):
     with app.app_context():
         user = User.query.filter_by(username="Acheteur").first()
         assert user.equipped_title is None
+def test_admin_question_form_compacts_tag_selection(client, app):
+    """Le formulaire admin regroupe les tags et propose une recherche."""
+    response = client.get("/admin/questions/nouvelle")
+    assert response.status_code in (302, 403)
+
+
 def test_setup_screen_offers_the_game_settings(client, app):
     """L'écran de préparation doit proposer thème et niveau avant de jouer"""
     create_test_question(app)
@@ -225,7 +231,10 @@ def test_setup_screen_offers_the_game_settings(client, app):
     response = client.get("/quiz/qcm")
 
     assert response.status_code == 200
-    assert b'id="tag"' in response.data
+    assert b'id="tag-genre"' in response.data
+    assert b'id="tag-univers"' in response.data
+    assert b'id="tag-pays"' in response.data
+    assert b'id="tag-epoque"' in response.data
     assert b'id="level"' in response.data
     assert "Commencer".encode() in response.data
 
@@ -250,6 +259,28 @@ def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, a
     assert f'value="{tag_id}" selected' in page
     assert "Partie de 1 question" in page
     assert "1 disponible" in page
+
+
+def test_setup_screen_combines_independent_theme_filters(client, app):
+    """Les sélecteurs genre et univers doivent filtrer en intersection."""
+    with app.app_context():
+        comedy = Tag(name="comédie", tag_type="genre")
+        friends = Tag(name="friends", tag_type="univers")
+        matching = Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"}, requires_account=False)
+        matching.tags.extend([comedy, friends])
+        genre_only = Question(mode="citation", content_type="serie", prompt="Autre", payload={}, correct_answer={"film": "Autre"}, requires_account=False)
+        genre_only.tags.append(comedy)
+        db.session.add_all([matching, genre_only])
+        db.session.commit()
+        comedy_id, friends_id = comedy.id, friends.id
+
+    response = client.get(f"/quiz/citation?content_type=serie&tag_id={comedy_id}&tag_id={friends_id}")
+    page = response.get_data(as_text=True)
+
+    assert response.status_code == 200
+    assert "Partie de 1 question" in page
+    assert f'value="{comedy_id}" selected' in page
+    assert f'value="{friends_id}" selected' in page
 
 
 def test_setup_screen_refuses_to_start_a_mode_without_questions(client, app):

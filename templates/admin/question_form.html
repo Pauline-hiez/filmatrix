@@ -143,16 +143,32 @@
             Réservée aux comptes
         </label>
 
-                <div>
-            <label class="block text-sm text-slate-400 mb-2">Tags</label>
-            <div class="flex flex-wrap gap-2">
-                {% for tag in all_tags %}
-                <label class="flex items-center gap-1.5 text-xs bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 cursor-pointer">
-                    <input type="checkbox" name="tags" value="{{ tag.id }}"
-                           {% if question and tag in question.tags %}checked{% endif %}>
-                    {{ tag.name }}
-                    <span class="text-slate-600">({{ tag.tag_type }})</span>
-                </label>
+                <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-4">
+            <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <label class="text-sm text-slate-300">Tags</label>
+                <span id="selected-tags-count" class="text-xs text-slate-500">0 sélectionné</span>
+            </div>
+            <input type="search" id="tag-search" placeholder="Rechercher un tag..." autocomplete="off"
+                   class="mb-3 w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none">
+            <div id="tag-groups" class="flex flex-col gap-2">
+                {% for tag_type, label in [("genre", "Genres"), ("univers", "Univers"), ("saga", "Sagas"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+                {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+                {% if typed_tags %}
+                <details class="tag-group rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2" {% if tag_type == "genre" %}open{% endif %}>
+                    <summary class="cursor-pointer list-none text-sm font-bold text-slate-300">
+                        <span class="flex items-center justify-between">{{ label }} <span class="text-xs font-normal text-slate-500">{{ typed_tags|length }}</span></span>
+                    </summary>
+                    <div class="tag-options mt-2 grid max-h-52 gap-2 overflow-y-auto pr-1 sm:grid-cols-2" data-group-label="{{ label|lower }}">
+                        {% for tag in typed_tags %}
+                        <label class="tag-option flex min-w-0 items-center gap-2 rounded-lg border border-cyan-400/20 bg-slate-950/60 px-2.5 py-2 text-xs cursor-pointer hover:border-cyan-400/60" data-tag-name="{{ tag.name|lower }}">
+                            <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox shrink-0"
+                                   {% if question and tag in question.tags %}checked{% endif %}>
+                            <span class="truncate">{{ tag.name }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </details>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

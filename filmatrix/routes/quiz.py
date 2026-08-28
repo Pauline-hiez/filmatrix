@@ -60,14 +60,14 @@ def quiz_setup(mode: str) -> str:
     )
 
     content_type = resolve_content_type(request.args.get("content_type"))
-    selected_tag_id = request.args.get("tag_id", type=int)
+    selected_tag_ids = request.args.getlist("tag_id", type=int)
 
     # Le compteur doit refléter le filtre : sinon le bouton reste actif
     # alors que la sélection films / séries ne renvoie aucune question. Il
     # ne compte que le jouable : un visiteur ne doit pas se voir promettre
     # des questions réservées aux comptes.
     available = playable_question_query(
-        mode, tag_id=selected_tag_id, content_type=content_type
+        mode, content_type=content_type, tag_ids=selected_tag_ids
     ).count()
 
     return render_template(
@@ -76,7 +76,7 @@ def quiz_setup(mode: str) -> str:
             question_count=available,
             run_length=min(QUESTIONS_PER_RUN, available),
             content_type=content_type,
-            selected_tag_id=selected_tag_id,
+            selected_tag_ids=selected_tag_ids,
             all_tags=mode_tags,
             levels=LEVELS,
             default_level=DEFAULT_LEVEL,
@@ -86,7 +86,7 @@ def quiz_setup(mode: str) -> str:
 @bp.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
 def quiz(mode: str, position: int) -> str:
     """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
-    tag_id = request.args.get("tag_id", type=int)
+    tag_ids = request.args.getlist("tag_id", type=int)
     content_type = resolve_content_type(request.args.get("content_type"))
     level = resolve_level(request.args.get("level"))
 
@@ -96,11 +96,11 @@ def quiz(mode: str, position: int) -> str:
         start_run(
             session,
             mode,
-            question_ids=draw_run_questions(mode, tag_id, content_type),
-            filters=run_filters(tag_id, content_type),
+            question_ids=draw_run_questions(mode, content_type=content_type, tag_ids=tag_ids),
+            filters=run_filters(content_type=content_type, tag_ids=tag_ids),
         )
 
-    question = find_question(mode, position, tag_id, content_type)
+    question = find_question(mode, position, content_type=content_type, tag_ids=tag_ids)
 
     if question is None:
         return render_template("quiz/termine.html", score=read_run(session, mode))
@@ -108,8 +108,8 @@ def quiz(mode: str, position: int) -> str:
     # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
     # session expirée — on retombe sur ce que les filtres permettent.
     total_questions = run_length(
-        session, mode, run_filters(tag_id, content_type)
-    ) or count_run_questions(mode, tag_id, content_type)
+        session, mode, run_filters(content_type=content_type, tag_ids=tag_ids)
+    ) or count_run_questions(mode, content_type=content_type, tag_ids=tag_ids)
 
     if question.requires_account and not current_user.is_authenticated:
         flash("Connecte-toi pour accéder à cette question.")
