@@ -1,9 +1,15 @@
+# Environnement Python
 .venv/
 __pycache__/
-*.pyc 
+*.pyc
+
+# Outils
 .pytest_cache/
+
+# Secrets et données locales
 .env
 *.db
 instance/
-.env
+
+# Dépendances front
 node_modules/

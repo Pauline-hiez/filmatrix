@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_player_link.html" import player_link with context %}
+{% from "partials/player_link.html" import player_link with context %}
 <div class="max-w-6xl mx-auto flex flex-col gap-6">
 
     <div class="grid gap-6 xl:grid-cols-[1fr_20rem] items-start">
@@ -19,11 +19,11 @@
             </p>
 
             <div class="mt-8 flex flex-wrap gap-3">
-                <a href="{{ url_for('modes') }}"
+                <a href="{{ url_for('main.modes') }}"
                    class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-[0_0_20px_rgba(34,211,238,0.35)] transition">
                     Commencer à jouer
                 </a>
-                <a href="{{ url_for('multiplayer_home') }}"
+                <a href="{{ url_for('multiplayer.multiplayer_home') }}"
                    class="border border-slate-600 hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
                     ⚔ Défier un ami
                 </a>
@@ -92,11 +92,11 @@
                     Crée un compte pour gagner de l'XP, débloquer des badges
                     et apparaître au classement.
                 </p>
-                <a href="{{ url_for('register') }}"
+                <a href="{{ url_for('auth.register') }}"
                    class="mt-4 block rounded-lg bg-cyan-400 px-4 py-2 text-center font-bold text-slate-950 transition hover:bg-cyan-300">
                     Créer un compte
                 </a>
-                <a href="{{ url_for('login') }}"
+                <a href="{{ url_for('auth.login') }}"
                    class="mt-2 block text-center text-sm text-slate-400 transition hover:text-cyan-400">
                     J'ai déjà un compte
                 </a>
@@ -106,7 +106,7 @@
             <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
                 <div class="mb-4 flex items-baseline justify-between">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Classement</h2>
-                    <a href="{{ url_for('leaderboard') }}" class="text-xs text-cyan-400 transition hover:text-cyan-300">
+                    <a href="{{ url_for('leaderboard.leaderboard') }}" class="text-xs text-cyan-400 transition hover:text-cyan-300">
                         Voir tout
                     </a>
                 </div>
@@ -154,7 +154,7 @@
                 </p>
             </div>
 
-            <a href="{{ url_for('multiplayer_home') }}"
+            <a href="{{ url_for('multiplayer.multiplayer_home') }}"
                class="shrink-0 rounded-lg bg-cyan-400 px-6 py-3 text-center font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
                 Lancer un duel
             </a>
@@ -164,7 +164,7 @@
     <section id="modes" class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
         <div class="mb-5 flex items-baseline justify-between">
             <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Explore les jeux</h2>
-            <a href="{{ url_for('modes') }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
+            <a href="{{ url_for('main.modes') }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
                 Tous les modes
             </a>
         </div>
@@ -172,7 +172,7 @@
         {% if modes %}
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {% for mode in modes %}
-            <a href="{{ url_for('quiz_setup', mode=mode.slug) }}"
+            <a href="{{ url_for('quiz.quiz_setup', mode=mode.slug) }}"
                style="--accent: {{ mode.accent }}"
                class="accent-card flex flex-col rounded-xl border bg-slate-950/60 p-4 transition">
                 <span class="accent-icon mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg">

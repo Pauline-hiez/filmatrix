@@ -1,8 +1,8 @@
 """Fonctions utilitaires pour créer et gérer les notifications."""
 
-from src.database import db
-from src.models import Notification
-from src.realtime import socketio
+from filmatrix.extensions import db
+from filmatrix.models import Notification
+from filmatrix.extensions import socketio
 
 
 def create_notification(user, message: str, link: str | None = None) -> None:

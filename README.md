@@ -57,7 +57,7 @@ npm install
 flask db upgrade
  
 # Importer les questions depuis data/questions/
-python seed_db.py
+python -m scripts.seed_db
 ```
 
 ## Lancer le projet en développement
@@ -66,7 +66,7 @@ Deux terminaux sont nécessaires :
 
 **Terminal 1 - Le serveur Flask :**
 ```bash
-python app.py
+python wsgi.py
 ```
 Le site est alors accessible sur http://127.0.0.1:5000
 
@@ -81,39 +81,58 @@ Recompile automatiquement le CSS à chaque modification d'un template.
 | Commande | Description |
 |---|---|
 | `python -m pytest -v` | Lance tous les tests automatisés |
-| `python seed_db.py` | Réimporte les questions depuis `data/questions/*.json` vers la base |
-| `python refresh_audio_urls.py` | Vérifie et régénère les URLs audio expirées du mode Blind Test |
+| `python -m scripts.seed_db` | Réimporte les questions depuis `data/questions/*.json` vers la base |
+| `python -m scripts.refresh_audio_urls` | Vérifie et régénère les URLs audio expirées du mode Blind Test |
 | `flask db migrate -m "message"` | Génère une nouvelle migration après modification d'un modèle |
 | `flask db upgrade` | Applique les migrations en attente |
-| `python generate_image_question.py affiche "Titre" difficulte categorie` | Génère le JSON d'une question Devinette-affiche via TMDB |
-| `python generate_image_question.py casting "Titre" difficulte categorie` | Génère le JSON d'une question Casting via TMDB |
-| `python generate_blindtest_question.py "Titre" difficulte categorie "terme de recherche"` | Génère le JSON d'une question Blind Test via iTunes |
+| `python -m scripts.generate_image_question affiche "Titre" difficulte categorie` | Génère le JSON d'une question Devinette-affiche via TMDB |
+| `python -m scripts.generate_image_question casting "Titre" difficulte categorie` | Génère le JSON d'une question Casting via TMDB |
+| `python -m scripts.generate_blindtest_question "Titre" difficulte categorie "terme de recherche"` | Génère le JSON d'une question Blind Test via iTunes |
 
 ## Structure du projet
 
 ```
-filmatrix/
-├── app.py                    # Application Flask (routes, application factory)
-├── seed_db.py                 # Import des questions JSON vers la base
-├── refresh_audio_urls.py       # Régénération des URLs audio expirées
-├── generate_image_question.py  # Génération de questions avec images (TMDB)
-├── generate_blindtest_question.py  # Génération de questions Blind Test (iTunes)
-├── src/
-│   ├── database.py            # Instance SQLAlchemy centrale
-│   ├── models.py               # Modèles de données (Question, User, Attempt, ...)
-│   ├── engine.py                # Moteur de vérification des réponses
-│   ├── validation.py            # Validation du mot de passe
-│   ├── badges.py                 # Définition et logique des badges
-│   ├── shop.py                    # Définition et logique de la boutique
-│   ├── tmdb.py                     # Accès à l'API TMDB
-│   └── itunes.py                    # Accès à l'API iTunes Search
-├── data/questions/             # Contenu des questions, un fichier JSON par mode
-├── templates/                  # Templates Jinja2
-├── static/
-│   ├── css/                    # Tailwind (input.css source, output.css généré)
-│   └── js/                     # JavaScript (quiz.js, modes.js, navbar.js)
-├── migrations/                 # Historique des migrations Alembic
-└── tests/                      # Tests pytest
+filmatrix/                      # le paquet applicatif
+├── __init__.py                 # create_app() : assemble extensions et blueprints
+├── extensions.py               # db, socketio, login_manager, migrate
+├── models.py                   # modèles de données
+├── game_modes.py               # catalogue des modes de jeu
+├── catalog.py                  # avatars, motifs de signalement
+├── permissions.py              # décorateur admin_required
+├── routes/                     # un blueprint par domaine
+│   ├── main.py                 #   accueil, catalogue des modes
+│   ├── auth.py                 #   inscription, connexion, déconnexion
+│   ├── profile.py              #   profil personnel et fiches publiques
+│   ├── quiz.py                 #   parties solo
+│   ├── friends.py              #   amis et demandes
+│   ├── multiplayer.py          #   duels en temps réel
+│   ├── shop.py                 #   boutique de titres
+│   ├── leaderboard.py          #   classement
+│   ├── notifications.py        #   consultation des notifications
+│   └── admin.py                #   administration
+├── services/                   # règles du jeu, sans dépendance à Flask
+│   ├── engine.py               #   vérification des réponses
+│   ├── questions.py            #   sélection et tirage des questions
+│   ├── score.py                #   suivi d'une partie solo
+│   ├── levels.py               #   niveaux, chrono et récompenses
+│   ├── multiplayer.py          #   parties à deux
+│   ├── badges.py, shop.py, friends.py, notifications.py
+│   └── matching.py, validation.py
+├── integrations/               # services externes
+│   ├── tmdb.py                 #   images de films et séries
+│   └── itunes.py               #   extraits audio
+└── realtime/
+    └── events.py               # gestionnaires SocketIO
+
+wsgi.py                         # point d'entrée (dev et production)
+scripts/                        # amorçage de la base, génération de questions
+data/questions/                 # contenu des questions, un fichier JSON par mode
+templates/                      # gabarits Jinja2, un dossier par blueprint
+static/
+├── css/                        # Tailwind (input.css source, output.css généré)
+└── js/                         # JavaScript, dont vendor/socket.io.min.js
+migrations/                     # historique des migrations Alembic
+tests/                          # tests pytest
 ```
 
 ## Modèle de données (aperçu)
@@ -125,6 +144,6 @@ filmatrix/
 
 ## Notes
 
-- Les questions sont éditées dans `data/questions/*.json` puis importées en base via `seed_db.py` - ce fichier JSON n'est jamais lu directement par le site.
-- Les URLs audio d'iTunes ont une durée de vie limitée : relancer `refresh_audio_urls.py` régulièrement pour éviter les extraits cassés.
+- Les questions sont éditées dans `data/questions/*.json` puis importées en base via `scripts/seed_db.py` - ce fichier JSON n'est jamais lu directement par le site.
+- Les URLs audio d'iTunes ont une durée de vie limitée : relancer `scripts/refresh_audio_urls.py` régulièrement pour éviter les extraits cassés.
 - Le CSS compilé (`static/css/output.css`) doit être régénéré après toute modification de classe Tailwind dans les templates - voir la commande `--watch` ci-dessus.

@@ -3,7 +3,7 @@
 {% block admin_content %}
 <div class="flex items-center justify-between mb-4">
     <h2 class="text-xl">Questions ({{ total_count }})</h2>
-    <a href="{{ url_for('admin_questions_new') }}"
+    <a href="{{ url_for('admin.admin_questions_new') }}"
        class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
         + Nouvelle question
     </a>
@@ -68,9 +68,9 @@
                     <td class="px-3 py-2 text-slate-400">{{ "Oui" if question.requires_account else "Non" }}</td>
                     <td class="px-3 py-2">
                         <div class="flex gap-2 justify-end">
-                            <a href="{{ url_for('admin_questions_edit', question_id=question.id) }}"
+                            <a href="{{ url_for('admin.admin_questions_edit', question_id=question.id) }}"
                                class="text-slate-300 hover:text-cyan-400 transition">Modifier</a>
-                            <form method="POST" action="{{ url_for('admin_questions_delete', question_id=question.id) }}"
+                            <form method="POST" action="{{ url_for('admin.admin_questions_delete', question_id=question.id) }}"
                                   onsubmit="return confirm('Supprimer cette question ?');">
                                 <button type="submit" class="text-red-400 hover:text-red-300 transition">Supprimer</button>
                             </form>

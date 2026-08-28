@@ -1,8 +1,8 @@
 """Tests du score de fin de partie."""
 
-from src.database import db
-from src.models import Question, User
-from src.score import read_run, record_answer, start_run
+from filmatrix.extensions import db
+from filmatrix.models import Question, User
+from filmatrix.services.score import read_run, record_answer, start_run
 
 
 def test_run_counts_correct_answers():

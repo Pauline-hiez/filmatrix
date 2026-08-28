@@ -3,9 +3,9 @@
 import json
 from pathlib import Path
 
-from app import app
-from src.database import db
-from src.models import Question
+from wsgi import app
+from filmatrix.extensions import db
+from filmatrix.models import Question
 
 
 def import_questions() -> None:

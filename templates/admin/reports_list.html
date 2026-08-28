@@ -38,10 +38,10 @@
                 </td>
                 <td class="px-3 py-2">
                     <div class="flex gap-2 justify-end">
-                        <a href="{{ url_for('admin_questions_edit', question_id=report.question_id) }}"
+                        <a href="{{ url_for('admin.admin_questions_edit', question_id=report.question_id) }}"
                            class="text-slate-300 hover:text-cyan-400 transition text-xs">Modifier la question</a>
                         {% if not report.is_resolved %}
-                        <form method="POST" action="{{ url_for('admin_resolve_report', report_id=report.id) }}">
+                        <form method="POST" action="{{ url_for('admin.admin_resolve_report', report_id=report.id) }}">
                             <button type="submit" class="text-emerald-400 hover:text-emerald-300 transition text-xs">Marquer traité</button>
                         </form>
                         {% endif %}

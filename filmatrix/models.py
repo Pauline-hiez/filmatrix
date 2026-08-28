@@ -1,6 +1,6 @@
 """Modèles de données du moteur de jeu Filmatrix"""
 
-from src.database import db
+from filmatrix.extensions import db
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
@@ -192,3 +192,32 @@ class Tag(db.Model):
     tag_type = db.Column(db.String(20), nullable=False)
 
     questions = db.relationship("Question", secondary=question_tags, backref="tags")
+
+class Character(db.Model):
+    """Représente un personnage collectionnable, lié à une franchise (tag saga)."""
+
+    __tablename__ = "characters"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), nullable=False)
+    rarity = db.Column(db.String(20), nullable=False, default="commun")
+    image_url = db.Column(db.String(255), nullable=True)
+    fragments_required = db.Column(db.Integer, nullable=False, default=5)
+
+    tag = db.relationship("Tag")
+
+
+class UserCharacter(db.Model):
+    """Représente la progression d'un joueur sur un personnage précis."""
+
+    __tablename__ = "user_characters"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    character_id = db.Column(db.Integer, db.ForeignKey("characters.id"), nullable=False)
+    fragments = db.Column(db.Integer, nullable=False, default=0)
+    unlocked_at = db.Column(db.DateTime, nullable=True)
+
+    user = db.relationship("User", backref="character_progress")
+    character = db.relationship("Character")

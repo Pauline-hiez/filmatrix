@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_friends_grid.html" import friends_grid with context %}
+{% from "partials/friends_grid.html" import friends_grid with context %}
 {# Libellés et couleurs d'accent des modes : mêmes valeurs que sur le profil
    personnel, l'accueil et la page de quiz. #}
 {% set labels = {
@@ -80,7 +80,7 @@
 
         {% if friendship_state == "none" %}
         <p class="text-sm text-slate-400">Vous n'êtes pas encore amis.</p>
-        <form method="POST" action="{{ url_for('send_friend_request_route', user_id=viewed_user.id) }}">
+        <form method="POST" action="{{ url_for('friends.send_friend_request_route', user_id=viewed_user.id) }}">
             <button type="submit"
                     class="w-full rounded-lg bg-cyan-400 px-5 py-3 font-bold text-slate-950 transition hover:bg-cyan-300 sm:w-auto">
                 + Ajouter un ami
@@ -92,7 +92,7 @@
 
         {% elif friendship_state == "request_received" %}
         <p class="text-sm text-slate-400">{{ viewed_user.username }} t'a envoyé une demande d'ami.</p>
-        <a href="{{ url_for('friends_list') }}"
+        <a href="{{ url_for('friends.friends_list') }}"
            class="rounded-lg border border-cyan-400/50 bg-cyan-400/10 px-5 py-3 text-center text-sm font-bold text-cyan-400 transition hover:bg-cyan-400/20">
             Répondre
         </a>
@@ -100,7 +100,7 @@
         {% else %}
         <p class="text-sm font-bold text-emerald-400">✓ Vous êtes amis</p>
 
-        <form method="POST" action="{{ url_for('invite_to_game', user_id=viewed_user.id) }}"
+        <form method="POST" action="{{ url_for('multiplayer.invite_to_game', user_id=viewed_user.id) }}"
               class="flex items-center gap-2">
             {# La liste des modes vient de la route : elle ne peut plus se
                désynchroniser de ce que le duel sait réellement jouer. #}
@@ -117,7 +117,7 @@
         </form>
 
         {# Action destructrice : on demande confirmation, comme dans l'admin. #}
-        <form method="POST" action="{{ url_for('remove_friend_route', user_id=viewed_user.id) }}"
+        <form method="POST" action="{{ url_for('friends.remove_friend_route', user_id=viewed_user.id) }}"
               onsubmit="return confirm('Retirer {{ viewed_user.username }} de tes amis ?');">
             <button type="submit"
                     class="rounded-lg border border-slate-700 px-4 py-2.5 text-sm font-bold text-slate-400 transition hover:border-red-400 hover:text-red-400">

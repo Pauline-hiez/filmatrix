@@ -1,8 +1,8 @@
 """Tests des niveaux de jeu : temps de réponse accordé et récompenses."""
 
-from src.database import db
-from src.levels import coins_for_level, duration_for, resolve_level, xp_for_level
-from src.models import Question, User
+from filmatrix.extensions import db
+from filmatrix.services.levels import coins_for_level, duration_for, resolve_level, xp_for_level
+from filmatrix.models import Question, User
 
 
 def test_higher_level_leaves_less_time():
@@ -82,7 +82,7 @@ def test_reward_follows_the_chosen_level_not_the_question(client, app):
 
 def create_tagged_question(app, mode, tag_name):
     """Crée une question rattachée à un thème, dans le mode demandé"""
-    from src.models import Tag
+    from filmatrix.models import Tag
 
     with app.app_context():
         tag = Tag.query.filter_by(name=tag_name).first()

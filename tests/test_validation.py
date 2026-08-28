@@ -1,6 +1,6 @@
 """Tests de la validation du mot de passe"""
 
-from src.validation import is_password_valid
+from filmatrix.services.validation import is_password_valid
 
 def test_valid_password_accepted():
     assert is_password_valid("Azerty1!") is True

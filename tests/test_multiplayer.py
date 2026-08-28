@@ -3,10 +3,10 @@
 import re
 from datetime import datetime, timedelta
 
-from src.database import db
-from src.engine import convert_answer
-from src.models import GameSession, GameSessionQuestion, Question, User
-from src.multiplayer import (
+from filmatrix.extensions import db
+from filmatrix.services.engine import convert_answer
+from filmatrix.models import GameSession, Question, User
+from filmatrix.services.multiplayer import (
     CHOICES_PER_QUESTION,
     QUESTIONS_PER_GAME,
     build_choices,
@@ -163,7 +163,7 @@ def login(client, email):
 
 def test_a_duel_can_be_created_in_every_mode(app):
     """Tous les modes annoncés jouables en duel doivent pouvoir en démarrer un"""
-    from app import GAME_MODES, MULTIPLAYER_MODES
+    from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
 
     assert {mode["slug"] for mode in GAME_MODES} == set(MULTIPLAYER_MODES)
 

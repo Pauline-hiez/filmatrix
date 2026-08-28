@@ -54,18 +54,18 @@
        Le seuil de repli est lg et non md : à neuf entrées, le menu large ne
        tenait pas sous 1024 px et les libellés se coupaient en deux. #}
     {% set nav_links = [
-        ("home", "Accueil", false),
-        ("modes", "Jouer", false),
-        ("multiplayer_home", "Multijoueur", false),
-        ("leaderboard", "Classement", false)
+        ("main.home", "Accueil", false),
+        ("main.modes", "Jouer", false),
+        ("multiplayer.multiplayer_home", "Multijoueur", false),
+        ("leaderboard.leaderboard", "Classement", false)
     ] %}
     {% if current_user.is_authenticated %}
         {% set nav_links = nav_links + [
-            ("friends_list", "Amis", false),
-            ("shop", "Boutique", false)
+            ("friends.friends_list", "Amis", false),
+            ("shop.shop", "Boutique", false)
         ] %}
         {% if current_user.is_admin %}
-            {% set nav_links = nav_links + [("admin_questions_list", "Admin", true)] %}
+            {% set nav_links = nav_links + [("admin.admin_questions_list", "Admin", true)] %}
         {% endif %}
     {% endif %}
 
@@ -87,7 +87,7 @@
     <nav class="mx-auto max-w-5xl px-4 py-3">
         <div class="flex items-center gap-3">
 
-            <a href="{{ url_for('home') }}" class="shrink-0 text-xl font-bold text-cyan-400">
+            <a href="{{ url_for('main.home') }}" class="shrink-0 text-xl font-bold text-cyan-400">
                 Filmatrix
             </a>
 
@@ -120,7 +120,7 @@
 
                     {# Le pseudo mène au profil : « Bonjour, X » occupait la même
                        place sans rien faire, et se coupait en deux à l'étroit. #}
-                    <a href="{{ url_for('profile') }}"
+                    <a href="{{ url_for('profile.profile') }}"
                        class="hidden sm:flex items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition
                               {% if request.endpoint == 'profile' %}border-cyan-400/50 bg-cyan-400/10{% else %}border-slate-700 hover:border-cyan-400/50 hover:bg-slate-900{% endif %}">
                         <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-900 text-sm">
@@ -131,16 +131,16 @@
                         </span>
                     </a>
 
-                    <a href="{{ url_for('logout') }}"
+                    <a href="{{ url_for('auth.logout') }}"
                        class="hidden lg:block whitespace-nowrap rounded-lg px-3 py-1.5 text-sm text-slate-400 transition hover:bg-slate-900 hover:text-cyan-400">
                         Déconnexion
                     </a>
                 {% else %}
-                    <a href="{{ url_for('login') }}"
+                    <a href="{{ url_for('auth.login') }}"
                        class="hidden sm:block whitespace-nowrap rounded-lg px-3 py-1.5 text-sm text-slate-300 transition hover:bg-slate-900 hover:text-cyan-400">
                         Connexion
                     </a>
-                    <a href="{{ url_for('register') }}"
+                    <a href="{{ url_for('auth.register') }}"
                        class="whitespace-nowrap rounded-lg bg-cyan-400 px-3 py-1.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
                         Inscription
                     </a>
@@ -162,11 +162,11 @@
             {% endfor %}
 
             {% if current_user.is_authenticated %}
-                {{ nav_link('profile', 'Mon profil', false, block=true) }}
-                {{ nav_link('logout', 'Déconnexion', false, block=true) }}
+                {{ nav_link('profile.profile', 'Mon profil', false, block=true) }}
+                {{ nav_link('auth.logout', 'Déconnexion', false, block=true) }}
             {% else %}
-                {{ nav_link('login', 'Connexion', false, block=true) }}
-                <a href="{{ url_for('register') }}"
+                {{ nav_link('auth.login', 'Connexion', false, block=true) }}
+                <a href="{{ url_for('auth.register') }}"
                    class="mt-1 w-fit rounded-lg bg-cyan-400 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
                     Inscription
                 </a>

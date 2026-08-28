@@ -1,8 +1,8 @@
 """Tests du système de boutique (pièces et titres)"""
 
-from src.database import db 
-from src.models import User 
-from src.shop import owns_title, purchase_title
+from filmatrix.extensions import db 
+from filmatrix.models import User 
+from filmatrix.services.shop import owns_title, purchase_title
 
 def create_test_user(coins: int = 0) -> User:
     """Crée un utilisateur de test avec un solde de pièces donné"""

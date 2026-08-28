@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_player_link.html" import player_link with context %}
+{% from "partials/player_link.html" import player_link with context %}
 <div class="max-w-2xl mx-auto mt-8">
     <h2 class="text-xl mb-6 text-center">Classement général</h2>
 
@@ -25,7 +25,7 @@
                     {% elif result.friendship_status == "pending" %}
                         <span class="text-slate-500 text-xs">En attente</span>
                     {% else %}
-                        <form method="POST" action="{{ url_for('send_friend_request_route', user_id=result.user_id) }}">
+                        <form method="POST" action="{{ url_for('friends.send_friend_request_route', user_id=result.user_id) }}">
                             <button type="submit" class="text-cyan-400 hover:text-cyan-300 transition text-xs">+ Ajouter</button>
                         </form>
                     {% endif %}

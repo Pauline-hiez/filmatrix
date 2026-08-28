@@ -9,7 +9,7 @@
    connexion sans qu'il comprenne pourquoi. #}
 {% macro player_link(user_id, username) -%}
 {%- if current_user.is_authenticated -%}
-<a href="{{ url_for('public_profile', user_id=user_id) }}"
+<a href="{{ url_for('profile.public_profile', user_id=user_id) }}"
    class="transition hover:text-cyan-400 hover:underline">{{ username }}</a>
 {%- else -%}
 {{ username }}

@@ -1,7 +1,7 @@
 """Tests du système d'amis."""
 
-from src.database import db
-from src.friends import (
+from filmatrix.extensions import db
+from filmatrix.services.friends import (
     accept_friend_request,
     decline_friend_request,
     get_friends_list,
@@ -9,7 +9,7 @@ from src.friends import (
     remove_friend,
     send_friend_request,
 )
-from src.models import Friendship, User
+from filmatrix.models import Friendship, User
 
 
 def create_test_user(username: str) -> User:
@@ -133,7 +133,7 @@ def test_decline_friend_request_removes_it(app):
 
 def test_remove_friend_deletes_the_friendship(app):
     """Retirer un ami doit supprimer la relation, dans les deux sens"""
-    from src.friends import get_friendship_between, remove_friend
+    from filmatrix.services.friends import get_friendship_between, remove_friend
 
     with app.app_context():
         requester = User(username="Demandeur", email="d@filmatrix.fr")
@@ -159,7 +159,7 @@ def test_remove_friend_deletes_the_friendship(app):
 
 def test_remove_friend_ignores_a_pending_request(app):
     """Une demande en attente n'est pas une amitié : elle se refuse, elle ne se retire pas"""
-    from src.friends import remove_friend
+    from filmatrix.services.friends import remove_friend
 
     with app.app_context():
         requester = User(username="Demandeur", email="d@filmatrix.fr")
@@ -179,7 +179,7 @@ def test_remove_friend_ignores_a_pending_request(app):
 
 def test_remove_friend_ignores_a_stranger(app):
     """Retirer un joueur avec qui on n'a aucun lien ne doit rien faire"""
-    from src.friends import remove_friend
+    from filmatrix.services.friends import remove_friend
 
     with app.app_context():
         one = User(username="Un", email="un@filmatrix.fr")

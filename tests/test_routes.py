@@ -1,8 +1,8 @@
 import html
 import re
 
-from src.database import db
-from src.models import Question, User, Attempt, Friendship
+from filmatrix.extensions import db
+from filmatrix.models import Question, User, Attempt, Friendship
 
 """Test des routes Flask principales"""
 
@@ -495,7 +495,7 @@ def test_the_navbar_leads_to_the_multiplayer(client, app):
 
 def test_every_mode_explains_its_rule(client, app):
     """Chaque mode doit dire ce qu'on attend du joueur, page modes et préparation"""
-    from app import GAME_MODES
+    from filmatrix.game_modes import GAME_MODES
 
     create_test_question(app)
     modes_page = html.unescape(client.get("/modes").get_data(as_text=True))
@@ -509,7 +509,7 @@ def test_every_mode_explains_its_rule(client, app):
 
 def test_the_modes_page_agrees_with_the_setup_screen(client, app):
     """Les deux pages lisent la même source : elles ne peuvent plus diverger"""
-    from app import GAME_MODES
+    from filmatrix.game_modes import GAME_MODES
 
     modes_page = client.get("/modes").get_data(as_text=True)
 

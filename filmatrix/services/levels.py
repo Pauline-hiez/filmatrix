@@ -49,7 +49,7 @@ def calculate_level(total_xp: int) -> dict:
     """Calcule le niveau actuel et la progression vers le niveau suivant
 
     Cette fonction vivait dans app.py, que src/badges.py devait alors importer :
-    un « from app import ... » depuis src/ recharge toute l'application quand le
+    un « from filmatrix import ... » depuis un service rechargerait la fabrique quand le
     serveur est lancé par « python app.py ». Elle parle d'XP et de niveaux, sa
     place est ici."""
     level = 1

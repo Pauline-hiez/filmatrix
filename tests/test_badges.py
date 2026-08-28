@@ -1,8 +1,8 @@
 """Tests du système de badges."""
 
-from src.badges import award_badge, check_and_award_badges, has_badge
-from src.database import db
-from src.models import Attempt, Question, User
+from filmatrix.services.badges import award_badge, check_and_award_badges, has_badge
+from filmatrix.extensions import db
+from filmatrix.models import Attempt, Question, User
 
 
 def create_test_user() -> User:

@@ -1,6 +1,6 @@
 """Test du module d'accès TMDB"""
 
-from src.tmdb import build_image_url, get_movie_cast, search_movie
+from filmatrix.integrations.tmdb import build_image_url, get_movie_cast, search_movie
 
 def test_search_movie_finds_know_film():
     """La recherche d'un titre de film connu doit donner le résultat"""

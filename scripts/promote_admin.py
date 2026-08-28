@@ -9,9 +9,9 @@ SQLite locale si cette variable n'est pas définie.
 
 import sys
 
-from app import app
-from src.database import db
-from src.models import User
+from wsgi import app
+from filmatrix.extensions import db
+from filmatrix.models import User
 
 DEFAULT_EMAIL = "hiezpauline@gmail.com"
 

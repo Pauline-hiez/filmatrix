@@ -1,8 +1,8 @@
 """Tests du profil public : visibilité, bouton d'ami et pseudos cliquables."""
 
-from src.badges import BADGES
-from src.database import db
-from src.models import Attempt, Friendship, Question, User
+from filmatrix.services.badges import BADGES
+from filmatrix.extensions import db
+from filmatrix.models import Attempt, Friendship, Question, User
 
 
 def create_player(app, username):

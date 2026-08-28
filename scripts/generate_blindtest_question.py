@@ -5,8 +5,8 @@ import sys
 
 from dotenv import load_dotenv
 
-from src.itunes import search_soundtrack_preview
-from src.tmdb import search_movie, search_tv_show
+from filmatrix.integrations.itunes import search_soundtrack_preview
+from filmatrix.integrations.tmdb import search_movie, search_tv_show
 
 load_dotenv()
 

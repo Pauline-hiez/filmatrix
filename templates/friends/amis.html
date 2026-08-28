@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_player_link.html" import player_link with context %}
+{% from "partials/player_link.html" import player_link with context %}
 <div class="max-w-2xl mx-auto mt-8">
     <h2 class="text-xl mb-6">Amis</h2>
 
@@ -13,10 +13,10 @@
             <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
                 <span>{{ player_link(friendship.requester.id, friendship.requester.username) }}</span>
                 <div class="flex gap-2">
-                    <form method="POST" action="{{ url_for('accept_friend_request_route', friendship_id=friendship.id) }}">
+                    <form method="POST" action="{{ url_for('friends.accept_friend_request_route', friendship_id=friendship.id) }}">
                         <button type="submit" class="text-emerald-400 hover:text-emerald-300 transition text-sm">Accepter</button>
                     </form>
-                    <form method="POST" action="{{ url_for('decline_friend_request_route', friendship_id=friendship.id) }}">
+                    <form method="POST" action="{{ url_for('friends.decline_friend_request_route', friendship_id=friendship.id) }}">
                         <button type="submit" class="text-red-400 hover:text-red-300 transition text-sm">Refuser</button>
                     </form>
                 </div>
@@ -35,7 +35,7 @@
                 <span>{{ player_link(friendship.receiver.id, friendship.receiver.username) }}</span>
                 <div class="flex items-center gap-2">
                     <span class="text-slate-500 text-xs">En attente</span>
-                    <form method="POST" action="{{ url_for('decline_friend_request_route', friendship_id=friendship.id) }}">
+                    <form method="POST" action="{{ url_for('friends.decline_friend_request_route', friendship_id=friendship.id) }}">
                         <button type="submit" class="text-red-400 hover:text-red-300 transition text-sm">Annuler</button>
                     </form>
                 </div>
@@ -53,13 +53,13 @@
             {# Ligne cliquable + bouton : un <form> ne peut pas vivre dans un <a>,
                le lien ne couvre donc que le pseudo et le niveau. #}
             <div class="flex items-center gap-3 rounded-lg border border-cyan-400/30 bg-slate-900 px-4 py-3 transition hover:border-cyan-400">
-                <a href="{{ url_for('public_profile', user_id=friend.id) }}"
+                <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}"
                    class="flex min-w-0 flex-1 items-center justify-between gap-3">
                     <span class="truncate">{{ friend.username }}</span>
                     <span class="text-xs text-slate-500">Niveau {{ friend.level }}</span>
                 </a>
 
-                <form method="POST" action="{{ url_for('remove_friend_route', user_id=friend.id) }}"
+                <form method="POST" action="{{ url_for('friends.remove_friend_route', user_id=friend.id) }}"
                       onsubmit="return confirm('Retirer {{ friend.username }} de tes amis ?');">
                     <button type="submit" class="text-xs text-slate-500 transition hover:text-red-400">
                         Retirer

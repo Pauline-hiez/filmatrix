@@ -48,17 +48,17 @@
         {% endif %}
 
         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href="{{ url_for('modes') }}"
+            <a href="{{ url_for('main.modes') }}"
                class="rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
                 Choisir un autre mode
             </a>
             {% if current_user.is_authenticated %}
-            <a href="{{ url_for('profile') }}"
+            <a href="{{ url_for('profile.profile') }}"
                class="rounded-lg border border-slate-600 px-6 py-3 font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
                 Voir mon profil
             </a>
             {% else %}
-            <a href="{{ url_for('home') }}"
+            <a href="{{ url_for('main.home') }}"
                class="rounded-lg border border-slate-600 px-6 py-3 font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
                 Retour à l'accueil
             </a>

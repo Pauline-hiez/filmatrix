@@ -2,8 +2,8 @@
 
 import pytest
 
-from src.engine import check_answer
-from src.models import Question
+from filmatrix.services.engine import check_answer
+from filmatrix.models import Question
 
 def make_qcm_question() -> Question:
     """Fabrique une question QCM de test, réutilisée dans plusieurs tests"""

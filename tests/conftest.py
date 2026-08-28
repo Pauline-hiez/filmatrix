@@ -2,8 +2,8 @@
 
 import pytest
 
-from app import create_app
-from src.database import db
+from filmatrix import create_app
+from filmatrix.extensions import db
 
 
 @pytest.fixture

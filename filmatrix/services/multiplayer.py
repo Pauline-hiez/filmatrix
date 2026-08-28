@@ -3,8 +3,8 @@
 import random
 from datetime import datetime, timedelta
 
-from src.database import db
-from src.models import GameSession, GameSessionQuestion, Question
+from filmatrix.extensions import db
+from filmatrix.models import GameSession, GameSessionQuestion, Question
 
 INVITATION_DURATION_MINUTES = 15
 QUESTIONS_PER_GAME = 5

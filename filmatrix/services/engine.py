@@ -3,8 +3,8 @@
 import random
 from typing import Any
 
-from src.matching import fuzzy_match
-from src.models import Question
+from filmatrix.services.matching import fuzzy_match
+from filmatrix.models import Question
 
 
 def check_answer(question: Question, user_response: Any) -> bool:

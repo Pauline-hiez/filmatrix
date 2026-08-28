@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_player_link.html" import player_link with context %}
+{% from "partials/player_link.html" import player_link with context %}
 <div class="max-w-md mx-auto mt-12 text-center">
     <div class="rounded-2xl border p-8
                 {% if winner is none %}
@@ -38,11 +38,11 @@
         </div>
 
         <div class="flex gap-3 justify-center">
-            <a href="{{ url_for('public_profile', user_id=opponent.id) }}"
+            <a href="{{ url_for('profile.public_profile', user_id=opponent.id) }}"
                class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-2 rounded-lg text-sm transition">
                 Voir le profil
             </a>
-            <a href="{{ url_for('friends_list') }}"
+            <a href="{{ url_for('friends.friends_list') }}"
                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">
                 Retour aux amis
             </a>

@@ -6,7 +6,7 @@
    la page des modes. Le formulaire est traduit en URL par quiz_setup.js. #}
 <div class="max-w-2xl mx-auto flex flex-col gap-6" style="--accent: {{ mode.accent }}">
 
-    <a href="{{ url_for('modes', content_type=content_type or None) }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
+    <a href="{{ url_for('main.modes', content_type=content_type or None) }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
         ← Tous les modes
     </a>
 

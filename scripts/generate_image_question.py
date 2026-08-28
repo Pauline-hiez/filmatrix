@@ -5,11 +5,9 @@ import sys
 
 from dotenv import load_dotenv
 
-from src.tmdb import (
+from filmatrix.integrations.tmdb import (
     build_image_url,
-    get_movie_by_id,
     get_movie_cast,
-    get_tv_show_by_id,
     get_tv_show_cast,
     search_movie,
     search_tv_show,

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_player_link.html" import player_link with context %}
+{% from "partials/player_link.html" import player_link with context %}
 <div class="max-w-md mx-auto mt-12 text-center">
 
     {% if game_session.status == "expired" %}
@@ -9,7 +9,7 @@
             <p class="text-4xl mb-4">⏱️</p>
             <h2 class="text-xl font-bold mb-2">Invitation expirée</h2>
             <p class="text-slate-500 text-sm mb-6">Le délai de 15 minutes est dépassé.</p>
-            <a href="{{ url_for('friends_list') }}"
+            <a href="{{ url_for('friends.friends_list') }}"
                class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition">
                 Retour aux amis
             </a>
@@ -19,14 +19,14 @@
         <div class="rounded-2xl border border-slate-700 bg-slate-900/60 p-8">
             <p class="text-4xl mb-4">👋</p>
             <h2 class="text-xl font-bold mb-6">Invitation refusée</h2>
-            <a href="{{ url_for('friends_list') }}"
+            <a href="{{ url_for('friends.friends_list') }}"
                class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition">
                 Retour aux amis
             </a>
         </div>
 
     {% elif game_session.status == "active" %}
-        <div id="game-starting" class="rounded-2xl border border-emerald-500/30 bg-slate-900/60 p-8" data-play-url="{{ url_for('play_game', game_session_id=game_session.id) }}">
+        <div id="game-starting" class="rounded-2xl border border-emerald-500/30 bg-slate-900/60 p-8" data-play-url="{{ url_for('multiplayer.play_game', game_session_id=game_session.id) }}">
             <p class="text-4xl mb-4 animate-bounce">🎮</p>
             <h2 class="text-xl font-bold mb-6">La partie commence !</h2>
         </div>
@@ -55,12 +55,12 @@
             <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
 
             <div class="flex gap-3 justify-center">
-                <form method="POST" action="{{ url_for('accept_game_invitation', game_session_id=game_session.id) }}">
+                <form method="POST" action="{{ url_for('multiplayer.accept_game_invitation', game_session_id=game_session.id) }}">
                     <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
                         Accepter
                     </button>
                 </form>
-                <form method="POST" action="{{ url_for('decline_game_invitation', game_session_id=game_session.id) }}">
+                <form method="POST" action="{{ url_for('multiplayer.decline_game_invitation', game_session_id=game_session.id) }}">
                     <button type="submit" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-6 py-2.5 rounded-lg transition">
                         Refuser
                     </button>

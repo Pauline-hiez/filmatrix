@@ -3,7 +3,7 @@
 {% block admin_content %}
 <h2 class="text-xl mb-6">Tags ({{ tags | length }})</h2>
 
-<form method="POST" action="{{ url_for('admin_tags_new') }}" class="flex gap-2 mb-8">
+<form method="POST" action="{{ url_for('admin.admin_tags_new') }}" class="flex gap-2 mb-8">
     <input type="text" name="name" placeholder="Nom du tag (ex: Horreur, Star Wars...)" required
            class="flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
     <select name="tag_type" class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
@@ -21,7 +21,7 @@
         {% for tag in tags if tag.tag_type == "genre" %}
         <div class="flex items-center gap-2 bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 text-sm">
             {{ tag.name }}
-            <form method="POST" action="{{ url_for('admin_tags_delete', tag_id=tag.id) }}"
+            <form method="POST" action="{{ url_for('admin.admin_tags_delete', tag_id=tag.id) }}"
                   onsubmit="return confirm('Supprimer ce tag ?');">
                 <button type="submit" class="text-red-400 hover:text-red-300 transition">×</button>
             </form>
@@ -38,7 +38,7 @@
         {% for tag in tags if tag.tag_type == "saga" %}
         <div class="flex items-center gap-2 bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 text-sm">
             {{ tag.name }}
-            <form method="POST" action="{{ url_for('admin_tags_delete', tag_id=tag.id) }}"
+            <form method="POST" action="{{ url_for('admin.admin_tags_delete', tag_id=tag.id) }}"
                   onsubmit="return confirm('Supprimer ce tag ?');">
                 <button type="submit" class="text-red-400 hover:text-red-300 transition">×</button>
             </form>

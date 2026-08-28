@@ -2,10 +2,10 @@
 
 import requests
 
-from app import app
-from src.database import db 
-from src.itunes import search_soundtrack_preview
-from src.models import Question
+from wsgi import app
+from filmatrix.extensions import db 
+from filmatrix.integrations.itunes import search_soundtrack_preview
+from filmatrix.models import Question
 
 def is_url_valid(url: str) -> bool:
     """Vérifie qu'une URL audio répond correctement, sans télécharger le fichier entier"""

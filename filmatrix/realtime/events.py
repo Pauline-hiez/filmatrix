@@ -3,10 +3,10 @@
 from flask_login import current_user
 from flask_socketio import join_room, emit
 
-from src.database import db
-from src.engine import check_answer, convert_answer
-from src.models import GameAnswer, GameSession
-from src.multiplayer import get_ordered_questions
+from filmatrix.extensions import db
+from filmatrix.services.engine import check_answer, convert_answer
+from filmatrix.models import GameAnswer, GameSession
+from filmatrix.services.multiplayer import get_ordered_questions
 
 
 def register_socket_events(socketio):

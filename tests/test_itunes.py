@@ -1,6 +1,6 @@
 """Test du module d'accès à itunes"""
 
-from src.itunes import search_soundtrack_preview 
+from filmatrix.integrations.itunes import search_soundtrack_preview 
 
 def test_search_soundtrack_finds_know_result():
     """La recherche d'une BO connue doit renvoyer une URL"""

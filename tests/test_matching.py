@@ -1,6 +1,6 @@
 """Tests de la comparaison souple de réponses"""
 
-from src.matching import fuzzy_match, normalize_text
+from filmatrix.services.matching import fuzzy_match, normalize_text
 
 
 def test_normalize_removes_accents():

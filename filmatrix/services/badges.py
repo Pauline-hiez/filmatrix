@@ -1,8 +1,7 @@
 """Définition des badges et logique de déblocage"""
 
-from src.database import db
-from src.levels import calculate_level
-from src.models import Attempt, Question, UserBadge
+from filmatrix.services.levels import calculate_level
+from filmatrix.models import Attempt, Question, UserBadge
 
 BADGES = {
     "first_step": {

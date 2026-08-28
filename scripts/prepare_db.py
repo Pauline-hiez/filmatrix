@@ -3,8 +3,8 @@
 from flask_migrate import stamp, upgrade
 from sqlalchemy import inspect
 
-from app import app
-from src.database import db
+from wsgi import app
+from filmatrix.extensions import db
 
 
 def prepare_db() -> None:

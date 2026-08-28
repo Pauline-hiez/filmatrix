@@ -6,5 +6,5 @@ pip install -r requirements.txt
 npm install
 npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify
 
-python prepare_db.py
-python seed_db.py
+python -m scripts.prepare_db
+python -m scripts.seed_db

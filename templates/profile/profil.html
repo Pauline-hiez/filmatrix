@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% from "_friends_grid.html" import friends_grid with context %}
+{% from "partials/friends_grid.html" import friends_grid with context %}
 {# Libellés et couleurs d'accent des modes, pour l'historique.
    Mêmes valeurs que sur l'accueil et la page de quiz. #}
 {% set labels = {
@@ -46,14 +46,14 @@
                 <div class="min-w-0">
                     <div class="flex items-center gap-2">
                         <h1 class="truncate text-2xl font-extrabold tracking-tight">{{ current_user.username }}</h1>
-                        <a href="{{ url_for('edit_profile') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
+                        <a href="{{ url_for('profile.edit_profile') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
                             Modifier
                         </a>
                     </div>
                     {% if equipped_title_name %}
                     <p class="text-sm text-cyan-400">{{ equipped_title_name }}</p>
                     {% else %}
-                    <a href="{{ url_for('shop') }}" class="text-sm text-slate-500 transition hover:text-cyan-400">
+                    <a href="{{ url_for('shop.shop') }}" class="text-sm text-slate-500 transition hover:text-cyan-400">
                         Choisir un titre
                     </a>
                     {% endif %}
@@ -120,7 +120,7 @@
     <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
         <div class="mb-5 flex items-baseline justify-between">
             <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Amis</h2>
-            <a href="{{ url_for('friends_list') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
+            <a href="{{ url_for('friends.friends_list') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
                 {{ friends | length }} — gérer
             </a>
         </div>
@@ -179,7 +179,7 @@
         {% else %}
         <div class="py-8 text-center">
             <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
-            <a href="{{ url_for('modes') }}"
+            <a href="{{ url_for('main.modes') }}"
                class="mt-4 inline-block rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 transition hover:bg-cyan-300">
                 Commencer à jouer
             </a>

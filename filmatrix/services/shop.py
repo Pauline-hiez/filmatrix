@@ -1,7 +1,6 @@
 """Définition des titres achetables de la boutique"""
 
-from src.database import db
-from src.models import UserTitle 
+from filmatrix.models import UserTitle 
 
 TITLES = {
     "cinephile": {

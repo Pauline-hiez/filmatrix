@@ -1,7 +1,8 @@
 """Logique métier du système d'amis"""
 
-from src.database import db 
-from src.models import Friendship
+from filmatrix.extensions import db
+from filmatrix.services.levels import calculate_level 
+from filmatrix.models import Friendship
 
 def get_friendship_between(user_a_id: int, user_b_id: int) -> Friendship | None:
     """Cherche une relation d'amitié existante entre deux utilisateurs, dans les deux sens"""
@@ -85,3 +86,19 @@ def get_friends_list(user_id: int) -> list:
         friends.append(friend)
 
     return friends
+
+
+def friend_cards(users: list) -> list:
+    """Prépare l'affichage d'une liste d'amis : pseudo, avatar et niveau
+
+    Le niveau est calculé ici plutôt que dans le template, pour que les deux
+    profils affichent exactement la même chose"""
+    return [
+        {
+            "id": user.id,
+            "username": user.username,
+            "avatar": user.avatar or "🎬",
+            "level": calculate_level(user.total_xp)["level"],
+        }
+        for user in users
+    ]
