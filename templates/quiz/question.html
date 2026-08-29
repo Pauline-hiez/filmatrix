@@ -103,6 +103,30 @@
             <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100 sm:text-3xl">
                 {{ scrambled_title }}
             </h1>
+        {% elif question.mode == "emoji" %}
+            <div class="mb-6 rounded-2xl border border-violet-400/30 bg-slate-950/50 px-4 py-6 text-center">
+                <div class="emoji-visuals" aria-label="Indices visuels">
+                    {% set visual_items = question.payload.get("visuals", []) %}
+                    {% if visual_items %}
+                        {% for item in visual_items %}
+                            {% if item.type == "openmoji" %}
+                            {# Le dépôt GitHub d'origine (branche master) reste toujours synchronisé
+                               avec le catalogue de métadonnées, contrairement au paquet npm
+                               @svgmoji/openmoji qui est figé à une ancienne version d'OpenMoji et
+                               répond 404 sur les emojis ajoutés depuis (ex. 1FAE0). #}
+                            <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ item.value }}.svg"
+                                 alt="" class="emoji-visual" loading="eager" referrerpolicy="no-referrer"
+                                 onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+                            <span class="emoji-fallback" hidden>{{ question.prompt }}</span>
+                            {% else %}
+                            <span class="emoji-fallback">{{ item.value }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <span class="emoji-fallback">{{ question.prompt }}</span>
+                    {% endif %}
+                </div>
+            </div>
         {% else %}
             <h1 class="mb-6 text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
                 {{ question.prompt }}

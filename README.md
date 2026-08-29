@@ -58,6 +58,9 @@ flask db upgrade
  
 # Importer les questions et synchroniser les tags depuis data/questions/
 python -m scripts.seed_db
+
+# Télécharger une fois le catalogue complet OpenMoji pour l'administration
+python -m scripts.download_openmoji_catalog
 ```
 
 ## Lancer le projet en développement

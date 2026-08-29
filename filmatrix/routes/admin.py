@@ -52,9 +52,14 @@ def admin_questions_new() -> str:
             flash("La payload ou la réponse correcte n'est pas un JSON valide")
             return render_template("admin/question_form.html", question=None)
 
+        prompt = request.form["prompt"]
+        if request.form["mode"] == "emoji":
+            visuals = json.loads(request.form.get("visuals", "[]"))
+            payload.setdefault("visuals", visuals)
+
         new_question = Question(
             mode=request.form["mode"],
-            prompt=request.form["prompt"],
+            prompt=prompt,
             payload=payload,
             correct_answer=correct_answer,
             requires_account=request.form.get("requires_account") == "on",
@@ -89,6 +94,8 @@ def admin_questions_edit(question_id: int) -> str:
 
         question.mode = request.form["mode"]
         question.prompt = request.form["prompt"]
+        if request.form["mode"] == "emoji":
+            payload.setdefault("visuals", json.loads(request.form.get("visuals", "[]")))
         question.payload = payload
         question.correct_answer = correct_answer
         question.requires_account = request.form.get("requires_account") == "on"

@@ -4,7 +4,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦁👑🌍",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F981"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F451"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F30D"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Roi Lion"
     },
@@ -33,7 +48,18 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕷️🧑",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F577"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9D1"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Spider-Man"
     },
@@ -62,7 +88,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚢🧊💔",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F6A2"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9CA"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F494"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Titanic"
     },
@@ -87,7 +128,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦖🏝️🧬",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F996"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3DD"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9EC"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Jurassic Park"
     },
@@ -108,7 +164,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🐠🔍🌊",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F420"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F50D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F30A"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Monde de Nemo"
     },
@@ -137,7 +208,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🐭👨‍🍳🇫🇷",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F42D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F468"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F373"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EB-1F1F7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Ratatouille"
     },
@@ -170,7 +260,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "❄️👭⛄",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "2744"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F46D"
+        },
+        {
+          "type": "openmoji",
+          "value": "26C4"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "La Reine des neiges"
     },
@@ -203,7 +308,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👽📞🚲",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4DE"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F6B2"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "E.T."
     },
@@ -220,7 +340,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🤖❤️🌱",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F916"
+        },
+        {
+          "type": "openmoji",
+          "value": "2764"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F331"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Wall-E"
     },
@@ -237,7 +372,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏠🎈🌈",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F388"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F308"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Là-haut"
     },
@@ -270,7 +420,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕶️💊🟩",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F576"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F48A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F7E9"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Matrix"
     },
@@ -291,7 +456,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧙‍♂️💍🌋",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9D9"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F48D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F30B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
@@ -320,7 +504,30 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧙‍♂️⚡🏰🇬🇧",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9D9"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "26A1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3F0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EC-1F1E7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Harry Potter"
     },
@@ -353,7 +560,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦈🏖️🎶🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F988"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3D6"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3B6"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Les Dents de la mer"
     },
@@ -386,7 +612,30 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👨‍🚀🌽🕳️🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F468"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F680"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F33D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F573"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Interstellar"
     },
@@ -419,7 +668,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🃏🎭🪜🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F0CF"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3AD"
+        },
+        {
+          "type": "openmoji",
+          "value": "1FA9C"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Joker"
     },
@@ -456,7 +724,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🥊🇺🇸🏃",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F94A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3C3"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Rocky"
     },
@@ -481,7 +764,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👽🚀🥚🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F680"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F95A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Alien"
     },
@@ -514,7 +816,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎩🍫🏭🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3A9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F36B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3ED"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Charlie et la chocolaterie"
     },
@@ -551,7 +872,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚗⚡🕐🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        },
+        {
+          "type": "openmoji",
+          "value": "26A1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F550"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Retour vers le futur"
     },
@@ -588,7 +928,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧟‍♂️🚄🇰🇷",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9DF"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F684"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1F0-1F1F7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Dernier train pour Busan"
     },
@@ -621,7 +980,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚀🌕🧑‍🚀🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F680"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F315"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9D1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Apollo 13"
     },
@@ -650,7 +1028,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦇🤡🌃🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F987"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F921"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F303"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "The Dark Knight"
     },
@@ -687,7 +1084,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚿🔪🏨🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F6BF"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3E8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Psychose"
     },
@@ -720,7 +1136,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🗡️👘7️⃣🇯🇵",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F5E1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F458"
+        },
+        {
+          "type": "openmoji",
+          "value": "0037-20E3"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EF-1F1F5"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Les Sept Samouraïs"
     },
@@ -749,7 +1184,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💃🎷🌃🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F483"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3B7"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F303"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "La La Land"
     },
@@ -782,7 +1236,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏠🪳🇰🇷",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1FAB3"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1F0-1F1F7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Parasite"
     },
@@ -815,7 +1284,30 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🐑🤫🕵️‍♀️🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F411"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F92B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F575"
+        },
+        {
+          "type": "openmoji",
+          "value": "2640"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Silence des agneaux"
     },
@@ -848,7 +1340,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎈🤡🕳️🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F388"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F921"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F573"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Ça"
     },
@@ -881,7 +1392,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🐺💵📈🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F43A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4B5"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4C8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Loup de Wall Street"
     },
@@ -914,7 +1444,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎹🇵🇱🎖️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3B9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1F5-1F1F1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F396"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Pianiste"
     },
@@ -943,7 +1488,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "⚔️🛡️🏛️🇺🇸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "2694"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F6E1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3DB"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Gladiator"
     },
@@ -976,7 +1540,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎤👑🇬🇧",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3A4"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F451"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EC-1F1E7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Bohemian Rhapsody"
     },
@@ -1005,7 +1584,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎼🇯🇲🌿",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3BC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EF-1F1F2"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F33F"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Bob Marley: One Love"
     },
@@ -1038,7 +1632,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎤❄️🇨🇦",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3A4"
+        },
+        {
+          "type": "openmoji",
+          "value": "2744"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1E8-1F1E6"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Aline"
     },
@@ -1075,7 +1684,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎸🤘🚐",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3B8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F918"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F690"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Wayne's World"
     },
@@ -1104,7 +1728,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧒✈️🏠😱",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9D2"
+        },
+        {
+          "type": "openmoji",
+          "value": "2708"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F631"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Maman, j'ai raté l'avion !"
     },
@@ -1141,7 +1784,30 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕵️‍♂️😎🇬🇧😂",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F575"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F60E"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EC-1F1E7"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F602"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Austin Powers"
     },
@@ -1174,7 +1840,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "⚔️🏰🕳️😂",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "2694"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3F0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F573"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F602"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Les Visiteurs"
     },
@@ -1207,7 +1892,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧸💬🍺",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9F8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4AC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F37A"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Ted"
     },
@@ -1240,7 +1940,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎉🏠📱💥",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F389"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4F1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4A5"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Projet X"
     },
@@ -1265,7 +1984,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "📼☎️7️⃣",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F4FC"
+        },
+        {
+          "type": "openmoji",
+          "value": "260E"
+        },
+        {
+          "type": "openmoji",
+          "value": "0037-20E3"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Cercle"
     },
@@ -1294,7 +2028,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏨🔦😱",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3E8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F526"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F631"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Hostel"
     },
@@ -1319,7 +2068,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎈🤡🚸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F388"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F921"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F6B8"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Ça"
     },
@@ -1356,7 +2120,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👧🌀🙏",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F467"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F300"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F64F"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "L'Exorciste"
     },
@@ -1381,7 +2160,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎮🌫️👻",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3AE"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F32B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F47B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Silent Hill"
     },
@@ -1410,7 +2204,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕯️🖼️🔥",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F56F"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F5BC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F525"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "La Maison de cire"
     },
@@ -1443,7 +2252,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🐈⚰️🚗",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F408"
+        },
+        {
+          "type": "openmoji",
+          "value": "26B0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Simetierre"
     },
@@ -1468,7 +2292,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "✍️🦵🔨",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "270D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9B5"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F528"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Misery"
     },
@@ -1497,7 +2336,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🌳👴😨",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F333"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F474"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F628"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Hérédité"
     },
@@ -1530,7 +2384,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🌻☀️💐",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F33B"
+        },
+        {
+          "type": "openmoji",
+          "value": "2600"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F490"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Midsommar"
     },
@@ -1563,7 +2432,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕳️⛏️😱",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F573"
+        },
+        {
+          "type": "openmoji",
+          "value": "26CF"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F631"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "The Descent"
     },
@@ -1592,7 +2476,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💼🔪🪞",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F4BC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1FA9E"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "American Psycho"
     },
@@ -1625,7 +2524,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🥊🧼🏠",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F94A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9FC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3E0"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Fight Club"
     },
@@ -1654,7 +2568,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🃏💀👥",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F0CF"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F480"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F465"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Suicide Squad"
     },
@@ -1687,7 +2616,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💍🌋🧙‍♂️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F48D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F30B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9D9"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
@@ -1724,7 +2672,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚗⚡🕐",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        },
+        {
+          "type": "openmoji",
+          "value": "26A1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F550"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Retour vers le futur"
     },
@@ -1761,7 +2724,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "⚔️🚀🌌",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "2694"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F680"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F30C"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Star Wars"
     },
@@ -1798,7 +2776,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "⚡🧙‍♂️🦉",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "26A1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9D9"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F989"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Harry Potter"
     },
@@ -1831,7 +2828,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏴‍☠️⛵🦜",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3F4"
+        },
+        {
+          "type": "openmoji",
+          "value": "2620"
+        },
+        {
+          "type": "openmoji",
+          "value": "26F5"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F99C"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Pirates des Caraïbes"
     },
@@ -1868,7 +2884,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🪚🎭🧩",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1FA9A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3AD"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9E9"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Saw"
     },
@@ -1905,7 +2936,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧬🦾👨‍🦲",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9EC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9BE"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F468"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9B2"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "X-Men"
     },
@@ -1942,7 +2992,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏹🔥🌾",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3F9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F525"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F33E"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Hunger Games"
     },
@@ -1983,7 +3048,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕶️🧠✨",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F576"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "2728"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Men in Black"
     },
@@ -2020,7 +3100,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕷️🧑🏙️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F577"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9D1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3D9"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Spider-Man"
     },
@@ -2057,7 +3152,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💊🕶️🐇",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F48A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F576"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F407"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Matrix"
     },
@@ -2090,7 +3200,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🥧🎓😳",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F967"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F393"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F633"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "American Pie"
     },
@@ -2123,7 +3248,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏹🐗🏛️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3F9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F417"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3DB"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Astérix et Obélix : Mission Cléopâtre"
     },
@@ -2152,7 +3292,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "📓💍👗",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F4D3"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F48D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F457"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Bridget Jones"
     },
@@ -2189,7 +3344,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎰🐯🤕",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3B0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F42F"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F915"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Very Bad Trip"
     },
@@ -2218,7 +3388,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦖🚙⚡",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F996"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F699"
+        },
+        {
+          "type": "openmoji",
+          "value": "26A1"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Jurassic Park"
     },
@@ -2251,7 +3436,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🤠🎩🏺",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F920"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3A9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3FA"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Indiana Jones"
     },
@@ -2284,7 +3484,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👮‍♂️🏢🩸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F46E"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3E2"
+        },
+        {
+          "type": "openmoji",
+          "value": "1FA78"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Piège de cristal"
     },
@@ -2317,7 +3536,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧟‍♂️🏺🐫",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9DF"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3FA"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F42B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "La Momie"
     },
@@ -2354,7 +3592,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕴️🇪🇬🍸",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F574"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EA-1F1EC"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F378"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "OSS 117"
     },
@@ -2383,7 +3636,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🍏💧🌙",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F34F"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4A7"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F319"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Gremlins"
     },
@@ -2420,7 +3688,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🕴️🍸🔫",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F574"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F378"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "James Bond"
     },
@@ -2457,7 +3740,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🐾🕵️😂",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F43E"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F575"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F602"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Ace Ventura"
     },
@@ -2494,7 +3792,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👽🚀🥚",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F680"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F95A"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Alien"
     },
@@ -2527,7 +3840,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👽🌴🔫",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F334"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Predator"
     },
@@ -2564,7 +3892,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🤖⏳🕶️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F916"
+        },
+        {
+          "type": "openmoji",
+          "value": "23F3"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F576"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Terminator"
     },
@@ -2601,7 +3944,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🥊🇺🇸💪",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F94A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1FA-1F1F8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4AA"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Rocky"
     },
@@ -2630,7 +3988,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎭🌃😈",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3AD"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F303"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F608"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "American Nightmare"
     },
@@ -2667,7 +4040,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👻🏚️📷",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3DA"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4F7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Insidious"
     },
@@ -2700,7 +4088,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎃🔪🌙",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F383"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F319"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Halloween"
     },
@@ -2733,7 +4136,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧤🩸😴",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9E4"
+        },
+        {
+          "type": "openmoji",
+          "value": "1FA78"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F634"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Freddy, les griffes de la nuit"
     },
@@ -2770,7 +4188,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "😈🏠🙏",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F608"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F64F"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Conjuring"
     },
@@ -2803,7 +4236,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🌲🏚️😱",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F332"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3DA"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F631"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Evil Dead"
     },
@@ -2832,7 +4280,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💀⏱️🚗",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F480"
+        },
+        {
+          "type": "openmoji",
+          "value": "23F1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Destination finale"
     },
@@ -2865,7 +4328,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🪚😱🏚️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1FA9A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F631"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3DA"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Massacre à la tronçonneuse"
     },
@@ -2894,7 +4372,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🔪🧸😈",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F9F8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F608"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Chucky"
     },
@@ -2923,7 +4416,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦈🏖️🚤",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F988"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3D6"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F6A4"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Les Dents de la mer"
     },
@@ -2960,7 +4468,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👻🔪📞",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4DE"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Scream"
     },
@@ -2997,7 +4520,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "😂👻🔪",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F602"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F47B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Scary Movie"
     },
@@ -3026,7 +4564,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎣🚗🤫",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3A3"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F92B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Souviens-toi... l'été dernier"
     },
@@ -3063,7 +4616,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚗🌲🔪",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F332"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Détour mortel"
     },
@@ -3096,7 +4664,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🤡🔪🎪",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F921"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3AA"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Terrifier"
     },
@@ -3125,7 +4708,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🍽️😈🚔",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F37D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F608"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F694"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Silence des agneaux"
     },
@@ -3158,7 +4756,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🦇🎩🖤",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F987"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3A9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F5A4"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Beetlejuice"
     },
@@ -3183,7 +4796,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🍅🔫🎬",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F345"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3AC"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Reservoir Dogs"
     },
@@ -3212,7 +4840,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "⚔️👰💛",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "2694"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F470"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F49B"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Kill Bill"
     },
@@ -3241,7 +4884,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🧠⏳❓",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F9E0"
+        },
+        {
+          "type": "openmoji",
+          "value": "23F3"
+        },
+        {
+          "type": "openmoji",
+          "value": "2753"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Memento"
     },
@@ -3270,7 +4928,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "7️⃣😈📦",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "0037-20E3"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F608"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F4E6"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Seven"
     },
@@ -3303,7 +4976,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "♈️🩸🔍",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "2648"
+        },
+        {
+          "type": "openmoji",
+          "value": "1FA78"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F50D"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Zodiac"
     },
@@ -3336,7 +5024,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👽🗡️🚀",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47D"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F5E1"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F680"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Alien, le huitième passager"
     },
@@ -3365,7 +5068,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏛️⚔️👑",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3DB"
+        },
+        {
+          "type": "openmoji",
+          "value": "2694"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F451"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Gladiator"
     },
@@ -3398,7 +5116,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚕😡🗽",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F695"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F621"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F5FD"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Taxi Driver"
     },
@@ -3427,7 +5160,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎩🐇⚔️",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3A9"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F407"
+        },
+        {
+          "type": "openmoji",
+          "value": "2694"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Alice au pays des merveilles"
     },
@@ -3460,7 +5208,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💇‍♂️🔪🤍",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F487"
+        },
+        {
+          "type": "openmoji",
+          "value": "2642"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F52A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F90D"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Edward aux mains d'argent"
     },
@@ -3493,7 +5260,26 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎯🕵️‍♀️🇮🇹",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3AF"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F575"
+        },
+        {
+          "type": "openmoji",
+          "value": "2640"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EE-1F1F9"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Talentueux Mr. Ripley"
     },
@@ -3526,7 +5312,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚗👊🇬🇧",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F697"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F44A"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EC-1F1E7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Snatch"
     },
@@ -3555,7 +5356,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "💧🐟🏆",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F4A7"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F41F"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F3C6"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "La Forme de l'eau"
     },
@@ -3588,7 +5404,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "👻🌲🇬🇧",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F47B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F332"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EC-1F1E7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Labyrinthe de Pan"
     },
@@ -3621,7 +5452,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🏘️👻🌳",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3D8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F47B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F333"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Sixième Sens"
     },
@@ -3654,7 +5500,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🎭🇫🇷🌉",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F3AD"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EB-1F1F7"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F309"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Lost in Translation"
     },
@@ -3687,7 +5548,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🔫🚕🇫🇷",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F52B"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F695"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F1EB-1F1F7"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Léon"
     },
@@ -3720,7 +5596,22 @@
     "mode": "emoji",
     "content_type": "film",
     "prompt": "🚕🛸💊",
-    "payload": {},
+    "payload": {
+      "visuals": [
+        {
+          "type": "openmoji",
+          "value": "1F695"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F6F8"
+        },
+        {
+          "type": "openmoji",
+          "value": "1F48A"
+        }
+      ]
+    },
     "correct_answer": {
       "film": "Le Cinquième Élément"
     },

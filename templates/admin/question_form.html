@@ -58,9 +58,28 @@
             <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
             <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
         </div>
-        <div class="mode-fields hidden" data-mode="emoji">
-            <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="emoji">
+            <label class="block text-sm text-slate-400">Film ou série à trouver</label>
             <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Choisir les indices visuels</label>
+                {# Onglets par catégorie (Émotions, Personnes, Animaux...), calqués sur le
+                   clavier d'emojis d'un smartphone - remplis par renderEmojiCategoryTabs()
+                   une fois le catalogue chargé, comme le champ group d'openmoji-catalog.json
+                   le permet. Recherche et catégorie se combinent : taper un mot filtre dans
+                   l'onglet actif, pas dans tout le catalogue. #}
+                <div id="emoji-picker-categories" class="mb-2 flex flex-wrap gap-1.5"></div>
+                <input type="search" class="emoji-picker-search w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Rechercher un emoji : château, argent..." autocomplete="off">
+                <div id="emoji-picker" class="emoji-picker mt-2 flex max-h-40 flex-wrap content-start items-center justify-start gap-1.5 overflow-y-auto rounded-lg border border-slate-800 bg-slate-950/60 p-2" aria-label="Bibliothèque OpenMoji">
+                    <p class="w-full py-2 text-center text-xs text-slate-500">Chargement…</p>
+                </div>
+                <button type="button" id="emoji-picker-toggle" class="mt-2 text-xs font-bold text-cyan-400 hover:text-cyan-300">Afficher tous les emojis</button>
+                <p class="mt-1 text-xs text-slate-500">Le catalogue complet est chargé localement après l’exécution du script d’installation.</p>
+                <label class="mt-2 block text-xs text-slate-500">Indices sélectionnés</label>
+                <textarea class="emoji-visual-codes w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100" rows="1" placeholder="Clique sur les icônes ci-dessus"></textarea>
+                <p class="mt-1 text-xs text-slate-500">Clique une icône pour l’ajouter. Le champ reste éditable.</p>
+            </div>
+            <div class="emoji-admin-preview flex flex-wrap justify-center gap-2"></div>
         </div>
         <div class="mode-fields hidden" data-mode="film_melange">
             <label class="block text-sm text-slate-400 mb-1">Titre du film (sera mélangé automatiquement)</label>
@@ -174,6 +193,7 @@
         </div>
 
         <!-- Champs cachés remplis automatiquement par le JS avant envoi -->
+        <input type="hidden" name="visuals" id="visuals-input">
         <input type="hidden" name="payload" id="payload-input">
         <input type="hidden" name="correct_answer" id="correct-answer-input">
 

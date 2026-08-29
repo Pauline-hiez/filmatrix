@@ -2,7 +2,41 @@ const modeSelect = document.getElementById("mode-select");
 const allModeFieldGroups = document.querySelectorAll(".mode-fields");
 const form = document.getElementById("question-form");
 const tagSearch = document.getElementById("tag-search");
-const tagCount = document.getElementById("selected-tags-count");
+const tagCount = document.getElementById("selected-tags-count");const OPENMOJI_CATALOG_URL = "/static/assets/openmoji-catalog.json";
+const OPENMOJI_REMOTE_URL = "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/data/openmoji.json";
+let OPENMOJI_CATALOG = [];
+let showAllEmojis = false;
+let activeEmojiCategory = "all";
+
+// Un modificateur de teint ou de genre change le rendu de l'emoji, pas le mot
+// qu'on tape pour le chercher : il ne doit pas non plus créer un doublon
+// visuel côte à côte dans la grille (cf. scripts/download_openmoji_catalog.py,
+// qui applique la même normalisation côté recherche française).
+const EMOJI_SKIN_TONES = ["1F3FB", "1F3FC", "1F3FD", "1F3FE", "1F3FF"];
+
+function normalizeEmojiCode(code) {
+    return code.split("-").filter(function (part) {
+        return part !== "FE0F" && EMOJI_SKIN_TONES.indexOf(part) === -1;
+    }).join("-");
+}
+
+// Regroupement calqué sur les onglets d'un clavier de smartphone. « component »
+// (teintes de peau et couleurs de cheveux isolées) n'a pas sa place ici : seul
+// dans une question, un carré de couleur ne veut rien dire.
+const EMOJI_CATEGORY_LABELS = {
+    "smileys-emotion": "Émotions",
+    "people-body": "Personnes",
+    "animals-nature": "Animaux",
+    "food-drink": "Nourriture",
+    "travel-places": "Voyages",
+    "activities": "Activités",
+    "objects": "Objets",
+    "symbols": "Symboles",
+    "flags": "Drapeaux",
+    "extras": "Autres",
+};
+const EMOJI_EXCLUDED_GROUPS = ["component"];
+const EMOJI_GROUP_ALIASES = { "extras-openmoji": "extras", "extras-unicode": "extras" };
 
 function updateTagCount() {
     const count = document.querySelectorAll(".tag-checkbox:checked").length;
@@ -32,7 +66,167 @@ if (tagSearch) {
 
 updateTagCount();
 
+const emojiCodesField = document.querySelector(".emoji-visual-codes");
+const emojiPicker = document.querySelector(".emoji-picker");
+const emojiPickerSearch = document.querySelector(".emoji-picker-search");
+const emojiPickerToggle = document.getElementById("emoji-picker-toggle");
+const emojiPickerCategories = document.getElementById("emoji-picker-categories");
+
+function renderEmojiCategoryTabs() {
+    if (!emojiPickerCategories) return;
+    const presentGroups = new Set(OPENMOJI_CATALOG.map(function (item) { return item.group; }));
+    const orderedGroups = Object.keys(EMOJI_CATEGORY_LABELS).filter(function (group) {
+        return presentGroups.has(group);
+    });
+
+    emojiPickerCategories.innerHTML = "";
+    [["all", "Tous"]].concat(orderedGroups.map(function (group) {
+        return [group, EMOJI_CATEGORY_LABELS[group]];
+    })).forEach(function (entry) {
+        const [group, label] = entry;
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.textContent = label;
+        tab.dataset.emojiCategory = group;
+        tab.className = "rounded-full border px-3 py-1 text-xs font-bold transition " + (
+            group === activeEmojiCategory
+                ? "border-cyan-400 bg-cyan-400/10 text-cyan-300"
+                : "border-slate-700 text-slate-400 hover:border-cyan-400/50 hover:text-slate-200"
+        );
+        tab.addEventListener("click", function () {
+            activeEmojiCategory = group;
+            renderEmojiCategoryTabs();
+            renderEmojiPicker();
+        });
+        emojiPickerCategories.appendChild(tab);
+    });
+}
+
+function renderEmojiPicker() {
+    if (!emojiPicker) return;
+    const query = (emojiPickerSearch ? emojiPickerSearch.value : "").trim().toLowerCase();
+    emojiPicker.innerHTML = "";
+    const matchingItems = OPENMOJI_CATALOG.filter(function (item) {
+        const matchesCategory = activeEmojiCategory === "all" || item.group === activeEmojiCategory;
+        const matchesQuery = !query || item.searchText.includes(query) || item.code.toLowerCase().includes(query);
+        return matchesCategory && matchesQuery;
+    });
+    const items = query || showAllEmojis ? matchingItems : matchingItems.slice(0, 48);
+    items.forEach(function (item) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.title = item.name;
+        button.dataset.code = item.code;
+        button.className = "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-700 bg-slate-900 p-1 transition hover:border-cyan-400 hover:bg-slate-800";
+        // Le paquet npm @svgmoji/openmoji est figé à une ancienne version du jeu
+        // d'icônes OpenMoji : les emojis ajoutés depuis y renvoient un 404 (ex.
+        // 1FAE0, « visage qui fond »). Le dépôt GitHub d'origine, à la branche
+        // master, est la même source que le catalogue de métadonnées : toujours
+        // synchronisé, vérifié à 0 échec sur les 4565 entrées du catalogue.
+        button.innerHTML = `<img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/${item.code}.svg" alt="${item.name}" class="h-7 w-7 object-contain">`;
+        button.addEventListener("click", function () {
+            const codes = linesToArray(emojiCodesField.value);
+            if (!codes.includes(item.code)) codes.push(item.code);
+            emojiCodesField.value = codes.join("\\n");
+            emojiCodesField.dispatchEvent(new Event("input"));
+        });
+        emojiPicker.appendChild(button);
+    });
+}
+
+if (emojiPickerSearch) emojiPickerSearch.addEventListener("input", renderEmojiPicker);
+if (emojiPickerToggle) {
+    emojiPickerToggle.addEventListener("click", function () {
+        showAllEmojis = !showAllEmojis;
+        emojiPickerToggle.textContent = showAllEmojis ? "Afficher moins" : "Afficher tous les emojis";
+        emojiPicker.classList.toggle("max-h-40", !showAllEmojis);
+        emojiPicker.classList.toggle("max-h-96", showAllEmojis);
+        renderEmojiPicker();
+    });
+}
+
+fetch(OPENMOJI_CATALOG_URL)
+    .catch(function () { return fetch(OPENMOJI_REMOTE_URL); })
+    .then(function (response) {
+        if (!response.ok) throw new Error("Catalogue HTTP " + response.status);
+        return response.json();
+    })
+    .then(function (items) {
+        const seenNormalizedCodes = new Set();
+        OPENMOJI_CATALOG = items
+            .filter(function (item) {
+                return item.hexcode && item.annotation && EMOJI_EXCLUDED_GROUPS.indexOf(item.group) === -1;
+            })
+            .map(function (item) {
+                // fr_name / fr_tags viennent des annotations françaises du CLDR,
+                // ajoutées par scripts/download_openmoji_catalog.py : environ
+                // deux tiers du catalogue en profite, le reste reste cherchable
+                // en anglais (openmoji.json ne fournit que l'anglais nativement).
+                const frenchTags = Array.isArray(item.fr_tags) ? item.fr_tags.join(" ") : "";
+                return {
+                    code: item.hexcode.toUpperCase(),
+                    normalizedCode: normalizeEmojiCode(item.hexcode.toUpperCase()),
+                    group: EMOJI_GROUP_ALIASES[item.group] || item.group,
+                    name: item.fr_name || item.annotation,
+                    // openmoji.json donne tags sous forme de chaîne « a, b, c », pas d'un
+                    // tableau : un .join() dessus lève une exception et fait retomber tout
+                    // le chargement sur la liste de secours à 32 emojis.
+                    searchText: `${item.annotation} ${item.tags || ""} ${item.fr_name || ""} ${frenchTags}`.toLowerCase(),
+                };
+            })
+            // Un même geste décliné en 5 teints de peau reste le même indice visuel :
+            // un seul suffit dans la grille (cf. EMOJI_SKIN_TONES ci-dessus).
+            .filter(function (item) {
+                if (seenNormalizedCodes.has(item.normalizedCode)) return false;
+                seenNormalizedCodes.add(item.normalizedCode);
+                return true;
+            });
+        renderEmojiCategoryTabs();
+        renderEmojiPicker();
+    })
+    .catch(function () {
+        OPENMOJI_CATALOG = [
+            ["1F9EA", "🧪", "science chimie"], ["1F4B0", "💰", "argent"],
+            ["1F3F0", "🏰", "château royaume"], ["1F451", "👑", "roi reine couronne"],
+            ["1F409", "🐉", "dragon"], ["2694", "⚔️", "épée combat"],
+            ["1F47B", "👻", "fantôme"], ["1F608", "😈", "diable"],
+            ["1F47D", "👽", "alien"], ["1F916", "🤖", "robot"],
+            ["1F52A", "🔪", "couteau"], ["1F3AD", "🎭", "masque théâtre"],
+            ["1F697", "🚗", "voiture"], ["1F680", "🚀", "fusée"],
+            ["1F6A2", "🚢", "bateau"], ["1F3E0", "🏠", "maison"],
+            ["1F3AC", "🎬", "cinéma film"], ["1F3B8", "🎸", "musique"],
+            ["1F525", "🔥", "feu flamme"], ["1F30A", "🌊", "océan"],
+            ["1F9DF", "🧟", "zombie"], ["1F47E", "👾", "monstre"],
+            ["1F3B2", "🎲", "jeu dés"], ["1F6B2", "🚲", "vélo"],
+            ["1F602", "😂", "rire comédie"], ["1F622", "😭", "tristesse"],
+            ["0037-20E3", "7️⃣", "sept"], ["1F1EB-1F1F7", "🇫🇷", "France"],
+            ["1F1FA-1F1F8", "🇺🇸", "États-Unis"], ["1F1EC-1F1E7", "🇬🇧", "Royaume-Uni"],
+            ["1F1EA-1F1F8", "🇪🇸", "Espagne"], ["1F1E9-1F1EA", "🇩🇪", "Allemagne"]
+        ].map(function (item) {
+            return { code: item[0], name: item[2], searchText: item[2].toLowerCase() };
+        });
+        renderEmojiPicker();
+    });
+
+if (emojiCodesField) {
+    emojiCodesField.addEventListener("input", function () {
+        const preview = document.querySelector(".emoji-admin-preview");
+        preview.innerHTML = "";
+        linesToArray(emojiCodesField.value).forEach(function (code) {
+            const image = document.createElement("img");
+            image.src = `https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/${code.toUpperCase()}.svg`;
+            image.referrerPolicy = "no-referrer";
+            image.alt = "";
+            image.className = "h-8 w-8 object-contain";
+            preview.appendChild(image);
+        });
+    });
+}
+
 function showFieldsForMode(mode) {
+    if (mode === "emoji" && emojiPicker) {
+        emojiPicker.classList.remove("hidden");
+    }
     allModeFieldGroups.forEach(function (group) {
         if (group.dataset.mode === mode) {
             group.classList.remove("hidden");
@@ -92,10 +286,19 @@ function buildPayloadAndAnswer(mode) {
         };
     }
 
-    if (mode === "citation" || mode === "emoji") {
+    if (mode === "citation") {
         const film = activeGroup.querySelector(".film-answer").value;
+        return { payload: {}, correct_answer: { film: film } };
+    }
+
+    if (mode === "emoji") {
+        const film = activeGroup.querySelector(".film-answer").value;
+        const codes = linesToArray(activeGroup.querySelector(".emoji-visual-codes").value)
+            .map(function (value) { return value.toUpperCase(); });
         return {
-            payload: {},
+            payload: { visuals: codes.map(function (value) {
+                return { type: "openmoji", value: value };
+            }) },
             correct_answer: { film: film },
         };
     }
@@ -169,6 +372,7 @@ form.addEventListener("submit", function (event) {
     const result = buildPayloadAndAnswer(mode);
 
     document.getElementById("payload-input").value = JSON.stringify(result.payload);
+    document.getElementById("visuals-input").value = JSON.stringify(result.payload.visuals || []);
     document.getElementById("correct-answer-input").value = JSON.stringify(result.correct_answer);
 });
 

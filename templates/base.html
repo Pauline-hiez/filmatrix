@@ -50,6 +50,31 @@
             background-color: #475569;
         }
 
+        .emoji-visuals {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-height: 5rem;
+        }
+
+        .emoji-visual {
+            width: 3.5rem;
+            height: 3.5rem;
+            object-fit: contain;
+        }
+
+        .emoji-fallback {
+            font-size: 3rem;
+            line-height: 1.2;
+            letter-spacing: 0.1em;
+        }
+
+        .emoji-visual[hidden] + .emoji-fallback {
+            display: inline-block;
+        }
+
         .accent-bar {
             background-image: linear-gradient(
                 to right,
@@ -212,7 +237,8 @@
     </main>
 
     <footer class="border-t border-cyan-400/30 text-center text-slate-500 text-sm py-4">
-        Filmatrix — projet d'apprentissage Python
+        <p>Filmatrix — projet d'apprentissage Python</p>
+        <p class="mt-1 text-xs">Emojis fournis par <a href="https://openmoji.org/" target="_blank" rel="noopener" class="hover:text-cyan-400">OpenMoji</a></p>
     </footer>
 
     <script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
