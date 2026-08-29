@@ -8,6 +8,7 @@ from filmatrix.models import GameSession, GameSessionQuestion, Question
 
 INVITATION_DURATION_MINUTES = 15
 QUESTIONS_PER_GAME = 5
+QUESTION_DURATION = 15
 
 # Nombre de propositions offertes par question en duel.
 CHOICES_PER_QUESTION = 4

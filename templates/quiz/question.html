@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from "partials/avatar.html" import avatar_img %}
+{% from "partials/audio_player.html" import audio_player %}
 
 {% block content %}
 {# Couleur d'accent par mode, alignée sur les cartes de l'accueil et de la page modes. #}
@@ -40,27 +42,64 @@
 </button>
 {% endmacro %}
 
-<div class="mx-auto flex max-w-2xl flex-col gap-5" style="--accent: {{ accent }}">
+{% set icons = {
+    "qcm": "?", "vrai_faux": "±", "citation": "❝", "emoji": "☺",
+    "film_melange": "⤭", "chronologie": "⏱", "devinette": "◎",
+    "devinette_affiche": "▶", "casting": "★", "blindtest": "♪"
+} %}
 
-    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-7">
-
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex flex-wrap items-center gap-2">
-                <span class="accent-icon rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest">
-                    {{ labels.get(question.mode, question.mode) }}
-                </span>
-                <span class="rounded-full border border-slate-600 bg-slate-950/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-300">
-                    {% if question.content_type == "serie" %}Série{% else %}Film{% endif %}
-                </span>
+<div class="game-shell" style="--accent: {{ accent }}">
+    <div class="game-topbar">
+        <div class="game-mode-mark">
+            <span class="accent-icon">{{ icons.get(question.mode, "✳") }}</span>
+            <div class="min-w-0">
+                <p class="truncate text-sm font-bold text-slate-100">{{ labels.get(question.mode, question.mode) }}</p>
+                <p class="text-xs text-slate-500">{% if question.content_type == "serie" %}Série{% else %}Film{% endif %}</p>
             </div>
-            <span class="text-xs uppercase tracking-widest text-slate-500">
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-bold text-slate-300">
+                Manche {{ position }} / {{ total_questions }}
+            </span>
+            <span class="hidden rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-400 sm:inline-flex">
                 {{ level.label }}
             </span>
         </div>
+    </div>
+
+    <div class="game-layout game-layout--solo">
+        <aside class="game-left-rail">
+            <section class="game-side-card game-timer-card">
+                <p class="game-sidebar-label">Temps restant</p>
+                <div class="game-timer-ring">
+                    <div><strong id="time-remaining">{{ duration }}</strong><span>secondes</span></div>
+                </div>
+                <div class="h-1.5 overflow-hidden rounded-full bg-slate-800">
+                    <span id="time-bar" data-question-id="{{ question.id }}" data-duration="{{ duration }}" class="accent-bar block h-full rounded-full" style="width: 100%; transition: width 1s linear;"></span>
+                </div>
+            </section>
+
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Amis</p>
+                <div class="game-rail-list">
+                    {% for friend in sidebar_friends %}
+                    <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}" class="game-rail-item transition hover:text-cyan-400">
+                        <span class="flex min-w-0 items-center gap-2 truncate"><span class="presence-dot bg-slate-600" data-user-id="{{ friend.id }}" title="Hors ligne"></span><span class="truncate">{{ friend.username }}</span></span>
+                        <span class="shrink-0 text-xs text-slate-500">Niv. {{ friend.level }}</span>
+                    </a>
+                    {% else %}
+                    <p class="text-xs text-slate-500">Aucun ami à afficher.</p>
+                    {% endfor %}
+                </div>
+                <a href="{{ url_for('friends.friends_list') }}" class="mt-3 block text-xs text-slate-500 transition hover:text-cyan-400">Gérer mes amis →</a>
+            </section>
+        </aside>
+
+        <div class="game-main-zone">
+    <section class="game-main-card">
 
         {# Avancement dans la partie : une partie fait QUESTIONS_PER_RUN questions
-           (moins si les filtres du joueur en laissent moins), cf. src/score.py.
-           À ne pas confondre avec la barre de chrono, juste en dessous. #}
+           (moins si les filtres du joueur en laissent moins), cf. src/score.py. #}
         <div class="mb-4">
             <div class="mb-1.5 flex items-baseline justify-between gap-3">
                 <p class="text-sm font-bold text-slate-200">
@@ -87,9 +126,6 @@
             </div>
         </div>
 
-        <div class="mb-6 h-2 w-full overflow-hidden rounded-full bg-slate-800">
-            <div id="time-bar" data-question-id="{{ question.id }}" data-duration="{{ duration }}" class="accent-bar h-2 rounded-full" style="width: 100%; transition: width 1s linear;"></div>
-        </div>
 
         {# Bandeau de résultat, rempli par quiz.js une fois la question tranchée.
            Ses couleurs sont posées par le script et dépendent du seul résultat :
@@ -99,7 +135,8 @@
             <p id="answer-feedback-text" class="mt-1 break-words text-xl font-extrabold sm:text-2xl"></p>
         </div>
 
-        {% if question.mode == "film_melange" %}
+        <div class="game-question-panel">
+            {% if question.mode == "film_melange" %}
             <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100 sm:text-3xl">
                 {{ scrambled_title }}
             </h1>
@@ -131,16 +168,18 @@
             <h1 class="mb-6 text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
                 {{ question.prompt }}
             </h1>
-        {% endif %}
+            {% endif %}
 
-        {# Médias propres à certains modes, affichés avant le champ de réponse. #}
+            {# Médias propres à certains modes, affichés avant le champ de réponse. #}
         {% if question.mode == "devinette_affiche" %}
             {# Image de plateau en 16:9, et non la jaquette : celle-ci porte le
                titre et donnerait la réponse. Le cadrage est donc large, pas le
                portrait d'une affiche. #}
             <p class="mb-3 text-sm text-slate-400">Devine le titre à partir de cette image :</p>
-            <img src="{{ question.payload.poster_url }}" alt="Image du film à deviner"
-                 class="mx-auto mb-5 w-full rounded-xl border border-cyan-400/30">
+            <div class="game-media-frame">
+                <img src="{{ question.payload.poster_url }}" alt="Image du film à deviner"
+                     class="mx-auto mb-5 w-full rounded-xl border border-cyan-400/30">
+            </div>
         {% elif question.mode == "casting" %}
             <p class="mb-3 text-sm text-slate-400">Devine le film à partir de son casting :</p>
             <div class="mb-5 flex flex-wrap justify-center gap-3">
@@ -156,10 +195,7 @@
                (salle d'attente...). Le lecteur reste là, mais c'est au joueur de lancer
                la lecture. En blind test pur, l'autoplay reste : le joueur sait déjà à
                quoi s'attendre en choisissant ce mode. #}
-            <audio controls {% if not is_mix %}autoplay{% endif %} class="mb-5 w-full">
-                <source src="{{ question.payload.audio_url }}" type="audio/mp4">
-                Ton navigateur ne supporte pas la lecture audio.
-            </audio>
+            {{ audio_player(question.payload.audio_url, autoplay=not is_mix) }}
         {% endif %}
 
         {# Indices progressifs, réservés au mode devinette. #}
@@ -170,12 +206,12 @@
             </div>
         {% endif %}
 
-        <div class="flex flex-col gap-3">
+        <div class="game-answer-zone">
             {% if question.mode == "qcm" %}
                 {# L'ordre d'affichage est tiré au sort à chaque question, mais
                    chaque bouton renvoie l'index d'origine de sa proposition :
                    le serveur vérifie la réponse sans rien savoir du mélange. #}
-                <div class="grid gap-3 sm:grid-cols-2">
+                <div class="game-answer-grid">
                     {% for original_index, option in options %}
                     <button type="button" data-answer="{{ original_index }}"
                             class="answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
@@ -185,7 +221,7 @@
                 </div>
 
             {% elif question.mode == "vrai_faux" %}
-                <div class="grid gap-3 sm:grid-cols-2">
+                <div class="game-answer-grid">
                     <button type="button" data-answer="true"
                             class="answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
                         Vrai
@@ -233,17 +269,59 @@
                 {{ answer_field() }}
             {% endif %}
         </div>
+        </div>
     </section>
 
-    <button type="button" id="report-button"
-                class="mt-4 text-xs text-slate-500 transition hover:text-red-400">
+    <div class="game-report">
+        <button type="button" id="report-button" class="text-xs text-slate-500 transition hover:text-red-400">
             🚩 Signaler cette question
         </button>
-    </section>
+    </div>
+        </div>
 
-    <a href="{{ url_for('main.modes') }}" class="text-center text-sm text-slate-500 transition hover:text-cyan-400">
-        Changer de mode
-    </a>
+        <aside class="game-right-rail game-sidebar">
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Niveau</p>
+                {% if player_level %}
+                <div class="flex items-end justify-between gap-3">
+                    <strong class="text-2xl font-extrabold text-slate-100">{{ player_level.level }}</strong>
+                    <span class="text-xs text-slate-500">{{ player_level.xp_in_current_level }} / {{ player_level.xp_for_next_level }} XP</span>
+                </div>
+                <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-800">
+                    <span class="accent-bar block h-full rounded-full" style="width: {{ (player_level.xp_in_current_level / player_level.xp_for_next_level * 100) | round(1) }}%"></span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">{{ current_user.total_xp }} XP au total</p>
+                {% else %}
+                <p class="text-sm text-slate-400">Connecte-toi pour suivre ta progression.</p>
+                {% endif %}
+            </section>
+
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Classement</p>
+                <div class="game-rail-list">
+                    {% for player in leaderboard_players %}
+                    <div class="game-rail-item">
+                        <span class="flex min-w-0 items-center gap-2 truncate">
+                            <span class="text-slate-500">{{ loop.index }}</span>
+                            <span class="h-6 w-6 shrink-0 overflow-hidden rounded-full border border-slate-700 bg-slate-900">{{ avatar_img(player.avatar) }}</span>
+                            <span class="truncate {% if current_user.is_authenticated and player.id == current_user.id %}font-bold text-cyan-400{% endif %}">{{ player.username }}</span>
+                        </span>
+                        <strong class="shrink-0 text-xs text-slate-300">{{ player.total_xp }}</strong>
+                    </div>
+                    {% else %}
+                    <p class="text-xs text-slate-500">Aucun joueur classé.</p>
+                    {% endfor %}
+                </div>
+                <p class="mt-3 text-xs text-slate-500">
+                    {% if player_rank %}Ta position : {{ player_rank }}{% else %}Classement général{% endif %}
+                </p>
+            </section>
+
+            <a href="{{ url_for('main.modes') }}" class="game-side-card block text-sm font-bold text-slate-300 transition hover:border-cyan-400/60 hover:text-cyan-400">
+                ← Changer de mode
+            </a>
+        </aside>
+    </div>
 </div>
 
 <!-- Fenêtre modale de signalement -->
@@ -273,5 +351,6 @@
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='js/audio_player.js') }}"></script>
 <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,32 @@
+{# Lecteur audio personnalisé partagé par le solo et le multijoueur. Le véritable
+   élément audio reste présent pour la compatibilité, tandis que les contrôles
+   visibles sont pilotés par static/js/audio_player.js. #}
+{% macro audio_player(audio_url, autoplay=false) %}
+<div class="audio-player" data-audio-player data-autoplay="{{ 'true' if autoplay else 'false' }}">
+    <audio class="audio-player__native" preload="metadata" {% if autoplay %}autoplay{% endif %}>
+        <source src="{{ audio_url }}" type="audio/mp4">
+        Ton navigateur ne supporte pas la lecture audio.
+    </audio>
+
+    <div class="audio-player__visual">
+        <button type="button" class="audio-player__toggle" data-audio-toggle aria-label="Lire l'extrait">
+            <span data-audio-play-icon aria-hidden="true">▶</span>
+            <span data-audio-pause-icon aria-hidden="true" hidden>Ⅱ</span>
+        </button>
+
+        <div class="audio-player__waveform" data-audio-waveform aria-hidden="true">
+            {% for height in [30, 48, 68, 42, 82, 58, 34, 74, 92, 52, 38, 66, 84, 44, 28, 62, 88, 56, 36, 76, 96, 48, 32, 70, 86, 54, 40, 78, 90, 46, 30, 64, 82, 50, 36, 72, 94, 58, 42, 68] %}
+            <span style="height: {{ height }}%"></span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="audio-player__controls">
+        <span class="audio-player__time" data-audio-current>00:00</span>
+        <input type="range" class="audio-player__seek" data-audio-seek min="0" max="100" value="0" step="0.1" aria-label="Position dans l'extrait">
+        <span class="audio-player__time" data-audio-duration>--:--</span>
+        <button type="button" class="audio-player__volume-button" data-audio-mute aria-label="Couper le son">🔊</button>
+        <input type="range" class="audio-player__volume" data-audio-volume min="0" max="1" value="1" step="0.05" aria-label="Volume">
+    </div>
+</div>
+{% endmacro %}

@@ -3,6 +3,27 @@ const gameSessionId = parseInt(gameContainer.dataset.gameSessionId);
 const questionIndex = parseInt(gameContainer.dataset.questionIndex);
 
 let hasAnswered = false;
+const gameTimeRemaining = document.getElementById("game-time-remaining");
+const gameTimeBar = document.getElementById("game-time-bar");
+const gameDuration = Number(gameContainer.dataset.duration || 15);
+let gameRemainingTime = gameDuration;
+
+function updateGameTimer() {
+    if (gameTimeRemaining) {
+        gameTimeRemaining.textContent = Math.max(0, gameRemainingTime);
+    }
+    if (gameTimeBar) {
+        gameTimeBar.style.width = Math.max(0, gameRemainingTime / gameDuration * 100) + "%";
+    }
+}
+
+const gameTimerInterval = setInterval(function () {
+    gameRemainingTime -= 1;
+    updateGameTimer();
+    if (gameRemainingTime <= 0) {
+        clearInterval(gameTimerInterval);
+    }
+}, 1000);
 
 if (typeof socket !== "undefined") {
     socket.emit("join_game", { game_session_id: gameSessionId });

@@ -147,6 +147,24 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
     });
 });
 
+function updateTimerDisplay(percentage) {
+    const labels = [
+        document.getElementById("time-remaining"),
+        document.getElementById("time-remaining-inline"),
+    ];
+
+    labels.forEach(function (label) {
+        if (label) {
+            label.textContent = label.id === "time-remaining" ? remainingTime : remainingTime + " s";
+        }
+    });
+
+    const sideBar = document.getElementById("time-bar-side");
+    if (sideBar && sideBar !== timeBar) {
+        sideBar.style.width = Math.max(0, percentage) + "%";
+    }
+}
+
 let timerInterval;
 
 if (document.getElementById("riddle-submit")) {
@@ -154,6 +172,7 @@ if (document.getElementById("riddle-submit")) {
         remainingTime -= 1;
         const percentage = (remainingTime / TOTAL_DURATION) * 100;
         timeBar.style.width = percentage + "%";
+        updateTimerDisplay(percentage);
 
         if (remainingTime <= 0) {
             document.getElementById("riddle-submit").click();
@@ -164,6 +183,7 @@ if (document.getElementById("riddle-submit")) {
         remainingTime -= 1;
         const percentage = (remainingTime / TOTAL_DURATION) * 100;
         timeBar.style.width = percentage + "%";
+        updateTimerDisplay(percentage);
 
         if (remainingTime <= 0) {
             (async function () {

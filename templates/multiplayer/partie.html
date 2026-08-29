@@ -1,143 +1,249 @@
 {% extends "base.html" %}
 {% from "partials/avatar.html" import avatar_img %}
+{% from "partials/audio_player.html" import audio_player %}
 
 {% block content %}
-{# Écran de duel. Il affiche les mêmes médias que le solo, mais la réponse s'y
-   donne toujours d'un clic : le joueur n'a droit qu'à un seul essai, et le faire
-   écrire lui ferait perdre le point sur une faute de frappe. #}
-<div class="max-w-xl mx-auto mt-8" id="game-container"
+{% set accents = {
+    "qcm": "#22d3ee", "vrai_faux": "#2dd4bf", "citation": "#fbbf24",
+    "emoji": "#c084fc", "film_melange": "#a78bfa", "chronologie": "#38bdf8",
+    "devinette": "#fb923c", "devinette_affiche": "#34d399", "casting": "#f472b6",
+    "blindtest": "#60a5fa"
+} %}
+{% set labels = {
+    "qcm": "Quiz", "vrai_faux": "Vrai / Faux", "citation": "Citations",
+    "emoji": "Emoji Quiz", "film_melange": "Film mélangé", "chronologie": "Chronologie",
+    "devinette": "Devinette", "devinette_affiche": "Devine le film", "casting": "Acteurs",
+    "blindtest": "Blind Test"
+} %}
+{% set icons = {
+    "qcm": "?", "vrai_faux": "±", "citation": "❝", "emoji": "☺",
+    "film_melange": "⤭", "chronologie": "⏱", "devinette": "◎",
+    "devinette_affiche": "▶", "casting": "★", "blindtest": "♪"
+} %}
+{% set accent = accents.get(question.mode, "#22d3ee") %}
+{% set my_score = game_session.host_score if current_user.id == game_session.host_id else game_session.guest_score %}
+{% set opponent_score = game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score %}
+
+<div class="game-shell" id="game-container"
      data-game-session-id="{{ game_session.id }}"
      data-question-index="{{ game_session.current_question_index }}"
-     data-question-mode="{{ question.mode }}">
-
-    <div class="flex items-center justify-between mb-6">
-        <div class="text-center">
-            <p class="mx-auto mb-1 h-12 w-12 overflow-hidden rounded-full">{{ avatar_img(current_user.avatar) }}</p>
-            <p class="text-sm text-slate-400">{{ current_user.username }}</p>
-            <p id="my-score" class="text-cyan-400 font-bold text-lg">
-                {{ game_session.host_score if current_user.id == game_session.host_id else game_session.guest_score }}
-            </p>
+     data-question-mode="{{ question.mode }}"
+     data-duration="{{ question_duration }}"
+     data-question-id="{{ question.id }}"
+     style="--accent: {{ accent }}">
+    <div class="game-topbar">
+        <div class="game-mode-mark">
+            <span class="accent-icon">{{ icons.get(question.mode, "✳") }}</span>
+            <div class="min-w-0">
+                <p class="truncate text-sm font-bold text-slate-100">{{ labels.get(question.mode, question.mode) }}</p>
+                <p class="text-xs text-slate-500">Duel en temps réel</p>
+            </div>
         </div>
-
-        <p class="text-slate-500 text-sm">Question {{ game_session.current_question_index + 1 }} / {{ total_questions }}</p>
-
-        <div class="text-center">
-            <p class="mx-auto mb-1 h-12 w-12 overflow-hidden rounded-full">{{ avatar_img(opponent.avatar) }}</p>
-            <p class="inline-flex items-center gap-2 text-sm text-slate-400"><span class="presence-dot inline-block h-2 w-2 rounded-full bg-slate-600" data-user-id="{{ opponent.id }}" title="Hors ligne" aria-label="Statut de {{ opponent.username }}"></span>{{ opponent.username }}</p>
-            <p id="opponent-score" class="text-cyan-400 font-bold text-lg">
-                {{ game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score }}
-            </p>
+        <div class="flex items-center gap-2">
+            <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-bold text-slate-300">
+                Manche {{ game_session.current_question_index + 1 }} / {{ total_questions }}
+            </span>
+            <span class="hidden rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-bold text-slate-400 sm:inline-flex">
+                Premier à répondre
+            </span>
         </div>
     </div>
 
-    <section class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-6">
-
-        {% if question.mode == "film_melange" %}
-            {# Le mélange vient du serveur, avec une graine partagée : les deux
-               adversaires doivent voir exactement le même désordre. #}
-            <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100">
-                {{ scrambled_title }}
-            </h1>
-        {% else %}
-            <h1 class="text-xl font-bold mb-6 text-center" id="question-prompt">{{ question.prompt }}</h1>
-        {% endif %}
-
-        {# Médias propres à certains modes, affichés avant les propositions. #}
-        {% if question.mode == "devinette_affiche" %}
-            <img src="{{ question.payload.poster_url }}" alt="Image du film à deviner"
-                 class="mx-auto mb-5 w-full rounded-xl border border-cyan-400/30">
-
-        {% elif question.mode == "casting" %}
-            <p class="mb-3 text-center text-sm text-slate-400">Devine le titre à partir de son casting :</p>
-            <div class="mb-5 flex flex-wrap justify-center gap-3">
-                {% for photo_url in question.payload.actor_photos %}
-                <img src="{{ photo_url }}" alt="Acteur du film à deviner"
-                     class="h-28 w-20 rounded-lg border border-cyan-400/30 object-cover">
-                {% endfor %}
-            </div>
-
-        {% elif question.mode == "blindtest" %}
-            <p class="mb-3 text-center text-sm text-slate-400">Écoute l'extrait :</p>
-            <audio controls autoplay class="mb-5 w-full">
-                <source src="{{ question.payload.audio_url }}" type="audio/mp4">
-                Ton navigateur ne supporte pas la lecture audio.
-            </audio>
-
-        {% elif question.mode == "devinette" %}
-            {# Tous les indices d'un coup : en duel il n'y a qu'un essai, des
-               indices qui se dévoileraient après une erreur n'auraient personne
-               à qui se montrer. #}
-            <div class="mb-5 flex flex-col gap-2">
-                {% for hint in question.payload.hints %}
-                <div class="rounded-xl border border-slate-700/60 bg-slate-950/50 px-4 py-3">
-                    <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">
-                        Indice {{ loop.index }}
-                    </p>
-                    <p class="text-slate-300">{{ hint }}</p>
+    <div class="game-layout game-layout--duel">
+        <aside class="game-left-rail">
+            <section class="game-side-card game-timer-card">
+                <p class="game-sidebar-label">Compte à rebours</p>
+                <div class="game-timer-ring">
+                    <div><strong id="game-time-remaining">{{ question_duration }}</strong><span>secondes</span></div>
                 </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+                <div class="h-1.5 overflow-hidden rounded-full bg-slate-800">
+                    <span id="game-time-bar" class="accent-bar block h-full rounded-full" style="width: 100%"></span>
+                </div>
+            </section>
 
-        <div class="flex flex-col gap-3" id="answer-zone">
-            {% if question.mode == "qcm" %}
-                {# Ordre tiré au sort côté serveur, identique pour les deux
-                   adversaires ; chaque bouton renvoie l'index d'origine. #}
-                {% for original_index, option in options %}
-                <button type="button" data-answer="{{ original_index }}"
-                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
-                    {{ option }}
-                </button>
-                {% endfor %}
-
-            {% elif question.mode == "vrai_faux" %}
-                <button type="button" data-answer="true"
-                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800">
-                    Vrai
-                </button>
-                <button type="button" data-answer="false"
-                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800">
-                    Faux
-                </button>
-
-            {% elif question.mode == "chronologie" %}
-                {# Seul mode sans titre unique à proposer : la réponse est un
-                   ordre, on garde donc la mise en ordre par clics. #}
-                <p class="mb-1 text-sm text-slate-400">
-                    Clique sur les films du plus ancien au plus récent, puis valide :
-                </p>
-
-                <div id="game-chronology-films" class="mb-2 flex flex-col gap-2">
-                    {% for film in question.payload.films %}
-                    <button type="button" data-film="{{ film }}"
-                            class="game-chronology-film flex items-center justify-between rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
-                        <span>{{ film }}</span>
-                        <span class="game-chronology-badge flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-cyan-400"></span>
-                    </button>
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Amis</p>
+                <div class="game-rail-list">
+                    {% for friend in sidebar_friends %}
+                    <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}" class="game-rail-item transition hover:text-cyan-400">
+                        <span class="flex min-w-0 items-center gap-2 truncate"><span class="presence-dot bg-slate-600" data-user-id="{{ friend.id }}" title="Hors ligne"></span><span class="truncate">{{ friend.username }}</span></span>
+                        <span class="shrink-0 text-xs text-slate-500">Niv. {{ friend.level }}</span>
+                    </a>
+                    {% else %}
+                    <p class="text-xs text-slate-500">Aucun ami à afficher.</p>
                     {% endfor %}
                 </div>
+                <a href="{{ url_for('friends.friends_list') }}" class="mt-3 block text-xs text-slate-500 transition hover:text-cyan-400">Gérer mes amis →</a>
+            </section>
+        </aside>
 
-                <button type="button" data-answer="" id="game-validate-order"
-                        class="game-answer-button w-full rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40"
-                        disabled>
-                    Valider l'ordre
-                </button>
+        <div class="game-main-zone">
+            <section class="game-main-card">
+                <div class="mb-5 flex items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                    <div class="flex min-w-0 items-center gap-3">
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/40 bg-slate-900">
+                            {{ avatar_img(current_user.avatar) }}
+                        </span>
+                        <div class="min-w-0">
+                            <p class="truncate text-sm font-bold text-slate-100">{{ current_user.username }}</p>
+                            <p id="my-score" class="text-sm font-bold text-cyan-400">{{ my_score }} pts</p>
+                        </div>
+                    </div>
+                    <span class="text-lg font-black text-slate-600">VS</span>
+                    <div class="flex min-w-0 items-center gap-3 text-right">
+                        <div class="min-w-0">
+                            <p class="flex items-center justify-end gap-2 truncate text-sm font-bold text-slate-100">
+                                <span class="presence-dot bg-slate-600" data-user-id="{{ opponent.id }}" title="Hors ligne" aria-label="Statut de {{ opponent.username }}"></span>
+                                {{ opponent.username }}
+                            </p>
+                            <p id="opponent-score" class="text-sm font-bold text-violet-400">{{ opponent_score }} pts</p>
+                        </div>
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-violet-400/40 bg-slate-900">
+                            {{ avatar_img(opponent.avatar) }}
+                        </span>
+                    </div>
+                </div>
 
-            {% else %}
-                {# Modes à titre unique : le bon titre au milieu de leurres du
-                   même type, mêmes propositions et même ordre des deux côtés. #}
-                {% for choice in choices %}
-                <button type="button" data-answer="{{ choice }}"
-                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
-                    {{ choice }}
-                </button>
-                {% endfor %}
-            {% endif %}
+                <div class="game-question-panel">
+                    {% if question.mode == "film_melange" %}
+                        <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100">
+                            {{ scrambled_title }}
+                        </h1>
+                    {% elif question.mode == "emoji" %}
+                        <div class="emoji-visuals" aria-label="Indices visuels">
+                            {% set visual_items = question.payload.get("visuals", []) %}
+                            {% if visual_items %}
+                                {% for item in visual_items %}
+                                    {% if item.type == "openmoji" %}
+                                    <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ item.value }}.svg"
+                                         alt="" class="emoji-visual" loading="eager" referrerpolicy="no-referrer"
+                                         onerror="this.hidden=true;">
+                                    {% else %}
+                                    <span class="emoji-fallback">{{ item.value }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <span class="emoji-fallback">{{ question.prompt }}</span>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <h1 id="question-prompt" class="text-center text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
+                            {{ question.prompt }}
+                        </h1>
+                    {% endif %}
+
+                    {% if question.mode == "devinette_affiche" %}
+                        <p class="mb-3 text-sm text-slate-400">Devine le titre à partir de cette image :</p>
+                        <img src="{{ question.payload.poster_url }}" alt="Image du film à deviner"
+                             class="game-media-frame mx-auto mb-5 w-full rounded-xl border border-cyan-400/30">
+                    {% elif question.mode == "casting" %}
+                        <p class="mb-3 text-center text-sm text-slate-400">Devine le titre à partir de son casting :</p>
+                        <div class="mb-5 flex flex-wrap justify-center gap-3">
+                            {% for photo_url in question.payload.actor_photos %}
+                            <img src="{{ photo_url }}" alt="Acteur du film à deviner"
+                                 class="h-28 w-20 rounded-lg border border-cyan-400/30 object-cover sm:h-32 sm:w-24">
+                            {% endfor %}
+                        </div>
+                    {% elif question.mode == "blindtest" %}
+                        <p class="mb-3 text-center text-sm text-slate-400">Écoute l'extrait :</p>
+                        {{ audio_player(question.payload.audio_url, autoplay=true) }}
+                    {% elif question.mode == "devinette" %}
+                        <div class="mb-5 flex flex-col gap-2">
+                            {% for hint in question.payload.hints %}
+                            <div class="rounded-lg border border-slate-700/60 bg-slate-950/50 px-4 py-3">
+                                <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Indice {{ loop.index }}</p>
+                                <p class="text-slate-300">{{ hint }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="game-answer-zone" id="answer-zone">
+                        {% if question.mode == "qcm" %}
+                            <div class="game-answer-grid">
+                                {% for original_index, option in options %}
+                                <button type="button" data-answer="{{ original_index }}"
+                                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
+                                    {{ option }}
+                                </button>
+                                {% endfor %}
+                            </div>
+                        {% elif question.mode == "vrai_faux" %}
+                            <div class="game-answer-grid">
+                                <button type="button" data-answer="true" class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800">Vrai</button>
+                                <button type="button" data-answer="false" class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-4 font-bold transition hover:border-cyan-400 hover:bg-slate-800">Faux</button>
+                            </div>
+                        {% elif question.mode == "chronologie" %}
+                            <p class="mb-1 text-sm text-slate-400">Classe les films du plus ancien au plus récent :</p>
+                            <div id="game-chronology-films" class="mb-2 flex flex-col gap-2">
+                                {% for film in question.payload.films %}
+                                <button type="button" data-film="{{ film }}" class="game-chronology-film flex items-center justify-between rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
+                                    <span>{{ film }}</span>
+                                    <span class="game-chronology-badge flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-cyan-400"></span>
+                                </button>
+                                {% endfor %}
+                            </div>
+                            <button type="button" data-answer="" id="game-validate-order" class="game-answer-button w-full rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40" disabled>Valider l'ordre</button>
+                        {% else %}
+                            {% for choice in choices %}
+                            <button type="button" data-answer="{{ choice }}" class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">{{ choice }}</button>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between gap-3 border-t border-slate-800 pt-4">
+                    <span class="text-xs uppercase tracking-widest text-slate-500">Réponse verrouillée après clic</span>
+                    <span class="accent-icon rounded-full border px-3 py-1 text-xs font-bold">+1 point</span>
+                </div>
+                <p id="game-status-message" class="mt-3 text-center text-sm text-slate-500"></p>
+            </section>
         </div>
 
-        <p id="game-status-message" class="text-center text-sm text-slate-500 mt-4"></p>
-    </section>
+        <aside class="game-right-rail game-sidebar">
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Niveau</p>
+                <div class="flex items-end justify-between gap-3">
+                    <strong class="text-2xl font-extrabold text-slate-100">{{ player_level.level }}</strong>
+                    <span class="text-xs text-slate-500">{{ player_level.xp_in_current_level }} / {{ player_level.xp_for_next_level }} XP</span>
+                </div>
+                <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-800">
+                    <span class="accent-bar block h-full rounded-full" style="width: {{ (player_level.xp_in_current_level / player_level.xp_for_next_level * 100) | round(1) }}%"></span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">Position générale : {{ player_rank }}</p>
+            </section>
+
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Classement du duel</p>
+                <div class="game-stat-row">
+                    <span class="flex items-center gap-2"><span class="presence-dot bg-emerald-400"></span>{{ current_user.username }}</span>
+                    <span id="sidebar-my-score">{{ my_score }} pts</span>
+                </div>
+                <div class="game-stat-row">
+                    <span class="flex items-center gap-2"><span class="presence-dot bg-slate-600" data-user-id="{{ opponent.id }}"></span>{{ opponent.username }}</span>
+                    <span id="sidebar-opponent-score">{{ opponent_score }} pts</span>
+                </div>
+            </section>
+
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Le duel</p>
+                <p class="text-sm leading-relaxed text-slate-300">La même question est affichée aux deux joueurs. Le premier à trouver la bonne réponse marque le point.</p>
+                <div class="mt-4 game-progress-track" role="progressbar" aria-valuenow="{{ game_session.current_question_index + 1 }}" aria-valuemin="1" aria-valuemax="{{ total_questions }}" aria-label="Manche {{ game_session.current_question_index + 1 }} sur {{ total_questions }}">
+                    {% for step in range(1, total_questions + 1) %}
+                    <span class="{% if step <= game_session.current_question_index + 1 %}accent-bar{% else %}bg-slate-800{% endif %}"></span>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Statut</p>
+                <p class="flex items-center gap-2 text-sm text-slate-300"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Partie en cours</p>
+                <p class="mt-2 text-xs text-slate-500">Les résultats se mettent à jour dès qu'un joueur répond.</p>
+            </section>
+        </aside>
+    </div>
 </div>
 
+<script src="{{ url_for('static', filename='js/audio_player.js') }}"></script>
 <script src="{{ url_for('static', filename='js/multiplayer_game.js') }}"></script>
 {% endblock %}

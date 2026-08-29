@@ -146,6 +146,331 @@
                 var(--accent)
             );
         }
+
+        .audio-player {
+            margin: 1rem auto 1.25rem;
+            width: min(100%, 38rem);
+            overflow: hidden;
+            border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+            border-radius: 0.85rem;
+            background: linear-gradient(145deg, rgb(15 23 42 / 0.9), rgb(2 6 23 / 0.92));
+            box-shadow: 0 14px 30px -24px var(--accent);
+        }
+
+        .audio-player__native { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+        .audio-player__visual {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.15rem 0.8rem;
+        }
+
+        .audio-player__toggle {
+            display: inline-flex;
+            width: 2.75rem;
+            height: 2.75rem;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent);
+            border-radius: 9999px;
+            background: color-mix(in srgb, var(--accent) 16%, transparent);
+            color: var(--accent);
+            font-size: 0.95rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .audio-player__toggle:hover { transform: scale(1.05); background: color-mix(in srgb, var(--accent) 26%, transparent); }
+
+        .audio-player__waveform {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.22rem;
+            width: 100%;
+            height: 3.75rem;
+        }
+
+        .audio-player__waveform span {
+            width: 0.22rem;
+            min-height: 0.35rem;
+            border-radius: 9999px;
+            background: color-mix(in srgb, var(--accent) 48%, #475569);
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .audio-player.is-playing .audio-player__waveform span { animation: audio-wave 1.1s ease-in-out infinite alternate; }
+        .audio-player.is-playing .audio-player__waveform span:nth-child(3n) { animation-delay: -0.35s; }
+        .audio-player.is-playing .audio-player__waveform span:nth-child(4n) { animation-delay: -0.7s; }
+        .audio-player.is-playing .audio-player__waveform span:nth-child(-n+12) { background: var(--accent); }
+
+        @keyframes audio-wave { from { transform: scaleY(0.7); opacity: 0.72; } to { transform: scaleY(1.08); opacity: 1; } }
+
+        .audio-player__controls {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.65rem 1.15rem 0.9rem;
+            border-top: 1px solid rgb(51 65 85 / 0.55);
+        }
+
+        .audio-player__time { min-width: 2.7rem; color: #94a3b8; font-size: 0.68rem; font-variant-numeric: tabular-nums; }
+        .audio-player__time:last-of-type { text-align: right; }
+        .audio-player__seek { min-width: 3rem; flex: 1; accent-color: var(--accent); }
+        .audio-player__volume-button { color: #94a3b8; font-size: 0.9rem; }
+        .audio-player__volume { width: 4rem; accent-color: var(--accent); }
+
+        @media (max-width: 480px) {
+            .audio-player__visual { gap: 0.7rem; padding: 0.8rem 0.85rem 0.65rem; }
+            .audio-player__controls { padding-left: 0.85rem; padding-right: 0.85rem; }
+            .audio-player__volume { width: 3rem; }
+        }
+
+        /* Cadre commun des écrans de partie : la question reste centrale,
+           tandis que les informations secondaires sont regroupées dans une
+           colonne discrète et passent sous le jeu sur mobile. */
+        .game-shell {
+            width: min(100%, 92rem);
+            margin: 0 auto;
+        }
+
+        .game-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            min-height: 3.5rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .game-layout {
+            display: grid;
+            gap: 0.85rem;
+            align-items: start;
+        }
+
+        .game-layout--solo,
+        .game-layout--duel {
+            grid-template-columns: 15rem minmax(0, 1fr) 17rem;
+        }
+
+        .game-left-rail,
+        .game-main-zone,
+        .game-right-rail {
+            min-width: 0;
+        }
+
+        .game-main-zone { order: 2; }
+        .game-left-rail { order: 1; }
+        .game-right-rail { order: 3; }
+
+        .game-main-card,
+        .game-side-card {
+            border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+            background: rgb(15 23 42 / 0.58);
+            border-radius: 0.9rem;
+        }
+
+        .game-main-card { padding: 1rem; }
+        .game-side-card { padding: 0.8rem; }
+        .game-main-card > .game-question-panel { margin-top: 1.15rem; }
+
+        .game-main-zone > .game-main-card { min-height: 34rem; }
+        .game-side-card + .game-side-card { margin-top: 0.85rem; }
+
+        .game-mode-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            min-width: 0;
+        }
+
+        .game-mode-mark .accent-icon {
+            display: inline-flex;
+            height: 2.5rem;
+            width: 2.5rem;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            border-width: 1px;
+            font-size: 1.15rem;
+        }
+
+        .game-progress-track {
+            display: flex;
+            gap: 0.22rem;
+            width: 100%;
+        }
+
+        .game-progress-track > span {
+            height: 0.28rem;
+            min-width: 0.2rem;
+            flex: 1 1 0%;
+            border-radius: 9999px;
+        }
+
+        .game-timer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-top: 0.65rem;
+            color: #94a3b8;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .game-timer strong {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .game-center-timer {
+            margin-top: 1rem;
+            color: #94a3b8;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .game-center-timer strong {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .game-timer-card { text-align: center; }
+
+        .game-timer-ring {
+            display: flex;
+            width: 7.4rem;
+            height: 7.4rem;
+            margin: 0.35rem auto 0.7rem;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
+            border-radius: 9999px;
+            box-shadow: inset 0 0 0 0.35rem rgb(2 6 23 / 0.52), 0 0 22px -10px var(--accent);
+        }
+
+        .game-timer-ring strong {
+            display: block;
+            color: #f8fafc;
+            font-size: 2.15rem;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .game-timer-ring span {
+            display: block;
+            margin-top: 0.25rem;
+            color: #94a3b8;
+            font-size: 0.7rem;
+        }
+
+        .game-question-panel {
+            margin: 1.25rem 0 1rem;
+            border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+            border-radius: 0.9rem;
+            background: rgb(2 6 23 / 0.4);
+            padding: clamp(1rem, 2.4vw, 1.65rem);
+        }
+
+        .game-answer-zone {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .game-answer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.65rem;
+        }
+
+        .game-answer-grid > * { min-height: 3rem; }
+
+        .game-sidebar-label {
+            margin-bottom: 0.65rem;
+            color: #94a3b8;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .game-stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.6rem;
+            padding: 0.42rem 0;
+            border-bottom: 1px solid rgb(51 65 85 / 0.55);
+            font-size: 0.76rem;
+        }
+
+        .game-stat-row:last-child { border-bottom: 0; padding-bottom: 0; }
+        .game-stat-row span:first-child { color: #94a3b8; }
+        .game-stat-row span:last-child { color: #e2e8f0; font-weight: 700; text-align: right; }
+
+        .game-media-frame { margin: 0 auto; max-width: 42rem; }
+
+        .game-report {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.8rem;
+        }
+
+        .game-rail-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .game-rail-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid rgb(51 65 85 / 0.5);
+            color: #cbd5e1;
+            font-size: 0.76rem;
+        }
+
+        .game-rail-item:last-child { border-bottom: 0; }
+
+        @media (max-width: 1180px) {
+            .game-layout--solo,
+            .game-layout--duel { grid-template-columns: 13rem minmax(0, 1fr) 15rem; }
+        }
+
+        @media (max-width: 1023px) {
+            .game-layout--solo,
+            .game-layout--duel { grid-template-columns: minmax(0, 1fr) 16rem; }
+            .game-left-rail { display: none; }
+            .game-main-zone { order: 1; }
+            .game-right-rail { order: 2; }
+        }
+
+        @media (max-width: 767px) {
+            .game-layout--solo,
+            .game-layout--duel { grid-template-columns: 1fr; }
+            .game-sidebar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; }
+            .game-side-card + .game-side-card { margin-top: 0; }
+            .game-topbar { align-items: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            .game-answer-grid { grid-template-columns: 1fr; }
+            .game-sidebar { grid-template-columns: 1fr; }
+            .game-mode-mark .accent-icon { height: 2.25rem; width: 2.25rem; }
+        }
     </style>
     {% block head %}{% endblock %}
     {# Bibliothèque servie par l'application, pas par un CDN : une coupure réseau,

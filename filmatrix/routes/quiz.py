@@ -5,14 +5,16 @@ from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
 from filmatrix.catalog import REPORT_REASON
-from filmatrix.models import Attempt, Report
+from filmatrix.models import Attempt, Report, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
+from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.levels import (
     BLINDTEST_DURATION,
     DEFAULT_LEVEL,
     LEVELS,
+    calculate_level,
     coins_for_level,
     duration_for,
     resolve_level,
@@ -228,6 +230,17 @@ def quiz(mode: str, position: int) -> str:
 
     options = shuffle_options(question) if question.mode == "qcm" else None
 
+    sidebar_friends = []
+    player_level = None
+    player_rank = None
+    if current_user.is_authenticated:
+        sidebar_friends = friend_cards(get_friends_list(current_user.id))[:5]
+        player_level = calculate_level(current_user.total_xp)
+        player_rank = User.query.filter(User.total_xp > current_user.total_xp).count() + 1
+
+    leaderboard_players = User.query.order_by(User.total_xp.desc()).limit(5).all()
+    run_state = session.get("run", {})
+
     return render_template(
             "quiz/question.html",
             question=question,
@@ -239,6 +252,11 @@ def quiz(mode: str, position: int) -> str:
             position=position,
             total_questions=total_questions,
             is_mix=mode == MIX_MODE_SLUG,
+            leaderboard_players=leaderboard_players,
+            sidebar_friends=sidebar_friends,
+            player_level=player_level,
+            player_rank=player_rank,
+            current_score=run_state.get("correct", 0),
         )
 
 @bp.route("/signaler/<int:question_id>", methods=["POST"])

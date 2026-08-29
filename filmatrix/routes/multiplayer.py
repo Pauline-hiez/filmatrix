@@ -10,9 +10,11 @@ from filmatrix.models import GameSession, User
 from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
 from filmatrix.services.engine import scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list, get_friendship_between
+from filmatrix.services.levels import calculate_level
 from filmatrix.services.multiplayer import (
     INVITATION_DURATION_MINUTES,
     QUESTIONS_PER_GAME,
+    QUESTION_DURATION,
     build_choices,
     create_game_invitation,
     get_ordered_questions,
@@ -208,6 +210,11 @@ def play_game(game_session_id: int) -> str:
     if current_question.mode not in ("qcm", "vrai_faux", "chronologie"):
         choices = build_choices(current_question, seed=shared_seed)
 
+    leaderboard_players = User.query.order_by(User.total_xp.desc()).limit(5).all()
+    sidebar_friends = friend_cards(get_friends_list(current_user.id))[:5]
+    player_level = calculate_level(current_user.total_xp)
+    player_rank = User.query.filter(User.total_xp > current_user.total_xp).count() + 1
+
     return render_template(
             "multiplayer/partie.html",
             game_session=game_session,
@@ -217,6 +224,11 @@ def play_game(game_session_id: int) -> str:
             scrambled_title=scrambled_title,
             options=options,
             choices=choices,
+            leaderboard_players=leaderboard_players,
+            sidebar_friends=sidebar_friends,
+            player_level=player_level,
+            player_rank=player_rank,
+            question_duration=QUESTION_DURATION,
         )
 
 @bp.route("/multijoueur/<int:game_session_id>/statut")
