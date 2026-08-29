@@ -84,23 +84,61 @@ def run_filters(
     normalized_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
     return {"tag_ids": normalized_tag_ids, "content_type": content_type}
 
+DRAW_HISTORY_KEY = "draw_history"
+
+# Nombre de questions récentes qu'on évite de resservir, pour un même mode et
+# les mêmes filtres. Un tirage purement indépendant à chaque partie fait
+# revenir les mêmes questions bien avant d'avoir épuisé un lot de 50 ou 100 :
+# on retient donc les dernières servies plutôt que de retirer au hasard dans
+# tout le lot à chaque fois. La limite reste fixe (et non la taille du lot)
+# pour que le cookie de session ne grossisse pas avec le catalogue.
+DRAW_HISTORY_LIMIT = 60
+
 def draw_run_questions(
     mode: str,
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
 ) -> list[int]:
-    """Tire au sort les questions d'une nouvelle partie
+    """Tire au sort les questions d'une nouvelle partie, en évitant de resservir
+    une question vue récemment dans ce même mode et ces mêmes filtres
 
     Le tirage a lieu une seule fois, au lancement : deux parties du même mode
     ne se ressemblent pas, mais à l'intérieur d'une partie l'ordre ne bouge
     plus, sans quoi avancer d'une question en ramènerait une déjà posée"""
-    question_ids = [
+    pool_ids = [
         row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids).all()
     ]
-    random.shuffle(question_ids)
+    target_size = min(QUESTIONS_PER_RUN, len(pool_ids))
+    filters = run_filters(tag_id, content_type, tag_ids)
 
-    return question_ids[:QUESTIONS_PER_RUN]
+    history = session.get(DRAW_HISTORY_KEY)
+    recent_ids = (
+        history["ids"]
+        if history and history["mode"] == mode and history["filters"] == filters
+        else []
+    )
+    # Une question a pu disparaître du JSON depuis le dernier tirage.
+    recent_ids = [qid for qid in recent_ids if qid in pool_ids]
+
+    candidates = [qid for qid in pool_ids if qid not in recent_ids]
+    if len(candidates) < target_size:
+        # Pas assez d'inédit pour composer une partie complète : la mémoire
+        # récente a fait le tour du lot, on la vide plutôt que d'imposer une
+        # partie incomplète alors que des questions restent jouables.
+        recent_ids = []
+        candidates = pool_ids
+
+    random.shuffle(candidates)
+    drawn = candidates[:QUESTIONS_PER_RUN]
+
+    session[DRAW_HISTORY_KEY] = {
+        "mode": mode,
+        "filters": filters,
+        "ids": (recent_ids + drawn)[-DRAW_HISTORY_LIMIT:],
+    }
+
+    return drawn
 
 def find_question(
     mode: str,
