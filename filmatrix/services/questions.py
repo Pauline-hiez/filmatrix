@@ -57,6 +57,69 @@ def mode_tags(mode: str) -> list[Tag]:
     return sorted(kept, key=lambda tag: (tag.tag_type, tag.name))
 
 
+def reachable_tag_ids(
+    mode: str, content_type: str | None, selected_tag_ids: list[int]
+) -> tuple[list[int], dict[str, list[int]]]:
+    """Calcule, pour les filtres actifs, les tags qui garderaient au moins
+    une question s'ils étaient ajoutés à la sélection
+
+    Sans ça, un joueur peut choisir « Horreur » puis « Années 2000 » sans
+    savoir qu'aucune question ne réunit les deux, et se retrouver devant un
+    compteur à zéro qu'il ne comprend pas. Renvoie (défaut, par_type) :
+    défaut sert à tout sélecteur qui n'a rien de choisi pour l'instant ;
+    par_type ne couvre que les types de tag déjà représentés dans la
+    sélection, en retirant leur propre tag du calcul — sans quoi un
+    sélecteur ne proposerait plus jamais que sa valeur actuelle, deux genres
+    différents ne cohabitant en général pas sur la même question."""
+
+    def matching_tag_ids(excluding: int | None) -> set[int]:
+        remaining = [tag_id for tag_id in selected_tag_ids if tag_id != excluding]
+        question_ids = [
+            row.id
+            for row in playable_question_query(mode, content_type=content_type, tag_ids=remaining)
+            .with_entities(Question.id)
+            .all()
+        ]
+        if not question_ids:
+            return set()
+
+        rows = (
+            db.session.query(question_tags.c.tag_id)
+            .filter(question_tags.c.question_id.in_(question_ids))
+            .distinct()
+            .all()
+        )
+        return {row.tag_id for row in rows}
+
+    default = matching_tag_ids(excluding=None)
+
+    selected_types = (
+        dict(db.session.query(Tag.id, Tag.tag_type).filter(Tag.id.in_(selected_tag_ids)).all())
+        if selected_tag_ids
+        else {}
+    )
+
+    by_type: dict[str, set[int]] = {}
+    for tag_id, tag_type in selected_types.items():
+        if tag_type not in by_type:
+            by_type[tag_type] = matching_tag_ids(excluding=tag_id)
+
+    return sorted(default), {tag_type: sorted(ids) for tag_type, ids in by_type.items()}
+
+
+def reachable_content_types(mode: str, selected_tag_ids: list[int]) -> list[str]:
+    """Types de contenu (film, série) qui garderaient au moins une question
+    avec les tags actifs, sans contrainte de type de contenu — le pendant de
+    reachable_tag_ids() pour le sélecteur Films / Séries."""
+    rows = (
+        playable_question_query(mode, tag_ids=selected_tag_ids)
+        .with_entities(Question.content_type)
+        .distinct()
+        .all()
+    )
+    return sorted({row.content_type for row in rows})
+
+
 def mode_tags_for_type(mode: str, tag_type: str) -> list[Tag]:
     """Liste tous les tags d'un type donné utilisables dans un mode, sans le
     seuil de popularité de mode_tags()

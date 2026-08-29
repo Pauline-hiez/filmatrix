@@ -26,6 +26,8 @@ from filmatrix.services.questions import (
     mode_tags,
     mode_tags_for_type,
     playable_question_query,
+    reachable_content_types,
+    reachable_tag_ids,
     resolve_content_type,
     run_filters,
     shuffle_options,
@@ -87,16 +89,25 @@ def quiz_setup(mode: str) -> str:
 
 @bp.route("/quiz/<mode>/disponibilite")
 def quiz_availability(mode: str) -> dict:
-    """Renvoie le nombre de questions disponibles pour un mode et ses filtres
+    """Renvoie le nombre de questions disponibles pour un mode et ses filtres,
+    ainsi que les options des sélecteurs qui resteraient utiles
 
     Appelé par quiz_setup.js à chaque changement de filtre sur l'écran de
-    préparation, pour tenir le compteur à jour sans recharger la page."""
+    préparation, pour tenir le compteur à jour et désactiver les options qui
+    mèneraient à zéro question, sans recharger la page."""
     content_type = resolve_content_type(request.args.get("content_type"))
     tag_ids = request.args.getlist("tag_id", type=int)
 
     available = playable_question_query(mode, content_type=content_type, tag_ids=tag_ids).count()
+    default_reachable, reachable_by_type = reachable_tag_ids(mode, content_type, tag_ids)
 
-    return {"available": available, "run_length": min(QUESTIONS_PER_RUN, available)}
+    return {
+        "available": available,
+        "run_length": min(QUESTIONS_PER_RUN, available),
+        "default_reachable_tag_ids": default_reachable,
+        "reachable_tag_ids_by_type": reachable_by_type,
+        "reachable_content_types": reachable_content_types(mode, tag_ids),
+    }
 
 @bp.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
 def quiz(mode: str, position: int) -> str:
