@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "partials/avatar.html" import avatar_img %}
 
 {% block content %}
 <div class="max-w-xl mx-auto mt-8">
@@ -10,9 +11,9 @@
             <div class="grid grid-cols-6 gap-2" id="avatar-gallery">
                 {% for avatar in avatars %}
                 <button type="button" data-avatar="{{ avatar }}"
-                        class="avatar-choice text-3xl rounded-lg border-2 p-2 transition
+                        class="avatar-choice overflow-hidden rounded-lg border-2 p-1 transition
                                {% if current_user.avatar == avatar %}border-cyan-400 bg-slate-900{% else %}border-transparent hover:border-cyan-400/50{% endif %}">
-                    {{ avatar }}
+                    {{ avatar_img(avatar, "aspect-square w-full rounded object-cover") }}
                 </button>
                 {% endfor %}
             </div>

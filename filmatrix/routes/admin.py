@@ -192,6 +192,7 @@ def admin_users_list() -> str:
             {
                 "id": user.id,
                 "username": user.username,
+                "avatar": user.avatar,
                 "email": user.email,
                 "is_admin": user.is_admin,
                 "total_xp": user.total_xp,

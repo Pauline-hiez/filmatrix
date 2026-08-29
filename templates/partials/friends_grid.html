@@ -4,14 +4,15 @@
    Attend des dictionnaires préparés par la route (voir friend_cards dans app.py) :
    id, username, avatar et level. Le niveau y est calculé une fois pour toutes,
    plutôt que réinventé dans le template. #}
+{% from "partials/avatar.html" import avatar_img %}
 {% macro friends_grid(friends, empty_message="Aucun ami pour le moment.") %}
 {% if friends %}
 <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
     {% for friend in friends %}
     <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}"
        class="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-3 transition hover:border-cyan-400/50 hover:bg-slate-950/70">
-        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-900 text-lg">
-            {{ friend.avatar }}
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900 text-lg">
+            {{ avatar_img(friend.avatar) }}
         </span>
         <span class="min-w-0">
             <span class="block truncate text-sm font-bold text-slate-100">

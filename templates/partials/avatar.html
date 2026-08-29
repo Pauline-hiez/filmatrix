@@ -1,0 +1,8 @@
+{# Image d'avatar : chaque joueur choisit un id parmi ceux de
+   filmatrix/catalog.py (AVATARS), qui correspondent aux fichiers de
+   static/images/avatars/<id>.png. Un avatar manquant (comptes créés avant
+   cette galerie) retombe sur DEFAULT_AVATAR plutôt que de casser l'affichage. #}
+{% macro avatar_img(avatar_id, css_class="h-full w-full rounded-full object-cover") %}
+<img src="{{ url_for('static', filename='images/avatars/' ~ (avatar_id or '1') ~ '.png') }}"
+     alt="Avatar" class="{{ css_class }}">
+{% endmacro %}

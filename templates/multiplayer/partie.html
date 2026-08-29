@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "partials/avatar.html" import avatar_img %}
 
 {% block content %}
 {# Écran de duel. Il affiche les mêmes médias que le solo, mais la réponse s'y
@@ -11,7 +12,7 @@
 
     <div class="flex items-center justify-between mb-6">
         <div class="text-center">
-            <p class="text-2xl">{{ current_user.avatar or "🎬" }}</p>
+            <p class="mx-auto mb-1 h-12 w-12 overflow-hidden rounded-full">{{ avatar_img(current_user.avatar) }}</p>
             <p class="text-sm text-slate-400">{{ current_user.username }}</p>
             <p id="my-score" class="text-cyan-400 font-bold text-lg">
                 {{ game_session.host_score if current_user.id == game_session.host_id else game_session.guest_score }}
@@ -21,7 +22,7 @@
         <p class="text-slate-500 text-sm">Question {{ game_session.current_question_index + 1 }} / {{ total_questions }}</p>
 
         <div class="text-center">
-            <p class="text-2xl">{{ opponent.avatar or "🎬" }}</p>
+            <p class="mx-auto mb-1 h-12 w-12 overflow-hidden rounded-full">{{ avatar_img(opponent.avatar) }}</p>
             <p class="inline-flex items-center gap-2 text-sm text-slate-400"><span class="presence-dot inline-block h-2 w-2 rounded-full bg-slate-600" data-user-id="{{ opponent.id }}" title="Hors ligne" aria-label="Statut de {{ opponent.username }}"></span>{{ opponent.username }}</p>
             <p id="opponent-score" class="text-cyan-400 font-bold text-lg">
                 {{ game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score }}

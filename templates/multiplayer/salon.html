@@ -2,6 +2,7 @@
 
 {% block content %}
 {% from "partials/player_link.html" import player_link with context %}
+{% from "partials/avatar.html" import avatar_img %}
 <div class="max-w-md mx-auto mt-12 text-center">
 
     {% if game_session.status == "expired" %}
@@ -35,8 +36,8 @@
         <div id="waiting-for-guest" class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-8" data-game-session-id="{{ game_session.id }}">
             <div class="relative w-20 h-20 mx-auto mb-6">
                 <span class="absolute inset-0 rounded-full bg-cyan-400/30 animate-ping"></span>
-                <span class="relative flex items-center justify-center w-20 h-20 rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
-                    {{ game_session.guest.avatar or "🎬" }}
+                <span class="relative flex items-center justify-center w-20 h-20 overflow-hidden rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
+                    {{ avatar_img(game_session.guest.avatar) }}
                 </span>
             </div>
             <h2 class="text-xl font-bold mb-1">En attente de {{ player_link(game_session.guest.id, game_session.guest.username) }}</h2>
@@ -47,8 +48,8 @@
 
     {% elif game_session.status == "invited" %}
         <div class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-8">
-            <span class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
-                {{ game_session.host.avatar or "🎬" }}
+            <span class="flex items-center justify-center w-20 h-20 mx-auto mb-6 overflow-hidden rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
+                {{ avatar_img(game_session.host.avatar) }}
             </span>
             <h2 class="text-xl font-bold mb-1">{{ player_link(game_session.host.id, game_session.host.username) }} t'invite à jouer !</h2>
             <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>

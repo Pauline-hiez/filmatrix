@@ -2,6 +2,7 @@
 
 {% block content %}
 {% from "partials/friends_grid.html" import friends_grid with context %}
+{% from "partials/avatar.html" import avatar_img %}
 {# Libellés et couleurs d'accent des modes, pour l'historique.
    Mêmes valeurs que sur l'accueil et la page de quiz. #}
 {% set labels = {
@@ -36,9 +37,9 @@
         <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
 
             <div class="flex items-center gap-4">
-                <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 text-2xl font-extrabold text-slate-950">
+                <span class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 text-2xl font-extrabold text-slate-950">
                     {% if current_user.avatar %}
-                        {{ current_user.avatar }}
+                        {{ avatar_img(current_user.avatar) }}
                     {% else %}
                         {{ current_user.username[0] | upper }}
                     {% endif %}

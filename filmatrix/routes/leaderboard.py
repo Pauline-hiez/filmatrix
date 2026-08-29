@@ -20,6 +20,7 @@ def leaderboard() -> str:
             db.session.query(
                 User.id,
                 User.username,
+                User.avatar,
                 User.total_xp,
                 func.count(Attempt.id).label("total"),
                 func.sum(db.case((Attempt.is_correct, 1), else_=0)).label("correct"),
@@ -44,6 +45,7 @@ def leaderboard() -> str:
                 {
                     "user_id": result.id,
                     "username": result.username,
+                    "avatar": result.avatar,
                     "total_xp": result.total_xp,
                     "level": level_info["level"],
                     "total": result.total,

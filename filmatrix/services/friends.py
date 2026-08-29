@@ -1,7 +1,8 @@
 """Logique métier du système d'amis"""
 
+from filmatrix.catalog import DEFAULT_AVATAR
 from filmatrix.extensions import db
-from filmatrix.services.levels import calculate_level 
+from filmatrix.services.levels import calculate_level
 from filmatrix.models import Friendship
 
 def get_friendship_between(user_a_id: int, user_b_id: int) -> Friendship | None:
@@ -97,7 +98,7 @@ def friend_cards(users: list) -> list:
         {
             "id": user.id,
             "username": user.username,
-            "avatar": user.avatar or "🎬",
+            "avatar": user.avatar or DEFAULT_AVATAR,
             "level": calculate_level(user.total_xp)["level"],
             "online": False,
         }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmatrix</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/filmatrix-favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/site/filmatrix-favicon.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
     <style>
         /* Règles partagées par les pages de jeu. Elles reposent sur la variable
@@ -122,6 +122,8 @@
     </a>
     {% endmacro %}
 
+    {% from "partials/avatar.html" import avatar_img %}
+
     <header class="border-b border-cyan-400/50 bg-slate-950">
     {# Largeur intermédiaire assumée : les pages vont de max-w-2xl (amis) à
        max-w-6xl (accueil), aucune barre fixe ne peut s'aligner sur toutes.
@@ -131,7 +133,7 @@
         <div class="flex items-center gap-3">
 
             <a href="{{ url_for('main.home') }}" class="flex h-12 shrink-0 items-center p-0" aria-label="Accueil Filmatrix">
-                <img src="{{ url_for('static', filename='images/filmatrix-logo.png') }}"
+                <img src="{{ url_for('static', filename='images/site/filmatrix-logo.png') }}"
                      alt="Filmatrix" class="m-0 block h-16 w-auto max-w-[13rem] object-contain p-0">
             </a>
 
@@ -167,8 +169,8 @@
                     <a href="{{ url_for('profile.profile') }}"
                        class="hidden sm:flex items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition
                               {% if request.endpoint == 'profile' %}border-cyan-400/50 bg-cyan-400/10{% else %}border-slate-700 hover:border-cyan-400/50 hover:bg-slate-900{% endif %}">
-                        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-900 text-sm">
-                            {{ current_user.avatar or "🎬" }}
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900 text-sm">
+                            {{ avatar_img(current_user.avatar) }}
                         </span>
                         <span class="max-w-[8rem] truncate text-sm font-bold text-slate-200">
                             {{ current_user.username }}
