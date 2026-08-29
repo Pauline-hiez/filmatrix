@@ -11,6 +11,14 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
         "type": "genre"
       }
@@ -32,6 +40,14 @@
         "type": "univers"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
         "type": "genre"
       }
@@ -48,6 +64,18 @@
     },
     "requires_account": false,
     "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "romance",
+        "type": "genre"
+      },
       {
         "name": "cinema-general",
         "type": "autre"
@@ -66,6 +94,14 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "romance",
+        "type": "genre"
+      },
+      {
         "name": "cinema-general",
         "type": "autre"
       }
@@ -82,6 +118,14 @@
     },
     "requires_account": false,
     "tags": [
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
       {
         "name": "cinema-general",
         "type": "autre"
@@ -100,6 +144,14 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "histoire",
+        "type": "genre"
+      },
+      {
         "name": "cinema-general",
         "type": "autre"
       }
@@ -116,6 +168,14 @@
     },
     "requires_account": false,
     "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
       {
         "name": "cinema-general",
         "type": "autre"
@@ -134,6 +194,10 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "france",
         "type": "pays"
       }
@@ -150,6 +214,18 @@
     },
     "requires_account": false,
     "tags": [
+      {
+        "name": "romance",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
       {
         "name": "cinema-general",
         "type": "autre"
@@ -168,6 +244,10 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "cinema-general",
         "type": "autre"
       }
@@ -185,7 +265,15 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
         "type": "genre"
       },
       {
@@ -235,7 +323,15 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "action",
+        "type": "genre"
+      },
+      {
         "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -260,7 +356,15 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
         "type": "genre"
       },
       {
@@ -285,7 +389,15 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
         "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -314,7 +426,15 @@
         "type": "univers"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "action",
         "type": "genre"
       },
       {
@@ -347,6 +467,14 @@
         "type": "genre"
       },
       {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -376,6 +504,18 @@
         "type": "genre"
       },
       {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -399,6 +539,10 @@
       {
         "name": "jurassic-park",
         "type": "univers"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
       },
       {
         "name": "science-fiction",
@@ -430,6 +574,14 @@
         "type": "genre"
       },
       {
+        "name": "guerre",
+        "type": "genre"
+      },
+      {
+        "name": "romance",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -452,6 +604,10 @@
     "tags": [
       {
         "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
         "type": "genre"
       },
       {
@@ -480,6 +636,14 @@
         "type": "genre"
       },
       {
+        "name": "musique",
+        "type": "genre"
+      },
+      {
+        "name": "romance",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -502,6 +666,14 @@
     "tags": [
       {
         "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
         "type": "genre"
       },
       {
@@ -530,6 +702,10 @@
         "type": "genre"
       },
       {
+        "name": "guerre",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -550,6 +726,10 @@
     },
     "requires_account": false,
     "tags": [
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
       {
         "name": "comédie",
         "type": "genre"
@@ -580,6 +760,10 @@
         "type": "genre"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
         "name": "france",
         "type": "pays"
       },
@@ -602,6 +786,18 @@
     "tags": [
       {
         "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "histoire",
+        "type": "genre"
+      },
+      {
+        "name": "guerre",
         "type": "genre"
       },
       {
@@ -659,6 +855,10 @@
         "type": "genre"
       },
       {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -684,7 +884,15 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "action",
         "type": "genre"
       },
       {
@@ -713,7 +921,15 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "action",
         "type": "genre"
       },
       {
@@ -740,6 +956,14 @@
       {
         "name": "star-wars",
         "type": "saga"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
       },
       {
         "name": "science-fiction",
@@ -771,6 +995,14 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
         "type": "genre"
       },
@@ -800,6 +1032,10 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "fantasy",
         "type": "genre"
       },
@@ -827,6 +1063,10 @@
       {
         "name": "matrix",
         "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
       },
       {
         "name": "science-fiction",
@@ -862,6 +1102,14 @@
         "type": "genre"
       },
       {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -885,6 +1133,18 @@
       {
         "name": "oss-117",
         "type": "saga"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
       },
       {
         "name": "comédie",
@@ -916,7 +1176,15 @@
         "type": "saga"
       },
       {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
         "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
         "type": "genre"
       },
       {
@@ -945,7 +1213,15 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
         "type": "genre"
       },
       {
@@ -999,7 +1275,15 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
         "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -1026,6 +1310,14 @@
       {
         "name": "terminator",
         "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
       },
       {
         "name": "science-fiction",
@@ -1057,6 +1349,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
         "name": "france",
         "type": "pays"
       },
@@ -1078,7 +1378,15 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "comédie",
         "type": "genre"
       },
       {
@@ -1102,6 +1410,14 @@
     },
     "requires_account": false,
     "tags": [
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
       {
         "name": "thriller",
         "type": "genre"
@@ -1129,6 +1445,14 @@
     "tags": [
       {
         "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
         "type": "genre"
       },
       {
@@ -1186,6 +1510,10 @@
         "type": "genre"
       },
       {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -1240,7 +1568,15 @@
         "type": "saga"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
         "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -1267,6 +1603,14 @@
       {
         "name": "alien",
         "type": "saga"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
       },
       {
         "name": "science-fiction",
@@ -1298,6 +1642,14 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
         "type": "genre"
       },
@@ -1327,6 +1679,14 @@
         "type": "saga"
       },
       {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
         "type": "genre"
       },
@@ -1354,6 +1714,10 @@
       {
         "name": "jurassic-park",
         "type": "saga"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
       },
       {
         "name": "science-fiction",
@@ -1386,6 +1750,14 @@
       },
       {
         "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
         "type": "genre"
       },
       {
@@ -1443,6 +1815,14 @@
         "type": "genre"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -1476,6 +1856,14 @@
         "type": "genre"
       },
       {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -1502,6 +1890,18 @@
       },
       {
         "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
         "type": "genre"
       },
       {

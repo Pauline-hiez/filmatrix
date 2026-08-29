@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
 from filmatrix.catalog import REPORT_REASON
-from filmatrix.models import Attempt, Question, Report, Tag
+from filmatrix.models import Attempt, Report
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
@@ -23,6 +23,8 @@ from filmatrix.services.questions import (
     draw_run_questions,
     find_question,
     format_correct_answer,
+    mode_tags,
+    mode_tags_for_type,
     playable_question_query,
     resolve_content_type,
     run_filters,
@@ -51,15 +53,12 @@ def quiz_setup(mode: str) -> str:
     if mode_info is None:
         return redirect(url_for("main.modes"))
 
-    # On ne propose que les thèmes qui ont au moins une question dans ce mode :
-    # ailleurs, le joueur choisirait un filtre qui ne renvoie rien. Le mix
-    # pioche dans tous les modes : n'importe quel thème utilisé y a sa place.
-    tag_condition = Tag.questions.any() if mode == MIX_MODE_SLUG else Tag.questions.any(Question.mode == mode)
-    mode_tags = (
-        Tag.query.filter(tag_condition)
-        .order_by(Tag.tag_type, Tag.name)
-        .all()
-    )
+    # On ne propose que les thèmes qui ont au moins une question dans ce mode
+    # et qui comptent assez de questions pour valoir la peine d'être proposés
+    # (cf. TAG_MIN_QUESTIONS dans services/questions.py). La liste complète
+    # des univers reste disponible à part, pour le lien qui les révèle tous.
+    available_tags = mode_tags(mode)
+    all_univers_tags = mode_tags_for_type(mode, "univers")
 
     content_type = resolve_content_type(request.args.get("content_type"))
     selected_tag_ids = request.args.getlist("tag_id", type=int)
@@ -79,11 +78,25 @@ def quiz_setup(mode: str) -> str:
             run_length=min(QUESTIONS_PER_RUN, available),
             content_type=content_type,
             selected_tag_ids=selected_tag_ids,
-            all_tags=mode_tags,
+            all_tags=available_tags,
+            all_univers_tags=all_univers_tags,
             levels=LEVELS,
             default_level=DEFAULT_LEVEL,
             blindtest_duration=BLINDTEST_DURATION,
         )
+
+@bp.route("/quiz/<mode>/disponibilite")
+def quiz_availability(mode: str) -> dict:
+    """Renvoie le nombre de questions disponibles pour un mode et ses filtres
+
+    Appelé par quiz_setup.js à chaque changement de filtre sur l'écran de
+    préparation, pour tenir le compteur à jour sans recharger la page."""
+    content_type = resolve_content_type(request.args.get("content_type"))
+    tag_ids = request.args.getlist("tag_id", type=int)
+
+    available = playable_question_query(mode, content_type=content_type, tag_ids=tag_ids).count()
+
+    return {"available": available, "run_length": min(QUESTIONS_PER_RUN, available)}
 
 @bp.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
 def quiz(mode: str, position: int) -> str:

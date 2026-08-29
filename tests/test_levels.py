@@ -78,9 +78,18 @@ def test_reward_follows_the_chosen_level_not_the_question(client, app):
         assert player.coins == 6
 
 
-def create_tagged_question(app, mode, tag_name):
-    """Crée une question rattachée à un thème, dans le mode demandé"""
+def create_tagged_question(app, mode, tag_name, count=None):
+    """Crée des questions rattachées à un thème, dans le mode demandé
+
+    Un thème n'est proposé sur l'écran de préparation qu'à partir d'un
+    certain nombre de questions (cf. TAG_MIN_QUESTIONS dans
+    services/questions.py) : count s'aligne par défaut sur ce seuil, pour
+    qu'un thème testé ici apparaisse bien tel qu'un joueur le verrait."""
     from filmatrix.models import Tag
+    from filmatrix.services.questions import DEFAULT_TAG_MIN_QUESTIONS
+
+    if count is None:
+        count = DEFAULT_TAG_MIN_QUESTIONS
 
     with app.app_context():
         tag = Tag.query.filter_by(name=tag_name).first()
@@ -88,14 +97,15 @@ def create_tagged_question(app, mode, tag_name):
             tag = Tag(name=tag_name, tag_type="saga")
             db.session.add(tag)
 
-        question = Question(
-            mode=mode,
-            prompt="Question de test thème",
-            payload={"options": ["A", "B"]},
-            correct_answer={"index": 0},
-        )
-        question.tags.append(tag)
-        db.session.add(question)
+        for index in range(count):
+            question = Question(
+                mode=mode,
+                prompt=f"Question de test thème {index}",
+                payload={"options": ["A", "B"]},
+                correct_answer={"index": 0},
+            )
+            question.tags.append(tag)
+            db.session.add(question)
         db.session.commit()
 
 

@@ -48,6 +48,10 @@
         "type": "genre"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -73,7 +77,23 @@
         "type": "univers"
       },
       {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
         "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
         "type": "genre"
       },
       {
@@ -106,6 +126,18 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
         "name": "france",
         "type": "pays"
       },
@@ -131,7 +163,23 @@
         "type": "univers"
       },
       {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
         "type": "genre"
       },
       {
@@ -164,6 +212,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
         "name": "royaume-uni",
         "type": "pays"
       },
@@ -189,7 +245,15 @@
         "type": "univers"
       },
       {
-        "name": "thriller",
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -218,7 +282,19 @@
         "type": "univers"
       },
       {
-        "name": "science-fiction",
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -251,6 +327,10 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -280,6 +360,14 @@
         "type": "genre"
       },
       {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "western",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -305,7 +393,19 @@
         "type": "univers"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
         "type": "genre"
       },
       {
@@ -338,6 +438,10 @@
         "type": "genre"
       },
       {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -363,7 +467,23 @@
         "type": "univers"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -396,6 +516,22 @@
         "type": "genre"
       },
       {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
         "name": "france",
         "type": "pays"
       },
@@ -422,6 +558,14 @@
       },
       {
         "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -512,6 +656,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -535,6 +687,14 @@
       {
         "name": "vikings",
         "type": "univers"
+      },
+      {
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
       },
       {
         "name": "drame",
@@ -566,6 +726,10 @@
         "type": "univers"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
         "name": "drame",
         "type": "genre"
       },
@@ -595,7 +759,11 @@
         "type": "univers"
       },
       {
-        "name": "thriller",
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
         "type": "genre"
       },
       {
@@ -622,6 +790,10 @@
       {
         "name": "mindhunter",
         "type": "univers"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
       },
       {
         "name": "policier",
@@ -653,7 +825,11 @@
         "type": "univers"
       },
       {
-        "name": "policier",
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -686,6 +862,18 @@
         "type": "genre"
       },
       {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
         "name": "royaume-uni",
         "type": "pays"
       },
@@ -712,6 +900,18 @@
       },
       {
         "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -889,6 +1089,10 @@
         "type": "genre"
       },
       {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -915,6 +1119,10 @@
       },
       {
         "name": "animation",
+        "type": "genre"
+      },
+      {
+        "name": "comédie",
         "type": "genre"
       },
       {
@@ -972,7 +1180,19 @@
         "type": "univers"
       },
       {
-        "name": "thriller",
+        "name": "action",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -1001,7 +1221,19 @@
         "type": "univers"
       },
       {
-        "name": "horreur",
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
         "type": "genre"
       },
       {
@@ -1028,6 +1260,14 @@
       {
         "name": "lucifer",
         "type": "univers"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
       },
       {
         "name": "fantasy",
@@ -1063,6 +1303,10 @@
         "type": "genre"
       },
       {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
         "name": "royaume-uni",
         "type": "pays"
       },
@@ -1089,6 +1333,14 @@
       },
       {
         "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -1179,6 +1431,10 @@
         "type": "genre"
       },
       {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -1202,6 +1458,22 @@
       {
         "name": "charmed",
         "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
       },
       {
         "name": "fantasy",
@@ -1233,7 +1505,15 @@
         "type": "univers"
       },
       {
-        "name": "thriller",
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
         "type": "genre"
       },
       {
@@ -1263,6 +1543,14 @@
       },
       {
         "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -1349,6 +1637,10 @@
         "type": "univers"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
         "name": "comédie",
         "type": "genre"
       },
@@ -1408,6 +1700,14 @@
       },
       {
         "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
         "type": "genre"
       },
       {

@@ -25,12 +25,12 @@
                 {# Une partie fait un nombre fixe de questions (cf. src/score.py) :
                    on annonce d'abord ce que le joueur va jouer, le stock total
                    ne venant qu'en second. #}
-                <p class="mt-1 text-xs uppercase tracking-widest text-slate-500">
+                <p id="availability-text" class="accent-icon mt-2 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest">
                     {% if question_count == 0 %}
                         Aucune question disponible
                     {% else %}
                         Partie de {{ run_length }} question{{ 's' if run_length > 1 else '' }}
-                        <span class="text-slate-600">·</span>
+                        <span class="opacity-50">·</span>
                         {{ question_count }} disponible{{ 's' if question_count > 1 else '' }}
                     {% endif %}
                 </p>
@@ -52,24 +52,50 @@
                 </select>
             </div>
 
-            {% for tag_type, label, empty_label in [
-                ("genre", "Genre", "Tous les genres"),
-                ("univers", "Univers", "Tous les univers")
-            ] %}
-            {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+            {% set genre_tags = all_tags | selectattr("tag_type", "equalto", "genre") | list %}
             <div>
-                <label for="tag-{{ tag_type }}" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    {{ label }}
+                <label for="tag-genre" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                    Genre
                 </label>
-                <select id="tag-{{ tag_type }}" data-tag-filter
+                <select id="tag-genre" data-tag-filter
                         class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">{{ empty_label }}</option>
-                    {% for tag in typed_tags %}
+                    <option value="">Tous les genres</option>
+                    {% for tag in genre_tags %}
                     <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
                     {% endfor %}
                 </select>
             </div>
-            {% endfor %}
+
+            {% set shown_univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
+            {% set shown_univers_ids = shown_univers_tags | map(attribute="id") | list %}
+            {% set hidden_univers_tags = all_univers_tags | rejectattr("id", "in", shown_univers_ids) | list %}
+            <div>
+                <div class="mb-1 flex items-baseline justify-between gap-2">
+                    <label for="tag-univers" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
+                        Univers
+                    </label>
+                    {# Univers accumule vite des entrées nées d'une unique question (cf.
+                       TAG_MIN_QUESTIONS dans services/questions.py) : celles-ci restent
+                       dans le <select>, simplement masquées, tant que ce lien n'a pas
+                       été activé - voir quiz_setup.js. #}
+                    {% if hidden_univers_tags %}
+                    <button type="button" id="show-all-univers"
+                            class="text-xs text-slate-500 underline decoration-dotted transition hover:text-cyan-400">
+                        Voir tous les univers ({{ all_univers_tags | length }})
+                    </button>
+                    {% endif %}
+                </div>
+                <select id="tag-univers" data-tag-filter
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="">Tous les univers</option>
+                    {% for tag in shown_univers_tags %}
+                    <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
+                    {% endfor %}
+                    {% for tag in hidden_univers_tags %}
+                    <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %} hidden>{{ tag.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             </div>
 
             <details class="group rounded-xl border border-slate-700/70 bg-slate-950/30 px-4 py-3">

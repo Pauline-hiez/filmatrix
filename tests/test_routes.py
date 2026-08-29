@@ -246,15 +246,20 @@ def test_setup_screen_offers_the_game_settings(client, app):
 
 
 def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, app):
-    """Le thème choisi doit être conservé et limiter le compteur de la préparation"""
+    """Le thème choisi doit être conservé et limiter le compteur de la préparation
+
+    Le tag doit atteindre le seuil de popularité d'un univers (cf.
+    TAG_MIN_QUESTIONS dans services/questions.py) pour apparaître dans le
+    sélecteur : le nombre de questions créées ici s'y aligne."""
     with app.app_context():
         tag = Tag(name="kaamelott", tag_type="univers")
-        question = Question(
-            mode="citation", content_type="serie", prompt="Une réplique culte",
-            payload={}, correct_answer={"film": "Kaamelott"}, requires_account=False,
-        )
-        question.tags.append(tag)
-        db.session.add(question)
+        for index in range(20):
+            question = Question(
+                mode="citation", content_type="serie", prompt=f"Une réplique culte {index}",
+                payload={}, correct_answer={"film": "Kaamelott"}, requires_account=False,
+            )
+            question.tags.append(tag)
+            db.session.add(question)
         db.session.commit()
         tag_id = tag.id
 
@@ -263,20 +268,35 @@ def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, a
 
     assert response.status_code == 200
     assert f'value="{tag_id}" selected' in page
-    assert "Partie de 1 question" in page
-    assert "1 disponible" in page
+    assert "Partie de 10 questions" in page
+    assert "20 disponible" in page
 
 
 def test_setup_screen_combines_independent_theme_filters(client, app):
-    """Les sélecteurs genre et univers doivent filtrer en intersection."""
+    """Les sélecteurs genre et univers doivent filtrer en intersection.
+
+    Chaque tag doit individuellement atteindre son seuil de popularité (cf.
+    TAG_MIN_QUESTIONS) pour apparaître dans le sélecteur : comédie (genre) a
+    besoin d'au moins 5 questions, friends (univers) d'au moins 20, tout en
+    ne laissant qu'une seule question à l'intersection des deux."""
     with app.app_context():
         comedy = Tag(name="comédie", tag_type="genre")
         friends = Tag(name="friends", tag_type="univers")
+
         matching = Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"}, requires_account=False)
         matching.tags.extend([comedy, friends])
-        genre_only = Question(mode="citation", content_type="serie", prompt="Autre", payload={}, correct_answer={"film": "Autre"}, requires_account=False)
-        genre_only.tags.append(comedy)
-        db.session.add_all([matching, genre_only])
+        db.session.add(matching)
+
+        for index in range(19):
+            friends_only = Question(mode="citation", content_type="serie", prompt=f"Friends {index}", payload={}, correct_answer={"film": "Friends"}, requires_account=False)
+            friends_only.tags.append(friends)
+            db.session.add(friends_only)
+
+        for index in range(4):
+            genre_only = Question(mode="citation", content_type="serie", prompt=f"Autre {index}", payload={}, correct_answer={"film": "Autre"}, requires_account=False)
+            genre_only.tags.append(comedy)
+            db.session.add(genre_only)
+
         db.session.commit()
         comedy_id, friends_id = comedy.id, friends.id
 
