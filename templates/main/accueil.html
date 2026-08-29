@@ -5,54 +5,142 @@
 {% from "partials/avatar.html" import avatar_img %}
 <div class="max-w-6xl mx-auto flex flex-col gap-6">
 
+    {# Deux colonnes qui vivent chacune leur vie sur toute la hauteur (hero +
+       piliers + duel à gauche, progression + classement + amis à droite) au
+       lieu d'un simple hero/aside suivi de sections pleine largeur : sans ça,
+       la colonne la plus courte laissait un vide béant en dessous d'elle. #}
     <div class="grid gap-6 xl:grid-cols-[1fr_20rem] items-start">
 
+    <div class="flex flex-col gap-6">
+
         <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-12 sm:px-10 sm:py-16">
-            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
-                LE CINÉMA<br>
-                EST TON
-                <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">UNIVERS</span>
-            </h1>
-
-            <p class="mt-4 max-w-md text-slate-300">
-                Affronte les autres joueurs, enchaîne les modes de jeu
-                et deviens une <span class="text-cyan-400">légende</span> du 7<sup>e</sup> art.
-            </p>
-
-            <div class="mt-8 flex flex-wrap gap-3">
-                <a href="{{ url_for('main.modes') }}"
-                   class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-[0_0_20px_rgba(34,211,238,0.35)] transition">
-                    Commencer à jouer
-                </a>
-                <a href="{{ url_for('multiplayer.multiplayer_home') }}"
-                   class="border border-slate-600 hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
-                    ⚔ Défier un ami
-                </a>
-                <a href="#modes"
-                   class="border border-slate-600 hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
-                    Découvrir les jeux
-                </a>
+            {# Pop-corn et pellicule, en fond : un simple flourish, jamais au-dessus
+               du texte (z-0 contre le z-10 du bloc de contenu ci-dessous). Le wrapper
+               en inset-0 donne une hauteur définie à l'image (celle du bloc), ce qui
+               permet à h-full de la faire toucher le haut ET le bas du bloc sans
+               dépasser (object-contain + max-w-full la contiennent horizontalement). #}
+            <div class="pointer-events-none absolute inset-0 z-0 flex min-w-0 items-end justify-end overflow-hidden" aria-hidden="true">
+                <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt=""
+                     class="h-full min-w-0 w-auto max-w-full object-contain opacity-20 drop-shadow-2xl md:opacity-95">
             </div>
 
-            <dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4 text-sm">
-                <div>
-                    <dt class="text-slate-500">Questions</dt>
-                    <dd class="text-xl font-bold text-slate-100">{{ total_questions }}</dd>
+            <div class="relative z-10 max-w-2xl">
+                <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                    LE CINÉMA<br>
+                    EST TON
+                    <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">UNIVERS</span>
+                </h1>
+
+                <p class="mt-4 max-w-md text-slate-300">
+                    Affronte les autres joueurs, enchaîne les modes de jeu
+                    et deviens une <span class="text-cyan-400">légende</span> du 7<sup>e</sup> art.
+                </p>
+
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="{{ url_for('main.modes') }}"
+                       class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-[0_0_20px_rgba(34,211,238,0.35)] transition">
+                        Commencer à jouer
+                    </a>
+                    <a href="{{ url_for('multiplayer.multiplayer_home') }}"
+                       class="border border-slate-600 bg-slate-950/80 backdrop-blur-sm hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
+                        ⚔ Défier un ami
+                    </a>
+                    <a href="#modes"
+                       class="border border-slate-600 bg-slate-950/80 backdrop-blur-sm hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
+                        Découvrir les jeux
+                    </a>
                 </div>
-                <div>
-                    <dt class="text-slate-500">Modes de jeu</dt>
-                    <dd class="text-xl font-bold text-slate-100">{{ modes | length }}</dd>
-                </div>
-                <div>
-                    <dt class="text-slate-500">Joueurs</dt>
-                    <dd class="text-xl font-bold text-slate-100">{{ total_players }}</dd>
-                </div>
-            </dl>
+
+                <dl class="mt-10 flex flex-wrap gap-x-10 gap-y-4 text-sm">
+                    <div>
+                        <dt class="text-slate-500">Questions</dt>
+                        <dd class="text-xl font-bold text-slate-100">{{ total_questions }}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-slate-500">Modes de jeu</dt>
+                        <dd class="text-xl font-bold text-slate-100">{{ modes | length }}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-slate-500">Joueurs</dt>
+                        <dd class="text-xl font-bold text-slate-100">{{ total_players }}</dd>
+                    </div>
+                </dl>
+            </div>
         </section>
+
+        {# Les quatre piliers du site, résumés en un coup d'œil - chacun renvoie à
+           une fonctionnalité qui existe réellement (pas de teaser sur un système
+           pas encore construit). L'image occupe un panneau dédié à gauche, entièrement
+           contenu dans la carte (aucun débordement). Au survol, .border-chase fait
+           courir un liseré lumineux tout autour de la carte (cf. base.html). #}
+        <section class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {# glow = couleur dominante calculée pour chaque image (pas l'accent
+               thématique de la carte, la vraie couleur de l'illustration). #}
+            {% for title, text, image, accent, glow in [
+                ("Des modes variés", "Quiz, Blind Test, devinettes... dix façons de jouer.", "14.png", "#22d3ee", "#6349a5"),
+                ("Progresse", "Gagne de l'XP et monte de niveau à chaque bonne réponse.", "6.png", "#60a5fa", "#cc7217"),
+                ("Débloque des badges", "Des badges à débloquer au fil de tes exploits.", "16.png", "#c084fc", "#8e4121"),
+                ("Grimpe au classement", "Affronte les autres joueurs pour la première place.", "17.png", "#fbbf24", "#d18d47"),
+            ] %}
+            <div style="--accent: {{ accent }}"
+                 class="accent-card border-chase flex items-stretch overflow-hidden rounded-2xl border bg-slate-900/90">
+                <div class="flex w-24 shrink-0 items-center justify-center">
+                    <span style="--glow: {{ glow }}" class="img-glow relative inline-block h-16 w-16">
+                        <img src="{{ url_for('static', filename='images/habillage/' ~ image) }}" alt=""
+                             class="h-full w-full object-contain drop-shadow-lg" aria-hidden="true">
+                    </span>
+                </div>
+                <div class="min-w-0 flex flex-1 flex-col justify-center py-4 pl-3 pr-4">
+                    <p class="text-sm font-bold" style="color: var(--accent)">{{ title }}</p>
+                    <p class="mt-1 text-xs leading-relaxed text-slate-400">{{ text }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+
+        {# Le multijoueur n'apparaissait nulle part : il fallait ouvrir la fiche
+           publique d'un ami pour découvrir qu'il existait. Il a désormais sa place
+           sur l'accueil, avant la grille des modes solo. #}
+        <section style="--accent: #f472b6"
+                 class="accent-card relative overflow-hidden rounded-2xl border bg-slate-900/60 p-5 sm:p-6">
+            {# En fond, à faible opacité : ne doit jamais rivaliser avec le bouton
+               « Lancer un duel », d'où le z-0 contre le z-10 du contenu. #}
+            <div style="--glow: #173586" class="img-glow pointer-events-none absolute -bottom-8 -right-4 z-0 hidden w-40 sm:block lg:w-48" aria-hidden="true">
+                <img src="{{ url_for('static', filename='images/habillage/2.png') }}" alt=""
+                     class="w-full -rotate-6 object-contain opacity-20">
+            </div>
+            <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center">
+                <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-full border text-2xl">
+                    ⚔
+                </span>
+
+                <div class="min-w-0 flex-1">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Multijoueur</p>
+                    <h2 class="mt-1 text-xl font-extrabold text-slate-100 sm:text-2xl">
+                        Défie un ami en temps réel
+                    </h2>
+                    <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                        Même question, même seconde, pour vous deux. Le premier à
+                        répondre juste marque le point — cinq questions, un vainqueur.
+                    </p>
+                </div>
+
+                <a href="{{ url_for('multiplayer.multiplayer_home') }}"
+                   class="shrink-0 rounded-lg bg-cyan-400 px-6 py-3 text-center font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
+                    Lancer un duel
+                </a>
+            </div>
+        </section>
+
+    </div>
 
         <aside class="flex flex-col gap-6">
             {% if current_user.is_authenticated %}
-            <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+            <section class="relative rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute top-3 right-3 w-12 sm:w-14" aria-hidden="true">
+                    <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt=""
+                         class="w-full object-contain opacity-90 drop-shadow-lg">
+                </div>
                 <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Progression</h2>
 
                 <div class="flex items-center gap-4">
@@ -87,7 +175,11 @@
                 </div>
             </section>
             {% else %}
-            <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+            <section class="relative rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute top-3 right-3 w-12 sm:w-14" aria-hidden="true">
+                    <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt=""
+                         class="w-full object-contain opacity-90 drop-shadow-lg">
+                </div>
                 <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Ta progression</h2>
                 <p class="text-sm text-slate-300">
                     Crée un compte pour gagner de l'XP, débloquer des badges
@@ -105,8 +197,15 @@
             {% endif %}
 
             <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                {# L'étoile se met au-dessus du titre plutôt qu'en coin absolu : le
+                   coin haut-droit de cette carte est déjà pris par le lien « Voir
+                   tout », les deux se chevaucheraient sinon. #}
                 <div class="mb-4 flex items-baseline justify-between">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Classement</h2>
+                    <h2 class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500">
+                        <img src="{{ url_for('static', filename='images/habillage/17.png') }}" alt=""
+                             class="h-5 w-5 object-contain" aria-hidden="true">
+                        Classement
+                    </h2>
                     <a href="{{ url_for('leaderboard.leaderboard') }}" class="text-xs text-cyan-400 transition hover:text-cyan-300">
                         Voir tout
                     </a>
@@ -134,65 +233,106 @@
                 <p class="text-sm text-slate-500">Aucun joueur classé pour le moment.</p>
                 {% endif %}
             </section>
+
+            {# Comble la colonne de droite pour qu'elle ne s'arrête pas net avant
+               la colonne de gauche (hero + piliers + duel) : un vrai raccourci,
+               pas un teaser, vers le duel entre amis mis en avant juste à côté. #}
+            <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <div class="mb-4 flex items-baseline justify-between">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Amis</h2>
+                    <a href="{{ url_for('friends.friends_list') }}" class="text-xs text-cyan-400 transition hover:text-cyan-300">
+                        Voir tout
+                    </a>
+                </div>
+
+                {% if current_user.is_authenticated %}
+                    {% if home_friends %}
+                    <ul class="flex flex-col gap-1">
+                        {% for friend in home_friends %}
+                        <li>
+                            <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}"
+                               class="flex items-center gap-3 rounded-lg px-2 py-2 text-sm transition hover:bg-slate-950/60">
+                                <span class="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900">
+                                    {{ avatar_img(friend.avatar) }}
+                                </span>
+                                <span class="min-w-0 flex-1 truncate text-slate-200">
+                                    <span class="presence-dot bg-slate-600" data-user-id="{{ friend.id }}" title="Hors ligne" aria-label="Statut de {{ friend.username }}"></span>
+                                    {{ friend.username }}
+                                </span>
+                                <span class="shrink-0 text-xs text-slate-500">Niv. {{ friend.level }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ url_for('multiplayer.multiplayer_home') }}"
+                       class="mt-3 block rounded-lg border border-slate-600 py-2 text-center text-sm font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                        ⚔ Défier un ami
+                    </a>
+                    {% else %}
+                    <p class="text-sm text-slate-500">Ajoute des amis pour les défier en duel.</p>
+                    <a href="{{ url_for('friends.friends_list') }}"
+                       class="mt-3 block rounded-lg border border-slate-600 py-2 text-center text-sm font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                        Trouver des amis
+                    </a>
+                    {% endif %}
+                {% else %}
+                <p class="text-sm text-slate-500">Crée un compte pour te faire des amis et les défier en duel.</p>
+                {% endif %}
+            </section>
         </aside>
     </div>
 
-    {# Le multijoueur n'apparaissait nulle part : il fallait ouvrir la fiche
-       publique d'un ami pour découvrir qu'il existait. Il a désormais sa place
-       sur l'accueil, avant la grille des modes solo. #}
-    <section style="--accent: #f472b6"
-             class="accent-card overflow-hidden rounded-2xl border bg-slate-900/60 p-5 sm:p-6">
-        <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
-            <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-full border text-2xl">
-                ⚔
-            </span>
-
-            <div class="min-w-0 flex-1">
-                <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Multijoueur</p>
-                <h2 class="mt-1 text-xl font-extrabold text-slate-100 sm:text-2xl">
-                    Défie un ami en temps réel
-                </h2>
-                <p class="mt-2 text-sm leading-relaxed text-slate-400">
-                    Même question, même seconde, pour vous deux. Le premier à
-                    répondre juste marque le point — cinq questions, un vainqueur.
-                </p>
-            </div>
-
-            <a href="{{ url_for('multiplayer.multiplayer_home') }}"
-               class="shrink-0 rounded-lg bg-cyan-400 px-6 py-3 text-center font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
-                Lancer un duel
-            </a>
+    {# Vitrine des 5 modes les plus joués (nombre de réponses données, calculé
+       côté serveur) : la page complète /modes reste le seul endroit listant
+       tout, pour ne pas noyer l'accueil. Reel et pop-corn en flourish, comme
+       dans le hero, mais discrets pour ne pas concurrencer les cartes. #}
+    <section id="modes" class="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
+        <div style="--glow: #3657ad" class="img-glow pointer-events-none absolute -bottom-10 -left-10 z-0 hidden w-44 sm:block lg:w-56" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/1.png') }}" alt=""
+                 class="w-full -rotate-12 object-contain drop-shadow-2xl">
         </div>
-    </section>
+        <div style="--glow: #e5903d" class="img-glow pointer-events-none absolute -bottom-6 -right-6 z-0 w-48 sm:-bottom-10 sm:-right-10 sm:w-40 lg:w-52" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/3.png') }}" alt=""
+                 class="w-full rotate-6 object-contain opacity-20 drop-shadow-2xl sm:opacity-100">
+        </div>
 
-    <section id="modes" class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
-        <div class="mb-5 flex items-baseline justify-between">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Explore les jeux</h2>
+        <div class="relative z-10 mb-5 flex items-baseline justify-between">
+            <h2 class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-cyan-400">
+                <img src="{{ url_for('static', filename='images/habillage/18.png') }}" alt=""
+                     class="h-7 w-auto object-contain" aria-hidden="true">
+                Explore les jeux
+            </h2>
             <a href="{{ url_for('main.modes') }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
                 Tous les modes
             </a>
         </div>
 
-        {% if modes %}
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {% for mode in modes %}
+        {% if popular_modes %}
+        <div class="relative z-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {% for mode in popular_modes %}
             <a href="{{ url_for('quiz.quiz_setup', mode=mode.slug) }}"
                style="--accent: {{ mode.accent }}"
-               class="accent-card flex flex-col rounded-xl border bg-slate-950/60 p-4 transition">
-                <span class="accent-icon mb-3 flex h-11 w-11 items-center justify-center rounded-full border text-lg">
+               class="accent-card flex flex-col rounded-xl border bg-slate-950/60 p-3 transition">
+                <span class="accent-icon mb-2 flex h-9 w-9 items-center justify-center rounded-full border text-base">
                     {{ mode.icon }}
                 </span>
-                <p class="font-bold uppercase tracking-wide text-slate-100">{{ mode.name }}</p>
-                <p class="mt-1 text-xs leading-relaxed text-slate-400">{{ mode.description }}</p>
-                <p class="mt-2 flex-1 text-[0.7rem] leading-relaxed text-slate-500">{{ mode.how }}</p>
-                <p class="mt-3 text-[0.7rem] text-slate-500">
+                <p class="text-sm font-bold uppercase tracking-wide text-slate-100">{{ mode.name }}</p>
+                <p class="mt-1 flex-1 text-xs leading-relaxed text-slate-400">{{ mode.description }}</p>
+                <p class="mt-2 text-[0.7rem] text-slate-500">
                     {{ mode.question_count }} question{{ 's' if mode.question_count > 1 else '' }}
                 </p>
             </a>
             {% endfor %}
         </div>
+
+        <div class="relative z-10 mt-5 flex justify-center">
+            <a href="{{ url_for('main.modes') }}"
+               class="border border-slate-600 hover:border-cyan-400 hover:text-cyan-400 text-slate-200 font-bold px-6 py-3 rounded-lg transition">
+                Voir tous les modes
+            </a>
+        </div>
         {% else %}
-        <p class="text-sm text-slate-500">
+        <p class="relative z-10 text-sm text-slate-500">
             Aucune question en base pour le moment. Lance <code class="text-slate-400">seed_db.py</code> pour en charger.
         </p>
         {% endif %}

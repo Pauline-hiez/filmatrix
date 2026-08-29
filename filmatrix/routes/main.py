@@ -7,6 +7,7 @@ from sqlalchemy import func
 from filmatrix.extensions import db
 from filmatrix.models import Attempt, Question, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
+from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.questions import resolve_content_type
 from filmatrix.services.score import QUESTIONS_PER_RUN
@@ -38,22 +39,41 @@ def home() -> str:
         if question_count_for(mode["slug"]) > 0
     ]
 
+    # Popularité = nombre de réponses données sur des questions de ce mode.
+    # Sert uniquement à mettre en avant 5 modes sur l'accueil ; /modes garde
+    # la liste complète.
+    attempts_per_mode = dict(
+        db.session.query(Question.mode, func.count(Attempt.id))
+        .join(Attempt, Attempt.question_id == Question.id)
+        .group_by(Question.mode)
+        .all()
+    )
+    popular_modes = sorted(
+        playable_modes,
+        key=lambda mode: attempts_per_mode.get(mode["slug"], 0),
+        reverse=True,
+    )[:5]
+
     top_players = User.query.order_by(User.total_xp.desc()).limit(5).all()
 
     level_info = None
     correct_count = 0
+    home_friends = []
     if current_user.is_authenticated:
         level_info = calculate_level(current_user.total_xp)
         correct_count = Attempt.query.filter_by(
             user_id=current_user.id, is_correct=True
         ).count()
+        home_friends = friend_cards(get_friends_list(current_user.id))[:4]
 
     return render_template(
         "main/accueil.html",
         modes=playable_modes,
+        popular_modes=popular_modes,
         top_players=top_players,
         level_info=level_info,
         correct_count=correct_count,
+        home_friends=home_friends,
         total_questions=sum(question_counts.values()),
         total_players=User.query.count(),
     )

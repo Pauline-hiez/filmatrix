@@ -32,6 +32,70 @@
             border-color: color-mix(in srgb, var(--accent) 30%, transparent);
         }
 
+        /* Halo brumeux derrière une image décorative, dans la couleur dominante
+           de cette image (calculée une fois, image par image, jamais devinée)
+           passée via --glow. Le ::before, plus grand que l'image et flouté,
+           donne l'effet "rétroéclairé" ; z-index -1 dans un contexte isolé pour
+           rester strictement derrière sans jamais gêner le contenu au-dessus. */
+        /* Pas de position ici : output.css (Tailwind) est chargé avant ce bloc,
+           donc "position: relative" ici gagnerait le conflit de spécificité et
+           écraserait silencieusement un éventuel "absolute" Tailwind sur le même
+           élément. Chaque usage de .img-glow apporte donc son propre "relative"
+           ou "absolute" via une classe Tailwind. */
+        .img-glow {
+            isolation: isolate;
+        }
+
+        .img-glow::before {
+            content: "";
+            position: absolute;
+            inset: -35%;
+            z-index: -1;
+            border-radius: 9999px;
+            background: radial-gradient(circle, color-mix(in srgb, var(--glow) 65%, transparent) 0%, transparent 72%);
+            filter: blur(10px);
+            pointer-events: none;
+        }
+
+        /* Liseré lumineux qui fait le tour de la carte au survol, au lieu d'une
+           bordure qui s'éclaircit simplement. Le pseudo-élément couvre toute la
+           carte avec un dégradé conique tournant, mais un masque "content-box
+           exclude" n'en laisse voir que l'anneau de la largeur du padding. */
+        @property --chase-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        .border-chase {
+            position: relative;
+        }
+
+        .border-chase::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: inherit;
+            padding: 1.5px;
+            background: conic-gradient(from var(--chase-angle), transparent 0%, var(--accent) 8%, transparent 24%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .border-chase:hover::before {
+            opacity: 1;
+            animation: border-chase-spin 2.2s linear infinite;
+        }
+
+        @keyframes border-chase-spin {
+            to { --chase-angle: 360deg; }
+        }
+
         .presence-dot {
             display: inline-block;
             width: 0.625rem;
