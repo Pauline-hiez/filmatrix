@@ -188,6 +188,7 @@ def quiz(mode: str, position: int) -> str:
                 earned_coins = coins_for_level(level)
                 current_user.total_xp += earned_xp
                 current_user.coins += earned_coins
+                attempt.earned_xp = earned_xp
 
             db.session.commit()
 

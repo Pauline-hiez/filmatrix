@@ -3,43 +3,173 @@
 {% block content %}
 {% from "partials/player_link.html" import player_link with context %}
 {% from "partials/avatar.html" import avatar_img %}
-<div class="max-w-2xl mx-auto mt-8">
-    <h2 class="text-xl mb-6 text-center">Classement général</h2>
+<div class="max-w-6xl mx-auto flex flex-col gap-6">
 
-    {% if results %}
-    <div class="flex flex-col gap-2">
-        {% for result in results %}
-        <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
-            <div class="flex items-center gap-3">
-                <span class="text-cyan-400 font-bold w-6 text-right">{{ loop.index }}</span>
-                <span class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900">
-                    {{ avatar_img(result.avatar) }}
-                </span>
-                <span class="flex items-center">{{ player_link(result.user_id, result.username) }}</span>
-            </div>
-            <div class="text-right flex items-center gap-3">
-                <div>
-                    <span class="text-cyan-400 font-bold text-sm">Niveau {{ result.level }}</span>
-                    <p class="text-slate-500 text-xs">{{ result.total_xp }} XP — {{ result.correct }} / {{ result.total }} bonnes réponses</p>
-                </div>
+    {# En-tête : trois vraies fenêtres (semaine/mois calendaires, tous les
+       temps), pas de faux onglets. Semaine et mois trient sur la somme de
+       earned_xp, tracée par tentative depuis son ajout : les parties plus
+       anciennes comptent pour 0 dans ces deux vues, seul "tous les temps"
+       (User.total_xp) couvre tout l'historique. #}
+    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-10 text-center sm:px-10">
+        <div style="--glow: #3657ad" class="img-glow pointer-events-none absolute -bottom-8 -left-8 z-0 hidden w-32 sm:block lg:w-44" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/1.png') }}" alt="" class="w-full -rotate-12 object-contain opacity-70 drop-shadow-2xl">
+        </div>
+        <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute -bottom-8 -right-8 z-0 hidden w-32 sm:block lg:w-44" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt="" class="w-full rotate-6 object-contain opacity-70 drop-shadow-2xl">
+        </div>
+        <div class="starfield-overlay" aria-hidden="true"></div>
 
-                {% if current_user.is_authenticated and current_user.id != result.user_id %}
-                    {% if result.friendship_status == "accepted" %}
-                        <span class="text-emerald-400 text-xs">Ami</span>
-                    {% elif result.friendship_status == "pending" %}
-                        <span class="text-slate-500 text-xs">En attente</span>
-                    {% else %}
-                        <form method="POST" action="{{ url_for('friends.send_friend_request_route', user_id=result.user_id) }}">
-                            <button type="submit" class="text-cyan-400 hover:text-cyan-300 transition text-xs">+ Ajouter</button>
-                        </form>
-                    {% endif %}
-                {% endif %}
+        <div class="relative z-10">
+            <h1 class="text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
+                Classement <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">général</span>
+            </h1>
+            <p class="mt-2 text-sm text-slate-400">Affronte les meilleurs cinéphiles, un point d'XP à la fois.</p>
+
+            <div class="mt-5 inline-flex flex-wrap justify-center gap-2 rounded-full border border-slate-700 bg-slate-950/60 p-1">
+                {% for key, label in [("all", "Général"), ("week", "Cette semaine"), ("month", "Ce mois")] %}
+                <a href="{{ url_for('leaderboard.leaderboard', period=key) }}"
+                   class="rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest transition {% if period == key %}bg-cyan-400 text-slate-950{% else %}text-slate-400 hover:text-cyan-400{% endif %}">
+                    {{ label }}
+                </a>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
+    </section>
+
+    <div class="grid gap-6 md:grid-cols-[1fr_14rem] lg:grid-cols-[1fr_16rem] xl:grid-cols-[1fr_20rem] items-start">
+        <section>
+            {% if results %}
+            <div class="flex flex-col gap-3">
+                {% for result in results %}
+                {% set is_me = current_user.is_authenticated and result.user_id == current_user.id %}
+                {% set tier_accent = "#fbbf24" if loop.index == 1 else ("#60a5fa" if loop.index <= 3 else "#34d399") %}
+                <div style="--accent: {{ tier_accent }}"
+                     class="accent-card relative flex items-center gap-4 overflow-hidden rounded-2xl border p-4 transition {{ 'bg-gradient-to-r from-amber-400/10 via-slate-900/60 to-slate-900/60' if loop.index == 1 else 'bg-slate-900/60' }} {{ 'ring-1 ring-cyan-400/40' if is_me and loop.index != 1 else '' }}">
+
+                    {% if loop.index == 1 %}
+                    <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute -bottom-4 -right-4 z-0 hidden w-20 sm:block" aria-hidden="true">
+                        <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt="" class="w-full object-contain opacity-80 drop-shadow-xl">
+                    </div>
+                    {% endif %}
+
+                    <span class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-sm font-bold"
+                          style="{% if loop.index <= 3 %}border-color: {{ tier_accent }}; background-color: color-mix(in srgb, {{ tier_accent }} 18%, transparent); color: {{ tier_accent }};{% else %}border-color: #334155; color: #94a3b8;{% endif %}">
+                        {% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}
+                    </span>
+
+                    <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-slate-900" style="border-color: {{ tier_accent }}">
+                        {{ avatar_img(result.avatar) }}
+                    </span>
+
+                    <div class="relative z-10 min-w-0 flex-1">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="truncate font-bold {{ 'text-amber-300' if is_me else 'text-slate-100' }}">
+                                {{ player_link(result.user_id, result.username) }}
+                            </span>
+                            <span class="shrink-0 rounded-full border px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-wide"
+                                  style="border-color: color-mix(in srgb, {{ tier_accent }} 40%, transparent); color: {{ tier_accent }};">
+                                Niveau {{ result.level }}
+                            </span>
+                        </div>
+                        <div class="mt-2 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-slate-800">
+                            <div class="h-1.5 rounded-full" style="width: {{ (result.xp_in_current_level / result.xp_for_next_level * 100) | round(1) }}%; background-color: {{ tier_accent }};"></div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 hidden shrink-0 text-right sm:block md:hidden lg:block">
+                        <p class="font-bold text-slate-100">{{ result.total_xp }} XP</p>
+                        <p class="text-xs text-slate-500">{{ result.correct }} / {{ result.total }} bonnes réponses</p>
+                    </div>
+
+                    {% if current_user.is_authenticated and current_user.id != result.user_id %}
+                    <div class="relative z-10 shrink-0">
+                        {% if result.friendship_status == "accepted" %}
+                            <span class="rounded-lg border border-emerald-400/40 bg-emerald-400/10 px-3 py-1.5 text-xs font-bold text-emerald-400">Ami</span>
+                        {% elif result.friendship_status == "pending" %}
+                            <span class="rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-bold text-slate-500">En attente</span>
+                        {% else %}
+                            <form method="POST" action="{{ url_for('friends.send_friend_request_route', user_id=result.user_id) }}">
+                                <button type="submit" class="rounded-lg border border-slate-600 px-3 py-1.5 text-xs font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                                    + Ajouter
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="mt-5 flex items-center gap-3 rounded-xl border border-cyan-400/20 bg-slate-900/60 px-5 py-4">
+                <span class="text-xl">🚀</span>
+                <p class="text-sm text-slate-300">Continue de jouer pour gagner de l'XP et grimper dans le classement !</p>
+            </div>
+            {% else %}
+            <p class="text-slate-500 text-center">
+                {% if period == "all" %}Aucune partie jouée pour le moment.
+                {% elif period == "week" %}Personne n'a encore gagné d'XP cette semaine.
+                {% else %}Personne n'a encore gagné d'XP ce mois-ci.{% endif %}
+            </p>
+            {% endif %}
+        </section>
+
+        <aside class="flex flex-col gap-6">
+            {% if current_user.is_authenticated and my_entry %}
+            <section class="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 text-center">
+                <div style="--glow: #d17b25; --glow-strength: 16%" class="img-glow pointer-events-none absolute inset-0 z-0 flex items-center justify-center" aria-hidden="true">
+                    <img src="{{ url_for('static', filename='images/habillage/5.png') }}" alt="" class="w-52 object-contain opacity-70 drop-shadow-2xl">
+                </div>
+                <div class="starfield-overlay-soft" aria-hidden="true"></div>
+
+                <div class="relative z-10">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Ma position</h2>
+                    <p class="mt-2 text-4xl font-extrabold text-cyan-400">{{ my_rank }}{{ "er" if my_rank == 1 else "e" }}</p>
+
+                    <span class="mx-auto mt-3 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-cyan-400 bg-slate-900">
+                        {{ avatar_img(my_entry.avatar) }}
+                    </span>
+                    <p class="mt-2 font-bold text-slate-100">{{ my_entry.username }}</p>
+                    <span class="mt-1 inline-block rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2 py-0.5 text-xs font-bold text-cyan-400">
+                        Niveau {{ my_entry.level }}
+                    </span>
+
+                    <div class="mt-4 grid grid-cols-2 gap-2 border-t border-slate-800 pt-4 text-center">
+                        <div>
+                            <p class="text-lg font-bold text-amber-400">{{ my_entry.total_xp }}</p>
+                            <p class="text-[0.65rem] uppercase tracking-wider text-slate-500">XP</p>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-emerald-400">{{ my_entry.correct }}/{{ my_entry.total }}</p>
+                            <p class="text-[0.65rem] uppercase tracking-wider text-slate-500">Réussies</p>
+                        </div>
+                    </div>
+
+                    <a href="{{ url_for('profile.profile') }}"
+                       class="mt-4 block rounded-lg border border-slate-600 py-2 text-center text-sm font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
+                        Voir mon historique
+                    </a>
+                </div>
+            </section>
+            {% elif not current_user.is_authenticated %}
+            <section class="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
+                <div style="--glow: #d17b25; --glow-strength: 16%" class="img-glow pointer-events-none absolute inset-0 z-0 flex items-center justify-center" aria-hidden="true">
+                    <img src="{{ url_for('static', filename='images/habillage/5.png') }}" alt="" class="w-52 object-contain opacity-70 drop-shadow-2xl">
+                </div>
+                <div class="starfield-overlay-soft" aria-hidden="true"></div>
+
+                <div class="relative z-10">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Ma position</h2>
+                    <p class="mt-2 text-sm text-slate-300">
+                        Crée un compte pour apparaître au classement et suivre ta progression.
+                    </p>
+                    <a href="{{ url_for('auth.register') }}"
+                       class="mt-4 block rounded-lg bg-cyan-400 px-4 py-2 text-center font-bold text-slate-950 transition hover:bg-cyan-300">
+                        Créer un compte
+                    </a>
+                </div>
+            </section>
+            {% endif %}
+        </aside>
     </div>
-    {% else %}
-    <p class="text-slate-500 text-center">Aucune partie jouée pour le moment.</p>
-    {% endif %}
 </div>
 {% endblock %}

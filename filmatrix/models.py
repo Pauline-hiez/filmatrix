@@ -57,6 +57,10 @@ class Attempt(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
     is_correct = db.Column(db.Boolean, nullable=False)
     answered_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    # XP réellement crédité par cette tentative (0 pour une mauvaise réponse ou
+    # une question déjà réussie avant). Sert au classement par période : le
+    # total cumulé sur User ne dit pas quand ces points ont été gagnés.
+    earned_xp = db.Column(db.Integer, nullable=False, default=0)
     question = db.relationship("Question")
     user = db.relationship("User", backref="attempts")
 
