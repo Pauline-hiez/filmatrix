@@ -14,4 +14,4 @@ instance/
 # Dépendances front
 node_modules/
 
-.freebuff 
+.freebuff/ 

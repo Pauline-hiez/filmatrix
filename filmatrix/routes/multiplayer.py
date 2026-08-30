@@ -110,7 +110,27 @@ def game_lobby(game_session_id: int) -> str:
         game_session.status = "expired"
         db.session.commit()
 
-    return render_template("multiplayer/salon.html", game_session=game_session)
+    return render_template(
+        "multiplayer/salon.html",
+        game_session=game_session,
+        questions_per_game=QUESTIONS_PER_GAME,
+    )
+
+@bp.route("/multijoueur/<int:game_session_id>/annuler", methods=["POST"])
+@login_required
+def cancel_game_invitation(game_session_id: int) -> str:
+    """Annule une invitation encore en attente, uniquement pour son hôte."""
+    game_session = GameSession.query.get_or_404(game_session_id)
+
+    if current_user.id != game_session.host_id or game_session.status != "invited":
+        flash("Impossible d'annuler cette invitation.")
+        return redirect(url_for("multiplayer.game_lobby", game_session_id=game_session.id))
+
+    game_session.status = "declined"
+    db.session.commit()
+    flash("Invitation annulée.")
+    return redirect(url_for("multiplayer.multiplayer_home"))
+
 
 @bp.route("/multijoueur/<int:game_session_id>/accepter", methods=["POST"])
 @login_required

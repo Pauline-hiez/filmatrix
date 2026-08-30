@@ -3,73 +3,540 @@
 {% block content %}
 {% from "partials/player_link.html" import player_link with context %}
 {% from "partials/avatar.html" import avatar_img %}
-<div class="max-w-md mx-auto mt-12 text-center">
 
-    {% if game_session.status == "expired" %}
-        <div class="rounded-2xl border border-red-500/30 bg-slate-900/60 p-8">
-            <p class="text-4xl mb-4">⏱️</p>
-            <h2 class="text-xl font-bold mb-2">Invitation expirée</h2>
-            <p class="text-slate-500 text-sm mb-6">Le délai de 15 minutes est dépassé.</p>
-            <a href="{{ url_for('friends.friends_list') }}"
-               class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition">
-                Retour aux amis
-            </a>
-        </div>
+{% set mode_labels = {
+    "qcm": "QCM", "vrai_faux": "Vrai / Faux", "citation": "Citations",
+    "emoji": "Emoji Quiz", "film_melange": "Film mélangé", "chronologie": "Chronologie",
+    "devinette": "Devinette", "devinette_affiche": "Devine le film", "casting": "Acteurs",
+    "blindtest": "Blind Test"
+} %}
+{% set is_host = current_user.id == game_session.host_id %}
+{% set opponent = game_session.guest if is_host else game_session.host %}
 
-    {% elif game_session.status == "declined" %}
-        <div class="rounded-2xl border border-slate-700 bg-slate-900/60 p-8">
-            <p class="text-4xl mb-4">👋</p>
-            <h2 class="text-xl font-bold mb-6">Invitation refusée</h2>
-            <a href="{{ url_for('friends.friends_list') }}"
-               class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-5 py-2.5 rounded-lg transition">
-                Retour aux amis
-            </a>
-        </div>
+<style>
+    .invite-scene {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-height: 0;
+        margin: -1rem -1rem -1rem;
+        overflow: hidden;
+        isolation: isolate;
+        background: #020617;
+    }
 
-    {% elif game_session.status == "active" %}
-        <div id="game-starting" class="rounded-2xl border border-emerald-500/30 bg-slate-900/60 p-8" data-play-url="{{ url_for('multiplayer.play_game', game_session_id=game_session.id) }}">
-            <p class="text-4xl mb-4 animate-bounce">🎮</p>
-            <h2 class="text-xl font-bold mb-6">La partie commence !</h2>
-        </div>
+    .invite-scene__backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        pointer-events: none;
+        overflow: hidden;
+        background:
+            linear-gradient(90deg, rgb(2 6 23 / .5), rgb(2 6 23 / .12) 50%, rgb(2 6 23 / .5)),
+            radial-gradient(ellipse at center, rgb(8 47 73 / .3), transparent 62%);
+    }
 
-    {% elif current_user.id == game_session.host_id %}
-        <div id="waiting-for-guest" class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-8" data-game-session-id="{{ game_session.id }}">
-            <div class="relative w-20 h-20 mx-auto mb-6">
-                <span class="absolute inset-0 rounded-full bg-cyan-400/30 animate-ping"></span>
-                <span class="relative flex items-center justify-center w-20 h-20 overflow-hidden rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
-                    {{ avatar_img(game_session.guest.avatar) }}
-                </span>
-            </div>
-            <h2 class="text-xl font-bold mb-1">En attente de {{ player_link(game_session.guest.id, game_session.guest.username) }}</h2>
-            <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>
-            <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
-            <p class="text-slate-600 text-xs">Cette page se rafraîchira automatiquement</p>
-        </div>
+    .invite-scene__backdrop-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+        opacity: .55;
+        mix-blend-mode: screen;
+    }
 
-    {% elif game_session.status == "invited" %}
-        <div class="rounded-2xl border border-cyan-400/30 bg-slate-900/60 p-8">
-            <span class="flex items-center justify-center w-20 h-20 mx-auto mb-6 overflow-hidden rounded-full bg-slate-900 border-2 border-cyan-400 text-3xl">
-                {{ avatar_img(game_session.host.avatar) }}
-            </span>
-            <h2 class="text-xl font-bold mb-1">{{ player_link(game_session.host.id, game_session.host.username) }} t'invite à jouer !</h2>
-            <p class="text-slate-500 text-sm mb-6">Mode : {{ game_session.mode }}</p>
-            <p class="text-cyan-400 text-2xl font-mono font-bold mb-6" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
+    .invite-scene__backdrop::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(2px 2px at 18% 29%, rgb(251 191 36 / .75), transparent),
+            radial-gradient(1px 1px at 26% 62%, rgb(34 211 238 / .7), transparent),
+            radial-gradient(2px 2px at 76% 22%, rgb(236 72 153 / .6), transparent),
+            radial-gradient(1px 1px at 85% 57%, rgb(251 191 36 / .7), transparent),
+            radial-gradient(1px 1px at 10% 80%, rgb(148 163 184 / .5), transparent),
+            radial-gradient(2px 2px at 93% 75%, rgb(34 211 238 / .55), transparent);
+    }
 
-            <div class="flex gap-3 justify-center">
-                <form method="POST" action="{{ url_for('multiplayer.accept_game_invitation', game_session_id=game_session.id) }}">
-                    <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-2.5 rounded-lg transition">
-                        Accepter
-                    </button>
-                </form>
-                <form method="POST" action="{{ url_for('multiplayer.decline_game_invitation', game_session_id=game_session.id) }}">
-                    <button type="submit" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-6 py-2.5 rounded-lg transition">
-                        Refuser
-                    </button>
-                </form>
-            </div>
-        </div>
+    .invite-scene__object {
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        user-select: none;
+        object-fit: contain;
+        filter: drop-shadow(0 20px 25px rgb(0 0 0 / .55));
+    }
+
+    .invite-scene__featured {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        bottom: 0;
+        left: clamp(-12rem, -1vw, 0rem);
+        width: auto;
+        height: 100%;
+        max-height: 100%;
+        pointer-events: none;
+        user-select: none;
+        opacity: .78;
+        object-fit: contain;
+        object-position: center bottom;
+        filter: drop-shadow(0 22px 30px rgb(0 0 0 / .6));
+    }
+
+    .invite-scene__featured--host {
+        bottom: 0;
+    }
+
+    .invite-scene__featured--right {
+        right: clamp(-12rem, -1vw, 0rem);
+        left: auto;
+        transform: scaleX(-1);
+    }
+
+    /* Une seule géométrie pour les deux états : la ligne de grille est créée
+       par la carte, et les images la remplissent depuis les côtés. */
+    .invite-stage {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 32rem) minmax(0, 1fr);
+        align-items: stretch;
+        width: 100%;
+        min-height: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .invite-stage .invite-card {
+        grid-column: 2;
+        grid-row: 1;
+        width: 100%;
+        margin: 0;
+        z-index: 3;
+    }
+
+    .invite-stage .invite-scene__featured {
+        position: relative;
+        grid-row: 1;
+        align-self: stretch;
+        width: 150%;
+        height: 100%;
+        max-width: none;
+        object-fit: contain;
+        object-position: right bottom;
+        transform: translateX(10%);
+        transform-origin: right bottom;
+        z-index: 1;
+    }
+
+    .invite-stage .invite-scene__featured:first-of-type {
+        grid-column: auto;
+        justify-self: auto;
+    }
+
+    .invite-stage > .invite-scene__featured--left,
+    .invite-stage > .invite-scene__featured--right {
+        grid-column: auto;
+        grid-row: auto;
+        justify-self: auto;
+        margin: 0;
+    }
+
+    .invite-stage .invite-scene__featured--right {
+        grid-column: 3;
+        justify-self: start;
+        object-position: left bottom;
+        transform: translateX(-10%) scaleX(-1);
+        transform-origin: left bottom;
+    }
+
+    .invite-card {
+        position: relative;
+        z-index: 2;
+        width: min(32rem, 30vw, calc(100vw - 2rem));
+        min-height: 0;
+        margin: .65rem auto 0;
+        padding: 1rem 1rem .9rem;
+        overflow: hidden;
+        border: 1px solid rgb(34 211 238 / .45);
+        border-radius: 1rem;
+        background: rgb(2 6 23 / .9);
+        box-shadow: 0 24px 70px -30px rgb(34 211 238 / .58), inset 0 1px rgb(148 163 184 / .08);
+        text-align: center;
+    }
+
+    .invite-card--host {
+        margin-top: 0;
+    }
+
+    .invite-card--guest {
+        min-height: 0;
+        border-color: rgb(236 72 153 / .42);
+        box-shadow: 0 24px 70px -30px rgb(236 72 153 / .52), inset 0 1px rgb(148 163 184 / .08);
+    }
+
+    .invite-card__avatar {
+        display: flex;
+        width: 3.9rem;
+        height: 3.9rem;
+        margin: 0 auto .55rem;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 2px solid #22d3ee;
+        border-radius: 9999px;
+        background: #020617;
+        box-shadow: 0 0 0 5px rgb(34 211 238 / .08), 0 0 24px rgb(34 211 238 / .34);
+    }
+
+    .invite-card--guest .invite-card__avatar {
+        border-color: #ec4899;
+        box-shadow: 0 0 0 5px rgb(236 72 153 / .08), 0 0 24px rgb(236 72 153 / .34);
+    }
+
+    .invite-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .invite-label { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-bottom: .55rem; color: #22d3ee; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .invite-card--guest .invite-label { color: #ec4899; }
+    .invite-title { color: #f8fafc; font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
+    .invite-player { margin-top: .25rem; color: #22d3ee; font-size: 1.7rem; font-weight: 900; line-height: 1.05; }
+    .invite-card--guest .invite-player { color: #ec4899; font-size: 1.85rem; }
+    .invite-subtitle { margin-top: .35rem; color: #f8fafc; font-size: 1.25rem; font-weight: 800; }
+    .invite-meta { margin-top: .6rem; color: #94a3b8; font-size: .82rem; }
+    .invite-meta strong { color: #f8fafc; }
+    .invite-message { margin-top: .8rem; color: #94a3b8; font-size: .8rem; }
+    .invite-countdown { margin-top: .25rem; color: #22d3ee; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 2.25rem; font-weight: 800; letter-spacing: .08em; line-height: 1.05; }
+    .invite-card--guest .invite-countdown { color: #ec4899; margin-top: .8rem; }
+    .invite-divider { display: flex; align-items: center; gap: .6rem; width: 80%; margin: .8rem auto 0; color: #22d3ee; }
+    .invite-divider::before, .invite-divider::after { content: ""; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, rgb(34 211 238 / .65)); }
+    .invite-divider::after { background: linear-gradient(90deg, rgb(34 211 238 / .65), transparent); }
+    .invite-card--guest .invite-divider { color: #ec4899; }
+    .invite-card--guest .invite-divider::before { background: linear-gradient(90deg, transparent, rgb(236 72 153 / .65)); }
+    .invite-card--guest .invite-divider::after { background: linear-gradient(90deg, rgb(236 72 153 / .65), transparent); }
+
+    .invite-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: var(--invite-background);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        opacity: 0;
+    }
+
+    .invite-card > *:not(.invite-card__background) {
+        position: relative;
+        z-index: 1;
+    }
+
+    .invite-duel {
+        display: grid;
+        grid-template-columns: 1fr 3.5rem 1fr;
+        align-items: center;
+        gap: .25rem;
+        margin: .75rem auto 0;
+    }
+
+    .invite-duel__player { min-width: 0; }
+    .invite-duel__avatar { width: 4.2rem; height: 4.2rem; margin: 0 auto .3rem; overflow: hidden; border: 2px solid #22d3ee; border-radius: 9999px; background: #020617; box-shadow: 0 0 18px rgb(34 211 238 / .3); }
+    .invite-duel__avatar--opponent { border-color: #8b5cf6; box-shadow: 0 0 18px rgb(139 92 246 / .3); }
+    .invite-duel__avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .invite-duel__name { overflow: hidden; color: #f8fafc; font-size: .84rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .invite-duel__role { margin-top: .15rem; color: #64748b; font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; }
+    .invite-duel__vs { display: flex; width: 2.85rem; height: 2.85rem; align-items: center; justify-content: center; border: 1px solid rgb(139 92 246 / .55); border-radius: 9999px; background: rgb(30 41 59 / .75); color: #c084fc; font-size: 1.15rem; font-weight: 900; box-shadow: 0 0 20px rgb(139 92 246 / .2); }
+
+    .invite-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: .4rem; margin: .8rem auto 0; width: 92%; }
+    .invite-detail { border: 1px solid rgb(51 65 85 / .85); border-radius: .7rem; background: rgb(15 23 42 / .55); padding: .55rem .45rem; }
+    .invite-detail__label { color: #64748b; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .invite-detail__value { margin-top: .25rem; color: #f8fafc; font-size: .9rem; font-weight: 800; }
+    .invite-note { margin: 1rem auto 0; width: 92%; border: 1px solid rgb(51 65 85 / .8); border-radius: .8rem; background: rgb(15 23 42 / .6); padding: .8rem .9rem; color: #cbd5e1; font-size: .75rem; line-height: 1.5; text-align: left; }
+    .invite-rewards { display: grid; grid-template-columns: repeat(3, 1fr); gap: .3rem; width: 92%; margin: .8rem auto 0; padding-top: .65rem; border-top: 1px solid rgb(51 65 85 / .75); }
+    .invite-reward strong { display: block; color: #f8fafc; font-size: 1.1rem; }
+    .invite-reward span { display: block; margin-top: .2rem; color: #64748b; font-size: .62rem; }
+    .invite-actions { display: flex; justify-content: center; gap: .65rem; margin-top: 1.25rem; }
+    .invite-actions form { flex: 1; }
+    .invite-actions button { width: 100%; }
+
+    @media (max-width: 900px) {
+        .invite-scene {
+            display: block;
+            height: auto;
+            min-height: 0;
+            margin: -1rem -1rem 0;
+            padding: .75rem 0 2rem;
+        }
+        .invite-scene__featured { display: none; }
+        .invite-card::before { opacity: .14; }
+        .invite-card--guest::before { opacity: .12; }
+        .invite-stage { min-height: 0; padding-top: .5rem; }
+        .invite-card::before { background-size: cover; background-position: center; }
+        .invite-card { width: min(31rem, calc(100vw - 2rem)); margin-top: 0; }
+        .invite-stage { width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+        .invite-card, .invite-card--host, .invite-card--guest { height: auto; min-height: 0; margin-top: .25rem; padding: 1.2rem .8rem 1.1rem; }
+        .invite-card--host, .invite-scene--guest .invite-card--guest { margin-top: .25rem; }
+        .invite-duel__avatar { width: 4.6rem; height: 4.6rem; }
+        .invite-actions { flex-direction: column; }
+    }
+    /* La carte et ses deux décors partagent une même ligne de grille : leurs
+       bords haut et bas restent alignés quelle que soit la hauteur du contenu. */
+    .invite-scene {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100dvh - 11rem);
+        height: auto;
+    }
+
+    /* Les images sont positionnées par rapport au bloc central, pas dans une
+       colonne de grille : chacune reste ainsi du bon côté et passe sous la carte. */
+    .invite-stage {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        min-height: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .invite-stage .invite-card {
+        position: relative;
+        z-index: 3;
+        width: min(32rem, calc(100vw - 2rem));
+        margin: 0 auto;
+    }
+
+    .invite-stage > .invite-scene__featured {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        width: min(52rem, 52vw);
+        height: 100%;
+        max-width: none;
+        margin: 0;
+        object-fit: contain;
+        object-position: right bottom;
+        pointer-events: none;
+        transform: none;
+        transform-origin: right bottom;
+    }
+
+    .invite-stage > .invite-scene__featured--left {
+        right: calc(50% + 15rem);
+        left: auto;
+    }
+
+    .invite-stage > .invite-scene__featured--right {
+        right: auto;
+        left: calc(50% + 15rem);
+        object-position: left bottom;
+        transform: scaleX(-1);
+        transform-origin: left bottom;
+    }
+
+    @media (max-width: 900px) {
+        .invite-scene {
+            display: block;
+            min-height: 0;
+            height: auto;
+        }
+
+        .invite-stage > .invite-scene__featured { display: none; }
+        .invite-stage .invite-card { width: min(31rem, calc(100vw - 2rem)); }
+    }
+    /* Les deux illustrations sont ancrées sur les bords de la carte et
+       débordent vers l'extérieur. Elles restent derrière la carte, ce qui
+       reproduit le passage sous le bloc central sans dépendre d'une grille. */
+    .invite-stage {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        min-height: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .invite-stage .invite-card {
+        position: relative;
+        z-index: 3;
+        width: min(32rem, calc(100vw - 2rem));
+        margin: 0 auto;
+    }
+
+    .invite-stage > .invite-scene__featured {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        width: clamp(30rem, 45vw, 50rem);
+        height: 100%;
+        max-width: none;
+        margin: 0;
+        object-fit: contain;
+        pointer-events: none;
+    }
+
+    .invite-stage > .invite-scene__featured--left {
+        right: calc(50% + 15.5rem);
+        left: auto;
+        object-position: right bottom;
+        transform: none;
+        transform-origin: right bottom;
+    }
+
+    .invite-stage > .invite-scene__featured--right {
+        right: auto;
+        left: calc(50% + 15.5rem);
+        object-position: left bottom;
+        transform: scaleX(-1);
+        transform-origin: left bottom;
+    }
+
+    @media (max-width: 900px) {
+        .invite-stage > .invite-scene__featured { display: none; }
+        .invite-stage .invite-card { width: min(31rem, calc(100vw - 2rem)); }
+    }
+    /* Positionnement définitif des deux décors : chaque image appartient à
+       un côté de la scène, avec un chevauchement identique sous la carte. */
+    .invite-stage > img.invite-scene__featured--left,
+    .invite-stage > img.invite-scene__featured--right {
+        position: absolute !important;
+        top: 0 !important;
+        bottom: auto !important;
+        width: calc(50% + 16rem) !important;
+        height: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        z-index: 1 !important;
+        object-fit: cover !important;
+        object-position: right bottom !important;
+        transform: none !important;
+        transform-origin: center bottom !important;
+    }
+
+    .invite-stage > img.invite-scene__featured--left {
+        left: 0 !important;
+        right: auto !important;
+    }
+
+    .invite-stage > img.invite-scene__featured--right {
+        right: 0 !important;
+        left: auto !important;
+        object-position: left bottom !important;
+        transform: scaleX(-1) !important;
+    }
+
+    .invite-stage > .invite-card {
+        position: relative !important;
+        z-index: 3 !important;
+    }
+
+    @media (max-width: 900px) {
+        .invite-stage > img.invite-scene__featured--left,
+        .invite-stage > img.invite-scene__featured--right {
+            display: none !important;
+        }
+    }
+</style>
+
+<div class="invite-scene {{ 'invite-scene--host' if is_host and game_session.status == 'invited' else ('invite-scene--guest' if game_session.status == 'invited' else '') }}">
+    {% if game_session.status in ["invited", "active"] %}
+        <div class="invite-scene__backdrop" aria-hidden="true"></div>
     {% endif %}
 
+    {% if game_session.status == "expired" %}
+        <section class="invite-card">
+            <p class="mb-4 text-4xl">⏱️</p>
+            <h1 class="invite-title">Invitation expirée</h1>
+            <p class="mt-2 text-sm text-slate-500">Le délai de 15 minutes est dépassé.</p>
+            <a href="{{ url_for('friends.friends_list') }}" class="mt-7 inline-block rounded-lg bg-cyan-400 px-5 py-2.5 font-bold text-slate-950 transition hover:bg-cyan-300">Retour aux amis</a>
+        </section>
+
+    {% elif game_session.status == "declined" %}
+        <section class="invite-card invite-card--guest">
+            <p class="mb-4 text-4xl">👋</p>
+            <h1 class="invite-title">Invitation refusée</h1>
+            <a href="{{ url_for('friends.friends_list') }}" class="mt-7 inline-block rounded-lg bg-cyan-400 px-5 py-2.5 font-bold text-slate-950 transition hover:bg-cyan-300">Retour aux amis</a>
+        </section>
+
+    {% elif game_session.status == "active" %}
+        <section id="game-starting" class="invite-card" data-play-url="{{ url_for('multiplayer.play_game', game_session_id=game_session.id) }}">
+            <p class="mb-4 animate-bounce text-4xl">🎮</p>
+            <h1 class="invite-title">La partie commence !</h1>
+        </section>
+
+    {% else %}
+        <div class="invite-stage">
+        <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt="" class="invite-scene__featured invite-scene__featured--left {{ 'invite-scene__featured--host' if is_host else '' }}">
+        <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt="" class="invite-scene__featured invite-scene__featured--right {{ 'invite-scene__featured--host' if is_host else '' }}">
+        <section class="invite-card {{ 'invite-card--host' if is_host else 'invite-card--guest' }}" style="--invite-background: url('{{ url_for('static', filename='images/habillage/24.png') }}');">
+            {% if is_host %}
+                <div class="invite-card__avatar">{{ avatar_img(game_session.guest.avatar) }}</div>
+                <p class="invite-label"><span>⌛</span> Défi en attente</p>
+                <h1 class="invite-title">Invitation envoyée à</h1>
+                <p class="invite-player">{{ game_session.guest.username }}</p>
+
+                <div class="invite-duel">
+                    <div class="invite-duel__player">
+                        <div class="invite-duel__avatar">{{ avatar_img(game_session.host.avatar) }}</div>
+                        <p class="invite-duel__name">{{ game_session.host.username }}</p>
+                        <p class="invite-duel__role">Hôte</p>
+                    </div>
+                    <span class="invite-duel__vs">VS</span>
+                    <div class="invite-duel__player">
+                        <div class="invite-duel__avatar invite-duel__avatar--opponent">{{ avatar_img(game_session.guest.avatar) }}</div>
+                        <p class="invite-duel__name">{{ game_session.guest.username }}</p>
+                        <p class="invite-duel__role">Adversaire</p>
+                    </div>
+                </div>
+
+                <div class="invite-details">
+                    <div class="invite-detail"><p class="invite-detail__label">Mode</p><p class="invite-detail__value">{{ mode_labels.get(game_session.mode, game_session.mode) }}</p></div>
+                    <div class="invite-detail"><p class="invite-detail__label">Partie</p><p class="invite-detail__value">{{ questions_per_game }} questions</p></div>
+                </div>
+
+                <p class="invite-message">En attente de ton adversaire...</p>
+                <p class="invite-countdown" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
+                <div class="invite-divider"><span>•</span><span>•</span><span>•</span></div>
+                <p class="invite-note">Le duel commencera dès que ton adversaire aura accepté l'invitation.</p>
+                <form method="POST" action="{{ url_for('multiplayer.cancel_game_invitation', game_session_id=game_session.id) }}" class="mt-5"><button type="submit" class="rounded-lg border border-cyan-400/50 px-8 py-2.5 text-sm font-bold text-cyan-400 transition hover:bg-cyan-400/10">×&nbsp; Annuler</button></form>
+            {% else %}
+                <div class="invite-card__avatar">{{ avatar_img(game_session.host.avatar) }}</div>
+                <p class="invite-label"><span>✉</span> Invitation reçue</p>
+                <p class="invite-player">{{ game_session.host.username }}</p>
+                <p class="invite-subtitle">t'invite à jouer !</p>
+
+                <div class="invite-details">
+                    <div class="invite-detail"><p class="invite-detail__label">Mode de jeu</p><p class="invite-detail__value">{{ mode_labels.get(game_session.mode, game_session.mode) }}</p></div>
+                    <div class="invite-detail"><p class="invite-detail__label">Durée</p><p class="invite-detail__value">{{ questions_per_game }} questions</p></div>
+                </div>
+
+                <div class="invite-rewards">
+                    <div class="invite-reward"><strong>XP</strong><span>Progression</span></div>
+                    <div class="invite-reward"><strong>⚔</strong><span>Duel</span></div>
+                    <div class="invite-reward"><strong>1v1</strong><span>Temps réel</span></div>
+                </div>
+
+                <p class="invite-countdown" id="countdown" data-expires-at="{{ game_session.expires_at }}Z">--:--</p>
+                <div class="invite-divider"><span>•</span><span>•</span><span>•</span></div>
+                <div class="invite-actions">
+                    <form method="POST" action="{{ url_for('multiplayer.accept_game_invitation', game_session_id=game_session.id) }}"><button type="submit" class="rounded-lg bg-emerald-500 px-5 py-3 font-bold text-slate-950 shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400">✓&nbsp; Accepter</button></form>
+                    <form method="POST" action="{{ url_for('multiplayer.decline_game_invitation', game_session_id=game_session.id) }}"><button type="submit" class="rounded-lg border border-slate-700 bg-slate-900 px-5 py-3 font-bold text-slate-300 transition hover:border-pink-400 hover:text-white">×&nbsp; Refuser</button></form>
+                </div>
+            {% endif %}
+        </section>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
 
