@@ -2,6 +2,7 @@
 
 from filmatrix.extensions import db
 from flask_login import UserMixin
+from sqlalchemy import func
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 
@@ -31,6 +32,9 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    __table_args__ = (
+        db.Index("uq_users_username_lower", func.lower(username), unique=True),
+    )
     password_hash = db.Column(db.String(255), nullable=False)
     total_xp = db.Column(db.Integer, nullable=False, default=0)
     coins = db.Column(db.Integer, nullable=False, default=0)

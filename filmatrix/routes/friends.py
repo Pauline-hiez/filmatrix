@@ -11,6 +11,7 @@ from filmatrix.services.friends import (
     friend_cards,
     get_friends_list,
     remove_friend,
+    search_players,
     send_friend_request,
 )
 from filmatrix.services.notifications import create_notification
@@ -94,10 +95,34 @@ def decline_friend_request_route(friendship_id: int) -> str:
 
     return redirect(url_for("friends.friends_list"))
 
+@bp.route("/amis/recherche")
+@login_required
+def search_friends() -> dict:
+    """Renvoie les suggestions de pseudo pour l'autocomplétion."""
+    query = request.args.get("q", "").strip()
+    results = search_players(query, current_user.id, limit=8)
+
+    for result in results:
+        result["profile_url"] = url_for(
+            "profile.public_profile", user_id=result["id"]
+        )
+        result["avatar_url"] = url_for(
+            "static", filename=f"images/avatars/{result['avatar']}.png"
+        )
+        if result["relationship"] == "none":
+            result["add_url"] = url_for(
+                "friends.send_friend_request_route", user_id=result["id"]
+            )
+
+    return {"results": results}
+
+
 @bp.route("/amis")
 @login_required
 def friends_list() -> str:
-    """Affiche la liste d'amis, les demandes reçues et envoyées"""
+    """Affiche la liste d'amis, les demandes reçues et envoyées, et une recherche."""
+    search_query = request.args.get("q", "").strip()
+    search_results = search_players(search_query, current_user.id)
     friends = friend_cards(get_friends_list(current_user.id))
 
     received_requests = [
@@ -117,4 +142,6 @@ def friends_list() -> str:
             friends=friends,
             received_requests=received_requests,
             sent_requests=sent_requests,
+            search_query=search_query,
+            search_results=search_results,
         )

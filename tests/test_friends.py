@@ -7,6 +7,7 @@ from filmatrix.services.friends import (
     get_friends_list,
     get_friendship_between,
     remove_friend,
+    search_players,
     send_friend_request,
 )
 from filmatrix.models import Friendship, User
@@ -19,6 +20,33 @@ def create_test_user(username: str) -> User:
     db.session.add(user)
     db.session.commit()
     return user
+
+
+def test_search_players_finds_pseudo_case_insensitively(app):
+    """La recherche d'amis doit trouver un pseudo sans dépendre de la casse."""
+    with app.app_context():
+        alice = create_test_user("Alice")
+        bob = create_test_user("DarkVador")
+
+        results = search_players("dark", alice.id)
+
+        assert [result["username"] for result in results] == ["DarkVador"]
+        assert results[0]["relationship"] == "none"
+
+
+def test_search_players_reports_existing_friendship(app):
+    """Les résultats indiquent si le joueur est déjà ami."""
+    with app.app_context():
+        alice = create_test_user("Alice")
+        bob = create_test_user("Bob")
+        send_friend_request(alice, bob)
+        db.session.commit()
+        Friendship.query.first().status = "accepted"
+        db.session.commit()
+
+        results = search_players("Bob", alice.id)
+
+        assert results[0]["relationship"] == "friends"
 
 
 def test_send_friend_request_creates_pending_friendship(app):

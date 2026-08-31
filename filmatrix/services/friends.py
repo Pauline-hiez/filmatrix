@@ -3,7 +3,8 @@
 from filmatrix.catalog import DEFAULT_AVATAR
 from filmatrix.extensions import db
 from filmatrix.services.levels import calculate_level
-from filmatrix.models import Friendship
+from filmatrix.models import Friendship, User
+from sqlalchemy import func
 
 def get_friendship_between(user_a_id: int, user_b_id: int) -> Friendship | None:
     """Cherche une relation d'amitié existante entre deux utilisateurs, dans les deux sens"""
@@ -87,6 +88,51 @@ def get_friends_list(user_id: int) -> list:
         friends.append(friend)
 
     return friends
+
+
+def search_players(query: str, current_user_id: int, limit: int = 20) -> list[dict]:
+    """Recherche des joueurs par pseudo et décrit la relation existante."""
+    search_term = " ".join((query or "").strip().split())
+    if not search_term:
+        return []
+
+    players = (
+        User.query.filter(
+            User.id != current_user_id,
+            func.lower(User.username).contains(search_term.casefold()),
+        )
+        .order_by(User.username)
+        .limit(limit)
+        .all()
+    )
+
+    results = []
+    for player in players:
+        friendship = get_friendship_between(current_user_id, player.id)
+        relationship = "none"
+        friendship_id = None
+        if friendship is not None:
+            friendship_id = friendship.id
+            if friendship.status == "accepted":
+                relationship = "friends"
+            elif friendship.requester_id == current_user_id:
+                relationship = "request_sent"
+            else:
+                relationship = "request_received"
+
+        results.append(
+            {
+                "id": player.id,
+                "username": player.username,
+                "avatar": player.avatar or DEFAULT_AVATAR,
+                "level": calculate_level(player.total_xp)["level"],
+                "relationship": relationship,
+                "friendship_id": friendship_id,
+                "online": False,
+            }
+        )
+
+    return results
 
 
 def friend_cards(users: list) -> list:

@@ -31,6 +31,100 @@ def test_register_creates_account(client):
     assert response.status_code == 200
     assert b"Se connecter" in response.data
 
+def test_register_rejects_duplicate_username_and_suggests_an_available_one(client, app):
+    """Un pseudo déjà pris doit être refusé avec une alternative disponible."""
+    with app.app_context():
+        existing = User(username="Cinephile", email="existing@filmatrix.fr")
+        existing.set_password("Azerty1!")
+        db.session.add(existing)
+        db.session.commit()
+
+    response = client.post(
+        "/inscription",
+        data={
+            "username": "cinephile",
+            "email": "new@filmatrix.fr",
+            "password": "Azerty1!",
+        },
+    )
+
+    assert response.status_code == 200
+    assert "déjà utilisé".encode() in response.data
+    assert "cinephile2".encode() in response.data
+    with app.app_context():
+        assert User.query.filter_by(email="new@filmatrix.fr").first() is None
+
+
+def test_register_rejects_duplicate_username_regardless_of_case(client, app):
+    """L'unicité du pseudo est insensible à la casse."""
+    with app.app_context():
+        existing = User(username="PopS", email="pops@filmatrix.fr")
+        existing.set_password("Azerty1!")
+        db.session.add(existing)
+        db.session.commit()
+
+    response = client.post(
+        "/inscription",
+        data={
+            "username": "pops",
+            "email": "pops2@filmatrix.fr",
+            "password": "Azerty1!",
+        },
+    )
+
+    assert response.status_code == 200
+    assert "déjà utilisé".encode() in response.data
+
+
+def test_friends_search_displays_matching_players(client, app):
+    """La page Amis doit afficher les joueurs correspondant à la recherche."""
+    with app.app_context():
+        current = User(username="Chercheur", email="searcher@filmatrix.fr")
+        current.set_password("Azerty1!")
+        target = User(username="Gandalf", email="gandalf@filmatrix.fr")
+        target.set_password("Azerty1!")
+        db.session.add_all([current, target])
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "searcher@filmatrix.fr", "password": "Azerty1!"})
+    response = client.get("/amis?q=gand")
+
+    assert response.status_code == 200
+    assert "Gandalf" in response.get_data(as_text=True)
+    assert "Ajouter" in response.get_data(as_text=True)
+
+
+def test_friends_autocomplete_returns_avatar_and_profile_data(client, app):
+    """L'autocomplétion renvoie les informations nécessaires à la miniature."""
+    with app.app_context():
+        current = User(username="Chercheur", email="autocomplete@filmatrix.fr")
+        current.set_password("Azerty1!")
+        target = User(username="Gandalf", email="gandalf-auto@filmatrix.fr", avatar="7")
+        target.set_password("Azerty1!")
+        db.session.add_all([current, target])
+        db.session.commit()
+        target_id = target.id
+
+    client.post("/connexion", data={"email": "autocomplete@filmatrix.fr", "password": "Azerty1!"})
+    response = client.get("/amis/recherche?q=gan")
+
+    assert response.status_code == 200
+    result = response.get_json()["results"]
+    assert len(result) == 1
+    assert result[0]["username"] == "Gandalf"
+    assert result[0]["avatar_url"] == f"/static/images/avatars/7.png"
+    assert result[0]["profile_url"] == f"/joueur/{target_id}"
+    assert result[0]["add_url"] == f"/amis/demander/{target_id}"
+
+
+def test_friends_autocomplete_requires_authentication(client):
+    """L'API d'autocomplétion ne doit pas exposer les comptes aux visiteurs."""
+    response = client.get("/amis/recherche?q=gan")
+
+    assert response.status_code == 302
+    assert "/connexion" in response.location
+
+
 def test_register_rejects_invalid_password(client):
     """Une inscription avec un mot de passe trop faible doit être refusée"""
     response = client.post(

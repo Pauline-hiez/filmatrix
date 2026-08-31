@@ -8,10 +8,17 @@
     <p class="text-red-400 mb-4 text-sm">{{ error }}</p>
     {% endif %}
 
+    {% if username_suggestion %}
+    <div class="mb-4 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-sm text-amber-200">
+        Pseudo disponible suggéré :
+        <button type="button" id="use-username-suggestion" class="font-bold text-amber-300 underline hover:text-amber-200">{{ username_suggestion }}</button>
+    </div>
+    {% endif %}
+
     <form method="POST" class="flex flex-col gap-4">
         <div>
             <label class="block text-sm text-slate-400 mb-1">Nom d'utilisateur</label>
-            <input type="text" name="username" required
+            <input type="text" id="register-username" name="username" value="{{ username }}" required
                    class="w-full bg-slate-900 border border-cyan-400/50 rounded-lg px-3 py-2 text-slate-100">
         </div>
         <div>
@@ -31,4 +38,16 @@
         </button>
     </form>
 </div>
+
+{% if username_suggestion %}
+<script>
+    document.getElementById("use-username-suggestion")?.addEventListener("click", () => {
+        const input = document.getElementById("register-username");
+        if (input) {
+            input.value = {{ username_suggestion | tojson }};
+            input.focus();
+        }
+    });
+</script>
+{% endif %}
 {% endblock %}
