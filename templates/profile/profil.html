@@ -3,8 +3,7 @@
 {% block content %}
 {% from "partials/friends_grid.html" import friends_grid with context %}
 {% from "partials/avatar.html" import avatar_img %}
-{# Libellés et couleurs d'accent des modes, pour l'historique.
-   Mêmes valeurs que sur l'accueil et la page de quiz. #}
+
 {% set labels = {
     "qcm": "Quiz",
     "vrai_faux": "Vrai / Faux",
@@ -30,147 +29,316 @@
     "blindtest": "#60a5fa"
 } %}
 {% set earned_count = all_badges | selectattr("earned") | list | length %}
+{% set progress = (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) %}
 
-<div class="mx-auto flex max-w-4xl flex-col gap-6">
+<style>
+    .profile-page {
+        --profile-line: rgba(71, 85, 105, .58);
+        --profile-panel: rgba(15, 23, 42, .72);
+        --profile-deep: rgba(2, 6, 23, .62);
+    }
 
-    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 sm:p-8">
-        <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+    .profile-page .profile-panel {
+        border: 1px solid rgba(34, 211, 238, .2);
+        background: var(--profile-panel);
+        box-shadow: 0 14px 35px rgba(2, 6, 23, .18);
+    }
 
-            <div class="flex items-center gap-4">
-                <span class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 text-2xl font-extrabold text-slate-950">
-                    {% if current_user.avatar %}
-                        {{ avatar_img(current_user.avatar) }}
-                    {% else %}
-                        {{ current_user.username[0] | upper }}
-                    {% endif %}
-                </span>
-                <div class="min-w-0">
-                    <div class="flex items-center gap-2">
-                        <h1 class="inline-flex items-center gap-2 truncate text-2xl font-extrabold tracking-tight"><span class="presence-dot bg-emerald-400" data-user-id="{{ current_user.id }}" title="En ligne"></span>{{ current_user.username }}</h1>
-                        <a href="{{ url_for('profile.edit_profile') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
-                            Modifier
-                        </a>
-                    </div>
-                    {% if equipped_title_name %}
-                    <p class="text-sm text-cyan-400">{{ equipped_title_name }}</p>
-                    {% else %}
-                    <a href="{{ url_for('shop.shop') }}" class="text-sm text-slate-500 transition hover:text-cyan-400">
-                        Choisir un titre
-                    </a>
-                    {% endif %}
+    .profile-page .profile-hero-grid {
+        display: grid;
+        grid-template-columns: 14rem minmax(0, 1fr);
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .profile-page .profile-identity-block {
+        border-right: 1px solid rgba(71, 85, 105, .7);
+        padding-right: 1.5rem;
+    }
+
+    .profile-page .profile-progress-block {
+        min-width: 0;
+    }
+
+    .profile-page .profile-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .profile-page .profile-panel__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+        border-bottom: 1px solid var(--profile-line);
+        padding-bottom: .85rem;
+    }
+
+    .profile-page .profile-kicker {
+        color: #94a3b8;
+        font-size: .68rem;
+        font-weight: 800;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+    }
+
+    .profile-page .profile-identity {
+        min-height: 0;
+        padding: 1.25rem;
+        background:
+            linear-gradient(145deg, rgba(8, 47, 73, .5), rgba(15, 23, 42, .78) 48%, rgba(49, 46, 129, .36)),
+            var(--profile-panel);
+    }
+
+    .profile-page .profile-identity::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 4rem;
+        background: linear-gradient(to top, rgba(2, 6, 23, .55), transparent);
+        pointer-events: none;
+    }
+
+    .profile-page .profile-resource {
+        border-top: 1px solid rgba(71, 85, 105, .5);
+        padding-top: .75rem;
+    }
+
+    .profile-page .profile-stat {
+        border: 1px solid rgba(34, 211, 238, .16);
+        background: rgba(2, 6, 23, .48);
+        transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+
+    .profile-page .profile-stat:hover {
+        border-color: rgba(34, 211, 238, .52);
+        background: rgba(8, 47, 73, .26);
+        transform: translateY(-2px);
+    }
+
+    .profile-page .profile-badge {
+        min-height: 6.5rem;
+        border: 1px solid rgba(71, 85, 105, .62);
+        background: rgba(2, 6, 23, .44);
+        transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+
+    .profile-page .profile-badge:hover {
+        border-color: rgba(148, 163, 184, .7);
+        transform: translateY(-2px);
+    }
+
+    .profile-page .profile-badge.is-earned {
+        border-color: rgba(34, 211, 238, .46);
+        background: linear-gradient(145deg, rgba(8, 47, 73, .42), rgba(2, 6, 23, .5));
+        box-shadow: inset 0 1px rgba(103, 232, 249, .12), 0 0 22px rgba(34, 211, 238, .06);
+    }
+
+    .profile-page .profile-badge__icon {
+        display: inline-flex;
+        height: 2.8rem;
+        width: 2.8rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background: rgba(15, 23, 42, .85);
+        font-size: 1.55rem;
+    }
+
+    .profile-page .profile-timeline {
+        position: relative;
+    }
+
+    .profile-page .profile-timeline::before {
+        content: "";
+        position: absolute;
+        bottom: .6rem;
+        left: .35rem;
+        top: .6rem;
+        width: 1px;
+        background: linear-gradient(to bottom, rgba(34, 211, 238, .55), rgba(71, 85, 105, .2));
+    }
+
+    .profile-page .profile-timeline li {
+        position: relative;
+        padding-left: 1.35rem;
+    }
+
+    .profile-page .profile-timeline li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: .7rem;
+        height: .7rem;
+        width: .7rem;
+        border: 2px solid #22d3ee;
+        border-radius: 9999px;
+        background: #020617;
+        box-shadow: 0 0 10px rgba(34, 211, 238, .55);
+    }
+
+    .profile-page .profile-history details[open] {
+        border-color: color-mix(in srgb, var(--accent) 58%, transparent);
+    }
+
+    @media (max-width: 767px) {
+        .profile-page .profile-hero-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+        .profile-page .profile-identity-block { border-right: 0; border-bottom: 1px solid rgba(71, 85, 105, .7); padding: 0 0 1.25rem; }
+        .profile-page .profile-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+    }
+
+    @media (max-width: 639px) {
+        .profile-page .profile-panel__header { align-items: flex-start; }
+        .profile-page .profile-badge { min-height: 6.5rem; }
+    }
+</style>
+
+<div class="profile-page mx-auto flex max-w-6xl flex-col gap-5">
+
+    <section class="profile-panel profile-identity hero-glow relative overflow-hidden rounded-2xl p-5 sm:p-7">
+        <div style="--glow: #3657ad" class="img-glow pointer-events-none absolute -bottom-8 -left-6 z-0 w-32 opacity-30 sm:w-44" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt="" class="w-full -rotate-6 object-contain opacity-30">
+        </div>
+        <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute -bottom-8 -right-6 z-0 w-28 opacity-20 sm:w-40" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt="" class="w-full rotate-6 object-contain opacity-25">
+        </div>
+        <div class="starfield-overlay-soft" aria-hidden="true"></div>
+
+        <div class="profile-hero-grid relative z-10">
+            <div class="profile-identity-block flex flex-col items-center text-center">
+                <div class="relative">
+                    <span class="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-cyan-400/80 bg-gradient-to-br from-cyan-400 to-violet-500 p-1 shadow-[0_0_28px_rgba(34,211,238,0.3)] sm:h-28 sm:w-28">
+                        {% if current_user.avatar %}{{ avatar_img(current_user.avatar, "h-full w-full rounded-full object-cover") }}{% else %}{{ current_user.username[0] | upper }}{% endif %}
+                    </span>
+                    <span class="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-slate-900 bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" title="En ligne"></span>
                 </div>
+                <p class="profile-kicker mt-4">Mon espace</p>
+                <h1 class="mt-1 max-w-full truncate text-2xl font-extrabold tracking-tight text-slate-100">{{ current_user.username }}</h1>
+                {% if equipped_title_name %}
+                <p class="mt-1 text-sm font-bold text-cyan-400">{{ equipped_title_name }}</p>
+                {% else %}
+                <a href="{{ url_for('shop.shop') }}" class="mt-1 text-sm text-slate-500 transition hover:text-cyan-400">Choisir un titre</a>
+                {% endif %}
+                <a href="{{ url_for('profile.edit_profile') }}" class="mt-4 rounded-lg border border-slate-600 px-4 py-2 text-xs font-bold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400">Modifier le profil</a>
             </div>
 
-            <div class="flex-1 sm:pl-6">
-                <div class="mb-2 flex items-baseline justify-between">
-                    <p class="font-bold">Niveau {{ level_info.level }}</p>
-                    <p class="text-xs text-slate-500">
-                        {{ level_info.xp_in_current_level }} / {{ level_info.xp_for_next_level }} XP
-                    </p>
+            <div class="profile-progress-block">
+                <div class="flex flex-wrap items-end justify-between gap-3">
+                    <div>
+                        <p class="profile-kicker text-cyan-400">Progression du joueur</p>
+                        <h2 class="mt-1 text-2xl font-extrabold text-slate-100 sm:text-3xl">Niveau {{ level_info.level }}</h2>
+                    </div>
+                    <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-bold text-cyan-300">{{ current_user.total_xp }} XP au total</span>
                 </div>
-                <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
-                    <div class="h-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
-                         style="width: {{ (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) }}%"></div>
+
+                <div class="mt-5 flex items-center gap-3">
+                    <div class="h-3 flex-1 overflow-hidden rounded-full bg-slate-950/80 ring-1 ring-slate-700/80">
+                        <div class="h-full rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 shadow-[0_0_14px_rgba(34,211,238,0.65)]" style="width: {{ progress }}%"></div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-300">{{ progress }}%</span>
                 </div>
-                <p class="mt-1 text-xs text-slate-500">{{ current_user.total_xp }} XP au total</p>
+                <div class="mt-2 flex justify-between text-xs text-slate-500">
+                    <span>{{ level_info.xp_in_current_level }} XP acquis</span>
+                    <span>{{ level_info.xp_for_next_level }} XP pour le niveau suivant</span>
+                </div>
+
+                <div class="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
+                    <div class="profile-resource text-center">
+                        <p class="text-lg font-extrabold text-amber-400">🪙 {{ current_user.coins }}</p>
+                        <p class="text-[.65rem] uppercase tracking-widest text-slate-500">Pièces</p>
+                    </div>
+                    <div class="profile-resource text-center">
+                        <p class="text-lg font-extrabold text-violet-400">{{ earned_count }}/{{ all_badges | length }}</p>
+                        <p class="text-[.65rem] uppercase tracking-widest text-slate-500">Badges</p>
+                    </div>
+                    <div class="profile-resource text-center">
+                        <p class="text-lg font-extrabold text-emerald-400">{{ friends | length }}</p>
+                        <p class="text-[.65rem] uppercase tracking-widest text-slate-500">Amis</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
-            <p class="text-2xl font-extrabold text-slate-100">{{ correct_count }} / {{ total_count }}</p>
-            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Score</p>
+    <div class="profile-stats-grid">
+        <div class="profile-stat rounded-xl p-3 text-center sm:p-4">
+            <p class="text-xl font-extrabold text-slate-100 sm:text-2xl">{{ correct_count }} / {{ total_count }}</p>
+            <p class="mt-1 text-[.62rem] uppercase tracking-widest text-slate-500">Réponses justes</p>
         </div>
-        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
-            <p class="text-2xl font-extrabold text-emerald-400">
-                {% if total_count %}{{ (correct_count / total_count * 100) | round | int }}%{% else %}—{% endif %}
-            </p>
-            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Précision</p>
+        <div class="profile-stat rounded-xl p-3 text-center sm:p-4">
+            <p class="text-xl font-extrabold text-emerald-400 sm:text-2xl">{% if total_count %}{{ (correct_count / total_count * 100) | round | int }}%{% else %}—{% endif %}</p>
+            <p class="mt-1 text-[.62rem] uppercase tracking-widest text-slate-500">Précision</p>
         </div>
-        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
-            <p class="text-2xl font-extrabold text-amber-400">{{ current_user.coins }}</p>
-            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Pièces</p>
+        <div class="profile-stat rounded-xl p-3 text-center sm:p-4">
+            <p class="text-xl font-extrabold text-amber-400 sm:text-2xl">{{ current_user.coins }}</p>
+            <p class="mt-1 text-[.62rem] uppercase tracking-widest text-slate-500">Ressources</p>
         </div>
-        <div class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
-            <p class="text-2xl font-extrabold text-violet-400">{{ earned_count }} / {{ all_badges | length }}</p>
-            <p class="mt-1 text-[0.65rem] uppercase tracking-widest text-slate-500">Badges</p>
+        <div class="profile-stat rounded-xl p-3 text-center sm:p-4">
+            <p class="text-xl font-extrabold text-violet-400 sm:text-2xl">{{ earned_count }}</p>
+            <p class="mt-1 text-[.62rem] uppercase tracking-widest text-slate-500">Accomplissements</p>
         </div>
     </div>
 
-    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
-        <div class="mb-5 flex items-baseline justify-between">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Badges</h2>
-            <span class="text-xs text-slate-500">{{ earned_count }} sur {{ all_badges | length }}</span>
+    <section class="profile-panel rounded-2xl p-5 sm:p-6">
+        <div class="profile-panel__header mb-5">
+            <div>
+                <p class="profile-kicker text-cyan-400">Collection personnelle</p>
+                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Badges</h2>
+            </div>
+            <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-bold text-cyan-300">{{ earned_count }} / {{ all_badges | length }} débloqués</span>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {% for badge in all_badges %}
-            <div class="rounded-xl border px-3 py-4 text-center transition
-                        {% if badge.earned %}border-cyan-400/40 bg-slate-950/60{% else %}border-slate-800 bg-slate-950/30 opacity-40{% endif %}">
-                <p class="mb-1 text-2xl">{{ badge.icon }}</p>
-                <p class="text-sm font-bold {% if badge.earned %}text-cyan-400{% else %}text-slate-500{% endif %}">
-                    {{ badge.name }}
-                </p>
-                <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ badge.description }}</p>
+            <div class="profile-badge rounded-xl p-3 text-center {% if badge.earned %}is-earned{% else %}opacity-45{% endif %}">
+                <span class="profile-badge__icon {% if badge.earned %}text-cyan-300{% else %}grayscale{% endif %}">{{ badge.icon }}</span>
+                <p class="mt-2 truncate text-xs font-bold {% if badge.earned %}text-cyan-300{% else %}text-slate-500{% endif %}" title="{{ badge.name }}">{{ badge.name }}</p>
+                <p class="mt-1 text-[.65rem] leading-relaxed text-slate-600">{% if badge.earned %}Débloqué{% else %}À débloquer{% endif %}</p>
             </div>
             {% endfor %}
         </div>
     </section>
 
-    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
-        <div class="mb-5 flex items-baseline justify-between">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Amis</h2>
-            <a href="{{ url_for('friends.friends_list') }}" class="text-xs text-slate-500 transition hover:text-cyan-400">
-                {{ friends | length }} — gérer
-            </a>
+    <section class="profile-panel rounded-2xl p-5 sm:p-6">
+        <div class="profile-panel__header mb-5">
+            <div>
+                <p class="profile-kicker text-cyan-400">Réseau</p>
+                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Amis</h2>
+            </div>
+            <a href="{{ url_for('friends.friends_list') }}" class="text-xs font-bold text-cyan-400 transition hover:text-cyan-300">{{ friends | length }} — gérer</a>
         </div>
-
         {{ friends_grid(friends, "Tu n'as pas encore d'amis. Trouve des joueurs depuis le classement !") }}
     </section>
 
-    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
-        <div class="mb-4 flex items-baseline justify-between">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-cyan-400">Historique</h2>
+    <section class="profile-panel profile-history rounded-2xl p-5 sm:p-6">
+        <div class="profile-panel__header mb-5">
+            <div>
+                <p class="profile-kicker text-cyan-400">Tes performances</p>
+                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Historique</h2>
+            </div>
             <span class="text-xs text-slate-500">{{ total_count }} partie{{ 's' if total_count > 1 else '' }}</span>
         </div>
 
         {% if attempts_by_mode %}
-        {# Un accordéon par mode, replié par défaut : l'historique complet reste
-           consultable sans occuper toute la page. #}
-        <div class="flex flex-col gap-2">
+        <div class="profile-timeline flex flex-col gap-2">
             {% for mode, mode_attempts in attempts_by_mode.items() %}
             {% set mode_correct = mode_attempts | selectattr("is_correct") | list | length %}
             {% set mode_total = mode_attempts | length %}
-            <details class="group rounded-xl border border-slate-800 bg-slate-950/40 transition hover:border-slate-700"
-                     style="--accent: {{ accents.get(mode, '#22d3ee') }}">
-                <summary class="flex cursor-pointer list-none items-center gap-3 px-4 py-3 [&::-webkit-details-marker]:hidden">
-                    <span class="accent-icon shrink-0 rounded-full border px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-widest">
-                        {{ labels.get(mode, mode) }}
-                    </span>
-
-                    <span class="hidden h-1.5 flex-1 overflow-hidden rounded-full bg-slate-800 sm:block">
-                        <span class="accent-bar block h-1.5 rounded-full"
-                              style="width: {{ (mode_correct / mode_total * 100) | round(1) }}%"></span>
-                    </span>
-
-                    <span class="ml-auto shrink-0 text-xs text-slate-400 sm:ml-0">
-                        {{ mode_correct }}/{{ mode_total }}
-                    </span>
-
-                    <svg class="h-4 w-4 shrink-0 text-slate-500 transition-transform group-open:rotate-180"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+            <details class="group rounded-xl border border-slate-800 bg-slate-950/45 transition hover:border-cyan-400/35" style="--accent: {{ accents.get(mode, '#22d3ee') }}">
+                <summary class="flex cursor-pointer list-none items-center gap-3 px-3 py-3 [&::-webkit-details-marker]:hidden sm:px-4">
+                    <span class="accent-icon shrink-0 rounded-full border px-2.5 py-1 text-[.62rem] font-bold uppercase tracking-widest">{{ labels.get(mode, mode) }}</span>
+                    <span class="min-w-0 flex-1 truncate text-xs text-slate-400 sm:text-sm">{{ mode_total }} réponse{{ 's' if mode_total > 1 else '' }} enregistrée{{ 's' if mode_total > 1 else '' }}</span>
+                    <span class="hidden h-1.5 w-24 overflow-hidden rounded-full bg-slate-800 sm:block"><span class="block h-full rounded-full" style="width: {{ (mode_correct / mode_total * 100) | round(1) }}%; background: var(--accent)"></span></span>
+                    <span class="shrink-0 text-xs font-bold text-slate-300">{{ mode_correct }}/{{ mode_total }}</span>
+                    <svg class="h-4 w-4 shrink-0 text-slate-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                 </summary>
-
-                <ul class="border-t border-slate-800/80 px-4 py-2">
+                <ul class="border-t border-slate-800/80 px-3 py-2 sm:px-4">
                     {% for attempt in mode_attempts %}
                     <li class="flex items-center gap-3 border-b border-slate-800/50 py-2 last:border-0">
-                        <span class="h-1.5 w-1.5 shrink-0 rounded-full {% if attempt.is_correct %}bg-emerald-400{% else %}bg-red-400{% endif %}"
-                              title="{{ 'Correct' if attempt.is_correct else 'Incorrect' }}"></span>
-                        <span class="min-w-0 flex-1 truncate text-sm text-slate-300">{{ attempt.question.prompt }}</span>
-                        <span class="shrink-0 text-xs text-slate-600">{{ attempt.answered_at.strftime('%d/%m/%y') }}</span>
+                        <span class="h-2 w-2 shrink-0 rounded-full {% if attempt.is_correct %}bg-emerald-400{% else %}bg-red-400{% endif %}" title="{{ 'Correct' if attempt.is_correct else 'Incorrect' }}"></span>
+                        <span class="min-w-0 flex-1 truncate text-xs text-slate-300 sm:text-sm">{{ attempt.question.prompt }}</span>
+                        <span class="shrink-0 text-[.65rem] text-slate-600">{{ attempt.answered_at.strftime('%d/%m/%y') }}</span>
                     </li>
                     {% endfor %}
                 </ul>
@@ -178,12 +346,10 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="py-8 text-center">
-            <p class="text-slate-500">Aucune partie jouée pour le moment.</p>
-            <a href="{{ url_for('main.modes') }}"
-               class="mt-4 inline-block rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 transition hover:bg-cyan-300">
-                Commencer à jouer
-            </a>
+        <div class="rounded-xl border border-dashed border-slate-700 bg-slate-950/30 py-10 text-center">
+            <p class="text-3xl">🎬</p>
+            <p class="mt-3 text-sm text-slate-400">Aucune partie jouée pour le moment.</p>
+            <a href="{{ url_for('main.modes') }}" class="mt-4 inline-block rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 transition hover:bg-cyan-300">Commencer à jouer</a>
         </div>
         {% endif %}
     </section>

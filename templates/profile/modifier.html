@@ -2,17 +2,46 @@
 {% from "partials/avatar.html" import avatar_img %}
 
 {% block content %}
-<div class="max-w-xl mx-auto mt-8">
-    <h2 class="text-xl mb-6">Modifier mon profil</h2>
+<style>
+    .profile-edit {
+        border-color: rgba(34, 211, 238, .2);
+        background: rgba(15, 23, 42, .66);
+        box-shadow: 0 18px 50px rgba(2, 6, 23, .2);
+    }
 
-    <form method="POST" class="flex flex-col gap-6">
+    .profile-edit .avatar-choice.is-selected {
+        border-color: #22d3ee;
+        background: rgba(34, 211, 238, .12);
+        box-shadow: 0 0 18px rgba(34, 211, 238, .18);
+    }
+</style>
+
+<div class="mx-auto max-w-3xl">
+    <section class="profile-edit hero-glow relative overflow-hidden rounded-2xl border p-5 sm:p-7">
+        <div style="--glow: #3657ad" class="img-glow pointer-events-none absolute -bottom-12 -left-8 z-0 w-44 opacity-60 sm:w-60" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/5.png') }}" alt="" class="w-full -rotate-12 object-contain opacity-50">
+        </div>
+        <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute -bottom-10 -right-8 z-0 w-40 opacity-40 sm:w-52" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt="" class="w-full rotate-6 object-contain opacity-40">
+        </div>
+        <div class="starfield-overlay-soft" aria-hidden="true"></div>
+
+        <div class="relative z-10 mb-6 flex items-center justify-between gap-4 border-b border-slate-800 pb-4">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Personnalisation</p>
+                <h1 class="mt-1 text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl">Modifier mon profil</h1>
+                <p class="mt-1 text-sm text-slate-400">Choisis ton identité dans l'univers Filmatrix.</p>
+            </div>
+            <span class="hidden h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-950/60 text-xl sm:flex">✦</span>
+        </div>
+
+    <form method="POST" class="relative z-10 flex flex-col gap-6">
         <div>
-            <label class="block text-sm text-slate-400 mb-2">Choisis ton avatar</label>
-            <div class="grid grid-cols-6 gap-2" id="avatar-gallery">
+            <label class="mb-3 block text-xs font-bold uppercase tracking-widest text-slate-400">Choisis ton avatar</label>
+            <div class="grid grid-cols-4 gap-2 sm:grid-cols-6 sm:gap-3" id="avatar-gallery">
                 {% for avatar in avatars %}
                 <button type="button" data-avatar="{{ avatar }}"
-                        class="avatar-choice overflow-hidden rounded-lg border-2 p-1 transition
-                               {% if current_user.avatar == avatar %}border-cyan-400 bg-slate-900{% else %}border-transparent hover:border-cyan-400/50{% endif %}">
+                        class="avatar-choice overflow-hidden rounded-xl border-2 p-1 transition {% if current_user.avatar == avatar %}is-selected{% else %}border-transparent hover:border-cyan-400/50{% endif %}">
                     {{ avatar_img(avatar, "aspect-square w-full rounded object-cover") }}
                 </button>
                 {% endfor %}
@@ -21,16 +50,23 @@
         </div>
 
         <div>
-            <label class="block text-sm text-slate-400 mb-1">Bio (280 caractères max)</label>
-            <textarea name="bio" maxlength="280" rows="3"
-                      class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">{{ current_user.bio or '' }}</textarea>
+            <label class="mb-2 block text-xs font-bold uppercase tracking-widest text-slate-400">Bio <span class="font-normal normal-case tracking-normal text-slate-500">(280 caractères max)</span></label>
+            <textarea name="bio" maxlength="280" rows="4"
+                      class="w-full rounded-xl border border-cyan-400/30 bg-slate-950/60 px-3 py-3 text-slate-100 outline-none transition placeholder:text-slate-600 focus:border-cyan-400">{{ current_user.bio or '' }}</textarea>
         </div>
 
-        <button type="submit"
-                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition">
-            Enregistrer
-        </button>
+        <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+            <a href="{{ url_for('profile.profile') }}"
+               class="rounded-lg border border-slate-700 px-5 py-2.5 text-center text-sm font-bold text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400">
+                Annuler
+            </a>
+            <button type="submit"
+                    class="rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.22)] transition hover:bg-cyan-300">
+                Enregistrer
+            </button>
+        </div>
     </form>
+    </section>
 </div>
 
 <script src="{{ url_for('static', filename='js/edit_profile.js') }}"></script>
