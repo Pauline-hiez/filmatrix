@@ -71,12 +71,18 @@
         <aside class="game-left-rail">
             <section class="game-side-card game-timer-card">
                 <p class="game-sidebar-label">Temps restant</p>
-                <div class="game-timer-ring">
+                <div id="time-ring" class="game-timer-ring" style="--time-pct: 100">
                     <div><strong id="time-remaining">{{ duration }}</strong><span>secondes</span></div>
                 </div>
                 <div class="h-1.5 overflow-hidden rounded-full bg-slate-800">
                     <span id="time-bar" data-question-id="{{ question.id }}" data-duration="{{ duration }}" class="accent-bar block h-full rounded-full" style="width: 100%; transition: width 1s linear;"></span>
                 </div>
+                {% if current_user.is_authenticated %}
+                <div class="game-stat-row mt-3">
+                    <span>Score de la manche</span>
+                    <span>{{ current_score }} / {{ position - 1 }}</span>
+                </div>
+                {% endif %}
             </section>
 
             <section class="game-side-card">
@@ -115,13 +121,13 @@
                 </p>
             </div>
 
-            {# Une case par question : le joueur voit d'un coup d'œil le chemin
-               parcouru et ce qu'il lui reste, sans avoir à lire le compteur. #}
-            <div class="flex gap-1" role="progressbar"
+            {# Une pastille numérotée par question : le joueur voit d'un coup
+               d'œil le chemin parcouru et ce qu'il lui reste. #}
+            <div class="game-step-dots" role="progressbar"
                  aria-valuenow="{{ position }}" aria-valuemin="1" aria-valuemax="{{ total_questions }}"
                  aria-label="Question {{ position }} sur {{ total_questions }}">
                 {% for step in range(1, total_questions + 1) %}
-                <span class="h-1.5 flex-1 rounded-full {% if step < position %}accent-bar{% elif step == position %}accent-bar opacity-60{% else %}bg-slate-800{% endif %}"></span>
+                <span class="game-step-dot {% if step < position %}is-done{% elif step == position %}is-current{% endif %}">{{ step }}</span>
                 {% endfor %}
             </div>
         </div>
@@ -136,6 +142,15 @@
         </div>
 
         <div class="game-question-panel">
+            <div class="game-question-backdrop" aria-hidden="true">
+                <img src="{{ url_for('static', filename='images/habillage/1.png') }}" alt="">
+            </div>
+
+            <div class="game-pill-row">
+                <span class="game-pill">{% if question.content_type == "serie" %}Série{% else %}Film{% endif %}</span>
+                <span class="game-pill">{{ level.label }}</span>
+            </div>
+
             {% if question.mode == "film_melange" %}
             <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100 sm:text-3xl">
                 {{ scrambled_title }}
@@ -211,11 +226,13 @@
                 {# L'ordre d'affichage est tiré au sort à chaque question, mais
                    chaque bouton renvoie l'index d'origine de sa proposition :
                    le serveur vérifie la réponse sans rien savoir du mélange. #}
+                {% set letters = ["A", "B", "C", "D", "E", "F"] %}
                 <div class="game-answer-grid">
                     {% for original_index, option in options %}
                     <button type="button" data-answer="{{ original_index }}"
-                            class="answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
-                        {{ option }}
+                            class="answer-button game-answer-card rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 transition hover:border-cyan-400 hover:bg-slate-800 disabled:cursor-not-allowed">
+                        <span class="game-answer-letter">{{ letters[loop.index0] }}</span>
+                        <span>{{ option }}</span>
                     </button>
                     {% endfor %}
                 </div>

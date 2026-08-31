@@ -1,10 +1,20 @@
 const timeBar = document.getElementById("time-bar");
+const timeRing = document.getElementById("time-ring");
 
 // Durée calculée par le serveur d'après le niveau choisi par le joueur
 // (et forcée à 30 s pour le blindtest) : voir src/levels.py.
 const TOTAL_DURATION = parseInt(timeBar.dataset.duration, 10);
 let remainingTime = TOTAL_DURATION;
 let alreadyAnswered = false;
+
+// Anneau et barre linéaire partagent le même pourcentage : deux habillages,
+// une seule source de vérité pour ne pas les faire diverger.
+function setTimerPercentage(percentage) {
+    timeBar.style.width = percentage + "%";
+    if (timeRing) {
+        timeRing.style.setProperty("--time-pct", Math.max(0, percentage));
+    }
+}
 
 function showBadgeNotification(badge) {
     const notification = document.createElement("div");
@@ -171,7 +181,7 @@ if (document.getElementById("riddle-submit")) {
     timerInterval = setInterval(function () {
         remainingTime -= 1;
         const percentage = (remainingTime / TOTAL_DURATION) * 100;
-        timeBar.style.width = percentage + "%";
+        setTimerPercentage(percentage);
         updateTimerDisplay(percentage);
 
         if (remainingTime <= 0) {
@@ -182,7 +192,7 @@ if (document.getElementById("riddle-submit")) {
     timerInterval = setInterval(function () {
         remainingTime -= 1;
         const percentage = (remainingTime / TOTAL_DURATION) * 100;
-        timeBar.style.width = percentage + "%";
+        setTimerPercentage(percentage);
         updateTimerDisplay(percentage);
 
         if (remainingTime <= 0) {
@@ -255,7 +265,7 @@ if (riddleButton) {
             freeTextField.focus();
 
             remainingTime = TOTAL_DURATION;
-            timeBar.style.width = "100%";
+            setTimerPercentage(100);
             return;
         }
 
