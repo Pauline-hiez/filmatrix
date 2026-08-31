@@ -664,8 +664,8 @@ video {
   left: -2.5rem;
 }
 
-.-left-8 {
-  left: -2rem;
+.-left-4 {
+  left: -1rem;
 }
 
 .-right-4 {
@@ -674,10 +674,6 @@ video {
 
 .-right-6 {
   right: -1.5rem;
-}
-
-.-right-8 {
-  right: -2rem;
 }
 
 .bottom-4 {
@@ -809,6 +805,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
@@ -875,10 +875,6 @@ video {
 
 .h-2\.5 {
   height: 0.625rem;
-}
-
-.h-20 {
-  height: 5rem;
 }
 
 .h-24 {
@@ -979,10 +975,6 @@ video {
 
 .w-24 {
   width: 6rem;
-}
-
-.w-32 {
-  width: 8rem;
 }
 
 .w-4 {
@@ -1140,17 +1132,6 @@ video {
 
 .animate-bounce {
   animation: bounce 1s infinite;
-}
-
-@keyframes ping {
-  75%, 100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-.animate-ping {
-  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .cursor-not-allowed {
@@ -1374,10 +1355,6 @@ video {
   border-color: rgb(52 211 153 / 0.4);
 }
 
-.border-emerald-500\/30 {
-  border-color: rgb(16 185 129 / 0.3);
-}
-
 .border-emerald-500\/50 {
   border-color: rgb(16 185 129 / 0.5);
 }
@@ -1453,10 +1430,6 @@ video {
 
 .bg-cyan-400\/20 {
   background-color: rgb(34 211 238 / 0.2);
-}
-
-.bg-cyan-400\/30 {
-  background-color: rgb(34 211 238 / 0.3);
 }
 
 .bg-cyan-400\/5 {
@@ -1669,6 +1642,11 @@ video {
   padding-right: 1.5rem;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .py-0\.5 {
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
@@ -1778,10 +1756,6 @@ video {
 
 .text-right {
   text-align: right;
-}
-
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-2xl {
@@ -2011,6 +1985,10 @@ video {
   opacity: 0.2;
 }
 
+.opacity-30 {
+  opacity: 0.3;
+}
+
 .opacity-40 {
   opacity: 0.4;
 }
@@ -2059,6 +2037,11 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-emerald-950\/30 {
+  --tw-shadow-color: rgb(2 44 34 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .ring-1 {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -2071,6 +2054,11 @@ video {
 
 .blur {
   --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.drop-shadow {
+  --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -2152,6 +2140,11 @@ video {
   border-color: rgb(34 211 238 / 0.6);
 }
 
+.hover\:border-pink-400:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(244 114 182 / var(--tw-border-opacity, 1));
+}
+
 .hover\:border-red-400:hover {
   --tw-border-opacity: 1;
   border-color: rgb(248 113 113 / var(--tw-border-opacity, 1));
@@ -2165,6 +2158,10 @@ video {
 .hover\:bg-cyan-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(103 232 249 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-cyan-400\/10:hover {
+  background-color: rgb(34 211 238 / 0.1);
 }
 
 .hover\:bg-cyan-400\/20:hover {
@@ -2243,6 +2240,11 @@ video {
   color: rgb(226 232 240 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -2289,8 +2291,20 @@ video {
     bottom: -2.5rem;
   }
 
+  .sm\:-bottom-8 {
+    bottom: -2rem;
+  }
+
+  .sm\:-left-8 {
+    left: -2rem;
+  }
+
   .sm\:-right-10 {
     right: -2.5rem;
+  }
+
+  .sm\:-right-8 {
+    right: -2rem;
   }
 
   .sm\:ml-0 {
@@ -2319,6 +2333,10 @@ video {
 
   .sm\:w-24 {
     width: 6rem;
+  }
+
+  .sm\:w-32 {
+    width: 8rem;
   }
 
   .sm\:w-40 {
@@ -2411,6 +2429,10 @@ video {
 
   .sm\:opacity-100 {
     opacity: 1;
+  }
+
+  .sm\:opacity-70 {
+    opacity: 0.7;
   }
 }
 

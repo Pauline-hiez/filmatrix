@@ -11,11 +11,11 @@
        anciennes comptent pour 0 dans ces deux vues, seul "tous les temps"
        (User.total_xp) couvre tout l'historique. #}
     <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-10 text-center sm:px-10">
-        <div style="--glow: #3657ad" class="img-glow pointer-events-none absolute -bottom-8 -left-8 z-0 hidden w-32 sm:block lg:w-44" aria-hidden="true">
-            <img src="{{ url_for('static', filename='images/habillage/1.png') }}" alt="" class="w-full -rotate-12 object-contain opacity-70 drop-shadow-2xl">
+        <div style="--glow: #3657ad" class="img-glow pointer-events-none absolute -bottom-4 -left-4 z-0 w-16 sm:-bottom-8 sm:-left-8 sm:w-32 lg:w-44" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/1.png') }}" alt="" class="w-full -rotate-12 object-contain opacity-30 drop-shadow-2xl sm:opacity-70">
         </div>
-        <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute -bottom-8 -right-8 z-0 hidden w-32 sm:block lg:w-44" aria-hidden="true">
-            <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt="" class="w-full rotate-6 object-contain opacity-70 drop-shadow-2xl">
+        <div style="--glow: #cc7217" class="img-glow pointer-events-none absolute -bottom-4 -right-4 z-0 w-16 sm:-bottom-8 sm:-right-8 sm:w-32 lg:w-44" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/6.png') }}" alt="" class="w-full rotate-6 object-contain opacity-30 drop-shadow-2xl sm:opacity-70">
         </div>
         <div class="starfield-overlay" aria-hidden="true"></div>
 
@@ -25,7 +25,7 @@
             </h1>
             <p class="mt-2 text-sm text-slate-400">Affronte les meilleurs cinéphiles, un point d'XP à la fois.</p>
 
-            <div class="mt-5 inline-flex flex-wrap justify-center gap-2 rounded-full border border-slate-700 bg-slate-950/60 p-1">
+            <div class="mt-5 inline-flex flex-wrap justify-center gap-2 rounded-2xl border border-slate-700 bg-slate-950/60 p-1">
                 {% for key, label in [("all", "Général"), ("week", "Cette semaine"), ("month", "Ce mois")] %}
                 <a href="{{ url_for('leaderboard.leaderboard', period=key) }}"
                    class="rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest transition {% if period == key %}bg-cyan-400 text-slate-950{% else %}text-slate-400 hover:text-cyan-400{% endif %}">
