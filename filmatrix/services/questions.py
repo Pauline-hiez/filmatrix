@@ -14,6 +14,7 @@ from sqlalchemy import func
 from filmatrix.extensions import db
 from filmatrix.game_modes import MIX_MODE_SLUG
 from filmatrix.models import Question, Tag, question_tags
+from filmatrix.services.character_answers import CHARACTER_ANSWERS
 from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
 
 # Ces modes donnent directement un indice de la réponse (image, casting,
@@ -169,13 +170,23 @@ def build_question_query(
 
     has_universe_filter = bool(
         selected_tag_ids
-        and Tag.query.filter(Tag.id.in_(selected_tag_ids), Tag.tag_type == "univers").first()
+        and Tag.query.filter(
+            Tag.id.in_(selected_tag_ids), Tag.tag_type.in_(["univers", "saga"])
+        ).first()
     )
 
     if mode == MIX_MODE_SLUG:
         query = Question.query
         if has_universe_filter:
             query = query.filter(~Question.mode.in_(INCOMPATIBLE_MIX_MODES_FOR_UNIVERSE))
+            # Une citation sans attribution de personnage ne peut pas devenir
+            # « Quel personnage a dit ça ? ». Elle est donc retirée du Mix,
+            # tout comme les modes qui révèlent directement l'œuvre.
+            query = query.filter(
+                (Question.mode != "citation")
+                | Question.id.in_(list(CHARACTER_ANSWERS))
+                | Question.correct_answer["character"].as_string().isnot(None)
+            )
     else:
         query = Question.query.filter_by(mode=mode)
 
@@ -332,8 +343,71 @@ def shuffle_options(question) -> list[tuple[int, str]]:
     return options
 
 
-def format_correct_answer(question) -> str:
-    """Formate la bonne réponse d'une question en texte lisible pour tous les modes"""
+def content_label(question) -> str:
+    """Retourne le libellé visible du type de contenu d'une question."""
+    return "série" if question.content_type == "serie" else "film"
+
+
+def content_title_phrase(question) -> str:
+    """Retourne le complément correct pour parler du titre d'une œuvre."""
+    return "de la série" if question.content_type == "serie" else "du film"
+
+
+def content_question_phrase(question) -> str:
+    """Retourne la formulation interrogative correcte pour une œuvre."""
+    return "de quelle série" if question.content_type == "serie" else "de quel film"
+
+
+def question_display_prompt(
+    question,
+    is_mix: bool = False,
+    character_mode: bool = False,
+) -> str:
+    """Adapte les consignes du Mix au contenu réel de la question.
+
+    Les fichiers de questions sont séparés entre films et séries, mais le Mix
+    les rassemble. Une consigne enregistrée dans un ancien fichier peut donc
+    conserver « film » alors que la question tirée est une série : l'interface
+    doit toujours suivre le type réellement affiché.
+    """
+    if character_mode and question.mode == "citation":
+        quote = question.prompt.split(" — ", 1)[0] if question.prompt else ""
+        suffix = "Quel personnage a dit ça ?"
+        return f"{quote} — {suffix}" if quote else suffix
+
+    if not is_mix:
+        return question.prompt
+
+    label = content_label(question)
+    if question.mode == "devinette":
+        article = "Quel film" if label == "film" else "Quelle série"
+        return f"{article} se cache derrière ces indices ?"
+
+    if question.mode == "citation":
+        quote = question.prompt.split(" — ", 1)[0] if question.prompt else ""
+        suffix = f"{content_question_phrase(question).capitalize()} vient cette réplique ?"
+        return f"{quote} — {suffix}" if quote else suffix
+
+    return question.prompt
+
+
+def answer_placeholder(
+    question,
+    is_mix: bool = False,
+    character_mode: bool = False,
+) -> str:
+    """Retourne le placeholder adapté à la réponse attendue."""
+    if character_mode and question.mode == "citation":
+        return "Nom du personnage..."
+    if is_mix and question.mode in {
+        "citation", "devinette", "devinette_affiche", "casting", "blindtest",
+    }:
+        return f"Titre {content_title_phrase(question)}..."
+    return "Titre du film..."
+
+
+def format_correct_answer(question, alternate_answer: str | None = None) -> str:
+    """Formate la bonne réponse, éventuellement adaptée au contexte de la partie."""
     if question.mode == "qcm":
         index = question.correct_answer["index"]
         return question.payload["options"][index]
@@ -341,4 +415,6 @@ def format_correct_answer(question) -> str:
         return  "Vrai" if question.correct_answer["value"] else "Faux"
     if question.mode == "chronologie":
         return "→".join(question.correct_answer["order"])
+    if alternate_answer:
+        return alternate_answer
     return question.correct_answer.get("film") or question.correct_answer.get("title") or ""

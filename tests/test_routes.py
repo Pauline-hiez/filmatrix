@@ -258,7 +258,16 @@ def test_mix_with_a_universe_excludes_answer_revealing_modes(client, app):
                 content_type="serie",
                 prompt=f"Question {mode} {index}",
                 payload={"options": ["A", "B"]} if mode == "qcm" else {},
-                correct_answer={"index": 0} if mode == "qcm" else {"film": "Kaamelott"},
+                correct_answer=(
+                    {"index": 0}
+                    if mode == "qcm"
+                    else {
+                        "film": "Kaamelott",
+                        "character": "Arthur",
+                    }
+                    if mode == "citation"
+                    else {"film": "Kaamelott"}
+                ),
                 requires_account=False,
             )
             question.tags.append(universe)
@@ -276,6 +285,47 @@ def test_mix_with_a_universe_excludes_answer_revealing_modes(client, app):
 
     availability = client.get(f"/quiz/mixte/disponibilite?tag_id={universe_id}").get_json()
     assert availability["available"] == 2
+
+
+def test_mix_with_a_universe_excludes_unattributed_citations(client, app):
+    """Le Mix ne doit pas proposer une citation sans réponse personnage."""
+    with app.app_context():
+        universe = Tag(name="friends", tag_type="univers")
+        db.session.add(universe)
+        db.session.flush()
+
+        mapped = Question(
+            mode="citation",
+            content_type="serie",
+            prompt="Citation attribuée",
+            payload={},
+            correct_answer={"film": "Friends", "character": "Chandler Bing"},
+            requires_account=False,
+        )
+        mapped.tags.append(universe)
+        db.session.add(mapped)
+
+        unmapped = Question(
+            mode="citation",
+            content_type="serie",
+            prompt="Citation non attribuée",
+            payload={},
+            correct_answer={"film": "Friends"},
+            requires_account=False,
+        )
+        unmapped.tags.append(universe)
+        db.session.add(unmapped)
+        db.session.commit()
+        universe_id = universe.id
+
+    page = client.get(f"/quiz/mixte?tag_id={universe_id}").get_data(as_text=True)
+    assert "1 disponible" in page
+    assert "Citation non attribuée" not in page
+
+    availability = client.get(
+        f"/quiz/mixte/disponibilite?tag_id={universe_id}"
+    ).get_json()
+    assert availability["available"] == 1
 
 
 def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, app):
@@ -481,6 +531,107 @@ def test_the_question_order_holds_during_the_run(client, app):
     ]
 
     assert again == ids[1:]
+
+
+def test_citation_with_selected_universe_asks_for_character(client, app):
+    """Une citation avec univers sélectionné demande et corrige le personnage."""
+    with app.app_context():
+        universe = Tag(name="game-of-thrones", tag_type="univers")
+        db.session.add(universe)
+        db.session.flush()
+        question = Question(
+            mode="citation",
+            content_type="serie",
+            prompt="« Dracarys ! » — De quelle série vient cette réplique ?",
+            payload={},
+            correct_answer={
+                "film": "Game of Thrones",
+                "character": "Daenerys Targaryen",
+            },
+            requires_account=False,
+        )
+        question.tags.append(universe)
+        db.session.add(question)
+        db.session.commit()
+        universe_id, question_id = universe.id, question.id
+
+    page = client.get(f"/quiz/citation/1?tag_id={universe_id}").get_data(as_text=True)
+    assert "« Dracarys ! » — Quel personnage a dit ça ?" in page
+    assert 'placeholder="Nom du personnage..."' in page
+
+    result = client.post(
+        f"/quiz/citation/1?tag_id={universe_id}",
+        data={"answer": "Daenerys Targaryen"},
+    ).get_json()
+    assert result["is_correct"] is True
+
+    wrong_result = client.post(
+        f"/quiz/citation/1?tag_id={universe_id}",
+        data={"answer": "Jon Snow"},
+    ).get_json()
+    assert wrong_result["is_correct"] is False
+    assert wrong_result["correct_answer"] == "Daenerys Targaryen"
+
+
+def test_citation_without_universe_keeps_title_answer(client, app):
+    """Sans univers, une citation conserve sa réponse historique : le titre."""
+    with app.app_context():
+        db.session.add(
+            Question(
+                mode="citation",
+                content_type="serie",
+                prompt="« Dracarys ! » — De quelle série vient cette réplique ?",
+                payload={},
+                correct_answer={"film": "Game of Thrones"},
+                requires_account=False,
+            )
+        )
+        db.session.commit()
+
+    result = client.post("/quiz/citation/1", data={"answer": "Game of Thrones"}).get_json()
+    assert result["is_correct"] is True
+
+
+def test_mix_adapts_citation_wording_to_a_series(client, app):
+    """Une citation de série dans le Mix doit demander le titre d'une série."""
+    with app.app_context():
+        db.session.add(
+            Question(
+                mode="citation",
+                content_type="serie",
+                prompt="« Réplique test » — De quel film vient cette réplique ?",
+                payload={},
+                correct_answer={"film": "Friends"},
+                requires_account=False,
+            )
+        )
+        db.session.commit()
+
+    page = client.get("/quiz/mixte/1").get_data(as_text=True)
+
+    assert "« Réplique test » — De quelle série vient cette réplique ?" in page
+    assert 'placeholder="Titre de la série..."' in page
+
+
+def test_mix_adapts_riddle_wording_to_a_series(client, app):
+    """Une devinette de série dans le Mix doit demander le titre d'une série."""
+    with app.app_context():
+        db.session.add(
+            Question(
+                mode="devinette",
+                content_type="serie",
+                prompt="Quelle série se cache derrière ces indices ?",
+                payload={"hints": ["Indice de test"]},
+                correct_answer={"film": "Stranger Things"},
+                requires_account=False,
+            )
+        )
+        db.session.commit()
+
+    page = client.get("/quiz/mixte/1").get_data(as_text=True)
+
+    assert "Quelle série se cache derrière ces indices ?" in page
+    assert 'placeholder="Titre de la série..."' in page
 
 
 def test_question_displays_its_content_type(client, app):

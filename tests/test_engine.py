@@ -2,6 +2,7 @@
 
 import pytest
 
+from filmatrix.services.character_answers import character_answer
 from filmatrix.services.engine import check_answer
 from filmatrix.models import Question
 
@@ -72,6 +73,25 @@ def test_citation_wrong_answer():
     """Une citation incorrecte doit retourner False"""
     question = make_citation_question()
     assert check_answer(question, "Avatar") is False
+
+
+def test_citation_can_use_a_character_answer_in_a_selected_universe():
+    """Le contexte univers peut corriger une citation sur son personnage."""
+    question = make_citation_question()
+    assert check_answer(question, "Sarah Connor", expected_answer="Sarah Connor") is True
+    assert check_answer(question, "Terminator", expected_answer="Sarah Connor") is False
+
+
+def test_known_citation_has_a_catalogued_character_answer():
+    """Les citations cultes disposent d'une réponse personnage vérifiable."""
+    question = Question(
+        id=3512,
+        mode="citation",
+        prompt="« Dracarys ! »",
+        payload={},
+        correct_answer={"film": "Game of Thrones"},
+    )
+    assert character_answer(question) == "Daenerys Targaryen"
 
 def make_emoji_question() -> Question:
     """Fabrique une question emoji de test"""

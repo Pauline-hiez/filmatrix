@@ -5,9 +5,10 @@ from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
 from filmatrix.catalog import REPORT_REASON
-from filmatrix.models import Attempt, Report, User
+from filmatrix.models import Attempt, Report, Tag, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
+from filmatrix.services.character_answers import character_answer
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.levels import (
@@ -24,8 +25,11 @@ from filmatrix.services.questions import (
     count_run_questions,
     draw_run_questions,
     find_question,
+    answer_placeholder,
+    content_label,
     format_correct_answer,
     mode_tags,
+    question_display_prompt,
     mode_tags_for_type,
     playable_question_query,
     reachable_content_types,
@@ -166,6 +170,22 @@ def quiz(mode: str, position: int) -> str:
         mode, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
     )
 
+    # Les séries utilisent « univers » et les films utilisent parfois « saga »
+    # pour désigner leur franchise. Les deux doivent activer le même contexte
+    # personnage, sans modifier une citation lorsqu'aucun thème n'est choisi.
+    selected_universe = (
+        bool(tag_ids)
+        and Tag.query.filter(
+            Tag.id.in_(tag_ids), Tag.tag_type.in_(["univers", "saga"])
+        ).first()
+        is not None
+    )
+    character_mode = (
+        selected_universe
+        and question.mode == "citation"
+        and character_answer(question) is not None
+    )
+
     if question.requires_account and not current_user.is_authenticated:
         flash("Connecte-toi pour accéder à cette question.")
         return redirect(url_for("auth.login"))
@@ -178,7 +198,8 @@ def quiz(mode: str, position: int) -> str:
         else:
             raw_answer = request.form["answer"]
             player_answer = convert_answer(question.mode, raw_answer)
-            is_correct = check_answer(question, player_answer)
+            expected_answer = character_answer(question) if character_mode else None
+            is_correct = check_answer(question, player_answer, expected_answer=expected_answer)
 
         if question.mode == "devinette" and not is_correct:
             hint_index = int(request.form.get("hint_index", 0))
@@ -224,7 +245,10 @@ def quiz(mode: str, position: int) -> str:
 
             new_badges = [BADGES[code] for code in new_badge_codes]
 
-        correct_answer_text = None if is_correct else format_correct_answer(question)
+        correct_answer_text = None if is_correct else format_correct_answer(
+            question,
+            alternate_answer=character_answer(question) if character_mode else None,
+        )
 
         record_answer(session, mode, question.id, is_correct, earned_xp, earned_coins)
 
@@ -269,9 +293,19 @@ def quiz(mode: str, position: int) -> str:
     leaderboard_players = User.query.order_by(User.total_xp.desc()).limit(5).all()
     run_state = session.get("run", {})
 
+    is_mix = mode == MIX_MODE_SLUG
+
     return render_template(
             "quiz/question.html",
             question=question,
+            display_prompt=question_display_prompt(
+                question, is_mix=is_mix, character_mode=character_mode
+            ),
+            answer_placeholder=answer_placeholder(
+                question, is_mix=is_mix, character_mode=character_mode
+            ),
+            content_label=content_label(question),
+            character_mode=character_mode,
             scrambled_title=scrambled_title,
             options=options,
             report_reasons=REPORT_REASON,
@@ -279,7 +313,7 @@ def quiz(mode: str, position: int) -> str:
             duration=duration_for(level, question.mode),
             position=position,
             total_questions=total_questions,
-            is_mix=mode == MIX_MODE_SLUG,
+            is_mix=is_mix,
             leaderboard_players=leaderboard_players,
             sidebar_friends=sidebar_friends,
             player_level=player_level,

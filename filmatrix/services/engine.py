@@ -7,11 +7,18 @@ from filmatrix.services.matching import fuzzy_match
 from filmatrix.models import Question
 
 
-def check_answer(question: Question, user_response: Any) -> bool:
+def check_answer(
+    question: Question,
+    user_response: Any,
+    expected_answer: str | None = None,
+) -> bool:
     """Vérifie la réponse du joueur selon le mode de la question
 
     Args: question: la question posée (contient la mode et la bonne réponse)
           user_response: la réponse fournie par le joueur
+
+    expected_answer: réponse textuelle alternative utilisée par un contexte
+        précis (par exemple le personnage d'une citation avec univers sélectionné)
 
     Returns: True si la réponse est correcte, sinon False
 
@@ -33,7 +40,8 @@ def check_answer(question: Question, user_response: Any) -> bool:
             return fuzzy_match(user_response, question.correct_answer["title"])
 
         case "citation" | "emoji" | "devinette" | "devinette_affiche" | "casting" | "blindtest":
-            return fuzzy_match(user_response, question.correct_answer["film"])
+            answer = expected_answer or question.correct_answer["film"]
+            return fuzzy_match(user_response, answer)
 
         case _:
             raise ValueError(f"Mode de question inconnu : {question.mode}")

@@ -34,7 +34,7 @@
    casting / blind test / devinette-affiche. Les classes bg-cyan-400, hover:bg-cyan-300 et
    border-cyan-400/30 sont manipulées par quiz.js : ne pas les renommer. #}
 {% macro answer_field(label="Valider") %}
-<input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
+<input type="text" id="free-text-answer" placeholder="{{ answer_placeholder }}" autocomplete="off"
        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
 <button type="button" data-answer=""
         class="answer-button rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300">
@@ -54,7 +54,7 @@
             <span class="accent-icon">{{ icons.get(question.mode, "✳") }}</span>
             <div class="min-w-0">
                 <p class="truncate text-sm font-bold text-slate-100">{{ labels.get(question.mode, question.mode) }}</p>
-                <p class="text-xs text-slate-500">{% if question.content_type == "serie" %}Série{% else %}Film{% endif %}</p>
+                <p class="text-xs text-slate-500">{{ content_label|capitalize }}</p>
             </div>
         </div>
         <div class="flex items-center gap-2">
@@ -147,7 +147,7 @@
             </div>
 
             <div class="game-pill-row">
-                <span class="game-pill">{% if question.content_type == "serie" %}Série{% else %}Film{% endif %}</span>
+                <span class="game-pill">{{ content_label|capitalize }}</span>
                 {# "Niveau" règle le temps de réponse (et donc les gains), pas la
                    difficulté des questions elles-mêmes : l'horloge évite toute
                    confusion avec un pill qui décrirait le contenu de la question. #}
@@ -178,13 +178,13 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <span class="emoji-fallback">{{ question.prompt }}</span>
+                        <span class="emoji-fallback">{{ display_prompt }}</span>
                     {% endif %}
                 </div>
             </div>
         {% else %}
             <h1 class="mb-6 text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
-                {{ question.prompt }}
+                {{ display_prompt }}
             </h1>
             {% endif %}
 
@@ -193,13 +193,13 @@
             {# Image de plateau en 16:9, et non la jaquette : celle-ci porte le
                titre et donnerait la réponse. Le cadrage est donc large, pas le
                portrait d'une affiche. #}
-            <p class="mb-3 text-sm text-slate-400">Devine le titre à partir de cette image :</p>
+            <p class="mb-3 text-sm text-slate-400">Devine {{ "la série" if question.content_type == "serie" else "le film" }} à partir de cette image :</p>
             <div class="game-media-frame">
                 <img src="{{ question.payload.poster_url }}" alt="Image du film à deviner"
                      class="mx-auto mb-5 w-full rounded-xl border border-cyan-400/30">
             </div>
         {% elif question.mode == "casting" %}
-            <p class="mb-3 text-sm text-slate-400">Devine le film à partir de son casting :</p>
+            <p class="mb-3 text-sm text-slate-400">Devine {{ "la série" if question.content_type == "serie" else "le film" }} à partir de son casting :</p>
             <div class="mb-5 flex flex-wrap justify-center gap-3">
                 {% for photo_url in question.payload.actor_photos %}
                 <img src="{{ photo_url }}" alt="Acteur du film à deviner"
@@ -207,7 +207,7 @@
                 {% endfor %}
             </div>
         {% elif question.mode == "blindtest" %}
-            <p class="mb-3 text-sm text-slate-400">Écoute l'extrait et devine le film :</p>
+            <p class="mb-3 text-sm text-slate-400">Écoute l'extrait et devine {{ "la série" if question.content_type == "serie" else "le film" }} :</p>
             {# En mix, la question tirée peut être un blind test sans que le joueur s'y
                attende : un extrait sonore qui démarre seul serait embarrassant en public
                (salle d'attente...). Le lecteur reste là, mais c'est au joueur de lancer
@@ -278,7 +278,7 @@
             {% elif question.mode == "devinette" %}
                 {# Ce bouton a son propre gestionnaire dans quiz.js (indices successifs),
                    il ne doit surtout pas porter la classe answer-button. #}
-                <input type="text" id="free-text-answer" placeholder="Titre du film..." autocomplete="off"
+                <input type="text" id="free-text-answer" placeholder="{{ answer_placeholder }}" autocomplete="off"
                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-4 py-3 text-slate-100 placeholder-slate-500 transition focus:outline-none focus:ring-2 focus:ring-cyan-400/40">
                 <button type="button" data-answer="" id="riddle-submit" data-hint-index="0"
                         class="rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40">
