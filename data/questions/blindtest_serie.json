@@ -5,7 +5,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cb/92/90/cb92902c-c2ea-f522-af53-188ea787e9eb/mzaf_1944123792286238815.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cb/92/90/cb92902c-c2ea-f522-af53-188ea787e9eb/mzaf_1944123792286238815.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
     },
     "correct_answer": {
       "film": "Game of Thrones"
@@ -44,7 +45,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/64/8e/84/648e84d9-d491-a92d-5a06-b4c1e6457671/mzaf_18405791090191220886.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/64/8e/84/648e84d9-d491-a92d-5a06-b4c1e6457671/mzaf_18405791090191220886.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
     },
     "correct_answer": {
       "film": "Friends"
@@ -67,7 +69,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/00/7a/98007a61-5912-d8e6-2d05-0a8378611124/mzaf_5025701178983290939.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/00/7a/98007a61-5912-d8e6-2d05-0a8378611124/mzaf_5025701178983290939.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
     },
     "correct_answer": {
       "film": "Stranger Things"
@@ -106,7 +109,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/55/c9/29/55c92901-3cce-0c3a-fadf-d012129694a5/mzaf_4986614812499583417.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/55/c9/29/55c92901-3cce-0c3a-fadf-d012129694a5/mzaf_4986614812499583417.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rAOjnEFTuNysY7bot8zonhImGMh.jpg"
     },
     "correct_answer": {
       "film": "The Walking Dead"
@@ -145,7 +149,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/c9/7d/7e/c97d7e69-ad72-0712-59d2-eacbdb19c722/mzaf_5371619454947923328.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/c9/7d/7e/c97d7e69-ad72-0712-59d2-eacbdb19c722/mzaf_5371619454947923328.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
     },
     "correct_answer": {
       "film": "The Office"
@@ -168,7 +173,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a2/1c/b7/a21cb773-d025-0a8a-8310-aa76b510f90a/mzaf_10903901519658217425.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a2/1c/b7/a21cb773-d025-0a8a-8310-aa76b510f90a/mzaf_10903901519658217425.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
     },
     "correct_answer": {
       "film": "Peaky Blinders"
@@ -195,7 +201,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/45/a4/ba/45a4baa3-1da9-acdc-afae-9e84bb7ce564/mzaf_3834111253252534589.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/45/a4/ba/45a4baa3-1da9-acdc-afae-9e84bb7ce564/mzaf_3834111253252534589.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
     },
     "correct_answer": {
       "film": "The Big Bang Theory"
@@ -218,7 +225,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e9/83/1c/e9831c27-d055-cd83-2193-75df1e98a8a0/mzaf_4801507969539090564.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e9/83/1c/e9831c27-d055-cd83-2193-75df1e98a8a0/mzaf_4801507969539090564.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
     },
     "correct_answer": {
       "film": "Vikings"
@@ -249,7 +257,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/61/6b/10/616b106f-9b56-6590-a876-0bace4df6f0c/mzaf_7390914710714591669.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/61/6b/10/616b106f-9b56-6590-a876-0bace4df6f0c/mzaf_7390914710714591669.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
     },
     "correct_answer": {
       "film": "Les Simpson"
@@ -276,7 +285,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/74/c0/45/74c04595-462b-488f-2bc0-7bef17da3a4f/mzaf_11386669178347258163.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/74/c0/45/74c04595-462b-488f-2bc0-7bef17da3a4f/mzaf_11386669178347258163.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/yUOFocKDW7MCC5isx4FK8A68QFp.jpg"
     },
     "correct_answer": {
       "film": "Lost"
@@ -311,7 +321,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/a9/8a/7f/a98a7f36-a1ac-18c4-7f48-f55c2040ed54/mzaf_13061913459660185675.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/a9/8a/7f/a98a7f36-a1ac-18c4-7f48-f55c2040ed54/mzaf_13061913459660185675.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/si3OheCrSpEyK2JUtZOThsZPUR4.jpg"
     },
     "correct_answer": {
       "film": "Malcolm"
@@ -334,7 +345,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c5/cc/2b/c5cc2b98-73f9-c096-1fcc-165f518cd680/mzaf_10989311721462789293.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c5/cc/2b/c5cc2b98-73f9-c096-1fcc-165f518cd680/mzaf_10989311721462789293.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
     },
     "correct_answer": {
       "film": "Breaking Bad"
@@ -369,7 +381,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/84/f3/22/84f32250-60b3-663a-7f0f-22076de1b202/mzaf_1752963107812549298.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/84/f3/22/84f32250-60b3-663a-7f0f-22076de1b202/mzaf_1752963107812549298.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
     },
     "correct_answer": {
       "film": "Sherlock"
@@ -408,7 +421,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a3/a6/91/a3a691b0-8e49-399d-2585-ddcd6694c9f2/mzaf_16325826545413166648.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a3/a6/91/a3a691b0-8e49-399d-2585-ddcd6694c9f2/mzaf_16325826545413166648.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/r0Q6eeN9L1ORL9QsV0Sg8ZV3vnv.jpg"
     },
     "correct_answer": {
       "film": "Dr House"
@@ -439,7 +453,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/06/38/3a/06383a11-2fa3-b8cd-9417-8ab97937f322/mzaf_16430335714998866157.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/06/38/3a/06383a11-2fa3-b8cd-9417-8ab97937f322/mzaf_16430335714998866157.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dZklTql88IDOmkC3JAYQSTgyK6f.jpg"
     },
     "correct_answer": {
       "film": "Twin Peaks"
@@ -474,7 +489,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/75/b8/fe/75b8fe5b-9181-fc79-1854-32910af234d2/mzaf_8131742655989754808.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/75/b8/fe/75b8fe5b-9181-fc79-1854-32910af234d2/mzaf_8131742655989754808.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/w00lfexrsOeR25dO4hsWhbcUnmD.jpg"
     },
     "correct_answer": {
       "film": "X-Files"
@@ -517,7 +533,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6a/79/81/6a798109-d58a-bd99-a489-68044b81bfc3/mzaf_3547309973478464909.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6a/79/81/6a798109-d58a-bd99-a489-68044b81bfc3/mzaf_3547309973478464909.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
     },
     "correct_answer": {
       "film": "Dexter"
@@ -556,7 +573,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d5/e0/dd/d5e0dd47-84aa-fe4f-b9fc-6bf1f1f90c3f/mzaf_7388236101060986368.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d5/e0/dd/d5e0dd47-84aa-fe4f-b9fc-6bf1f1f90c3f/mzaf_7388236101060986368.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/y9ekzkPFmWSqUU3Kj0wHmYUM8qu.jpg"
     },
     "correct_answer": {
       "film": "Narcos"
@@ -591,7 +609,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ce/de/8b/cede8b3f-4137-c6f1-e17a-3b0f619f7ed4/mzaf_9634988424484271208.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ce/de/8b/cede8b3f-4137-c6f1-e17a-3b0f619f7ed4/mzaf_9634988424484271208.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rX5hvSRB2k4YoIvRg6Zky52rWk0.jpg"
     },
     "correct_answer": {
       "film": "Westworld"
@@ -630,7 +649,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/82/15/a3/8215a36e-3a29-9782-4e0f-2d52b06dce17/mzaf_11962067028557607736.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/82/15/a3/8215a36e-3a29-9782-4e0f-2d52b06dce17/mzaf_11962067028557607736.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/bcdUYUFk8GdpZJPiSAas9UeocLH.jpg"
     },
     "correct_answer": {
       "film": "Succession"
@@ -665,7 +685,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7d/14/72/7d147299-52bb-7293-2ed3-01dcf4641263/mzaf_11352443980258880488.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7d/14/72/7d147299-52bb-7293-2ed3-01dcf4641263/mzaf_11352443980258880488.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3jDXL4Xvj3AzDOF6UH1xeyHW8MH.jpg"
     },
     "correct_answer": {
       "film": "Dark"
@@ -712,7 +733,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/7b/6e/54/7b6e548c-1302-3214-d965-d0c531700e4c/mzaf_8004842094480279053.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/7b/6e/54/7b6e548c-1302-3214-d965-d0c531700e4c/mzaf_8004842094480279053.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lY2DhbA7Hy44fAKddr06UrXWWaQ.jpg"
     },
     "correct_answer": {
       "film": "The Last of Us"
@@ -743,7 +765,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f9/8b/d9/f98bd9a6-96d2-b8fd-1848-0de12814aec6/mzaf_18165369050311284240.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f9/8b/d9/f98bd9a6-96d2-b8fd-1848-0de12814aec6/mzaf_18165369050311284240.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg"
     },
     "correct_answer": {
       "film": "Arcane"
@@ -790,7 +813,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3f/dc/ba/3fdcbae7-f0fb-defd-7e0c-3f090fc330f3/mzaf_16117848475029615800.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3f/dc/ba/3fdcbae7-f0fb-defd-7e0c-3f090fc330f3/mzaf_16117848475029615800.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8VXhcrl5z2I1zEU9X3pkkNrZlD.jpg"
     },
     "correct_answer": {
       "film": "The Crown"
@@ -821,7 +845,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a3/ed/14/a3ed14f2-7c2e-890d-a543-0f936ffe79e5/mzaf_1205860486635650020.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a3/ed/14/a3ed14f2-7c2e-890d-a543-0f936ffe79e5/mzaf_1205860486635650020.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2meX1nMdScFOoV4370rqHWKmXhY.jpg"
     },
     "correct_answer": {
       "film": "Squid Game"
@@ -864,7 +889,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/ee/c7/f2eec7de-4985-dc8f-2a00-6152aa390910/mzaf_8791361472222490835.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/ee/c7/f2eec7de-4985-dc8f-2a00-6152aa390910/mzaf_8791361472222490835.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
     },
     "correct_answer": {
       "film": "Kaamelott"
@@ -907,7 +933,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/52/cf/d3/52cfd3aa-6482-5292-8166-db88dea833ee/mzaf_6952324014693830255.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/52/cf/d3/52cfd3aa-6482-5292-8166-db88dea833ee/mzaf_6952324014693830255.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
     },
     "correct_answer": {
       "film": "How I Met Your Mother"
@@ -938,7 +965,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e2/6e/05/e26e0594-3ab3-e068-d81b-c2be00c1a308/mzaf_3692129303798161724.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e2/6e/05/e26e0594-3ab3-e068-d81b-c2be00c1a308/mzaf_3692129303798161724.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
     },
     "correct_answer": {
       "film": "La Casa de Papel"
@@ -973,7 +1001,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/7f/0f/dd7f0ffe-c481-7467-661c-c335492bc9f6/mzaf_2554435804366445165.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/7f/0f/dd7f0ffe-c481-7467-661c-c335492bc9f6/mzaf_2554435804366445165.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rfxryDIv8huejujg4JueDJx8zCz.jpg"
     },
     "correct_answer": {
       "film": "Better Call Saul"
@@ -1008,7 +1037,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/df/6e/f5/df6ef5b7-b039-a941-9533-ac30a62c0228/mzaf_10809814154367718181.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/df/6e/f5/df6ef5b7-b039-a941-9533-ac30a62c0228/mzaf_10809814154367718181.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ueZFcwAUvkjyAB9beaiqJyg0M8H.jpg"
     },
     "correct_answer": {
       "film": "Charmed"
@@ -1055,7 +1085,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fc/2d/e4/fc2de4b6-db54-7ac4-4815-3e3240cab157/mzaf_6456254464806279736.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fc/2d/e4/fc2de4b6-db54-7ac4-4815-3e3240cab157/mzaf_6456254464806279736.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uyB27Tx3KtczuSo4tDfmiXhfuCp.jpg"
     },
     "correct_answer": {
       "film": "Le Prince de Bel-Air"
@@ -1090,7 +1121,8 @@
     "content_type": "serie",
     "prompt": "",
     "payload": {
-      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6d/f4/c0/6df4c0ab-3bd0-3a45-30b0-6e37d41cdd30/mzaf_16468720910558544176.plus.aac.p.m4a"
+      "audio_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6d/f4/c0/6df4c0ab-3bd0-3a45-30b0-6e37d41cdd30/mzaf_16468720910558544176.plus.aac.p.m4a",
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
     },
     "correct_answer": {
       "film": "South Park"

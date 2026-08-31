@@ -4,7 +4,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Ross et Monica sont frère et sœur.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -33,7 +35,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Friends compte dix saisons.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -62,7 +66,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Joey décroche un rôle de médecin dans un feuilleton, le docteur Drake Ramoray.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -91,7 +97,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Phoebe Buffay exerce le métier d'avocate.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -120,7 +128,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Chandler finit par épouser Rachel.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -149,7 +159,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Monica est la sœur de Joey.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -178,7 +190,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Walter White enseigne la chimie avant de basculer dans le trafic.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -211,7 +225,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Hank Schrader est agent de la DEA.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -244,7 +260,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Breaking Bad compte cinq saisons.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -273,7 +291,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Gus Fring dirige une chaîne de pizzerias.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -306,7 +326,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Jesse Pinkman est le frère de Walter White.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -339,7 +361,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, l'essentiel de l'action se déroule à Miami.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -372,7 +396,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Game of Thrones est adaptée des romans de George R. R. Martin.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -417,7 +443,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Winterfell est le fief de la maison Stark.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -462,7 +490,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Tyrion et Cersei Lannister sont frère et sœur.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -507,7 +537,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Jon Snow est élevé comme un membre de la maison Lannister.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -552,7 +584,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Tyrion est l'aîné de la fratrie Lannister.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -597,7 +631,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, le Trône de Fer se trouve à Winterfell.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -642,7 +678,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Kaamelott est une série française créée par Alexandre Astier.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -671,7 +709,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Léodagan est le beau-père d'Arthur.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -712,7 +752,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Karadoc est bien plus préoccupé par la nourriture que par la quête du Graal.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -753,7 +795,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Perceval est présenté dès le départ comme le meilleur stratège de la Table Ronde.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -794,7 +838,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Guenièvre est la sœur de Séli.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -835,7 +881,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Lancelot reste jusqu'au bout l'allié le plus fidèle d'Arthur.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -876,7 +924,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, l'intrigue se déroule principalement dans les années 1980.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -921,7 +971,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, la disparition de Will Byers lance l'intrigue de la première saison.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -966,7 +1018,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, Eleven possède des pouvoirs télékinésiques.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1011,7 +1065,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, Hawkins est une véritable ville de Californie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1056,7 +1112,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, Dustin est le frère de Nancy Wheeler.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1101,7 +1159,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, Jim Hopper est le médecin de la ville.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1146,7 +1206,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Last of Us, Joel est chargé d'escorter Ellie à travers les États-Unis.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lY2DhbA7Hy44fAKddr06UrXWWaQ.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1175,7 +1237,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série The Last of Us est adaptée d'un jeu vidéo.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lY2DhbA7Hy44fAKddr06UrXWWaQ.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1204,7 +1268,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Office (version américaine), Michael Scott dirige la succursale de Scranton.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1233,7 +1299,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série The Office américaine est une adaptation d'une série britannique.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1262,7 +1330,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dr House, le docteur House est spécialisé en chirurgie esthétique.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/r0Q6eeN9L1ORL9QsV0Sg8ZV3vnv.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1291,7 +1361,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Sherlock, John Watson est un ancien médecin militaire.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1328,7 +1400,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Squid Game est une production japonaise.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2meX1nMdScFOoV4370rqHWKmXhY.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1369,7 +1443,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans La Casa de Papel, les braqueurs portent des masques à l'effigie de Salvador Dalí.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1402,7 +1478,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans La Casa de Papel, le premier braquage vise la Banque d'Espagne.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1435,7 +1513,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Dark est une production allemande.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3jDXL4Xvj3AzDOF6UH1xeyHW8MH.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1480,7 +1560,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La mini-série Chernobyl raconte la catastrophe nucléaire de 1986.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3URK0z9PzpVNJrGE7XOuyy6KFzk.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1509,7 +1591,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Black Mirror est une série feuilletonnante dont chaque épisode suit les mêmes personnages.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dg3OindVAGZBjlT3xYKqIAdukPL.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1538,7 +1622,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Peaky Blinders, l'action se déroule principalement à Londres.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1571,7 +1657,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Crown, chaque saison fait appel à de nouveaux acteurs pour incarner les personnages vieillissants.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8VXhcrl5z2I1zEU9X3pkkNrZlD.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1600,7 +1688,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Les Simpson, Homer travaille dans une centrale nucléaire.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1633,7 +1723,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Les Simpson, Bart est le plus jeune enfant de la famille.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1666,7 +1758,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans How I Met Your Mother, Barney Stinson est célèbre pour sa collection de costumes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1695,7 +1789,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans X-Files, Dana Scully est médecin de formation.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/w00lfexrsOeR25dO4hsWhbcUnmD.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1736,7 +1832,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Twin Peaks, l'agent Dale Cooper enquête sur une disparition à Portland.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dZklTql88IDOmkC3JAYQSTgyK6f.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1769,7 +1867,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Better Call Saul, l'intrigue se déroule avant les événements de Breaking Bad.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rfxryDIv8huejujg4JueDJx8zCz.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1802,7 +1902,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Lupin est une adaptation directe des romans de Maurice Leblanc.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aY7zv2pfk9H0QxaaL3PBjvalbKQ.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1839,7 +1941,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Le Bureau des légendes, les agents travaillent pour les services secrets français.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3ZIWMs9vRjuss8RJWn2ijGRuwtE.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1872,7 +1976,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série animée Arcane est produite en France par le studio Fortiche.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1901,7 +2007,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Rick et Morty, Rick est un savant qui voyage entre les dimensions.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/iFOkrSrJRwE27PwbyQeYLlMJXzw.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1950,7 +2058,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Succession, la famille Roy dirige un groupe de médias.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/bcdUYUFk8GdpZJPiSAas9UeocLH.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1983,7 +2093,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Severance, les employés gardent le souvenir de leur vie privée pendant leurs heures de travail.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ixgFmf1X59PUZam2qbAfskx2gQr.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2024,7 +2136,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série The Wire se déroule à Baltimore.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/efV8dprxpU1JXNGqepVY68ZaHKZ.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2053,7 +2167,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Mad Men, l'intrigue démarre dans les années 1960.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/A9FdR46H6Fl9p1nOMMRQHKrmtiH.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2082,7 +2198,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Narcos, la première saison est centrée sur le cartel de Sinaloa.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/y9ekzkPFmWSqUU3Kj0wHmYUM8qu.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2115,7 +2233,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Buffy contre les vampires, Buffy est la Tueuse chargée de combattre les forces démoniaques.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lBmlLro9ZfY815ZXE5NKhYNxPRQ.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2156,7 +2276,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Mandalorian, le personnage surnommé « Bébé Yoda » se prénomme en réalité Grogu.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9zcbqSxdsRMZWHYtyCd1nXPr2xq.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2197,7 +2319,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Six Feet Under, la famille Fisher tient un restaurant.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/khj9IoBOKRyEIchEnuWDLWE8v2z.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2226,7 +2350,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Bear, le restaurant se trouve à Chicago.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aJtG4txtmiRHwAAqENQHZvBs6kY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2259,7 +2385,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Les Soprano, Tony Soprano consulte une psychiatre.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lNpkvX2s8LGB0mjGODMT4o6Up7j.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2292,7 +2420,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Daenerys Targaryen élève quatre dragons.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2337,7 +2467,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, le café où le groupe se retrouve s'appelle le Café Central.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2366,7 +2498,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, Eleven doit son surnom au numéro tatoué sur son bras.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2411,7 +2545,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Office (version américaine), la succursale de Dunder Mifflin se trouve à Philadelphie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2440,7 +2576,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Saul Goodman est le beau-frère de Walter White.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2473,7 +2611,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, les épisodes de la première saison durent environ quarante-cinq minutes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2514,7 +2654,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Les Simpson a été lancée dans les années 2000.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2543,7 +2685,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Sherlock, l'action est transposée à l'époque victorienne.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2580,7 +2724,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans South Park, Kenny meurt dans de très nombreux épisodes des premières saisons.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2613,7 +2759,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série South Park se déroule dans l'État de l'Utah.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2642,7 +2790,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Les Simpson, Ned Flanders est le voisin de la famille.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2675,7 +2825,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Les Simpson sont nés de courts métrages diffusés dans le Tracey Ullman Show.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2704,7 +2856,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Sean Bean incarne Eddard Stark.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2753,7 +2907,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, la maison Greyjoy a pour devise « Nous ne semons pas ».",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2798,7 +2954,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Vikings, Rollo est le frère de Ragnar Lothbrok.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2835,7 +2993,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Vikings, Floki est charpentier de navires.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2872,7 +3032,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Vikings a été lancée par la chaîne HBO.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2909,7 +3071,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Handmaid's Tale, le régime théocratique s'appelle Panem.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sokTOq0zAmPS7wCR4qd4Kca35x7.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2954,7 +3118,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "The Handmaid's Tale est adaptée d'un roman de Margaret Atwood.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sokTOq0zAmPS7wCR4qd4Kca35x7.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2999,7 +3165,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Kaamelott a d'abord été diffusée sous forme d'épisodes de quelques minutes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3028,7 +3196,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Perceval et Karadoc sont chevaliers de la Table Ronde.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3069,7 +3239,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Léodagan est le roi de Carmélide.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3110,7 +3282,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Malcolm, Francis est le frère aîné de Malcolm.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/si3OheCrSpEyK2JUtZOThsZPUR4.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3139,7 +3313,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Malcolm, la famille vit dans un quartier très aisé.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/si3OheCrSpEyK2JUtZOThsZPUR4.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3168,7 +3344,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Joey et Chandler sont colocataires.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3197,7 +3375,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Big Bang Theory, Sheldon et Leonard partagent le même appartement.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3226,7 +3406,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Big Bang Theory, Howard Wolowitz est astrophysicien.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3255,7 +3437,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans How I Met Your Mother, Barney Stinson est interprété par Neil Patrick Harris.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3284,7 +3468,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans How I Met Your Mother, toute l'histoire est racontée en flash-back.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3313,7 +3499,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dexter, l'action se déroule à Miami.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3350,7 +3538,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dexter, Debra est la sœur adoptive du héros.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3387,7 +3577,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série That '70s Show se déroule dans les années 1980.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rf2uHKzPniVL5LvSVxg5ACxv4cS.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3416,7 +3608,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans That '70s Show, Ashton Kutcher incarne Michael Kelso.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rf2uHKzPniVL5LvSVxg5ACxv4cS.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3453,7 +3647,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans La Casa de Papel, les membres du groupe se donnent des noms de villes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3486,7 +3682,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Squid Game, les gardiens portent des combinaisons roses et des masques ornés de formes géométriques.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2meX1nMdScFOoV4370rqHWKmXhY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3527,7 +3725,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, Eddie Munson apparaît dès la première saison.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3572,7 +3772,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Stranger Things, le Hellfire Club est un club de jeu de rôle.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3617,7 +3819,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "American Horror Story est une série d'anthologie dont chaque saison raconte une histoire close.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/6TSJRc77dDOesKzcNqkz0KeXdLz.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3646,7 +3850,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Black Mirror est britannique à l'origine.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dg3OindVAGZBjlT3xYKqIAdukPL.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3687,7 +3893,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Mindhunter compte cinq saisons.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lpDVJuIro21gtMj9iXMFKHuroZN.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3720,7 +3928,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Mindhunter, l'intrigue se déroule dans les années 1970.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lpDVJuIro21gtMj9iXMFKHuroZN.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3757,7 +3967,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Walter White rachète un lavage de voitures pour blanchir son argent.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3790,7 +4002,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Lucifer est adaptée d'un personnage de comics.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mAXOCbZzvmDa6PCh5dcIPOB51Qc.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3827,7 +4041,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Lucifer, le héros prête main-forte à la police de Los Angeles.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mAXOCbZzvmDa6PCh5dcIPOB51Qc.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3864,7 +4080,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Peaky Blinders, Cillian Murphy incarne Thomas Shelby.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3897,7 +4115,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Euphoria est diffusée par HBO.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mez2Z3WqlPKNXpi7mWoiiE5guE9.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3926,7 +4146,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Boys, les super-héros sont présentés comme des modèles de vertu.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/n6vVs6z8obNbExdD3QHTr4Utu1Z.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3967,7 +4189,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Boys, Karl Urban incarne Billy Butcher.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/n6vVs6z8obNbExdD3QHTr4Utu1Z.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4008,7 +4232,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Famille d'abord met en scène une famille afro-américaine.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9xIwhzgBoTejiN1zv9VRHUKkpBt.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4037,7 +4263,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dr House, le personnage principal dirige le service de chirurgie de l'hôpital.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/r0Q6eeN9L1ORL9QsV0Sg8ZV3vnv.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4066,7 +4294,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Scrubs, J.D. est interne en médecine au début de la série.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4095,7 +4325,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Better Call Saul est un spin-off de Breaking Bad.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rfxryDIv8huejujg4JueDJx8zCz.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4124,7 +4356,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Better Call Saul, le personnage de Mike Ehrmantraut est également présent.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rfxryDIv8huejujg4JueDJx8zCz.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4157,7 +4391,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Chaque saison de The White Lotus se déroule dans un établissement différent.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/qVBIAcZkK5j6WRq7JehJcOMbdgb.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4186,7 +4422,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La Flamme est une parodie d'émission de télé-réalité sentimentale.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/fiQQt9Y9wBi8qthevNnz1RyOm5p.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4215,7 +4453,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Le Flambeau reprend l'univers et l'équipe de La Flamme.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/a89SLEtX9AsooDEHOXKoSvj9BRG.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4244,7 +4484,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Dark est une production allemande diffusée par Netflix.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3jDXL4Xvj3AzDOF6UH1xeyHW8MH.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4289,7 +4531,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série française H se déroule dans un hôpital.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9dIHQnqE2v7Bi1ze0hPeBZDAWJt.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4318,7 +4562,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans la série H, Jamel Debbouze, Éric Judor et Ramzy Bedia tiennent les rôles principaux.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9dIHQnqE2v7Bi1ze0hPeBZDAWJt.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4347,7 +4593,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La Petite Maison dans la prairie est adaptée des récits de Laura Ingalls Wilder.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uCvpgfY4oTeZxEcFqm1ATJkDDmu.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4376,7 +4624,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans La Petite Maison dans la prairie, Michael Landon incarne Charles Ingalls.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uCvpgfY4oTeZxEcFqm1ATJkDDmu.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4413,7 +4663,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Notre belle famille met en scène une famille recomposée.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aUSTj1kif2dqt65POwHrcyjhXRg.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4442,7 +4694,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Une nounou d'enfer, Fran Fine est originaire du Bronx.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/hCUOckGQ4WnYRoCPFSTdxxErnr7.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4475,7 +4729,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans X-Files, Mulder est le sceptique du duo et Scully celle qui croit au paranormal.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/w00lfexrsOeR25dO4hsWhbcUnmD.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4516,7 +4772,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Charmed, les trois sœurs vivent à San Francisco.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ueZFcwAUvkjyAB9beaiqJyg0M8H.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4561,7 +4819,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans You, Joe Goldberg est un libraire aux obsessions inquiétantes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gzOIymABxmetAECXtazEYCpMmfb.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4598,7 +4858,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Once Upon a Time mêle personnages de contes de fées et monde contemporain.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nSJvwZziYaGMbftSDQqQ5GIb47a.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4627,7 +4889,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série Bates Motel est une préquelle du film Psychose.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/qt3NbzjWRconY6KRGaczte6DmAF.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4664,7 +4928,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Young Sheldon raconte l'enfance de Sheldon Cooper au Texas.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nlDBlCtorM7nx130wYnfR5ZmyLX.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4693,7 +4959,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Mon oncle Charlie, Ashton Kutcher rejoint la série après le départ de Charlie Sheen.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2pOmuq4nkWZzwZbOfZq7CyyQAsM.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4722,7 +4990,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La série The Middle se déroule en Californie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/82D01BlixH1JD0BCQoERabDjp7h.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4751,7 +5021,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans New Girl, Jess emménage avec trois colocataires masculins.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/959IFVeGqz2M6qGvQ1RxN2r6Mq6.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4780,7 +5052,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Le Prince de Bel-Air, la famille de l'oncle Phil vit à Brooklyn.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uyB27Tx3KtczuSo4tDfmiXhfuCp.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4813,7 +5087,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Le Prince de Bel-Air, Will Smith joue un personnage qui porte son propre prénom.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uyB27Tx3KtczuSo4tDfmiXhfuCp.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4846,7 +5122,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La version américaine de Shameless est adaptée d'une série britannique.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5s9XHTB9SLPdg3mNU6BlSLnZ9Qq.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4875,7 +5153,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Shameless, la famille Gallagher vit à Détroit.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5s9XHTB9SLPdg3mNU6BlSLnZ9Qq.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4908,7 +5188,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans South Park, Eric Cartman est présenté comme le plus altruiste de la bande.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4941,7 +5223,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Les Simpson, Bart est le plus âgé des enfants de la famille.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4974,7 +5258,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans American Horror Story, tous les épisodes suivent les mêmes personnages d'une saison à l'autre.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/6TSJRc77dDOesKzcNqkz0KeXdLz.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5015,7 +5301,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans La Casa de Papel, le premier braquage vise le musée du Prado.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5048,7 +5336,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dexter, le héros est expert en balistique.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5085,7 +5375,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Charmed, le grimoire familial s'appelle le Livre des Ombres.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ueZFcwAUvkjyAB9beaiqJyg0M8H.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -5130,7 +5422,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Scrubs, l'hôpital se nomme Princeton-Plainsboro.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5159,7 +5453,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Young Sheldon, le personnage principal est déjà professeur d'université.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nlDBlCtorM7nx130wYnfR5ZmyLX.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5196,7 +5492,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans South Park, Kenny est le personnage le plus riche du groupe.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5229,7 +5527,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Les Simpson ont été créés directement en tant que série, sans passer par des courts métrages.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5258,7 +5558,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Game of Thrones, Ned Stark survit jusqu'à la dernière saison.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5307,7 +5609,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Vikings, Floki est présenté comme un guerrier sans aucun talent artisanal.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5344,7 +5648,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "The Handmaid's Tale est une série originale sans support littéraire.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sokTOq0zAmPS7wCR4qd4Kca35x7.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5373,7 +5679,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Kaamelott, Léodagan est le roi d'Orcanie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5414,7 +5722,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Malcolm, la famille Wilkerson vit dans un quartier huppé.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/si3OheCrSpEyK2JUtZOThsZPUR4.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5443,7 +5753,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Chandler et Joey vivent chacun seuls dans des appartements différents.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5472,7 +5784,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Big Bang Theory, Howard Wolowitz est titulaire d'un doctorat en physique.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5501,7 +5815,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans How I Met Your Mother, l'histoire est racontée en temps réel, sans retour en arrière.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5530,7 +5846,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dexter, l'action se déroule à Boston.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5567,7 +5885,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "That '70s Show se déroule dans les années 1990.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rf2uHKzPniVL5LvSVxg5ACxv4cS.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5596,7 +5916,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans La Casa de Papel, les braqueurs utilisent leurs vrais noms pendant l'opération.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5629,7 +5951,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Squid Game est une production nord-américaine.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2meX1nMdScFOoV4370rqHWKmXhY.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5658,7 +5982,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "American Horror Story reprend les mêmes personnages et la même intrigue à chaque saison.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/6TSJRc77dDOesKzcNqkz0KeXdLz.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5687,7 +6013,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Mindhunter se déroule dans les années 2000.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lpDVJuIro21gtMj9iXMFKHuroZN.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5720,7 +6048,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Breaking Bad, Walter White est agent de la DEA au début de la série.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5753,7 +6083,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Lucifer est un personnage entièrement original, sans lien avec les comics DC.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mAXOCbZzvmDa6PCh5dcIPOB51Qc.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5782,7 +6114,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Peaky Blinders, l'intrigue se déroule au XXIe siècle.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5815,7 +6149,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Boys, Vought est présentée comme une organisation caritative sans but lucratif.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/n6vVs6z8obNbExdD3QHTr4Utu1Z.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5856,7 +6192,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Dr House, le personnage principal se déplace sans aucune difficulté physique.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/r0Q6eeN9L1ORL9QsV0Sg8ZV3vnv.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5885,7 +6223,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Better Call Saul se déroule après les événements de Breaking Bad.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rfxryDIv8huejujg4JueDJx8zCz.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5914,7 +6254,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans la série H, l'action se déroule dans un commissariat.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9dIHQnqE2v7Bi1ze0hPeBZDAWJt.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5943,7 +6285,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La Petite Maison dans la prairie est une série entièrement originale, sans œuvre littéraire à l'origine.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uCvpgfY4oTeZxEcFqm1ATJkDDmu.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5972,7 +6316,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans X-Files, Dana Scully est présentée comme crédule face au paranormal, à l'inverse de Mulder.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/w00lfexrsOeR25dO4hsWhbcUnmD.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -6013,7 +6359,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Bates Motel est une suite du film Psychose, se déroulant après son intrigue.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/qt3NbzjWRconY6KRGaczte6DmAF.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -6042,7 +6390,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Le Prince de Bel-Air se déroule intégralement à Philadelphie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uyB27Tx3KtczuSo4tDfmiXhfuCp.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -6071,7 +6421,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "La version américaine de Shameless est une série totalement originale, sans version antérieure.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5s9XHTB9SLPdg3mNU6BlSLnZ9Qq.jpg"
+    },
     "correct_answer": {
       "value": false
     },

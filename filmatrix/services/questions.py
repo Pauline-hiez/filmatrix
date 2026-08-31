@@ -6,6 +6,7 @@ Elles ne dépendent que du modèle et de la session, leur place est ici.
 """
 
 import random
+import unicodedata
 
 from flask import session
 from flask_login import current_user
@@ -13,7 +14,7 @@ from sqlalchemy import func
 
 from filmatrix.extensions import db
 from filmatrix.game_modes import MIX_MODE_SLUG
-from filmatrix.models import Question, Tag, question_tags
+from filmatrix.models import Character, Question, Tag, question_tags
 from filmatrix.services.character_answers import CHARACTER_ANSWERS
 from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
 
@@ -331,16 +332,155 @@ def find_question(
 
     return query.offset(position - 1).limit(1).first()
 
-def shuffle_options(question) -> list[tuple[int, str]]:
-    """Mélange les propositions d'un QCM, chacune gardant son index d'origine
+def _media_key(value: str) -> str:
+    """Normalise un titre pour pouvoir retrouver son illustration."""
+    decomposed = unicodedata.normalize("NFKD", value.lower())
+    without_accents = "".join(
+        char for char in decomposed if not unicodedata.combining(char)
+    )
+    return " ".join(
+        "".join(char if char.isalnum() else " " for char in without_accents).split()
+    )
+
+
+def option_label(option) -> str:
+    """Retourne le texte d'une option, qu'elle soit une chaîne ou un objet enrichi."""
+    if isinstance(option, dict):
+        return str(option.get("label") or option.get("text") or "")
+    return str(option)
+
+
+def option_image_url(question, option_index: int, option) -> str | None:
+    """Résout l'image d'une option QCM sans rendre les images obligatoires.
+
+    Priorité aux métadonnées ajoutées directement au QCM, puis aux affiches déjà
+    présentes dans les questions `devinette_affiche` du même type de contenu.
+    Les noms d'acteurs et de réalisateurs restent donc affichés en texte tant
+    qu'aucun portrait n'est réellement fourni par les données.
+    """
+    payload = question.payload or {}
+    explicit_images = payload.get("option_images")
+
+    if isinstance(explicit_images, list) and option_index < len(explicit_images):
+        image_url = explicit_images[option_index]
+        if image_url:
+            return image_url
+    elif isinstance(explicit_images, dict):
+        image_url = explicit_images.get(str(option_index)) or explicit_images.get(option_index)
+        if image_url:
+            return image_url
+
+    if isinstance(option, dict) and option.get("image_url"):
+        return option["image_url"]
+
+    label = option_label(option).strip()
+    if not label:
+        return None
+
+    # Un portrait de collection déjà enregistré peut illustrer directement un
+    # choix de personnage. La recherche reste locale : aucun appel réseau ne doit
+    # ralentir ou rendre aléatoire l'affichage d'une partie.
+    character = Character.query.filter_by(name=label).first()
+    if character and character.image_url:
+        return character.image_url
+
+    # Les affiches des modes image constituent le catalogue local d'illustrations
+    # des œuvres. On ne fait jamais de recherche réseau pendant l'affichage d'une
+    # question, et une réponse sans correspondance conserve son rendu texte.
+    poster_questions = Question.query.filter_by(
+        mode="devinette_affiche", content_type=question.content_type
+    ).all()
+    wanted_key = _media_key(label)
+    for poster_question in poster_questions:
+        answer = poster_question.correct_answer or {}
+        title = answer.get("film") or answer.get("title")
+        poster_url = (poster_question.payload or {}).get("poster_url")
+        if title and poster_url and _media_key(title) == wanted_key:
+            return poster_url
+
+    return None
+
+
+def shuffle_options(
+    question, shuffler=None
+) -> list[tuple[int, str, str | None]]:
+    """Mélange les propositions d'un QCM avec leur index et leur image éventuelle.
 
     La bonne réponse est l'option 0 dans la majorité des questions : sans
     mélange, le joueur finit par répondre au réflexe. C'est bien l'index
-    d'origine qui repart au serveur, la vérification reste donc inchangée"""
-    options = list(enumerate(question.payload["options"]))
-    random.shuffle(options)
+    d'origine qui repart au serveur, la vérification reste donc inchangée.
+    """
+    options = [
+        (index, option_label(option), option_image_url(question, index, option))
+        for index, option in enumerate(question.payload["options"])
+    ]
+    (shuffler or random).shuffle(options)
 
     return options
+
+
+def question_image_url(question) -> str | None:
+    """Retourne l'affiche de contexte d'une question QCM uniquement.
+
+    Les modes Casting et Devinette doivent conserver leurs propres indices et
+    ne doivent jamais recevoir l'affiche de l'œuvre à deviner. L'URL enrichie
+    est prioritaire. Pour une ancienne question sans champ
+    d'image, on réutilise une affiche déjà enregistrée dans n'importe quel
+    mode, lorsque le titre apparaît explicitement dans l'énoncé. Aucun appel
+    réseau n'est effectué pendant le rendu d'une partie.
+    """
+    if question.mode != "qcm":
+        return None
+
+    payload = question.payload or {}
+    direct_url = payload.get("question_image_url") or payload.get("poster_url")
+    if direct_url:
+        return direct_url
+
+    prompt_key = _media_key(question.prompt or "")
+    if prompt_key:
+        # Le catalogue d'affiches ne se limite pas à devinette-affiche : les
+        # enrichissements des citations, blind tests et devinettes peuvent aussi
+        # servir de source à une ancienne question QCM.
+        illustrated_questions = Question.query.filter_by(
+            content_type=question.content_type
+        ).all()
+        candidates = []
+        for illustrated_question in illustrated_questions:
+            illustrated_payload = illustrated_question.payload or {}
+            image_url = illustrated_payload.get("question_image_url") or illustrated_payload.get("poster_url")
+            answer = illustrated_question.correct_answer or {}
+            title = answer.get("film") or answer.get("title")
+            if not title or not image_url:
+                continue
+            title_key = _media_key(title)
+            if len(title_key) >= 4 and title_key in prompt_key:
+                candidates.append((len(title_key), image_url))
+        if candidates:
+            return max(candidates, key=lambda candidate: candidate[0])[1]
+
+    # Les modes qui ont déjà une œuvre comme réponse peuvent utiliser son
+    # affiche, même lorsque le titre n'est pas répété dans l'énoncé.
+    answer = question.correct_answer or {}
+    title = answer.get("film") or answer.get("title")
+    if title:
+        wanted_key = _media_key(title)
+        illustrated_questions = Question.query.filter_by(
+            content_type=question.content_type
+        ).all()
+        for illustrated_question in illustrated_questions:
+            illustrated_payload = illustrated_question.payload or {}
+            image_url = illustrated_payload.get("question_image_url") or illustrated_payload.get("poster_url")
+            illustrated_answer = illustrated_question.correct_answer or {}
+            illustrated_title = illustrated_answer.get("film") or illustrated_answer.get("title")
+            if (
+                illustrated_title
+                and image_url
+                and _media_key(illustrated_title) == wanted_key
+            ):
+                return image_url
+
+    return None
 
 
 def content_label(question) -> str:
@@ -410,7 +550,7 @@ def format_correct_answer(question, alternate_answer: str | None = None) -> str:
     """Formate la bonne réponse, éventuellement adaptée au contexte de la partie."""
     if question.mode == "qcm":
         index = question.correct_answer["index"]
-        return question.payload["options"][index]
+        return option_label(question.payload["options"][index])
     if question.mode == "vrai_faux":
         return  "Vrai" if question.correct_answer["value"] else "Faux"
     if question.mode == "chronologie":

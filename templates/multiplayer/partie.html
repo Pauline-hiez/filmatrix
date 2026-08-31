@@ -105,6 +105,13 @@
                 </div>
 
                 <div class="game-question-panel">
+                    {% if question.mode == "qcm" and question_image_url %}
+                        <div class="game-question-media" aria-label="Affiche de l’œuvre concernée">
+                            <img src="{{ question_image_url }}" alt="Affiche de l’œuvre" loading="eager" referrerpolicy="no-referrer"
+                                 onerror="this.parentElement.hidden=true;">
+                        </div>
+                    {% endif %}
+
                     {% if question.mode == "film_melange" %}
                         <h1 class="mb-6 text-center text-2xl font-extrabold tracking-[0.2em] text-slate-100">
                             {{ scrambled_title }}
@@ -161,12 +168,22 @@
                     <div class="game-answer-zone" id="answer-zone">
                         {% if question.mode == "qcm" %}
                             <div class="game-answer-grid">
-                                {% for original_index, option in options %}
+                            {% for option_entry in options %}
+                            {% set original_index = option_entry[0] %}
+                            {% set option = option_entry[1] %}
+                            {% set option_image = option_entry[2] if option_entry|length > 2 else (question.payload.get("option_images", [])[original_index] if question.payload.get("option_images") else none) %}
                                 <button type="button" data-answer="{{ original_index }}"
-                                        class="game-answer-button rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
-                                    {{ option }}
+                                        class="game-answer-button game-answer-card rounded-lg border border-cyan-400/30 bg-slate-950/60 px-4 py-3 text-left transition hover:border-cyan-400 hover:bg-slate-800">
+                                    <span class="game-answer-letter">{{ ["A", "B", "C", "D", "E", "F"][loop.index0] }}</span>
+                                    {% if option_image %}
+                                    <span class="game-answer-image-wrap">
+                                        <img src="{{ option_image }}" alt="" class="game-answer-image" loading="lazy" referrerpolicy="no-referrer"
+                                             onerror="this.parentElement.hidden=true;">
+                                    </span>
+                                    {% endif %}
+                                    <span class="game-answer-text">{{ option }}</span>
                                 </button>
-                                {% endfor %}
+                            {% endfor %}
                             </div>
                         {% elif question.mode == "vrai_faux" %}
                             <div class="game-answer-grid">

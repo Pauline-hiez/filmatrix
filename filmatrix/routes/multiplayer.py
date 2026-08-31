@@ -9,6 +9,7 @@ from filmatrix.extensions import db, socketio
 from filmatrix.models import GameSession, User
 from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
 from filmatrix.services.engine import scramble_title
+from filmatrix.services.questions import question_image_url, shuffle_options
 from filmatrix.services.friends import friend_cards, get_friends_list, get_friendship_between
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.multiplayer import (
@@ -223,8 +224,10 @@ def play_game(game_session_id: int) -> str:
     # dans le même ordre, pour que la course reste à la loyale.
     options = None
     if current_question.mode == "qcm":
-        options = list(enumerate(current_question.payload["options"]))
-        random.Random(shared_seed).shuffle(options)
+        options = shuffle_options(
+            current_question,
+            shuffler=random.Random(shared_seed),
+        )
 
     # En solo le joueur écrit le titre ; en duel il le choisit. Il n'a droit
     # qu'à un essai, et une faute de frappe lui coûterait le point sans
@@ -256,6 +259,7 @@ def play_game(game_session_id: int) -> str:
             question_duration=QUESTION_DURATION,
             display_host_score=display_host_score,
             display_guest_score=display_guest_score,
+            question_image_url=question_image_url(current_question),
         )
 
 @bp.route("/multijoueur/<int:game_session_id>/quitter", methods=["POST"])

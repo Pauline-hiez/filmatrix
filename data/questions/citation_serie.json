@@ -4,7 +4,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Comment tu vas ? » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "film": "Friends"
     },
@@ -33,7 +35,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« On avait rompu ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "film": "Friends"
     },
@@ -62,7 +66,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Est-ce que je pourrais être plus… ? » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "film": "Friends"
     },
@@ -91,7 +97,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Pivot ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "film": "Friends"
     },
@@ -120,7 +128,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Je serai toujours là pour toi » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "film": "Friends"
     },
@@ -149,7 +159,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Je suis celui qui frappe à la porte ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "film": "Breaking Bad"
     },
@@ -182,7 +194,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Dis mon nom. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "film": "Breaking Bad"
     },
@@ -215,7 +229,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Oui, la science ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "film": "Breaking Bad"
     },
@@ -248,7 +264,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Je suis le danger. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "film": "Breaking Bad"
     },
@@ -281,7 +299,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Marche doucement. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "film": "Breaking Bad"
     },
@@ -314,7 +334,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« L’hiver arrive. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "film": "Game of Thrones"
     },
@@ -359,7 +381,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Tu ne sais rien, Jon Snow. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "film": "Game of Thrones"
     },
@@ -404,7 +428,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Dracarys ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "film": "Game of Thrones"
     },
@@ -449,7 +475,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Tiens la porte ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "film": "Game of Thrones"
     },
@@ -494,7 +522,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Un Lannister paie toujours ses dettes. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
+    },
     "correct_answer": {
       "film": "Game of Thrones"
     },
@@ -539,7 +569,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« C'est pas faux. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "film": "Kaamelott"
     },
@@ -580,7 +612,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« On en a gros ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "film": "Kaamelott"
     },
@@ -621,7 +655,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Le gras, c'est la vie. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
+    },
     "correct_answer": {
       "film": "Kaamelott"
     },
@@ -662,7 +698,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Les amis ne mentent pas. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "film": "Stranger Things"
     },
@@ -707,7 +745,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« C’est notre amie et elle est folle ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "film": "Stranger Things"
     },
@@ -752,7 +792,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Les matins sont faits pour le café et la contemplation. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "film": "Stranger Things"
     },
@@ -797,7 +839,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Pourquoi gardes-tu cette porte de curiosité fermée à clé ? » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "film": "Stranger Things"
     },
@@ -842,7 +886,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Chrissy, wake up! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
+    },
     "correct_answer": {
       "film": "Stranger Things"
     },
@@ -887,7 +933,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« C’est ce qu’elle a dit. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
+    },
     "correct_answer": {
       "film": "The Office"
     },
@@ -916,7 +964,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Si tu t’attaques au roi, tu as intérêt à ne pas le rater. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/efV8dprxpU1JXNGqepVY68ZaHKZ.jpg"
+    },
     "correct_answer": {
       "film": "The Wire"
     },
@@ -949,7 +999,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Ainsi soit-il pour nous tous. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sEjNaoENrqIZONKNn1iLFB0Us9k.jpg"
+    },
     "correct_answer": {
       "film": "Battlestar Galactica"
     },
@@ -994,7 +1046,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Exterminez ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8VWgyQjExeMgeg6Qzv6agduMU1A.jpg"
+    },
     "correct_answer": {
       "film": "Doctor Who"
     },
@@ -1084,7 +1138,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Mange mon short ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "film": "Les Simpson"
     },
@@ -1117,7 +1173,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Oh mon Dieu, ils ont tué Kenny ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
     "correct_answer": {
       "film": "South Park"
     },
@@ -1150,7 +1208,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Tout le monde ment. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/r0Q6eeN9L1ORL9QsV0Sg8ZV3vnv.jpg"
+    },
     "correct_answer": {
       "film": "Dr House"
     },
@@ -1179,7 +1239,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Le jeu est lancé ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
+    },
     "correct_answer": {
       "film": "Sherlock"
     },
@@ -1216,7 +1278,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Legen… wait for it… dary! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
+    },
     "correct_answer": {
       "film": "How I Met Your Mother"
     },
@@ -1245,7 +1309,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Bazinga ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
+    },
     "correct_answer": {
       "film": "The Big Bang Theory"
     },
@@ -1274,7 +1340,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« La vérité est ailleurs. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/w00lfexrsOeR25dO4hsWhbcUnmD.jpg"
+    },
     "correct_answer": {
       "film": "X-Files"
     },
@@ -1315,7 +1383,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Un café sacrément bon ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dZklTql88IDOmkC3JAYQSTgyK6f.jpg"
+    },
     "correct_answer": {
       "film": "Twin Peaks"
     },
@@ -1348,7 +1418,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Il faut qu’on y retourne ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/yUOFocKDW7MCC5isx4FK8A68QFp.jpg"
+    },
     "correct_answer": {
       "film": "Lost"
     },
@@ -1389,7 +1461,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Ce soir, c’est le grand soir. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
     "correct_answer": {
       "film": "Dexter"
     },
@@ -1426,7 +1500,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Le temps est un cercle plat. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/v8YFr8BbU9qsO8PYIulzTeM6Qk.jpg"
+    },
     "correct_answer": {
       "film": "True Detective"
     },
@@ -1459,7 +1535,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« C’est la voie. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9zcbqSxdsRMZWHYtyCd1nXPr2xq.jpg"
+    },
     "correct_answer": {
       "film": "The Mandalorian"
     },
@@ -1500,7 +1578,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Plata o plomo. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/y9ekzkPFmWSqUU3Kj0wHmYUM8qu.jpg"
+    },
     "correct_answer": {
       "film": "Narcos"
     },
@@ -1533,7 +1613,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Quel est le prix des mensonges ? » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3URK0z9PzpVNJrGE7XOuyy6KFzk.jpg"
+    },
     "correct_answer": {
       "film": "Chernobyl"
     },
@@ -1562,7 +1644,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Ah, encore une chose… » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/d7cH4zt3xoqRQnLqYXMPOrUz5k3.jpg"
+    },
     "correct_answer": {
       "film": "Columbo"
     },
@@ -1599,7 +1683,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« J'adore quand un plan se déroule sans accroc. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/h6qWlFERbEgvppyAsiPWqcYG0LR.jpg"
+    },
     "correct_answer": {
       "film": "L'Agence tous risques"
     },
@@ -1640,7 +1726,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Wubba lubba dub dub! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/iFOkrSrJRwE27PwbyQeYLlMJXzw.jpg"
+    },
     "correct_answer": {
       "film": "Rick et Morty"
     },
@@ -1689,7 +1777,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Béni soit le fruit. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sokTOq0zAmPS7wCR4qd4Kca35x7.jpg"
+    },
     "correct_answer": {
       "film": "The Handmaid's Tale"
     },
@@ -1734,7 +1824,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Ces plaisirs violents ont des fins violentes. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rX5hvSRB2k4YoIvRg6Zky52rWk0.jpg"
+    },
     "correct_answer": {
       "film": "Westworld"
     },
@@ -1771,7 +1863,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Cool cool cool cool cool. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9AeiA1XtP5sel2tAf9LaGeUjhDb.jpg"
+    },
     "correct_answer": {
       "film": "Brooklyn Nine-Nine"
     },
@@ -1804,7 +1898,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Fais-toi plaisir ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/frwl2zBNAl5ZbFDJGoJv0mYo0rF.jpg"
+    },
     "correct_answer": {
       "film": "Parks and Recreation"
     },
@@ -1833,7 +1929,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Pas de soupe pour toi ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tMRdEsMg9MyXAkcufK9YJEeIaNW.jpg"
+    },
     "correct_answer": {
       "film": "Seinfeld"
     },
@@ -1862,7 +1960,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Choisis-moi, aime-moi. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jP0Rhj9OTPDAwQlHQwOLFDdeE8t.jpg"
+    },
     "correct_answer": {
       "film": "Grey's Anatomy"
     },
@@ -1891,7 +1991,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Je ne pouvais m’empêcher de me demander… » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jvHw1zF20kYA9gbF2VprXD6uJpq.jpg"
+    },
     "correct_answer": {
       "film": "Sex and the City"
     },
@@ -1924,7 +2026,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« J'ai appris quelque chose aujourd'hui. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
+    },
     "correct_answer": {
       "film": "South Park"
     },
@@ -1957,7 +2061,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« D'oh ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
+    },
     "correct_answer": {
       "film": "Les Simpson"
     },
@@ -1990,7 +2096,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Que le Seigneur ouvre. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sokTOq0zAmPS7wCR4qd4Kca35x7.jpg"
+    },
     "correct_answer": {
       "film": "The Handmaid's Tale"
     },
@@ -2035,7 +2143,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« C'est ma place. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
+    },
     "correct_answer": {
       "film": "The Big Bang Theory"
     },
@@ -2064,7 +2174,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Défi accepté ! » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3f8aW6vcYRP6mTZdgXm83BiuB9t.jpg"
+    },
     "correct_answer": {
       "film": "How I Met Your Mother"
     },
@@ -2093,7 +2205,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Dis-moi, que désires-tu vraiment ? » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mAXOCbZzvmDa6PCh5dcIPOB51Qc.jpg"
+    },
     "correct_answer": {
       "film": "Lucifer"
     },
@@ -2130,7 +2244,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Par ordre des Peaky Blinders. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
+    },
     "correct_answer": {
       "film": "Peaky Blinders"
     },
@@ -2163,7 +2279,9 @@
     "mode": "citation",
     "content_type": "serie",
     "prompt": "« Le Pouvoir des Trois nous libérera. » — De quelle série vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ueZFcwAUvkjyAB9beaiqJyg0M8H.jpg"
+    },
     "correct_answer": {
       "film": "Charmed"
     },

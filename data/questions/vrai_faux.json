@@ -4,7 +4,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Titanic est sorti en 1997.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -29,7 +31,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Avatar (2009) est réalisé par Christopher Nolan.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -54,7 +58,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Steven Spielberg a réalisé Jurassic Park.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -75,7 +81,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Leonardo DiCaprio a remporté l'Oscar du meilleur acteur pour Titanic.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -100,7 +108,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le Parrain (1972) est réalisé par Martin Scorsese.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -150,7 +160,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Christopher Nolan a réalisé Interstellar.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -179,7 +191,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Alien (1979) est réalisé par Ridley Scott.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -200,7 +214,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Psychose (1960) est réalisé par Alfred Hitchcock.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mufF1aYvwdpKerhq5R1YrVcbJLY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -225,7 +241,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Matrix est sorti en 1999.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -246,7 +264,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le Roi Lion (1994) est un film en prises de vues réelles.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -275,7 +295,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Jurassic Park est adapté d'un roman de Michael Crichton.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -296,7 +318,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Parasite est le premier film non anglophone à remporter l'Oscar du meilleur film.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -330,7 +354,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Marlon Brando est venu chercher en personne son Oscar pour Le Parrain.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -355,7 +381,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Le Voyage de Chihiro, les parents de Chihiro sont transformés en cochons.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dyJvKsNs2KP8qQnAXbRwDjblViy.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -388,7 +416,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Shining (1980) est adapté d'un roman de Stephen King.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AdKA2F1SzYPhSZdEbjH1Zh75UVQ.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -417,7 +447,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Retour vers le futur, Marty McFly voyage dans le temps à bord d'une Ford Mustang.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -454,7 +486,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Intouchables est inspiré d'une histoire vraie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/q6OGlZ1KMEb14AC8KbPCxyNOal6.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -483,7 +517,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Ridley Scott a réalisé Blade Runner 2049.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/hJ5R9d6QuH3tzr8L8neZZTuzNXm.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -512,7 +548,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Le Silence des agneaux, Anthony Hopkins remporte l'Oscar du meilleur acteur pour un rôle de moins de vingt minutes à l'écran.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -545,7 +583,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Les Dents de la mer est réalisé par Steven Spielberg.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -578,7 +618,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Alien, le personnage de Ripley est interprété par Jodie Foster.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -640,7 +682,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Quentin Tarantino a réalisé Fight Club.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -669,7 +713,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans La La Land, Ryan Gosling incarne un pianiste de jazz.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nlPCdZlHtRNcF6C9hzUH4ebmV1w.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -702,7 +748,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Amélie Poulain a remporté l'Oscar du meilleur film étranger.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/6n53UI4mX9QMfe2S0Pgt8mGebY1.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -731,7 +779,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Matrix, Neo choisit la pilule bleue que lui tend Morpheus.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -764,7 +814,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Parasite a été tourné en japonais.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -797,7 +849,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Forrest Gump, Forrest devient champion de boxe.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -830,7 +884,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Gladiator est réalisé par Steven Spielberg.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -863,7 +919,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Le Roi Lion, Scar est le frère de Simba.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -900,7 +958,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Bohemian Rhapsody, Rami Malek a remporté l'Oscar du meilleur acteur pour son interprétation de Freddie Mercury.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -929,7 +989,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Bohemian Rhapsody se conclut par la reconstitution du concert du Live Aid.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -979,7 +1041,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Bob Marley: One Love, le rôle-titre est tenu par Daniel Kaluuya.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lHPap2xBR7DgWLiu6RsfKESgzAi.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1012,7 +1076,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Aline est réalisé par Valérie Lemercier, qui en tient aussi le rôle principal.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/vlrRGSoCpoSoVzX9Y1JS6rni3Ym.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1049,7 +1115,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Wayne's World, Wayne et Garth animent leur émission depuis un sous-sol.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lAvf5zzyOgTZmpRBRJFa7IVVqCK.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1082,7 +1150,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Maman, j'ai raté l'avion !, la famille de Kevin part en vacances à Londres.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ih2xVgeMS8R5WUetYE8Mr9hVTlB.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1148,7 +1218,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Austin Powers, le héros est cryogénisé dans les années 1960 avant d'être réveillé bien plus tard.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/wSm5McaHSAyOx4gGRYdlDHzj00y.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1185,7 +1257,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Les Visiteurs, Jacquouille est le cousin de Godefroy de Montmirail.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1218,7 +1292,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Les Visiteurs, Godefroy de Montmirail est projeté du Moyen Âge à l'époque contemporaine.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1288,7 +1364,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Projet X, la fête est organisée pendant l'absence des parents.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/cUqXHZtnptgvyAE1hN47Wsf3ami.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1371,7 +1449,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Hostel se déroule principalement en Slovaquie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dF6GNQ0TnZkr1t4wBt36Xc0Pccd.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1400,7 +1480,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "La Colline a des yeux (2006) est le remake d'un film de Wes Craven.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/41oCubeJ4tkEI7r8QZmUTbChFRX.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1536,7 +1618,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans L'Exorciste, la fillette possédée se prénomme Rosemary.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/xcjJ5khg2yzOa282mza39Lbrm7j.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1590,7 +1674,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans La Maison de cire (2005), Paris Hilton fait partie de la distribution.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2J7re6BvXXxLFXCYZpTUmRKkTHn.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1623,7 +1709,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Simetierre est adapté d'un roman de Dean Koontz.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8iZjnNSIH4teZERl0VjUeHHVrec.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1648,7 +1736,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Misery, Annie Wilkes se présente comme la plus grande admiratrice de l'écrivain qu'elle séquestre.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rUAn3Ul1tL7JXMjZ951UOI3F0UA.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1681,7 +1771,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Hérédité et Midsommar sont tous deux réalisés par Ari Aster.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1706,7 +1798,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Midsommar se déroule majoritairement de nuit.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1731,7 +1825,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans The Descent, l'expédition est exclusivement composée de femmes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9T5D5RGuCsC6CeqYZJTv4rT4RPy.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1760,7 +1856,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film The Descent se déroule dans les Alpes françaises.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9T5D5RGuCsC6CeqYZJTv4rT4RPy.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1785,7 +1883,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans American Psycho, Patrick Bateman travaille dans la finance à New York.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5oaMV2q0qzxkIW2ukU3lldLu5q2.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1818,7 +1918,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Fight Club, Edward Norton incarne Tyler Durden.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -1855,7 +1957,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Suicide Squad (2016), Jared Leto incarne le Joker.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rlay2M5QYvi6igbGcFjq8jxeusY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1888,7 +1992,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Le Seigneur des Anneaux, Sean Bean incarne Boromir.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -1929,7 +2035,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Le Seigneur des Anneaux : La Communauté de l'Anneau, Boromir survit jusqu'au générique de fin.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5OPg6M0yHr21Ovs1fni2H1xpKuF.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2007,7 +2115,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Star Wars, le Faucon Millenium appartient à Luke Skywalker.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2048,7 +2158,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "George Lucas a réalisé lui-même les trois films de la trilogie Star Wars d'origine.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2081,7 +2193,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Les deux premiers films Harry Potter sont réalisés par Chris Columbus.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1XAC6RPT01UX9EQGy2JVn5c8pgy.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2114,7 +2228,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Pirates des Caraïbes, Johnny Depp incarne le capitaine Jack Sparrow.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uRNgkJSkNBFbbn9fPsEjDIy8Sh3.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2155,7 +2271,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le premier film de la saga Saw est réalisé par James Wan.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ok4ot3YbfDYZcINXf91JUfq3maB.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2184,7 +2302,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans X-Men, Patrick Stewart incarne le professeur Charles Xavier.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dt9K3vjV6nIttECni7EfXLysDa2.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2221,7 +2341,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Hunger Games, Katniss Everdeen est originaire du district 1.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/yVBQ65YBYZ9UhzJ4NGdRgeXtyTL.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2262,7 +2384,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Hunger Games, Katniss se porte volontaire pour prendre la place de sa sœur.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/yVBQ65YBYZ9UhzJ4NGdRgeXtyTL.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2303,7 +2427,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Men in Black, l'agent K est interprété par Will Smith.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gCFDozeckKAWsaGWL5f190gZRnq.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2340,7 +2466,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Astérix et Obélix : Mission Cléopâtre est réalisé par Alain Chabat.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/2kpPVHLvkHfsc9uurzmEB1PoC6R.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2369,7 +2497,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Very Bad Trip, l'action se déroule principalement à Las Vegas.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/iuRVt8tFiXDPGgzavhuSa3QHRxD.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2439,7 +2569,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "OSS 117 : Le Caire, nid d'espions est réalisé par Michel Hazanavicius.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mrRzR4Xbt64heUQF5YBMMfdMEXu.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2480,7 +2612,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Gremlins, il ne faut jamais mouiller un Mogwaï.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5UX6M0aEphiW6Xmy5rpYX75glbo.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2558,7 +2692,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Alien, le vaisseau des héros s'appelle le Sulaco.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2595,7 +2731,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Alien, le personnage de Ripley est interprété par Sigourney Weaver.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2673,7 +2811,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Terminator 2 : Le Jugement dernier est réalisé par Ridley Scott.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/izkMjmhauFx9DjoBQqM5sM5WAwE.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2714,7 +2854,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Rocky (1976), le héros remporte le combat final contre Apollo Creed.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/bacOuUnRBoAO1NjMfsAGX2EKRrS.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2743,7 +2885,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Halloween (1978) est réalisé par John Carpenter.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sHI9xlFRWCJ38AIIfOqnGjuEvXz.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2784,7 +2928,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Halloween, le tueur masqué se nomme Jason Voorhees.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sHI9xlFRWCJ38AIIfOqnGjuEvXz.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2821,7 +2967,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Freddy, les griffes de la nuit, le tueur atteint ses victimes pendant leur sommeil.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/Aur8dDhjDDJBuSDa9Y9GNrvlPI5.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2912,7 +3060,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Massacre à la tronçonneuse, le tueur est surnommé Leatherface.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/wvBx1Q1FcQE1BPLfBbgA3y9aaS1.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -2941,7 +3091,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Les Dents de la mer, le requin est montré en entier dès les premières minutes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -2982,7 +3134,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Scream, le tueur porte un masque inspiré du tableau Le Cri.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3019,7 +3173,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Scream, le tueur masqué est surnommé Jigsaw.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3056,7 +3212,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Détour mortel, l'action se déroule en Virginie-Occidentale.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/e8CS8iisJ7PCJUwWUm0KLbsnKWl.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3118,7 +3276,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Terrifier, le clown Art ne prononce jamais un mot.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/naNXYdBzTEb1KwOdi1RbBkM9Zv1.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3176,7 +3336,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Tim Burton a réalisé Le Labyrinthe de Pan.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/6G6nqSW9S7EHA9HrYl0Z8uo2H7f.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3246,7 +3408,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Quentin Tarantino a réalisé Reservoir Dogs avant Pulp Fiction.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jwt159hXWA9Q5xpBo8hWb3zwLi7.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3275,7 +3439,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Christopher Nolan a réalisé Zodiac.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3zCPI4JFc54xvLaJ71oI2KoP3az.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3312,7 +3478,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Christopher Nolan a réalisé Memento avant Inception.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3341,7 +3509,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "David Fincher a réalisé Seven puis Zodiac.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/3zCPI4JFc54xvLaJ71oI2KoP3az.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3370,7 +3540,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Ridley Scott a réalisé Alien 3.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3411,7 +3583,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "James Cameron a réalisé Aliens, le retour, suite du premier Alien.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/4kix6fAblJIH6eMs0Ku2loyZJXK.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3477,7 +3651,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Guillermo del Toro a remporté l'Oscar du meilleur réalisateur pour La Forme de l'eau.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/abirSHwWgKajV3hXhaIR5lcCIXe.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3514,7 +3690,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "M. Night Shyamalan a réalisé Sixième Sens.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/6TjllWT3cGrPFyqDXurVZ3L8bBi.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3609,7 +3787,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Luc Besson a réalisé Léon et Le Cinquième Élément.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/jW21PoKwqs79wk6bfiYezox63mK.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3638,7 +3818,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans The Mask, Jim Carrey incarne Stanley Ipkiss.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/5OBK9sksRSyrwrcMtxpdxql75Sw.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3679,7 +3861,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Jim Carrey tient le rôle principal de The Truman Show.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/cOkoQaOPZBxqxQYlGu2i0o00sLn.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3708,7 +3892,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Mike Myers prête sa voix à Shrek en version originale.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rJIju4i2sENrfTbAXwL9OKv2e1i.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3737,7 +3923,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Edward Norton incarne le narrateur de Fight Club.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3766,7 +3954,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Kathy Bates a remporté l'Oscar de la meilleure actrice pour Misery.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rUAn3Ul1tL7JXMjZ951UOI3F0UA.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3799,7 +3989,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Bradley Cooper a réalisé A Star Is Born (2018) en plus d'y jouer.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/uoq8DobPxciPEJ5EuBeqDt8av76.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3828,7 +4020,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Al Pacino a remporté l'Oscar du meilleur acteur pour Le Parrain.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -3861,7 +4055,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Al Pacino et Robert De Niro se donnent la réplique dans Heat.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/e0xv5Y7UVrhKEVy1g3URMLLVDYB.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3898,7 +4094,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Robert De Niro incarne Travis Bickle dans Taxi Driver.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9uddYYTNcLWpzUkl5iw1RUYhLhY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3960,7 +4158,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Bruce Willis fait partie de la distribution de Pulp Fiction.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -3993,7 +4193,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Louis de Funès et Bourvil sont réunis à l'écran dans La Grande Vadrouille.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/835Yw9f0gYyR8RSsDKL34VEgCjL.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4059,7 +4261,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Ben Stiller incarne Greg Focker dans Mon beau-père et moi.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/cEd840xfKawjUGjcnJj41KS3yBM.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4092,7 +4296,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Jamie Lee Curtis est la fille de Janet Leigh, l'actrice de Psychose.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mufF1aYvwdpKerhq5R1YrVcbJLY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4150,7 +4356,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Jean Reno incarne Enzo Molinari dans Le Grand Bleu.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1J28PJOkusMN5Ab9Q3oF310e11k.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4191,7 +4399,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Keanu Reeves incarne le tueur à gages John Wick.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/efS6JZ0RRFxVq8QZ6OheRDMupkF.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4224,7 +4434,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Helena Bonham Carter incarne Bellatrix Lestrange dans Harry Potter.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1XAC6RPT01UX9EQGy2JVn5c8pgy.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4261,7 +4473,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Chris Columbus a réalisé Maman, j'ai raté l'avion !",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ih2xVgeMS8R5WUetYE8Mr9hVTlB.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4294,7 +4508,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Insidious et Conjuring sont tous deux réalisés par James Wan.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tJvRdhlkonjBLBUpTqp0RPPujxJ.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4323,7 +4539,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans American Nightmare, tous les crimes sont légaux pendant une nuit par an.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/9J3HHP3kQ5ZStyirJyWPWtvvrHY.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4360,7 +4578,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans American Pie, l'intrigue se déroule pendant la dernière année de lycée des héros.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/z9DFGaWj4G4kZUWLZ6ESs1NP1Fp.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -4422,7 +4642,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Bohemian Rhapsody, le concert du Live Aid reconstitué en fin de film s'est déroulé à Londres en 1984.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4451,7 +4673,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Aline est un biopic autorisé qui utilise le vrai nom de Céline Dion.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/vlrRGSoCpoSoVzX9Y1JS6rni3Ym.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4488,7 +4712,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Wayne's World, Wayne et Garth animent leur émission depuis un studio de télévision professionnel.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/lAvf5zzyOgTZmpRBRJFa7IVVqCK.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4521,7 +4747,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Austin Powers, le personnage du Docteur Denfer est interprété par un acteur différent d'Austin Powers.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/wSm5McaHSAyOx4gGRYdlDHzj00y.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4620,7 +4848,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans La Colline a des yeux (2006), l'action se déroule dans une forêt européenne.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/41oCubeJ4tkEI7r8QZmUTbChFRX.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4715,7 +4945,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Simetierre est un roman original de Dean Koontz adapté au cinéma.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8iZjnNSIH4teZERl0VjUeHHVrec.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4740,7 +4972,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Misery, Annie Wilkes est présentée comme infirmière de métier.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/rUAn3Ul1tL7JXMjZ951UOI3F0UA.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4773,7 +5007,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Midsommar se déroule presque entièrement en pleine nuit polaire.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4798,7 +5034,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Fight Club, le narrateur et Tyler Durden sont interprétés par le même acteur.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4835,7 +5073,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Le Seigneur des Anneaux, Boromir est membre de la Communauté depuis Fondcombe et survit jusqu'au dernier film.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4876,7 +5116,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "George Lucas a personnellement réalisé les six premiers films Star Wars.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4909,7 +5151,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans X-Men, Wolverine est présenté comme le fondateur historique de l'équipe des X-Men.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/dt9K3vjV6nIttECni7EfXLysDa2.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4946,7 +5190,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Men in Black, le neuralyseur sert à effacer la mémoire des agents entre deux missions.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/gCFDozeckKAWsaGWL5f190gZRnq.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -4983,7 +5229,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "La saga Saw a été lancée par un réalisateur américain sans lien avec l'horreur auparavant.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ok4ot3YbfDYZcINXf91JUfq3maB.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5012,7 +5260,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Alien, Ripley est interprétée par Jamie Lee Curtis.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5049,7 +5299,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Predator (1987) est réalisé par le même cinéaste que Terminator 2.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/ffdqHMWkh1h9MABwIfbfRJhgFW6.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5090,7 +5342,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Halloween, Michael Myers s'exprime longuement au téléphone avec Laurie Strode.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/sHI9xlFRWCJ38AIIfOqnGjuEvXz.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5127,7 +5381,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Freddy Krueger, dans Freddy - Les Griffes de la nuit, attaque exclusivement ses victimes en plein jour.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/Aur8dDhjDDJBuSDa9Y9GNrvlPI5.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5185,7 +5441,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Massacre à la tronçonneuse, le masque de Leatherface est en métal.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/wvBx1Q1FcQE1BPLfBbgA3y9aaS1.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5214,7 +5472,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Les Dents de la mer, le requin mécanique fonctionne parfaitement dès le premier jour de tournage.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5255,7 +5515,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Scream, l'identité du tueur reste sans explication à la fin du film.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5292,7 +5554,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Le film Terrifier met en scène un tueur particulièrement bavard.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/naNXYdBzTEb1KwOdi1RbBkM9Zv1.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5321,7 +5585,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Christopher Nolan a réalisé Seven.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/i5H7zusQGsysGQ8i6P361Vnr0n2.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5432,7 +5698,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans The Truman Show, Jim Carrey découvre dès la première scène qu'il est filmé en permanence.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/cOkoQaOPZBxqxQYlGu2i0o00sLn.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5465,7 +5733,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Al Pacino et Robert De Niro se sont donné la réplique dans Le Parrain (1972).",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5498,7 +5768,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Tom Hanks a remporté l'Oscar du meilleur acteur pour Forrest Gump et pour Le Terminal la même décennie consécutive.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5560,7 +5832,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Jamie Lee Curtis n'a aucun lien de parenté avec l'actrice principale de Psychose.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mufF1aYvwdpKerhq5R1YrVcbJLY.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -5589,7 +5863,9 @@
     "mode": "vrai_faux",
     "content_type": "film",
     "prompt": "Dans Harry Potter, Helena Bonham Carter incarne le professeur McGonagall.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/1XAC6RPT01UX9EQGy2JVn5c8pgy.jpg"
+    },
     "correct_answer": {
       "value": false
     },

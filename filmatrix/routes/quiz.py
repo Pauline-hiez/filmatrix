@@ -29,6 +29,7 @@ from filmatrix.services.questions import (
     answer_placeholder,
     content_label,
     format_correct_answer,
+    question_image_url,
     mode_tags,
     question_display_prompt,
     mode_tags_for_type,
@@ -325,6 +326,7 @@ def quiz(mode: str, position: int) -> str:
                 question, is_mix=is_mix, character_mode=character_mode
             ),
             content_label=content_label(question),
+            question_image_url=question_image_url(question),
             character_mode=character_mode,
             scrambled_title=scrambled_title,
             options=options,

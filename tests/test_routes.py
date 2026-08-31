@@ -708,6 +708,167 @@ def test_qcm_options_are_shuffled(client, app):
     assert len(orders) > 1
 
 
+def test_qcm_adds_an_existing_work_poster_to_an_option(client, app):
+    """Une option correspondant à une œuvre déjà illustrée doit afficher sa vignette."""
+    with app.app_context():
+        poster = Question(
+            mode="devinette_affiche",
+            content_type="film",
+            prompt="",
+            payload={"poster_url": "https://images.example/joker.jpg"},
+            correct_answer={"film": "Joker"},
+            requires_account=False,
+        )
+        qcm = Question(
+            mode="qcm",
+            content_type="film",
+            prompt="Quel film ?",
+            payload={"options": ["Joker", "Autre", "Encore", "Dernier"]},
+            correct_answer={"index": 0},
+            requires_account=False,
+        )
+        db.session.add_all([poster, qcm])
+        db.session.commit()
+
+    page = client.get("/quiz/qcm/1").get_data(as_text=True)
+
+    assert "https://images.example/joker.jpg" in page
+    assert 'class="game-answer-image"' in page
+
+
+def test_non_qcm_work_images_are_not_rendered(client, app):
+    """Une affiche de contexte ne doit jamais révéler la réponse dans les autres modes."""
+    with app.app_context():
+        question = Question(
+            mode="casting",
+            content_type="film",
+            prompt="Devine le film à partir de son casting.",
+            payload={"question_image_url": "https://images.example/film.jpg", "actor_photos": []},
+            correct_answer={"film": "Un film"},
+            requires_account=False,
+        )
+        db.session.add(question)
+        db.session.commit()
+        question_id = question.id
+
+    with client.session_transaction() as session:
+        session["run"] = {
+            "mode": "casting",
+            "correct": 0,
+            "answered": [],
+            "xp": 0,
+            "coins": 0,
+            "questions": [question_id],
+            "filters": {},
+        }
+
+    page = client.get("/quiz/casting/1").get_data(as_text=True)
+
+    assert "https://images.example/film.jpg" not in page
+    assert 'class="game-question-media"' not in page
+
+
+def test_qcm_falls_back_to_a_catalogued_work_poster(client, app):
+    """Une ancienne question sans URL directe réutilise l'affiche du catalogue."""
+    with app.app_context():
+        poster = Question(
+            mode="devinette_affiche",
+            content_type="film",
+            prompt="",
+            payload={"poster_url": "https://images.example/catalogued.jpg"},
+            correct_answer={"film": "Joker"},
+            requires_account=False,
+        )
+        qcm = Question(
+            mode="qcm",
+            content_type="film",
+            prompt="Dans Joker, quel personnage principal est interprété par Joaquin Phoenix ?",
+            payload={"options": ["Arthur Fleck", "Bruce Wayne", "Tony Stark", "Peter Parker"]},
+            correct_answer={"index": 0},
+            requires_account=False,
+        )
+        db.session.add_all([poster, qcm])
+        db.session.commit()
+        question_id = qcm.id
+
+    with client.session_transaction() as session:
+        session["run"] = {
+            "mode": "qcm",
+            "correct": 0,
+            "answered": [],
+            "xp": 0,
+            "coins": 0,
+            "questions": [question_id],
+            "filters": {},
+        }
+
+    page = client.get("/quiz/qcm/1").get_data(as_text=True)
+
+    assert "https://images.example/catalogued.jpg" in page
+    assert 'aria-label="Affiche de l’œuvre concernée"' in page
+
+
+def test_qcm_displays_the_work_poster_in_the_question_block(client, app):
+    """Une question QCM peut afficher l'affiche de l'œuvre concernée."""
+    with app.app_context():
+        qcm = Question(
+            mode="qcm",
+            content_type="film",
+            prompt="Dans Le Cinquième Élément, quelle actrice incarne Leeloo ?",
+            payload={"options": ["Milla Jovovich", "Charlize Theron", "Uma Thurman", "Famke Janssen"], "question_image_url": "https://images.example/fifth-element.jpg"},
+            correct_answer={"index": 0},
+            requires_account=False,
+        )
+        db.session.add(qcm)
+        db.session.commit()
+        qcm_id = qcm.id
+
+    with client.session_transaction() as session:
+        session["run"] = {
+            "mode": "qcm",
+            "correct": 0,
+            "answered": [],
+            "xp": 0,
+            "coins": 0,
+            "questions": [qcm_id],
+            "filters": {},
+        }
+
+    page = client.get("/quiz/qcm/1").get_data(as_text=True)
+
+    assert "https://images.example/fifth-element.jpg" in page
+    assert 'class="game-question-media"' in page
+
+
+def test_qcm_uses_explicit_option_images(client, app):
+    """Les images déclarées par un QCM priment sur toute déduction automatique."""
+    with app.app_context():
+        qcm = Question(
+            mode="qcm",
+            content_type="film",
+            prompt="Quel film ?",
+            payload={
+                "options": ["A", "B", "C", "D"],
+                "option_images": [
+                    "https://images.example/a.jpg",
+                    None,
+                    "https://images.example/c.jpg",
+                    None,
+                ],
+            },
+            correct_answer={"index": 0},
+            requires_account=False,
+        )
+        db.session.add(qcm)
+        db.session.commit()
+        qcm_id = qcm.id
+
+    page = client.get(f"/quiz/qcm/{qcm_id}").get_data(as_text=True)
+
+    assert "https://images.example/a.jpg" in page
+    assert "https://images.example/c.jpg" in page
+
+
 def test_a_shuffled_option_is_still_judged_correctly(client, app):
     """Le mélange ne doit pas fausser la correction : le bouton porte l'index d'origine"""
     with app.app_context():

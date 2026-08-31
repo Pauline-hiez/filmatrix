@@ -57,6 +57,28 @@ def search_movies_list(query: str, limit: int = 5) -> list[dict]:
         for movie in results
     ]
 
+def search_people_list(query: str, limit: int = 5) -> list[dict]:
+    """Recherche plusieurs personnes sur TMDB, avec leur portrait."""
+    if not query:
+        return []
+
+    response = requests.get(
+        f"{TMDB_BASE_URL}/search/person",
+        params={"api_key": get_api_key(), "query": query, "language": "fr-FR"},
+    )
+    data = response.json()
+
+    results = data.get("results", [])[:limit]
+    return [
+        {
+            "name": person["name"],
+            "profile_url": build_image_url(person.get("profile_path")),
+            "known_for_department": person.get("known_for_department"),
+        }
+        for person in results
+    ]
+
+
 def get_movie_cast(movie_id: int, limit: int = 5) -> list[dict]:
     """Récupère les principaux acteurs d'un film, avec leur photo"""
     response = requests.get(
