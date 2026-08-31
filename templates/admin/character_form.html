@@ -1,0 +1,53 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<div class="max-w-xl">
+    <h2 class="text-xl mb-6">Nouveau personnage</h2>
+
+    <form method="POST" class="flex flex-col gap-4">
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Nom du personnage</label>
+            <input type="text" name="name" required
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Saga</label>
+            <select name="tag_id" required
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                {% for tag in saga_tags %}
+                <option value="{{ tag.id }}">{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Rareté</label>
+            <select name="rarity" class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="commun">Commun</option>
+                <option value="rare">Rare</option>
+                <option value="epique">Épique</option>
+                <option value="legendaire">Légendaire</option>
+                <option value="mythique">Mythique</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">URL de l'image (optionnel)</label>
+            <input type="text" name="image_url"
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Fragments requis pour débloquer</label>
+            <input type="number" name="fragments_required" value="5" min="1"
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+        </div>
+
+        <button type="submit"
+                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition mt-2">
+            Enregistrer
+        </button>
+    </form>
+</div>
+{% endblock %}

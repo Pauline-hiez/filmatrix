@@ -38,6 +38,39 @@ function showBadgeNotification(badge) {
     }, 3000);
 }
 
+function showFragmentNotification(fragmentResult) {
+    const notification = document.createElement("div");
+    notification.className =
+        "fixed top-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-cyan-400 rounded-lg px-4 py-3 shadow-lg z-50 flex items-center gap-3 transition-opacity duration-500";
+
+    if (fragmentResult.just_unlocked) {
+        notification.innerHTML = `
+            <span class="text-2xl">🎉</span>
+            <div>
+                <p class="text-cyan-400 font-bold text-sm">Personnage débloqué !</p>
+                <p class="text-slate-300 text-xs">${fragmentResult.character_name}</p>
+            </div>
+        `;
+    } else {
+        notification.innerHTML = `
+            <span class="text-2xl">🧩</span>
+            <div>
+                <p class="text-cyan-400 font-bold text-sm">Fragment obtenu</p>
+                <p class="text-slate-300 text-xs">${fragmentResult.character_name}</p>
+            </div>
+        `;
+    }
+
+    document.body.appendChild(notification);
+
+    setTimeout(function () {
+        notification.style.opacity = "0";
+        setTimeout(function () {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}
+
 function showAnswerFeedback(isCorrect, correctAnswer) {
     const feedback = document.getElementById("answer-feedback");
     const label = document.getElementById("answer-feedback-label");
@@ -152,6 +185,10 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
                 });
             }
 
+            if (result.fragment_result) {
+                showFragmentNotification(result.fragment_result);
+            }
+
             goToNextQuestion();
         }
     });
@@ -206,6 +243,10 @@ if (document.getElementById("riddle-submit")) {
                     result.new_badges.forEach(function (badge) {
                         showBadgeNotification(badge);
                     });
+                }
+
+                if (result.fragment_result) {
+                    showFragmentNotification(result.fragment_result);
                 }
 
                 showAnswerFeedback(result.is_correct, result.correct_answer);
@@ -287,6 +328,10 @@ if (riddleButton) {
             result.new_badges.forEach(function (badge) {
                 showBadgeNotification(badge);
             });
+        }
+
+        if (result.fragment_result) {
+            showFragmentNotification(result.fragment_result);
         }
 
         setTimeout(function () {

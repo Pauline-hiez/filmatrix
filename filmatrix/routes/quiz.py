@@ -9,6 +9,7 @@ from filmatrix.models import Attempt, Report, Tag, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.character_answers import character_answer
+from filmatrix.services.collection import award_fragment_for_question
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.levels import (
@@ -216,6 +217,7 @@ def quiz(mode: str, position: int) -> str:
         new_badges = []
         earned_xp = 0
         earned_coins = 0
+        fragment_result = None
 
         if current_user.is_authenticated:
             already_answered_correctly = Attempt.query.filter_by(
@@ -237,6 +239,8 @@ def quiz(mode: str, position: int) -> str:
                 current_user.total_xp += earned_xp
                 current_user.coins += earned_coins
                 attempt.earned_xp = earned_xp
+
+                fragment_result = award_fragment_for_question(current_user, question)
 
             db.session.commit()
 
@@ -267,6 +271,14 @@ def quiz(mode: str, position: int) -> str:
                 "give_up": True,
                 "new_badges": new_badges,
                 "correct_answer": correct_answer_text,
+                "fragment_result": (
+                    {
+                        "character_name": fragment_result[0].name,
+                        "just_unlocked": fragment_result[1],
+                    }
+                    if fragment_result
+                    else None
+                ),
             }
 
         return {
@@ -274,6 +286,14 @@ def quiz(mode: str, position: int) -> str:
             "give_up": True,
             "new_badges": new_badges,
             "correct_answer": correct_answer_text,
+            "fragment_result": (
+                {
+                    "character_name": fragment_result[0].name,
+                    "just_unlocked": fragment_result[1],
+                }
+                if fragment_result
+                else None
+            ),
         }
 
     scrambled_title = None

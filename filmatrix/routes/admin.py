@@ -8,7 +8,7 @@ from flask_login import current_user, login_required
 from filmatrix.extensions import db
 from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
-from filmatrix.models import Attempt, Question, Report, Tag, User
+from filmatrix.models import Attempt, Question, Report, Tag, User, Character
 from filmatrix.integrations.itunes import search_soundtrack_preview
 from filmatrix.integrations.tmdb import (
     build_image_url,
@@ -321,3 +321,57 @@ def admin_resolve_report(report_id: int) -> str:
 
     flash("Signalement marqué comme traité.")
     return redirect(url_for("admin.admin_reports_list"))
+
+@bp.route("/admin/personnages")
+@login_required
+@admin_required
+def admin_characters_list() -> str:
+    """Affiche la liste des personnages, groupés par saga"""
+    all_characters = Character.query.order_by(Character.tag_id, Character.name).all()
+
+    characters_by_tag = {}
+    for character in all_characters:
+        characters_by_tag.setdefault(character.tag.name, []).append(character)
+
+    return render_template(
+        "admin/characters_list.html",
+        characters_by_tag=characters_by_tag,
+        total_count=len(all_characters),
+        active_admin_section="characters",
+    )
+
+
+@bp.route("/admin/personnages/nouveau", methods=["GET", "POST"])
+@login_required
+@admin_required
+def admin_characters_new() -> str:
+    """Affiche le formulaire de création (GET) ou crée le personnage (POST)"""
+    if request.method == "POST":
+        new_character = Character(
+            name=request.form["name"],
+            tag_id=int(request.form["tag_id"]),
+            rarity=request.form["rarity"],
+            image_url=request.form.get("image_url") or None,
+            fragments_required=int(request.form.get("fragments_required", 5)),
+        )
+        db.session.add(new_character)
+        db.session.commit()
+
+        flash("Personnage créé avec succès.")
+        return redirect(url_for("admin.admin_characters_list"))
+
+    saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
+    return render_template("admin/character_form.html", character=None, saga_tags=saga_tags)
+
+
+@bp.route("/admin/personnages/<int:character_id>/supprimer", methods=["POST"])
+@login_required
+@admin_required
+def admin_characters_delete(character_id: int) -> str:
+    """Supprime un personnage"""
+    character = Character.query.get_or_404(character_id)
+    db.session.delete(character)
+    db.session.commit()
+
+    flash("Personnage supprimé.")
+    return redirect(url_for("admin.admin_characters_list"))
