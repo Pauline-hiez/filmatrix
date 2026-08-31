@@ -70,6 +70,19 @@ def quiz_setup(mode: str) -> str:
     selected_tag_ids = request.args.getlist("tag_id", type=int)
     chosen_run_length = resolve_run_length(request.args.get("questions"))
 
+    # Ces modes reposent sur un média ou une représentation qui n'est pas
+    # compatible avec un univers filtré. On bascule vers le QCM plutôt que de
+    # laisser l'utilisateur préparer une partie qui ne pourra pas être servie.
+    incompatible_universe_modes = {"devinette_affiche", "casting", "emoji", "blindtest", "film_melange"}
+    has_selected_universe = bool(
+        selected_tag_ids
+        and any(tag.id in selected_tag_ids for tag in all_univers_tags)
+    )
+    if has_selected_universe and mode in incompatible_universe_modes:
+        params = {"content_type": content_type or None}
+        params["tag_id"] = selected_tag_ids
+        return redirect(url_for("quiz.quiz_setup", mode="qcm", **params))
+
     # Le compteur doit refléter le filtre : sinon le bouton reste actif
     # alors que la sélection films / séries ne renvoie aucune question. Il
     # ne compte que le jouable : un visiteur ne doit pas se voir promettre

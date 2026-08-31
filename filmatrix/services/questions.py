@@ -16,6 +16,17 @@ from filmatrix.game_modes import MIX_MODE_SLUG
 from filmatrix.models import Question, Tag, question_tags
 from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
 
+# Ces modes donnent directement un indice de la réponse (image, casting,
+# emojis, extrait audio ou lettres du titre). Avec un univers sélectionné,
+# afficher leur question rend la réponse trop évidente : le Mix les exclut.
+INCOMPATIBLE_MIX_MODES_FOR_UNIVERSE = {
+    "devinette_affiche",
+    "casting",
+    "emoji",
+    "blindtest",
+    "film_melange",
+}
+
 # En dessous de ce nombre de questions (toutes comptées sur l'ensemble du
 # catalogue, pas seulement dans le mode consulté), un tag encombre le
 # sélecteur sans offrir de filtrage réellement utile : univers et saga
@@ -154,9 +165,21 @@ def build_question_query(
     doivent renvoyer les questions dans le même ordre, sans quoi le joueur
     rejouerait la même à des positions différentes. Le mode mix pioche parmi
     toutes les questions, quel que soit leur mode réel."""
-    query = Question.query if mode == MIX_MODE_SLUG else Question.query.filter_by(mode=mode)
-
     selected_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
+
+    has_universe_filter = bool(
+        selected_tag_ids
+        and Tag.query.filter(Tag.id.in_(selected_tag_ids), Tag.tag_type == "univers").first()
+    )
+
+    if mode == MIX_MODE_SLUG:
+        query = Question.query
+        if has_universe_filter:
+            query = query.filter(~Question.mode.in_(INCOMPATIBLE_MIX_MODES_FOR_UNIVERSE))
+    else:
+        query = Question.query.filter_by(mode=mode)
+
+
     for selected_tag_id in selected_tag_ids:
         query = query.filter(Question.tags.any(Tag.id == selected_tag_id))
 

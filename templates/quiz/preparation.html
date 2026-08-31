@@ -4,6 +4,12 @@
 {# Écran de préparation : le joueur règle sa partie avant que le chrono ne démarre.
    C'est le seul point d'entrée vers une partie, depuis l'accueil comme depuis
    la page des modes. Le formulaire est traduit en URL par quiz_setup.js. #}
+{% set incompatible_universe_modes = ["devinette_affiche", "casting", "emoji", "blindtest", "film_melange"] %}
+{% set universe_state = namespace(selected=false) %}
+{% for tag in all_univers_tags %}
+    {% if tag.id in selected_tag_ids %}{% set universe_state.selected = true %}{% endif %}
+{% endfor %}
+
 <div class="setup-shell flex flex-col gap-2" style="--accent: {{ mode.accent }}">
 
     <a href="{{ url_for('main.modes', content_type=content_type or None) }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
@@ -18,7 +24,9 @@
             <p class="setup-panel-title">Choisis ton mode</p>
             <div class="setup-mode-list">
                 {% for m in all_modes %}
+                {% if not (universe_state.selected and m.slug in incompatible_universe_modes) %}
                 <a href="{{ url_for('quiz.quiz_setup', mode=m.slug, content_type=content_type or None) }}"
+                   data-mode-slug="{{ m.slug }}"
                    style="--accent: {{ m.accent }}"
                    class="setup-mode-item {% if m.slug == mode.slug %}is-active{% endif %}">
                     <span class="accent-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border text-base">{{ m.icon }}</span>
@@ -27,6 +35,7 @@
                         <span class="block truncate text-xs text-slate-500">{{ m.description }}</span>
                     </span>
                 </a>
+                {% endif %}
                 {% endfor %}
             </div>
         </aside>

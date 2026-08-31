@@ -7,6 +7,14 @@ const lengthButtons = document.querySelectorAll("#run-length-choices [data-lengt
 const rewardXp = document.getElementById("reward-xp");
 const rewardCoins = document.getElementById("reward-coins");
 const timeEstimate = document.getElementById("setup-time-estimate");
+const universSelect = document.getElementById("tag-univers");
+const incompatibleUniverseModes = new Set([
+    "devinette_affiche",
+    "casting",
+    "emoji",
+    "blindtest",
+    "film_melange",
+]);
 
 function currentFilterParams() {
     const params = new URLSearchParams();
@@ -81,6 +89,25 @@ function disableUnreachableOptions(select, reachableIds) {
     });
 }
 
+function updateModeVisibility() {
+    const universeSelected = Boolean(universSelect && universSelect.value);
+    const modeLinks = document.querySelectorAll("[data-mode-slug]");
+
+    modeLinks.forEach(function (link) {
+        const shouldHide = universeSelected && incompatibleUniverseModes.has(link.dataset.modeSlug);
+        link.hidden = shouldHide;
+        link.setAttribute("aria-hidden", shouldHide ? "true" : "false");
+    });
+
+    // Si le joueur choisit un univers depuis un mode devenu incompatible,
+    // on le replace sur le QCM en conservant ses filtres déjà sélectionnés.
+    const currentMode = startButton.dataset.mode;
+    if (universeSelected && incompatibleUniverseModes.has(currentMode)) {
+        const params = currentFilterParams();
+        window.location.href = `/quiz/qcm?${params.toString()}`;
+    }
+}
+
 // Le compteur et les options des sélecteurs ne sont à jour qu'au chargement
 // de la page : changer un filtre doit les rafraîchir sans recharger l'écran,
 // sans quoi le joueur pourrait choisir « Horreur » puis « Années 2000 » sans
@@ -122,6 +149,14 @@ function refreshAvailability() {
 }
 
 contentTypeSelect.addEventListener("change", refreshAvailability);
+
+if (universSelect) {
+    universSelect.addEventListener("change", function () {
+        updateModeVisibility();
+        refreshAvailability();
+    });
+}
+
 tagFilterSelects.forEach(function (select) {
     select.addEventListener("change", refreshAvailability);
 });
@@ -141,13 +176,13 @@ lengthButtons.forEach(function (button) {
     });
 });
 
+updateModeVisibility();
 refreshAvailability();
 updateRewardsAndEstimate();
 
 // Les univers peu fournis restent dans le <select>, simplement masqués (cf.
 // preparation.html) : ce bouton les révèle sans recharger la page.
 const showAllUniversButton = document.getElementById("show-all-univers");
-const universSelect = document.getElementById("tag-univers");
 
 function revealAllUnivers() {
     universSelect.querySelectorAll("option[hidden]").forEach(function (option) {

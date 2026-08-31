@@ -245,6 +245,39 @@ def test_setup_screen_offers_the_game_settings(client, app):
     assert "Lancer la partie".encode() in response.data
 
 
+def test_mix_with_a_universe_excludes_answer_revealing_modes(client, app):
+    """Le Mix ne doit pas afficher de mode qui révèle déjà l'œuvre choisie."""
+    incompatible_modes = ["devinette_affiche", "casting", "emoji", "blindtest", "film_melange"]
+
+    with app.app_context():
+        universe = Tag(name="Kaamelott", tag_type="univers")
+        db.session.add(universe)
+        for index, mode in enumerate(["qcm", "citation"] + incompatible_modes):
+            question = Question(
+                mode=mode,
+                content_type="serie",
+                prompt=f"Question {mode} {index}",
+                payload={"options": ["A", "B"]} if mode == "qcm" else {},
+                correct_answer={"index": 0} if mode == "qcm" else {"film": "Kaamelott"},
+                requires_account=False,
+            )
+            question.tags.append(universe)
+            db.session.add(question)
+        db.session.commit()
+        universe_id = universe.id
+
+    response = client.get(f"/quiz/mixte?tag_id={universe_id}")
+    page = response.get_data(as_text=True)
+
+    assert response.status_code == 200
+    assert "2 disponibles" in page
+    for mode in incompatible_modes:
+        assert f'mode {mode}' not in page
+
+    availability = client.get(f"/quiz/mixte/disponibilite?tag_id={universe_id}").get_json()
+    assert availability["available"] == 2
+
+
 def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, app):
     """Le thème choisi doit être conservé et limiter le compteur de la préparation
 
