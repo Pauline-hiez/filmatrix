@@ -733,6 +733,10 @@ video {
   margin-right: auto;
 }
 
+.mb-0\.5 {
+  margin-bottom: 0.125rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1220,6 +1224,10 @@ video {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-2\.5 {
+  gap: 0.625rem;
 }
 
 .gap-3 {
@@ -2369,10 +2377,6 @@ video {
 
   .sm\:p-6 {
     padding: 1.5rem;
-  }
-
-  .sm\:p-7 {
-    padding: 1.75rem;
   }
 
   .sm\:p-8 {

@@ -8,10 +8,26 @@ d'aller le chercher elles-mêmes, pour rester testables avec un simple dict.
 
 SESSION_KEY = "run"
 
-# Une partie solo tient en un nombre fixe de questions : le joueur sait dès le
+# Une partie solo tient en un nombre fixe de questions, choisi par le joueur
+# sur l'écran de préparation parmi ces trois formats : le joueur sait dès le
 # départ où il en est et quand cela s'arrête. Un mode qui en propose moins
 # (filtre serré, catégorie peu fournie) fait forcément une partie plus courte.
 QUESTIONS_PER_RUN = 10
+RUN_LENGTH_PRESETS = {5: "Rapide", 10: "Classique", 20: "Challenge"}
+
+
+def resolve_run_length(raw_value: str | int | None) -> int:
+    """Valide la longueur de partie demandée, ou retombe sur le format par défaut
+
+    Une valeur absente ou hors des formats proposés (lien trafiqué, ancien
+    favori) ne doit pas planter la partie : elle retombe simplement sur
+    QUESTIONS_PER_RUN, comme avant que ce choix n'existe."""
+    try:
+        value = int(raw_value)
+    except (TypeError, ValueError):
+        return QUESTIONS_PER_RUN
+
+    return value if value in RUN_LENGTH_PRESETS else QUESTIONS_PER_RUN
 
 
 def start_run(store, mode: str, question_ids: list[int] | None = None, filters: dict | None = None) -> None:

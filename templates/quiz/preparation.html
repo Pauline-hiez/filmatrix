@@ -4,167 +4,220 @@
 {# Écran de préparation : le joueur règle sa partie avant que le chrono ne démarre.
    C'est le seul point d'entrée vers une partie, depuis l'accueil comme depuis
    la page des modes. Le formulaire est traduit en URL par quiz_setup.js. #}
-<div class="max-w-2xl mx-auto flex flex-col gap-6" style="--accent: {{ mode.accent }}">
+<div class="setup-shell flex flex-col gap-2" style="--accent: {{ mode.accent }}">
 
     <a href="{{ url_for('main.modes', content_type=content_type or None) }}" class="text-xs text-slate-400 transition hover:text-cyan-400">
         ← Tous les modes
     </a>
 
-    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-7">
+    <div class="setup-columns">
+        {# Changer de mode ici perd les filtres (genre/univers ne se recoupent pas
+           forcément d'un mode à l'autre) mais garde le type de contenu, seul
+           réglage qui a du sens partout. #}
+        <aside class="setup-panel">
+            <p class="setup-panel-title">Choisis ton mode</p>
+            <div class="setup-mode-list">
+                {% for m in all_modes %}
+                <a href="{{ url_for('quiz.quiz_setup', mode=m.slug, content_type=content_type or None) }}"
+                   style="--accent: {{ m.accent }}"
+                   class="setup-mode-item {% if m.slug == mode.slug %}is-active{% endif %}">
+                    <span class="accent-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border text-base">{{ m.icon }}</span>
+                    <span class="min-w-0">
+                        <span class="block truncate text-sm font-bold text-slate-100">{{ m.name }}</span>
+                        <span class="block truncate text-xs text-slate-500">{{ m.description }}</span>
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+        </aside>
 
-        <div class="mb-6 flex items-start gap-4">
-            <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-full border text-2xl">
-                {{ mode.icon }}
-            </span>
-            <div class="min-w-0">
-                <h1 class="text-2xl font-extrabold tracking-tight text-slate-100">{{ mode.name }}</h1>
-                <p class="mt-1 text-sm text-slate-400">{{ mode.description }}</p>
-                {# Dernier écran avant que le chrono ne parte : c'est ici que la
-                   règle sert, pas une fois la première question affichée. #}
-                <p class="mt-2 text-sm leading-relaxed text-slate-300">{{ mode.how }}</p>
-                {# Une partie fait un nombre fixe de questions (cf. src/score.py) :
-                   on annonce d'abord ce que le joueur va jouer, le stock total
-                   ne venant qu'en second. #}
-                <p id="availability-text" class="accent-icon mt-2 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest">
+        <section class="setup-panel">
+            {# Illustration générique (mêmes props pour tous les modes : aucune
+               image dédiée par mode n'existe), jamais au-dessus du texte. #}
+            <div class="setup-illustration">
+                <span class="setup-illustration-badge">Mode sélectionné</span>
+                <img src="{{ url_for('static', filename='images/habillage/25.png') }}" alt="">
+            </div>
+
+            <div class="flex items-start gap-3">
+                <span class="accent-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-xl">
+                    {{ mode.icon }}
+                </span>
+                <div class="min-w-0">
+                    <h1 class="text-xl font-extrabold tracking-tight text-slate-100">{{ mode.name }}</h1>
+                    <p class="mt-0.5 text-sm text-slate-400">{{ mode.description }}</p>
+                    <p class="mt-1 text-xs leading-relaxed text-slate-400">{{ mode.how }}</p>
+                </div>
+            </div>
+
+            <div class="setup-summary-strip">
+                <p id="availability-text" class="text-sm font-bold text-slate-100">
                     {% if question_count == 0 %}
                         Aucune question disponible
                     {% else %}
-                        Partie de {{ run_length }} question{{ 's' if run_length > 1 else '' }}
+                        Partie {{ run_length_presets.get(chosen_run_length, "") | lower }} de {{ run_length }} question{{ 's' if run_length > 1 else '' }}
                         <span class="opacity-50">·</span>
                         {{ question_count }} disponible{{ 's' if question_count > 1 else '' }}
                     {% endif %}
                 </p>
+                <p id="setup-time-estimate" class="text-xs text-slate-400"></p>
             </div>
-        </div>
+        </section>
 
-        <div class="flex flex-col gap-4">
-            <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-                <label for="content-type" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Films / Séries
-                </label>
-                {# Pré-réglé par le sélecteur de la page des modes, modifiable ici. #}
-                <select id="content-type"
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="" {% if not content_type %}selected{% endif %}>Films et séries</option>
-                    <option value="film" {% if content_type == "film" %}selected{% endif %}>Films uniquement</option>
-                    <option value="serie" {% if content_type == "serie" %}selected{% endif %}>Séries uniquement</option>
-                </select>
-            </div>
-
-            {% set genre_tags = all_tags | selectattr("tag_type", "equalto", "genre") | list %}
-            <div>
-                <label for="tag-genre" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Genre
-                </label>
-                <select id="tag-genre" data-tag-filter
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">Tous les genres</option>
-                    {% for tag in genre_tags %}
-                    <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            {% set shown_univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
-            {% set shown_univers_ids = shown_univers_tags | map(attribute="id") | list %}
-            {% set hidden_univers_tags = all_univers_tags | rejectattr("id", "in", shown_univers_ids) | list %}
-            <div>
-                <div class="mb-1 flex items-baseline justify-between gap-2">
-                    <label for="tag-univers" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
-                        Univers
-                    </label>
-                    {# Univers accumule vite des entrées nées d'une unique question (cf.
-                       TAG_MIN_QUESTIONS dans services/questions.py) : celles-ci restent
-                       dans le <select>, simplement masquées, tant que ce lien n'a pas
-                       été activé - voir quiz_setup.js. #}
-                    {% if hidden_univers_tags %}
-                    <button type="button" id="show-all-univers"
-                            class="text-xs text-slate-500 underline decoration-dotted transition hover:text-cyan-400">
-                        Voir tous les univers ({{ all_univers_tags | length }})
+        <aside class="flex flex-col gap-3">
+            <section class="setup-panel">
+                <p class="setup-panel-title">Choisis ton défi</p>
+                <div class="setup-choice-grid" id="run-length-choices">
+                    {% for length, label in run_length_presets.items() %}
+                    <button type="button" data-length="{{ length }}"
+                            class="setup-choice-card {% if length == chosen_run_length %}is-active{% endif %}">
+                        <strong>{{ label }}</strong>
+                        <span>{{ length }} questions</span>
                     </button>
-                    {% endif %}
-                </div>
-                <select id="tag-univers" data-tag-filter
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="">Tous les univers</option>
-                    {% for tag in shown_univers_tags %}
-                    <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
                     {% endfor %}
-                    {% for tag in hidden_univers_tags %}
-                    <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %} hidden>{{ tag.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            </div>
-
-            <details class="group rounded-xl border border-slate-700/70 bg-slate-950/30 px-4 py-3">
-                <summary class="cursor-pointer list-none text-sm font-bold text-slate-300 marker:hidden">
-                    <span class="flex items-center justify-between">
-                        Filtres avancés
-                        <span class="text-xs font-normal text-slate-500 transition group-open:rotate-180">⌄</span>
-                    </span>
-                </summary>
-                <div class="mt-4 grid gap-4 sm:grid-cols-2">
-                {% for tag_type, label, empty_label in [
-                    ("saga", "Saga", "Toutes les sagas"),
-                    ("pays", "Pays", "Tous les pays"),
-                    ("epoque", "Époque", "Toutes les époques"),
-                    ("annee", "Année", "Toutes les années"),
-                    ("realisateur", "Réalisateur", "Tous les réalisateurs"),
-                    ("acteur", "Acteur", "Tous les acteurs"),
-                    ("studio", "Studio", "Tous les studios"),
-                    ("autre", "Autre", "Tous les autres thèmes")
-                ] %}
-                {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
-                <div>
-                    <label for="tag-{{ tag_type }}" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">{{ label }}</label>
-                    <select id="tag-{{ tag_type }}" data-tag-filter class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                        <option value="">{{ empty_label }}</option>
-                        {% for tag in typed_tags %}<option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>{% endfor %}
-                    </select>
                 </div>
-                {% endfor %}
-                </div>
-            </details>
+            </section>
 
-            <div>
-                <label for="level" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">
-                    Niveau
-                </label>
+            <section class="setup-panel">
+                <p class="setup-panel-title">Règle ta partie</p>
+                <div class="flex flex-col gap-2.5">
+                    <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label for="content-type" class="mb-0.5 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            🎬 Œuvres
+                        </label>
+                        {# Pré-réglé par le sélecteur de la page des modes, modifiable ici. #}
+                        <select id="content-type"
+                                class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                            <option value="" {% if not content_type %}selected{% endif %}>Films et séries</option>
+                            <option value="film" {% if content_type == "film" %}selected{% endif %}>Films uniquement</option>
+                            <option value="serie" {% if content_type == "serie" %}selected{% endif %}>Séries uniquement</option>
+                        </select>
+                    </div>
+
+                    {% set genre_tags = all_tags | selectattr("tag_type", "equalto", "genre") | list %}
+                    <div>
+                        <label for="tag-genre" class="mb-0.5 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            🎭 Genre
+                        </label>
+                        <select id="tag-genre" data-tag-filter
+                                class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                            <option value="">Tous les genres</option>
+                            {% for tag in genre_tags %}
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </div>
+
+                    {% set shown_univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
+                    {% set shown_univers_ids = shown_univers_tags | map(attribute="id") | list %}
+                    {% set hidden_univers_tags = all_univers_tags | rejectattr("id", "in", shown_univers_ids) | list %}
+                    <div>
+                        <div class="mb-1 flex items-baseline justify-between gap-2">
+                            <label for="tag-univers" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
+                                🪐 Univers
+                            </label>
+                            {# Univers accumule vite des entrées nées d'une unique question (cf.
+                               TAG_MIN_QUESTIONS dans services/questions.py) : celles-ci restent
+                               dans le <select>, simplement masquées, tant que ce lien n'a pas
+                               été activé - voir quiz_setup.js. #}
+                            {% if hidden_univers_tags %}
+                            <button type="button" id="show-all-univers"
+                                    class="text-xs text-slate-500 underline decoration-dotted transition hover:text-cyan-400">
+                                Voir tous les univers ({{ all_univers_tags | length }})
+                            </button>
+                            {% endif %}
+                        </div>
+                        <select id="tag-univers" data-tag-filter
+                                class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                            <option value="">Tous les univers</option>
+                            {% for tag in shown_univers_tags %}
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
+                            {% endfor %}
+                            {% for tag in hidden_univers_tags %}
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %} hidden>{{ tag.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <details class="group rounded-xl border border-slate-700/70 bg-slate-950/30 px-3 py-2">
+                        <summary class="cursor-pointer list-none text-sm font-bold text-slate-300 marker:hidden">
+                            <span class="flex items-center justify-between">
+                                ⚙️ Filtres avancés
+                                <span class="text-xs font-normal text-slate-500 transition group-open:rotate-180">⌄</span>
+                            </span>
+                        </summary>
+                        <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                        {% for tag_type, label, empty_label in [
+                            ("saga", "Saga", "Toutes les sagas"),
+                            ("pays", "Pays", "Tous les pays"),
+                            ("epoque", "Époque", "Toutes les époques"),
+                            ("annee", "Année", "Toutes les années"),
+                            ("realisateur", "Réalisateur", "Tous les réalisateurs"),
+                            ("acteur", "Acteur", "Tous les acteurs"),
+                            ("studio", "Studio", "Tous les studios"),
+                            ("autre", "Autre", "Tous les autres thèmes")
+                        ] %}
+                        {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+                        <div>
+                            <label for="tag-{{ tag_type }}" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">{{ label }}</label>
+                            <select id="tag-{{ tag_type }}" data-tag-filter class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                                <option value="">{{ empty_label }}</option>
+                                {% for tag in typed_tags %}<option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>{% endfor %}
+                            </select>
+                        </div>
+                        {% endfor %}
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="setup-panel">
+                <p class="setup-panel-title">Difficulté</p>
                 {# Le niveau fixe le chrono et les gains, cf. src/levels.py. #}
-                <select id="level"
-                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                <div class="setup-choice-grid" id="level-choices">
+                    {% set level_colors = {"facile": "#34d399", "moyen": "#fbbf24", "difficile": "#f87171"} %}
                     {% for code, level in levels.items() %}
-                    <option value="{{ code }}" {% if code == default_level %}selected{% endif %}>
-                        {{ level.label }} — {{ level.duration }} s, {{ level.xp }} XP
-                    </option>
+                    <button type="button" data-level="{{ code }}" data-duration="{{ level.duration }}" data-xp="{{ level.xp }}" data-coins="{{ level.coins }}"
+                            style="--choice-color: {{ level_colors.get(code, mode.accent) }}"
+                            class="setup-choice-card {% if code == default_level %}is-active{% endif %}">
+                        <strong>{{ level.label }}</strong>
+                        <span>{{ level.duration }} s · +{{ level.xp }} XP</span>
+                    </button>
                     {% endfor %}
-                </select>
-                <p class="mt-2 text-xs leading-relaxed text-slate-500">
+                </div>
+                <p class="mt-2 text-xs leading-snug text-slate-500">
                     {% if mode.slug == "blindtest" %}
-                    Le blind test laisse toujours {{ blindtest_duration }} secondes, le temps d'écouter
-                    l'extrait ; le niveau ne change ici que les gains.
+                    Le blind test garde toujours {{ blindtest_duration }} s (le temps d'écouter l'extrait) ; le niveau ne change que les gains.
                     {% elif mode.slug == "mixte" %}
-                    Plus le niveau est élevé, moins tu as de temps pour répondre, et plus
-                    une bonne réponse rapporte — sauf sur une question de blind test, qui
-                    garde toujours {{ blindtest_duration }} secondes le temps d'écouter l'extrait.
+                    Plus le niveau est élevé, moins tu as de temps pour répondre (sauf blind test, toujours {{ blindtest_duration }} s), et plus une bonne réponse rapporte.
                     {% else %}
-                    Plus le niveau est élevé, moins tu as de temps pour répondre, et plus
-                    une bonne réponse rapporte.
+                    Plus le niveau est élevé, moins tu as de temps pour répondre, et plus une bonne réponse rapporte.
                     {% endif %}
                 </p>
+            </section>
+
+            {# Ex-panneau "Récompenses possibles" fondu en simple bande au-dessus du
+               bouton, pour ne pas payer une carte entière (bordure + titre +
+               marge) juste pour deux chiffres. #}
+            <div class="setup-reward-row justify-center rounded-lg border border-slate-700/60 bg-slate-950/30 px-3 py-2">
+                <span class="setup-reward-item"><span>⭐</span><span id="reward-xp">-- XP</span></span>
+                <span class="setup-reward-item"><span>🪙</span><span id="reward-coins">-- pièces</span></span>
             </div>
-        </div>
 
-        <button type="button" id="start-game" data-mode="{{ mode.slug }}"
-                class="mt-6 w-full rounded-lg bg-cyan-400 px-4 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40"
-                {% if question_count == 0 %}disabled{% endif %}>
-            {% if question_count == 0 %}Aucune question disponible{% else %}Commencer{% endif %}
-        </button>
+            <button type="button" id="start-game" data-mode="{{ mode.slug }}"
+                    class="w-full rounded-lg bg-cyan-400 px-4 py-2.5 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40"
+                    {% if question_count == 0 %}disabled{% endif %}>
+                {% if question_count == 0 %}Aucune question disponible{% else %}▶ Lancer la partie{% endif %}
+            </button>
+        </aside>
+    </div>
 
-    </section>
-
+    <div class="setup-tip-bar">
+        <span>💡</span>
+        <span><strong class="text-slate-300">Conseil.</strong> Plus la difficulté est élevée, plus tu gagnes d'XP et de pièces par bonne réponse !</span>
+    </div>
 </div>
 
 <script src="{{ url_for('static', filename='js/quiz_setup.js') }}"></script>

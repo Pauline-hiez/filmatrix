@@ -188,23 +188,29 @@ def count_run_questions(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    total_questions: int = QUESTIONS_PER_RUN,
 ) -> int:
     """Retourne le nombre de questions que comptera la partie
 
-    Une partie fait QUESTIONS_PER_RUN questions, sauf si les filtres du
+    Une partie fait total_questions questions (le joueur choisit parmi
+    RUN_LENGTH_CHOICES sur l'écran de préparation), sauf si les filtres du
     joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
     servir"""
     available = playable_question_query(mode, tag_id, content_type, tag_ids).count()
-    return min(QUESTIONS_PER_RUN, available)
+    return min(total_questions, available)
 
 def run_filters(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    total_questions: int = QUESTIONS_PER_RUN,
 ) -> dict:
-    """Décrit les réglages d'une partie, sous une forme rangeable en session"""
+    """Décrit les réglages d'une partie, sous une forme rangeable en session
+
+    total_questions y figure : une partie de 5 questions et une de 20 lancées
+    avec les mêmes filtres ne doivent pas partager le même tirage en session."""
     normalized_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
-    return {"tag_ids": normalized_tag_ids, "content_type": content_type}
+    return {"tag_ids": normalized_tag_ids, "content_type": content_type, "total_questions": total_questions}
 
 DRAW_HISTORY_KEY = "draw_history"
 
@@ -221,6 +227,7 @@ def draw_run_questions(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    total_questions: int = QUESTIONS_PER_RUN,
 ) -> list[int]:
     """Tire au sort les questions d'une nouvelle partie, en évitant de resservir
     une question vue récemment dans ce même mode et ces mêmes filtres
@@ -231,8 +238,8 @@ def draw_run_questions(
     pool_ids = [
         row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids).all()
     ]
-    target_size = min(QUESTIONS_PER_RUN, len(pool_ids))
-    filters = run_filters(tag_id, content_type, tag_ids)
+    target_size = min(total_questions, len(pool_ids))
+    filters = run_filters(tag_id, content_type, tag_ids, total_questions)
 
     history = session.get(DRAW_HISTORY_KEY)
     recent_ids = (
@@ -252,7 +259,7 @@ def draw_run_questions(
         candidates = pool_ids
 
     random.shuffle(candidates)
-    drawn = candidates[:QUESTIONS_PER_RUN]
+    drawn = candidates[:target_size]
 
     session[DRAW_HISTORY_KEY] = {
         "mode": mode,
@@ -268,15 +275,16 @@ def find_question(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    total_questions: int = QUESTIONS_PER_RUN,
 ):
     """Cherche la question à une position donnée, parmi celles d'un mode, tag et type de contenu
 
     Renvoie None au-delà de la dernière position de la partie : c'est ce qui
     met fin à la partie et renvoie le joueur vers l'écran de score"""
-    if position < 1 or position > QUESTIONS_PER_RUN:
+    if position < 1 or position > total_questions:
         return None
 
-    filters = run_filters(tag_id, content_type, tag_ids)
+    filters = run_filters(tag_id, content_type, tag_ids, total_questions)
     question_id = run_question_id(session, mode, position, filters)
 
     if question_id is not None:

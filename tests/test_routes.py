@@ -241,8 +241,8 @@ def test_setup_screen_offers_the_game_settings(client, app):
     assert b'id="tag-univers"' in response.data
     assert b'id="tag-pays"' in response.data
     assert b'id="tag-epoque"' in response.data
-    assert b'id="level"' in response.data
-    assert "Commencer".encode() in response.data
+    assert b'id="level-choices"' in response.data
+    assert "Lancer la partie".encode() in response.data
 
 
 def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, app):
@@ -268,7 +268,7 @@ def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, a
 
     assert response.status_code == 200
     assert f'value="{tag_id}" selected' in page
-    assert "Partie de 10 questions" in page
+    assert "Partie classique de 10 questions" in page
     assert "20 disponible" in page
 
 
@@ -304,7 +304,7 @@ def test_setup_screen_combines_independent_theme_filters(client, app):
     page = response.get_data(as_text=True)
 
     assert response.status_code == 200
-    assert "Partie de 1 question" in page
+    assert "Partie classique de 1 question" in page
     assert f'value="{comedy_id}" selected' in page
     assert f'value="{friends_id}" selected' in page
 
@@ -405,7 +405,7 @@ def test_setup_screen_announces_the_run_length(client, app):
     response = client.get("/quiz/qcm")
 
     assert response.status_code == 200
-    assert "Partie de 10 questions".encode() in response.data
+    assert "Partie classique de 10 questions".encode() in response.data
     assert "12 disponibles".encode() in response.data
 
 

@@ -36,8 +36,10 @@ from filmatrix.services.questions import (
 )
 from filmatrix.services.score import (
     QUESTIONS_PER_RUN,
+    RUN_LENGTH_PRESETS,
     read_run,
     record_answer,
+    resolve_run_length,
     run_length,
     start_run,
 )
@@ -66,6 +68,7 @@ def quiz_setup(mode: str) -> str:
 
     content_type = resolve_content_type(request.args.get("content_type"))
     selected_tag_ids = request.args.getlist("tag_id", type=int)
+    chosen_run_length = resolve_run_length(request.args.get("questions"))
 
     # Le compteur doit refléter le filtre : sinon le bouton reste actif
     # alors que la sélection films / séries ne renvoie aucune question. Il
@@ -78,8 +81,11 @@ def quiz_setup(mode: str) -> str:
     return render_template(
             "quiz/preparation.html",
             mode=mode_info,
+            all_modes=GAME_MODES,
             question_count=available,
-            run_length=min(QUESTIONS_PER_RUN, available),
+            run_length=min(chosen_run_length, available),
+            run_length_presets=RUN_LENGTH_PRESETS,
+            chosen_run_length=chosen_run_length,
             content_type=content_type,
             selected_tag_ids=selected_tag_ids,
             all_tags=available_tags,
@@ -99,13 +105,14 @@ def quiz_availability(mode: str) -> dict:
     mèneraient à zéro question, sans recharger la page."""
     content_type = resolve_content_type(request.args.get("content_type"))
     tag_ids = request.args.getlist("tag_id", type=int)
+    chosen_run_length = resolve_run_length(request.args.get("questions"))
 
     available = playable_question_query(mode, content_type=content_type, tag_ids=tag_ids).count()
     default_reachable, reachable_by_type = reachable_tag_ids(mode, content_type, tag_ids)
 
     return {
         "available": available,
-        "run_length": min(QUESTIONS_PER_RUN, available),
+        "run_length": min(chosen_run_length, available),
         "default_reachable_tag_ids": default_reachable,
         "reachable_tag_ids_by_type": reachable_by_type,
         "reachable_content_types": reachable_content_types(mode, tag_ids),
@@ -117,6 +124,7 @@ def quiz(mode: str, position: int) -> str:
     tag_ids = request.args.getlist("tag_id", type=int)
     content_type = resolve_content_type(request.args.get("content_type"))
     level = resolve_level(request.args.get("level"))
+    chosen_run_length = resolve_run_length(request.args.get("questions"))
 
     # Le tirage doit précéder la recherche de la question : c'est lui qui
     # décide quelle question occupe la position 1.
@@ -124,11 +132,15 @@ def quiz(mode: str, position: int) -> str:
         start_run(
             session,
             mode,
-            question_ids=draw_run_questions(mode, content_type=content_type, tag_ids=tag_ids),
-            filters=run_filters(content_type=content_type, tag_ids=tag_ids),
+            question_ids=draw_run_questions(
+                mode, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
+            ),
+            filters=run_filters(content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length),
         )
 
-    question = find_question(mode, position, content_type=content_type, tag_ids=tag_ids)
+    question = find_question(
+        mode, position, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
+    )
 
     if question is None:
         return render_template("quiz/termine.html", score=read_run(session, mode))
@@ -136,8 +148,10 @@ def quiz(mode: str, position: int) -> str:
     # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
     # session expirée — on retombe sur ce que les filtres permettent.
     total_questions = run_length(
-        session, mode, run_filters(content_type=content_type, tag_ids=tag_ids)
-    ) or count_run_questions(mode, content_type=content_type, tag_ids=tag_ids)
+        session, mode, run_filters(content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length)
+    ) or count_run_questions(
+        mode, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
+    )
 
     if question.requires_account and not current_user.is_authenticated:
         flash("Connecte-toi pour accéder à cette question.")

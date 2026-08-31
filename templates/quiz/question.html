@@ -148,7 +148,10 @@
 
             <div class="game-pill-row">
                 <span class="game-pill">{% if question.content_type == "serie" %}Série{% else %}Film{% endif %}</span>
-                <span class="game-pill">{{ level.label }}</span>
+                {# "Niveau" règle le temps de réponse (et donc les gains), pas la
+                   difficulté des questions elles-mêmes : l'horloge évite toute
+                   confusion avec un pill qui décrirait le contenu de la question. #}
+                <span class="game-pill">⏱ {{ level.label }}</span>
             </div>
 
             {% if question.mode == "film_melange" %}
