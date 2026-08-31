@@ -2,8 +2,10 @@
 
 from datetime import datetime
 
+import random
+
 from filmatrix.extensions import db
-from filmatrix.models import Character, UserCharacter
+from filmatrix.models import Character, UserCharacter, Question
 
 
 def get_or_create_progress(user, character: Character) -> UserCharacter:
@@ -59,3 +61,32 @@ def get_characters_for_tag(user, tag_id: int) -> list[dict]:
         )
 
     return result
+
+def award_fragment_for_question(user, question: Question) -> tuple[Character, bool] | None:
+    """Donne un fragment à un personnage verrouillé au hasard, parmi les sagas de la question.
+
+    Renvoie (personnage, vient_d_etre_debloque) si un fragment a été donné,
+    ou None si la question n'est liée à aucune saga ayant des personnages.
+    """
+    saga_tags = [tag for tag in question.tags if tag.tag_type == "saga"]
+    if not saga_tags:
+        return None
+
+    saga_tag_ids = [tag.id for tag in saga_tags]
+    candidate_characters = Character.query.filter(Character.tag_id.in_(saga_tag_ids)).all()
+    if not candidate_characters:
+        return None
+
+    locked_characters = [
+        character
+        for character in candidate_characters
+        if not get_or_create_progress(user, character).unlocked_at
+    ]
+
+    if not locked_characters:
+        return None
+
+    chosen_character = random.choice(locked_characters)
+    just_unlocked = add_fragments(user, chosen_character, 1)
+
+    return chosen_character, just_unlocked

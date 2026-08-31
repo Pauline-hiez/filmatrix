@@ -1,8 +1,8 @@
 """Tests de la logique métier de collection de personnages (fragments, déblocage)."""
 
 from filmatrix.extensions import db
-from filmatrix.models import Character, Tag, User
-from filmatrix.services.collection import add_fragments, get_characters_for_tag, get_or_create_progress
+from filmatrix.models import Character, Tag, User, Question
+from filmatrix.services.collection import add_fragments, get_characters_for_tag, get_or_create_progress, award_fragment_for_question
 
 
 def create_test_user(username: str = "Collectionneur") -> User:
@@ -111,3 +111,77 @@ def test_get_characters_for_tag_shows_all_with_progress(app):
 
         assert names_and_status["Harry Potter"] is True
         assert names_and_status["Voldemort"] is False
+
+def create_test_question(tags: list[Tag] | None = None) -> Question:
+    """Crée une question de test, éventuellement liée à des tags."""
+    question = Question(
+        mode="citation",
+        prompt="Question de test",
+        payload={},
+        correct_answer={"film": "Test"},
+        requires_account=False,
+    )
+    if tags:
+        question.tags = tags
+    db.session.add(question)
+    db.session.commit()
+    return question
+
+
+def test_award_fragment_returns_none_without_saga_tag(app):
+    """A question with no saga tag should not award any fragment."""
+    with app.app_context():
+        user = create_test_user()
+        question = create_test_question()
+
+        result = award_fragment_for_question(user, question)
+
+        assert result is None
+
+
+def test_award_fragment_returns_none_without_characters(app):
+    """A saga tag with no characters attached should not award any fragment."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        question = create_test_question(tags=[tag])
+
+        result = award_fragment_for_question(user, question)
+
+        assert result is None
+
+
+def test_award_fragment_gives_fragment_to_locked_character(app):
+    """A correct answer should give one fragment to a locked character of the saga."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, fragments_required=5)
+        question = create_test_question(tags=[tag])
+
+        result = award_fragment_for_question(user, question)
+        db.session.commit()
+
+        assert result is not None
+        chosen_character, just_unlocked = result
+        assert chosen_character.id == character.id
+        assert just_unlocked is False
+
+        progress = get_or_create_progress(user, character)
+        assert progress.fragments == 1
+
+
+def test_award_fragment_ignores_already_unlocked_characters(app):
+    """A fully unlocked character should not receive more fragments."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, fragments_required=1)
+        question = create_test_question(tags=[tag])
+
+        award_fragment_for_question(user, question)
+        db.session.commit()
+
+        result = award_fragment_for_question(user, question)
+
+        assert result is None
