@@ -2,82 +2,339 @@
 
 {% block content %}
 
-<div class="max-w-5xl mx-auto flex flex-col gap-6">
+<style>
+    .modes-page {
+        --line: rgba(71, 85, 105, .58);
+        --panel: rgba(15, 23, 42, .68);
+    }
 
-    <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-8 sm:px-8 sm:py-10">
-        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Choisis ton
-            <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">mode de jeu</span>
-        </h1>
-        <p class="mt-2 max-w-xl text-slate-300">
-            {{ modes | length }} façons de tester ta culture cinéma, en solo.
-            Chaque partie fait {{ questions_per_run }} questions : choisis un mode,
-            règle le niveau et le chrono suit.
-        </p>
+    .modes-page .modes-hero {
+        min-height: 19rem;
+        border: 1px solid rgba(34, 211, 238, .24);
+        background:
+            linear-gradient(105deg, rgba(2, 6, 23, .96) 0%, rgba(2, 6, 23, .82) 43%, rgba(2, 6, 23, .32) 100%),
+            radial-gradient(70% 120% at 90% 45%, rgba(124, 58, 237, .34), transparent 70%),
+            rgba(15, 23, 42, .72);
+        box-shadow: 0 20px 55px rgba(2, 6, 23, .25);
+    }
 
-        {# Sélecteur films / séries : il ne masque aucun mode, il pré-règle le
-           filtre de l'écran de préparation, où le joueur peut encore le changer. #}
-        {% set content_types = [
-            {"value": "", "label": "Tout"},
-            {"value": "film", "label": "Films"},
-            {"value": "serie", "label": "Séries"}
-        ] %}
-        <div class="mt-6 inline-flex gap-1 rounded-lg border border-cyan-400/20 bg-slate-950/60 p-1">
-            {% for option in content_types %}
-            <a href="{{ url_for('main.modes', content_type=option.value or None) }}"
-               class="rounded-md px-4 py-1.5 text-sm font-bold transition
-                      {% if option.value == content_type %}bg-cyan-400 text-slate-950{% else %}text-slate-400 hover:text-cyan-400{% endif %}">
-                {{ option.label }}
-            </a>
-            {% endfor %}
+    .modes-page .modes-hero__art {
+        position: absolute;
+        inset: 0 0 0 auto;
+        width: min(56%, 34rem);
+        overflow: hidden;
+        pointer-events: none;
+        mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%);
+    }
+
+    .modes-page .modes-hero__art img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: .7;
+        filter: saturate(.9);
+    }
+
+    .modes-page .modes-kicker,
+    .modes-page .section-kicker {
+        color: #94a3b8;
+        font-size: .68rem;
+        font-weight: 800;
+        letter-spacing: .17em;
+        text-transform: uppercase;
+    }
+
+    .modes-page .filter-bar {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: .35rem;
+        border: 1px solid rgba(34, 211, 238, .2);
+        background: rgba(2, 6, 23, .72);
+        padding: .3rem;
+        box-shadow: 0 8px 25px rgba(2, 6, 23, .22);
+    }
+
+    .modes-page .filter-option {
+        border-radius: .55rem;
+        padding: .5rem .9rem;
+        color: #94a3b8;
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .modes-page .filter-option:hover { color: #67e8f9; }
+    .modes-page .filter-option.is-active {
+        color: #020617;
+        background: #22d3ee;
+        box-shadow: 0 0 18px rgba(34, 211, 238, .25);
+    }
+
+    .modes-page .catalog-panel {
+        border: 1px solid rgba(34, 211, 238, .2);
+        background: var(--panel);
+        box-shadow: 0 18px 50px rgba(2, 6, 23, .18);
+    }
+
+    .modes-page .mode-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .modes-page .mode-card {
+        position: relative;
+        display: flex;
+        min-height: 13.5rem;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+        border-radius: 1rem;
+        background:
+            linear-gradient(145deg, color-mix(in srgb, var(--accent) 9%, transparent), transparent 52%),
+            rgba(2, 6, 23, .62);
+        transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .modes-page .mode-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        opacity: .7;
+    }
+
+    .modes-page .mode-card:hover {
+        transform: translateY(-3px);
+        border-color: color-mix(in srgb, var(--accent) 75%, transparent);
+        box-shadow: 0 14px 28px -12px var(--accent);
+    }
+
+    .modes-page .mode-card__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+        padding: 1rem 1rem .55rem;
+    }
+
+    .modes-page .mode-number {
+        color: color-mix(in srgb, var(--accent) 78%, white);
+        font-size: .65rem;
+        font-weight: 900;
+        letter-spacing: .12em;
+    }
+
+    .modes-page .mode-icon {
+        display: flex;
+        height: 2.65rem;
+        width: 2.65rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid color-mix(in srgb, var(--accent) 48%, transparent);
+        border-radius: .8rem;
+        background: color-mix(in srgb, var(--accent) 14%, transparent);
+        color: var(--accent);
+        font-size: 1.3rem;
+        box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    .modes-page .mode-card__body {
+        display: flex;
+        min-height: 0;
+        flex: 1;
+        flex-direction: column;
+        padding: .25rem 1rem 1rem;
+    }
+
+    .modes-page .mode-card__title {
+        color: #f8fafc;
+        font-size: 1rem;
+        font-weight: 850;
+        letter-spacing: -.01em;
+    }
+
+    .modes-page .mode-card__description {
+        margin-top: .35rem;
+        color: #cbd5e1;
+        font-size: .78rem;
+        line-height: 1.45;
+    }
+
+    .modes-page .mode-card__how {
+        margin-top: .55rem;
+        color: #64748b;
+        font-size: .7rem;
+        line-height: 1.45;
+    }
+
+    .modes-page .mode-card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5rem;
+        margin-top: auto;
+        padding-top: .85rem;
+    }
+
+    .modes-page .mode-play {
+        color: var(--accent);
+        font-size: .68rem;
+        font-weight: 900;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+
+    .modes-page .mode-arrow {
+        display: flex;
+        height: 1.7rem;
+        width: 1.7rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+        border-radius: 9999px;
+        color: var(--accent);
+        transition: transform .2s ease, background .2s ease;
+    }
+
+    .modes-page .mode-card:hover .mode-arrow {
+        transform: translateX(3px);
+        background: color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+
+    .modes-page .mode-card--featured {
+        grid-column: span 2;
+        min-height: 12rem;
+        background:
+            linear-gradient(110deg, rgba(190, 24, 93, .18), transparent 48%),
+            radial-gradient(90% 140% at 95% 0%, rgba(251, 113, 133, .2), transparent 62%),
+            rgba(2, 6, 23, .68);
+    }
+
+    .modes-page .mode-card--featured .mode-card__description { max-width: 34rem; }
+
+    .modes-page .duel-panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(244, 114, 182, .3);
+        background:
+            linear-gradient(100deg, rgba(76, 5, 25, .34), rgba(15, 23, 42, .7) 48%),
+            rgba(15, 23, 42, .68);
+    }
+
+    .modes-page .duel-panel__art {
+        position: absolute;
+        bottom: -3.5rem;
+        right: -1rem;
+        width: 14rem;
+        opacity: .24;
+        transform: rotate(8deg);
+        pointer-events: none;
+    }
+
+    .modes-page .duel-panel__art img { width: 100%; object-fit: contain; }
+
+    @media (max-width: 900px) {
+        .modes-page .mode-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .modes-page .mode-card--featured { grid-column: span 2; }
+        .modes-page .modes-hero__art { width: 52%; opacity: .65; }
+    }
+
+    @media (max-width: 639px) {
+        .modes-page { gap: 1rem; }
+        .modes-page .modes-hero { min-height: 0; padding: 1.25rem; }
+        .modes-page .modes-hero__art { inset: auto 0 0; height: 9rem; width: 100%; opacity: .3; mask-image: linear-gradient(to top, black, transparent); }
+        .modes-page .mode-grid { grid-template-columns: 1fr; gap: .75rem; }
+        .modes-page .mode-card,
+        .modes-page .mode-card--featured { grid-column: auto; min-height: 0; }
+        .modes-page .mode-card__how { max-width: 34rem; }
+        .modes-page .duel-panel__art { width: 10rem; opacity: .16; }
+    }
+</style>
+
+<div class="modes-page mx-auto flex max-w-6xl flex-col gap-5">
+    <section class="modes-hero hero-glow relative overflow-hidden rounded-2xl p-5 sm:p-8">
+        <div class="modes-hero__art" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt="">
         </div>
+        <div class="starfield-overlay-soft" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-2xl">
+            <p class="modes-kicker text-cyan-400">Le catalogue Filmatrix</p>
+            <h1 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-100 sm:text-5xl">
+                Choisis ta façon de
+                <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-500 bg-clip-text text-transparent">jouer</span>
+            </h1>
+            <p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
+                {{ modes | length }} expériences pour tester ta culture cinéma et séries.
+                Sélectionne ton mode, règle ta partie et laisse le chrono faire le reste.
+            </p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+                <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-xs text-slate-400">
+                    <strong class="text-slate-100">{{ questions_per_run }}</strong> questions par partie
+                </span>
+                <span class="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-xs text-slate-400">
+                    Solo ou duel entre amis
+                </span>
+            </div>
 
+        </div>
     </section>
 
-    <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 sm:p-6">
-        <h2 class="mb-5 text-sm font-bold uppercase tracking-widest text-cyan-400">Tous les modes</h2>
+    <section class="catalog-panel rounded-2xl p-5 sm:p-6">
+        <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+            <div>
+                <p class="section-kicker text-cyan-400">À toi de choisir</p>
+                <h2 class="mt-1 text-2xl font-extrabold text-slate-100">Tous les modes</h2>
+            </div>
+            <p class="text-xs text-slate-500">Clique sur une carte pour préparer ta partie</p>
+        </div>
 
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mode-grid">
             {% for mode in modes %}
             <a href="{{ url_for('quiz.quiz_setup', mode=mode.slug, content_type=content_type or None) }}"
                style="--accent: {{ mode.accent }}"
-               class="accent-card group flex items-start gap-4 rounded-xl border bg-slate-950/60 p-4 transition">
-                <span class="accent-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border text-lg">
-                    {{ mode.icon }}
-                </span>
-                <span class="min-w-0">
-                    <span class="block font-bold text-slate-100">{{ mode.name }}</span>
-                    <span class="mt-0.5 block text-xs leading-relaxed text-slate-400">{{ mode.description }}</span>
-                    <span class="mt-2 block text-[0.7rem] leading-relaxed text-slate-500">{{ mode.how }}</span>
-                </span>
+               class="mode-card {% if mode.slug == 'mixte' %}mode-card--featured{% endif %}">
+                <div class="mode-card__top">
+                    <span class="mode-number">{{ '%02d' | format(loop.index) }} / {{ '%02d' | format(modes | length) }}</span>
+                    <span class="mode-icon">{{ mode.icon }}</span>
+                </div>
+                <div class="mode-card__body">
+                    <h3 class="mode-card__title">{{ mode.name }}</h3>
+                    <p class="mode-card__description">{{ mode.description }}</p>
+                    <p class="mode-card__how">{{ mode.how }}</p>
+                    <div class="mode-card__footer">
+                        <span class="mode-play">Préparer la partie</span>
+                        <span class="mode-arrow" aria-hidden="true">→</span>
+                    </div>
+                </div>
             </a>
             {% endfor %}
         </div>
     </section>
 
-    {# Le multijoueur n'est pas un mode de plus dans la grille : il se joue à deux
-       et n'a pas d'écran de préparation. Il a donc sa propre carte, en dessous. #}
-    <section style="--accent: #f472b6"
-             class="accent-card overflow-hidden rounded-2xl border bg-slate-900/60 p-5 sm:p-6">
-        <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
-            <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-full border text-2xl">
-                ⚔
-            </span>
+    <section class="duel-panel accent-card rounded-2xl p-5 sm:p-6" style="--accent: #f472b6">
+        <div class="duel-panel__art" aria-hidden="true">
+            <img src="{{ url_for('static', filename='images/habillage/2.png') }}" alt="">
+        </div>
+        <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center">
+            <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border text-2xl">⚔</span>
             <div class="min-w-0 flex-1">
-                <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Et à deux ?</p>
-                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Défie un ami en temps réel</h2>
-                <p class="mt-2 text-sm leading-relaxed text-slate-400">
-                    Vous recevez la même question au même instant. Le premier à
-                    répondre juste marque le point.
+                <p class="section-kicker text-pink-300">Et à deux ?</p>
+                <h2 class="mt-1 text-xl font-extrabold text-slate-100 sm:text-2xl">Défie un ami en temps réel</h2>
+                <p class="mt-2 max-w-2xl text-sm leading-relaxed text-slate-400">
+                    Même question, même seconde, pour vous deux. Le premier à répondre juste marque le point.
                 </p>
             </div>
             <a href="{{ url_for('multiplayer.multiplayer_home') }}"
-               class="shrink-0 rounded-lg bg-cyan-400 px-6 py-3 text-center font-bold text-slate-950 transition hover:bg-cyan-300">
+               class="shrink-0 rounded-lg bg-cyan-400 px-6 py-3 text-center font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,.22)] transition hover:bg-cyan-300">
                 Découvrir le duel
             </a>
         </div>
     </section>
-
 </div>
 
 {% endblock %}
