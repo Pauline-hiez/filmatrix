@@ -5,7 +5,7 @@ import random
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
-from filmatrix.extensions import db
+from filmatrix.extensions import db, socketio
 from filmatrix.models import GameSession, User
 from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
 from filmatrix.services.engine import scramble_title
@@ -15,10 +15,13 @@ from filmatrix.services.multiplayer import (
     INVITATION_DURATION_MINUTES,
     QUESTIONS_PER_GAME,
     QUESTION_DURATION,
+    abandon_game,
     build_choices,
+    finalize_game,
     create_game_invitation,
     get_ordered_questions,
     is_invitation_expired,
+    live_scores,
 )
 from filmatrix.services.notifications import create_notification
 
@@ -230,6 +233,8 @@ def play_game(game_session_id: int) -> str:
     if current_question.mode not in ("qcm", "vrai_faux", "chronologie"):
         choices = build_choices(current_question, seed=shared_seed)
 
+    display_host_score, display_guest_score = live_scores(game_session)
+
     leaderboard_players = User.query.order_by(User.total_xp.desc()).limit(5).all()
     sidebar_friends = friend_cards(get_friends_list(current_user.id))[:5]
     player_level = calculate_level(current_user.total_xp)
@@ -249,7 +254,33 @@ def play_game(game_session_id: int) -> str:
             player_level=player_level,
             player_rank=player_rank,
             question_duration=QUESTION_DURATION,
+            display_host_score=display_host_score,
+            display_guest_score=display_guest_score,
         )
+
+@bp.route("/multijoueur/<int:game_session_id>/quitter", methods=["POST"])
+@login_required
+def leave_game(game_session_id: int) -> str:
+    """Abandonne une partie en cours sans conserver son score."""
+    game_session = GameSession.query.get_or_404(game_session_id)
+
+    if current_user.id not in (game_session.host_id, game_session.guest_id):
+        flash("Tu ne fais pas partie de cette partie.")
+        return redirect(url_for("friends.friends_list"))
+
+    if abandon_game(game_session, current_user.id):
+        db.session.commit()
+        socketio.emit(
+            "game_abandoned",
+            {"redirect_url": url_for("multiplayer.multiplayer_home")},
+            room=f"game_{game_session.id}",
+        )
+        flash("Partie quittée : aucun point n'a été enregistré.")
+    else:
+        flash("Cette partie ne peut plus être quittée.")
+
+    return redirect(url_for("multiplayer.multiplayer_home"))
+
 
 @bp.route("/multijoueur/<int:game_session_id>/statut")
 @login_required
@@ -271,8 +302,15 @@ def game_results(game_session_id: int) -> str:
         flash("Tu ne fais pas partie de cette partie.")
         return redirect(url_for("friends.friends_list"))
 
-    if game_session.status != "finished":
-        game_session.status = "finished"
+    if game_session.status != "finished" and game_session.status != "active":
+        return redirect(url_for("multiplayer.game_lobby", game_session_id=game_session.id))
+
+    questions = get_ordered_questions(game_session)
+    if game_session.status == "active" and game_session.current_question_index < len(questions):
+        return redirect(url_for("multiplayer.play_game", game_session_id=game_session.id))
+
+    if game_session.status == "active":
+        finalize_game(game_session, len(questions))
         db.session.commit()
 
     if game_session.host_score == game_session.guest_score:

@@ -28,6 +28,16 @@ const gameTimerInterval = setInterval(function () {
 if (typeof socket !== "undefined") {
     socket.emit("join_game", { game_session_id: gameSessionId });
 
+    socket.on("game_abandoned", function (data) {
+        const statusMessage = document.getElementById("game-status-message");
+        if (statusMessage) {
+            statusMessage.textContent = "La partie a été abandonnée, aucun point n'est enregistré.";
+        }
+        window.setTimeout(function () {
+            window.location.href = data.redirect_url;
+        }, 1200);
+    });
+
     socket.on("round_result", function (data) {
         if (data.next_question_index !== questionIndex + 1) {
             return;

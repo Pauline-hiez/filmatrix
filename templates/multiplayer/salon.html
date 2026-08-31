@@ -469,6 +469,14 @@
             <a href="{{ url_for('friends.friends_list') }}" class="mt-7 inline-block rounded-lg bg-cyan-400 px-5 py-2.5 font-bold text-slate-950 transition hover:bg-cyan-300">Retour aux amis</a>
         </section>
 
+    {% elif game_session.status == "abandoned" %}
+        <section class="invite-card invite-card--guest">
+            <p class="mb-4 text-4xl">🚪</p>
+            <h1 class="invite-title">Partie abandonnée</h1>
+            <p class="mt-2 text-sm text-slate-500">Aucun point n'a été enregistré pour ce duel.</p>
+            <a href="{{ url_for('multiplayer.multiplayer_home') }}" class="mt-7 inline-block rounded-lg bg-cyan-400 px-5 py-2.5 font-bold text-slate-950 transition hover:bg-cyan-300">Retour au multijoueur</a>
+        </section>
+
     {% elif game_session.status == "active" %}
         <section id="game-starting" class="invite-card" data-play-url="{{ url_for('multiplayer.play_game', game_session_id=game_session.id) }}">
             <p class="mb-4 animate-bounce text-4xl">🎮</p>

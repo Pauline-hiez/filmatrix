@@ -4,7 +4,7 @@ import random
 from datetime import datetime, timedelta
 
 from filmatrix.extensions import db
-from filmatrix.models import GameSession, GameSessionQuestion, Question
+from filmatrix.models import GameAnswer, GameSession, GameSessionQuestion, Question
 
 INVITATION_DURATION_MINUTES = 15
 QUESTIONS_PER_GAME = 5
@@ -82,6 +82,59 @@ def get_ordered_questions(game_session: GameSession) -> list[Question]:
         .all()
     )
     return [sq.question for sq in session_questions]
+
+def live_scores(game_session: GameSession) -> tuple[int, int]:
+    """Calcule le score provisoire d'un duel à partir de ses réponses."""
+    host_score = 0
+    guest_score = 0
+    answers_by_round: dict[int, list[GameAnswer]] = {}
+
+    for answer in GameAnswer.query.filter_by(game_session_id=game_session.id).all():
+        answers_by_round.setdefault(answer.question_index, []).append(answer)
+
+    for round_answers in answers_by_round.values():
+        correct_answers = sorted(
+            (answer for answer in round_answers if answer.is_correct),
+            key=lambda answer: answer.answered_at,
+        )
+        if not correct_answers:
+            continue
+
+        winner_id = correct_answers[0].user_id
+        if winner_id == game_session.host_id:
+            host_score += 1
+        elif winner_id == game_session.guest_id:
+            guest_score += 1
+
+    return host_score, guest_score
+
+
+def finalize_game(game_session: GameSession, total_questions: int) -> tuple[int, int]:
+    """Copie le score provisoire uniquement après la dernière manche."""
+    host_score, guest_score = live_scores(game_session)
+    if game_session.current_question_index >= total_questions:
+        game_session.host_score = host_score
+        game_session.guest_score = guest_score
+        game_session.status = "finished"
+
+    return host_score, guest_score
+
+
+def abandon_game(game_session: GameSession, user_id: int) -> bool:
+    """Abandonne un duel et efface toutes ses réponses provisoires."""
+    if user_id not in (game_session.host_id, game_session.guest_id):
+        return False
+    if game_session.status not in ("invited", "active"):
+        return False
+
+    GameAnswer.query.filter_by(game_session_id=game_session.id).delete(
+        synchronize_session=False
+    )
+    game_session.host_score = 0
+    game_session.guest_score = 0
+    game_session.status = "abandoned"
+    return True
+
 
 def answer_title(question: Question) -> str | None:
     """Retourne le titre attendu par une question, ou None si elle n'en a pas

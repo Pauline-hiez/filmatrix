@@ -5,14 +5,17 @@ from datetime import datetime, timedelta
 
 from filmatrix.extensions import db
 from filmatrix.services.engine import convert_answer
-from filmatrix.models import GameSession, Question, User
+from filmatrix.models import GameAnswer, GameSession, Question, User
 from filmatrix.services.multiplayer import (
     CHOICES_PER_QUESTION,
     QUESTIONS_PER_GAME,
     build_choices,
     create_game_invitation,
+    finalize_game,
     get_ordered_questions,
+    abandon_game,
     is_invitation_expired,
+    live_scores,
 )
 
 
@@ -272,6 +275,101 @@ def test_a_malformed_duel_answer_does_not_stall_the_round(app):
             judged = False
 
         assert judged is False
+
+
+def test_live_duel_score_is_provisional_and_abandon_clears_it(app):
+    """Un score de duel abandonné ne doit laisser ni points ni réponses."""
+    with app.app_context():
+        host = create_test_user("Hote")
+        guest = create_test_user("Invite")
+        question = Question(
+            mode="qcm",
+            prompt="Question",
+            payload={"options": ["A", "B"]},
+            correct_answer={"index": 0},
+        )
+        db.session.add(question)
+        db.session.commit()
+
+        game_session = GameSession(
+            host_id=host.id,
+            guest_id=guest.id,
+            mode="qcm",
+            status="active",
+            expires_at=datetime.utcnow() + timedelta(minutes=5),
+        )
+        db.session.add(game_session)
+        db.session.commit()
+        db.session.add(GameAnswer(
+            game_session_id=game_session.id,
+            user_id=host.id,
+            question_index=0,
+            is_correct=True,
+        ))
+        db.session.commit()
+
+        assert live_scores(game_session) == (1, 0)
+        assert game_session.host_score == 0
+        assert abandon_game(game_session, host.id) is True
+        db.session.commit()
+
+        assert game_session.status == "abandoned"
+        assert game_session.host_score == 0
+        assert game_session.guest_score == 0
+        assert GameAnswer.query.filter_by(game_session_id=game_session.id).count() == 0
+
+
+def test_finished_duel_persists_its_provisional_score(app):
+    """Le score n'est copié dans la session qu'une fois le duel terminé."""
+    with app.app_context():
+        host = create_test_user("Hote")
+        guest = create_test_user("Invite")
+        game_session = GameSession(
+            host_id=host.id,
+            guest_id=guest.id,
+            mode="qcm",
+            status="active",
+            current_question_index=5,
+            expires_at=datetime.utcnow() + timedelta(minutes=5),
+        )
+        db.session.add(game_session)
+        db.session.commit()
+        db.session.add(GameAnswer(
+            game_session_id=game_session.id,
+            user_id=guest.id,
+            question_index=4,
+            is_correct=True,
+        ))
+        db.session.commit()
+
+        assert game_session.host_score == 0
+        assert game_session.guest_score == 0
+        assert finalize_game(game_session, total_questions=5) == (0, 1)
+        assert game_session.status == "finished"
+        assert game_session.host_score == 0
+        assert game_session.guest_score == 1
+
+
+def test_quitting_an_active_duel_marks_it_abandoned(client, app):
+    """La route de sortie efface le duel et ses réponses provisoires."""
+    game_id = create_duel(
+        app,
+        "qcm",
+        question_count=6,
+        payload={"options": ["A", "B"]},
+        correct_answer={"index": 0},
+    )
+    login(client, "hote@filmatrix.fr")
+
+    response = client.post(f"/multijoueur/{game_id}/quitter")
+
+    assert response.status_code == 302
+    with app.app_context():
+        game_session = GameSession.query.get(game_id)
+        assert game_session.status == "abandoned"
+        assert game_session.host_score == 0
+        assert game_session.guest_score == 0
+        assert GameAnswer.query.filter_by(game_session_id=game_id).count() == 0
 
 
 def test_a_duel_is_refused_when_the_choices_would_give_it_away(app):

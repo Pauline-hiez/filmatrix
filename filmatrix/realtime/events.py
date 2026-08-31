@@ -8,7 +8,7 @@ from filmatrix.services.engine import check_answer, convert_answer
 from filmatrix.models import GameAnswer, GameSession
 
 _online_users: set[int] = set()
-from filmatrix.services.multiplayer import get_ordered_questions
+from filmatrix.services.multiplayer import finalize_game, get_ordered_questions, live_scores
 
 
 def register_socket_events(socketio):
@@ -109,22 +109,24 @@ def register_socket_events(socketio):
         if both_answered or first_correct is not None:
             winner_id = first_correct.user_id if first_correct else None
 
-            if winner_id == game_session.host_id:
-                game_session.host_score += 1
-            elif winner_id == game_session.guest_id:
-                game_session.guest_score += 1
-
             game_session.current_question_index += 1
+            provisional_host_score, provisional_guest_score = live_scores(game_session)
+            is_finished = game_session.current_question_index >= len(questions)
+
+            if is_finished:
+                finalize_game(game_session, len(questions))
+
             db.session.commit()
 
             emit(
                 "round_result",
                 {
                     "winner_id": winner_id,
-                    "host_score": game_session.host_score,
-                    "guest_score": game_session.guest_score,
+                    "host_score": provisional_host_score,
+                    "guest_score": provisional_guest_score,
                     "next_question_index": game_session.current_question_index,
                     "total_questions": len(questions),
+                    "finished": is_finished,
                 },
                 room=room,
             )

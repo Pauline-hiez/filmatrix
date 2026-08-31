@@ -21,8 +21,8 @@
     "devinette_affiche": "▶", "casting": "★", "blindtest": "♪"
 } %}
 {% set accent = accents.get(question.mode, "#22d3ee") %}
-{% set my_score = game_session.host_score if current_user.id == game_session.host_id else game_session.guest_score %}
-{% set opponent_score = game_session.guest_score if current_user.id == game_session.host_id else game_session.host_score %}
+{% set my_score = display_host_score if current_user.id == game_session.host_id else display_guest_score %}
+{% set opponent_score = display_guest_score if current_user.id == game_session.host_id else display_host_score %}
 
 <div class="game-shell" id="game-container"
      data-game-session-id="{{ game_session.id }}"
@@ -239,6 +239,11 @@
                 <p class="game-sidebar-label">Statut</p>
                 <p class="flex items-center gap-2 text-sm text-slate-300"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Partie en cours</p>
                 <p class="mt-2 text-xs text-slate-500">Les résultats se mettent à jour dès qu'un joueur répond.</p>
+                <form method="POST" action="{{ url_for('multiplayer.leave_game', game_session_id=game_session.id) }}" class="mt-4">
+                    <button type="submit" class="w-full rounded-lg border border-red-400/30 px-3 py-2 text-xs font-bold text-red-300 transition hover:border-red-400 hover:bg-red-400/10 hover:text-red-200">
+                        Quitter la partie
+                    </button>
+                </form>
             </section>
         </aside>
     </div>
