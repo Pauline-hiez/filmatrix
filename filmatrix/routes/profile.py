@@ -11,6 +11,7 @@ from filmatrix.services.badges import BADGES
 from filmatrix.services.friends import friend_cards, get_friends_list, get_friendship_between
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.shop import TITLES
+from filmatrix.services.collection import get_saga_summaries
 
 
 bp = Blueprint("profile", __name__)
@@ -52,6 +53,8 @@ def profile() -> str:
     if current_user.equipped_title:
         equipped_title_name = TITLES.get(current_user.equipped_title, {}).get("name")
 
+    saga_summaries = get_saga_summaries(current_user)
+
     return render_template(
         "profile/profil.html",
         friends=friend_cards(get_friends_list(current_user.id)),
@@ -61,6 +64,7 @@ def profile() -> str:
         level_info=level_info,
         all_badges=all_badges,
         equipped_title_name=equipped_title_name,
+        saga_summaries=saga_summaries,
     )
 
 @bp.route("/profil/modifier", methods=["GET", "POST"])

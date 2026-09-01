@@ -6,6 +6,8 @@ import random
 
 from filmatrix.extensions import db
 from filmatrix.models import Character, UserCharacter, Question
+from filmatrix.models import Tag
+from filmatrix.catalog_rarities import humanize_tag_name
 
 
 def get_or_create_progress(user, character: Character) -> UserCharacter:
@@ -103,3 +105,29 @@ def award_fragment_for_question(user, question: Question) -> tuple[Character, bo
     user.last_fragment_earned_at = datetime.utcnow()
 
     return chosen_character, just_unlocked
+
+def get_saga_summaries(user) -> list[dict]:
+    """Renvoie un résumé de progression pour chaque saga ayant des personnages"""
+    saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
+
+    summaries = []
+    for tag in saga_tags:
+        characters = Character.query.filter_by(tag_id=tag.id).all()
+        if not characters:
+            continue
+
+        unlockd_count = UserCharacter.query.filter(
+                UserCharacter.user_id == user.id,
+                UserCharacter.character_id.in_([character.id for character in characters]),
+                UserCharacter.unlocked_at.isnot(None),
+            ).count()
+
+        summaries.append(
+                {
+                    "tag_id": tag.id,
+                    "name": humanize_tag_name(tag.name),
+                    "unlocked_count": unlockd_count,
+                    "total_count": len(characters),
+                }
+            )
+        return summaries 

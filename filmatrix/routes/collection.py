@@ -5,6 +5,7 @@ from flask_login import current_user, login_required
 
 from filmatrix.models import Character, Tag, UserCharacter
 from filmatrix.services.puzzle import get_puzzle_grid
+from filmatrix.services.collection import get_saga_summaries
 from filmatrix.catalog_rarities import RARITIES, humanize_tag_name
 
 bp = Blueprint("collection", __name__)
@@ -13,29 +14,7 @@ bp = Blueprint("collection", __name__)
 @login_required
 def collection_overview() -> str:
     """Affiche la vue d'ensemble de la collection, groupée par saga"""
-    saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
-
-    sagas_summary = []
-    for tag in saga_tags:
-        characters = Character.query.filter_by(tag_id=tag.id).all()
-        if not characters:
-            continue
-
-        unlocked_count = UserCharacter.query.filter(
-                UserCharacter.user_id == current_user.id,
-                UserCharacter.character_id.in_([Character.id for character in characters]),
-                UserCharacter.unlocked_at.isnot(None),
-            ).count()
-
-        sagas_summary.append(
-            {
-                "tag_id": tag.id,
-                "name": humanize_tag_name(tag.name),
-                "unlocked_count": unlocked_count,
-                "total_count": len(characters),
-            }
-        )
-
+    sagas_summary = get_saga_summaries(current_user)
     return render_template("collection/overview.html", sagas=sagas_summary)
 
 @bp.route("/collection/<int:tag_id>")
