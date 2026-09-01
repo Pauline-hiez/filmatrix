@@ -15,6 +15,8 @@ from filmatrix.integrations.tmdb import (
     get_movie_by_id,
     get_movie_cast,
     search_movies_list,
+    get_tv_show_by_id,
+    get_tv_show_cast,
 )
 
 
@@ -162,6 +164,39 @@ def admin_api_cast() -> dict:
         build_image_url(actor["profile_path"]) for actor in cast if actor["profile_path"]
     ]
     return {"success": True, "actor_photos": actor_photos, "official_title": movie["title"]}
+
+@bp.route("/admin/api/recherche-personnages")
+@login_required
+@admin_required
+def admin_api_characters() -> dict:
+    """Récupère le casting complet (acteur + personnage + photo) d'un film ou série"""
+    movie_id = request.args.get("movie_id", type=int)
+    content_type = request.args.get("content_type", "film")
+
+    if content_type == "serie":
+        result = get_tv_show_by_id(movie_id) if movie_id else None
+    else:
+        result = get_movie_by_id(movie_id) if movie_id else None
+
+    if result is None:
+        return {"success": False, "error": "Introuvable."}
+
+    if content_type == "serie":
+        cast = get_tv_show_cast(result["id"], limit=10)
+    else:
+        cast = get_movie_cast(result["id"], limit=10)
+
+    characters = [
+        {
+            "character_name": actor["character"],
+            "actor_name": actor["name"],
+            "photo_url": build_image_url(actor["profile_path"]),
+        }
+        for actor in cast
+        if actor.get("character") and actor.get("profile_path")
+    ]
+
+    return {"success": True, "characters": characters, "official_title": result["title"]}
 
 @bp.route("/admin/api/recherche-audio")
 @login_required

@@ -79,8 +79,8 @@ def search_people_list(query: str, limit: int = 5) -> list[dict]:
     ]
 
 
-def get_movie_cast(movie_id: int, limit: int = 5) -> list[dict]:
-    """Récupère les principaux acteurs d'un film, avec leur photo"""
+def get_movie_cast(movie_id: int, limit: int = 10) -> list[dict]:
+    """Récupère les principaux acteurs d'un film, avec leur photo et le personnage joué"""
     response = requests.get(
             f"{TMDB_BASE_URL}/movie/{movie_id}/credits",
             params={"api_key": get_api_key(), "language": "fr-FR"},
@@ -91,6 +91,7 @@ def get_movie_cast(movie_id: int, limit: int = 5) -> list[dict]:
     return [
         {
             "name": actor["name"],
+            "character": actor.get("character"),
             "profile_path": actor.get("profile_path"),
             }
             for actor in cast
@@ -145,8 +146,8 @@ def search_tv_show(title: str, year: str | None = None) -> dict | None:
     }
 
 
-def get_tv_show_cast(tv_id: int, limit: int = 5) -> list[dict]:
-    """Récupère les principaux acteurs d'une série, avec leur photo."""
+def get_tv_show_cast(tv_id: int, limit: int = 10) -> list[dict]:
+    """Récupère les principaux acteurs d'une série, avec leur photo et le personnage joué"""
     response = requests.get(
         f"{TMDB_BASE_URL}/tv/{tv_id}/credits",
         params={"api_key": get_api_key(), "language": "fr-FR"},
@@ -157,6 +158,7 @@ def get_tv_show_cast(tv_id: int, limit: int = 5) -> list[dict]:
     return [
         {
             "name": actor["name"],
+            "character": actor.get("character"),
             "profile_path": actor.get("profile_path"),
         }
         for actor in cast

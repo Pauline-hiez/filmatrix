@@ -5,9 +5,26 @@
     <h2 class="text-xl mb-6">Nouveau personnage</h2>
 
     <form method="POST" class="flex flex-col gap-4">
+        <div class="relative">
         <div>
-            <label class="block text-sm text-slate-400 mb-1">Nom du personnage</label>
-            <input type="text" name="name" required
+            <label class="block text-sm text-slate-400 mb-1">Type de contenu source</label>
+            <select id="content-type-select" class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="film">Film</option>
+                <option value="serie">Série</option>
+            </select>
+        </div>
+            <label class="block text-sm text-slate-400 mb-1">Rechercher un film ou une série (pour trouver le personnage)</label>
+            <input type="text" id="movie-search-input" placeholder="Tape un titre..."
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                   autocomplete="off">
+            <div id="movie-search-results" class="hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+        </div>
+
+        <div id="character-search-results" class="hidden grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-72 overflow-y-auto border border-cyan-400/30 rounded-lg p-3"></div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Nom du personnage (sélectionné ou saisi manuellement)</label>
+            <input type="text" name="name" id="character-name-input" required
                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
         </div>
 
@@ -33,8 +50,8 @@
         </div>
 
         <div>
-            <label class="block text-sm text-slate-400 mb-1">URL de l'image (optionnel)</label>
-            <input type="text" name="image_url"
+            <label class="block text-sm text-slate-400 mb-1">URL de l'image (sélectionnée ou saisie manuellement)</label>
+            <input type="text" name="image_url" id="character-image-input"
                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
         </div>
 
@@ -50,4 +67,5 @@
         </button>
     </form>
 </div>
+<script src="{{ url_for('static', filename='js/admin_character_form.js') }}"></script>
 {% endblock %}
