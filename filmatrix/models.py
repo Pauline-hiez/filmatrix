@@ -42,6 +42,7 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     avatar = db.Column(db.String(10), nullable=True)
     bio = db.Column(db.String(280), nullable=True)
+    last_fragment_earned_at = db.Column(db.DateTime, nullable=True)
 
     def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"
