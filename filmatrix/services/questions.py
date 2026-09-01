@@ -257,6 +257,19 @@ DRAW_HISTORY_KEY = "draw_history"
 # pour que le cookie de session ne grossisse pas avec le catalogue.
 DRAW_HISTORY_LIMIT = 60
 
+
+def _draw_history_key(mode: str, filters: dict) -> str:
+    """Génère une clé unique d'historique pour un mode et ses filtres
+    
+    Chaque combinaison mode + filtres doit avoir son propre historique,
+    sinon les historiques se écrasent mutuellement et les mêmes questions
+    reviennent dans tous les modes.
+    """
+    # Crée une clé stable basée sur le mode et les filtres
+    filters_key = str(sorted((k, str(v)) for k, v in filters.items()))
+    return f"draw_history:{mode}:{filters_key}"
+
+
 def draw_run_questions(
     mode: str,
     tag_id: int | None = None,
@@ -276,12 +289,10 @@ def draw_run_questions(
     target_size = min(total_questions, len(pool_ids))
     filters = run_filters(tag_id, content_type, tag_ids, total_questions)
 
-    history = session.get(DRAW_HISTORY_KEY)
-    recent_ids = (
-        history["ids"]
-        if history and history["mode"] == mode and history["filters"] == filters
-        else []
-    )
+    # Utilise une clé unique pour ce mode et ces filtres
+    history_key = _draw_history_key(mode, filters)
+    recent_ids = session.get(history_key, [])
+    
     # Une question a pu disparaître du JSON depuis le dernier tirage.
     recent_ids = [qid for qid in recent_ids if qid in pool_ids]
 
@@ -296,11 +307,7 @@ def draw_run_questions(
     random.shuffle(candidates)
     drawn = candidates[:target_size]
 
-    session[DRAW_HISTORY_KEY] = {
-        "mode": mode,
-        "filters": filters,
-        "ids": (recent_ids + drawn)[-DRAW_HISTORY_LIMIT:],
-    }
+    session[history_key] = (recent_ids + drawn)[-DRAW_HISTORY_LIMIT:]
 
     return drawn
 
