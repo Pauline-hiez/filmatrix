@@ -5,6 +5,7 @@ from flask_login import current_user, login_required
 
 from filmatrix.models import Character, Tag, UserCharacter
 from filmatrix.services.puzzle import get_puzzle_grid
+from filmatrix.catalog_rarities import RARITIES, humanize_tag_name
 
 bp = Blueprint("collection", __name__)
 
@@ -27,13 +28,13 @@ def collection_overview() -> str:
             ).count()
 
         sagas_summary.append(
-                {
-                    "tag_id": tag.id,
-                    "name": tag.name,
-                    "unlocked_count": unlocked_count,
-                    "total_count": len(characters),
-                }
-            )
+            {
+                "tag_id": tag.id,
+                "name": humanize_tag_name(tag.name),
+                "unlocked_count": unlocked_count,
+                "total_count": len(characters),
+            }
+        )
 
     return render_template("collection/overview.html", sagas=sagas_summary)
 
@@ -66,4 +67,5 @@ def collection_saga(tag_id: int) -> str:
             }
         )
 
-    return render_template("collection/saga.html", tag=tag, characters=characters_data)
+    display_name = humanize_tag_name(tag.name)
+    return render_template("collection/saga.html", tag=tag, display_name=display_name, characters=characters_data, rarities=RARITIES)

@@ -6,11 +6,12 @@
         ← Retour à la collection
     </a>
 
-    <h1 class="text-2xl font-bold mb-6">{{ tag.name }}</h1>
+    <h1 class="text-2xl font-bold mb-6">{{ display_name }}</h1>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {% for character in characters %}
-        <div class="rounded-xl border {% if character.is_unlocked %}border-cyan-400/50{% else %}border-slate-700{% endif %} bg-slate-900/60 p-3">
+        {% set rarity = rarities.get(character.rarity, rarities["commun"]) %}
+        <div class="rounded-xl border-2 {% if character.is_unlocked %}{{ rarity.border_color }} {{ rarity.glow_class }}{% else %}border-slate-700{% endif %} bg-slate-900/60 p-3 transition hover:-translate-y-1">
 
             <div class="relative w-full aspect-square rounded-lg overflow-hidden mb-2 bg-slate-950 grid grid-cols-3 grid-rows-3 gap-0.5">
                 {% for is_revealed in character.puzzle_grid %}
@@ -30,7 +31,7 @@
             <p class="text-sm font-bold {% if not character.is_unlocked %}text-slate-500{% endif %}">
                 {{ character.name if character.is_unlocked else "???" }}
             </p>
-            <p class="text-xs text-slate-500 uppercase">{{ character.rarity }}</p>
+            <p class="text-xs {{ rarity.text_color }} uppercase font-bold">{{ rarity.label }}</p>
 
             {% if not character.is_unlocked %}
             <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2 overflow-hidden">
