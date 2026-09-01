@@ -5,6 +5,7 @@ from datetime import date
 
 from filmatrix.extensions import db
 from filmatrix.models import DailyChallenge, Question, Tag 
+from filmatrix.catalog_rarities import humanize_tag_name
 
 CHALLENGE_TYPES = ["mode_count", "total_count", "streak_count", "saga_count"]
 
@@ -122,3 +123,36 @@ def update_streak_on_completion(user) -> bool:
     reached_bonus = user.current_streak > 0 and user.current_streak % STREAK_BONUS_THRESHOLD == 0
 
     return reached_bonus
+
+CHALLENGE_LABELS = {
+        "total_count": "Réponds correctement à {target} questions, tous modes confondus",
+        "mode_count": "Réponds correctement à {target} question en mode {mode}",
+        "streak_count": "Enchaîne {target} bonnes réponses d'affilée",
+        "saga_count": "Réponds correctement à {target} questions sur {saga}",
+    }
+
+def describe_challenge(challenge: DailyChallenge) -> dict:
+    """Prépare les informations d'un défi pour l'affichage"""
+    mode_labels = {
+        "qcm": "Quiz", "vrai_faux": "Vrai / Faux", "citation": "Citations",
+        "emoji": "Emoji Quiz", "film_melange": "Film mélangé", "chronologie": "Chronologie",
+        "devinette": "Devinette", "devinette_affiche": "Devinette-affiche",
+        "casting": "Casting", "blindtest": "Blind Test",
+    }
+
+    template = CHALLENGE_LABELS.get(challenge.challenge_type, "Défi du jour")
+    description = template.format(
+            target=challenge.target_value,
+            mode=mode_labels.get(challenge.target_mode, challenge.target_mode or ""),
+            saga=humanize_tag_name(challenge.target_tag.name) if challenge.target_tag else "",
+        )
+
+    progress_ratio = min(challenge.progress / challenge.target_value, 1.0) if challenge.target_value else 0
+
+    return {
+        "description": description,
+        "progress": challenge.progress,
+        "target_value": challenge.target_value,
+        "progress_percentage": round(progress_ratio * 100, 1),
+        "is_completed": challenge.completed_at is not None,
+        }

@@ -12,6 +12,9 @@ from filmatrix.services.friends import friend_cards, get_friends_list, get_frien
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.shop import TITLES
 from filmatrix.services.collection import get_saga_summaries
+from filmatrix.services.daily_challenges import describe_challenge, get_or_create_daily_challenge
+from filmatrix.models import DailyChallenge
+from datetime import date
 
 
 bp = Blueprint("profile", __name__)
@@ -55,6 +58,29 @@ def profile() -> str:
 
     saga_summaries = get_saga_summaries(current_user)
 
+    today_challenge = get_or_create_daily_challenge(current_user)
+    challenge_info = describe_challenge(today_challenge)
+
+    challenge_history = (
+        DailyChallenge.query.filter_by(user_id=current_user.id, completed_at=None)
+        .filter(DailyChallenge.challenge_date < date.today())
+        .order_by(DailyChallenge.challenge_date.desc())
+        .limit(0)
+        .all()
+    )
+    # On veut l'historique de TOUS les défis passés, complétés ou non :
+    challenge_history = (
+        DailyChallenge.query.filter_by(user_id=current_user.id)
+        .filter(DailyChallenge.challenge_date < date.today())
+        .order_by(DailyChallenge.challenge_date.desc())
+        .limit(14)
+        .all()
+    )
+    challenge_history_info = [
+        {**describe_challenge(challenge), "date": challenge.challenge_date}
+        for challenge in challenge_history
+    ]
+
     return render_template(
         "profile/profil.html",
         friends=friend_cards(get_friends_list(current_user.id)),
@@ -65,6 +91,9 @@ def profile() -> str:
         all_badges=all_badges,
         equipped_title_name=equipped_title_name,
         saga_summaries=saga_summaries,
+        challenge=challenge_info,
+        challenge_history=challenge_history_info,
+        current_streak=current_user.current_streak,
     )
 
 @bp.route("/profil/modifier", methods=["GET", "POST"])

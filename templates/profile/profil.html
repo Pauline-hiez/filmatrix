@@ -46,10 +46,13 @@
 
     .profile-page .profile-hero-grid {
         display: grid;
-        grid-template-columns: 14rem minmax(0, 1fr);
+        grid-template-columns: 13.5rem minmax(0, 1fr);
         align-items: center;
-        gap: 1.5rem;
+        gap: 2.5rem;
     }
+
+    .profile-page .profile-identity { min-height: 18rem; }
+    .profile-page .profile-hero-grid { height: 100%; }
 
     .profile-page .profile-identity-block {
         border-right: 1px solid rgba(71, 85, 105, .7);
@@ -63,7 +66,135 @@
     .profile-page .profile-stats-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.15rem;
+    }
+
+    .profile-page > .profile-stats-grid { margin-top: .35rem; }
+
+    .profile-page .profile-dashboard {
+        display: grid;
+        grid-template-columns: minmax(0, 1.8fr) minmax(17rem, 0.9fr);
+        gap: 1.15rem;
+        align-items: start;
+    }
+
+    .profile-page .profile-dashboard > .profile-left-stack { min-width: 0; }
+    .profile-page .profile-dashboard > .profile-right-stack { min-width: 0; }
+    .profile-page .profile-dashboard > .profile-right-stack > section {
+        min-height: 0;
+    }
+
+    .profile-page .profile-left-stack { display: flex; flex-direction: column; gap: 1rem; }
+    .profile-page .profile-left-stack > section { margin: 0; }
+    .profile-page .profile-right-stack { display: flex; flex-direction: column; gap: 1rem; }
+    .profile-page .profile-right-stack > section { margin: 0; }
+
+    .profile-page .profile-side-stack {
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
+    }
+
+    .profile-page .profile-objective {
+        border: 1px solid rgba(34, 211, 238, .22);
+        background: linear-gradient(145deg, rgba(8, 47, 73, .45), rgba(2, 6, 23, .58));
+        min-height: 18rem;
+    }
+
+    .profile-page .profile-objective__icon {
+        display: grid;
+        height: 3.2rem;
+        width: 3.2rem;
+        place-items: center;
+        border: 1px solid rgba(34, 211, 238, .45);
+        border-radius: 1rem;
+        background: rgba(8, 47, 73, .5);
+        font-size: 1.6rem;
+        box-shadow: 0 0 20px rgba(34, 211, 238, .14);
+    }
+
+    .profile-page .profile-poster {
+        position: relative;
+        min-height: 15rem;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 20% 15%, rgba(251, 191, 36, 0.35), transparent 24%),
+            radial-gradient(circle at 70% 25%, rgba(34, 211, 238, 0.35), transparent 30%),
+            linear-gradient(160deg, rgba(5, 11, 28, 0.92), rgba(15, 23, 42, 0.9) 42%, rgba(76, 29, 149, 0.7));
+    }
+
+    .profile-page .profile-poster::before {
+        content: "";
+        position: absolute;
+        inset: auto 22% 0 22%;
+        height: 10rem;
+        border-radius: 1.5rem 1.5rem 0 0;
+        background: linear-gradient(180deg, rgba(248, 250, 252, 0.2), rgba(255, 255, 255, 0.08));
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .profile-page .profile-poster::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(2, 6, 23, 0.78), transparent 32%);
+    }
+
+    .profile-page .profile-activity-item {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        border-bottom: 1px solid rgba(71, 85, 105, .35);
+        padding: .7rem 0;
+    }
+
+    .profile-page .profile-activity-item:last-child { border-bottom: 0; }
+
+    .profile-page .profile-activity-icon {
+        display: grid;
+        height: 2.3rem;
+        width: 2.3rem;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid rgba(34, 211, 238, .35);
+        border-radius: 9999px;
+        background: rgba(2, 6, 23, .65);
+        font-size: 1.1rem;
+    }
+
+    .profile-page .profile-mode-row {
+        display: grid;
+        grid-template-columns: 10.5rem minmax(0, 1fr) 4.5rem;
+        align-items: center;
+        gap: .75rem;
+    }
+
+    .profile-page .profile-mode-track {
+        height: .45rem;
+        overflow: hidden;
+        border-radius: 9999px;
+        background: rgba(30, 41, 59, .9);
+    }
+
+    .profile-page .profile-mode-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: var(--accent);
+        box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+
+    .profile-page #historique .profile-panel__header { margin-bottom: 1rem; }
+    .profile-page #historique .profile-timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
+    .profile-page #historique { margin-top: .1rem; }
+    .profile-page .profile-performance-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem 1.5rem; }
+    .profile-page #historique .profile-timeline details { border-radius: .75rem; }
+    .profile-page #historique .profile-timeline summary { padding: .65rem .75rem; }
+
+    @media (max-width: 639px) {
+        .profile-page .profile-mode-row { grid-template-columns: 1fr auto; }
+        .profile-page .profile-mode-row .profile-mode-track { grid-column: 1 / -1; grid-row: 2; }
+        .profile-page #historique .profile-timeline,
+        .profile-page .profile-performance-grid { grid-template-columns: 1fr; }
     }
 
     .profile-page .profile-panel__header {
@@ -106,6 +237,7 @@
     }
 
     .profile-page .profile-stat {
+        min-height: 6.7rem;
         border: 1px solid rgba(34, 211, 238, .16);
         background: rgba(2, 6, 23, .48);
         transition: border-color .2s ease, transform .2s ease, background .2s ease;
@@ -118,7 +250,7 @@
     }
 
     .profile-page .profile-badge {
-        min-height: 6.5rem;
+        min-height: 7.5rem;
         border: 1px solid rgba(71, 85, 105, .62);
         background: rgba(2, 6, 23, .44);
         transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
@@ -186,6 +318,7 @@
         .profile-page .profile-hero-grid { grid-template-columns: 1fr; gap: 1.25rem; }
         .profile-page .profile-identity-block { border-right: 0; border-bottom: 1px solid rgba(71, 85, 105, .7); padding: 0 0 1.25rem; }
         .profile-page .profile-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+        .profile-page .profile-dashboard { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 639px) {
@@ -280,70 +413,44 @@
         </div>
     </div>
 
-    <section class="profile-panel rounded-2xl p-5 sm:p-6">
-        <div class="profile-panel__header mb-5">
-            <div>
-                <p class="profile-kicker text-cyan-400">Accomplissements</p>
-                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Badges</h2>
-            </div>
-            <span class="text-xs text-slate-500">{{ earned_count }} / {{ all_badges | length }} débloqués</span>
-        </div>
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {% for badge in all_badges %}
-            <div class="profile-badge rounded-xl p-3 text-center {% if badge.earned %}is-earned{% else %}opacity-45{% endif %}">
-                <span class="profile-badge__icon {% if not badge.earned %}grayscale{% endif %}">{{ badge.icon }}</span>
-                <p class="mt-2 truncate text-xs font-bold {% if badge.earned %}text-cyan-300{% else %}text-slate-500{% endif %}" title="{{ badge.name }}">{{ badge.name }}</p>
-                <p class="mt-1 text-[.65rem] text-slate-600">{% if badge.earned %}Débloqué{% else %}À débloquer{% endif %}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section class="profile-panel rounded-2xl p-5 sm:p-6">
-        <div class="profile-panel__header mb-5">
-            <div>
-                <p class="profile-kicker text-cyan-400">Univers cinéma</p>
-                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Ma Collection</h2>
-            </div>
-            <a href="{{ url_for('collection.collection_overview') }}" class="text-xs font-bold text-cyan-400 transition hover:text-cyan-300">
-                Voir tout →
-            </a>
-        </div>
-
-        {% if saga_summaries %}
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {% for saga in saga_summaries %}
-            <a href="{{ url_for('collection.collection_saga', tag_id=saga.tag_id) }}"
-               class="profile-badge rounded-xl p-3 transition hover:border-cyan-400/50">
-                <p class="truncate text-sm font-bold text-slate-100">{{ saga.name }}</p>
-                <p class="mt-1 text-[.65rem] uppercase tracking-widest text-slate-500">{{ saga.unlocked_count }} / {{ saga.total_count }} personnages</p>
-                <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-800">
-                    <div class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
-                         style="width: {{ (saga.unlocked_count / saga.total_count * 100) | round(1) }}%"></div>
+    <div class="profile-dashboard">
+        <div class="profile-left-stack min-w-0">
+            <section class="profile-panel rounded-2xl p-5 sm:p-6">
+                <div class="profile-panel__header mb-5">
+                    <div>
+                        <p class="profile-kicker text-cyan-400">Mes amis</p>
+                        <h2 class="mt-1 text-xl font-extrabold text-slate-100">Amis</h2>
+                    </div>
+                    <a href="{{ url_for('friends.friends_list') }}" class="text-xs font-bold text-cyan-400 transition hover:text-cyan-300">Voir tout →</a>
                 </div>
-            </a>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="rounded-xl border border-dashed border-slate-700 bg-slate-950/30 py-10 text-center">
-            <p class="text-3xl">🧩</p>
-            <p class="mt-3 text-sm text-slate-400">Aucun univers disponible pour le moment.</p>
-        </div>
-        {% endif %}
-    </section>
+                {{ friends_grid(friends[:4], "Tu n'as pas encore d'amis. Trouve des joueurs depuis le classement !") }}
+            </section>
 
-    <section class="profile-panel rounded-2xl p-5 sm:p-6">
-        <div class="profile-panel__header mb-5">
-            <div>
-                <p class="profile-kicker text-cyan-400">Réseau</p>
-                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Amis</h2>
-            </div>
-            <a href="{{ url_for('friends.friends_list') }}" class="text-xs font-bold text-cyan-400 transition hover:text-cyan-300">{{ friends | length }} — gérer</a>
         </div>
-        {{ friends_grid(friends, "Tu n'as pas encore d'amis. Trouve des joueurs depuis le classement !") }}
-    </section>
 
-    <section class="profile-panel profile-history rounded-2xl p-5 sm:p-6">
+        <aside class="profile-right-stack">
+            <section class="profile-panel profile-objective rounded-2xl p-5 sm:p-6">
+                <div class="profile-panel__header mb-4">
+                    <h2 class="text-sm font-extrabold uppercase tracking-widest text-cyan-300">Prochain objectif</h2>
+                    <span class="text-xl text-cyan-300">★</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="profile-objective__icon">🎯</span>
+                    <div class="min-w-0">
+                        <p class="font-extrabold text-slate-100">Maître du quiz</p>
+                        <p class="mt-1 text-xs text-slate-400">Obtenir 100 bonnes réponses</p>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                    <div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-900"><div class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" style="width: {{ [correct_count, 100] | min }}%"></div></div>
+                    <span class="text-xs font-bold text-slate-300">{{ [correct_count, 100] | min }}/100</span>
+                </div>
+                <a href="{{ url_for('main.modes') }}" class="mt-4 block rounded-lg bg-cyan-400 px-4 py-2.5 text-center text-xs font-extrabold uppercase tracking-wide text-slate-950 transition hover:bg-cyan-300">Jouer au quiz →</a>
+            </section>
+        </aside>
+    </div>
+
+    <section id="historique" class="profile-panel profile-history rounded-2xl p-5 sm:p-6">
         <div class="profile-panel__header mb-5">
             <div>
                 <p class="profile-kicker text-cyan-400">Tes performances</p>
@@ -353,7 +460,7 @@
         </div>
 
         {% if attempts_by_mode %}
-        <div class="profile-timeline flex flex-col gap-2">
+        <div class="profile-timeline profile-performance-grid">
             {% for mode, mode_attempts in attempts_by_mode.items() %}
             {% set mode_correct = mode_attempts | selectattr("is_correct") | list | length %}
             {% set mode_total = mode_attempts | length %}
