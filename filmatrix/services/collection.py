@@ -62,12 +62,24 @@ def get_characters_for_tag(user, tag_id: int) -> list[dict]:
 
     return result
 
+def has_earned_fragment_today(user) -> bool:
+    """Vérifie si le joueur a déjà reçu un fragment via le jeu normal aujourd'hui."""
+    if user.last_fragment_earned_at is None:
+        return False
+
+    return user.last_fragment_earned_at.date() == datetime.utcnow().date()
+
+
 def award_fragment_for_question(user, question: Question) -> tuple[Character, bool] | None:
-    """Donne un fragment à un personnage verrouillé au hasard, parmi les sagas de la question.
+    """Donne un fragment à un personnage verrouillé au hasard, une fois par jour maximum.
 
     Renvoie (personnage, vient_d_etre_debloque) si un fragment a été donné,
-    ou None si la question n'est liée à aucune saga ayant des personnages.
+    ou None si le quota quotidien est déjà atteint, ou si la question n'est
+    liée à aucune saga ayant des personnages verrouillés.
     """
+    if has_earned_fragment_today(user):
+        return None
+
     saga_tags = [tag for tag in question.tags if tag.tag_type == "saga"]
     if not saga_tags:
         return None
@@ -88,5 +100,6 @@ def award_fragment_for_question(user, question: Question) -> tuple[Character, bo
 
     chosen_character = random.choice(locked_characters)
     just_unlocked = add_fragments(user, chosen_character, 1)
+    user.last_fragment_earned_at = datetime.utcnow()
 
     return chosen_character, just_unlocked

@@ -4,6 +4,8 @@ from filmatrix.extensions import db
 from filmatrix.models import Character, Tag, User, Question
 from filmatrix.services.collection import add_fragments, get_characters_for_tag, get_or_create_progress, award_fragment_for_question
 
+from datetime import datetime, timedelta
+
 
 def create_test_user(username: str = "Collectionneur") -> User:
     """Crée un utilisateur de test en base"""
@@ -172,7 +174,7 @@ def test_award_fragment_gives_fragment_to_locked_character(app):
 
 
 def test_award_fragment_ignores_already_unlocked_characters(app):
-    """A fully unlocked character should not receive more fragments."""
+    """A fully unlocked character should not receive more fragments, even on a new day."""
     with app.app_context():
         user = create_test_user()
         tag = create_test_tag()
@@ -182,6 +184,48 @@ def test_award_fragment_ignores_already_unlocked_characters(app):
         award_fragment_for_question(user, question)
         db.session.commit()
 
+        # On simule un nouveau jour, pour isoler l'effet "déjà débloqué"
+        # de celui du quota quotidien.
+        user.last_fragment_earned_at = datetime.utcnow() - timedelta(days=1)
+        db.session.commit()
+
         result = award_fragment_for_question(user, question)
 
         assert result is None
+
+
+def test_award_fragment_respects_daily_quota(app):
+    """A second correct answer on the same day should not award a second fragment."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character_a = create_test_character(tag, name="Personnage A", fragments_required=5)
+        character_b = create_test_character(tag, name="Personnage B", fragments_required=5)
+        question = create_test_question(tags=[tag])
+
+        first_result = award_fragment_for_question(user, question)
+        db.session.commit()
+
+        second_result = award_fragment_for_question(user, question)
+
+        assert first_result is not None
+        assert second_result is None
+
+
+def test_award_fragment_works_again_the_next_day(app):
+    """A fragment should be awardable again once a new day has started."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, fragments_required=5)
+        question = create_test_question(tags=[tag])
+
+        award_fragment_for_question(user, question)
+        db.session.commit()
+
+        user.last_fragment_earned_at = datetime.utcnow() - timedelta(days=1)
+        db.session.commit()
+
+        result = award_fragment_for_question(user, question)
+
+        assert result is not None
