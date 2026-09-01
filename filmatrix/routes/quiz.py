@@ -9,7 +9,8 @@ from filmatrix.models import Attempt, Report, Tag, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.character_answers import character_answer
-from filmatrix.services.collection import award_fragment_for_question
+from filmatrix.services.collection import award_fragment_for_question,award_guaranteed_fragment
+from filmatrix.services.daily_challenges import update_challenge_progress, update_streak_on_completion
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.levels import (
@@ -219,6 +220,9 @@ def quiz(mode: str, position: int) -> str:
         earned_xp = 0
         earned_coins = 0
         fragment_result = None
+        completed_challenge = None
+        challenge_fragment_result = None
+        streak_bonus_fragment_result = None
 
         if current_user.is_authenticated:
             already_answered_correctly = Attempt.query.filter_by(
@@ -250,12 +254,32 @@ def quiz(mode: str, position: int) -> str:
 
             new_badges = [BADGES[code] for code in new_badge_codes]
 
+        # record_answer doit s'exécuter avant la lecture de current_streak :
+        # c'est lui qui met la série à jour avec la réponse qu'on vient de
+        # traiter. La lire avant refléterait l'état d'avant cette réponse.
+        record_answer(session, mode, question.id, is_correct, earned_xp, earned_coins)
+
+        if current_user.is_authenticated:
+            current_run_streak = session.get("run", {}).get("current_streak", 0)
+            completed_challenge = update_challenge_progress(
+                current_user, question, is_correct, current_run_streak=current_run_streak
+            )
+
+            if completed_challenge is not None:
+                challenge_fragment_result = award_guaranteed_fragment(current_user)
+
+                reached_streak_bonus = update_streak_on_completion(current_user)
+                if reached_streak_bonus:
+                    streak_bonus_fragment_result = award_guaranteed_fragment(
+                        current_user, minimum_rarity=["rare", "epique", "legendaire", "mythique"]
+                    )
+
+                db.session.commit()
+
         correct_answer_text = None if is_correct else format_correct_answer(
             question,
             alternate_answer=character_answer(question) if character_mode else None,
         )
-
-        record_answer(session, mode, question.id, is_correct, earned_xp, earned_coins)
 
         if question.mode == "chronologie":
             correct_order = question.correct_answer["order"]
@@ -280,6 +304,23 @@ def quiz(mode: str, position: int) -> str:
                     if fragment_result
                     else None
                 ),
+                "completed_challenge": completed_challenge is not None,
+                "challenge_fragment_result": (
+                    {
+                        "character_name": challenge_fragment_result[0].name,
+                        "just_unlocked": challenge_fragment_result[1],
+                    }
+                    if challenge_fragment_result
+                    else None
+                ),
+                "streak_bonus_fragment_result": (
+                    {
+                        "character_name": streak_bonus_fragment_result[0].name,
+                        "just_unlocked": streak_bonus_fragment_result[1],
+                    }
+                    if streak_bonus_fragment_result
+                    else None
+                ),
             }
 
         return {
@@ -293,6 +334,23 @@ def quiz(mode: str, position: int) -> str:
                     "just_unlocked": fragment_result[1],
                 }
                 if fragment_result
+                else None
+            ),
+            "completed_challenge": completed_challenge is not None,
+            "challenge_fragment_result": (
+                {
+                    "character_name": challenge_fragment_result[0].name,
+                    "just_unlocked": challenge_fragment_result[1],
+                }
+                if challenge_fragment_result
+                else None
+            ),
+            "streak_bonus_fragment_result": (
+                {
+                    "character_name": streak_bonus_fragment_result[0].name,
+                    "just_unlocked": streak_bonus_fragment_result[1],
+                }
+                if streak_bonus_fragment_result
                 else None
             ),
         }

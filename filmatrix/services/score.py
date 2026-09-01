@@ -46,8 +46,8 @@ def start_run(store, mode: str, question_ids: list[int] | None = None, filters: 
         "coins": 0,
         "questions": question_ids or [],
         "filters": filters or {},
+        "current_streak": 0,
     }
-
 
 def run_question_id(store, mode: str, position: int, filters: dict | None = None) -> int | None:
     """Retourne l'id de la question tirée pour cette position, ou None
@@ -100,6 +100,9 @@ def record_answer(
     run["answered"].append(question_id)
     if is_correct:
         run["correct"] += 1
+        run["current_streak"] = run.get("current_streak", 0) + 1
+    else:
+        run["current_streak"] = 0
     run["xp"] += xp
     run["coins"] += coins
 

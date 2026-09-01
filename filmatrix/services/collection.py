@@ -131,3 +131,28 @@ def get_saga_summaries(user) -> list[dict]:
                 }
             )
         return summaries 
+
+def award_guaranteed_fragment(user, minimum_rarity: list[str] | None = None) -> tuple[Character, bool] | None:
+    """Donne un fragment garanti à un personnage verrouillé au hasard, toutes sagas confondues.
+
+    Si minimum_rarity est fourni, ne tire que parmi les personnages de ces raretés.
+    """
+    query = Character.query
+    if minimum_rarity:
+        query = query.filter(Character.rarity.in_(minimum_rarity))
+
+    candidate_characters = query.all()
+
+    locked_characters = [
+        character
+        for character in candidate_characters
+        if not get_or_create_progress(user, character).unlocked_at
+    ]
+
+    if not locked_characters:
+        return None
+
+    chosen_character = random.choice(locked_characters)
+    just_unlocked = add_fragments(user, chosen_character, 1)
+
+    return chosen_character, just_unlocked
