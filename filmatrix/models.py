@@ -43,6 +43,8 @@ class User(db.Model, UserMixin):
     avatar = db.Column(db.String(10), nullable=True)
     bio = db.Column(db.String(280), nullable=True)
     last_fragment_earned_at = db.Column(db.DateTime, nullable=True)
+    current_streak = db.Column(db.Integer, nullable=False, default=0)
+    last_streak_date = db.Column(db.Date, nullable=True)
 
     def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"
@@ -228,3 +230,23 @@ class UserCharacter(db.Model):
 
     user = db.relationship("User", backref="character_progress")
     character = db.relationship("Character")
+
+class DailyChallenge(db.Model):
+    """Représente le défi quotidien assigné à un joueur pour une date donnée."""
+
+    __tablename__ = "daily_challenges"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    challenge_date = db.Column(db.Date, nullable=False)
+    challenge_type = db.Column(db.String(50), nullable=False)
+    target_value = db.Column(db.Integer, nullable=False)
+    target_mode = db.Column(db.String(50), nullable=True)
+    target_tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), nullable=True)
+    progress = db.Column(db.Integer, nullable=False, default=0)
+    completed_at = db.Column(db.DateTime, nullable=True)
+
+    user = db.relationship("User", backref="daily_challenges")
+    target_tag = db.relationship("Tag")
+
+    __table_args__ = (db.UniqueConstraint("user_id", "challenge_date", name="uq_user_challenge_date"),)
