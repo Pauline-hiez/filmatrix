@@ -98,3 +98,27 @@ def update_challenge_progress(user, question: Question, is_correct: bool, curren
     db.session.commit()
 
     return challenge if just_completed else None
+
+STREAK_BONUS_THRESHOLD = 7
+
+def update_streak_on_completion(user) -> bool:
+    """Met à jour la série de connexion du joueur suite à un défi complété aujourd'hui, renvoie True si le palier de bonus (7 jours) vient d'être atteint.
+    """
+    today = date.today()
+
+    if user.last_streak_date == today:
+        # Le défi d'aujourd'hui a déjà mis à jour la série une première fois.
+        return False
+
+    yesterday = date.fromordinal(today.toordinal() - 1)
+
+    if user.last_streak_date == yesterday:
+        user.current_streak += 1
+    else:
+        user.current_streak = 1
+
+    user.last_streak_date = today
+
+    reached_bonus = user.current_streak > 0 and user.current_streak % STREAK_BONUS_THRESHOLD == 0
+
+    return reached_bonus

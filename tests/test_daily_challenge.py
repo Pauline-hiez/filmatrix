@@ -2,9 +2,9 @@
 
 from filmatrix.extensions import db
 from filmatrix.models import DailyChallenge, Question, Tag, User
-from filmatrix.services.daily_challenges import CHALLENGE_TYPES, get_or_create_daily_challenge, update_challenge_progress
+from filmatrix.services.daily_challenges import CHALLENGE_TYPES, get_or_create_daily_challenge, update_challenge_progress, STREAK_BONUS_THRESHOLD, update_streak_on_completion
 
-from datetime import date
+from datetime import date, timedelta
 
 
 def create_test_user(username: str = "Defieur") -> User:
@@ -187,3 +187,82 @@ def test_streak_count_challenge_reflects_run_streak(app):
 
         challenge = DailyChallenge.query.filter_by(user_id=user.id).first()
         assert challenge.progress == 2
+
+def test_streak_starts_at_one_for_first_completion(app):
+    """Le tout premier défi réussi par un joueur doit porter sa série à 1"""
+    with app.app_context():
+        user = create_test_user()
+
+        update_streak_on_completion(user)
+
+        assert user.current_streak == 1
+        assert user.last_streak_date == date.today()
+
+
+def test_streak_increments_on_consecutive_day(app):
+    """Terminer le lendemain du dernier doit prolonger la série"""
+    with app.app_context():
+        user = create_test_user()
+        user.current_streak = 4
+        user.last_streak_date = date.today() - timedelta(days=1)
+        db.session.commit()
+
+        update_streak_on_completion(user)
+
+        assert user.current_streak == 5
+
+
+def test_streak_resets_after_a_missed_day(app):
+    """Terminer une session après un intervalle de plus d'un jour doit réinitialiser la série à 1"""
+    with app.app_context():
+        user = create_test_user()
+        user.current_streak = 6
+        user.last_streak_date = date.today() - timedelta(days=3)
+        db.session.commit()
+
+        update_streak_on_completion(user)
+
+        assert user.current_streak == 1
+
+
+def test_streak_does_not_double_increment_on_same_day(app):
+    """Appeler la fonction deux fois le même jour ne doit pas incrémenter la série deux fois"""
+    with app.app_context():
+        user = create_test_user()
+        user.current_streak = 2
+        user.last_streak_date = date.today() - timedelta(days=1)
+        db.session.commit()
+
+        update_streak_on_completion(user)
+        first_streak = user.current_streak
+
+        update_streak_on_completion(user)
+        second_streak = user.current_streak
+
+        assert first_streak == second_streak
+
+
+def test_streak_bonus_triggers_at_threshold(app):
+    """Atteindre exactement le seuil doit déclencher le bonus"""
+    with app.app_context():
+        user = create_test_user()
+        user.current_streak = STREAK_BONUS_THRESHOLD - 1
+        user.last_streak_date = date.today() - timedelta(days=1)
+        db.session.commit()
+
+        reached_bonus = update_streak_on_completion(user)
+
+        assert reached_bonus is True
+
+
+def test_streak_bonus_does_not_trigger_below_threshold(app):
+    """Une série de victoires inférieure au seuil ne doit pas déclencher le bonus"""
+    with app.app_context():
+        user = create_test_user()
+        user.current_streak = STREAK_BONUS_THRESHOLD - 3
+        user.last_streak_date = date.today() - timedelta(days=1)
+        db.session.commit()
+
+        reached_bonus = update_streak_on_completion(user)
+
+        assert reached_bonus is False
