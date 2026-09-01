@@ -283,6 +283,25 @@
     <section class="profile-panel rounded-2xl p-5 sm:p-6">
         <div class="profile-panel__header mb-5">
             <div>
+                <p class="profile-kicker text-cyan-400">Accomplissements</p>
+                <h2 class="mt-1 text-xl font-extrabold text-slate-100">Badges</h2>
+            </div>
+            <span class="text-xs text-slate-500">{{ earned_count }} / {{ all_badges | length }} débloqués</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {% for badge in all_badges %}
+            <div class="profile-badge rounded-xl p-3 text-center {% if badge.earned %}is-earned{% else %}opacity-45{% endif %}">
+                <span class="profile-badge__icon {% if not badge.earned %}grayscale{% endif %}">{{ badge.icon }}</span>
+                <p class="mt-2 truncate text-xs font-bold {% if badge.earned %}text-cyan-300{% else %}text-slate-500{% endif %}" title="{{ badge.name }}">{{ badge.name }}</p>
+                <p class="mt-1 text-[.65rem] text-slate-600">{% if badge.earned %}Débloqué{% else %}À débloquer{% endif %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="profile-panel rounded-2xl p-5 sm:p-6">
+        <div class="profile-panel__header mb-5">
+            <div>
                 <p class="profile-kicker text-cyan-400">Univers cinéma</p>
                 <h2 class="mt-1 text-xl font-extrabold text-slate-100">Ma Collection</h2>
             </div>

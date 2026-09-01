@@ -1374,5 +1374,126 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 60028,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "À quel film appartiennent ces trois membres du casting ?",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg",
+        "https://image.tmdb.org/t/p/w500/ajNaPmXVVMJFg9GWmu6MJzTaXdV.jpg",
+        "https://image.tmdb.org/t/p/w500/hJMbNSPJ2PCahsP3rNEU39C8GWU.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Fight Club"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Fight Club",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61027,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "À quel film appartiennent ces membres du casting ?",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/wo2hJpn04vbtmh0B9utCFdsQhxM.jpg",
+        "https://image.tmdb.org/t/p/w500/9WsvKjheeizXCcZrFjZCrCoItqO.jpg",
+        "https://image.tmdb.org/t/p/w500/aiqWSWbRJ6rrjxxVE6y2Xb3KdSp.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Astérix et Obélix : Mission Cléopâtre"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "Astérix",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62026,
+    "mode": "casting",
+    "content_type": "film",
+    "prompt": "À quel thriller appartiennent ces membres du casting ?",
+    "payload": {
+      "actor_photos": [
+        "https://image.tmdb.org/t/p/w500/905k0RFzH0Kd6gx8oSxRdnr6FL.jpg",
+        "https://image.tmdb.org/t/p/w500/ajNaPmXVVMJFg9GWmu6MJzTaXdV.jpg",
+        "https://image.tmdb.org/t/p/w500/r4wbWWEEjmtRFZ0GU10XbLTgp47.jpg"
+      ]
+    },
+    "correct_answer": {
+      "film": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Seven",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

@@ -2253,5 +2253,114 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 60029,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière cette image ?",
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
+    },
+    "correct_answer": {
+      "title": "Alien"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Alien",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61028,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière cette image ?",
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
+    },
+    "correct_answer": {
+      "title": "Les Visiteurs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Les Visiteurs",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62027,
+    "mode": "film_melange",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière cette image ?",
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/i5H7zusQGsysGQ8i6P361Vnr0n2.jpg"
+    },
+    "correct_answer": {
+      "title": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Seven",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

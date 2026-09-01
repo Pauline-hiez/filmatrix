@@ -5991,5 +5991,1073 @@
         "type": "acteur"
       }
     ]
+  },
+  {
+    "id": 60000,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Psychose, quel est le nom de famille de Norman ?",
+    "payload": {
+      "options": [
+        "Bates",
+        "Crane",
+        "Loomis",
+        "Perkins"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Psychose",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60001,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Alien, comment s'appelle le vaisseau de l'équipage ?",
+    "payload": {
+      "options": [
+        "Nostromo",
+        "Sulaco",
+        "Prometheus",
+        "Covenant"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Alien",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60002,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Scream, quel accessoire porte le tueur ?",
+    "payload": {
+      "options": [
+        "Un masque de fantôme",
+        "Un masque de clown",
+        "Un masque de porc",
+        "Un masque blanc sans expression"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "Scream",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60003,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Ça, quelle ville est hantée par Grippe-Sou ?",
+    "payload": {
+      "options": [
+        "Derry",
+        "Castle Rock",
+        "Haddonfield",
+        "Springwood"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Ça",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60004,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Halloween, quel est le prénom du tueur masqué ?",
+    "payload": {
+      "options": [
+        "Michael",
+        "Jason",
+        "Freddy",
+        "Leatherface"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Halloween",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60005,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Saw, comment le tueur est-il surnommé ?",
+    "payload": {
+      "options": [
+        "Jigsaw",
+        "The Collector",
+        "Ghostface",
+        "The Engineer"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Saw",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60006,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel objet est au centre de l'histoire de Ring ?",
+    "payload": {
+      "options": [
+        "Une cassette vidéo",
+        "Une poupée",
+        "Un miroir",
+        "Un livre"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Ring",
+        "type": "univers"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60007,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans L'Exorciste, quel est le prénom de la jeune fille possédée ?",
+    "payload": {
+      "options": [
+        "Regan",
+        "Carrie",
+        "Daisy",
+        "Mia"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "L'Exorciste",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60008,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans The Descent, où les personnages se retrouvent-ils piégés ?",
+    "payload": {
+      "options": [
+        "Dans une grotte",
+        "Dans un hôtel",
+        "Dans un navire",
+        "Dans une mine à ciel ouvert"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "The Descent",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60009,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Shining, quel hôtel devient le lieu principal du cauchemar ?",
+    "payload": {
+      "options": [
+        "L'Overlook",
+        "Le Bates Motel",
+        "L'hôtel Cortez",
+        "Le Stanley"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Shining",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61000,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Les Visiteurs, qui interprète Godefroy de Montmirail ?",
+    "payload": {
+      "options": [
+        "Jean Reno",
+        "Christian Clavier",
+        "Gérard Depardieu",
+        "Thierry Lhermitte"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Les Visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61001,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Astérix et Obélix : Mission Cléopâtre, qui joue Numérobis ?",
+    "payload": {
+      "options": [
+        "Jamel Debbouze",
+        "José Garcia",
+        "Alain Chabat",
+        "Édouard Baer"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "Astérix",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61002,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Maman, j'ai raté l'avion !, comment s'appelle le jeune héros ?",
+    "payload": {
+      "options": [
+        "Kevin McCallister",
+        "Peter McCallister",
+        "Buzz McCallister",
+        "Harry Lime"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "Maman j'ai raté l'avion",
+        "type": "saga"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61003,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans La Cité de la peur, quel trio d'acteurs forme les membres des Nuls à l'écran ?",
+    "payload": {
+      "options": [
+        "Chabat, Farrugia et Lauby",
+        "Clavier, Reno et Lhermitte",
+        "Boon, Merad et Kad",
+        "Dujardin, Lamy et Elmaleh"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "La Cité de la peur",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61004,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans The Mask, quel objet transforme Stanley Ipkiss ?",
+    "payload": {
+      "options": [
+        "Un masque magique",
+        "Une bague",
+        "Une montre",
+        "Un chapeau"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "The Mask",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61005,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Un jour sans fin, quelle journée Phil revit-il sans cesse ?",
+    "payload": {
+      "options": [
+        "Le jour de la marmotte",
+        "Le réveillon",
+        "Le 14 juillet",
+        "Son anniversaire"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Un jour sans fin",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61006,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Dîner de cons, que fabrique François Pignon ?",
+    "payload": {
+      "options": [
+        "Des maquettes en allumettes",
+        "Des trains miniatures",
+        "Des poupées",
+        "Des meubles"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "Le Dîner de cons",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61007,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans The Big Lebowski, quel surnom porte Jeffrey Lebowski ?",
+    "payload": {
+      "options": [
+        "The Dude",
+        "The Chief",
+        "The Man",
+        "The Player"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "The Big Lebowski",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62000,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Seven, quels crimes servent de fil conducteur à l'enquête ?",
+    "payload": {
+      "options": [
+        "Les sept péchés capitaux",
+        "Les douze travaux",
+        "Les cinq éléments",
+        "Les quatre saisons"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Seven",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62001,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Le Silence des agneaux, quel agent interroge Hannibal Lecter ?",
+    "payload": {
+      "options": [
+        "Clarice Starling",
+        "Dana Scully",
+        "Ellen Ripley",
+        "Marge Gunderson"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Le Silence des agneaux",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62002,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Memento, quel problème affecte Leonard Shelby ?",
+    "payload": {
+      "options": [
+        "Une perte de mémoire récente",
+        "La cécité",
+        "La surdité",
+        "Une amnésie de l'enfance"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Memento",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62003,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Quel réalisateur a signé Gone Girl ?",
+    "payload": {
+      "options": [
+        "David Fincher",
+        "Christopher Nolan",
+        "Denis Villeneuve",
+        "Martin Scorsese"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Gone Girl",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62004,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Us, quel élément est associé aux doubles des personnages ?",
+    "payload": {
+      "options": [
+        "Les Tethered",
+        "Les Inconnus",
+        "Les Ombres",
+        "Les Reflets"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Us",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62005,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Shutter Island, où se déroule principalement l'intrigue ?",
+    "payload": {
+      "options": [
+        "Sur une île abritant un hôpital psychiatrique",
+        "Dans une station spatiale",
+        "Dans un hôtel",
+        "Dans un sous-marin"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Shutter Island",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62006,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Zodiac, quelle affaire est au centre de l'enquête ?",
+    "payload": {
+      "options": [
+        "Un tueur qui envoie des lettres codées",
+        "Un braquage de banque",
+        "Une disparition en mer",
+        "Un espionnage industriel"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Zodiac",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62007,
+    "mode": "qcm",
+    "content_type": "film",
+    "prompt": "Dans Inception, quel objet permet à Cobb de vérifier la réalité ?",
+    "payload": {
+      "options": [
+        "Une toupie",
+        "Une montre",
+        "Une pièce",
+        "Une bague"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Inception",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

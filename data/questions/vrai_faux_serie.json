@@ -6446,5 +6446,174 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 61017,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Friends, Chandler travaille dans la paléontologie.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "Friends",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61018,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans The Office, Michael Scott dirige la succursale de Scranton.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "The Office",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62016,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Walter White est professeur de chimie au début de Breaking Bad.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Breaking Bad",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62017,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dexter Morgan travaille comme expert en traces de sang.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Dexter",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62029,
+    "mode": "vrai_faux",
+    "content_type": "serie",
+    "prompt": "Dans Sherlock, John Watson est médecin militaire avant de rencontrer Sherlock Holmes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

@@ -5631,5 +5631,249 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 61008,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Friends, quel métier exerce Ross ?",
+    "payload": {
+      "options": [
+        "Paléontologue",
+        "Avocat",
+        "Chef cuisinier",
+        "Médecin"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "Friends",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61009,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans The Office, dans quelle entreprise travaillent les personnages principaux ?",
+    "payload": {
+      "options": [
+        "Dunder Mifflin",
+        "Wernham Hogg",
+        "Waystar Royco",
+        "Sterling Cooper"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "The Office",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61029,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Kaamelott, quel est le nom du roi joué par Alexandre Astier ?",
+    "payload": {
+      "options": [
+        "Arthur",
+        "Perceval",
+        "Lancelot",
+        "Karadoc"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Kaamelott",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62008,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Breaking Bad, quelle activité devient le centre de l'ascension de Walter White ?",
+    "payload": {
+      "options": [
+        "La production de méthamphétamine",
+        "Le trafic d'armes",
+        "Le piratage informatique",
+        "Le jeu clandestin"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Breaking Bad",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62009,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Dexter, quel métier officiel exerce Dexter Morgan ?",
+    "payload": {
+      "options": [
+        "Expert médico-légal spécialisé dans le sang",
+        "Avocat",
+        "Médecin légiste",
+        "Journaliste"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Dexter",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62028,
+    "mode": "qcm",
+    "content_type": "serie",
+    "prompt": "Dans Sherlock, quelle ville est le principal décor de l'histoire ?",
+    "payload": {
+      "options": [
+        "Londres",
+        "Manchester",
+        "Dublin",
+        "Édimbourg"
+      ]
+    },
+    "correct_answer": {
+      "index": 0
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Sherlock",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

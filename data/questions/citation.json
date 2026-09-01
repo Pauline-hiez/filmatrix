@@ -2019,5 +2019,256 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 60018,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Tu veux jouer à un jeu ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Saw"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Saw",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60019,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Quel est ton film d'horreur favori ? » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Scream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "Scream",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60020,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Ils sont ici. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Poltergeist"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Poltergeist",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61019,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« On ne met pas Bébé dans un coin. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Dirty Dancing"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "romance",
+        "type": "genre"
+      },
+      {
+        "name": "musique",
+        "type": "genre"
+      },
+      {
+        "name": "Dirty Dancing",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61020,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Je suis ton père... » — De quel film vient cette réplique parodiée dans de nombreuses comédies ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Star Wars"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Star Wars",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62018,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Qu'y a-t-il dans la boîte ?! » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Seven",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62019,
+    "mode": "citation",
+    "content_type": "film",
+    "prompt": "« Je vois des personnes mortes. » — De quel film vient cette réplique ?",
+    "payload": {},
+    "correct_answer": {
+      "film": "Sixième Sens"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Sixième Sens",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
   }
 ]

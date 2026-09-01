@@ -5896,5 +5896,722 @@
         "type": "acteur"
       }
     ]
+  },
+  {
+    "id": 60010,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Alien a été réalisé par Ridley Scott.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Alien",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60011,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Shining, l'hôtel Overlook est fermé pendant l'hiver.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Shining",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60012,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le tueur de Scream se fait appeler Ghostface.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "Scream",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60013,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Ça, Grippe-Sou prend souvent l'apparence d'un clown.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Ça",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60014,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Le film Psychose a été réalisé par Alfred Hitchcock.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Psychose",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1960",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60015,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Saw, Jigsaw tue toujours directement ses victimes.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Saw",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60016,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans L'Exorciste, la jeune fille possédée s'appelle Regan.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "L'Exorciste",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1970",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60017,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "The Descent se déroule principalement dans une grotte.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "The Descent",
+        "type": "univers"
+      },
+      {
+        "name": "royaume-uni",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61010,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Les Visiteurs, Godefroy et Jacquouille viennent du Moyen Âge.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Les Visiteurs",
+        "type": "saga"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61011,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Maman, j'ai raté l'avion !, Kevin est oublié à Chicago.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "familial",
+        "type": "genre"
+      },
+      {
+        "name": "Maman j'ai raté l'avion",
+        "type": "saga"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61012,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Alain Chabat réalise Astérix et Obélix : Mission Cléopâtre.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "Astérix",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61013,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans The Mask, Stanley Ipkiss est un super-héros avant de porter le masque.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "The Mask",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61014,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Un jour sans fin se déroule principalement à Punxsutawney.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Un jour sans fin",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61015,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Le Dîner de cons, Pierre Brochant organise un dîner avec François Pignon.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "Le Dîner de cons",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61016,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "The Big Lebowski est réalisé par les frères Coen.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "The Big Lebowski",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62010,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Seven a été réalisé par David Fincher.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Seven",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62011,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Clarice Starling est une agente du FBI dans Le Silence des agneaux.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Le Silence des agneaux",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62012,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Memento raconte une histoire présentée dans un ordre chronologique classique.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Memento",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62013,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Gone Girl est adapté d'un roman de Gillian Flynn.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Gone Girl",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62014,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Dans Inception, les rêves peuvent être partagés entre plusieurs personnes.",
+    "payload": {},
+    "correct_answer": {
+      "value": true
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Inception",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62015,
+    "mode": "vrai_faux",
+    "content_type": "film",
+    "prompt": "Shutter Island se déroule dans une petite ville française.",
+    "payload": {},
+    "correct_answer": {
+      "value": false
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Shutter Island",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]

@@ -1471,5 +1471,227 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 60026,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Classez ces films d'horreur du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Psychose",
+        "L'Exorciste",
+        "Alien",
+        "Scream"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Psychose",
+        "L'Exorciste",
+        "Alien",
+        "Scream"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 60027,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Classez ces films de la saga Alien du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Alien",
+        "Aliens, le retour",
+        "Alien 3",
+        "Alien: La Résurrection"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Alien",
+        "Aliens, le retour",
+        "Alien 3",
+        "Alien: La Résurrection"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "Alien",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 61025,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Classez ces comédies françaises de la plus ancienne à la plus récente.",
+    "payload": {
+      "films": [
+        "Le Dîner de cons",
+        "Les Visiteurs",
+        "Astérix et Obélix : Mission Cléopâtre",
+        "Intouchables"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Le Dîner de cons",
+        "Les Visiteurs",
+        "Astérix et Obélix : Mission Cléopâtre",
+        "Intouchables"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 61026,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Classez ces films de Jim Carrey du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "The Mask",
+        "Menteur, menteur",
+        "Bruce tout-puissant",
+        "Yes Man"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "The Mask",
+        "Menteur, menteur",
+        "Bruce tout-puissant",
+        "Yes Man"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 62024,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Classez ces thrillers de David Fincher du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Seven",
+        "Fight Club",
+        "Zodiac",
+        "Gone Girl"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Seven",
+        "Fight Club",
+        "Zodiac",
+        "Gone Girl"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      }
+    ]
+  },
+  {
+    "id": 62025,
+    "mode": "chronologie",
+    "content_type": "film",
+    "prompt": "Classez ces films de Christopher Nolan du plus ancien au plus récent.",
+    "payload": {
+      "films": [
+        "Memento",
+        "The Dark Knight",
+        "Inception",
+        "Interstellar"
+      ]
+    },
+    "correct_answer": {
+      "order": [
+        "Memento",
+        "The Dark Knight",
+        "Inception",
+        "Interstellar"
+      ]
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "science-fiction",
+        "type": "genre"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      }
+    ]
   }
 ]

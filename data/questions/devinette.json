@@ -2167,5 +2167,524 @@
         "type": "epoque"
       }
     ]
+  },
+  {
+    "id": 60021,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices d'hôtel ?",
+    "payload": {
+      "hints": [
+        "Un hôtel isolé devient le théâtre d'événements surnaturels.",
+        "Un écrivain s'y installe avec sa famille.",
+        "Les jumelles et la chambre 237 sont devenues célèbres."
+      ]
+    },
+    "correct_answer": {
+      "film": "Shining"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "Shining",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1980",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60022,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices paranormaux ?",
+    "payload": {
+      "hints": [
+        "Une famille passe un séjour dans une maison marquée par un drame.",
+        "Des phénomènes paranormaux se multiplient.",
+        "Le film est réalisé par James Wan."
+      ]
+    },
+    "correct_answer": {
+      "film": "The Conjuring"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "The Conjuring",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60023,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices vidéo ?",
+    "payload": {
+      "hints": [
+        "Une jeune femme reçoit des appels inquiétants.",
+        "Une cassette vidéo est au cœur de l'intrigue.",
+        "Une fille aux cheveux noirs sort d'un puits."
+      ]
+    },
+    "correct_answer": {
+      "film": "Ring"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Ring",
+        "type": "univers"
+      },
+      {
+        "name": "japon",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60024,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices de slasher ?",
+    "payload": {
+      "hints": [
+        "Un groupe d'amis est traqué par un tueur masqué.",
+        "Le tueur appelle souvent ses victimes.",
+        "Le film commence par une conversation au sujet des films d'horreur."
+      ]
+    },
+    "correct_answer": {
+      "film": "Scream"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "Scream",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 60025,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices désertiques ?",
+    "payload": {
+      "hints": [
+        "Une famille voyage dans une région désertique.",
+        "Des habitants monstrueux vivent à proximité.",
+        "Le film est un remake produit par Wes Craven."
+      ]
+    },
+    "correct_answer": {
+      "film": "La Colline a des yeux"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "La Colline a des yeux",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61021,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices de comédie française ?",
+    "payload": {
+      "hints": [
+        "Deux hommes venus du Moyen Âge arrivent à l'époque moderne.",
+        "Un serviteur porte un nom très reconnaissable.",
+        "Jean Reno et Christian Clavier sont en tête d'affiche."
+      ]
+    },
+    "correct_answer": {
+      "film": "Les Visiteurs"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Les Visiteurs",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61022,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices de voyage temporel ?",
+    "payload": {
+      "hints": [
+        "Un homme revit sans cesse la même journée.",
+        "Une fête traditionnelle est au centre du récit.",
+        "Bill Murray joue le personnage principal."
+      ]
+    },
+    "correct_answer": {
+      "film": "Un jour sans fin"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "Un jour sans fin",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61023,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices de dîner ?",
+    "payload": {
+      "hints": [
+        "Un éditeur invite des personnes considérées comme originales.",
+        "Un invité fabrique des maquettes en allumettes.",
+        "Le personnage s'appelle François Pignon."
+      ]
+    },
+    "correct_answer": {
+      "film": "Le Dîner de cons"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "Le Dîner de cons",
+        "type": "univers"
+      },
+      {
+        "name": "france",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 61024,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel film se cache derrière ces indices de masque ?",
+    "payload": {
+      "hints": [
+        "Un employé de banque découvre un objet surnaturel.",
+        "L'objet transforme son comportement et son apparence.",
+        "Jim Carrey tient le rôle principal."
+      ]
+    },
+    "correct_answer": {
+      "film": "The Mask"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "comédie",
+        "type": "genre"
+      },
+      {
+        "name": "fantasy",
+        "type": "genre"
+      },
+      {
+        "name": "The Mask",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62020,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel thriller se cache derrière ces indices ?",
+    "payload": {
+      "hints": [
+        "Deux inspecteurs enquêtent sur une série de crimes.",
+        "Les crimes renvoient aux sept péchés capitaux.",
+        "David Fincher réalise le film."
+      ]
+    },
+    "correct_answer": {
+      "film": "Seven"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Seven",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-1990",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62021,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel thriller se cache derrière ces indices de mémoire ?",
+    "payload": {
+      "hints": [
+        "Le héros enquête sur la mort de sa femme.",
+        "Il ne peut plus créer de nouveaux souvenirs.",
+        "Le récit joue avec l'ordre des événements."
+      ]
+    },
+    "correct_answer": {
+      "film": "Memento"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "Memento",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2000",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62022,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel thriller se cache derrière ces indices judiciaires ?",
+    "payload": {
+      "hints": [
+        "Une disparition bouleverse un couple.",
+        "La presse et l'opinion publique s'en mêlent.",
+        "David Fincher adapte un roman de Gillian Flynn."
+      ]
+    },
+    "correct_answer": {
+      "film": "Gone Girl"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Gone Girl",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
+  },
+  {
+    "id": 62023,
+    "mode": "devinette",
+    "content_type": "film",
+    "prompt": "Quel thriller se cache derrière ces indices insulaires ?",
+    "payload": {
+      "hints": [
+        "Un marshal arrive sur une île isolée.",
+        "Un établissement psychiatrique y accueille des criminels.",
+        "Leonardo DiCaprio tient le rôle principal."
+      ]
+    },
+    "correct_answer": {
+      "film": "Shutter Island"
+    },
+    "requires_account": false,
+    "tags": [
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
+      },
+      {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "Shutter Island",
+        "type": "univers"
+      },
+      {
+        "name": "etats-unis",
+        "type": "pays"
+      },
+      {
+        "name": "annees-2010",
+        "type": "epoque"
+      }
+    ]
   }
 ]
