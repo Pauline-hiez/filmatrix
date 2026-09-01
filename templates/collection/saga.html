@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto mt-8">
+    <a href="{{ url_for('collection.collection_overview') }}" class="text-sm text-slate-400 hover:text-cyan-400 transition mb-4 inline-block">
+        ← Retour à la collection
+    </a>
+
+    <h1 class="text-2xl font-bold mb-6">{{ tag.name }}</h1>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        {% for character in characters %}
+        <div class="rounded-xl border {% if character.is_unlocked %}border-cyan-400/50{% else %}border-slate-700{% endif %} bg-slate-900/60 p-3">
+
+            <div class="relative w-full aspect-square rounded-lg overflow-hidden mb-2 bg-slate-950 grid grid-cols-3 grid-rows-3 gap-0.5">
+                {% for is_revealed in character.puzzle_grid %}
+                    {% set row = loop.index0 // 3 %}
+                    {% set col = loop.index0 % 3 %}
+                    <div class="relative overflow-hidden {% if not is_revealed %}bg-slate-800{% endif %}">
+                        {% if is_revealed and character.image_url %}
+                        <div class="absolute inset-0 bg-cover"
+                             style="background-image: url('{{ character.image_url }}'); background-size: 300% 300%; background-position: {{ col * 50 }}% {{ row * 50 }}%;"></div>
+                        {% elif not is_revealed %}
+                        <span class="absolute inset-0 flex items-center justify-center text-slate-600">?</span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <p class="text-sm font-bold {% if not character.is_unlocked %}text-slate-500{% endif %}">
+                {{ character.name if character.is_unlocked else "???" }}
+            </p>
+            <p class="text-xs text-slate-500 uppercase">{{ character.rarity }}</p>
+
+            {% if not character.is_unlocked %}
+            <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2 overflow-hidden">
+                <div class="bg-cyan-400 h-1.5 rounded-full"
+                     style="width: {{ (character.fragments / character.fragments_required * 100) | round(1) }}%"></div>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">{{ character.fragments }} / {{ character.fragments_required }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

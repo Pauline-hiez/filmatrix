@@ -16,6 +16,7 @@ from filmatrix.realtime.events import register_socket_events
 from filmatrix.routes import (
     admin,
     auth,
+    collection,
     friends,
     leaderboard,
     main,
@@ -42,6 +43,7 @@ BLUEPRINTS = (
     leaderboard.bp,
     notifications.bp,
     admin.bp,
+    collection.bp,
 )
 
 
