@@ -64,3 +64,37 @@ def get_or_create_daily_challenge(user) -> DailyChallenge:
     db.session.add(challenge)
     db.session.commit()
     return challenge
+
+def update_challenge_progress(user, question: Question, is_correct: bool, current_run_streak: int = 0) -> DailyChallenge | None:
+    """Met à jour la progression du défi du jour, si la réponse y contribue"""
+    if not is_correct:
+        return None
+
+    challenge = get_or_create_daily_challenge(user)
+
+    if challenge.completed_at is not None:
+        return None
+
+    contributes = False
+
+    if challenge.challenge_type == "total_count":
+        contributes = True
+    elif challenge.challenge_type == "mode_count":
+        contributes = question.mode == challenge.target_mode
+    elif challenge.challenge_type == "saga_count":
+        contributes = any(tag.id == challenge.target_tag_id for tag in question.tags)
+    elif challenge.challenge_type == "streak_count":
+        challenge.progress = current_run_streak
+        contributes = False 
+
+    if contributes:
+        challenge.progress += 1
+
+    just_completed = False
+    if challenge.progress >= challenge.target_value and challenge.completed_at is None:
+        challenge.completed_at = db.func.now()
+        just_completed = True
+
+    db.session.commit()
+
+    return challenge if just_completed else None
