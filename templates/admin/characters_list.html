@@ -17,7 +17,8 @@
             <table class="w-full text-sm">
                 <thead>
                     <tr class="bg-slate-900 text-slate-400 text-left">
-                        <th class="px-3 py-2">Nom</th>
+                        <th class="px-3 py-2">Personnage</th>
+                        <th class="px-3 py-2">Aperçu</th>
                         <th class="px-3 py-2">Rareté</th>
                         <th class="px-3 py-2">Fragments requis</th>
                         <th class="px-3 py-2"></th>
@@ -27,13 +28,26 @@
                     {% for character in characters %}
                     <tr class="border-t border-cyan-400/10 hover:bg-slate-900/50">
                         <td class="px-3 py-2 font-bold">{{ character.name }}</td>
+                        <td class="px-3 py-2">
+                            {% if character.image_url %}
+                            <span class="relative block h-10 w-10">
+                                <img src="{{ url_for('static', filename=character.image_url) if not character.image_url.startswith('http') else character.image_url }}" alt="Portrait de {{ character.name }}" class="absolute inset-0 h-full w-full rounded-lg object-cover">
+                                <img src="{{ url_for('static', filename='images/habillage/rarete.png') }}" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain">
+                            </span>
+                            {% else %}
+                            <span class="text-xs text-slate-600">Aucune image</span>
+                            {% endif %}
+                        </td>
                         <td class="px-3 py-2 text-slate-400">{{ character.rarity }}</td>
                         <td class="px-3 py-2 text-slate-400">{{ character.fragments_required }}</td>
                         <td class="px-3 py-2">
+                            <div class="flex justify-end gap-3">
+                                <a href="{{ url_for('admin.admin_characters_new') }}?character_id={{ character.id }}" class="text-cyan-400 hover:text-cyan-300 transition">Modifier</a>
                             <form method="POST" action="{{ url_for('admin.admin_characters_delete', character_id=character.id) }}"
                                   onsubmit="return confirm('Supprimer ce personnage ?');" class="flex justify-end">
                                 <button type="submit" class="text-red-400 hover:text-red-300 transition">Supprimer</button>
                             </form>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}

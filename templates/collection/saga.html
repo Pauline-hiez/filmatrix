@@ -26,6 +26,9 @@
                         {% endif %}
                     </div>
                 {% endfor %}
+                {% if character.image_url %}
+                <img src="{{ url_for('static', filename=character.image_url) if not character.image_url.startswith('http') else character.image_url }}" alt="" class="pointer-events-none absolute inset-0 z-10 h-full w-full object-contain">
+                {% endif %}
             </div>
 
             <p class="text-sm font-bold {% if not character.is_unlocked %}text-slate-500{% endif %}">

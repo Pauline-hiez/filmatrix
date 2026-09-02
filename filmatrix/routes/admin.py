@@ -1,6 +1,10 @@
 """Administration : questions, utilisateurs, signalements et thèmes."""
 
 import json
+from pathlib import Path
+from uuid import uuid4
+
+from werkzeug.utils import secure_filename
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
@@ -21,6 +25,31 @@ from filmatrix.integrations.tmdb import (
 
 
 bp = Blueprint("admin", __name__)
+
+CHARACTER_IMAGE_EXTENSIONS = {"png", "jpg", "jpeg", "webp", "gif"}
+CHARACTER_IMAGE_MAX_BYTES = 5 * 1024 * 1024
+
+
+def save_character_image(uploaded_file):
+    """Enregistre une image de personnage dans static/uploads/characters."""
+    if not uploaded_file or not uploaded_file.filename:
+        return None
+
+    original_name = secure_filename(uploaded_file.filename)
+    extension = Path(original_name).suffix.lower().lstrip(".")
+    if extension not in CHARACTER_IMAGE_EXTENSIONS:
+        raise ValueError("Format d'image non accepté. Utilise PNG, JPG, WEBP ou GIF.")
+
+    uploaded_file.seek(0, 2)
+    if uploaded_file.tell() > CHARACTER_IMAGE_MAX_BYTES:
+        raise ValueError("L'image ne doit pas dépasser 5 Mo.")
+    uploaded_file.seek(0)
+
+    filename = f"{uuid4().hex}.{extension}"
+    upload_dir = Path(bp.root_path).parent.parent / "static" / "uploads" / "characters"
+    upload_dir.mkdir(parents=True, exist_ok=True)
+    uploaded_file.save(upload_dir / filename)
+    return f"uploads/characters/{filename}"
 
 
 @bp.route("/admin/questions")
@@ -380,23 +409,34 @@ def admin_characters_list() -> str:
 @login_required
 @admin_required
 def admin_characters_new() -> str:
-    """Affiche le formulaire de création (GET) ou crée le personnage (POST)"""
+    """Affiche le formulaire de création ou de modification d'un personnage."""
+    character_id = request.args.get("character_id", type=int)
+    character = Character.query.get(character_id) if character_id else None
+
     if request.method == "POST":
-        new_character = Character(
-            name=request.form["name"],
-            tag_id=int(request.form["tag_id"]),
-            rarity=request.form["rarity"],
-            image_url=request.form.get("image_url") or None,
-            fragments_required=int(request.form.get("fragments_required", 5)),
-        )
-        db.session.add(new_character)
+        if character is None:
+            character = Character()
+            db.session.add(character)
+
+        character.name = request.form["name"]
+        character.tag_id = int(request.form["tag_id"])
+        character.rarity = request.form["rarity"]
+        uploaded_image = request.files.get("image_file")
+        if uploaded_image and uploaded_image.filename:
+            try:
+                character.image_url = save_character_image(uploaded_image)
+            except ValueError as error:
+                flash(str(error))
+                saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
+                return render_template("admin/character_form.html", character=character, saga_tags=saga_tags)
+        character.fragments_required = int(request.form.get("fragments_required", 5))
         db.session.commit()
 
-        flash("Personnage créé avec succès.")
+        flash("Personnage modifié avec succès." if character_id else "Personnage créé avec succès.")
         return redirect(url_for("admin.admin_characters_list"))
 
     saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
-    return render_template("admin/character_form.html", character=None, saga_tags=saga_tags)
+    return render_template("admin/character_form.html", character=character, saga_tags=saga_tags)
 
 
 @bp.route("/admin/personnages/<int:character_id>/supprimer", methods=["POST"])

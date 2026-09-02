@@ -24,6 +24,11 @@
                     {% if active_admin_section == 'tags' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
                 Tags
             </a>
+            <a href="{{ url_for('admin.admin_characters_list') }}"
+                class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
+                    {% if active_admin_section == 'characters' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
+                Personnages
+            </a>
         </nav>
     </aside>
 

@@ -6,6 +6,49 @@ const characterResultsBox = document.getElementById("character-search-results");
 const contentTypeSelect = document.getElementById("content-type-select");
 const characterNameInput = document.getElementById("character-name-input");
 const characterImageInput = document.getElementById("character-image-input");
+const characterImagePreview = document.getElementById("character-image-preview");
+const framePreview = document.getElementById("character-frame-preview");
+const imagePreview = characterImagePreview ? characterImagePreview.querySelector("img:not(#character-frame-preview)") : null;
+const frameX = document.getElementById("image-x");
+const frameY = document.getElementById("image-y");
+const frameScale = document.getElementById("image-scale");
+const frameXValue = document.getElementById("image-x-value");
+const frameYValue = document.getElementById("image-y-value");
+const frameScaleValue = document.getElementById("image-scale-value");
+const frameSettingsLabel = document.getElementById("image-settings-label");
+
+function updateFramePreview() {
+    if (!imagePreview) return;
+    const x = Number(frameX.value);
+    const y = Number(frameY.value);
+    const scale = Number(frameScale.value);
+    imagePreview.style.width = `${scale}%`;
+    imagePreview.style.height = `${scale}%`;
+    imagePreview.style.left = `${50 + x - scale / 2}%`;
+    imagePreview.style.top = `${50 + y - scale / 2}%`;
+    frameXValue.value = x;
+    frameYValue.value = y;
+    frameScaleValue.value = scale;
+    frameSettingsLabel.textContent = `Image — position : ${x} / ${y} · taille : ${scale}%`;
+}
+
+[frameX, frameY, frameScale].forEach(function (control) {
+    if (control) control.addEventListener("input", updateFramePreview);
+});
+updateFramePreview();
+
+if (characterImageInput && characterImagePreview) {
+    characterImageInput.addEventListener("change", function () {
+        const file = characterImageInput.files[0];
+        if (!file) return;
+
+        const imageUrl = URL.createObjectURL(file);
+        characterImagePreview.innerHTML = `
+            <img src="${imageUrl}" alt="Aperçu du personnage" class="absolute inset-0 h-full w-full object-cover">
+            <img src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute inset-0 z-10 h-full w-full object-contain">
+        `;
+    });
+}
 
 movieSearchInput.addEventListener("input", function () {
     const query = movieSearchInput.value.trim();
@@ -94,7 +137,13 @@ function displayCharacterResults(characters) {
 
         item.addEventListener("click", function () {
             characterNameInput.value = character.character_name;
-            characterImageInput.value = character.photo_url;
+            if (characterImagePreview) {
+                characterImagePreview.innerHTML = `
+                    <img src="${character.photo_url}" alt="Aperçu du personnage" class="absolute object-cover" style="inset: 0; width: 100%; height: 100%;">
+                    <img id="character-frame-preview" src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute z-10 object-contain" style="inset: 0; width: 100%; height: 100%;">
+                `;
+                window.location.reload();
+            }
 
             document.querySelectorAll("#character-search-results button").forEach(function (button) {
                 button.classList.remove("bg-cyan-400/20", "border", "border-cyan-400");
