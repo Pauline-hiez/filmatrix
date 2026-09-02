@@ -3,29 +3,28 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
-from filmatrix.models import Character, Tag, UserCharacter
+from filmatrix.models import Album, UserCharacter
 from filmatrix.services.puzzle import get_puzzle_grid
-from filmatrix.services.collection import get_saga_summaries
-from filmatrix.catalog_rarities import RARITIES, humanize_tag_name
+from filmatrix.services.collection import get_album_summaries
+from filmatrix.catalog_rarities import RARITIES
 
 bp = Blueprint("collection", __name__)
 
 @bp.route("/collection")
 @login_required
 def collection_overview() -> str:
-    """Affiche la vue d'ensemble de la collection, groupée par saga"""
-    sagas_summary = get_saga_summaries(current_user)
-    return render_template("collection/overview.html", sagas=sagas_summary)
+    """Affiche la vue d'ensemble de la collection, groupée par album"""
+    albums = get_album_summaries(current_user)
+    return render_template("collection/overview.html", albums=albums)
 
-@bp.route("/collection/<int:tag_id>")
+@bp.route("/collection/<int:album_id>")
 @login_required
-def collection_saga(tag_id: int) -> str:
-    """Affiche tous les personnages d'une saga, avec leur progression puzzle"""
-    tag = Tag.query.get_or_404(tag_id)
-    characters = Character.query.filter_by(tag_id=tag_id).order_by(Character.name).all()
+def collection_album(album_id: int) -> str:
+    """Affiche tous les personnages d'un album, avec leur progression puzzle"""
+    album = Album.query.get_or_404(album_id)
 
     characters_data = []
-    for character in characters:
+    for character in album.characters:
         progress = UserCharacter.query.filter_by(
             user_id=current_user.id, character_id=character.id
         ).first()
@@ -52,5 +51,9 @@ def collection_saga(tag_id: int) -> str:
             }
         )
 
-    display_name = humanize_tag_name(tag.name)
-    return render_template("collection/saga.html", tag=tag, display_name=display_name, characters=characters_data, rarities=RARITIES)
+    return render_template(
+        "collection/album.html",
+        album=album,
+        characters=characters_data,
+        rarities=RARITIES,
+    )

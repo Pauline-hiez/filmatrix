@@ -12,7 +12,7 @@ from flask_login import current_user, login_required
 from filmatrix.extensions import db
 from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
-from filmatrix.models import Attempt, Question, Report, Tag, User, Character
+from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.tmdb import (
     build_image_url,
@@ -428,7 +428,8 @@ def admin_characters_new() -> str:
             except ValueError as error:
                 flash(str(error))
                 saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
-                return render_template("admin/character_form.html", character=character, saga_tags=saga_tags)
+                albums = Album.query.order_by(Album.sort_order, Album.name).all()
+                return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
         character.fragments_required = int(request.form.get("fragments_required", 5))
         character.image_x = float(request.form.get("image_x", 0))
         character.image_y = float(request.form.get("image_y", 0))
@@ -436,13 +437,17 @@ def admin_characters_new() -> str:
         character.frame_x = float(request.form.get("frame_x", 0))
         character.frame_y = float(request.form.get("frame_y", 0))
         character.frame_scale = float(request.form.get("frame_scale", 125))
+        # Albums : un personnage peut appartenir à plusieurs collections.
+        selected_album_ids = request.form.getlist("album_ids")
+        character.albums = Album.query.filter(Album.id.in_(selected_album_ids)).all()
         db.session.commit()
 
         flash("Personnage modifié avec succès." if character_id else "Personnage créé avec succès.")
         return redirect(url_for("admin.admin_characters_list"))
 
     saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
-    return render_template("admin/character_form.html", character=character, saga_tags=saga_tags)
+    albums = Album.query.order_by(Album.sort_order, Album.name).all()
+    return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
 
 
 @bp.route("/admin/personnages/<int:character_id>/supprimer", methods=["POST"])
@@ -456,3 +461,116 @@ def admin_characters_delete(character_id: int) -> str:
 
     flash("Personnage supprimé.")
     return redirect(url_for("admin.admin_characters_list"))
+
+
+@bp.route("/admin/albums")
+@login_required
+@admin_required
+def admin_albums_list() -> str:
+    """Affiche la liste des albums de collection"""
+    albums = Album.query.order_by(Album.sort_order, Album.name).all()
+    return render_template(
+        "admin/albums_list.html",
+        albums=albums,
+        active_admin_section="albums",
+    )
+
+
+def build_album_suggestions(limit: int = 8) -> list[dict]:
+    """Suggestions de création rapide : une par franchise (univers/saga) qui a
+    des personnages collectionnables mais pas encore d'album. Chaque entrée
+    pré-remplit le nom, les tags et les personnages du formulaire."""
+    existing_names = {
+        name.casefold()
+        for (name,) in Album.query.with_entities(Album.name).all()
+    }
+    suggestions: list[dict] = []
+    franchise_tags = Tag.query.filter(Tag.tag_type.in_(["univers", "saga"])).order_by(Tag.name).all()
+    for tag in franchise_tags:
+        if tag.name.casefold() in existing_names:
+            continue
+        characters = Character.query.filter_by(tag_id=tag.id).order_by(Character.name).all()
+        if not characters:
+            continue
+        suggestions.append({
+            "name": tag.name,
+            "tag_ids": [tag.id],
+            "character_ids": [character.id for character in characters],
+        })
+    # Les franchises les plus fournies d'abord : ce sont les collections les
+    # plus utiles à créer en premier.
+    suggestions.sort(key=lambda item: -len(item["character_ids"]))
+    return suggestions[:limit]
+
+
+@bp.route("/admin/albums/nouveau", methods=["GET", "POST"])
+@login_required
+@admin_required
+def admin_albums_new() -> str:
+    """Crée ou modifie un album de collection"""
+    album_id = request.args.get("album_id", type=int)
+    album = Album.query.get(album_id) if album_id else None
+
+    if request.method == "POST":
+        name = request.form["name"].strip()
+
+        # Un nom d'album est unique : on refuse proprement un doublon plutôt que
+        # de laisser la contrainte UNIQUE faire planter la page.
+        query = Album.query.filter(Album.name == name)
+        if album is not None:
+            query = query.filter(Album.id != album.id)
+        if not name or query.first() is not None:
+            flash("Ce nom d'album est déjà utilisé. Choisis-en un autre.")
+            all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+            characters = Character.query.order_by(Character.name).all()
+            return render_template(
+                "admin/album_form.html",
+                album=album,
+                all_tags=all_tags,
+                characters=characters,
+                suggestions=[],
+            )
+
+        if album is None:
+            album = Album()
+            db.session.add(album)
+
+        album.name = name
+        album.description = request.form.get("description") or None
+        album.sort_order = int(request.form.get("sort_order", 0))
+        album.is_published = request.form.get("is_published") == "on"
+
+        selected_tag_ids = request.form.getlist("tags")
+        album.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
+
+        selected_character_ids = request.form.getlist("characters")
+        album.characters = Character.query.filter(
+            Character.id.in_(selected_character_ids)
+        ).all()
+
+        db.session.commit()
+        flash("Album modifié avec succès." if album_id else "Album créé avec succès.")
+        return redirect(url_for("admin.admin_albums_list"))
+
+    all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+    characters = Character.query.order_by(Character.name).all()
+    return render_template(
+        "admin/album_form.html",
+        album=album,
+        all_tags=all_tags,
+        characters=characters,
+        suggestions=[] if album else build_album_suggestions(),
+    )
+
+
+@bp.route("/admin/albums/<int:album_id>/supprimer", methods=["POST"])
+@login_required
+@admin_required
+def admin_albums_delete(album_id: int) -> str:
+    """Supprime un album"""
+    album = Album.query.get_or_404(album_id)
+    db.session.delete(album)
+    db.session.commit()
+
+    flash("Album supprimé.")
+    return redirect(url_for("admin.admin_albums_list"))

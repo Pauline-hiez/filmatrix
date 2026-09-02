@@ -46,6 +46,21 @@
         </div>
 
         <div>
+            <label class="block text-sm text-slate-400 mb-1">Albums de collection</label>
+            <p class="text-xs text-slate-500 mb-2">Un personnage peut appartenir à plusieurs albums.</p>
+            <div class="grid max-h-48 grid-cols-2 gap-2 overflow-y-auto rounded-lg border border-cyan-400/30 p-3">
+                {% for album in albums %}
+                <label class="flex min-w-0 items-center gap-2 rounded-lg border border-cyan-400/20 bg-slate-950/60 px-2 py-1.5 text-xs cursor-pointer hover:border-cyan-400/60">
+                    <input type="checkbox" name="album_ids" value="{{ album.id }}"
+                           {% if character and album.id in character.albums | map(attribute='id') | list %}checked{% endif %}
+                           class="accent-cyan-400">
+                    <span class="truncate">{{ album.name }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
             <label class="block text-sm text-slate-400 mb-1">Rareté</label>
             <select name="rarity" class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 <option value="commun" {% if not character or character.rarity == 'commun' %}selected{% endif %}>Commun</option>

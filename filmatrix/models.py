@@ -237,6 +237,52 @@ class UserCharacter(db.Model):
     user = db.relationship("User", backref="character_progress")
     character = db.relationship("Character")
 
+
+# Un album est une collection thématique de personnages (ex. « Horreur »),
+# liée à un ou plusieurs tags (genre, univers, saga, pays...). Un personnage
+# peut appartenir à plusieurs albums.
+album_tags = db.Table(
+    "album_tags",
+    db.Column("album_id", db.Integer, db.ForeignKey("albums.id"), primary_key=True),
+    db.Column("tag_id", db.Integer, db.ForeignKey("tags.id"), primary_key=True),
+)
+
+album_characters = db.Table(
+    "album_characters",
+    db.Column("album_id", db.Integer, db.ForeignKey("albums.id"), primary_key=True),
+    db.Column("character_id", db.Integer, db.ForeignKey("characters.id"), primary_key=True),
+)
+
+
+class Album(db.Model):
+    """Représente un album de collection : un thème regroupant des personnages.
+
+    L'album est relié à des tags (genre, univers, saga...) : c'est par eux que
+    le jeu sait quel album alimenter quand le joueur répond à une question.
+    """
+
+    __tablename__ = "albums"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+    description = db.Column(db.String(280), nullable=True)
+    image_url = db.Column(db.String(255), nullable=True)
+    sort_order = db.Column(db.Integer, nullable=False, default=0)
+    is_published = db.Column(db.Boolean, nullable=False, default=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    tags = db.relationship(
+        "Tag",
+        secondary=album_tags,
+        backref=db.backref("albums", lazy="dynamic"),
+    )
+    characters = db.relationship(
+        "Character",
+        secondary=album_characters,
+        backref=db.backref("albums", lazy="dynamic"),
+    )
+
+
 class DailyChallenge(db.Model):
     """Représente le défi quotidien assigné à un joueur pour une date donnée."""
 

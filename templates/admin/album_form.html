@@ -1,0 +1,201 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<div class="max-w-3xl">
+    <div class="mb-6 flex items-center justify-between gap-3">
+        <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Collection</p>
+            <h2 class="mt-1 text-xl">{{ "Modifier l'album" if album else "Nouvel album" }}</h2>
+        </div>
+        <a href="{{ url_for('admin.admin_albums_list') }}" class="text-sm text-slate-400 hover:text-cyan-400">← Retour</a>
+    </div>
+
+    <form method="POST" action="{{ url_for('admin.admin_albums_new', album_id=album.id) if album else url_for('admin.admin_albums_new') }}"
+          id="album-form" class="flex flex-col gap-5">
+
+        <div class="rounded-xl border border-cyan-400/20 bg-slate-950/40 p-4">
+            <div class="grid gap-4 sm:grid-cols-[1fr_auto]">
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">Nom de l'album</label>
+                    <input type="text" name="name" id="album-name" value="{{ album.name if album else '' }}" required
+                           placeholder="Ex. Horreur, Harry Potter..."
+                           autocomplete="off"
+                           class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                </div>
+                <div class="w-28">
+                    <label class="block text-sm text-slate-400 mb-1">Ordre</label>
+                    <input type="number" name="sort_order" value="{{ album.sort_order if album else 0 }}"
+                           class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                </div>
+            </div>
+            <div class="mt-3">
+                <label class="block text-sm text-slate-400 mb-1">Description <span class="text-slate-600">(optionnelle)</span></label>
+                <textarea name="description" rows="1" placeholder="Une phrase pour présenter l'album"
+                          class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">{{ album.description if album and album.description else '' }}</textarea>
+            </div>
+            <label class="mt-3 flex items-center gap-2 text-sm text-slate-300">
+                <input type="checkbox" name="is_published" {% if not album or album.is_published %}checked{% endif %} class="accent-cyan-400">
+                Album publié
+            </label>
+        </div>
+
+        {% if not album and suggestions %}
+        <div id="quick-suggest">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Création rapide</p>
+            <div class="flex flex-wrap gap-2">
+                {% for sugg in suggestions %}
+                <button type="button" data-suggest='{{ sugg | tojson }}'
+                        class="rounded-full border border-cyan-400/40 bg-slate-900/60 px-3 py-1 text-xs text-slate-300 transition hover:border-cyan-400 hover:text-cyan-300">
+                    + {{ sugg.name }}
+                </button>
+                {% endfor %}
+            </div>
+            <p class="mt-2 text-xs text-slate-500">Un clic pré-remplit le nom et coche les tags + personnages correspondants.</p>
+        </div>
+        {% endif %}
+
+        <div class="rounded-xl border border-cyan-400/20 bg-slate-950/40 p-4" data-picker="tags">
+            <div class="flex items-baseline justify-between gap-3">
+                <label class="block text-sm font-bold text-slate-300">Tags liés</label>
+                <span class="text-xs text-slate-500"><span data-count-for="tags">0</span> sélectionné(s)</span>
+            </div>
+            <p class="mt-1 text-xs text-slate-500">C'est par ces tags que le jeu sait alimenter l'album : une question portant un de ces tags donne un fragment d'un personnage de l'album.</p>
+            <input type="text" data-filter-target="tags" placeholder="Rechercher un tag…"
+                   autocomplete="off"
+                   class="mt-3 w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100">
+            <div data-groups-for="tags" class="mt-3 flex flex-col gap-3 max-h-60 overflow-y-auto pr-1">
+                {% for tag_type, label in [("univers", "Univers"), ("saga", "Sagas"), ("genre", "Genres"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+                {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+                {% if typed_tags %}
+                <div data-tag-group="{{ tag_type }}">
+                    <p class="mb-1 text-[11px] font-bold uppercase tracking-widest text-slate-500">{{ label }}</p>
+                    <div class="flex flex-wrap gap-1.5">
+                        {% for tag in typed_tags %}
+                        <label data-chip data-name="{{ tag.name | lower }}"
+                               class="cursor-pointer select-none rounded-full border px-2.5 py-1 text-xs transition
+                                      {% if album and tag.id in album.tags | map(attribute='id') | list %}
+                                      border-cyan-400 bg-cyan-400/15 text-cyan-200
+                                      {% else %}
+                                      border-slate-700 bg-slate-900/60 text-slate-400 hover:border-cyan-400/50
+                                      {% endif %}">
+                            <input type="checkbox" name="tags" value="{{ tag.id }}" data-count="tags"
+                                   {% if album and tag.id in album.tags | map(attribute='id') | list %}checked{% endif %}
+                                   class="sr-only">
+                            {{ tag.name }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <p data-empty-for="tags" class="hidden text-xs text-slate-500">Aucun tag ne correspond.</p>
+            </div>
+        </div>
+
+        <div class="rounded-xl border border-cyan-400/20 bg-slate-950/40 p-4" data-picker="characters">
+            <div class="flex items-baseline justify-between gap-3">
+                <label class="block text-sm font-bold text-slate-300">Personnages de l'album</label>
+                <span class="text-xs text-slate-500"><span data-count-for="characters">0</span> sélectionné(s)</span>
+            </div>
+            <input type="text" data-filter-target="characters" placeholder="Rechercher un personnage…"
+                   autocomplete="off"
+                   class="mt-3 w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100">
+            <div data-groups-for="characters" class="mt-3 grid grid-cols-2 gap-1.5 max-h-60 overflow-y-auto pr-1 sm:grid-cols-3">
+                {% for character in characters %}
+                <label data-chip data-name="{{ character.name | lower }}"
+                       class="cursor-pointer select-none truncate rounded-lg border px-2.5 py-1.5 text-xs transition
+                              {% if album and character.id in album.characters | map(attribute='id') | list %}
+                              border-cyan-400 bg-cyan-400/15 text-cyan-200
+                              {% else %}
+                              border-slate-700 bg-slate-900/60 text-slate-400 hover:border-cyan-400/50
+                              {% endif %}">
+                    <input type="checkbox" name="characters" value="{{ character.id }}" data-count="characters"
+                           {% if album and character.id in album.characters | map(attribute='id') | list %}checked{% endif %}
+                           class="sr-only">
+                    {{ character.name }}
+                </label>
+                {% endfor %}
+                <p data-empty-for="characters" class="hidden col-span-full text-xs text-slate-500">Aucun personnage ne correspond.</p>
+            </div>
+        </div>
+
+        <button type="submit"
+                class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition">
+            {{ "Enregistrer les modifications" if album else "Créer l'album" }}
+        </button>
+    </form>
+</div>
+
+<script>
+(function () {
+    "use strict";
+
+    var form = document.getElementById("album-form");
+    if (!form) return;
+
+    // Recherche live + compteurs sur les deux pickers (tags, personnages).
+    form.querySelectorAll("[data-picker]").forEach(function (picker) {
+        var key = picker.getAttribute("data-picker");
+        var input = picker.querySelector("[data-filter-target]");
+        var groups = picker.querySelector("[data-groups-for]");
+        var emptyMsg = picker.querySelector("[data-empty-for='" + key + "']");
+        var counter = picker.querySelector("[data-count-for='" + key + "']");
+
+        function refreshCount() {
+            if (!counter) return;
+            counter.textContent = picker.querySelectorAll("input[data-count]:checked").length;
+        }
+
+        if (input) {
+            input.addEventListener("input", function () {
+                var query = input.value.trim().toLowerCase();
+                var visible = 0;
+                groups.querySelectorAll("[data-chip]").forEach(function (chip) {
+                    var match = !query || chip.getAttribute("data-name").indexOf(query) !== -1;
+                    chip.classList.toggle("hidden", !match);
+                    if (match) visible += 1;
+                });
+                groups.querySelectorAll("[data-tag-group]").forEach(function (group) {
+                    var any = group.querySelector("[data-chip]:not(.hidden)") !== null;
+                    group.classList.toggle("hidden", !any);
+                });
+                if (emptyMsg) emptyMsg.classList.toggle("hidden", visible > 0);
+            });
+        }
+
+        groups.addEventListener("change", function (event) {
+            var box = event.target.closest("input[data-count]");
+            if (!box) return;
+            box.closest("[data-chip]").classList.toggle("border-cyan-400", box.checked);
+            box.closest("[data-chip]").classList.toggle("bg-cyan-400/15", box.checked);
+            box.closest("[data-chip]").classList.toggle("text-cyan-200", box.checked);
+            refreshCount();
+        });
+
+        refreshCount();
+    });
+
+    // Création rapide : remplit le nom et coche tags + personnages en un clic.
+    form.querySelectorAll("[data-suggest]").forEach(function (button) {
+        button.addEventListener("click", function () {
+            var data;
+            try { data = JSON.parse(button.getAttribute("data-suggest")); } catch (error) { return; }
+            var nameInput = form.querySelector("#album-name");
+            if (nameInput && !nameInput.value) nameInput.value = data.name || "";
+
+            (data.tag_ids || []).forEach(function (id) { checkById("tags", id); });
+            (data.character_ids || []).forEach(function (id) { checkById("characters", id); });
+            button.classList.add("opacity-40");
+        });
+    });
+
+    function checkById(key, id) {
+        var box = form.querySelector("input[name='" + key + "'][value='" + id + "']");
+        if (!box || box.checked) return;
+        box.checked = true;
+        box.closest("[data-chip]").classList.add("border-cyan-400", "bg-cyan-400/15", "text-cyan-200");
+        box.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+})();
+</script>
+{% endblock %}

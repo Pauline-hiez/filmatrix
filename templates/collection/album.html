@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "partials/character_frame.html" import character_card %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto mt-8">
+    <a href="{{ url_for('collection.collection_overview') }}" class="text-sm text-slate-400 hover:text-cyan-400 transition mb-4 inline-block">
+        ← Retour à la collection
+    </a>
+
+    <h1 class="text-2xl font-bold mb-2">{{ album.name }}</h1>
+    {% if album.description %}
+    <p class="text-slate-400 text-sm mb-6">{{ album.description }}</p>
+    {% else %}
+    <p class="text-slate-400 text-sm mb-6">Collectionne les personnages de cet album.</p>
+    {% endif %}
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        {% for character in characters %}
+        {% set rarity = rarities.get(character.rarity, rarities["commun"]) %}
+        <div class="rounded-xl border-2 {% if character.is_unlocked %}{{ rarity.border_color }} {{ rarity.glow_class }}{% else %}border-slate-700{% endif %} bg-slate-900/60 p-3 transition hover:-translate-y-1">
+
+            {% if character.is_unlocked %}
+                {{ character_card(
+                    character.image_url,
+                    character.image_x, character.image_y, character.image_scale,
+                    character.frame_x, character.frame_y, character.frame_scale,
+                    unlocked=true, classes="mb-2"
+                ) }}
+            {% else %}
+                <div class="relative w-full aspect-square rounded-lg overflow-hidden mb-2 bg-slate-950 grid grid-cols-3 grid-rows-3 gap-0.5">
+                    {% for is_revealed in character.puzzle_grid %}
+                        <div class="relative overflow-hidden {% if not is_revealed %}bg-slate-800{% endif %}">
+                            {% if is_revealed and character.image_url %}
+                            <div class="absolute inset-0 bg-cover"
+                                 style="background-image: url('{{ character.image_url | image_src }}');"></div>
+                            {% elif not is_revealed %}
+                            <span class="absolute inset-0 flex items-center justify-center text-slate-600">?</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <p class="text-sm font-bold {% if not character.is_unlocked %}text-slate-500{% endif %}">
+                {{ character.name if character.is_unlocked else "???" }}
+            </p>
+            <p class="text-xs {{ rarity.text_color }} uppercase font-bold">{{ rarity.label }}</p>
+
+            {% if not character.is_unlocked %}
+            <div class="w-full bg-slate-800 rounded-full h-1.5 mt-2 overflow-hidden">
+                <div class="bg-cyan-400 h-1.5 rounded-full"
+                     style="width: {{ (character.fragments / character.fragments_required * 100) | round(1) }}%"></div>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">{{ character.fragments }} / {{ character.fragments_required }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

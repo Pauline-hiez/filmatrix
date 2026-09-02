@@ -5,10 +5,26 @@ from datetime import datetime
 import random
 
 from filmatrix.extensions import db
-from filmatrix.models import Character, UserCharacter, Question
+from filmatrix.models import Album, Character, UserCharacter, Question
 from filmatrix.models import Tag
 from filmatrix.catalog_rarities import humanize_tag_name
 from filmatrix.services.puzzle import get_puzzle_grid
+
+
+# Poids de spécificité des types de tags : un album lié à un univers/saga est
+# plus précis qu'un album de genre. C'est ce qui départage plusieurs albums.
+TAG_TYPE_SPECIFICITY = {
+    "univers": 4,
+    "saga": 4,
+    "genre": 3,
+    "realisateur": 2,
+    "acteur": 2,
+    "studio": 2,
+    "pays": 2,
+    "epoque": 2,
+    "annee": 1,
+    "autre": 1,
+}
 
 
 def get_or_create_progress(user, character: Character) -> UserCharacter:
@@ -71,67 +87,80 @@ def get_characters_for_tag(user, tag_id: int) -> list[dict]:
 
     return result
 
-def _universe_tags(question: Question) -> list[Tag]:
-    """Tags de franchise de la question (saga ou univers).
+def _matched_albums(question: Question) -> list[Album]:
+    """Albums liés aux tags de la question, triés du plus spécifique au moins.
 
-    Certaines franchises sont typées « saga », d'autres « univers ». Les deux
-    désignent un monde à personnages, donc les deux doivent fournir des cibles
-    de collection.
+    La spécificité est pondérée par le type de tag (univers/saga > genre > ...).
+    Un album qui correspond à un univers précis passe ainsi avant un album de
+    genre, comme demandé pour le gain de fragments.
     """
-    return [tag for tag in question.tags if tag.tag_type in ("saga", "univers")]
+    question_tag_ids = {tag.id for tag in question.tags}
+    if not question_tag_ids:
+        return []
+
+    albums = Album.query.filter(
+        Album.tags.any(Tag.id.in_(question_tag_ids))
+    ).all()
+
+    scored = []
+    for album in albums:
+        score = sum(
+            TAG_TYPE_SPECIFICITY.get(tag.tag_type, 1)
+            for tag in album.tags
+            if tag.id in question_tag_ids
+        )
+        if score:
+            scored.append((score, album))
+
+    scored.sort(key=lambda item: (-item[0], item[1].sort_order, item[1].id))
+    return [album for _, album in scored]
 
 
 def award_fragment_for_question(
     user, question: Question, character_name: str | None = None
 ) -> tuple[Character, bool] | None:
-    """Donne un fragment cohérent avec la question répondue.
+    """Donne un fragment cohérent avec la question, depuis un album.
 
-    Le fragment provient toujours de la franchise (saga ou univers) à laquelle
-    la question appartient, pour que le joueur gagne des morceaux de l'œuvre
-    qu'il vient de jouer.
+    Les albums liés aux tags de la question sont parcourus du plus spécifique
+    au moins spécifique :
 
     - Si ``character_name`` est fourni (citation « Qui a dit ça »), on cible
-      directement ce personnage, à condition qu'il fasse partie de la franchise
-      et qu'il ne soit pas déjà débloqué.
-    - Sinon, on tire un personnage verrouillé au hasard dans la franchise.
+      directement ce personnage dans le premier album qui le contient, à
+      condition qu'il ne soit pas déjà débloqué.
+    - Sinon, on prend le premier album (le plus spécifique) qui a un personnage
+      encore verrouillé et on y tire au hasard.
 
-    Renvoie (personnage, vient_d_etre_debloque), ou None si la question n'est
-    liée à aucune franchise ou si tous ses personnages sont déjà débloqués.
+    Renvoie (personnage, vient_d_etre_debloque), ou None si aucun album ne
+    correspond à la question ou si tous leurs personnages sont débloqués.
     """
-    universe_tags = _universe_tags(question)
-    if not universe_tags:
-        return None
-
-    universe_tag_ids = [tag.id for tag in universe_tags]
-    candidate_characters = Character.query.filter(Character.tag_id.in_(universe_tag_ids)).all()
-    if not candidate_characters:
+    matched_albums = _matched_albums(question)
+    if not matched_albums:
         return None
 
     # Cible explicite : la citation vise un personnage en particulier.
     if character_name:
-        named = [
+        for album in matched_albums:
+            for character in album.characters:
+                if (
+                    character.name.lower() == character_name.lower()
+                    and not get_or_create_progress(user, character).unlocked_at
+                ):
+                    just_unlocked = add_fragments(user, character, 1)
+                    return character, just_unlocked
+
+    # Sinon : premier album (le plus spécifique) avec un personnage verrouillé.
+    for album in matched_albums:
+        locked_characters = [
             character
-            for character in candidate_characters
-            if character.name.lower() == character_name.lower()
-            and not get_or_create_progress(user, character).unlocked_at
+            for character in album.characters
+            if not get_or_create_progress(user, character).unlocked_at
         ]
-        if named:
-            just_unlocked = add_fragments(user, named[0], 1)
-            return named[0], just_unlocked
+        if locked_characters:
+            chosen_character = random.choice(locked_characters)
+            just_unlocked = add_fragments(user, chosen_character, 1)
+            return chosen_character, just_unlocked
 
-    locked_characters = [
-        character
-        for character in candidate_characters
-        if not get_or_create_progress(user, character).unlocked_at
-    ]
-
-    if not locked_characters:
-        return None
-
-    chosen_character = random.choice(locked_characters)
-    just_unlocked = add_fragments(user, chosen_character, 1)
-
-    return chosen_character, just_unlocked
+    return None
 
 def fragment_result_payload(user, fragment_result: tuple[Character, bool] | None) -> dict | None:
     """Construit la payload envoyée au front pour la notification de gain.
@@ -179,27 +208,22 @@ def fragment_result_payload(user, fragment_result: tuple[Character, bool] | None
         "puzzle_new_cells": new_cells,
     }
 
-
-def get_saga_summaries(user) -> list[dict]:
-    """Renvoie un résumé de progression pour chaque franchise ayant des personnages
-
-    Les franchises sont typées « saga » ou « univers » : on couvre les deux pour
-    ne pas laisser de côté les univers (qui sont les plus nombreux).
-    """
-    saga_tags = (
-        Tag.query.filter(Tag.tag_type.in_(["saga", "univers"]))
-        .order_by(Tag.name)
+def get_album_summaries(user) -> list[dict]:
+    """Renvoie un résumé de progression pour chaque album publié."""
+    albums = (
+        Album.query.filter_by(is_published=True)
+        .order_by(Album.sort_order, Album.name)
         .all()
     )
 
     summaries = []
-    for tag in saga_tags:
-        characters = Character.query.filter_by(tag_id=tag.id).all()
+    for album in albums:
+        characters = album.characters
         if not characters:
             continue
 
         character_ids = [character.id for character in characters]
-        unlocked_character_ids = {
+        unlocked_ids = {
             row.character_id
             for row in UserCharacter.query.filter(
                 UserCharacter.user_id == user.id,
@@ -208,33 +232,32 @@ def get_saga_summaries(user) -> list[dict]:
             ).all()
         }
 
-        # Une vignette qui montre ce que le joueur a déjà débloqué donne plus
-        # envie de continuer qu'une image tirée au hasard dans la franchise.
         featured_character = next(
-            (character for character in characters if character.id in unlocked_character_ids),
+            (character for character in characters if character.id in unlocked_ids),
             characters[0],
         )
 
         summaries.append(
-                {
-                    "tag_id": tag.id,
-                    "name": humanize_tag_name(tag.name),
-                    "unlocked_count": len(unlocked_character_ids),
-                    "total_count": len(characters),
-                    "image_url": featured_character.image_url if featured_character.id in unlocked_character_ids else None,
-                    # On propage les réglages de cadrage du personnage vedette pour
-                    # que le profil et la collection affichent exactement le même
-                    # rendu que l'aperçu admin.
-                    "image_x": featured_character.image_x,
-                    "image_y": featured_character.image_y,
-                    "image_scale": featured_character.image_scale,
-                    "frame_x": featured_character.frame_x,
-                    "frame_y": featured_character.frame_y,
-                    "frame_scale": featured_character.frame_scale,
-                }
-            )
+            {
+                "album_id": album.id,
+                "name": album.name,
+                "description": album.description,
+                "image_url": featured_character.image_url if featured_character.id in unlocked_ids else None,
+                "unlocked_count": len(unlocked_ids),
+                "total_count": len(characters),
+                # Réglages de cadrage du personnage vedette, pour un rendu
+                # identique dans le profil et la collection.
+                "image_x": featured_character.image_x,
+                "image_y": featured_character.image_y,
+                "image_scale": featured_character.image_scale,
+                "frame_x": featured_character.frame_x,
+                "frame_y": featured_character.frame_y,
+                "frame_scale": featured_character.frame_scale,
+            }
+        )
 
     return summaries
+
 
 def award_guaranteed_fragment(user, minimum_rarity: list[str] | None = None) -> tuple[Character, bool] | None:
     """Donne un fragment garanti à un personnage verrouillé au hasard, toutes sagas confondues.

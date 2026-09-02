@@ -3,24 +3,24 @@
 {% block content %}
 <div class="max-w-5xl mx-auto mt-8">
     <h1 class="text-2xl font-bold mb-2">Ma Collection</h1>
-    <p class="text-slate-400 text-sm mb-8">Collectionne tes personnages et complète les univers que tu aimes !</p>
+    <p class="text-slate-400 text-sm mb-8">Collectionne tes personnages et complète les albums que tu aimes !</p>
 
-    {% if sagas %}
+    {% if albums %}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {% for saga in sagas %}
-        <a href="{{ url_for('collection.collection_saga', tag_id=saga.tag_id) }}"
+        {% for album in albums %}
+        <a href="{{ url_for('collection.collection_album', album_id=album.album_id) }}"
            class="block rounded-xl border border-cyan-400/30 hover:border-cyan-400 bg-slate-900/60 p-5 transition">
-            <h3 class="font-bold text-lg mb-1">{{ saga.name }}</h3>
-            <p class="text-sm text-slate-400 mb-3">{{ saga.unlocked_count }} / {{ saga.total_count }} personnages</p>
+            <h3 class="font-bold text-lg mb-1">{{ album.name }}</h3>
+            <p class="text-sm text-slate-400 mb-3">{{ album.unlocked_count }} / {{ album.total_count }} personnages</p>
             <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
                 <div class="bg-cyan-400 h-2 rounded-full"
-                     style="width: {{ (saga.unlocked_count / saga.total_count * 100) | round(1) }}%"></div>
+                     style="width: {{ (album.unlocked_count / album.total_count * 100) | round(1) }}%"></div>
             </div>
         </a>
         {% endfor %}
     </div>
     {% else %}
-    <p class="text-slate-500">Aucune collection disponible pour le moment.</p>
+    <p class="text-slate-500">Aucun album disponible pour le moment.</p>
     {% endif %}
 </div>
 {% endblock %}

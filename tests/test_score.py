@@ -138,7 +138,7 @@ def test_end_screen_shows_the_xp_earned_during_the_run(client, app):
 
 def test_a_run_awards_only_one_fragment(client, app):
     """Plusieurs bonnes réponses dans une même partie ne donnent qu'un fragment"""
-    from filmatrix.models import Character, Question, Tag
+    from filmatrix.models import Album, Character, Question, Tag
 
     with app.app_context():
         player = User(username="Chasseur", email="chasseur@filmatrix.fr")
@@ -147,12 +147,15 @@ def test_a_run_awards_only_one_fragment(client, app):
         tag = Tag(name="Harry Potter", tag_type="saga")
         db.session.add(tag)
         db.session.commit()
-        db.session.add_all(
-            [
-                Character(name="Harry Potter", tag_id=tag.id, fragments_required=5),
-                Character(name="Voldemort", tag_id=tag.id, fragments_required=5),
-            ]
-        )
+        characters = [
+            Character(name="Harry Potter", tag_id=tag.id, fragments_required=5),
+            Character(name="Voldemort", tag_id=tag.id, fragments_required=5),
+        ]
+        db.session.add_all(characters)
+        album = Album(name="Harry Potter")
+        album.tags = [tag]
+        album.characters = characters
+        db.session.add(album)
         for index in range(2):
             question = Question(
                 mode="qcm",

@@ -1,0 +1,96 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+    <h2 class="text-xl">Albums ({{ albums | length }})</h2>
+    <div class="flex items-center gap-3">
+        <input type="text" id="album-search" placeholder="Rechercher un album ou un tag…" autocomplete="off"
+               class="w-56 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100">
+        <a href="{{ url_for('admin.admin_albums_new') }}"
+           class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+            + Nouvel album
+        </a>
+    </div>
+</div>
+
+{% if albums %}
+<div class="overflow-x-auto rounded-lg border border-cyan-400/30">
+<table id="albums-table" class="w-full text-sm">
+    <thead>
+        <tr class="bg-slate-900 text-slate-400 text-left">
+            <th class="px-3 py-2">Album</th>
+            <th class="px-3 py-2">Tags liés</th>
+            <th class="px-3 py-2">Personnages</th>
+            <th class="px-3 py-2">Ordre</th>
+            <th class="px-3 py-2">Publié</th>
+            <th class="px-3 py-2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for album in albums %}
+        <tr data-album-row data-name="{{ album.name | lower }}" data-tags="{{ album.tags | map(attribute='name') | join(' ') | lower }}"
+            class="border-t border-cyan-400/10 hover:bg-slate-900/50">
+            <td class="px-3 py-2 font-bold">
+                {{ album.name }}
+                {% if not album.tags %}
+                <span title="Aucun tag lié : cet album ne recevra jamais de fragment" class="ml-2 rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-normal text-amber-300">⚠ aucun tag lié</span>
+                {% endif %}
+                {% if not album.characters %}
+                <span title="Aucun personnage : les fragments de cet album n'ont nulle part où aller" class="ml-1 rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-normal text-slate-500">vide</span>
+                {% endif %}
+            </td>
+            <td class="px-3 py-2 text-slate-400">
+                {% for tag in album.tags %}<span class="mr-1 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] text-slate-300">{{ tag.name }}</span>{% endfor %}
+            </td>
+                <td class="px-3 py-2 text-slate-400">{{ album.characters | length }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ album.sort_order }}</td>
+                <td class="px-3 py-2">
+                    <span class="rounded-full px-2 py-0.5 text-[11px] {% if album.is_published %}bg-emerald-500/20 text-emerald-300{% else %}bg-slate-800 text-slate-500{% endif %}">
+                        {{ "Oui" if album.is_published else "Non" }}
+                    </span>
+                </td>
+                <td class="px-3 py-2">
+                    <div class="flex justify-end gap-3">
+                        <a href="{{ url_for('admin.admin_albums_new') }}?album_id={{ album.id }}" class="text-cyan-400 hover:text-cyan-300 transition">Modifier</a>
+                        <form method="POST" action="{{ url_for('admin.admin_albums_delete', album_id=album.id) }}"
+                              onsubmit="return confirm('Supprimer cet album ?');" class="flex justify-end">
+                            <button type="submit" class="text-red-400 hover:text-red-300 transition">Supprimer</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <p id="albums-empty" class="hidden mt-3 text-sm text-slate-500">Aucun album ne correspond à cette recherche.</p>
+{% else %}
+<p class="text-slate-500">Aucun album pour le moment.</p>
+{% endif %}
+
+{% if albums %}
+<script>
+(function () {
+    "use strict";
+
+    var search = document.getElementById("album-search");
+    var rows = document.querySelectorAll("[data-album-row]");
+    var emptyMsg = document.getElementById("albums-empty");
+    if (!search || !rows.length) return;
+
+    search.addEventListener("input", function () {
+        var query = search.value.trim().toLowerCase();
+        var visible = 0;
+        rows.forEach(function (row) {
+            var match = !query
+                || row.getAttribute("data-name").indexOf(query) !== -1
+                || row.getAttribute("data-tags").indexOf(query) !== -1;
+            row.classList.toggle("hidden", !match);
+            if (match) visible += 1;
+        });
+        if (emptyMsg) emptyMsg.classList.toggle("hidden", visible > 0);
+    });
+})();
+</script>
+{% endif %}
+{% endblock %}

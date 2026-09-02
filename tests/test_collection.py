@@ -1,11 +1,12 @@
 """Tests de la logique métier de collection de personnages (fragments, déblocage)."""
 
 from filmatrix.extensions import db
-from filmatrix.models import Character, Tag, User, Question
+from filmatrix.models import Album, Character, Tag, User, Question
 from filmatrix.services.collection import (
     add_fragments,
     award_fragment_for_question,
     fragment_result_payload,
+    get_album_summaries,
     get_characters_for_tag,
     get_or_create_progress,
 )
@@ -28,6 +29,16 @@ def create_test_tag(name: str = "Harry Potter", tag_type: str = "saga") -> Tag:
     db.session.add(tag)
     db.session.commit()
     return tag
+
+
+def create_test_album(name: str, tags: list[Tag], characters: list[Character]) -> Album:
+    """Crée un album lié à des tags et contenant des personnages"""
+    album = Album(name=name)
+    album.tags = tags
+    album.characters = characters
+    db.session.add(album)
+    db.session.commit()
+    return album
 
 
 def create_test_character(tag: Tag, name: str = "Harry Potter", fragments_required: int = 5) -> Character:
@@ -148,7 +159,7 @@ def test_award_fragment_returns_none_without_franchise_tag(app):
 
 
 def test_award_fragment_returns_none_without_characters(app):
-    """Un tag de franchise sans personnage ne doit rien donner."""
+    """Aucun album lié au tag ne doit rien donner."""
     with app.app_context():
         user = create_test_user()
         tag = create_test_tag()
@@ -160,11 +171,12 @@ def test_award_fragment_returns_none_without_characters(app):
 
 
 def test_award_fragment_gives_fragment_to_locked_character(app):
-    """A correct answer should give one fragment to a locked character of the saga."""
+    """Une bonne réponse doit donner un fragment à un personnage verrouillé de l'album."""
     with app.app_context():
         user = create_test_user()
         tag = create_test_tag()
         character = create_test_character(tag, fragments_required=5)
+        create_test_album("Album Test", [tag], [character])
         question = create_test_question(tags=[tag])
 
         result = award_fragment_for_question(user, question)
@@ -185,6 +197,7 @@ def test_award_fragment_ignores_already_unlocked_characters(app):
         user = create_test_user()
         tag = create_test_tag()
         character = create_test_character(tag, fragments_required=1)
+        create_test_album("Album Test", [tag], [character])
         question = create_test_question(tags=[tag])
 
         award_fragment_for_question(user, question)
@@ -196,11 +209,12 @@ def test_award_fragment_ignores_already_unlocked_characters(app):
 
 
 def test_award_fragment_targets_univers_tag(app):
-    """Une question liée à un tag « univers » doit aussi donner un fragment."""
+    """Une question liée à un tag « univers » doit alimenter l'album correspondant."""
     with app.app_context():
         user = create_test_user()
         universe = create_test_tag(name="Terre du Milieu", tag_type="univers")
         character = create_test_character(universe, name="Gandalf", fragments_required=5)
+        create_test_album("Terre du Milieu", [universe], [character])
         question = create_test_question(tags=[universe])
 
         result = award_fragment_for_question(user, question)
@@ -217,6 +231,7 @@ def test_award_fragment_targets_the_named_character_in_citation(app):
         tag = create_test_tag()
         gandalf = create_test_character(tag, name="Gandalf", fragments_required=5)
         create_test_character(tag, name="Frodo", fragments_required=5)
+        create_test_album("Album Test", [tag], [gandalf])
         question = create_test_question(tags=[tag])
 
         result = award_fragment_for_question(user, question, character_name="gandalf")
@@ -227,11 +242,12 @@ def test_award_fragment_targets_the_named_character_in_citation(app):
 
 
 def test_award_fragment_falls_back_when_named_character_unknown(app):
-    """Si le personnage cité n'existe pas dans la franchise, on tire au hasard."""
+    """Si le personnage cité n'existe pas dans l'album, on tire au hasard."""
     with app.app_context():
         user = create_test_user()
         tag = create_test_tag()
         character = create_test_character(tag, name="Frodo", fragments_required=5)
+        create_test_album("Album Test", [tag], [character])
         question = create_test_question(tags=[tag])
 
         result = award_fragment_for_question(user, question, character_name="Personnage Inconnu")
@@ -247,6 +263,7 @@ def test_fragment_result_payload_exposes_progress(app):
         user = create_test_user()
         tag = create_test_tag()
         character = create_test_character(tag, name="Gandalf", fragments_required=5)
+        create_test_album("Album Test", [tag], [character])
         question = create_test_question(tags=[tag])
 
         result = award_fragment_for_question(user, question)
@@ -265,3 +282,62 @@ def test_fragment_result_payload_exposes_progress(app):
         assert payload["puzzle_new_cells"]  # au moins une case vient d'être révélée
 
         assert fragment_result_payload(user, None) is None
+
+
+def test_award_fragment_prefers_the_most_specific_album(app):
+    """Un album lié à un univers doit passer avant un album de genre."""
+    with app.app_context():
+        user = create_test_user()
+        genre = create_test_tag(name="Horreur", tag_type="genre")
+        univers = create_test_tag(name="American Horror Story", tag_type="univers")
+        genre_char = create_test_character(genre, name="Art", fragments_required=5)
+        univers_char = create_test_character(univers, name="Violet", fragments_required=5)
+        create_test_album("Horreur", [genre], [genre_char])
+        create_test_album("American Horror Story", [univers], [univers_char])
+        question = create_test_question(tags=[genre, univers])
+
+        result = award_fragment_for_question(user, question)
+        db.session.commit()
+
+        assert result is not None
+        assert result[0].id == univers_char.id
+
+
+def test_collection_routes_render(app, client):
+    """La collection (vue d'ensemble, album, profil) doit se rendre sans erreur."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        char = create_test_character(tag, fragments_required=5)
+        album = create_test_album("Album Test", [tag], [char])
+        album_id = album.id
+
+    client.post(
+        "/connexion",
+        data={"email": "collectionneur@filmatrix.fr", "password": "Azerty1!"},
+    )
+
+    assert client.get("/collection").status_code == 200
+    assert client.get(f"/collection/{album_id}").status_code == 200
+    assert client.get("/profil").status_code == 200
+
+
+def test_get_album_summaries_reports_progress(app):
+    """Le résumé d'album doit compter les personnages débloqués et la vignette vedette."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        unlocked = create_test_character(tag, name="Gandalf", fragments_required=2)
+        locked = create_test_character(tag, name="Frodo", fragments_required=5)
+        create_test_album("Album Test", [tag], [unlocked, locked])
+
+        add_fragments(user, unlocked, 2)
+        db.session.commit()
+
+        summaries = get_album_summaries(user)
+        assert len(summaries) == 1
+        summary = summaries[0]
+        assert summary["name"] == "Album Test"
+        assert summary["unlocked_count"] == 1
+        assert summary["total_count"] == 2
+        assert summary["image_url"] == unlocked.image_url
