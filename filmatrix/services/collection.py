@@ -116,21 +116,34 @@ def get_saga_summaries(user) -> list[dict]:
         if not characters:
             continue
 
-        unlockd_count = UserCharacter.query.filter(
+        character_ids = [character.id for character in characters]
+        unlocked_character_ids = {
+            row.character_id
+            for row in UserCharacter.query.filter(
                 UserCharacter.user_id == user.id,
-                UserCharacter.character_id.in_([character.id for character in characters]),
+                UserCharacter.character_id.in_(character_ids),
                 UserCharacter.unlocked_at.isnot(None),
-            ).count()
+            ).all()
+        }
+
+        # Une vignette qui montre ce que le joueur a déjà débloqué donne plus
+        # envie de continuer qu'une image tirée au hasard dans la franchise.
+        featured_character = next(
+            (character for character in characters if character.id in unlocked_character_ids),
+            characters[0],
+        )
 
         summaries.append(
                 {
                     "tag_id": tag.id,
                     "name": humanize_tag_name(tag.name),
-                    "unlocked_count": unlockd_count,
+                    "unlocked_count": len(unlocked_character_ids),
                     "total_count": len(characters),
+                    "image_url": featured_character.image_url,
                 }
             )
-        return summaries 
+
+    return summaries
 
 def award_guaranteed_fragment(user, minimum_rarity: list[str] | None = None) -> tuple[Character, bool] | None:
     """Donne un fragment garanti à un personnage verrouillé au hasard, toutes sagas confondues.

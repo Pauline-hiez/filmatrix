@@ -86,3 +86,60 @@ def check_and_award_badges(user) -> list[str]:
 
     badges_after = {badge.badge_code for badge in user.badges}
     return list(badges_after - badges_before)
+
+def next_objective(user) -> dict | None:
+    """Calcule la progression vers chaque badge non obtenu, et renvoie celui qui
+    s'en approche le plus - le "prochain objectif" du profil. None si tous les
+    badges sont déjà obtenus.
+
+    Chaque ratio est calculé à partir des mêmes données que check_and_award_badges,
+    pas d'un seuil générique : un badge n'a de sens qu'avec SA propre mesure
+    (tentatives, streak courante, niveau, modes joués, citations correctes...)."""
+    earned_codes = {badge.badge_code for badge in user.badges}
+    remaining_codes = [code for code in BADGES if code not in earned_codes]
+    if not remaining_codes:
+        return None
+
+    all_attempts = Attempt.query.filter_by(user_id=user.id).order_by(Attempt.answered_at).all()
+    level_info = calculate_level(user.total_xp)
+    played_modes = {attempt.question.mode for attempt in all_attempts}
+    all_available_modes = {question.mode for question in Question.query.all()}
+
+    citation_correct_count = sum(
+        1
+        for attempt in all_attempts
+        if attempt.is_correct and attempt.question.mode == "citation"
+    )
+
+    current_streak_length = 0
+    for attempt in reversed(all_attempts):
+        if not attempt.is_correct:
+            break
+        current_streak_length += 1
+
+    progress_by_code = {
+        "first_step": (min(len(all_attempts), 1), 1),
+        "hundred_attempts": (min(len(all_attempts), 100), 100),
+        "five_in_a_row": (min(current_streak_length, 5), 5),
+        "level_5": (min(level_info["level"], 5), 5),
+        "all_modes": (len(played_modes & all_available_modes), len(all_available_modes) or 1),
+        "citation_expert": (min(citation_correct_count, 10), 10),
+    }
+
+    best_code = max(
+        remaining_codes,
+        key=lambda code: progress_by_code[code][0] / progress_by_code[code][1],
+    )
+    current, target = progress_by_code[best_code]
+    info = BADGES[best_code]
+
+    return {
+        "code": best_code,
+        "name": info["name"],
+        "description": info["description"],
+        "icon": info["icon"],
+        "current": current,
+        "target": target,
+        "percent": round(current / target * 100, 1),
+        "remaining": max(target - current, 0),
+    }

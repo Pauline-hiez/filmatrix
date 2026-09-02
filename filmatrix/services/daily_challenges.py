@@ -41,7 +41,8 @@ def get_or_create_daily_challenge(user) -> DailyChallenge:
     elif challenge_type == "saga_count":
         saga_tags = Tag.query.filter_by(tag_type="saga").all()
         eligible_tags = [
-                tag for tag in saga_tags if (Question.tags.contains(tag)).count() >= SAGA_COUNT_TARGET
+                tag for tag in saga_tags
+                if Question.query.filter(Question.tags.contains(tag)).count() >= SAGA_COUNT_TARGET
             ]
         if eligible_tags:
             chosen_tag = random.choice(eligible_tags)

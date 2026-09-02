@@ -4,10 +4,10 @@ from flask import Blueprint, flash, redirect, render_template, request, session,
 from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
-from filmatrix.catalog import AVATARS
+from filmatrix.catalog import AVATARS, AVATAR_RING_COLORS
 from filmatrix.models import Attempt, User
 from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
-from filmatrix.services.badges import BADGES
+from filmatrix.services.badges import BADGES, next_objective
 from filmatrix.services.friends import friend_cards, get_friends_list, get_friendship_between
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.shop import TITLES
@@ -57,6 +57,7 @@ def profile() -> str:
         equipped_title_name = TITLES.get(current_user.equipped_title, {}).get("name")
 
     saga_summaries = get_saga_summaries(current_user)
+    objective = next_objective(current_user)
 
     today_challenge = get_or_create_daily_challenge(current_user)
     challenge_info = describe_challenge(today_challenge)
@@ -91,6 +92,8 @@ def profile() -> str:
         all_badges=all_badges,
         equipped_title_name=equipped_title_name,
         saga_summaries=saga_summaries,
+        objective=objective,
+        avatar_ring_color=AVATAR_RING_COLORS.get(current_user.avatar, "#22d3ee"),
         challenge=challenge_info,
         challenge_history=challenge_history_info,
         current_streak=current_user.current_streak,
