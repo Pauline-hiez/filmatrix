@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto mt-8">
+<div class="max-w-2xl mx-auto mt-8" data-question-form-container>
+    {% set payload = question.payload if question else {} %}
+    {% set answer = question.correct_answer if question else {} %}
     <h2 class="text-xl mb-6">
         {% if question %}Modifier la question{% else %}Nouvelle question{% endif %}
     </h2>
@@ -12,16 +14,16 @@
             <select id="mode-select" name="mode" required
                     class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 <option value="">-- Choisir un mode --</option>
-                <option value="qcm">Quiz (QCM)</option>
-                <option value="vrai_faux">Vrai / Faux</option>
-                <option value="citation">Citations</option>
-                <option value="emoji">Emoji Quiz</option>
-                <option value="film_melange">Film mélangé</option>
-                <option value="chronologie">Chronologie</option>
-                <option value="devinette">Devinette</option>
-                <option value="devinette_affiche">Devinette-affiche</option>
-                <option value="casting">Casting</option>
-                <option value="blindtest">Blind Test</option>
+                <option value="qcm" {% if question and question.mode == 'qcm' %}selected{% endif %}>Quiz (QCM)</option>
+                <option value="vrai_faux" {% if question and question.mode == 'vrai_faux' %}selected{% endif %}>Vrai / Faux</option>
+                <option value="citation" {% if question and question.mode == 'citation' %}selected{% endif %}>Citations</option>
+                <option value="emoji" {% if question and question.mode == 'emoji' %}selected{% endif %}>Emoji Quiz</option>
+                <option value="film_melange" {% if question and question.mode == 'film_melange' %}selected{% endif %}>Film mélangé</option>
+                <option value="chronologie" {% if question and question.mode == 'chronologie' %}selected{% endif %}>Chronologie</option>
+                <option value="devinette" {% if question and question.mode == 'devinette' %}selected{% endif %}>Devinette</option>
+                <option value="devinette_affiche" {% if question and question.mode == 'devinette_affiche' %}selected{% endif %}>Devinette-affiche</option>
+                <option value="casting" {% if question and question.mode == 'casting' %}selected{% endif %}>Casting</option>
+                <option value="blindtest" {% if question and question.mode == 'blindtest' %}selected{% endif %}>Blind Test</option>
             </select>
         </div>
 
@@ -56,11 +58,11 @@
         <!-- Citation / Emoji / Film mélangé / Devinette-affiche / Casting / Blind Test : juste un titre à retrouver -->
         <div class="mode-fields hidden" data-mode="citation">
             <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
-            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}">
         </div>
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="emoji">
             <label class="block text-sm text-slate-400">Film ou série à trouver</label>
-            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}">
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Choisir les indices visuels</label>
                 {# Onglets par catégorie (Émotions, Personnes, Animaux...), calqués sur le
@@ -90,7 +92,7 @@
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="devinette">
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}">
             </div>
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Indices (un par ligne, du plus vague au plus précis)</label>
@@ -138,13 +140,14 @@
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
                 <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
-                <input type="hidden" class="audio-url">
+                <input type="hidden" class="audio-url" value="{{ payload.get('audio_url', '') }}">
+                <input type="hidden" class="audio-options-json" value='{{ payload.get("audio_options", []) | tojson }}'>
             </div>
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Terme de recherche musical (optionnel, ex: compositeur)</label>
                 <input type="text" class="audio-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Laisse vide pour une recherche automatique">
             </div>
-            <div id="audio-preview"></div>
+            <div id="audio-preview" class="flex flex-col gap-2"></div>
         </div>
 
         <!-- Chronologie -->

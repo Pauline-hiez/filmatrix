@@ -1,0 +1,208 @@
+{# Contenu du formulaire d'édition chargé en AJAX par admin_question_modal.js.
+   Le mode ne se choisit pas ici (pas de <select>, un input caché) : une
+   question ne change jamais de mode depuis cet écran, seul son contenu.
+   Chaque champ est pré-rempli côté serveur depuis payload/correct_answer -
+   admin_question_form.js (rechargé à chaque ouverture, cf. son en-tête) gère
+   ensuite la recherche TMDB, le sélecteur d'emojis et la construction finale
+   de payload/correct_answer à l'envoi, exactement comme sur la page complète. #}
+{% set payload = question.payload if question else {} %}
+{% set answer = question.correct_answer if question else {} %}
+<form method="POST" action="{{ url_for('admin.admin_questions_edit', question_id=question.id) }}" id="question-form" class="flex flex-col gap-2.5">
+    <input type="hidden" id="mode-select" name="mode" value="{{ question.mode }}">
+
+    <div>
+        <label class="block text-sm text-slate-400 mb-0.5">Texte affiché (question / réplique / emojis...)</label>
+        <input type="text" name="prompt" value="{{ question.prompt }}"
+               class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100">
+    </div>
+
+    {% if question.mode == 'qcm' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="qcm">
+        <p class="text-sm text-slate-400">4 options, coche la bonne réponse :</p>
+        {% set options = payload.get('options', []) %}
+        {% for i in range(4) %}
+        <div class="flex items-center gap-2">
+            <input type="radio" name="qcm_correct_index" value="{{ i }}" class="qcm-radio" {% if answer.get('index') == i %}checked{% endif %}>
+            <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100"
+                   value="{{ options[i] if i < options|length else '' }}" placeholder="Option {{ i + 1 }}">
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'vrai_faux' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="vrai_faux">
+        <p class="text-sm text-slate-400">L'affirmation (dans le champ "Texte affiché" ci-dessus) est :</p>
+        <label class="flex items-center gap-2 text-sm">
+            <input type="radio" name="vf_correct" value="true" {% if answer.get('value') == true %}checked{% endif %}> Vraie
+        </label>
+        <label class="flex items-center gap-2 text-sm">
+            <input type="radio" name="vf_correct" value="false" {% if answer.get('value') == false %}checked{% endif %}> Fausse
+        </label>
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'citation' %}
+    <div class="mode-fields" data-mode="citation">
+        <label class="block text-sm text-slate-400 mb-0.5">Film à trouver</label>
+        <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}">
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'emoji' %}
+    {% set emoji_codes = payload.get('visuals', []) | map(attribute='value') | list %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="emoji">
+        <label class="block text-sm text-slate-400">Film ou série à trouver</label>
+        <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}">
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Choisir les indices visuels</label>
+            <div id="emoji-picker-categories" class="mb-2 flex flex-wrap gap-1.5"></div>
+            <input type="search" class="emoji-picker-search w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" placeholder="Rechercher un emoji : château, argent..." autocomplete="off">
+            <div id="emoji-picker" class="emoji-picker mt-2 flex max-h-40 flex-wrap content-start items-center justify-start gap-1.5 overflow-y-auto rounded-lg border border-slate-800 bg-slate-950/60 p-2" aria-label="Bibliothèque OpenMoji">
+                <p class="w-full py-2 text-center text-xs text-slate-500">Chargement…</p>
+            </div>
+            <button type="button" id="emoji-picker-toggle" class="mt-2 text-xs font-bold text-cyan-400 hover:text-cyan-300">Afficher tous les emojis</button>
+            <label class="mt-2 block text-xs text-slate-500">Indices sélectionnés</label>
+            <textarea class="emoji-visual-codes w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100" rows="1" placeholder="Clique sur les icônes ci-dessus">{{ emoji_codes | join('\n') }}</textarea>
+        </div>
+        <div class="emoji-admin-preview flex flex-wrap justify-center gap-2">
+            {% for code in emoji_codes %}
+            <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ code }}.svg" alt="" class="h-8 w-8 object-contain">
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'film_melange' %}
+    <div class="mode-fields" data-mode="film_melange">
+        <label class="block text-sm text-slate-400 mb-0.5">Titre du film (sera mélangé automatiquement)</label>
+        <input type="text" class="film-melange-title w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('title', '') }}">
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'devinette' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="devinette">
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Film à trouver</label>
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}">
+        </div>
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Indices (un par ligne, du plus vague au plus précis)</label>
+            <textarea class="riddle-hints w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" rows="3">{{ payload.get('hints', []) | join('\n') }}</textarea>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'devinette_affiche' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="devinette_affiche">
+        <div class="relative">
+            <label class="block text-sm text-slate-400 mb-0.5">Rechercher le film (TMDB)</label>
+            <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" data-target="poster" placeholder="Tape le titre du film...">
+            <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+        </div>
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Film sélectionné</label>
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
+            <input type="hidden" class="poster-url" value="{{ payload.get('poster_url', '') }}">
+        </div>
+        <div id="poster-preview">
+            {% if payload.get('poster_url') %}<img src="{{ payload.get('poster_url') }}" class="w-full max-w-xs rounded-lg border border-cyan-400/30">{% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'casting' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="casting">
+        <div class="relative">
+            <label class="block text-sm text-slate-400 mb-0.5">Rechercher le film (TMDB)</label>
+            <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" data-target="casting" placeholder="Tape le titre du film...">
+            <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+        </div>
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Film sélectionné</label>
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
+            <input type="hidden" class="actor-photos-hidden" value='{{ payload.get("actor_photos", []) | tojson }}'>
+        </div>
+        <div id="cast-preview" class="flex gap-2">
+            {% for photo_url in payload.get('actor_photos', []) %}
+            <img src="{{ photo_url }}" class="w-16 h-24 object-cover rounded-lg border border-cyan-400/30">
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'blindtest' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="blindtest">
+        <div class="relative">
+            <label class="block text-sm text-slate-400 mb-0.5">Rechercher le film (TMDB)</label>
+            <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" data-target="audio" placeholder="Tape le titre du film...">
+            <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+        </div>
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Film sélectionné</label>
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
+            <input type="hidden" class="audio-url" value="{{ payload.get('audio_url', '') }}">
+            <input type="hidden" class="audio-options-json" value='{{ payload.get("audio_options", []) | tojson }}'>
+        </div>
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Terme de recherche musical (optionnel, ex: compositeur)</label>
+            <input type="text" class="audio-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" placeholder="Laisse vide pour une recherche automatique">
+        </div>
+        <div id="audio-preview" class="flex flex-col gap-2"></div>
+    </div>
+    {% endif %}
+
+    {% if question.mode == 'chronologie' %}
+    <div class="mode-fields flex flex-col gap-2" data-mode="chronologie">
+        <div>
+            <label class="block text-sm text-slate-400 mb-0.5">Films dans le BON ordre chronologique (un par ligne, du plus ancien au plus récent)</label>
+            <textarea class="chronology-order w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" rows="3">{{ answer.get('order', []) | join('\n') }}</textarea>
+            <p class="text-xs text-slate-500 mt-1">L'ordre affiché au joueur sera automatiquement mélangé à partir de cette liste.</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <label class="flex items-center gap-2 text-sm text-slate-400">
+        <input type="checkbox" name="requires_account" {% if question.requires_account %}checked{% endif %}>
+        Réservée aux comptes
+    </label>
+
+    <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3">
+        <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <label class="text-sm text-slate-300">Tags</label>
+            <span id="selected-tags-count" class="text-xs text-slate-500">0 sélectionné</span>
+        </div>
+        <input type="search" id="tag-search" placeholder="Rechercher un tag..." autocomplete="off"
+               class="mb-2 w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none">
+        <div id="tag-groups" class="flex flex-col gap-1.5">
+            {% for tag_type, label in [("genre", "Genres"), ("univers", "Univers"), ("saga", "Sagas"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+            {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+            {% if typed_tags %}
+            <details class="tag-group rounded-lg border border-slate-800 bg-slate-900/50 px-2.5 py-1.5" {% if tag_type == "genre" %}open{% endif %}>
+                <summary class="cursor-pointer list-none text-sm font-bold text-slate-300">
+                    <span class="flex items-center justify-between">{{ label }} <span class="text-xs font-normal text-slate-500">{{ typed_tags|length }}</span></span>
+                </summary>
+                <div class="tag-options mt-1.5 grid max-h-36 gap-1.5 overflow-y-auto pr-1 sm:grid-cols-2" data-group-label="{{ label|lower }}">
+                    {% for tag in typed_tags %}
+                    <label class="tag-option flex min-w-0 items-center gap-2 rounded-lg border border-cyan-400/20 bg-slate-950/60 px-2 py-1.5 text-xs cursor-pointer hover:border-cyan-400/60" data-tag-name="{{ tag.name|lower }}">
+                        <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox shrink-0"
+                               {% if tag in question.tags %}checked{% endif %}>
+                        <span class="truncate">{{ tag.name }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </details>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <input type="hidden" name="visuals" id="visuals-input">
+    <input type="hidden" name="payload" id="payload-input" value='{{ payload | tojson }}'>
+    <input type="hidden" name="correct_answer" id="correct-answer-input" value='{{ answer | tojson }}'>
+
+    <div class="flex justify-end gap-2">
+        <button type="button" data-modal-cancel class="rounded-lg border border-slate-700 px-4 py-2 text-sm text-slate-300">Annuler</button>
+        <button type="submit" class="rounded-lg bg-cyan-400 px-5 py-2 font-bold text-slate-950 hover:bg-cyan-300">Modifier</button>
+    </div>
+</form>

@@ -9,7 +9,7 @@ from filmatrix.extensions import db
 from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
 from filmatrix.models import Attempt, Question, Report, Tag, User, Character
-from filmatrix.integrations.itunes import search_soundtrack_preview
+from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.tmdb import (
     build_image_url,
     get_movie_by_id,
@@ -111,7 +111,8 @@ def admin_questions_edit(question_id: int) -> str:
         return redirect(url_for("admin.admin_questions_list"))
 
     all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
-    return render_template("admin/question_form.html", question=question, all_tags=all_tags)
+    template = "admin/question_form_modal.html" if request.headers.get("X-Requested-With") == "XMLHttpRequest" else "admin/question_form.html"
+    return render_template(template, question=question, all_tags=all_tags)
 
 @bp.route("/admin/questions/<int:question_id>/supprimer", methods=["POST"])
 @login_required
@@ -202,16 +203,15 @@ def admin_api_characters() -> dict:
 @login_required
 @admin_required
 def admin_api_audio() -> dict:
-    """Recherche un extrait audio via iTunes pour un film sélectionné"""
+    """Recherche plusieurs préécoutes audio pour un film sélectionné."""
     title = request.args.get("title", "")
     search_term = request.args.get("search_term") or f"{title} soundtrack"
+    previews = search_soundtrack_previews(search_term, limit=6)
 
-    audio_url = search_soundtrack_preview(search_term)
-
-    if audio_url is None:
+    if not previews:
         return {"success": False, "error": "Aucun extrait audio trouvé."}
 
-    return {"success": True, "audio_url": audio_url}
+    return {"success": True, "audio_options": previews, "audio_url": previews[0]["audio_url"]}
 
 @bp.route("/admin/utilisateurs")
 @login_required

@@ -1,8 +1,17 @@
+// Enveloppé dans une IIFE : ce script est réinjecté à chaque ouverture de la
+// modale d'édition (static/js/admin_question_modal.js), avec un paramètre
+// anti-cache qui force le navigateur à le réexécuter. Sans cette IIFE, les
+// "const" du haut de fichier entreraient en collision avec ceux de
+// l'exécution précédente ("Identifier ... has already been declared") dès la
+// deuxième ouverture de la modale.
+(function () {
 const modeSelect = document.getElementById("mode-select");
 const allModeFieldGroups = document.querySelectorAll(".mode-fields");
 const form = document.getElementById("question-form");
 const tagSearch = document.getElementById("tag-search");
-const tagCount = document.getElementById("selected-tags-count");const OPENMOJI_CATALOG_URL = "/static/assets/openmoji-catalog.json";
+const tagCount = document.getElementById("selected-tags-count");
+if (!form || !modeSelect) return;
+const OPENMOJI_CATALOG_URL = "/static/assets/openmoji-catalog.json";
 const OPENMOJI_REMOTE_URL = "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/data/openmoji.json";
 let OPENMOJI_CATALOG = [];
 let showAllEmojis = false;
@@ -223,6 +232,27 @@ if (emojiCodesField) {
     });
 }
 
+function renderSavedAudioOptions(fieldsGroup) {
+    const optionsField = fieldsGroup.querySelector(".audio-options-json");
+    const preview = fieldsGroup.querySelector("#audio-preview");
+    if (!optionsField || !preview || !optionsField.value) return;
+    let options;
+    try { options = JSON.parse(optionsField.value); } catch (error) { return; }
+    if (!Array.isArray(options) || !options.length) return;
+    preview.innerHTML = options.map(function (option, index) {
+        return `<label class="flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-950/60 p-2 hover:border-cyan-400/60">
+            <input type="radio" name="audio-choice" value="${index}" ${option.audio_url === fieldsGroup.querySelector(".audio-url").value ? "checked" : ""}>
+            <span class="min-w-0 flex-1"><span class="block truncate text-sm text-slate-100">${option.label || "Extrait audio"}</span><span class="block truncate text-xs text-slate-500">${option.artist || option.album || "Source enregistrée"}</span></span>
+            <audio controls preload="none" src="${option.audio_url}" class="h-8 max-w-[15rem]"></audio>
+        </label>`;
+    }).join("");
+    preview.querySelectorAll('input[name="audio-choice"]').forEach(function (radio) {
+        radio.addEventListener("change", function () {
+            fieldsGroup.querySelector(".audio-url").value = options[parseInt(radio.value)].audio_url;
+        });
+    });
+}
+
 function showFieldsForMode(mode) {
     if (mode === "emoji" && emojiPicker) {
         emojiPicker.classList.remove("hidden");
@@ -238,7 +268,17 @@ function showFieldsForMode(mode) {
 
 modeSelect.addEventListener("change", function () {
     showFieldsForMode(modeSelect.value);
+    if (modeSelect.value === "blindtest") {
+        renderSavedAudioOptions(document.querySelector('.mode-fields[data-mode="blindtest"]'));
+    }
 });
+
+if (modeSelect.value) {
+    showFieldsForMode(modeSelect.value);
+    if (modeSelect.value === "blindtest") {
+        renderSavedAudioOptions(document.querySelector('.mode-fields[data-mode="blindtest"]'));
+    }
+}
 
 function shuffleArray(items) {
     const shuffled = [...items];
@@ -342,8 +382,10 @@ function buildPayloadAndAnswer(mode) {
     if (mode === "blindtest") {
         const film = activeGroup.querySelector(".film-answer").value;
         const audioUrl = activeGroup.querySelector(".audio-url").value;
+        const optionsField = activeGroup.querySelector(".audio-options-json");
+        const audioOptions = optionsField && optionsField.value ? JSON.parse(optionsField.value) : [];
         return {
-            payload: { audio_url: audioUrl },
+            payload: { audio_url: audioUrl, audio_options: audioOptions },
             correct_answer: { film: film },
         };
     }
@@ -499,10 +541,24 @@ async function selectMovie(movie, target, fieldsGroup) {
 
         if (data.success) {
             fieldsGroup.querySelector(".audio-url").value = data.audio_url;
-            const preview = document.getElementById("audio-preview");
-            preview.innerHTML = `<audio controls src="${data.audio_url}" class="w-full mt-2"></audio>`;
+            fieldsGroup.querySelector(".audio-options-json").value = JSON.stringify(data.audio_options || []);
+            const preview = fieldsGroup.querySelector("#audio-preview");
+            preview.innerHTML = (data.audio_options || []).map(function (option, index) {
+                return `<label class="flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-950/60 p-2 hover:border-cyan-400/60">
+                    <input type="radio" name="audio-choice" value="${index}" ${index === 0 ? "checked" : ""}>
+                    <span class="min-w-0 flex-1"><span class="block truncate text-sm text-slate-100">${option.label}</span><span class="block truncate text-xs text-slate-500">${option.artist || option.album || "Source iTunes"}</span></span>
+                    <audio controls preload="none" src="${option.audio_url}" class="h-8 max-w-[15rem]"></audio>
+                </label>`;
+            }).join("");
+            preview.querySelectorAll('input[name="audio-choice"]').forEach(function (radio) {
+                radio.addEventListener("change", function () {
+                    const selected = data.audio_options[parseInt(radio.value)];
+                    fieldsGroup.querySelector(".audio-url").value = selected.audio_url;
+                });
+            });
         } else {
             alert(data.error);
         }
     }
 }
+})();
