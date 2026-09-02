@@ -38,28 +38,98 @@ function showBadgeNotification(badge) {
     }, 3000);
 }
 
-function showFragmentNotification(fragmentResult) {
-    const notification = document.createElement("div");
-    notification.className =
-        "fixed top-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-cyan-400 rounded-lg px-4 py-3 shadow-lg z-50 flex items-center gap-3 transition-opacity duration-500";
+const FRAGMENT_RARITY_LABELS = {
+    commun: "Commun",
+    rare: "Rare",
+    epique: "Épique",
+    legendaire: "Légendaire",
+    mythique: "Mythique",
+};
 
-    if (fragmentResult.just_unlocked) {
-        notification.innerHTML = `
-            <span class="text-2xl">🎉</span>
-            <div>
-                <p class="text-cyan-400 font-bold text-sm">Personnage débloqué !</p>
-                <p class="text-slate-300 text-xs">${fragmentResult.character_name}</p>
-            </div>
-        `;
-    } else {
-        notification.innerHTML = `
-            <span class="text-2xl">🧩</span>
-            <div>
-                <p class="text-cyan-400 font-bold text-sm">Fragment obtenu</p>
-                <p class="text-slate-300 text-xs">${fragmentResult.character_name}</p>
+function assetUrl(url) {
+    if (!url) return "";
+    if (/^https?:\/\//i.test(url)) return url;
+    return "/static/" + url;
+}
+
+// Animation de la case qui vient d'être révélée dans le toast.
+function ensureFragmentRevealStyle() {
+    if (document.getElementById("fragment-reveal-style")) {
+        return;
+    }
+    const style = document.createElement("style");
+    style.id = "fragment-reveal-style";
+    style.textContent = `
+        @keyframes fragmentCellReveal {
+            0% { opacity: 0; transform: scale(0.3); filter: brightness(2.2); }
+            55% { opacity: 1; transform: scale(1.18); }
+            100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+        }
+        .fragment-cell-reveal { animation: fragmentCellReveal 0.65s ease-out; }
+        @keyframes fragmentGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+            40% { box-shadow: 0 0 10px 2px rgba(34, 211, 238, 0.7); }
+        }
+        .fragment-new-cell { animation: fragmentCellReveal 0.65s ease-out, fragmentGlow 0.9s ease-out; }
+    `;
+    document.head.appendChild(style);
+}
+
+function buildPuzzleCells(fragmentResult, imageUrl) {
+    const grid = fragmentResult.puzzle_grid || [];
+    const newCells = fragmentResult.puzzle_new_cells || [];
+    let html = "";
+    for (let index = 0; index < 9; index += 1) {
+        const revealed = Boolean(grid[index]);
+        const isNew = newCells.indexOf(index) !== -1;
+        const background = revealed && imageUrl
+            ? `background-image:url('${imageUrl}');background-size:cover;background-position:center;`
+            : "";
+        const cellClass = isNew
+            ? "fragment-new-cell"
+            : (revealed ? "" : "opacity-90");
+        html += `
+            <div class="relative overflow-hidden bg-slate-900 ${cellClass}" style="${background}">
+                ${revealed ? "" : `<span class="absolute inset-0 flex items-center justify-center text-[0.6rem] text-slate-600">?</span>`}
             </div>
         `;
     }
+    return html;
+}
+
+function showFragmentNotification(fragmentResult) {
+    const title = fragmentResult.just_unlocked ? "Personnage débloqué !" : "Fragment obtenu";
+    const icon = fragmentResult.just_unlocked ? "🎉" : "🧩";
+    const rarity = FRAGMENT_RARITY_LABELS[fragmentResult.rarity] || fragmentResult.rarity || "";
+
+    const imageUrl = assetUrl(fragmentResult.image_url);
+    const progress = fragmentResult.progress_percent || 0;
+    const sagaName = fragmentResult.saga_name || "";
+    ensureFragmentRevealStyle();
+
+    const puzzleCells = buildPuzzleCells(fragmentResult, imageUrl);
+
+    const notification = document.createElement("div");
+    notification.className =
+        "fixed top-4 left-1/2 -translate-x-1/2 z-50 flex cursor-pointer items-center gap-3 rounded-xl border border-cyan-400 bg-slate-900 px-4 py-3 shadow-2xl transition-opacity duration-500 max-w-sm";
+    notification.setAttribute("role", "status");
+    notification.addEventListener("click", function () {
+        window.location.href = "/collection";
+    });
+    notification.innerHTML = `
+        <div class="grid h-16 w-16 shrink-0 grid-cols-3 grid-rows-3 gap-px overflow-hidden rounded-lg border border-slate-700 bg-slate-950">
+            ${puzzleCells}
+        </div>
+        <div class="min-w-0 flex-1">
+            <p class="text-sm font-bold text-cyan-400">${icon} ${title}</p>
+            <p class="truncate text-sm font-semibold text-slate-100">${fragmentResult.character_name}</p>
+            <p class="truncate text-xs text-slate-500">${sagaName}${sagaName && rarity ? " · " : ""}${rarity}</p>
+            <div class="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                <div class="h-1.5 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500" style="width:${progress}%"></div>
+            </div>
+            <p class="mt-0.5 text-[0.65rem] text-slate-500">${fragmentResult.fragments}/${fragmentResult.fragments_required} fragments</p>
+        </div>
+    `;
 
     document.body.appendChild(notification);
 
@@ -68,7 +138,7 @@ function showFragmentNotification(fragmentResult) {
         setTimeout(function () {
             notification.remove();
         }, 500);
-    }, 3000);
+    }, 3500);
 }
 
 function showAnswerFeedback(isCorrect, correctAnswer) {

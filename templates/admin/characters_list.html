@@ -1,4 +1,5 @@
 {% extends "admin/base_admin.html" %}
+{% from "partials/character_frame.html" import character_card %}
 
 {% block admin_content %}
 <div class="flex items-center justify-between mb-6">
@@ -30,10 +31,14 @@
                         <td class="px-3 py-2 font-bold">{{ character.name }}</td>
                         <td class="px-3 py-2">
                             {% if character.image_url %}
-                            <span class="relative block h-10 w-10">
-                                <img src="{{ url_for('static', filename=character.image_url) if not character.image_url.startswith('http') else character.image_url }}" alt="Portrait de {{ character.name }}" class="absolute inset-0 h-full w-full rounded-lg object-cover">
-                                <img src="{{ url_for('static', filename='images/habillage/rarete.png') }}" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain">
-                            </span>
+                            <div class="block w-12">
+                                {{ character_card(
+                                    character.image_url,
+                                    character.image_x, character.image_y, character.image_scale,
+                                    character.frame_x, character.frame_y, character.frame_scale,
+                                    unlocked=true
+                                ) }}
+                            </div>
                             {% else %}
                             <span class="text-xs text-slate-600">Aucune image</span>
                             {% endif %}

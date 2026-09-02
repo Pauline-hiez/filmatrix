@@ -8,7 +8,7 @@ ici. Pour trouver une page, on ouvre le blueprint de son domaine.
 import os
 
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask, url_for
 
 from filmatrix.extensions import db, login_manager, migrate, socketio
 from filmatrix.models import User
@@ -94,6 +94,20 @@ def create_app(database_uri: str | None = None) -> Flask:
     def load_user(user_id: str):
         """Indique à Flask-Login comment retrouver un utilisateur depuis son id de session"""
         return User.query.get(int(user_id))
+
+    @app.template_filter("image_src")
+    def image_src(value):
+        """Réalise l'URL d'une image stockée en base.
+
+        Les contenus uploadés sont enregistrés sous forme de chemin relatif
+        (ex. uploads/characters/xxx.png) : il faut les préfixer par /static.
+        Les URLs distantes (TMDB...) sont renvoyées telles quelles.
+        """
+        if not value:
+            return ""
+        if value.startswith("http://") or value.startswith("https://"):
+            return value
+        return url_for("static", filename=value)
 
     @app.context_processor
     def inject_notifications():

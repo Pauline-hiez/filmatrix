@@ -43,6 +43,12 @@ def collection_saga(tag_id: int) -> str:
                 "fragments_required": character.fragments_required,
                 "is_unlocked": is_unlocked,
                 "puzzle_grid": get_puzzle_grid(character.id, fragments, character.fragments_required),
+                "image_x": character.image_x,
+                "image_y": character.image_y,
+                "image_scale": character.image_scale,
+                "frame_x": character.frame_x,
+                "frame_y": character.frame_y,
+                "frame_scale": character.frame_scale,
             }
         )
 

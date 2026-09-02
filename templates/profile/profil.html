@@ -3,6 +3,7 @@
 {% block content %}
 {% from "partials/friends_grid.html" import friends_grid with context %}
 {% from "partials/avatar.html" import avatar_img %}
+{% from "partials/character_frame.html" import character_card %}
 
 {% set labels = {
     "qcm": "Quiz",
@@ -214,15 +215,18 @@
                 <a href="{{ url_for('collection.collection_overview') }}" class="text-xs text-cyan-400 transition hover:text-cyan-300">Voir tout →</a>
             </div>
             {% if saga_summaries %}
-            <div class="flex gap-3 overflow-x-auto pb-1" style="scroll-snap-type: x mandatory;">
+            <div class="flex items-start gap-3 overflow-x-auto overflow-y-visible px-2 py-2" style="scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: rgba(34,211,238,.55) rgba(15,23,42,.8);">
                 {% for saga in saga_summaries %}
                 <a href="{{ url_for('collection.collection_saga', tag_id=saga.tag_id) }}"
-                   class="relative aspect-[3/4] w-28 shrink-0 overflow-hidden rounded-xl border border-cyan-400/20 bg-slate-950/60 transition hover:border-cyan-400/60"
+                   class="relative block w-28 shrink-0 self-start transition"
                    style="scroll-snap-align: start;">
-                    {% if saga.image_url %}
-                    <img src="{{ saga.image_url }}" alt="" class="absolute inset-0 h-full w-full object-cover {% if saga.unlocked_count == 0 %}grayscale opacity-50{% endif %}">
-                    {% endif %}
-                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2">
+                    {{ character_card(
+                        saga.image_url,
+                        saga.image_x, saga.image_y, saga.image_scale,
+                        saga.frame_x, saga.frame_y, saga.frame_scale,
+                        unlocked=(saga.unlocked_count > 0)
+                    ) }}
+                    <div class="absolute inset-x-0 bottom-0 rounded-b-lg bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2">
                         <p class="truncate text-xs font-bold text-slate-100">{{ saga.name }}</p>
                         <p class="text-[0.65rem] text-slate-400">{{ saga.unlocked_count }} / {{ saga.total_count }}</p>
                     </div>

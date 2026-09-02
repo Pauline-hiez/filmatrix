@@ -2,9 +2,15 @@
 
 from filmatrix.extensions import db
 from filmatrix.models import Character, Tag, User, Question
-from filmatrix.services.collection import add_fragments, get_characters_for_tag, get_or_create_progress, award_fragment_for_question
+from filmatrix.services.collection import (
+    add_fragments,
+    award_fragment_for_question,
+    fragment_result_payload,
+    get_characters_for_tag,
+    get_or_create_progress,
+)
 
-from datetime import datetime, timedelta
+
 
 
 def create_test_user(username: str = "Collectionneur") -> User:
@@ -16,9 +22,9 @@ def create_test_user(username: str = "Collectionneur") -> User:
     return user
 
 
-def create_test_tag(name: str = "Harry Potter") -> Tag:
-    """Crée un tag de saga de test en base"""
-    tag = Tag(name=name, tag_type="saga")
+def create_test_tag(name: str = "Harry Potter", tag_type: str = "saga") -> Tag:
+    """Crée un tag de franchise de test en base (saga ou univers)"""
+    tag = Tag(name=name, tag_type=tag_type)
     db.session.add(tag)
     db.session.commit()
     return tag
@@ -130,8 +136,8 @@ def create_test_question(tags: list[Tag] | None = None) -> Question:
     return question
 
 
-def test_award_fragment_returns_none_without_saga_tag(app):
-    """A question with no saga tag should not award any fragment."""
+def test_award_fragment_returns_none_without_franchise_tag(app):
+    """Une question sans tag de franchise (ni saga ni univers) ne doit rien donner."""
     with app.app_context():
         user = create_test_user()
         question = create_test_question()
@@ -142,7 +148,7 @@ def test_award_fragment_returns_none_without_saga_tag(app):
 
 
 def test_award_fragment_returns_none_without_characters(app):
-    """A saga tag with no characters attached should not award any fragment."""
+    """Un tag de franchise sans personnage ne doit rien donner."""
     with app.app_context():
         user = create_test_user()
         tag = create_test_tag()
@@ -174,7 +180,7 @@ def test_award_fragment_gives_fragment_to_locked_character(app):
 
 
 def test_award_fragment_ignores_already_unlocked_characters(app):
-    """A fully unlocked character should not receive more fragments, even on a new day."""
+    """Un personnage déjà débloqué ne doit pas recevoir de fragment supplémentaire."""
     with app.app_context():
         user = create_test_user()
         tag = create_test_tag()
@@ -184,48 +190,78 @@ def test_award_fragment_ignores_already_unlocked_characters(app):
         award_fragment_for_question(user, question)
         db.session.commit()
 
-        # On simule un nouveau jour, pour isoler l'effet "déjà débloqué"
-        # de celui du quota quotidien.
-        user.last_fragment_earned_at = datetime.utcnow() - timedelta(days=1)
-        db.session.commit()
-
         result = award_fragment_for_question(user, question)
 
         assert result is None
 
 
-def test_award_fragment_respects_daily_quota(app):
-    """A second correct answer on the same day should not award a second fragment."""
+def test_award_fragment_targets_univers_tag(app):
+    """Une question liée à un tag « univers » doit aussi donner un fragment."""
     with app.app_context():
         user = create_test_user()
-        tag = create_test_tag()
-        character_a = create_test_character(tag, name="Personnage A", fragments_required=5)
-        character_b = create_test_character(tag, name="Personnage B", fragments_required=5)
-        question = create_test_question(tags=[tag])
-
-        first_result = award_fragment_for_question(user, question)
-        db.session.commit()
-
-        second_result = award_fragment_for_question(user, question)
-
-        assert first_result is not None
-        assert second_result is None
-
-
-def test_award_fragment_works_again_the_next_day(app):
-    """A fragment should be awardable again once a new day has started."""
-    with app.app_context():
-        user = create_test_user()
-        tag = create_test_tag()
-        character = create_test_character(tag, fragments_required=5)
-        question = create_test_question(tags=[tag])
-
-        award_fragment_for_question(user, question)
-        db.session.commit()
-
-        user.last_fragment_earned_at = datetime.utcnow() - timedelta(days=1)
-        db.session.commit()
+        universe = create_test_tag(name="Terre du Milieu", tag_type="univers")
+        character = create_test_character(universe, name="Gandalf", fragments_required=5)
+        question = create_test_question(tags=[universe])
 
         result = award_fragment_for_question(user, question)
+        db.session.commit()
 
         assert result is not None
+        assert result[0].id == character.id
+
+
+def test_award_fragment_targets_the_named_character_in_citation(app):
+    """En citation connue, le fragment doit aller au personnage cité."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        gandalf = create_test_character(tag, name="Gandalf", fragments_required=5)
+        create_test_character(tag, name="Frodo", fragments_required=5)
+        question = create_test_question(tags=[tag])
+
+        result = award_fragment_for_question(user, question, character_name="gandalf")
+        db.session.commit()
+
+        assert result is not None
+        assert result[0].id == gandalf.id
+
+
+def test_award_fragment_falls_back_when_named_character_unknown(app):
+    """Si le personnage cité n'existe pas dans la franchise, on tire au hasard."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, name="Frodo", fragments_required=5)
+        question = create_test_question(tags=[tag])
+
+        result = award_fragment_for_question(user, question, character_name="Personnage Inconnu")
+        db.session.commit()
+
+        assert result is not None
+        assert result[0].id == character.id
+
+
+def test_fragment_result_payload_exposes_progress(app):
+    """La payload de notification doit exposer le personnage et sa progression."""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, name="Gandalf", fragments_required=5)
+        question = create_test_question(tags=[tag])
+
+        result = award_fragment_for_question(user, question)
+        payload = fragment_result_payload(user, result)
+        db.session.commit()
+
+        assert payload is not None
+        assert payload["character_name"] == "Gandalf"
+        assert payload["fragments"] == 1
+        assert payload["fragments_required"] == 5
+        assert payload["progress_percent"] == 20
+        assert payload["saga_name"] == "Harry Potter"
+        assert "image_x" in payload and "frame_scale" in payload
+        assert len(payload["puzzle_grid"]) == 9
+        assert payload["character_id"] == character.id
+        assert payload["puzzle_new_cells"]  # au moins une case vient d'être révélée
+
+        assert fragment_result_payload(user, None) is None

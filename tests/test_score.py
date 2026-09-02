@@ -2,7 +2,13 @@
 
 from filmatrix.extensions import db
 from filmatrix.models import Question, User
-from filmatrix.services.score import read_run, record_answer, start_run
+from filmatrix.services.score import (
+    mark_run_fragment_awarded,
+    read_run,
+    record_answer,
+    run_fragment_awarded,
+    start_run,
+)
 
 
 def test_run_counts_correct_answers():
@@ -63,6 +69,20 @@ def test_no_score_without_a_single_answer():
     assert read_run({}, "qcm") is None
 
 
+def test_fragment_awarded_flag_is_per_run():
+    """Le drapeau « un fragment par partie » démarre à False et marque le run"""
+    store = {}
+    start_run(store, "qcm")
+
+    assert run_fragment_awarded(store, "qcm") is False
+
+    mark_run_fragment_awarded(store, "qcm")
+
+    assert run_fragment_awarded(store, "qcm") is True
+    # Un autre mode n'est pas concerné.
+    assert run_fragment_awarded(store, "citation") is False
+
+
 def create_questions(app, count):
     """Crée des questions QCM dont la bonne réponse est toujours l'option 0"""
     with app.app_context():
@@ -114,6 +134,43 @@ def test_end_screen_shows_the_xp_earned_during_the_run(client, app):
     # Deux bonnes réponses en difficile : 2 x 30 XP et 2 x 6 pièces.
     assert "+ 60 XP".encode() in end_screen
     assert "+ 12 pièces".encode() in end_screen
+
+
+def test_a_run_awards_only_one_fragment(client, app):
+    """Plusieurs bonnes réponses dans une même partie ne donnent qu'un fragment"""
+    from filmatrix.models import Character, Question, Tag
+
+    with app.app_context():
+        player = User(username="Chasseur", email="chasseur@filmatrix.fr")
+        player.set_password("Azerty1!")
+        db.session.add(player)
+        tag = Tag(name="Harry Potter", tag_type="saga")
+        db.session.add(tag)
+        db.session.commit()
+        db.session.add_all(
+            [
+                Character(name="Harry Potter", tag_id=tag.id, fragments_required=5),
+                Character(name="Voldemort", tag_id=tag.id, fragments_required=5),
+            ]
+        )
+        for index in range(2):
+            question = Question(
+                mode="qcm",
+                prompt=f"Question {index}",
+                payload={"options": ["A", "B"]},
+                correct_answer={"index": 0},
+            )
+            question.tags = [tag]
+            db.session.add(question)
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "chasseur@filmatrix.fr", "password": "Azerty1!"})
+    client.get("/quiz/qcm/1?level=moyen")
+    first = client.post("/quiz/qcm/1?level=moyen", data={"answer": "0"}).get_json()
+    second = client.post("/quiz/qcm/2?level=moyen", data={"answer": "0"}).get_json()
+
+    assert first["fragment_result"] is not None
+    assert second["fragment_result"] is None
 
 
 def test_a_new_run_resets_the_previous_score(client, app):

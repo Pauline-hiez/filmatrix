@@ -9,7 +9,11 @@ from filmatrix.models import Attempt, Report, Tag, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.character_answers import character_answer
-from filmatrix.services.collection import award_fragment_for_question,award_guaranteed_fragment
+from filmatrix.services.collection import (
+    award_fragment_for_question,
+    award_guaranteed_fragment,
+    fragment_result_payload,
+)
 from filmatrix.services.daily_challenges import update_challenge_progress, update_streak_on_completion
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
@@ -44,9 +48,11 @@ from filmatrix.services.questions import (
 from filmatrix.services.score import (
     QUESTIONS_PER_RUN,
     RUN_LENGTH_PRESETS,
+    mark_run_fragment_awarded,
     read_run,
     record_answer,
     resolve_run_length,
+    run_fragment_awarded,
     run_length,
     start_run,
 )
@@ -245,7 +251,17 @@ def quiz(mode: str, position: int) -> str:
                 current_user.coins += earned_coins
                 attempt.earned_xp = earned_xp
 
-                fragment_result = award_fragment_for_question(current_user, question)
+                # Le fragment est lié à l'univers de la question : une citation
+                # connue vise directement le personnage qui l'a prononcée, les
+                # autres modes tirent un personnage de la franchise. Un seul
+                # fragment par partie, pour garder la collection motivante.
+                if not run_fragment_awarded(session, mode):
+                    character_name = character_answer(question) if character_mode else None
+                    fragment_result = award_fragment_for_question(
+                        current_user, question, character_name=character_name
+                    )
+                    if fragment_result is not None:
+                        mark_run_fragment_awarded(session, mode)
 
             db.session.commit()
 
@@ -296,31 +312,10 @@ def quiz(mode: str, position: int) -> str:
                 "give_up": True,
                 "new_badges": new_badges,
                 "correct_answer": correct_answer_text,
-                "fragment_result": (
-                    {
-                        "character_name": fragment_result[0].name,
-                        "just_unlocked": fragment_result[1],
-                    }
-                    if fragment_result
-                    else None
-                ),
+                "fragment_result": fragment_result_payload(current_user, fragment_result),
                 "completed_challenge": completed_challenge is not None,
-                "challenge_fragment_result": (
-                    {
-                        "character_name": challenge_fragment_result[0].name,
-                        "just_unlocked": challenge_fragment_result[1],
-                    }
-                    if challenge_fragment_result
-                    else None
-                ),
-                "streak_bonus_fragment_result": (
-                    {
-                        "character_name": streak_bonus_fragment_result[0].name,
-                        "just_unlocked": streak_bonus_fragment_result[1],
-                    }
-                    if streak_bonus_fragment_result
-                    else None
-                ),
+                "challenge_fragment_result": fragment_result_payload(current_user, challenge_fragment_result),
+                "streak_bonus_fragment_result": fragment_result_payload(current_user, streak_bonus_fragment_result),
             }
 
         return {
@@ -328,31 +323,10 @@ def quiz(mode: str, position: int) -> str:
             "give_up": True,
             "new_badges": new_badges,
             "correct_answer": correct_answer_text,
-            "fragment_result": (
-                {
-                    "character_name": fragment_result[0].name,
-                    "just_unlocked": fragment_result[1],
-                }
-                if fragment_result
-                else None
-            ),
+            "fragment_result": fragment_result_payload(current_user, fragment_result),
             "completed_challenge": completed_challenge is not None,
-            "challenge_fragment_result": (
-                {
-                    "character_name": challenge_fragment_result[0].name,
-                    "just_unlocked": challenge_fragment_result[1],
-                }
-                if challenge_fragment_result
-                else None
-            ),
-            "streak_bonus_fragment_result": (
-                {
-                    "character_name": streak_bonus_fragment_result[0].name,
-                    "just_unlocked": streak_bonus_fragment_result[1],
-                }
-                if streak_bonus_fragment_result
-                else None
-            ),
+            "challenge_fragment_result": fragment_result_payload(current_user, challenge_fragment_result),
+            "streak_bonus_fragment_result": fragment_result_payload(current_user, streak_bonus_fragment_result),
         }
 
     scrambled_title = None

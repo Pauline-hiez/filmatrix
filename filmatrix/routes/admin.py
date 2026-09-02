@@ -427,15 +427,21 @@ def admin_characters_new() -> str:
                 character.image_url = save_character_image(uploaded_image)
             except ValueError as error:
                 flash(str(error))
-                saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
+                saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
                 return render_template("admin/character_form.html", character=character, saga_tags=saga_tags)
         character.fragments_required = int(request.form.get("fragments_required", 5))
+        character.image_x = float(request.form.get("image_x", 0))
+        character.image_y = float(request.form.get("image_y", 0))
+        character.image_scale = float(request.form.get("image_scale", 100))
+        character.frame_x = float(request.form.get("frame_x", 0))
+        character.frame_y = float(request.form.get("frame_y", 0))
+        character.frame_scale = float(request.form.get("frame_scale", 125))
         db.session.commit()
 
         flash("Personnage modifié avec succès." if character_id else "Personnage créé avec succès.")
         return redirect(url_for("admin.admin_characters_list"))
 
-    saga_tags = Tag.query.filter_by(tag_type="saga").order_by(Tag.name).all()
+    saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
     return render_template("admin/character_form.html", character=character, saga_tags=saga_tags)
 
 

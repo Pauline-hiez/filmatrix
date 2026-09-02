@@ -47,7 +47,23 @@ def start_run(store, mode: str, question_ids: list[int] | None = None, filters: 
         "questions": question_ids or [],
         "filters": filters or {},
         "current_streak": 0,
+        "fragment_awarded": False,
     }
+
+def run_fragment_awarded(store, mode: str) -> bool:
+    """Indique si un fragment a déjà été attribué pendant la partie en cours"""
+    run = store.get(SESSION_KEY)
+    return bool(run and run.get("mode") == mode and run.get("fragment_awarded", False))
+
+
+def mark_run_fragment_awarded(store, mode: str) -> None:
+    """Marque la partie en cours comme ayant déjà offert son fragment"""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return
+    run["fragment_awarded"] = True
+    store[SESSION_KEY] = run
+
 
 def run_question_id(store, mode: str, position: int, filters: dict | None = None) -> int | None:
     """Retourne l'id de la question tirée pour cette position, ou None

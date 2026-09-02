@@ -7,32 +7,52 @@ const contentTypeSelect = document.getElementById("content-type-select");
 const characterNameInput = document.getElementById("character-name-input");
 const characterImageInput = document.getElementById("character-image-input");
 const characterImagePreview = document.getElementById("character-image-preview");
-const framePreview = document.getElementById("character-frame-preview");
-const imagePreview = characterImagePreview ? characterImagePreview.querySelector("img:not(#character-frame-preview)") : null;
-const frameX = document.getElementById("image-x");
-const frameY = document.getElementById("image-y");
-const frameScale = document.getElementById("image-scale");
-const frameXValue = document.getElementById("image-x-value");
-const frameYValue = document.getElementById("image-y-value");
-const frameScaleValue = document.getElementById("image-scale-value");
+let framePreview = document.getElementById("character-frame-preview");
+let imagePreview = characterImagePreview ? characterImagePreview.querySelector("img:not(#character-frame-preview)") : null;
+const imageX = document.getElementById("image-x");
+const imageY = document.getElementById("image-y");
+const imageScale = document.getElementById("image-scale");
+const frameX = document.getElementById("frame-x");
+const frameY = document.getElementById("frame-y");
+const frameScale = document.getElementById("frame-scale");
+const imageXValue = document.getElementById("image-x-value");
+const imageYValue = document.getElementById("image-y-value");
+const imageScaleValue = document.getElementById("image-scale-value");
+const frameXValue = document.getElementById("frame-x-value");
+const frameYValue = document.getElementById("frame-y-value");
+const frameScaleValue = document.getElementById("frame-scale-value");
 const frameSettingsLabel = document.getElementById("image-settings-label");
 
 function updateFramePreview() {
-    if (!imagePreview) return;
-    const x = Number(frameX.value);
-    const y = Number(frameY.value);
-    const scale = Number(frameScale.value);
-    imagePreview.style.width = `${scale}%`;
-    imagePreview.style.height = `${scale}%`;
-    imagePreview.style.left = `${50 + x - scale / 2}%`;
-    imagePreview.style.top = `${50 + y - scale / 2}%`;
-    frameXValue.value = x;
-    frameYValue.value = y;
-    frameScaleValue.value = scale;
-    frameSettingsLabel.textContent = `Image — position : ${x} / ${y} · taille : ${scale}%`;
+    imagePreview = characterImagePreview ? characterImagePreview.querySelector("img:not(#character-frame-preview)") : null;
+    framePreview = characterImagePreview ? characterImagePreview.querySelector("#character-frame-preview") : null;
+    if (!imagePreview || !framePreview) return;
+    const ix = Number(imageX.value);
+    const iy = Number(imageY.value);
+    const is = Number(imageScale.value);
+    const fx = Number(frameX.value);
+    const fy = Number(frameY.value);
+    const fs = Number(frameScale.value);
+    imagePreview.style.width = `${is}%`;
+    imagePreview.style.height = `${is}%`;
+    imagePreview.style.left = `${50 + ix - is / 2}%`;
+    imagePreview.style.top = `${50 + iy - is / 2}%`;
+    imagePreview.style.zIndex = "1";
+    framePreview.style.width = `${fs}%`;
+    framePreview.style.height = `${fs}%`;
+    framePreview.style.left = `${50 + fx - fs / 2}%`;
+    framePreview.style.top = `${50 + fy - fs / 2}%`;
+    framePreview.style.zIndex = "2";
+    imageXValue.value = ix;
+    imageYValue.value = iy;
+    imageScaleValue.value = is;
+    frameXValue.value = fx;
+    frameYValue.value = fy;
+    frameScaleValue.value = fs;
+    frameSettingsLabel.textContent = `Image : ${ix} / ${iy} · ${is}% — Cadre : ${fx} / ${fy} · ${fs}%`;
 }
 
-[frameX, frameY, frameScale].forEach(function (control) {
+[imageX, imageY, imageScale, frameX, frameY, frameScale].forEach(function (control) {
     if (control) control.addEventListener("input", updateFramePreview);
 });
 updateFramePreview();
@@ -44,9 +64,10 @@ if (characterImageInput && characterImagePreview) {
 
         const imageUrl = URL.createObjectURL(file);
         characterImagePreview.innerHTML = `
-            <img src="${imageUrl}" alt="Aperçu du personnage" class="absolute inset-0 h-full w-full object-cover">
-            <img src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute inset-0 z-10 h-full w-full object-contain">
+            <img src="${imageUrl}" alt="Aperçu du personnage" class="absolute object-cover" style="inset: 0; width: 100%; height: 100%; z-index: 1;">
+            <img id="character-frame-preview" src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute object-contain" style="width: 100%; height: 100%; left: 0; top: 0; z-index: 2;">
         `;
+        updateFramePreview();
     });
 }
 
@@ -139,10 +160,10 @@ function displayCharacterResults(characters) {
             characterNameInput.value = character.character_name;
             if (characterImagePreview) {
                 characterImagePreview.innerHTML = `
-                    <img src="${character.photo_url}" alt="Aperçu du personnage" class="absolute object-cover" style="inset: 0; width: 100%; height: 100%;">
-                    <img id="character-frame-preview" src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute z-10 object-contain" style="inset: 0; width: 100%; height: 100%;">
+                    <img src="${character.photo_url}" alt="Aperçu du personnage" class="absolute object-cover" style="inset: 0; width: 100%; height: 100%; z-index: 1;">
+                    <img id="character-frame-preview" src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute object-contain" style="width: 100%; height: 100%; left: 0; top: 0; z-index: 2;">
                 `;
-                window.location.reload();
+                updateFramePreview();
             }
 
             document.querySelectorAll("#character-search-results button").forEach(function (button) {

@@ -213,6 +213,12 @@ class Character(db.Model):
     rarity = db.Column(db.String(20), nullable=False, default="commun")
     image_url = db.Column(db.String(255), nullable=True)
     fragments_required = db.Column(db.Integer, nullable=False, default=5)
+    image_x = db.Column(db.Float, nullable=False, default=0)
+    image_y = db.Column(db.Float, nullable=False, default=0)
+    image_scale = db.Column(db.Float, nullable=False, default=100)
+    frame_x = db.Column(db.Float, nullable=False, default=0)
+    frame_y = db.Column(db.Float, nullable=False, default=0)
+    frame_scale = db.Column(db.Float, nullable=False, default=100)
 
     tag = db.relationship("Tag")
 
