@@ -9,6 +9,9 @@
 {% set answer = question.correct_answer if question else {} %}
 <form method="POST" action="{{ url_for('admin.admin_questions_edit', question_id=question.id) }}" id="question-form" class="flex flex-col gap-2.5">
     <input type="hidden" id="mode-select" name="mode" value="{{ question.mode }}">
+    {# Type d'œuvre : mis à jour par le JS quand un résultat TMDB Film ou Série
+       est sélectionné ; conservé tel quel sinon. #}
+    <input type="hidden" name="content_type" class="content-type-hidden" value="{{ question.content_type }}">
 
     <div>
         <label class="block text-sm text-slate-400 mb-0.5">Texte affiché (question / réplique / emojis...)</label>

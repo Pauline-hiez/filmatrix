@@ -53,6 +53,7 @@ def search_movies_list(query: str, limit: int = 5) -> list[dict]:
             "title": movie["title"],
             "year": movie["release_date"][:4] if movie.get("release_date") else "",
             "thumbnail_url": build_image_url(movie.get("poster_path")),
+            "media_type": "film",
         }
         for movie in results
     ]
@@ -183,6 +184,7 @@ def search_tv_shows_list(query: str, limit: int = 5) -> list[dict]:
             "title": show["name"],
             "year": show["first_air_date"][:4] if show.get("first_air_date") else "",
             "thumbnail_url": build_image_url(show.get("poster_path")),
+            "media_type": "serie",
         }
         for show in results
     ]

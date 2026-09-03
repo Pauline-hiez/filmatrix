@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
+from sqlalchemy import case, func
 from werkzeug.utils import secure_filename
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
@@ -12,6 +13,7 @@ from flask_login import current_user, login_required
 from filmatrix.extensions import db
 from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
+from filmatrix.game_modes import GAME_MODES
 from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.tmdb import (
@@ -19,12 +21,31 @@ from filmatrix.integrations.tmdb import (
     get_movie_by_id,
     get_movie_cast,
     search_movies_list,
+    search_tv_shows_list,
     get_tv_show_by_id,
     get_tv_show_cast,
 )
 
 
 bp = Blueprint("admin", __name__)
+
+
+@bp.context_processor
+def _admin_nav_counts() -> dict:
+    """Compteurs affichés à côté de chaque entrée du menu admin."""
+    return {
+        "admin_counts": {
+            "questions": db.session.query(func.count(Question.id)).scalar(),
+            "users": db.session.query(func.count(User.id)).scalar(),
+            "reports": db.session.query(func.count(Report.id))
+            .filter(Report.is_resolved.is_(False))
+            .scalar(),
+            "tags": db.session.query(func.count(Tag.id)).scalar(),
+            "characters": db.session.query(func.count(Character.id)).scalar(),
+            "albums": db.session.query(func.count(Album.id)).scalar(),
+        }
+    }
+
 
 CHARACTER_IMAGE_EXTENSIONS = {"png", "jpg", "jpeg", "webp", "gif"}
 CHARACTER_IMAGE_MAX_BYTES = 5 * 1024 * 1024
@@ -63,10 +84,51 @@ def admin_questions_list() -> str:
     for question in all_questions:
         questions_by_mode.setdefault(question.mode, []).append(question)
 
+    # Vignette de la table : la première image utile de la payload (affiche,
+    # image de question, photo d'acteur ou option illustrée).
+    thumbnails = {}
+    for question in all_questions:
+        payload = question.payload or {}
+        thumb = payload.get("question_image_url") or payload.get("poster_url")
+        if not thumb:
+            actors = payload.get("actor_photos") or []
+            thumb = actors[0] if actors else None
+        if not thumb:
+            options = payload.get("option_images") or []
+            thumb = options[0] if options else None
+        thumbnails[question.id] = thumb
+
+    # Statistiques réelles : nombre de réponses et taux de réussite.
+    stats_rows = (
+        db.session.query(
+            Attempt.question_id,
+            func.count(Attempt.id).label("answers"),
+            func.sum(case((Attempt.is_correct.is_(True), 1), else_=0)).label("correct"),
+        )
+        .group_by(Attempt.question_id)
+        .all()
+    )
+    question_stats = {
+        row.question_id: (
+            row.answers,
+            round(100 * row.correct / row.answers) if row.answers else None,
+        )
+        for row in stats_rows
+    }
+
+    # Icône et couleur de chaque mode, partagées avec la page des modes.
+    mode_meta = {
+        mode["slug"]: {"icon": mode["icon"], "accent": mode["accent"]}
+        for mode in GAME_MODES
+    }
+
     return render_template(
             "admin/questions_list.html",
             questions_by_mode=questions_by_mode,
             total_count=len(all_questions),
+            thumbnails=thumbnails,
+            question_stats=question_stats,
+            mode_meta=mode_meta,
             active_admin_section="questions"
         )
 
@@ -94,6 +156,7 @@ def admin_questions_new() -> str:
             payload=payload,
             correct_answer=correct_answer,
             requires_account=request.form.get("requires_account") == "on",
+            content_type=request.form.get("content_type", "film"),
         )
 
         selected_tag_ids = request.form.getlist("tags")
@@ -130,6 +193,7 @@ def admin_questions_edit(question_id: int) -> str:
         question.payload = payload
         question.correct_answer = correct_answer
         question.requires_account = request.form.get("requires_account") == "on"
+        question.content_type = request.form.get("content_type", question.content_type)
 
         selected_tag_ids = request.form.getlist("tags")
         question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
@@ -159,41 +223,71 @@ def admin_questions_delete(question_id: int) -> str:
 @login_required
 @admin_required
 def admin_api_search_movies() ->  dict:
-    """Recherche plusieurs films pour l'autocomplétion, avec miniatures"""
+    """Recherche films ET séries pour l'autocomplétion, avec miniatures.
+
+    Les deux listes sont fusionnées et entrelacées pour que chaque type
+    apparaisse tôt dans les résultats (une série en 11e position serait
+    sinon invisible avec une limite de 5).
+    """
     query = request.args.get("query", "")
-    results = search_movies_list(query)
-    return {"results": results}
+    movies = search_movies_list(query, limit=5)
+    shows = search_tv_shows_list(query, limit=5)
+
+    interleaved = []
+    for pair in zip(movies, shows):
+        interleaved.extend(pair)
+    interleaved.extend(movies[len(shows):] if len(movies) > len(shows) else shows[len(movies):])
+
+    return {"results": interleaved[:8]}
 
 @bp.route("/admin/api/recherche-affiche")
 @login_required
 @admin_required
 def admin_api_poster() -> dict:
-    """Récupère l'image de scène (backdrop) TMDB pour un film sélectionné"""
+    """Récupère l'image de scène (backdrop) TMDB pour un film ou une série"""
     movie_id = request.args.get("movie_id", type=int)
-    movie = get_movie_by_id(movie_id) if movie_id else None
+    content_type = request.args.get("content_type", "film")
 
-    if movie is None:
+    result = None
+    if movie_id:
+        if content_type == "serie":
+            result = get_tv_show_by_id(movie_id)
+        else:
+            result = get_movie_by_id(movie_id)
+
+    if result is None:
         return {"success": False, "error": "Film introuvable."}
 
-    poster_url = build_image_url(movie.get("backdrop_path"))
-    return {"success": True, "poster_url": poster_url, "official_title": movie["title"]}
+    poster_url = build_image_url(result.get("backdrop_path"))
+    return {"success": True, "poster_url": poster_url, "official_title": result["title"]}
 
 @bp.route("/admin/api/recherche-casting")
 @login_required
 @admin_required
 def admin_api_cast() -> dict:
-    """Récupère les photos des principaux acteurs pour un film sélectionné"""
+    """Récupère les photos des principaux acteurs pour un film ou une série"""
     movie_id = request.args.get("movie_id", type=int)
-    movie = get_movie_by_id(movie_id) if movie_id else None
+    content_type = request.args.get("content_type", "film")
 
-    if movie is None:
+    result = None
+    if movie_id:
+        if content_type == "serie":
+            result = get_tv_show_by_id(movie_id)
+        else:
+            result = get_movie_by_id(movie_id)
+
+    if result is None:
         return {"success": False, "error": "Film introuvable."}
 
-    cast = get_movie_cast(movie["id"], limit=3)
+    if content_type == "serie":
+        cast = get_tv_show_cast(result["id"], limit=3)
+    else:
+        cast = get_movie_cast(result["id"], limit=3)
+
     actor_photos = [
         build_image_url(actor["profile_path"]) for actor in cast if actor["profile_path"]
     ]
-    return {"success": True, "actor_photos": actor_photos, "official_title": movie["title"]}
+    return {"success": True, "actor_photos": actor_photos, "official_title": result["title"]}
 
 @bp.route("/admin/api/recherche-personnages")
 @login_required

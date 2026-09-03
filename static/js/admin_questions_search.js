@@ -6,7 +6,11 @@ const rowsPerPageSelect = document.getElementById("rows-per-page-select");
 const allRows = document.querySelectorAll(".question-row");
 const allPanels = document.querySelectorAll(".question-mode-panel");
 
+const sortSelect = document.getElementById("question-sort-select");
+
 let ROWS_PER_PAGE = parseInt(rowsPerPageSelect.value);
+let SORT_ORDER = sortSelect ? sortSelect.value : "recent";
+let ACTIVE_MODE = "all";
 
 // ---- Nombre de lignes par page ----
 
@@ -29,6 +33,7 @@ document.querySelectorAll(".mode-tab-button").forEach(function (tabButton) {
 });
 
 function activateTab(selectedMode) {
+    ACTIVE_MODE = selectedMode;
     document.querySelectorAll(".mode-tab-button").forEach(function (button) {
         const isActive = button.dataset.mode === selectedMode;
         button.classList.toggle("bg-cyan-400", isActive);
@@ -41,7 +46,49 @@ function activateTab(selectedMode) {
     });
 
     allPanels.forEach(function (panel) {
-        panel.classList.toggle("hidden", panel.dataset.mode !== selectedMode);
+        panel.classList.toggle(
+            "hidden",
+            selectedMode !== "all" && panel.dataset.mode !== selectedMode
+        );
+    });
+
+    refreshAllPanels();
+}
+
+// Les cartes de statistiques servent de raccourcis vers l'onglet du mode.
+document.querySelectorAll(".admin-stat-card").forEach(function (card) {
+    card.addEventListener("click", function () {
+        const mode = card.dataset.statMode;
+        const tabButton = document.querySelector(
+            `.mode-tab-button[data-mode="${mode}"]`
+        );
+        if (tabButton) {
+            tabButton.click();
+        }
+    });
+});
+
+// ---- Tri ----
+
+function compareRows(a, b) {
+    if (SORT_ORDER === "alpha") {
+        return (a.dataset.displayText || "").localeCompare(
+            b.dataset.displayText || "",
+            "fr",
+            { sensitivity: "base" }
+        );
+    }
+    // Les lignes sont rendues du plus ancien au plus récent (ordre SQL) ;
+    // l'index de rendu sert de clé de tri.
+    const indexA = parseInt(a.dataset.createdIndex, 10);
+    const indexB = parseInt(b.dataset.createdIndex, 10);
+    return SORT_ORDER === "recent" ? indexB - indexA : indexA - indexB;
+}
+
+if (sortSelect) {
+    sortSelect.addEventListener("change", function () {
+        SORT_ORDER = sortSelect.value;
+        refreshAllPanels();
     });
 }
 
@@ -61,11 +108,18 @@ searchInput.addEventListener("input", function () {
 
 function applySearchToPanel(panel, searchTerm) {
     const mode = panel.dataset.mode;
-    const rows = Array.from(panel.querySelectorAll(".question-row"));
+    const rows = getSortedRows(panel);
 
     const matchingRows = rows.filter(function (row) {
         return row.dataset.searchText.toLowerCase().includes(searchTerm);
     });
+
+    // En vue « Tous », les groupes sans question visible disparaissent.
+    if (ACTIVE_MODE === "all" && matchingRows.length === 0) {
+        panel.classList.add("hidden");
+    } else if (ACTIVE_MODE === "all") {
+        panel.classList.remove("hidden");
+    }
 
     rows.forEach(function (row) {
         row.classList.add("hidden");
@@ -175,10 +229,23 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// ---- Initialisation : pagine chaque panneau des le chargement ----
+// ---- Tri des lignes : le DOM est réordonné dans chaque panneau ----
 
-allPanels.forEach(function (panel) {
-    const mode = panel.dataset.mode;
-    currentPageByMode[mode] = 1;
-    applySearchToPanel(panel, "");
-});
+function getSortedRows(panel) {
+    const rows = Array.from(panel.querySelectorAll(".question-row"));
+    rows.sort(compareRows);
+    rows.forEach(function (row) {
+        panel.querySelector("tbody").appendChild(row);
+    });
+    return rows;
+}
+
+function refreshAllPanels() {
+    allPanels.forEach(function (panel) {
+        applySearchToPanel(panel, searchInput.value.toLowerCase().trim());
+    });
+}
+
+// ---- Initialisation : pagine chaque panneau dès le chargement ----
+
+refreshAllPanels();

@@ -14,35 +14,67 @@
 } %}
 
 {% block admin_content %}
-<div class="flex items-center justify-between mb-4">
-    <h2 class="text-xl">Questions ({{ total_count }})</h2>
+{# En-tête de page : icône, titre, compteur et action principale #}
+<div class="mb-5 flex flex-wrap items-center gap-4">
+    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-400/10 text-2xl">🎬</span>
+    <div class="min-w-0">
+        <h1 class="text-2xl font-extrabold tracking-tight text-slate-100">Questions</h1>
+        <p class="text-sm text-slate-500">{{ total_count }} questions</p>
+    </div>
     <a href="{{ url_for('admin.admin_questions_new') }}"
-       class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+       class="ml-auto rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition hover:from-cyan-400 hover:to-blue-500">
         + Nouvelle question
     </a>
 </div>
 
-<div class="flex flex-col sm:flex-row gap-3 mb-6">
+{# Cartes de statistiques : total + modes principaux, cliquables #}
+{% set top_modes = questions_by_mode.items() | sort(attribute='1|length') | reverse | list %}
+<div class="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+    <button type="button" class="admin-stat-card" data-stat-mode="all">
+        <span class="admin-stat-icon" style="background: rgba(34,211,238,0.12); color: #22d3ee;">📼</span>
+        <span class="admin-stat-label">Total questions</span>
+        <span class="admin-stat-value">{{ total_count }}</span>
+    </button>
+    {% for mode, questions in top_modes[:5] %}
+    {% set meta = mode_meta.get(mode, {}) %}
+    <button type="button" class="admin-stat-card" data-stat-mode="{{ mode }}">
+        <span class="admin-stat-icon" style="background: {{ meta.get('accent', '#22d3ee') }}1f; color: {{ meta.get('accent', '#22d3ee') }};">{{ meta.get('icon', '?') }}</span>
+        <span class="admin-stat-label">{{ mode_labels.get(mode, mode) }}</span>
+        <span class="admin-stat-value">{{ questions | length }}</span>
+    </button>
+    {% endfor %}
+</div>
+
+{# Recherche, tri et pagination #}
+<div class="mb-4 flex flex-col gap-3 rounded-xl border border-cyan-400/20 bg-slate-900/40 p-3 sm:flex-row sm:items-center">
     <div class="relative flex-1">
         <input type="text" id="question-search" placeholder="Rechercher dans les questions..."
-               class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+               class="w-full rounded-lg border border-cyan-400/30 bg-slate-950 py-2 pl-9 pr-3 text-slate-100 placeholder:text-slate-500"
                autocomplete="off">
+        <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-500">🔍</span>
         <div id="search-suggestions" class="hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-72 overflow-y-auto"></div>
     </div>
-
-    <select id="rows-per-page-select"
-            class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100 text-sm">
+    <select id="question-sort-select" class="rounded-lg border border-cyan-400/30 bg-slate-950 px-3 py-2 text-sm text-slate-100">
+        <option value="recent">Plus récentes</option>
+        <option value="old">Plus anciennes</option>
+        <option value="alpha">Titre A → Z</option>
+    </select>
+    <select id="rows-per-page-select" class="rounded-lg border border-cyan-400/30 bg-slate-950 px-3 py-2 text-sm text-slate-100">
         <option value="10">10 / page</option>
         <option value="30">30 / page</option>
         <option value="50">50 / page</option>
     </select>
 </div>
 
-<!-- Onglets par mode -->
-<div class="flex flex-wrap gap-2 mb-4 border-b border-cyan-400/30 pb-3">
+{# Onglets par mode #}
+<div class="mb-4 flex flex-wrap gap-2">
+    <button type="button" class="mode-tab-button text-xs px-3 py-1.5 rounded-full transition
+                                  bg-cyan-400 text-slate-950 font-bold" data-mode="all">
+        Tous ({{ total_count }})
+    </button>
     {% for mode, questions in questions_by_mode.items() %}
     <button type="button" class="mode-tab-button text-xs px-3 py-1.5 rounded-full transition
-                                  {% if loop.first %}bg-cyan-400 text-slate-950 font-bold{% else %}bg-slate-900 border border-cyan-400/30 text-slate-300 hover:border-cyan-400{% endif %}"
+                                  {% if false %}bg-cyan-400 text-slate-950 font-bold{% else %}bg-slate-900 border border-cyan-400/30 text-slate-300 hover:border-cyan-400{% endif %}"
             data-mode="{{ mode }}">
         {{ mode_labels.get(mode, mode) }} ({{ questions | length }})
     </button>
@@ -50,52 +82,99 @@
 </div>
 
 {% for mode, questions in questions_by_mode.items() %}
-<div class="question-mode-panel {% if not loop.first %}hidden{% endif %}" data-mode="{{ mode }}">
-    <div class="overflow-x-auto rounded-lg border border-cyan-400/30">
-        <table class="w-full text-sm">
+<div class="question-mode-panel" data-mode="{{ mode }}">
+    <div class="overflow-x-auto rounded-xl border border-cyan-400/20 bg-slate-950/60">
+        <table class="admin-table w-full text-sm">
             <thead>
-                <tr class="bg-slate-900 text-slate-400 text-left">
-                    <th class="px-3 py-2">Question / contenu</th>
-                    <th class="px-3 py-2">Type</th>
-                    <th class="px-3 py-2">Tags</th>
-                    <th class="px-3 py-2">Accès</th>
-                    <th class="px-3 py-2"></th>
+                <tr class="border-b border-cyan-400/20 bg-slate-900/60 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                    <th class="px-3 py-2.5">Question / contenu</th>
+                    <th class="px-3 py-2.5">Type</th>
+                    <th class="px-3 py-2.5">Tags</th>
+                    <th class="px-3 py-2.5">Accès</th>
+                    <th class="px-3 py-2.5">Stats</th>
+                    <th class="px-3 py-2.5 text-right">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for question in questions %}
-                <tr class="border-t border-cyan-400/10 hover:bg-slate-900/50 question-row"
+                {% set meta = mode_meta.get(mode, {}) %}
+                {% set answers, success_rate = question_stats.get(question.id, (0, None)) %}
+                <tr class="question-row border-t border-cyan-400/10 hover:bg-slate-900/40"
                     id="question-row-{{ question.id }}"
                     data-search-text="{{ question.prompt }} {{ question.mode }} {{ question.correct_answer.get('film', '') }} {{ question.correct_answer.get('title', '') }}"
                     data-mode="{{ mode }}"
+                    data-created-index="{{ loop.index }}"
                     data-display-text="{{ question.prompt if question.prompt else question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}">
+                    {# Question / contenu #}
                     <td class="px-3 py-2">
-                        <p class="max-w-xl truncate font-medium text-slate-200">
-                            {% if question.prompt %}{{ question.prompt }}{% else %}{{ question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}{% endif %}
-                        </p>
-                        <p class="mt-1 text-xs text-slate-500">ID {{ question.id }} · {{ mode_labels.get(mode, mode) }}</p>
-                    </td>
-                    <td class="px-3 py-2">
-                        <span class="rounded-full border border-cyan-400/20 bg-cyan-400/5 px-2 py-1 text-xs text-cyan-300">{{ "Série" if question.content_type == "serie" else "Film" }}</span>
-                    </td>
-                    <td class="px-3 py-2">
-                        <div class="flex max-w-xs flex-wrap gap-1">
-                            {% for tag in question.tags[:3] %}<span class="rounded-full bg-slate-800 px-2 py-1 text-[11px] text-slate-400">{{ tag.name }}</span>{% endfor %}
-                            {% if question.tags|length > 3 %}<span class="text-xs text-slate-500">+{{ question.tags|length - 3 }}</span>{% endif %}
+                        <div class="flex items-center gap-3">
+                            {% set thumb = thumbnails.get(question.id) %}
+                            {% if thumb %}
+                            <img src="{{ thumb }}" alt="" loading="lazy"
+                                 class="h-11 w-11 shrink-0 rounded-lg border border-cyan-400/20 object-cover">
+                            {% else %}
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-700/60 bg-slate-900 text-lg opacity-60">{{ meta.get('icon', '?') }}</span>
+                            {% endif %}
+                            <div class="min-w-0">
+                                <p class="max-w-md truncate font-medium text-slate-200">
+                                    {% if question.prompt %}{{ question.prompt }}{% else %}{{ question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}{% endif %}
+                                </p>
+                                <p class="mt-0.5 text-xs text-slate-500">ID {{ question.id }} · {{ mode_labels.get(mode, mode) }}</p>
+                            </div>
                         </div>
                     </td>
-                    <td class="px-3 py-2 text-slate-400">{{ "Compte" if question.requires_account else "Libre" }}</td>
+                    {# Type #}
                     <td class="px-3 py-2">
-                        <div class="flex gap-2 justify-end">
+                        <span class="admin-type-badge" style="--badge-accent: {{ meta.get('accent', '#22d3ee') }}">{{ meta.get('icon', '') }} {{ mode_labels.get(mode, mode) }}</span>
+                    </td>
+                    {# Tags #}
+                    <td class="px-3 py-2">
+                        <div class="flex max-w-[220px] flex-wrap gap-1">
+                            <span class="rounded-full border border-slate-700 bg-slate-900 px-2 py-0.5 text-[11px] text-slate-400">{{ "Série" if question.content_type == "serie" else "Film" }}</span>
+                            {% for tag in question.tags[:2] %}<span class="rounded-full bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-400">{{ tag.name }}</span>{% endfor %}
+                            {% if question.tags|length > 2 %}<span class="text-[11px] text-slate-500">+{{ question.tags|length - 2 }}</span>{% endif %}
+                        </div>
+                    </td>
+                    {# Accès #}
+                    <td class="px-3 py-2">
+                        <span class="flex items-center gap-1.5 text-xs {{ 'text-emerald-400' if not question.requires_account else 'text-amber-400' }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5">
+                                {% if question.requires_account %}
+                                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                {% else %}
+                                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+                                {% endif %}
+                            </svg>
+                            {{ "Compte" if question.requires_account else "Libre" }}
+                        </span>
+                    </td>
+                    {# Stats #}
+                    <td class="px-3 py-2">
+                        {% if success_rate is not none %}
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-200">{{ success_rate }}%</span>
+                            <span class="admin-rate-track"><span class="admin-rate-fill" style="width: {{ success_rate }}%"></span></span>
+                            <span class="hidden text-[11px] text-slate-500 xl:inline">{{ answers }} rép.</span>
+                        </div>
+                        {% else %}
+                        <span class="text-xs text-slate-600">—</span>
+                        {% endif %}
+                    </td>
+                    {# Actions #}
+                    <td class="px-3 py-2">
+                        <div class="flex items-center justify-end gap-1.5">
                             <button type="button"
-                                    class="question-edit-button text-slate-300 hover:text-cyan-400 transition"
+                                    class="question-edit-button admin-action-btn admin-action-btn--edit"
                                     data-question-id="{{ question.id }}"
-                                    data-edit-url="{{ url_for('admin.admin_questions_edit', question_id=question.id) }}">
-                                Modifier
+                                    data-edit-url="{{ url_for('admin.admin_questions_edit', question_id=question.id) }}"
+                                    aria-label="Modifier" title="Modifier">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                             </button>
                             <form method="POST" action="{{ url_for('admin.admin_questions_delete', question_id=question.id) }}"
                                   onsubmit="return confirm('Supprimer cette question ?');">
-                                <button type="submit" class="text-red-400 hover:text-red-300 transition">Supprimer</button>
+                                <button type="submit" class="admin-action-btn admin-action-btn--delete" aria-label="Supprimer" title="Supprimer">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                </button>
                             </form>
                         </div>
                     </td>
@@ -103,6 +182,11 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="pagination-controls mt-3 flex items-center justify-between gap-3" data-mode="{{ mode }}">
+        <button type="button" class="pagination-prev rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-300 transition hover:border-cyan-400 disabled:cursor-not-allowed disabled:opacity-40">← Précédent</button>
+        <p class="pagination-info text-xs text-slate-500"></p>
+        <button type="button" class="pagination-next rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-300 transition hover:border-cyan-400 disabled:cursor-not-allowed disabled:opacity-40">Suivant →</button>
     </div>
 </div>
 {% endfor %}

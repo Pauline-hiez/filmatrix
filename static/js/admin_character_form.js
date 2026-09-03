@@ -108,12 +108,23 @@ function displayMovieResults(movies) {
             ? `<img src="${movie.thumbnail_url}" class="w-8 h-12 object-cover rounded">`
             : `<div class="w-8 h-12 bg-slate-800 rounded flex items-center justify-center text-xs text-slate-500">?</div>`;
 
+        const isSerie = movie.media_type === "serie";
+        const typeBadge = isSerie
+            ? '<span class="ml-auto shrink-0 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">Série</span>'
+            : '<span class="ml-auto shrink-0 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cyan-300">Film</span>';
+
         item.innerHTML = `
             ${thumbnailHtml}
-            <span class="text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+            <span class="min-w-0 flex-1 truncate text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+            ${typeBadge}
         `;
 
         item.addEventListener("click", async function () {
+            // Le casting TMDB dépend du type : une série doit interroger
+            // l'endpoint /tv, sinon aucun personnage n'est trouvé.
+            if (contentTypeSelect) {
+                contentTypeSelect.value = isSerie ? "serie" : "film";
+            }
             movieResultsBox.classList.add("hidden");
             await loadCharactersForMovie(movie.id);
         });

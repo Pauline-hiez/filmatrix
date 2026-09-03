@@ -27,6 +27,16 @@
             </select>
         </div>
 
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Type d'œuvre</label>
+            <select id="content-type-select" name="content_type"
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="film" {% if question and question.content_type == 'film' %}selected{% endif %}>Film</option>
+                <option value="serie" {% if question and question.content_type == 'serie' %}selected{% endif %}>Série</option>
+            </select>
+            <p class="mt-1 text-xs text-slate-500">Défini automatiquement selon l'œuvre choisie dans la recherche TMDB, modifiable ici.</p>
+        </div>
+
         <div id="field-group-prompt">
             <label class="block text-sm text-slate-400 mb-1">Texte affiché (question / réplique / emojis...)</label>
             <input type="text" name="prompt" value="{{ question.prompt if question else '' }}"
@@ -199,7 +209,6 @@
         <input type="hidden" name="visuals" id="visuals-input">
         <input type="hidden" name="payload" id="payload-input">
         <input type="hidden" name="correct_answer" id="correct-answer-input">
-
         <button type="submit"
                 class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition mt-2">
             Enregistrer

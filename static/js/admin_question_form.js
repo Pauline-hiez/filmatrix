@@ -444,7 +444,7 @@ document.querySelectorAll(".movie-search-input").forEach(function (searchInput) 
             );
             const data = await response.json();
 
-            displaySearchResults(data.results, resultsBox, target, fieldsGroup);
+            displaySearchResults(data.results, resultsBox, searchInput, target, fieldsGroup);
         }, 350);
     });
 
@@ -455,7 +455,7 @@ document.querySelectorAll(".movie-search-input").forEach(function (searchInput) 
     });
 });
 
-function displaySearchResults(movies, resultsBox, target, fieldsGroup) {
+function displaySearchResults(movies, resultsBox, searchInput, target, fieldsGroup) {
     if (movies.length === 0) {
         resultsBox.innerHTML =
             '<p class="text-sm text-slate-500 px-3 py-2">Aucun résultat.</p>';
@@ -475,12 +475,21 @@ function displaySearchResults(movies, resultsBox, target, fieldsGroup) {
             ? `<img src="${movie.thumbnail_url}" class="w-8 h-12 object-cover rounded">`
             : `<div class="w-8 h-12 bg-slate-800 rounded flex items-center justify-center text-xs text-slate-500">?</div>`;
 
+        const isSerie = movie.media_type === "serie";
+        const typeBadge = isSerie
+            ? '<span class="ml-auto shrink-0 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">Série</span>'
+            : '<span class="ml-auto shrink-0 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cyan-300">Film</span>';
+
         item.innerHTML = `
             ${thumbnailHtml}
-            <span class="text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+            <span class="min-w-0 flex-1 truncate text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+            ${typeBadge}
         `;
 
         item.addEventListener("click", function () {
+            // Le type d'œuvre sélectionné pilote les champs cachés et les
+            // routes affiche/casting (film ou série sur TMDB).
+            syncQuestionContentType(fieldsGroup, isSerie ? "serie" : "film");
             selectMovie(movie, target, fieldsGroup);
             resultsBox.classList.add("hidden");
         });
@@ -491,12 +500,42 @@ function displaySearchResults(movies, resultsBox, target, fieldsGroup) {
     resultsBox.classList.remove("hidden");
 }
 
+// Chaque bloc de mode porte son propre type d'œuvre (attribut data + champ
+// caché) : la sélection d'un résultat le met à jour, et le type global du
+// formulaire suit le dernier choix.
+function syncQuestionContentType(fieldsGroup, contentType) {
+    if (fieldsGroup) {
+        fieldsGroup.dataset.contentType = contentType;
+        const hidden = fieldsGroup.querySelector(".content-type-hidden");
+        if (hidden) {
+            hidden.value = contentType;
+        }
+    }
+    document.querySelectorAll(".content-type-hidden").forEach(function (input) {
+        input.value = contentType;
+    });
+    const select = document.getElementById("content-type-select");
+    if (select) {
+        select.value = contentType;
+    }
+}
+
+// Pré-remplissage : à l'ouverture du formulaire (édition), le type sauvegardé
+// de la question est réappliqué partout.
+const savedContentType = document.getElementById("content-type-select");
+if (savedContentType && savedContentType.value) {
+    document.querySelectorAll(".mode-fields").forEach(function (group) {
+        group.dataset.contentType = savedContentType.value;
+    });
+}
+
 async function selectMovie(movie, target, fieldsGroup) {
     const filmAnswerField = fieldsGroup.querySelector(".film-answer");
     filmAnswerField.value = movie.title;
 
     if (target === "poster") {
-        const response = await fetch(`/admin/api/recherche-affiche?movie_id=${movie.id}`);
+        const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
+        const response = await fetch(`/admin/api/recherche-affiche?movie_id=${movie.id}&content_type=${contentType}`);
         const data = await response.json();
 
         if (data.success) {
@@ -509,7 +548,8 @@ async function selectMovie(movie, target, fieldsGroup) {
     }
 
     if (target === "casting") {
-        const response = await fetch(`/admin/api/recherche-casting?movie_id=${movie.id}`);
+        const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
+        const response = await fetch(`/admin/api/recherche-casting?movie_id=${movie.id}&content_type=${contentType}`);
         const data = await response.json();
 
         if (data.success) {

@@ -1,43 +1,68 @@
 {% extends "base.html" %}
 
+{% set admin_nav_groups = [
+    {
+        "label": "Gestion du contenu",
+        "entries": [
+            {"endpoint": "admin.admin_questions_list", "section": "questions", "label": "Questions", "icon": "grid"},
+            {"endpoint": "admin.admin_users_list", "section": "users", "label": "Utilisateurs", "icon": "users"},
+            {"endpoint": "admin.admin_reports_list", "section": "reports", "label": "Signalements", "icon": "flag"},
+            {"endpoint": "admin.admin_tags_list", "section": "tags", "label": "Tags", "icon": "tag"},
+            {"endpoint": "admin.admin_characters_list", "section": "characters", "label": "Personnages", "icon": "user"},
+            {"endpoint": "admin.admin_albums_list", "section": "albums", "label": "Albums", "icon": "book"},
+        ],
+    },
+] %}
+
+{% set admin_icons = {
+    "grid": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+    "users": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    "flag": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>',
+    "tag": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+    "user": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    "book": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+} %}
+
 {% block content %}
-<div class="max-w-6xl mx-auto mt-4 flex flex-col md:flex-row gap-6">
-    <aside class="md:w-48 shrink-0">
-        <nav class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
-            <a href="{{ url_for('admin.admin_questions_list') }}"
-               class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
-                      {% if active_admin_section == 'questions' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
-                Questions
+<div class="admin-shell mx-auto mt-4 flex flex-col gap-6 lg:flex-row">
+
+    {# ----- Sidebar ----- #}
+    <aside class="admin-sidebar lg:sticky lg:top-4 lg:h-fit lg:w-60 lg:shrink-0">
+        <nav class="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+            {% for group in admin_nav_groups %}
+            <p class="hidden px-3 pt-3 pb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 lg:block">
+                {{ group.label }}
+            </p>
+            {% for item in group.entries %}
+            <a href="{{ url_for(item.endpoint) }}"
+               class="admin-nav-item group flex items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-sm transition
+                      {% if active_admin_section == item.section %}
+                          admin-nav-item--active bg-slate-800/80 font-semibold
+                      {% else %}
+                          text-slate-400 hover:bg-slate-900 hover:text-slate-100
+                      {% endif %}">
+                <span class="h-4 w-4 shrink-0 [&>svg]:h-4 [&>svg]:w-4">{{ admin_icons[item.icon] | safe }}</span>
+                <span>{{ item.label }}</span>
+                {% if admin_counts.get(item.section) %}
+                <span class="ml-auto rounded-full px-2 py-0.5 text-[11px] font-bold
+                             {% if active_admin_section == item.section %}bg-slate-700 text-slate-200{% else %}bg-slate-800 text-slate-400 group-hover:bg-slate-700{% endif %}">
+                    {{ admin_counts[item.section] }}
+                </span>
+                {% endif %}
             </a>
-            <a href="{{ url_for('admin.admin_users_list') }}"
-               class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
-                      {% if active_admin_section == 'users' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
-                Utilisateurs
-            </a>
-            <a href="{{ url_for('admin.admin_reports_list') }}"
-               class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
-                      {% if active_admin_section == 'reports' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
-                Signalements
-            </a>
-            <a href="{{ url_for('admin.admin_tags_list') }}"
-                class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
-                    {% if active_admin_section == 'tags' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
-                Tags
-            </a>
-            <a href="{{ url_for('admin.admin_characters_list') }}"
-                class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
-                    {% if active_admin_section == 'characters' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
-                Personnages
-            </a>
-            <a href="{{ url_for('admin.admin_albums_list') }}"
-                class="whitespace-nowrap px-3 py-2 rounded-lg text-sm transition
-                    {% if active_admin_section == 'albums' %}bg-cyan-400 text-slate-950 font-bold{% else %}text-slate-300 hover:bg-slate-900{% endif %}">
-                Albums
-            </a>
+            {% endfor %}
+            {% endfor %}
         </nav>
+
+        {# Image décorative, comme le fauteuil de la maquette #}
+        <div class="admin-sidebar-decor pointer-events-none mt-4 hidden justify-center lg:flex">
+            <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt=""
+                 class="w-36 opacity-25 mix-blend-screen">
+        </div>
     </aside>
 
-    <div class="flex-1 min-w-0">
+    {# ----- Contenu ----- #}
+    <div class="min-w-0 flex-1">
         {% block admin_content %}{% endblock %}
     </div>
 </div>

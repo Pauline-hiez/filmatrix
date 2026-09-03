@@ -1,3 +1,83 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /* ----- Administration ----- */
+
+    /* Carte de statistique de l'en-tête Questions (cliquable, sert de
+       raccourci vers l'onglet du mode). */
+    .admin-stat-card {
+        @apply flex flex-col items-start gap-1.5 rounded-xl border border-cyan-400/15 bg-slate-900/40 p-3.5 text-left transition hover:border-cyan-400/40 hover:bg-slate-900/70;
+    }
+
+    .admin-stat-icon {
+        @apply flex h-9 w-9 items-center justify-center rounded-lg text-lg;
+    }
+
+    .admin-stat-label {
+        @apply text-[10px] font-bold uppercase tracking-wider text-slate-500;
+    }
+
+    .admin-stat-value {
+        @apply text-xl font-extrabold text-slate-100;
+    }
+
+    /* Badge de type de question (Quiz, Blind Test...) teinté par mode via
+       la variable --badge-accent fournie en style inline. */
+    .admin-type-badge {
+        @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-bold;
+        color: var(--badge-accent, #22d3ee);
+        background: color-mix(in srgb, var(--badge-accent, #22d3ee) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--badge-accent, #22d3ee) 35%, transparent);
+    }
+
+    /* Boutons d'action de la table (icônes Modifier / Supprimer). */
+    .admin-action-btn {
+        @apply flex h-8 w-8 items-center justify-center rounded-lg border transition;
+    }
+
+    .admin-action-btn--edit {
+        @apply border-cyan-400/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-400/10;
+    }
+
+    .admin-action-btn--delete {
+        @apply border-red-500/30 text-red-400 hover:border-red-400 hover:bg-red-500/10;
+    }
+
+    /* Mini-barre de taux de réussite dans la colonne Stats. */
+    .admin-rate-track {
+        @apply h-1.5 w-16 overflow-hidden rounded-full bg-slate-800;
+    }
+
+    .admin-rate-fill {
+        @apply block h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500;
+    }
+
+    /* Sidebar admin : panneau sombre avec halo, comme la maquette. */
+    .admin-sidebar {
+        @apply rounded-xl border border-cyan-400/15 bg-slate-950/70 p-2;
+        box-shadow: 0 0 40px -18px rgba(34, 211, 238, 0.25);
+    }
+
+    /* Marquage de l'entrée active : effet néon cyan (texte et icône
+       lumineux, halo doux autour de l'élément). */
+    .admin-nav-item--active {
+        color: #7df3ff;
+        text-shadow:
+            0 0 6px rgba(34, 211, 238, 0.8),
+            0 0 20px rgba(34, 211, 238, 0.45);
+        box-shadow:
+            0 0 16px -4px rgba(34, 211, 238, 0.55),
+            inset 0 0 0 1px rgba(34, 211, 238, 0.35);
+    }
+
+    .admin-nav-item--active svg {
+        filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.9));
+    }
+
+    /* La shell admin s'étend sur la largeur du contenu. */
+    .admin-shell {
+        @apply w-full;
+    }
+}
