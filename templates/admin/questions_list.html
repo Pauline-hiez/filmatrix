@@ -27,18 +27,35 @@
     </a>
 </div>
 
-{# Cartes de statistiques : total + modes principaux, cliquables #}
-{% set top_modes = questions_by_mode.items() | sort(attribute='1|length') | reverse | list %}
-<div class="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
+{# Cartes de statistiques compactes : total + TOUS les modes, cliquables.
+   Les modes dotés d'une icône dédiée (static/images/icones/) l'utilisent ;
+   les autres retombent sur le glyphe du catalogue des modes. #}
+{% set card_icons = {
+    "all": "tout.png",
+    "blindtest": "blindtest.png",
+    "qcm": "quiz.png",
+    "devinette": "devinette.png",
+    "citation": "citation.png",
+    "devinette_affiche": "images.png",
+} %}
+<div class="admin-stat-grid mb-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-11">
     <button type="button" class="admin-stat-card" data-stat-mode="all">
-        <span class="admin-stat-icon" style="background: rgba(34,211,238,0.12); color: #22d3ee;">📼</span>
+        <span class="admin-stat-icon">
+            <img src="{{ url_for('static', filename='images/icones/tout.png') }}" alt="">
+        </span>
         <span class="admin-stat-label">Total questions</span>
         <span class="admin-stat-value">{{ total_count }}</span>
     </button>
-    {% for mode, questions in top_modes[:5] %}
+    {% for mode, questions in questions_by_mode.items() %}
     {% set meta = mode_meta.get(mode, {}) %}
     <button type="button" class="admin-stat-card" data-stat-mode="{{ mode }}">
-        <span class="admin-stat-icon" style="background: {{ meta.get('accent', '#22d3ee') }}1f; color: {{ meta.get('accent', '#22d3ee') }};">{{ meta.get('icon', '?') }}</span>
+        <span class="admin-stat-icon">
+            {% if card_icons.get(mode) %}
+            <img src="{{ url_for('static', filename='images/icones/' ~ card_icons[mode]) }}" alt="">
+            {% else %}
+            <span class="admin-stat-glyph" style="color: {{ meta.get('accent', '#22d3ee') }};">{{ meta.get('icon', '?') }}</span>
+            {% endif %}
+        </span>
         <span class="admin-stat-label">{{ mode_labels.get(mode, mode) }}</span>
         <span class="admin-stat-value">{{ questions | length }}</span>
     </button>

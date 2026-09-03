@@ -6,21 +6,32 @@
     /* ----- Administration ----- */
 
     /* Carte de statistique de l'en-tête Questions (cliquable, sert de
-       raccourci vers l'onglet du mode). */
+       raccourci vers l'onglet du mode). Compacte : toute la rangée des
+       modes tient sur une ligne en large. */
     .admin-stat-card {
-        @apply flex flex-col items-start gap-1.5 rounded-xl border border-cyan-400/15 bg-slate-900/40 p-3.5 text-left transition hover:border-cyan-400/40 hover:bg-slate-900/70;
+        @apply flex min-w-0 flex-col items-start gap-1 rounded-lg border border-cyan-400/15 bg-slate-900/40 px-2.5 py-2 text-left transition hover:border-cyan-400/40 hover:bg-slate-900/70;
     }
 
+    /* Icône nue : pas de pastille de fond, l' artwork parle seul. */
     .admin-stat-icon {
-        @apply flex h-9 w-9 items-center justify-center rounded-lg text-lg;
+        @apply flex h-8 w-8 items-center justify-center;
+    }
+
+    .admin-stat-icon img {
+        @apply h-full w-full object-contain;
+    }
+
+    /* Repli pour les modes sans icône dédiée : glyphe coloré du catalogue. */
+    .admin-stat-glyph {
+        @apply text-lg leading-none;
     }
 
     .admin-stat-label {
-        @apply text-[10px] font-bold uppercase tracking-wider text-slate-500;
+        @apply w-full truncate text-[9px] font-bold uppercase tracking-wider text-slate-500;
     }
 
     .admin-stat-value {
-        @apply text-xl font-extrabold text-slate-100;
+        @apply text-base font-extrabold leading-none text-slate-100;
     }
 
     /* Badge de type de question (Quiz, Blind Test...) teinté par mode via
