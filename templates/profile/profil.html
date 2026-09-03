@@ -224,7 +224,7 @@
                         album.image_url,
                         album.image_x, album.image_y, album.image_scale,
                         album.frame_x, album.frame_y, album.frame_scale,
-                        unlocked=(album.unlocked_count > 0)
+                        unlocked=(album.unlocked_count > 0), rarity=album.rarity
                     ) }}
                     <div class="absolute inset-x-0 bottom-0 rounded-b-lg bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2">
                         <p class="truncate text-xs font-bold text-slate-100">{{ album.name }}</p>

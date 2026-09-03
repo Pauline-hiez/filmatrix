@@ -1,19 +1,24 @@
-{# Carte de personnage : image enchâssée dans le cadre rarete.png.
+{# Carte de personnage : image enchâssée dans le cadre de sa rareté.
    Le cadre fait exactement la taille de la carte (aspect portrait 912x1112),
-   l'image est remplie derrière puis réglable (position / zoom). #}
+   l'image est remplie derrière puis réglable (position / zoom).
+   Le mapping rareté → fichier de cadre vient de catalog_rarities.py :
+   RARITY_FRAME_IMAGES (commun = pas de cadre). #}
 
-{% macro character_card(image_url, image_x, image_y, image_scale, frame_x, frame_y, frame_scale, unlocked=true, classes="") %}
+{% macro character_card(image_url, image_x, image_y, image_scale, frame_x, frame_y, frame_scale, unlocked=true, classes="", rarity="commun") %}
 {% set im_scale = image_scale if image_scale else 100 %}
 {% set fr_scale = frame_scale if frame_scale else 100 %}
+{% set frame_file = frame_image_for_rarity(rarity) %}
 <div class="character-frame relative w-full overflow-hidden rounded-lg bg-slate-950 {{ classes }}"
      style="aspect-ratio: 912 / 1112;">
   {% if unlocked and image_url %}
     <img src="{{ image_url | image_src }}" alt=""
          class="absolute object-cover"
          style="width: {{ im_scale }}%; height: {{ im_scale }}%; left: {{ 50 + (image_x or 0) - im_scale / 2 }}%; top: {{ 50 + (image_y or 0) - im_scale / 2 }}%; z-index: 1;">
-    <img src="{{ url_for('static', filename='images/habillage/rarete.png') }}" alt=""
+    {% if frame_file %}
+    <img src="{{ url_for('static', filename='images/cadres/' ~ frame_file) }}" alt=""
          aria-hidden="true" class="pointer-events-none absolute object-contain"
          style="width: {{ fr_scale }}%; height: {{ fr_scale }}%; left: {{ 50 + (frame_x or 0) - fr_scale / 2 }}%; top: {{ 50 + (frame_y or 0) - fr_scale / 2 }}%; z-index: 2;">
+    {% endif %}
   {% else %}
     <div class="absolute inset-0 flex items-center justify-center text-2xl text-slate-700">?</div>
   {% endif %}

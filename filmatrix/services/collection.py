@@ -253,6 +253,7 @@ def get_album_summaries(user) -> list[dict]:
                 "frame_x": featured_character.frame_x,
                 "frame_y": featured_character.frame_y,
                 "frame_scale": featured_character.frame_scale,
+                "rarity": featured_character.rarity,
             }
         )
 

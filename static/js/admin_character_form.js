@@ -172,7 +172,7 @@ function displayCharacterResults(characters) {
             if (characterImagePreview) {
                 characterImagePreview.innerHTML = `
                     <img src="${character.photo_url}" alt="Aperçu du personnage" class="absolute object-cover" style="inset: 0; width: 100%; height: 100%; z-index: 1;">
-                    <img id="character-frame-preview" src="/static/images/habillage/rarete.png" alt="Cadre de rareté" class="pointer-events-none absolute object-contain" style="width: 100%; height: 100%; left: 0; top: 0; z-index: 2;">
+                    <img id="character-frame-preview" src="${currentFrameSrc()}" alt="Cadre de rareté" class="pointer-events-none absolute object-contain" style="width: 100%; height: 100%; left: 0; top: 0; z-index: 2;">
                 `;
                 updateFramePreview();
             }
@@ -263,4 +263,46 @@ if (raritySelect && fragmentsInput && autoFragmentsCheckbox) {
             applyRarityFragments();
         }
     }
+}
+
+// ---- Cadre de rareté : l'aperçu utilise le cadre de la rareté choisie ----
+
+// Miroir JS de RARITY_FRAME_IMAGES (filmatrix/catalog_rarities.py).
+// commun = pas de cadre (l'image s'affiche nue).
+const RARITY_FRAME_IMAGES = {
+    commun: null,
+    rare: "rarete1.png",
+    epique: "rarete2.png",
+    legendaire: "rarete3.png",
+    mythique: "rarete4.png",
+};
+
+const FRAME_BASE_URL = "/static/images/cadres/";
+
+// Source du cadre courant, pour (re)construire l'aperçu après un changement
+// d'image : suit la rareté sélectionnée, None pour commun.
+function currentFrameSrc() {
+    if (!raritySelect) return FRAME_BASE_URL + "rarete1.png";
+    return RARITY_FRAME_IMAGES[raritySelect.value]
+        ? FRAME_BASE_URL + RARITY_FRAME_IMAGES[raritySelect.value]
+        : FRAME_BASE_URL + "rarete1.png";
+}
+
+function applyRarityFrame() {
+    if (!raritySelect) return;
+    const frameFile = RARITY_FRAME_IMAGES[raritySelect.value];
+    const frameImg = document.getElementById("character-frame-preview");
+    if (!frameImg) return;
+
+    if (frameFile) {
+        frameImg.src = FRAME_BASE_URL + frameFile;
+        frameImg.classList.remove("hidden");
+    } else {
+        frameImg.classList.add("hidden");
+    }
+    updateFramePreview();
+}
+
+if (raritySelect) {
+    raritySelect.addEventListener("change", applyRarityFrame);
 }

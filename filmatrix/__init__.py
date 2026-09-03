@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, url_for
 
+from filmatrix.catalog_rarities import frame_image_for_rarity
 from filmatrix.extensions import db, login_manager, migrate, socketio
 from filmatrix.models import User
 from filmatrix.realtime.events import register_socket_events
@@ -108,6 +109,11 @@ def create_app(database_uri: str | None = None) -> Flask:
         if value.startswith("http://") or value.startswith("https://"):
             return value
         return url_for("static", filename=value)
+
+    # Mapping rareté -> fichier de cadre, exposé aux templates : la macro
+    # character_card et le formulaire admin l'utilisent pour choisir le
+    # cadre décoratif de chaque personnage (commun = pas de cadre).
+    app.jinja_env.globals["frame_image_for_rarity"] = frame_image_for_rarity
 
     @app.context_processor
     def inject_notifications():

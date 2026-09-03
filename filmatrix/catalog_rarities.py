@@ -58,6 +58,24 @@ def fragments_for_rarity(rarity: str, fallback: int = 5) -> int:
     """
     return RARITY_FRAGMENT_COSTS.get(rarity, fallback)
 
+
+# Cadre décoratif appliqué sur l'image de chaque personnage, selon sa rareté
+# (static/images/cadres/). Le commun n'en a pas : son image s'affiche nue.
+# Source unique : la macro de rendu (character_frame.html), la preview admin
+# (JS) et le toast de fragment (quiz.js) lisent ce mapping.
+RARITY_FRAME_IMAGES = {
+    "commun": None,
+    "rare": "rarete1.png",
+    "epique": "rarete2.png",
+    "legendaire": "rarete3.png",
+    "mythique": "rarete4.png",
+}
+
+
+def frame_image_for_rarity(rarity: str) -> str | None:
+    """Renvoie le nom de fichier du cadre pour une rareté (None = sans cadre)."""
+    return RARITY_FRAME_IMAGES.get(rarity)
+
 def humanize_tag_name(name: str) -> str:
     """Transforme un nom de slug en vrai nom: indiana-jones -> Indiana Jones"""
     if " " in name or any(char.isupper() for char in name):
