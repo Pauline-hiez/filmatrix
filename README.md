@@ -20,7 +20,7 @@ Plateforme de jeux cinématographiques développé en Python avec Flask, dans le
 -**Base de données** : SQLite, SQLAlchemy (ORM), Flask-migrate (migrations)
 -**Authentification** : Flask-Login
 -**Frontend** : Tailwind CSS (build local via npm), JavaScript vanilla
--**APIs externes** : TMDB (affiches, casting), iTunens Search (extraits audio)
+-**APIs externes** : TMDB (affiches, casting), iTunens Search (extraits audio), Cloudflare R2 (stockage des images de personnages)
 -**Tests** : pytest
 
 
@@ -52,6 +52,11 @@ npm install
 # Créer le fichier .env à la racine, avec :
 # SECRET_KEY=une_cle_secrete_aleatoire
 # TMDB_API_KEY=ta_cle_api_tmdb
+# R2_ACCOUNT_ID=ton_account_id_cloudflare
+# R2_ACCESS_KEY_ID=ta_cle_d_acces_r2
+# R2_SECRET_ACCESS_KEY=ta_cle_secrete_r2
+# R2_BUCKET_NAME=nom_du_bucket
+# R2_PUBLIC_URL=https://xxxxx.r2.dev  (ou ton domaine personnalisé)
  
 # Appliquer les migrations de base de données
 flask db upgrade

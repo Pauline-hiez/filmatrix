@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
+from botocore.exceptions import BotoCoreError, ClientError
 from sqlalchemy import case, func
 from werkzeug.utils import secure_filename
 
@@ -18,6 +19,7 @@ from filmatrix.game_modes import GAME_MODES
 from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character, question_tags
 from filmatrix.services.tags import merge_tag_into
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
+from filmatrix.integrations.storage import upload_character_image
 from filmatrix.integrations.tmdb import (
     build_image_url,
     genre_ids_to_tags,
@@ -56,7 +58,12 @@ CHARACTER_IMAGE_MAX_BYTES = 5 * 1024 * 1024
 
 
 def save_character_image(uploaded_file):
-    """Enregistre une image de personnage dans static/uploads/characters."""
+    """Envoie une image de personnage sur le stockage cloud (Cloudflare R2).
+
+    Le disque local du serveur ne survit pas aux déploiements (conteneur
+    reconstruit à chaque push) : une image qui y serait écrite disparaîtrait
+    au push suivant, d'où le passage par un stockage externe.
+    """
     if not uploaded_file or not uploaded_file.filename:
         return None
 
@@ -71,10 +78,12 @@ def save_character_image(uploaded_file):
     uploaded_file.seek(0)
 
     filename = f"{uuid4().hex}.{extension}"
-    upload_dir = Path(bp.root_path).parent.parent / "static" / "uploads" / "characters"
-    upload_dir.mkdir(parents=True, exist_ok=True)
-    uploaded_file.save(upload_dir / filename)
-    return f"uploads/characters/{filename}"
+    try:
+        return upload_character_image(uploaded_file, filename, uploaded_file.mimetype)
+    except KeyError as error:
+        raise ValueError("Stockage d'images non configuré (variable manquante).") from error
+    except (BotoCoreError, ClientError) as error:
+        raise ValueError("Échec de l'envoi de l'image vers le stockage. Réessaie.") from error
 
 
 @bp.route("/admin/questions")
@@ -595,18 +604,11 @@ def admin_characters_new() -> str:
         character.name = request.form["name"]
         character.tag_id = int(request.form["tag_id"])
         character.rarity = request.form["rarity"]
-        uploaded_image = request.files.get("image_file")
-        if uploaded_image and uploaded_image.filename:
-            try:
-                character.image_url = save_character_image(uploaded_image)
-            except ValueError as error:
-                flash(str(error))
-                saga_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.name).all()
-                albums = Album.query.order_by(Album.sort_order, Album.name).all()
-                return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
-        # Fragments requis : en l'absence de champ (ou de valeur invalide),
-        # on retombe sur le barème de la rareté. La constante sert de source
-        # unique au formulaire (JS) comme au serveur.
+
+        # Posés avant la tentative d'upload : si elle échoue, le formulaire
+        # réaffiché (character non commité) doit pouvoir se rendre sans
+        # planter sur des champs encore vides — les defaults de colonne ne
+        # s'appliquent qu'au flush en base, pas avant.
         try:
             fragments_required = int(request.form.get("fragments_required", ""))
         except (TypeError, ValueError):
@@ -620,6 +622,18 @@ def admin_characters_new() -> str:
         character.frame_x = float(request.form.get("frame_x", 0))
         character.frame_y = float(request.form.get("frame_y", 0))
         character.frame_scale = float(request.form.get("frame_scale", 125))
+
+        uploaded_image = request.files.get("image_file")
+        if uploaded_image and uploaded_image.filename:
+            try:
+                character.image_url = save_character_image(uploaded_image)
+            except ValueError as error:
+                db.session.rollback()
+                flash(str(error))
+                saga_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.name).all()
+                albums = Album.query.order_by(Album.sort_order, Album.name).all()
+                return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
+
         # Albums : un personnage peut appartenir à plusieurs collections.
         selected_album_ids = request.form.getlist("album_ids")
         character.albums = Album.query.filter(Album.id.in_(selected_album_ids)).all()
