@@ -15,10 +15,13 @@ from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
 from filmatrix.catalog_rarities import fragments_for_rarity
 from filmatrix.game_modes import GAME_MODES
-from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character
+from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character, question_tags
+from filmatrix.services.tags import merge_tag_into
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.tmdb import (
     build_image_url,
+    genre_ids_to_tags,
+    get_genre_maps,
     get_movie_by_id,
     get_movie_cast,
     search_movies_list,
@@ -241,6 +244,26 @@ def admin_api_search_movies() ->  dict:
 
     return {"results": interleaved[:8]}
 
+@bp.route("/admin/api/genres-tmdb")
+@login_required
+@admin_required
+def admin_api_genres_tmdb() -> dict:
+    """Traduit un film/série TMDB en noms de tags genre, pour pré-cocher le
+    formulaire de question à la sélection d'une œuvre."""
+    movie_id = request.args.get("movie_id", type=int)
+    content_type = request.args.get("content_type", "film")
+
+    result = None
+    if movie_id:
+        result = get_tv_show_by_id(movie_id) if content_type == "serie" else get_movie_by_id(movie_id)
+
+    if result is None:
+        return {"genres": []}
+
+    movie_genres, tv_genres = get_genre_maps()
+    genre_map = tv_genres if content_type == "serie" else movie_genres
+    return {"genres": genre_ids_to_tags(result["genre_ids"], genre_map)}
+
 @bp.route("/admin/api/recherche-affiche")
 @login_required
 @admin_required
@@ -433,7 +456,17 @@ def admin_reports_list() -> str:
 def admin_tags_list() -> str:
     """Affiche la liste des tags disponibles"""
     all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
-    return render_template("admin/tags_list.html", tags=all_tags, active_admin_section="tags")
+    question_counts = dict(
+        db.session.query(question_tags.c.tag_id, func.count(question_tags.c.question_id))
+        .group_by(question_tags.c.tag_id)
+        .all()
+    )
+    return render_template(
+        "admin/tags_list.html",
+        tags=all_tags,
+        question_counts=question_counts,
+        active_admin_section="tags",
+    )
 
 @bp.route("/admin/tags/nouveau", methods=["POST"])
 @login_required
@@ -442,12 +475,12 @@ def admin_tags_new() -> str:
     """Crée un nouveau tag"""
     name = request.form.get("name", "").strip()
     tag_type = request.form.get("tag_type", "genre")
-    allowed_types = {"genre", "saga", "univers", "pays", "epoque", "annee", "realisateur", "acteur", "studio", "autre"}
+    allowed_types = {"genre", "univers", "pays", "epoque", "annee", "realisateur", "acteur", "studio", "autre"}
     if tag_type not in allowed_types:
         tag_type = "autre"
 
     if name:
-        existing = Tag.query.filter_by(name=name).first()
+        existing = Tag.query.filter(func.lower(Tag.name) == name.lower()).first()
         if existing is None:
             new_tag = Tag(name=name, tag_type=tag_type)
             db.session.add(new_tag)
@@ -455,6 +488,52 @@ def admin_tags_new() -> str:
             flash(f"Tag '{name}' crée.")
         else:
             flash("Ce tag existe déjà.")
+    return redirect(url_for("admin.admin_tags_list"))
+
+@bp.route("/admin/tags/<int:tag_id>/renommer", methods=["POST"])
+@login_required
+@admin_required
+def admin_tags_rename(tag_id: int) -> str:
+    """Renomme un tag existant"""
+    tag = Tag.query.get_or_404(tag_id)
+    name = request.form.get("name", "").strip()
+
+    if not name:
+        flash("Le nom ne peut pas être vide.")
+        return redirect(url_for("admin.admin_tags_list"))
+
+    existing = Tag.query.filter(func.lower(Tag.name) == name.lower(), Tag.id != tag.id).first()
+    if existing is not None:
+        flash("Ce tag existe déjà.")
+        return redirect(url_for("admin.admin_tags_list"))
+
+    tag.name = name
+    db.session.commit()
+    flash(f"Tag renommé en '{name}'.")
+    return redirect(url_for("admin.admin_tags_list"))
+
+@bp.route("/admin/tags/fusionner", methods=["POST"])
+@login_required
+@admin_required
+def admin_tags_merge() -> str:
+    """Fusionne un tag univers dans un autre : questions, personnages et défis
+    quotidiens du doublon sont réassignés au tag conservé avant sa suppression."""
+    keeper_id = request.form.get("keeper_id", type=int)
+    dup_id = request.form.get("dup_id", type=int)
+
+    if not keeper_id or not dup_id or keeper_id == dup_id:
+        flash("Sélection invalide pour la fusion.")
+        return redirect(url_for("admin.admin_tags_list"))
+
+    keeper = Tag.query.get_or_404(keeper_id)
+    dup = Tag.query.get_or_404(dup_id)
+    if keeper.tag_type != "univers" or dup.tag_type != "univers":
+        flash("La fusion n'est disponible que pour les tags univers.")
+        return redirect(url_for("admin.admin_tags_list"))
+
+    merge_tag_into(keeper, dup)
+    db.session.commit()
+    flash(f"'{dup.name}' fusionné dans '{keeper.name}'.")
     return redirect(url_for("admin.admin_tags_list"))
 
 @bp.route("/admin/tags/<int:tag_id>/supprimer", methods=["POST"])
@@ -485,7 +564,7 @@ def admin_resolve_report(report_id: int) -> str:
 @login_required
 @admin_required
 def admin_characters_list() -> str:
-    """Affiche la liste des personnages, groupés par saga"""
+    """Affiche la liste des personnages, groupés par univers"""
     all_characters = Character.query.order_by(Character.tag_id, Character.name).all()
 
     characters_by_tag = {}
@@ -522,7 +601,7 @@ def admin_characters_new() -> str:
                 character.image_url = save_character_image(uploaded_image)
             except ValueError as error:
                 flash(str(error))
-                saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
+                saga_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.name).all()
                 albums = Album.query.order_by(Album.sort_order, Album.name).all()
                 return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
         # Fragments requis : en l'absence de champ (ou de valeur invalide),
@@ -549,7 +628,7 @@ def admin_characters_new() -> str:
         flash("Personnage modifié avec succès." if character_id else "Personnage créé avec succès.")
         return redirect(url_for("admin.admin_characters_list"))
 
-    saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
+    saga_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.name).all()
     albums = Album.query.order_by(Album.sort_order, Album.name).all()
     return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
 
@@ -581,7 +660,7 @@ def admin_albums_list() -> str:
 
 
 def build_album_suggestions(limit: int = 8) -> list[dict]:
-    """Suggestions de création rapide : une par franchise (univers/saga) qui a
+    """Suggestions de création rapide : une par univers qui a
     des personnages collectionnables mais pas encore d'album. Chaque entrée
     pré-remplit le nom, les tags et les personnages du formulaire."""
     existing_names = {
@@ -589,7 +668,7 @@ def build_album_suggestions(limit: int = 8) -> list[dict]:
         for (name,) in Album.query.with_entities(Album.name).all()
     }
     suggestions: list[dict] = []
-    franchise_tags = Tag.query.filter(Tag.tag_type.in_(["univers", "saga"])).order_by(Tag.name).all()
+    franchise_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.name).all()
     for tag in franchise_tags:
         if tag.name.casefold() in existing_names:
             continue

@@ -23,7 +23,6 @@ def import_questions() -> None:
 
     with app.app_context():
         tag_aliases = {
-            "Star Wars": "star-wars",
             "com" + "�" + "die": "comédie",
             "comédie": "comédie",
         }

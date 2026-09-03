@@ -39,7 +39,7 @@ def get_or_create_daily_challenge(user) -> DailyChallenge:
     elif challenge_type == "streak_count":
         target_value = STREAK_COUNT_TARGET
     elif challenge_type == "saga_count":
-        saga_tags = Tag.query.filter_by(tag_type="saga").all()
+        saga_tags = Tag.query.filter_by(tag_type="univers").all()
         eligible_tags = [
                 tag for tag in saga_tags
                 if Question.query.filter(Question.tags.contains(tag)).count() >= SAGA_COUNT_TARGET

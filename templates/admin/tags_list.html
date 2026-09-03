@@ -9,7 +9,6 @@
     <select name="tag_type" data-combobox class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
         <option value="genre">Genre</option>
         <option value="univers">Univers</option>
-        <option value="saga">Saga</option>
         <option value="pays">Pays</option>
         <option value="epoque">Époque</option>
         <option value="annee">Année</option>
@@ -40,12 +39,46 @@
     </div>
 </div>
 
-<div class="mb-8">
-    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Univers / Sagas</h3>
-    <div class="flex flex-wrap gap-2">
-        {% for tag in tags if tag.tag_type in ["univers", "saga"] %}
-        <div class="flex items-center gap-2 bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 text-sm">
-            {{ tag.name }}
+<div>
+    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Univers</h3>
+
+    {% set univers_tags = tags | selectattr("tag_type", "equalto", "univers") | list %}
+    {% if univers_tags | length > 1 %}
+    <form method="POST" action="{{ url_for('admin.admin_tags_merge') }}"
+          onsubmit="return confirm('Fusionner ' + this.dup_id.selectedOptions[0].text + ' dans ' + this.keeper_id.selectedOptions[0].text + ' ? Cette action est irréversible.');"
+          class="mb-4 flex flex-wrap items-center gap-2 rounded-lg border border-amber-400/30 bg-slate-900 p-3 text-sm">
+        <span class="text-slate-400">Fusionner</span>
+        <select name="dup_id" required data-combobox class="rounded border border-cyan-400/30 bg-slate-900 px-2 py-1 text-slate-100">
+            {% for tag in univers_tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+        <span class="text-slate-400">dans</span>
+        <select name="keeper_id" required data-combobox class="rounded border border-cyan-400/30 bg-slate-900 px-2 py-1 text-slate-100">
+            {% for tag in univers_tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="rounded bg-amber-400 px-3 py-1.5 font-bold text-slate-950 hover:bg-amber-300 transition">Fusionner</button>
+    </form>
+    {% endif %}
+
+    <div class="flex flex-col gap-2">
+        {% for tag in univers_tags %}
+        <div class="flex flex-wrap items-center gap-3 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-sm">
+            <span class="flex-1 min-w-[8rem]">{{ tag.name }}</span>
+            <span class="text-xs text-slate-500">{{ question_counts.get(tag.id, 0) }} question(s)</span>
+
+            <details class="relative">
+                <summary class="cursor-pointer list-none text-cyan-400 hover:text-cyan-300 transition" title="Renommer">✎</summary>
+                <form method="POST" action="{{ url_for('admin.admin_tags_rename', tag_id=tag.id) }}"
+                      class="absolute right-0 z-10 mt-2 flex gap-2 rounded-lg border border-cyan-400/30 bg-slate-950 p-2">
+                    <input type="text" name="name" value="{{ tag.name }}" required
+                           class="rounded border border-cyan-400/30 bg-slate-900 px-2 py-1 text-sm text-slate-100">
+                    <button type="submit" class="rounded bg-cyan-400 px-2 py-1 text-sm font-bold text-slate-950 hover:bg-cyan-300 transition">OK</button>
+                </form>
+            </details>
+
             <form method="POST" action="{{ url_for('admin.admin_tags_delete', tag_id=tag.id) }}"
                   onsubmit="return confirm('Supprimer ce tag ?');">
                 <button type="submit" class="text-red-400 hover:text-red-300 transition">×</button>
@@ -53,23 +86,6 @@
         </div>
         {% else %}
         <p class="text-slate-500 text-sm">Aucun univers pour le moment.</p>
-        {% endfor %}
-    </div>
-</div>
-
-<div>
-    <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wide mb-3">Sagas</h3>
-    <div class="flex flex-wrap gap-2">
-        {% for tag in tags if tag.tag_type == "saga" %}
-        <div class="flex items-center gap-2 bg-slate-900 border border-cyan-400/30 rounded-full px-3 py-1.5 text-sm">
-            {{ tag.name }}
-            <form method="POST" action="{{ url_for('admin.admin_tags_delete', tag_id=tag.id) }}"
-                  onsubmit="return confirm('Supprimer ce tag ?');">
-                <button type="submit" class="text-red-400 hover:text-red-300 transition">×</button>
-            </form>
-        </div>
-        {% else %}
-        <p class="text-slate-500 text-sm">Aucune saga pour le moment.</p>
         {% endfor %}
     </div>
 </div>

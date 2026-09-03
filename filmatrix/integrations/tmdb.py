@@ -118,7 +118,8 @@ def get_movie_by_id(movie_id: int) -> dict | None:
         "id": movie["id"],
         "title": movie["title"],
         "poster_path": movie.get("poster_path"),
-        "backdrop_path": movie.get("backdrop_path")
+        "backdrop_path": movie.get("backdrop_path"),
+        "genre_ids": [genre["id"] for genre in movie.get("genres", [])],
         }
 
 def search_tv_show(title: str, year: str | None = None) -> dict | None:
@@ -205,6 +206,7 @@ def get_tv_show_by_id(tv_id: int) -> dict | None:
         "title": show["name"],
         "poster_path": show.get("poster_path"),
         "backdrop_path": show.get("backdrop_path"),
+        "genre_ids": [genre["id"] for genre in show.get("genres", [])],
     }
 
 

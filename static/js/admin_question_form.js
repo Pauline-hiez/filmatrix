@@ -529,9 +529,28 @@ if (savedContentType && savedContentType.value) {
     });
 }
 
+async function autoTagGenres(movieId, contentType) {
+    const response = await fetch(`/admin/api/genres-tmdb?movie_id=${movieId}&content_type=${contentType}`);
+    const data = await response.json();
+    const genres = (data.genres || []);
+
+    document.querySelectorAll('[data-group-label="genres"] .tag-option').forEach(function (option) {
+        const checkbox = option.querySelector(".tag-checkbox");
+        if (checkbox && !checkbox.checked && genres.indexOf(option.dataset.tagName) !== -1) {
+            checkbox.checked = true;
+            checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+    });
+}
+
 async function selectMovie(movie, target, fieldsGroup) {
     const filmAnswerField = fieldsGroup.querySelector(".film-answer");
     filmAnswerField.value = movie.title;
+
+    // Les 3 seuls modes reliés à une œuvre TMDB précise (poster/casting/audio)
+    // peuvent en déduire le genre de façon fiable : les autres modes n'ont
+    // qu'un titre en texte libre, pas assez sûr pour cocher automatiquement.
+    autoTagGenres(movie.id, (fieldsGroup && fieldsGroup.dataset.contentType) || "film");
 
     if (target === "poster") {
         const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
@@ -601,4 +620,104 @@ async function selectMovie(movie, target, fieldsGroup) {
         }
     }
 }
+
+// ---- Sélecteur cherchable pour les tags univers ----
+// Les cases à cocher réelles (.tag-checkbox, name="tags") restent dans le DOM,
+// juste masquées : le serveur continue de les lire via request.form.getlist,
+// aucun changement côté backend. Cette UI ne fait que les cocher/décocher.
+
+function normalizeSearchText(text) {
+    return text.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+}
+
+document.querySelectorAll("[data-tag-picker]").forEach(function (container) {
+    const optionsSource = container.querySelector(".tag-picker-options");
+    const chipsBox = container.querySelector(".tag-picker-chips");
+    const input = container.querySelector(".tag-picker-input");
+    const dropdown = container.querySelector(".tag-picker-dropdown");
+    if (!optionsSource || !chipsBox || !input || !dropdown) return;
+
+    const entries = Array.from(optionsSource.querySelectorAll("label")).map(function (label) {
+        return { checkbox: label.querySelector(".tag-checkbox"), name: label.querySelector("span").textContent };
+    });
+
+    function matchesQuery(entry, query) {
+        const haystack = normalizeSearchText(entry.name);
+        return query.split(/\s+/).filter(Boolean).every(function (word) {
+            return haystack.indexOf(normalizeSearchText(word)) !== -1;
+        });
+    }
+
+    function renderChips() {
+        chipsBox.innerHTML = "";
+        entries.filter(function (entry) { return entry.checkbox.checked; }).forEach(function (entry) {
+            const chip = document.createElement("span");
+            chip.className = "flex items-center gap-1.5 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2.5 py-1 text-xs text-cyan-200";
+            chip.textContent = entry.name;
+
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "text-cyan-300 hover:text-white";
+            remove.textContent = "×";
+            remove.addEventListener("click", function () {
+                entry.checkbox.checked = false;
+                entry.checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+                renderChips();
+                renderDropdown();
+            });
+
+            chip.appendChild(remove);
+            chipsBox.appendChild(chip);
+        });
+    }
+
+    function renderDropdown() {
+        const query = input.value.trim();
+        dropdown.innerHTML = "";
+        const available = entries.filter(function (entry) { return !entry.checkbox.checked; });
+        const filtered = query ? available.filter(function (entry) { return matchesQuery(entry, query); }) : available;
+
+        if (!filtered.length) {
+            dropdown.innerHTML = '<p class="px-3 py-2 text-sm text-slate-500">Aucun univers trouvé.</p>';
+            return;
+        }
+
+        filtered.slice(0, 30).forEach(function (entry) {
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className = "block w-full px-3 py-2 text-left text-sm text-slate-100 hover:bg-slate-800 transition";
+            item.textContent = entry.name;
+            item.addEventListener("click", function () {
+                entry.checkbox.checked = true;
+                entry.checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+                input.value = "";
+                renderChips();
+                renderDropdown();
+                input.focus();
+            });
+            dropdown.appendChild(item);
+        });
+    }
+
+    input.addEventListener("focus", function () {
+        renderDropdown();
+        dropdown.classList.remove("hidden");
+    });
+    input.addEventListener("input", function () {
+        renderDropdown();
+        dropdown.classList.remove("hidden");
+    });
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            dropdown.classList.add("hidden");
+        }
+    });
+    document.addEventListener("click", function (event) {
+        if (!container.contains(event.target)) {
+            dropdown.classList.add("hidden");
+        }
+    });
+
+    renderChips();
+});
 })();

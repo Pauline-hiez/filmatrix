@@ -13,7 +13,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "friends",
+        "name": "Friends",
         "type": "univers"
       },
       {
@@ -44,7 +44,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "friends",
+        "name": "Friends",
         "type": "univers"
       },
       {
@@ -75,7 +75,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "friends",
+        "name": "Friends",
         "type": "univers"
       },
       {
@@ -106,7 +106,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "friends",
+        "name": "Friends",
         "type": "univers"
       },
       {
@@ -137,7 +137,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "friends",
+        "name": "Friends",
         "type": "univers"
       },
       {
@@ -168,7 +168,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "breaking-bad",
+        "name": "Breaking Bad",
         "type": "univers"
       },
       {
@@ -203,7 +203,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "breaking-bad",
+        "name": "Breaking Bad",
         "type": "univers"
       },
       {
@@ -238,7 +238,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "breaking-bad",
+        "name": "Breaking Bad",
         "type": "univers"
       },
       {
@@ -273,7 +273,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "breaking-bad",
+        "name": "Breaking Bad",
         "type": "univers"
       },
       {
@@ -308,7 +308,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "breaking-bad",
+        "name": "Breaking Bad",
         "type": "univers"
       },
       {
@@ -343,7 +343,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "game-of-thrones",
+        "name": "Game Of Thrones",
         "type": "univers"
       },
       {
@@ -390,7 +390,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "game-of-thrones",
+        "name": "Game Of Thrones",
         "type": "univers"
       },
       {
@@ -437,7 +437,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "game-of-thrones",
+        "name": "Game Of Thrones",
         "type": "univers"
       },
       {
@@ -484,7 +484,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "game-of-thrones",
+        "name": "Game Of Thrones",
         "type": "univers"
       },
       {
@@ -531,7 +531,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "game-of-thrones",
+        "name": "Game Of Thrones",
         "type": "univers"
       },
       {
@@ -578,7 +578,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "kaamelott",
+        "name": "Kaamelott",
         "type": "univers"
       },
       {
@@ -621,7 +621,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "kaamelott",
+        "name": "Kaamelott",
         "type": "univers"
       },
       {
@@ -664,7 +664,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "kaamelott",
+        "name": "Kaamelott",
         "type": "univers"
       },
       {
@@ -707,7 +707,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "stranger-things",
+        "name": "Stranger Things",
         "type": "univers"
       },
       {
@@ -754,7 +754,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "stranger-things",
+        "name": "Stranger Things",
         "type": "univers"
       },
       {
@@ -801,7 +801,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "stranger-things",
+        "name": "Stranger Things",
         "type": "univers"
       },
       {
@@ -848,7 +848,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "stranger-things",
+        "name": "Stranger Things",
         "type": "univers"
       },
       {
@@ -895,7 +895,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "stranger-things",
+        "name": "Stranger Things",
         "type": "univers"
       },
       {
@@ -942,7 +942,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-office",
+        "name": "The Office",
         "type": "univers"
       },
       {
@@ -973,7 +973,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-wire",
+        "name": "The Wire",
         "type": "univers"
       },
       {
@@ -1008,7 +1008,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "battlestar-galactica",
+        "name": "Battlestar Galactica",
         "type": "univers"
       },
       {
@@ -1055,7 +1055,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "doctor-who",
+        "name": "Doctor Who",
         "type": "univers"
       },
       {
@@ -1100,7 +1100,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "star-trek",
+        "name": "Star Trek",
         "type": "univers"
       },
       {
@@ -1147,7 +1147,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "les-simpson",
+        "name": "Les Simpson",
         "type": "univers"
       },
       {
@@ -1182,7 +1182,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "south-park",
+        "name": "South Park",
         "type": "univers"
       },
       {
@@ -1217,7 +1217,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "dr-house",
+        "name": "Dr House",
         "type": "univers"
       },
       {
@@ -1248,7 +1248,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "sherlock",
+        "name": "Sherlock",
         "type": "univers"
       },
       {
@@ -1287,7 +1287,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "how-i-met-your-mother",
+        "name": "How I Met Your Mother",
         "type": "univers"
       },
       {
@@ -1318,7 +1318,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-big-bang-theory",
+        "name": "The Big Bang Theory",
         "type": "univers"
       },
       {
@@ -1349,7 +1349,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "x-files",
+        "name": "X Files",
         "type": "univers"
       },
       {
@@ -1392,7 +1392,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "twin-peaks",
+        "name": "Twin Peaks",
         "type": "univers"
       },
       {
@@ -1427,7 +1427,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "lost",
+        "name": "Lost",
         "type": "univers"
       },
       {
@@ -1470,7 +1470,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "dexter",
+        "name": "Dexter",
         "type": "univers"
       },
       {
@@ -1509,7 +1509,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "true-detective",
+        "name": "True Detective",
         "type": "univers"
       },
       {
@@ -1544,7 +1544,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-mandalorian",
+        "name": "The Mandalorian",
         "type": "univers"
       },
       {
@@ -1587,7 +1587,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "narcos",
+        "name": "Narcos",
         "type": "univers"
       },
       {
@@ -1622,7 +1622,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "chernobyl",
+        "name": "Chernobyl",
         "type": "univers"
       },
       {
@@ -1653,7 +1653,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "columbo",
+        "name": "Columbo",
         "type": "univers"
       },
       {
@@ -1692,7 +1692,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "l-agence-tous-risques",
+        "name": "L Agence Tous Risques",
         "type": "univers"
       },
       {
@@ -1735,7 +1735,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "rick-et-morty",
+        "name": "Rick Et Morty",
         "type": "univers"
       },
       {
@@ -1786,7 +1786,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-handmaids-tale",
+        "name": "The Handmaids Tale",
         "type": "univers"
       },
       {
@@ -1833,7 +1833,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "westworld",
+        "name": "Westworld",
         "type": "univers"
       },
       {
@@ -1872,7 +1872,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "brooklyn-nine-nine",
+        "name": "Brooklyn Nine Nine",
         "type": "univers"
       },
       {
@@ -1907,7 +1907,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "parks-and-recreation",
+        "name": "Parks And Recreation",
         "type": "univers"
       },
       {
@@ -1938,7 +1938,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "seinfeld",
+        "name": "Seinfeld",
         "type": "univers"
       },
       {
@@ -1969,7 +1969,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "greys-anatomy",
+        "name": "Greys Anatomy",
         "type": "univers"
       },
       {
@@ -2000,7 +2000,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "sex-and-the-city",
+        "name": "Sex And The City",
         "type": "univers"
       },
       {
@@ -2035,7 +2035,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "south-park",
+        "name": "South Park",
         "type": "univers"
       },
       {
@@ -2070,7 +2070,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "les-simpson",
+        "name": "Les Simpson",
         "type": "univers"
       },
       {
@@ -2105,7 +2105,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-handmaids-tale",
+        "name": "The Handmaids Tale",
         "type": "univers"
       },
       {
@@ -2152,7 +2152,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "the-big-bang-theory",
+        "name": "The Big Bang Theory",
         "type": "univers"
       },
       {
@@ -2183,7 +2183,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "how-i-met-your-mother",
+        "name": "How I Met Your Mother",
         "type": "univers"
       },
       {
@@ -2214,7 +2214,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "lucifer",
+        "name": "Lucifer",
         "type": "univers"
       },
       {
@@ -2253,7 +2253,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "peaky-blinders",
+        "name": "Peaky Blinders",
         "type": "univers"
       },
       {
@@ -2288,7 +2288,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "charmed",
+        "name": "Charmed",
         "type": "univers"
       },
       {

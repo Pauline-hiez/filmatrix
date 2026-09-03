@@ -423,7 +423,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "alien",
+        "name": "Alien",
         "type": "univers"
       },
       {
@@ -757,7 +757,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "dune",
+        "name": "Dune",
         "type": "univers"
       },
       {
@@ -1196,8 +1196,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ted",
-        "type": "saga"
+        "name": "Ted",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1314,8 +1314,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ca",
-        "type": "saga"
+        "name": "Ça",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1572,8 +1572,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "retour-vers-le-futur",
-        "type": "saga"
+        "name": "Retour Vers Le Futur",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1611,8 +1611,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "star-wars",
-        "type": "saga"
+        "name": "Star Wars",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1650,8 +1650,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "harry-potter",
-        "type": "saga"
+        "name": "Harry Potter",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1685,8 +1685,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "saw",
-        "type": "saga"
+        "name": "Saw",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1724,8 +1724,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "hunger-games",
-        "type": "saga"
+        "name": "Hunger Games",
+        "type": "univers"
       },
       {
         "name": "science-fiction",
@@ -1767,8 +1767,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "american-pie",
-        "type": "saga"
+        "name": "American Pie",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1800,8 +1800,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "bridget-jones",
-        "type": "saga"
+        "name": "Bridget Jones",
+        "type": "univers"
       },
       {
         "name": "romance",
@@ -1839,8 +1839,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "la-momie",
-        "type": "saga"
+        "name": "La Momie",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1878,8 +1878,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "gremlins",
-        "type": "saga"
+        "name": "Gremlins",
+        "type": "univers"
       },
       {
         "name": "fantasy",
@@ -1915,8 +1915,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "predator",
-        "type": "saga"
+        "name": "Predator",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1954,8 +1954,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "halloween",
-        "type": "saga"
+        "name": "Halloween",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1987,8 +1987,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "evil-dead",
-        "type": "saga"
+        "name": "Evil Dead",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -2016,8 +2016,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "chucky",
-        "type": "saga"
+        "name": "Chucky",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -2047,8 +2047,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "scream",
-        "type": "saga"
+        "name": "Scream",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -2086,8 +2086,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "terrifier",
-        "type": "saga"
+        "name": "Terrifier",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -2210,6 +2210,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "royaume-uni",
         "type": "pays"
       },
@@ -2268,16 +2276,16 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "Alien",
+        "type": "univers"
+      },
+      {
         "name": "horreur",
         "type": "genre"
       },
       {
         "name": "science-fiction",
         "type": "genre"
-      },
-      {
-        "name": "Alien",
-        "type": "univers"
       },
       {
         "name": "royaume-uni",
@@ -2303,16 +2311,16 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "comédie",
-        "type": "genre"
+        "name": "Les Visiteurs",
+        "type": "univers"
       },
       {
         "name": "fantasy",
         "type": "genre"
       },
       {
-        "name": "Les Visiteurs",
-        "type": "univers"
+        "name": "comédie",
+        "type": "genre"
       },
       {
         "name": "france",
@@ -2338,8 +2346,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Seven",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -2350,8 +2358,8 @@
         "type": "genre"
       },
       {
-        "name": "Seven",
-        "type": "univers"
+        "name": "thriller",
+        "type": "genre"
       },
       {
         "name": "etats-unis",

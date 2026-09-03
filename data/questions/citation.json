@@ -40,7 +40,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "star-wars",
+        "name": "Star Wars",
         "type": "univers"
       },
       {
@@ -452,7 +452,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "seigneur-des-anneaux",
+        "name": "Seigneur Des Anneaux",
         "type": "univers"
       },
       {
@@ -491,7 +491,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "le-roi-lion",
+        "name": "Le Roi Lion",
         "type": "univers"
       },
       {
@@ -528,7 +528,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "toy-story",
+        "name": "Toy Story",
         "type": "univers"
       },
       {
@@ -571,7 +571,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "jurassic-park",
+        "name": "Jurassic Park",
         "type": "univers"
       },
       {
@@ -872,7 +872,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "batman",
+        "name": "Batman",
         "type": "univers"
       },
       {
@@ -934,8 +934,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "terre-du-milieu",
-        "type": "saga"
+        "name": "Terre Du Milieu",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -973,8 +973,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "terre-du-milieu",
-        "type": "saga"
+        "name": "Terre Du Milieu",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1012,8 +1012,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "star-wars",
-        "type": "saga"
+        "name": "Star Wars",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1051,8 +1051,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "star-wars",
-        "type": "saga"
+        "name": "Star Wars",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1090,8 +1090,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "harry-potter",
-        "type": "saga"
+        "name": "Harry Potter",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1125,8 +1125,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "matrix",
-        "type": "saga"
+        "name": "Matrix",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1160,8 +1160,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ca",
-        "type": "saga"
+        "name": "Ça",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1199,8 +1199,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "oss-117",
-        "type": "saga"
+        "name": "Oss 117",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -1242,8 +1242,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "les-dents-de-la-mer",
-        "type": "saga"
+        "name": "Les Dents De La Mer",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1281,8 +1281,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "james-bond",
-        "type": "saga"
+        "name": "James Bond",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1318,8 +1318,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "indiana-jones",
-        "type": "saga"
+        "name": "Indiana Jones",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1384,8 +1384,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "terminator",
-        "type": "saga"
+        "name": "Terminator",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1567,6 +1567,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "royaume-uni",
         "type": "pays"
       },
@@ -1590,8 +1598,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "die-hard",
-        "type": "saga"
+        "name": "Die Hard",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1623,8 +1631,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "chucky",
-        "type": "saga"
+        "name": "Chucky",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1654,8 +1662,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "scream",
-        "type": "saga"
+        "name": "Scream",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -1693,8 +1701,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "alien",
-        "type": "saga"
+        "name": "Alien",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1732,8 +1740,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "retour-vers-le-futur",
-        "type": "saga"
+        "name": "Retour Vers Le Futur",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1771,8 +1779,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "retour-vers-le-futur",
-        "type": "saga"
+        "name": "Retour Vers Le Futur",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1810,8 +1818,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "jurassic-park",
-        "type": "saga"
+        "name": "Jurassic Park",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1843,8 +1851,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "predator",
-        "type": "saga"
+        "name": "Predator",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1882,8 +1890,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "asterix",
-        "type": "saga"
+        "name": "Astérix",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1952,8 +1960,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "maman-jai-rate-lavion",
-        "type": "saga"
+        "name": "Maman j'ai raté l'avion",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1991,8 +1999,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "hunger-games",
-        "type": "saga"
+        "name": "Hunger Games",
+        "type": "univers"
       },
       {
         "name": "science-fiction",
@@ -2032,11 +2040,11 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "horreur",
-        "type": "genre"
+        "name": "Saw",
+        "type": "univers"
       },
       {
-        "name": "thriller",
+        "name": "horreur",
         "type": "genre"
       },
       {
@@ -2044,8 +2052,8 @@
         "type": "genre"
       },
       {
-        "name": "Saw",
-        "type": "univers"
+        "name": "policier",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2069,20 +2077,20 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "horreur",
-        "type": "genre"
-      },
-      {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Scream",
+        "type": "univers"
       },
       {
         "name": "policier",
         "type": "genre"
       },
       {
-        "name": "Scream",
-        "type": "univers"
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2106,16 +2114,12 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "horreur",
-        "type": "genre"
-      },
-      {
-        "name": "mystère",
-        "type": "genre"
-      },
-      {
         "name": "Poltergeist",
         "type": "univers"
+      },
+      {
+        "name": "horreur",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2139,11 +2143,11 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "comédie",
-        "type": "genre"
+        "name": "Dirty Dancing",
+        "type": "univers"
       },
       {
-        "name": "romance",
+        "name": "drame",
         "type": "genre"
       },
       {
@@ -2151,8 +2155,8 @@
         "type": "genre"
       },
       {
-        "name": "Dirty Dancing",
-        "type": "univers"
+        "name": "romance",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2176,16 +2180,20 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "comédie",
+        "name": "Star Wars",
+        "type": "univers"
+      },
+      {
+        "name": "aventure",
+        "type": "genre"
+      },
+      {
+        "name": "action",
         "type": "genre"
       },
       {
         "name": "science-fiction",
         "type": "genre"
-      },
-      {
-        "name": "Star Wars",
-        "type": "univers"
       },
       {
         "name": "etats-unis",
@@ -2209,8 +2217,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Seven",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -2221,8 +2229,8 @@
         "type": "genre"
       },
       {
-        "name": "Seven",
-        "type": "univers"
+        "name": "thriller",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2246,20 +2254,20 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Sixième Sens",
+        "type": "univers"
       },
       {
         "name": "mystère",
         "type": "genre"
       },
       {
-        "name": "drame",
+        "name": "thriller",
         "type": "genre"
       },
       {
-        "name": "Sixième Sens",
-        "type": "univers"
+        "name": "drame",
+        "type": "genre"
       },
       {
         "name": "etats-unis",

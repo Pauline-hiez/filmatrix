@@ -427,6 +427,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -924,8 +932,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "maman-jai-rate-lavion",
-        "type": "saga"
+        "name": "Maman j'ai raté l'avion",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -963,8 +971,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "austin-powers",
-        "type": "saga"
+        "name": "Austin Powers",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -998,8 +1006,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "les-visiteurs",
-        "type": "saga"
+        "name": "Les Visiteurs",
+        "type": "univers"
       },
       {
         "name": "fantasy",
@@ -1033,8 +1041,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ted",
-        "type": "saga"
+        "name": "Ted",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1068,8 +1076,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ca",
-        "type": "saga"
+        "name": "Ça",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1235,8 +1243,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "harry-potter",
-        "type": "saga"
+        "name": "Harry Potter",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1270,8 +1278,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "pirates-des-caraibes",
-        "type": "saga"
+        "name": "Pirates Des Caraibes",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1309,8 +1317,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "indiana-jones",
-        "type": "saga"
+        "name": "Indiana Jones",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1344,8 +1352,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "asterix",
-        "type": "saga"
+        "name": "Astérix",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1375,8 +1383,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "halloween",
-        "type": "saga"
+        "name": "Halloween",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1410,8 +1418,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "scream",
-        "type": "saga"
+        "name": "Scream",
+        "type": "univers"
       },
       {
         "name": "policier",

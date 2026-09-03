@@ -10,18 +10,17 @@ QUESTIONS = ROOT / "data" / "questions"
 def tag(name, kind="genre"):
     return {"name": name, "type": kind}
 
-def make(i, mode, content_type, prompt, payload, answer, genres, univers=None, saga=None, pays=None, epoque=None):
+def make(i, mode, content_type, prompt, payload, answer, genres, univers=None, pays=None, epoque=None):
     tags = [tag(x) for x in genres]
     if univers: tags.append(tag(univers, "univers"))
-    if saga: tags.append(tag(saga, "saga"))
     if pays: tags.append(tag(pays, "pays"))
     if epoque: tags.append(tag(epoque, "epoque"))
     return {"id": i, "mode": mode, "content_type": content_type, "prompt": prompt, "payload": payload, "correct_answer": answer, "requires_account": False, "tags": tags}
 
 COMEDY = [
-make(61000,"qcm","film","Dans Les Visiteurs, qui interprète Godefroy de Montmirail ?",{"options":["Jean Reno","Christian Clavier","Gérard Depardieu","Thierry Lhermitte"]},{"index":0},["comédie","fantasy"],saga="Les Visiteurs",pays="france",epoque="annees-1990"),
+make(61000,"qcm","film","Dans Les Visiteurs, qui interprète Godefroy de Montmirail ?",{"options":["Jean Reno","Christian Clavier","Gérard Depardieu","Thierry Lhermitte"]},{"index":0},["comédie","fantasy"],univers="Les Visiteurs",pays="france",epoque="annees-1990"),
 make(61001,"qcm","film","Dans Astérix et Obélix : Mission Cléopâtre, qui joue Numérobis ?",{"options":["Jamel Debbouze","José Garcia","Alain Chabat","Édouard Baer"]},{"index":0},["comédie","aventure"],univers="Astérix",pays="france",epoque="annees-2000"),
-make(61002,"qcm","film","Dans Maman, j'ai raté l'avion !, comment s'appelle le jeune héros ?",{"options":["Kevin McCallister","Peter McCallister","Buzz McCallister","Harry Lime"]},{"index":0},["comédie","aventure","familial"],saga="Maman j'ai raté l'avion",pays="etats-unis",epoque="annees-1990"),
+make(61002,"qcm","film","Dans Maman, j'ai raté l'avion !, comment s'appelle le jeune héros ?",{"options":["Kevin McCallister","Peter McCallister","Buzz McCallister","Harry Lime"]},{"index":0},["comédie","aventure","familial"],univers="Maman j'ai raté l'avion",pays="etats-unis",epoque="annees-1990"),
 make(61003,"qcm","film","Dans La Cité de la peur, quel trio d'acteurs forme les membres des Nuls à l'écran ?",{"options":["Chabat, Farrugia et Lauby","Clavier, Reno et Lhermitte","Boon, Merad et Kad","Dujardin, Lamy et Elmaleh"]},{"index":0},["comédie"],univers="La Cité de la peur",pays="france",epoque="annees-1990"),
 make(61004,"qcm","film","Dans The Mask, quel objet transforme Stanley Ipkiss ?",{"options":["Un masque magique","Une bague","Une montre","Un chapeau"]},{"index":0},["comédie","fantasy"],univers="The Mask",pays="etats-unis",epoque="annees-1990"),
 make(61005,"qcm","film","Dans Un jour sans fin, quelle journée Phil revit-il sans cesse ?",{"options":["Le jour de la marmotte","Le réveillon","Le 14 juillet","Son anniversaire"]},{"index":0},["comédie","fantasy"],univers="Un jour sans fin",pays="etats-unis",epoque="annees-1990"),
@@ -29,8 +28,8 @@ make(61006,"qcm","film","Dans Le Dîner de cons, que fabrique François Pignon ?
 make(61007,"qcm","film","Dans The Big Lebowski, quel surnom porte Jeffrey Lebowski ?",{"options":["The Dude","The Chief","The Man","The Player"]},{"index":0},["comédie","policier"],univers="The Big Lebowski",pays="etats-unis",epoque="annees-1990"),
 make(61008,"qcm","serie","Dans Friends, quel métier exerce Ross ?",{"options":["Paléontologue","Avocat","Chef cuisinier","Médecin"]},{"index":0},["comédie"],univers="Friends",pays="etats-unis",epoque="annees-1990"),
 make(61009,"qcm","serie","Dans The Office, dans quelle entreprise travaillent les personnages principaux ?",{"options":["Dunder Mifflin","Wernham Hogg","Waystar Royco","Sterling Cooper"]},{"index":0},["comédie"],univers="The Office",pays="etats-unis",epoque="annees-2000"),
-make(61010,"vrai_faux","film","Dans Les Visiteurs, Godefroy et Jacquouille viennent du Moyen Âge.",{}, {"value":True},["comédie","fantasy"],saga="Les Visiteurs",pays="france",epoque="annees-1990"),
-make(61011,"vrai_faux","film","Dans Maman, j'ai raté l'avion !, Kevin est oublié à Chicago.",{}, {"value":True},["comédie","aventure","familial"],saga="Maman j'ai raté l'avion",pays="etats-unis",epoque="annees-1990"),
+make(61010,"vrai_faux","film","Dans Les Visiteurs, Godefroy et Jacquouille viennent du Moyen Âge.",{}, {"value":True},["comédie","fantasy"],univers="Les Visiteurs",pays="france",epoque="annees-1990"),
+make(61011,"vrai_faux","film","Dans Maman, j'ai raté l'avion !, Kevin est oublié à Chicago.",{}, {"value":True},["comédie","aventure","familial"],univers="Maman j'ai raté l'avion",pays="etats-unis",epoque="annees-1990"),
 make(61012,"vrai_faux","film","Alain Chabat réalise Astérix et Obélix : Mission Cléopâtre.",{}, {"value":True},["comédie","aventure"],univers="Astérix",pays="france",epoque="annees-2000"),
 make(61013,"vrai_faux","film","Dans The Mask, Stanley Ipkiss est un super-héros avant de porter le masque.",{}, {"value":False},["comédie","fantasy"],univers="The Mask",pays="etats-unis",epoque="annees-1990"),
 make(61014,"vrai_faux","film","Un jour sans fin se déroule principalement à Punxsutawney.",{}, {"value":True},["comédie","fantasy"],univers="Un jour sans fin",pays="etats-unis",epoque="annees-1990"),

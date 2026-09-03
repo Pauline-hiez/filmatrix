@@ -144,7 +144,7 @@ def test_a_run_awards_only_one_fragment(client, app):
         player = User(username="Chasseur", email="chasseur@filmatrix.fr")
         player.set_password("Azerty1!")
         db.session.add(player)
-        tag = Tag(name="Harry Potter", tag_type="saga")
+        tag = Tag(name="Harry Potter", tag_type="univers")
         db.session.add(tag)
         db.session.commit()
         characters = [

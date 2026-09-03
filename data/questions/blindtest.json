@@ -70,7 +70,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "harry-potter",
+        "name": "Harry Potter",
         "type": "univers"
       },
       {
@@ -166,7 +166,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "star-wars",
+        "name": "Star Wars",
         "type": "univers"
       },
       {
@@ -980,8 +980,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ca",
-        "type": "saga"
+        "name": "Ça",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1080,8 +1080,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "matrix",
-        "type": "saga"
+        "name": "Matrix",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1116,8 +1116,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "indiana-jones",
-        "type": "saga"
+        "name": "Indiana Jones",
+        "type": "univers"
       },
       {
         "name": "aventure",
@@ -1152,8 +1152,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "gremlins",
-        "type": "saga"
+        "name": "Gremlins",
+        "type": "univers"
       },
       {
         "name": "fantasy",
@@ -1192,8 +1192,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "terminator",
-        "type": "saga"
+        "name": "Terminator",
+        "type": "univers"
       },
       {
         "name": "action",
@@ -1232,8 +1232,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "halloween",
-        "type": "saga"
+        "name": "Halloween",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1304,8 +1304,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "scream",
-        "type": "saga"
+        "name": "Scream",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -1344,8 +1344,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "american-pie",
-        "type": "saga"
+        "name": "American Pie",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1380,8 +1380,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "james-bond",
-        "type": "saga"
+        "name": "James Bond",
+        "type": "univers"
       },
       {
         "name": "aventure",

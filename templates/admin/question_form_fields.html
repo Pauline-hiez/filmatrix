@@ -170,6 +170,29 @@
         Réservée aux comptes
     </label>
 
+    {% set univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
+    <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3" data-tag-picker="univers">
+        <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <label class="text-sm text-slate-300">Univers</label>
+            <span class="text-xs text-slate-500">{{ univers_tags|length }} disponibles</span>
+        </div>
+        <div class="tag-picker-chips mb-2 flex flex-wrap gap-2"></div>
+        <div class="relative">
+            <input type="search" class="tag-picker-input w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none"
+                   placeholder="Rechercher un univers..." autocomplete="off">
+            <div class="tag-picker-dropdown absolute z-10 mt-1 hidden max-h-56 w-full overflow-y-auto rounded-lg border border-cyan-400/30 bg-slate-950"></div>
+        </div>
+        <div class="tag-picker-options hidden">
+            {% for tag in univers_tags %}
+            <label>
+                <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox"
+                       {% if tag in question.tags %}checked{% endif %}>
+                <span>{{ tag.name }}</span>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
     <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3">
         <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
             <label class="text-sm text-slate-300">Tags</label>
@@ -178,7 +201,7 @@
         <input type="search" id="tag-search" placeholder="Rechercher un tag..." autocomplete="off"
                class="mb-2 w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none">
         <div id="tag-groups" class="flex flex-col gap-1.5">
-            {% for tag_type, label in [("genre", "Genres"), ("univers", "Univers"), ("saga", "Sagas"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+            {% for tag_type, label in [("genre", "Genres"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
             {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
             {% if typed_tags %}
             <details class="tag-group rounded-lg border border-slate-800 bg-slate-900/50 px-2.5 py-1.5" {% if tag_type == "genre" %}open{% endif %}>

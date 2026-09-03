@@ -94,7 +94,7 @@ def create_tagged_question(app, mode, tag_name, count=None):
     with app.app_context():
         tag = Tag.query.filter_by(name=tag_name).first()
         if tag is None:
-            tag = Tag(name=tag_name, tag_type="saga")
+            tag = Tag(name=tag_name, tag_type="univers")
             db.session.add(tag)
 
         for index in range(count):

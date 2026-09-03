@@ -64,7 +64,7 @@
                    autocomplete="off"
                    class="mt-3 w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100">
             <div data-groups-for="tags" class="mt-3 flex flex-col gap-3 max-h-60 overflow-y-auto pr-1">
-                {% for tag_type, label in [("univers", "Univers"), ("saga", "Sagas"), ("genre", "Genres"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+                {% for tag_type, label in [("univers", "Univers"), ("genre", "Genres"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
                 {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
                 {% if typed_tags %}
                 <div data-tag-group="{{ tag_type }}">

@@ -106,7 +106,7 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "seigneur-des-anneaux",
+        "name": "Seigneur Des Anneaux",
         "type": "univers"
       },
       {
@@ -798,6 +798,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "etats-unis",
         "type": "pays"
       },
@@ -1142,8 +1150,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "maman-jai-rate-lavion",
-        "type": "saga"
+        "name": "Maman j'ai raté l'avion",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1187,8 +1195,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "austin-powers",
-        "type": "saga"
+        "name": "Austin Powers",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1228,8 +1236,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "les-visiteurs",
-        "type": "saga"
+        "name": "Les Visiteurs",
+        "type": "univers"
       },
       {
         "name": "fantasy",
@@ -1269,8 +1277,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ted",
-        "type": "saga"
+        "name": "Ted",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -1412,8 +1420,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ca",
-        "type": "saga"
+        "name": "Ça",
+        "type": "univers"
       },
       {
         "name": "horreur",
@@ -1833,8 +1841,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "gremlins",
-        "type": "saga"
+        "name": "Gremlins",
+        "type": "univers"
       },
       {
         "name": "fantasy",
@@ -1877,8 +1885,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "ace-ventura",
-        "type": "saga"
+        "name": "Ace Ventura",
+        "type": "univers"
       },
       {
         "name": "comédie",
@@ -2077,6 +2085,14 @@
         "type": "genre"
       },
       {
+        "name": "drame",
+        "type": "genre"
+      },
+      {
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
         "name": "royaume-uni",
         "type": "pays"
       },
@@ -2186,16 +2202,16 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "Shining",
+        "type": "univers"
+      },
+      {
         "name": "horreur",
         "type": "genre"
       },
       {
         "name": "thriller",
         "type": "genre"
-      },
-      {
-        "name": "Shining",
-        "type": "univers"
       },
       {
         "name": "etats-unis",
@@ -2264,16 +2280,16 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "Ring",
+        "type": "univers"
+      },
+      {
         "name": "horreur",
         "type": "genre"
       },
       {
-        "name": "mystère",
+        "name": "thriller",
         "type": "genre"
-      },
-      {
-        "name": "Ring",
-        "type": "univers"
       },
       {
         "name": "japon",
@@ -2303,20 +2319,20 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "horreur",
-        "type": "genre"
-      },
-      {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Scream",
+        "type": "univers"
       },
       {
         "name": "policier",
         "type": "genre"
       },
       {
-        "name": "Scream",
-        "type": "univers"
+        "name": "horreur",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2346,16 +2362,16 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "La Colline a des yeux",
+        "type": "univers"
+      },
+      {
         "name": "horreur",
         "type": "genre"
       },
       {
         "name": "thriller",
         "type": "genre"
-      },
-      {
-        "name": "La Colline a des yeux",
-        "type": "univers"
       },
       {
         "name": "etats-unis",
@@ -2385,16 +2401,16 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "comédie",
-        "type": "genre"
+        "name": "Les Visiteurs",
+        "type": "univers"
       },
       {
         "name": "fantasy",
         "type": "genre"
       },
       {
-        "name": "Les Visiteurs",
-        "type": "univers"
+        "name": "comédie",
+        "type": "genre"
       },
       {
         "name": "france",
@@ -2424,7 +2440,11 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "comédie",
+        "name": "Un jour sans fin",
+        "type": "univers"
+      },
+      {
+        "name": "romance",
         "type": "genre"
       },
       {
@@ -2432,8 +2452,8 @@
         "type": "genre"
       },
       {
-        "name": "Un jour sans fin",
-        "type": "univers"
+        "name": "comédie",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2463,12 +2483,12 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "comédie",
-        "type": "genre"
-      },
-      {
         "name": "Le Dîner de cons",
         "type": "univers"
+      },
+      {
+        "name": "comédie",
+        "type": "genre"
       },
       {
         "name": "france",
@@ -2498,6 +2518,10 @@
     "requires_account": false,
     "tags": [
       {
+        "name": "The Mask",
+        "type": "univers"
+      },
+      {
         "name": "comédie",
         "type": "genre"
       },
@@ -2506,8 +2530,12 @@
         "type": "genre"
       },
       {
-        "name": "The Mask",
-        "type": "univers"
+        "name": "policier",
+        "type": "genre"
+      },
+      {
+        "name": "romance",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2537,8 +2565,8 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Seven",
+        "type": "univers"
       },
       {
         "name": "policier",
@@ -2549,8 +2577,8 @@
         "type": "genre"
       },
       {
-        "name": "Seven",
-        "type": "univers"
+        "name": "thriller",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2580,16 +2608,16 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Memento",
+        "type": "univers"
       },
       {
         "name": "mystère",
         "type": "genre"
       },
       {
-        "name": "Memento",
-        "type": "univers"
+        "name": "thriller",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2619,20 +2647,20 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
+        "name": "Gone Girl",
+        "type": "univers"
       },
       {
         "name": "mystère",
         "type": "genre"
       },
       {
-        "name": "drame",
+        "name": "thriller",
         "type": "genre"
       },
       {
-        "name": "Gone Girl",
-        "type": "univers"
+        "name": "drame",
+        "type": "genre"
       },
       {
         "name": "etats-unis",
@@ -2662,20 +2690,20 @@
     "requires_account": false,
     "tags": [
       {
-        "name": "thriller",
-        "type": "genre"
-      },
-      {
-        "name": "mystère",
-        "type": "genre"
+        "name": "Shutter Island",
+        "type": "univers"
       },
       {
         "name": "drame",
         "type": "genre"
       },
       {
-        "name": "Shutter Island",
-        "type": "univers"
+        "name": "thriller",
+        "type": "genre"
+      },
+      {
+        "name": "mystère",
+        "type": "genre"
       },
       {
         "name": "etats-unis",

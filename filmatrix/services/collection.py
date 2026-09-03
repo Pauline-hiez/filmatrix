@@ -11,11 +11,10 @@ from filmatrix.catalog_rarities import humanize_tag_name
 from filmatrix.services.puzzle import get_puzzle_grid
 
 
-# Poids de spécificité des types de tags : un album lié à un univers/saga est
+# Poids de spécificité des types de tags : un album lié à un univers est
 # plus précis qu'un album de genre. C'est ce qui départage plusieurs albums.
 TAG_TYPE_SPECIFICITY = {
     "univers": 4,
-    "saga": 4,
     "genre": 3,
     "realisateur": 2,
     "acteur": 2,
@@ -54,43 +53,10 @@ def add_fragments(user, character: Character, amount: int) -> bool:
     return False
 
 
-def get_characters_for_tag(user, tag_id: int) -> list[dict]:
-    """Renvoie tous les personnages d'une franchise, avec la progression du joueur."""
-    characters = Character.query.filter_by(tag_id=tag_id).all()
-
-    result = []
-    for character in characters:
-        progress = UserCharacter.query.filter_by(
-            user_id=user.id, character_id=character.id
-        ).first()
-
-        fragments = progress.fragments if progress else 0
-        is_unlocked = progress is not None and progress.unlocked_at is not None
-
-        result.append(
-            {
-                "id": character.id,
-                "name": character.name,
-                "rarity": character.rarity,
-                "image_url": character.image_url,
-                "fragments": fragments,
-                "fragments_required": character.fragments_required,
-                "is_unlocked": is_unlocked,
-                "image_x": character.image_x,
-                "image_y": character.image_y,
-                "image_scale": character.image_scale,
-                "frame_x": character.frame_x,
-                "frame_y": character.frame_y,
-                "frame_scale": character.frame_scale,
-            }
-        )
-
-    return result
-
 def _matched_albums(question: Question) -> list[Album]:
     """Albums liés aux tags de la question, triés du plus spécifique au moins.
 
-    La spécificité est pondérée par le type de tag (univers/saga > genre > ...).
+    La spécificité est pondérée par le type de tag (univers > genre > ...).
     Un album qui correspond à un univers précis passe ainsi avant un album de
     genre, comme demandé pour le gain de fragments.
     """

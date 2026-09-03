@@ -179,13 +179,10 @@ def quiz(mode: str, position: int) -> str:
         mode, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
     )
 
-    # Les séries utilisent « univers » et les films utilisent parfois « saga »
-    # pour désigner leur franchise. Les deux doivent activer le même contexte
-    # personnage, sans modifier une citation lorsqu'aucun thème n'est choisi.
     selected_universe = (
         bool(tag_ids)
         and Tag.query.filter(
-            Tag.id.in_(tag_ids), Tag.tag_type.in_(["univers", "saga"])
+            Tag.id.in_(tag_ids), Tag.tag_type == "univers"
         ).first()
         is not None
     )

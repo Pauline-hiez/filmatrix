@@ -8,7 +8,6 @@ from filmatrix.services.collection import (
     award_fragment_for_question,
     fragment_result_payload,
     get_album_summaries,
-    get_characters_for_tag,
     get_or_create_progress,
 )
 
@@ -24,8 +23,8 @@ def create_test_user(username: str = "Collectionneur") -> User:
     return user
 
 
-def create_test_tag(name: str = "Harry Potter", tag_type: str = "saga") -> Tag:
-    """Crée un tag de franchise de test en base (saga ou univers)"""
+def create_test_tag(name: str = "Harry Potter", tag_type: str = "univers") -> Tag:
+    """Crée un tag de franchise de test en base"""
     tag = Tag(name=name, tag_type=tag_type)
     db.session.add(tag)
     db.session.commit()
@@ -115,23 +114,6 @@ def test_add_fragments_caps_at_required_amount(app):
         assert progress.fragments == 3
 
 
-def test_get_characters_for_tag_shows_all_with_progress(app):
-    """Doit renvoyer tous les personnages en fonction de la progression du joueur"""
-    with app.app_context():
-        user = create_test_user()
-        tag = create_test_tag()
-        character_unlocked = create_test_character(tag, name="Harry Potter", fragments_required=2)
-        character_locked = create_test_character(tag, name="Voldemort", fragments_required=5)
-
-        add_fragments(user, character_unlocked, 2)
-        db.session.commit()
-
-        characters = get_characters_for_tag(user, tag.id)
-        names_and_status = {c["name"]: c["is_unlocked"] for c in characters}
-
-        assert names_and_status["Harry Potter"] is True
-        assert names_and_status["Voldemort"] is False
-
 def create_test_question(tags: list[Tag] | None = None) -> Question:
     """Crée une question de test, éventuellement liée à des tags."""
     question = Question(
@@ -149,7 +131,7 @@ def create_test_question(tags: list[Tag] | None = None) -> Question:
 
 
 def test_award_fragment_returns_none_without_franchise_tag(app):
-    """Une question sans tag de franchise (ni saga ni univers) ne doit rien donner."""
+    """Une question sans tag de franchise (univers) ne doit rien donner."""
     with app.app_context():
         user = create_test_user()
         question = create_test_question()

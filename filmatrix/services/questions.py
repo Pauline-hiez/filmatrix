@@ -31,10 +31,9 @@ INCOMPATIBLE_MIX_MODES_FOR_UNIVERSE = {
 
 # En dessous de ce nombre de questions (toutes comptées sur l'ensemble du
 # catalogue, pas seulement dans le mode consulté), un tag encombre le
-# sélecteur sans offrir de filtrage réellement utile : univers et saga
-# accumulent vite des entrées nées d'une unique mention. Univers a son propre
-# seuil, plus haut, car il concentre à lui seul l'essentiel de ces mentions
-# isolées.
+# sélecteur sans offrir de filtrage réellement utile : univers accumule vite
+# des entrées nées d'une unique mention, d'où un seuil dédié plus haut que
+# celui des autres types.
 TAG_MIN_QUESTIONS = {"univers": 20}
 DEFAULT_TAG_MIN_QUESTIONS = 5
 
@@ -172,7 +171,7 @@ def build_question_query(
     has_universe_filter = bool(
         selected_tag_ids
         and Tag.query.filter(
-            Tag.id.in_(selected_tag_ids), Tag.tag_type.in_(["univers", "saga"])
+            Tag.id.in_(selected_tag_ids), Tag.tag_type == "univers"
         ).first()
     )
 

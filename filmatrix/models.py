@@ -192,7 +192,7 @@ question_tags = db.Table(
 )
 
 class Tag(db.Model):
-    """Représente un tag de thème (genre) ou de saga, applicable à des questions."""
+    """Représente un tag de thème (genre) ou d'univers, applicable à des questions."""
 
     __tablename__ = "tags"
 
@@ -203,7 +203,7 @@ class Tag(db.Model):
     questions = db.relationship("Question", secondary=question_tags, backref="tags")
 
 class Character(db.Model):
-    """Représente un personnage collectionnable, lié à une franchise (tag saga)."""
+    """Représente un personnage collectionnable, lié à une franchise (tag univers)."""
 
     __tablename__ = "characters"
 
@@ -239,7 +239,7 @@ class UserCharacter(db.Model):
 
 
 # Un album est une collection thématique de personnages (ex. « Horreur »),
-# liée à un ou plusieurs tags (genre, univers, saga, pays...). Un personnage
+# liée à un ou plusieurs tags (genre, univers, pays...). Un personnage
 # peut appartenir à plusieurs albums.
 album_tags = db.Table(
     "album_tags",
@@ -257,7 +257,7 @@ album_characters = db.Table(
 class Album(db.Model):
     """Représente un album de collection : un thème regroupant des personnages.
 
-    L'album est relié à des tags (genre, univers, saga...) : c'est par eux que
+    L'album est relié à des tags (genre, univers...) : c'est par eux que
     le jeu sait quel album alimenter quand le joueur répond à une question.
     """
 
