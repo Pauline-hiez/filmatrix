@@ -4,7 +4,7 @@ from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
 from filmatrix.models import Album, UserCharacter
-from filmatrix.services.puzzle import get_puzzle_grid
+from filmatrix.services.puzzle import get_puzzle_grid, get_puzzle_last_cell
 from filmatrix.services.collection import get_album_summaries
 from filmatrix.catalog_rarities import RARITIES
 
@@ -42,6 +42,7 @@ def collection_album(album_id: int) -> str:
                 "fragments_required": character.fragments_required,
                 "is_unlocked": is_unlocked,
                 "puzzle_grid": get_puzzle_grid(character.id, fragments, character.fragments_required),
+                "puzzle_new_cell": get_puzzle_last_cell(character.id, fragments, character.fragments_required),
                 "image_x": character.image_x,
                 "image_y": character.image_y,
                 "image_scale": character.image_scale,

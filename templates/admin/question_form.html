@@ -11,7 +11,7 @@
     <form method="POST" id="question-form" class="flex flex-col gap-4">
         <div>
             <label class="block text-sm text-slate-400 mb-1">Mode</label>
-            <select id="mode-select" name="mode" required
+            <select id="mode-select" name="mode" required data-combobox
                     class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 <option value="">-- Choisir un mode --</option>
                 <option value="qcm" {% if question and question.mode == 'qcm' %}selected{% endif %}>Quiz (QCM)</option>
@@ -29,7 +29,7 @@
 
         <div>
             <label class="block text-sm text-slate-400 mb-1">Type d'œuvre</label>
-            <select id="content-type-select" name="content_type"
+            <select id="content-type-select" name="content_type" data-combobox
                     class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 <option value="film" {% if question and question.content_type == 'film' %}selected{% endif %}>Film</option>
                 <option value="serie" {% if question and question.content_type == 'serie' %}selected{% endif %}>Série</option>

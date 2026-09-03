@@ -15,7 +15,7 @@
         <div class="relative">
         <div>
             <label class="block text-sm text-slate-400 mb-1">Type de contenu source</label>
-            <select id="content-type-select" class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <select id="content-type-select" data-combobox class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 <option value="film">Film</option>
                 <option value="serie">Série</option>
             </select>
@@ -37,7 +37,7 @@
 
         <div>
             <label class="block text-sm text-slate-400 mb-1">Franchise / univers</label>
-            <select name="tag_id" required
+            <select name="tag_id" required data-combobox
                     class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 {% for tag in saga_tags %}
                 <option value="{{ tag.id }}" {% if character and character.tag_id == tag.id %}selected{% endif %}>{{ tag.name }}</option>
@@ -62,7 +62,7 @@
 
         <div>
             <label class="block text-sm text-slate-400 mb-1">Rareté</label>
-            <select name="rarity" id="rarity-select" class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <select name="rarity" id="rarity-select" data-combobox class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
                 <option value="commun" {% if not character or character.rarity == 'commun' %}selected{% endif %}>Commun</option>
                 <option value="rare" {% if character and character.rarity == 'rare' %}selected{% endif %}>Rare</option>
                 <option value="epique" {% if character and character.rarity == 'epique' %}selected{% endif %}>Épique</option>

@@ -6,7 +6,7 @@
 <form method="POST" action="{{ url_for('admin.admin_tags_new') }}" class="flex gap-2 mb-8">
     <input type="text" name="name" placeholder="Nom du tag (ex: Horreur, Star Wars...)" required
            class="flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
-    <select name="tag_type" class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+    <select name="tag_type" data-combobox class="bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
         <option value="genre">Genre</option>
         <option value="univers">Univers</option>
         <option value="saga">Saga</option>

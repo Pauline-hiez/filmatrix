@@ -76,25 +76,36 @@ function ensureFragmentRevealStyle() {
 }
 
 function buildPuzzleCells(fragmentResult, imageUrl) {
+    // Vraie découpe puzzle : l'image est posée UNE fois (couvre la grille),
+    // puis 9 cellules viennent par-dessus, transparentes si révélées ou
+    // opaques avec un « ? » sinon. L'image ne se répète jamais case à case.
     const grid = fragmentResult.puzzle_grid || [];
     const newCells = fragmentResult.puzzle_new_cells || [];
-    let html = "";
-    for (let index = 0; index < 9; index += 1) {
-        const revealed = Boolean(grid[index]);
-        const isNew = newCells.indexOf(index) !== -1;
-        const background = revealed && imageUrl
-            ? `background-image:url('${imageUrl}');background-size:cover;background-position:center;`
-            : "";
-        const cellClass = isNew
-            ? "fragment-new-cell"
-            : (revealed ? "" : "opacity-90");
-        html += `
-            <div class="relative overflow-hidden bg-slate-900 ${cellClass}" style="${background}">
-                ${revealed ? "" : `<span class="absolute inset-0 flex items-center justify-center text-[0.6rem] text-slate-600">?</span>`}
-            </div>
-        `;
+
+    const imageBackdrop = imageUrl
+        ? `<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('${imageUrl}');background-repeat:no-repeat;"></div>`
+        : "";
+
+    function cellClass(index) {
+        return newCells.indexOf(index) !== -1 ? "fragment-new-cell" : "";
     }
-    return html;
+
+    if (!grid.length) {
+        return imageBackdrop;
+    }
+
+    const cellsHtml = grid.map(function (revealed, index) {
+        const extra = cellClass(index);
+        if (revealed) {
+            return `<div class="relative overflow-hidden ${extra}"></div>`;
+        }
+        return `<div class="relative overflow-hidden ${extra}">
+            <div class="absolute inset-0 bg-slate-800"></div>
+            <span class="absolute inset-0 flex items-center justify-center text-[0.6rem] text-slate-600">?</span>
+        </div>`;
+    }).join("");
+
+    return `${imageBackdrop}<div class="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-px">${cellsHtml}</div>`;
 }
 
 function showFragmentNotification(fragmentResult) {
@@ -117,7 +128,7 @@ function showFragmentNotification(fragmentResult) {
         window.location.href = "/collection";
     });
     notification.innerHTML = `
-        <div class="grid h-16 w-16 shrink-0 grid-cols-3 grid-rows-3 gap-px overflow-hidden rounded-lg border border-slate-700 bg-slate-950">
+        <div class="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-slate-700 bg-slate-950">
             ${puzzleCells}
         </div>
         <div class="min-w-0 flex-1">

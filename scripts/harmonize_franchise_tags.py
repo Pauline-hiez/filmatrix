@@ -4,9 +4,13 @@ Corrige le doublon slug <-> nom humanisé (ex. « breaking-bad » vs
 « Breaking Bad ») qui fait apparaître chaque univers en double dans le
 sélecteur de jeu et qui répartit les questions entre deux tags.
 
-- Fusionne les tags d'une même franchise (clé = slug normalisé) en gardant le
-  nom humanisé, et déplace vers lui les questions, les personnages et les défis
-  quotidiens qui pointaient vers les doublons.
+- Fusionne les tags d'une même franchise (clé = nom normalisé sans accents
+  ni ponctuation) en gardant le nom humanisé, et déplace vers lui les
+  questions, les personnages et les défis quotidiens qui pointaient vers les
+  doublons. La clé ignore aussi les apostrophes pour rattraper les variantes
+  typographiques (« Maman j'ai raté l'avion » vs « Maman Jai Rate Lavion »).
+- Fusionne les tags genre/autre qui portent en réalité un nom de franchise
+  (ex. « Star Wars » classé genre) dans le tag de franchise correspondant.
 - Renomme les tags encore en slug vers leur vrai nom (indiana-jones -> Indiana
   Jones), sans collision avec un tag existant.
 - Supprime les tags de franchise devenus orphelins (aucune question, aucun
@@ -18,6 +22,7 @@ Idempotent : relancer ce script ne change plus rien.
 """
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -34,8 +39,15 @@ FRANCHISE_TYPES = ("saga", "univers")
 
 
 def key(name: str) -> str:
-    """Clé de normalisation pour regrouper un slug et son nom humanisé."""
-    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    """Clé de normalisation : minuscules sans accents ni ponctuation.
+
+    On ne remplace pas la ponctuation par un tiret mais on la supprime :
+    c'est ce qui permet de rapprocher « j'ai » de « jai » (variante de saisie
+    sans apostrophe) comme « Ça » de « Ca ».
+    """
+    decomposed = unicodedata.normalize("NFKD", name.lower())
+    without_accents = "".join(ch for ch in decomposed if not unicodedata.combining(ch))
+    return re.sub(r"[^a-z0-9]", "", without_accents)
 
 
 def is_slug(name: str) -> bool:
@@ -186,6 +198,40 @@ def purge_orphan_franchise_tags() -> int:
     return deleted
 
 
+def merge_franchise_lookalikes() -> int:
+    """Fusionne les tags genre/autre qui portent un nom de franchise.
+
+    Ex. « Star Wars » classé genre alors que l'univers existe déjà : les deux
+    entrent en collision (le renommage du slug devenait impossible) et le
+    sélecteur de genre proposait une franchise. On rabat tout sur le tag de
+    franchise (univers prioritaire) quand les clés normalisées coïncident.
+    """
+    franchise = Tag.query.filter(Tag.tag_type.in_(FRANCHISE_TYPES)).all()
+    franchise_by_key: dict[str, Tag] = {}
+    for tag in franchise:
+        # Priorité univers > saga, puis nom humanisé > slug.
+        current = franchise_by_key.get(key(tag.name))
+        if current is None or (
+            (tag.tag_type == "univers", not is_slug(tag.name))
+            > (current.tag_type == "univers", not is_slug(current.name))
+        ):
+            franchise_by_key[key(tag.name)] = tag
+
+    deleted = 0
+    for tag in Tag.query.filter(Tag.tag_type.in_(("genre", "autre"))).all():
+        keeper = franchise_by_key.get(key(tag.name))
+        if keeper is None or keeper.id == tag.id:
+            continue
+        move_tag_references(keeper, tag)
+        deleted += 1
+        print(
+            f"  fusion {tag.name!r} ({tag.tag_type}) -> "
+            f"{keeper.name!r} ({keeper.tag_type})"
+        )
+
+    return deleted
+
+
 def main() -> None:
     with app.app_context():
         # Chaque phase est committée séparément : c'est ce qui garantit que les
@@ -197,6 +243,9 @@ def main() -> None:
         cross_merged = merge_cross_type()
         db.session.commit()
 
+        lookalikes_merged = merge_franchise_lookalikes()
+        db.session.commit()
+
         renamed = humanize_remaining_slugs()
         db.session.commit()
 
@@ -204,7 +253,8 @@ def main() -> None:
         db.session.commit()
 
         print(
-            f"\n{merged + cross_merged} fusion(s) dont {cross_merged} inter-types, "
+            f"\n{merged + cross_merged + lookalikes_merged} fusion(s) "
+            f"dont {cross_merged} inter-types et {lookalikes_merged} genre/autre, "
             f"{renamed} renommage(s), {purged} purgé(s)."
         )
 

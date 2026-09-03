@@ -14,5 +14,8 @@
   "description": "",
   "devDependencies": {
     "tailwindcss": "^3.4.19"
+  },
+  "dependencies": {
+    "flyonui": "^2.4.1"
   }
 }

@@ -88,7 +88,7 @@
         {% else %}
             <div><p class="profile-kicker text-emerald-400">Réseau</p><p class="mt-1 text-sm font-bold text-emerald-400">✓ Vous êtes amis</p></div>
             <form method="POST" action="{{ url_for('multiplayer.invite_to_game', user_id=viewed_user.id) }}" class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-                <select name="mode" class="rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 focus:border-cyan-400 focus:outline-none">{% for mode in multiplayer_modes %}<option value="{{ mode.slug }}">{{ mode.name }}</option>{% endfor %}</select>
+                <select name="mode" data-combobox class="rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 focus:border-cyan-400 focus:outline-none">{% for mode in multiplayer_modes %}<option value="{{ mode.slug }}">{{ mode.name }}</option>{% endfor %}</select>
                 <button type="submit" class="shrink-0 rounded-lg bg-cyan-400 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">🎮 Inviter à jouer</button>
             </form>
             <form method="POST" action="{{ url_for('friends.remove_friend_route', user_id=viewed_user.id) }}" onsubmit="return confirm('Retirer {{ viewed_user.username }} de tes amis ?');"><button type="submit" class="rounded-lg border border-slate-700 px-4 py-2.5 text-sm font-bold text-slate-400 transition hover:border-red-400 hover:text-red-400">Retirer</button></form>

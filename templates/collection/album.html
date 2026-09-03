@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "partials/character_frame.html" import character_card %}
+{% from "partials/puzzle_grid.html" import puzzle_grid %}
 
 {% block content %}
 <div class="max-w-5xl mx-auto mt-8">
@@ -27,17 +28,8 @@
                     unlocked=true, classes="mb-2", rarity=character.rarity
                 ) }}
             {% else %}
-                <div class="relative w-full aspect-square rounded-lg overflow-hidden mb-2 bg-slate-950 grid grid-cols-3 grid-rows-3 gap-0.5">
-                    {% for is_revealed in character.puzzle_grid %}
-                        <div class="relative overflow-hidden {% if not is_revealed %}bg-slate-800{% endif %}">
-                            {% if is_revealed and character.image_url %}
-                            <div class="absolute inset-0 bg-cover"
-                                 style="background-image: url('{{ character.image_url | image_src }}');"></div>
-                            {% elif not is_revealed %}
-                            <span class="absolute inset-0 flex items-center justify-center text-slate-600">?</span>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                <div class="mb-2">
+                    {{ puzzle_grid(character.image_url | image_src, character.puzzle_grid, reveal_cell=character.puzzle_new_cell) }}
                 </div>
             {% endif %}
 
