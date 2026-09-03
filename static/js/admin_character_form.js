@@ -194,3 +194,73 @@ document.addEventListener("click", function (event) {
         movieResultsBox.classList.add("hidden");
     }
 });
+
+// ---- Fragments requis : auto-remplissage selon la rareté ----
+
+// Miroir JS de RARITY_FRAGMENT_COSTS (filmatrix/catalog_rarities.py).
+const RARITY_FRAGMENT_COSTS = {
+    commun: 3,
+    rare: 5,
+    epique: 7,
+    legendaire: 8,
+    mythique: 9,
+};
+
+const raritySelect = document.getElementById("rarity-select");
+const fragmentsInput = document.getElementById("fragments-required-input");
+const fragmentsHint = document.getElementById("fragments-hint");
+const autoFragmentsCheckbox = document.getElementById("auto-fragments");
+
+function applyRarityFragments() {
+    if (!raritySelect || !fragmentsInput) return;
+    const cost = RARITY_FRAGMENT_COSTS[raritySelect.value];
+    if (!cost) return;
+
+    fragmentsInput.value = cost;
+    if (fragmentsHint) {
+        const labels = {
+            commun: "Commun",
+            rare: "Rare",
+            epique: "Épique",
+            legendaire: "Légendaire",
+            mythique: "Mythique",
+        };
+        fragmentsHint.textContent = `Valeur par défaut « ${labels[raritySelect.value]} » : ${cost} fragments (modifiable en décochant l'auto).`;
+    }
+}
+
+if (raritySelect && fragmentsInput && autoFragmentsCheckbox) {
+    raritySelect.addEventListener("change", function () {
+        if (autoFragmentsCheckbox.checked) {
+            applyRarityFragments();
+        }
+    });
+
+    // Passer en manuel dès que l'admin touche au champ lui-même.
+    fragmentsInput.addEventListener("input", function () {
+        autoFragmentsCheckbox.checked = false;
+        if (fragmentsHint) fragmentsHint.textContent = "";
+    });
+
+    autoFragmentsCheckbox.addEventListener("change", function () {
+        if (autoFragmentsCheckbox.checked) {
+            applyRarityFragments();
+        } else if (fragmentsHint) {
+            fragmentsHint.textContent = "";
+        }
+    });
+
+    // À l'ouverture : en création, la rareté affichée s'applique tout de
+    // suite. En modification, une valeur qui ne correspond plus à la rareté
+    // est un choix manuel historique : on repasse en manuel pour le respecter.
+    const formAction = document.querySelector("form[action]")?.action || "";
+    const isEdit = formAction.includes("character_id=");
+    const currentCost = RARITY_FRAGMENT_COSTS[raritySelect.value];
+    if (currentCost && Number(fragmentsInput.value) !== currentCost) {
+        if (isEdit) {
+            autoFragmentsCheckbox.checked = false;
+        } else {
+            applyRarityFragments();
+        }
+    }
+}

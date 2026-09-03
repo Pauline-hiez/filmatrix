@@ -13,6 +13,7 @@ from flask_login import current_user, login_required
 from filmatrix.extensions import db
 from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
+from filmatrix.catalog_rarities import fragments_for_rarity
 from filmatrix.game_modes import GAME_MODES
 from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
@@ -524,7 +525,16 @@ def admin_characters_new() -> str:
                 saga_tags = Tag.query.filter(Tag.tag_type.in_(["saga", "univers"])).order_by(Tag.name).all()
                 albums = Album.query.order_by(Album.sort_order, Album.name).all()
                 return render_template("admin/character_form.html", character=character, saga_tags=saga_tags, albums=albums)
-        character.fragments_required = int(request.form.get("fragments_required", 5))
+        # Fragments requis : en l'absence de champ (ou de valeur invalide),
+        # on retombe sur le barème de la rareté. La constante sert de source
+        # unique au formulaire (JS) comme au serveur.
+        try:
+            fragments_required = int(request.form.get("fragments_required", ""))
+        except (TypeError, ValueError):
+            fragments_required = 0
+        if fragments_required < 1:
+            fragments_required = fragments_for_rarity(character.rarity)
+        character.fragments_required = fragments_required
         character.image_x = float(request.form.get("image_x", 0))
         character.image_y = float(request.form.get("image_y", 0))
         character.image_scale = float(request.form.get("image_scale", 100))

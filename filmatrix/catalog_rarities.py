@@ -35,6 +35,29 @@ RARITIES = {
 
 """Fonctions utilitaires de formatage d'affichage"""
 
+# Nombre de fragments nécessaires pour débloquer un personnage, selon sa
+# rareté. Source unique : le formulaire d'admin pré-remplit son champ à
+# partir d'ici (JS) et le serveur retombe sur ces valeurs en l'absence de
+# champ.
+# Plafond à 9 : la grille puzzle fait 3×3, au-delà toutes les cases seraient
+# révélées avant la fin du déblocage.
+RARITY_FRAGMENT_COSTS = {
+    "commun": 3,
+    "rare": 5,
+    "epique": 7,
+    "legendaire": 8,
+    "mythique": 9,
+}
+
+
+def fragments_for_rarity(rarity: str, fallback: int = 5) -> int:
+    """Renvoie le nombre de fragments pour une rareté donnée.
+
+    Une rareté inconnue (ou une base historique) retombe sur ``fallback``
+    plutôt que de planter.
+    """
+    return RARITY_FRAGMENT_COSTS.get(rarity, fallback)
+
 def humanize_tag_name(name: str) -> str:
     """Transforme un nom de slug en vrai nom: indiana-jones -> Indiana Jones"""
     if " " in name or any(char.isupper() for char in name):

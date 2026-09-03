@@ -1,5 +1,6 @@
 """Tests de la logique métier de collection de personnages (fragments, déblocage)."""
 
+from filmatrix.catalog_rarities import RARITY_FRAGMENT_COSTS, fragments_for_rarity
 from filmatrix.extensions import db
 from filmatrix.models import Album, Character, Tag, User, Question
 from filmatrix.services.collection import (
@@ -341,3 +342,80 @@ def test_get_album_summaries_reports_progress(app):
         assert summary["unlocked_count"] == 1
         assert summary["total_count"] == 2
         assert summary["image_url"] == unlocked.image_url
+
+
+def test_rarity_fragment_costs_ladder_is_ordered():
+    """Le barème doit être croissant avec la rareté et plafonné à la grille (9)."""
+    ladder = [
+        RARITY_FRAGMENT_COSTS["commun"],
+        RARITY_FRAGMENT_COSTS["rare"],
+        RARITY_FRAGMENT_COSTS["epique"],
+        RARITY_FRAGMENT_COSTS["legendaire"],
+        RARITY_FRAGMENT_COSTS["mythique"],
+    ]
+    assert ladder == sorted(ladder)
+    assert all(1 <= cost <= 9 for cost in ladder)
+
+
+def test_fragments_for_rarity_falls_back_on_unknown_rarity():
+    """Une rareté inconnue retombe sur la valeur de repli sans planter."""
+    assert fragments_for_rarity("inconnue", fallback=5) == 5
+    assert fragments_for_rarity("commun") == RARITY_FRAGMENT_COSTS["commun"]
+
+
+def test_character_creation_falls_back_to_rarity_scale_on_missing_field(client, app):
+    """Sans champ fragments_required, la route doit appliquer le barème de la rareté."""
+    with app.app_context():
+        admin = User(username="AdminFrag", email="adminfrag@filmatrix.fr", is_admin=True)
+        admin.set_password("Azerty1!")
+        db.session.add(admin)
+        tag = create_test_tag(name="Test Frag")
+        tag_id = tag.id
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "adminfrag@filmatrix.fr", "password": "Azerty1!"})
+
+    response = client.post(
+        "/admin/personnages/nouveau",
+        data={
+            "name": "Perso Sans Champ",
+            "tag_id": tag_id,
+            "rarity": "mythique",
+            # pas de fragments_required : le serveur doit appliquer le barème
+        },
+    )
+    assert response.status_code == 302
+
+    with app.app_context():
+        character = Character.query.filter_by(name="Perso Sans Champ").first()
+        assert character is not None
+        assert character.fragments_required == RARITY_FRAGMENT_COSTS["mythique"]
+
+
+def test_character_creation_keeps_explicit_fragments_field(client, app):
+    """Un champ fragments_required explicite doit être respecté (mode manuel)."""
+    with app.app_context():
+        admin = User(username="AdminFrag2", email="adminfrag2@filmatrix.fr", is_admin=True)
+        admin.set_password("Azerty1!")
+        db.session.add(admin)
+        tag = create_test_tag(name="Test Frag 2")
+        tag_id = tag.id
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "adminfrag2@filmatrix.fr", "password": "Azerty1!"})
+
+    response = client.post(
+        "/admin/personnages/nouveau",
+        data={
+            "name": "Perso Manuel",
+            "tag_id": tag_id,
+            "rarity": "commun",
+            "fragments_required": "4",
+        },
+    )
+    assert response.status_code == 302
+
+    with app.app_context():
+        character = Character.query.filter_by(name="Perso Manuel").first()
+        assert character is not None
+        assert character.fragments_required == 4
