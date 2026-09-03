@@ -8,7 +8,7 @@ from botocore.exceptions import BotoCoreError, ClientError
 from sqlalchemy import case, func
 from werkzeug.utils import secure_filename
 
-from flask import Blueprint, flash, redirect, render_template, request, session, url_for
+from flask import Blueprint, current_app, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
@@ -81,8 +81,10 @@ def save_character_image(uploaded_file):
     try:
         return upload_character_image(uploaded_file, filename, uploaded_file.mimetype)
     except KeyError as error:
+        current_app.logger.exception("Upload R2 : variable d'environnement manquante (%s)", error)
         raise ValueError("Stockage d'images non configuré (variable manquante).") from error
     except (BotoCoreError, ClientError) as error:
+        current_app.logger.exception("Upload R2 : échec de l'envoi vers le stockage")
         raise ValueError("Échec de l'envoi de l'image vers le stockage. Réessaie.") from error
 
 
