@@ -38,6 +38,100 @@ function showBadgeNotification(badge) {
     }, 3000);
 }
 
+// Mini-mission relevée : signalée tout de suite, comme un badge (contrairement
+// aux fragments, qui attendent l'écran de fin de partie). Cliquer renvoie
+// vers le profil, où les mini-missions du jour sont affichées.
+function showMissionCompletedNotification(mission) {
+    const notification = document.createElement("div");
+    notification.className =
+        "fixed top-4 left-1/2 -translate-x-1/2 cursor-pointer bg-slate-900 border border-violet-400 rounded-lg px-4 py-3 shadow-lg z-50 flex items-center gap-3 transition-opacity duration-500 max-w-sm";
+    notification.innerHTML = `
+        <span class="text-2xl">🎯</span>
+        <div class="min-w-0">
+            <p class="text-violet-400 font-bold text-sm">Mini-mission relevée !</p>
+            <p class="truncate text-slate-300 text-xs">${mission.description}</p>
+            <p class="text-amber-400 text-xs font-bold">+${mission.coin_reward} pièces</p>
+        </div>
+    `;
+    notification.addEventListener("click", function () {
+        window.location.href = "/profil";
+    });
+
+    document.body.appendChild(notification);
+
+    setTimeout(function () {
+        notification.style.opacity = "0";
+        setTimeout(function () {
+            notification.remove();
+        }, 500);
+    }, 3500);
+}
+
+// Les trois mini-missions du jour sont toutes faites : le vrai palier de la
+// journée (fragment garanti), distinct de chaque mini-mission prise seule.
+function showDayCompletedNotification() {
+    const notification = document.createElement("div");
+    notification.className =
+        "fixed top-4 left-1/2 -translate-x-1/2 cursor-pointer bg-slate-900 border border-cyan-400 rounded-lg px-4 py-3 shadow-lg z-50 flex items-center gap-3 transition-opacity duration-500 max-w-sm";
+    notification.innerHTML = `
+        <span class="text-2xl">🏆</span>
+        <div class="min-w-0">
+            <p class="text-cyan-400 font-bold text-sm">Mini-missions du jour terminées !</p>
+            <p class="text-slate-300 text-xs">🧩 Un fragment t'attend en fin de partie</p>
+        </div>
+    `;
+    notification.addEventListener("click", function () {
+        window.location.href = "/profil";
+    });
+
+    document.body.appendChild(notification);
+
+    setTimeout(function () {
+        notification.style.opacity = "0";
+        setTimeout(function () {
+            notification.remove();
+        }, 500);
+    }, 3500);
+}
+
+// Palier de série (7 jours de missions terminées consécutifs) : distinct de
+// la journée elle-même, les deux peuvent s'afficher sur la même réponse.
+function showStreakBonusNotification(streakBonus) {
+    const notification = document.createElement("div");
+    notification.className =
+        "fixed top-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-amber-400 rounded-lg px-4 py-3 shadow-lg z-50 flex items-center gap-3 transition-opacity duration-500";
+    notification.innerHTML = `
+        <span class="text-2xl">🔥</span>
+        <div>
+            <p class="text-amber-400 font-bold text-sm">Série de ${streakBonus.streak} jours !</p>
+            <p class="text-slate-300 text-xs">Un fragment bonus t'attend en fin de partie</p>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(function () {
+        notification.style.opacity = "0";
+        setTimeout(function () {
+            notification.remove();
+        }, 500);
+    }, 3500);
+}
+
+function showChallengeNotifications(result) {
+    if (result.completed_missions) {
+        result.completed_missions.forEach(function (mission) {
+            showMissionCompletedNotification(mission);
+        });
+    }
+    if (result.day_completed) {
+        showDayCompletedNotification();
+    }
+    if (result.streak_bonus) {
+        showStreakBonusNotification(result.streak_bonus);
+    }
+}
+
 function showAnswerFeedback(isCorrect, correctAnswer) {
     const feedback = document.getElementById("answer-feedback");
     const label = document.getElementById("answer-feedback-label");
@@ -152,6 +246,8 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
                 });
             }
 
+            showChallengeNotifications(result);
+
             goToNextQuestion();
         }
     });
@@ -207,6 +303,8 @@ if (document.getElementById("riddle-submit")) {
                         showBadgeNotification(badge);
                     });
                 }
+
+                showChallengeNotifications(result);
 
                 showAnswerFeedback(result.is_correct, result.correct_answer);
                 goToNextQuestion();
@@ -288,6 +386,8 @@ if (riddleButton) {
                 showBadgeNotification(badge);
             });
         }
+
+        showChallengeNotifications(result);
 
         setTimeout(function () {
             window.location.href = window.location.href.replace(

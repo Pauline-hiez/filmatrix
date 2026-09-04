@@ -33,9 +33,9 @@
 
 <div class="max-w-6xl mx-auto flex flex-col gap-6">
 
-    {# Identité + progression + prochain objectif, trois cartes côte à côte
-       comme sur la maquette, chacune avec sa propre hauteur (pas de grid qui
-       les forcerait à s'égaliser). #}
+    {# Identité + progression + défi du jour, trois cartes côte à côte comme
+       sur la maquette, chacune avec sa propre hauteur (pas de grid qui les
+       forcerait à s'égaliser). #}
     <div class="grid gap-6 lg:grid-cols-[20rem_1fr_20rem] items-start">
 
         <section class="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 text-center">
@@ -106,35 +106,54 @@
             </div>
         </section>
 
+        {# Mini-missions du jour : compactes, une ligne par mission, sur le
+           même gabarit que les autres cartes de cette colonne — pas un gros
+           bloc séparé avec historique, qui prenait bien trop de place plus
+           bas sur la page. #}
+        {% if daily_missions %}
         <section class="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
-            <h2 class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <span class="text-cyan-400">☆</span> Prochain objectif
-            </h2>
-            {% if objective %}
-            <div class="mt-4 flex items-center gap-3">
-                <span class="accent-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-full border text-xl" style="--accent: #22d3ee">
-                    {{ objective.icon }}
-                </span>
-                <div class="min-w-0">
-                    <p class="truncate font-bold text-slate-100">{{ objective.name }}</p>
-                    <p class="text-xs text-slate-500">{{ objective.description }}</p>
+            <div class="flex items-center justify-between gap-2">
+                <h2 class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500">
+                    <span class="text-cyan-400">🎯</span> Mini-missions
+                </h2>
+                <div class="flex shrink-0 items-center gap-2">
+                    <span class="text-xs font-bold text-slate-400">{{ daily_missions.completed_count }}/{{ daily_missions.total_count }}</span>
+                    {% if current_streak > 0 %}
+                    <span class="text-xs font-bold text-amber-400">🔥 {{ current_streak }}</span>
+                    {% endif %}
                 </div>
             </div>
-            <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-800">
-                <div class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500" style="width: {{ objective.percent }}%"></div>
+
+            <div class="mt-3 flex flex-col gap-2">
+                {% for mission in daily_missions.missions %}
+                <div class="flex items-center gap-2.5 rounded-lg border border-slate-800 bg-slate-950/40 px-2.5 py-2">
+                    <span class="accent-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm"
+                          style="--accent: {{ '#34d399' if mission.is_completed else '#22d3ee' }}">
+                        {{ "✓" if mission.is_completed else mission.icon }}
+                    </span>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-xs font-bold leading-snug text-slate-200">{{ mission.description }}</p>
+                        <div class="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                            <div class="h-1.5 rounded-full {{ 'bg-emerald-400' if mission.is_completed else 'bg-gradient-to-r from-cyan-400 to-violet-500' }}"
+                                 style="width: {{ mission.progress_percentage }}%"></div>
+                        </div>
+                    </div>
+                    {% if not mission.is_completed %}
+                    <a href="{{ mission.play_url }}" class="shrink-0 text-lg font-bold text-cyan-400 transition hover:text-cyan-300" title="Jouer" aria-label="Jouer à cette mission">
+                        →
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
             </div>
-            <p class="mt-1 text-xs text-slate-500">{{ objective.current }} / {{ objective.target }}</p>
-            <p class="mt-1 text-xs text-cyan-400">
-                {% if objective.remaining > 0 %}Encore {{ objective.remaining }} pour l'obtenir !{% else %}Objectif atteint, ça va se débloquer bientôt !{% endif %}
-            </p>
-            <a href="{{ url_for('main.modes') }}"
-               class="mt-4 block rounded-lg bg-cyan-400 px-4 py-2.5 text-center text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
-                Jouer →
-            </a>
+
+            {% if daily_missions.all_completed %}
+            <p class="mt-3 text-xs font-bold text-emerald-400">✓ Toutes les mini-missions du jour sont faites !</p>
             {% else %}
-            <p class="mt-4 text-sm text-slate-400">Tous les badges sont débloqués, bravo !</p>
+            <p class="mt-3 text-xs text-cyan-400">🧩 +1 fragment quand les 3 sont faites</p>
             {% endif %}
         </section>
+        {% endif %}
     </div>
 
     {# Quatre indicateurs globaux, glanés une fois pour toutes plutôt que
@@ -157,6 +176,7 @@
             <p class="mt-1 text-xs uppercase tracking-wider text-slate-500">Succès</p>
         </div>
     </div>
+
 
     <section class="rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5">
         <div class="mb-4 flex items-center justify-between">

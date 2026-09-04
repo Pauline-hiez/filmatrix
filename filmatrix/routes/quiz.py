@@ -14,7 +14,12 @@ from filmatrix.services.collection import (
     award_guaranteed_fragment,
     fragment_result_payload,
 )
-from filmatrix.services.daily_challenges import update_challenge_progress, update_streak_on_completion
+from filmatrix.services.daily_challenges import (
+    MISSION_COIN_REWARD,
+    describe_challenge,
+    update_missions_progress,
+    update_streak_on_completion,
+)
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.levels import (
@@ -229,9 +234,11 @@ def quiz(mode: str, position: int) -> str:
         earned_xp = 0
         earned_coins = 0
         fragment_result = None
-        completed_challenge = None
-        challenge_fragment_result = None
+        completed_missions = []
+        day_just_completed = False
+        day_completed_fragment_result = None
         streak_bonus_fragment_result = None
+        reached_streak_bonus = False
 
         if current_user.is_authenticated:
             already_answered_correctly = Attempt.query.filter_by(
@@ -280,12 +287,19 @@ def quiz(mode: str, position: int) -> str:
 
         if current_user.is_authenticated:
             current_run_streak = session.get("run", {}).get("current_streak", 0)
-            completed_challenge = update_challenge_progress(
+            completed_missions, day_just_completed = update_missions_progress(
                 current_user, question, is_correct, current_run_streak=current_run_streak
             )
 
-            if completed_challenge is not None:
-                challenge_fragment_result = award_guaranteed_fragment(current_user)
+            # Chaque mini-mission complétée donne des pièces tout de suite.
+            # Le fragment garanti et l'avancée de série, eux, attendent que
+            # les trois missions du jour soient toutes complétées : voir
+            # update_missions_progress.
+            if completed_missions:
+                current_user.coins += MISSION_COIN_REWARD * len(completed_missions)
+
+            if day_just_completed:
+                day_completed_fragment_result = award_guaranteed_fragment(current_user)
 
                 reached_streak_bonus = update_streak_on_completion(current_user)
                 if reached_streak_bonus:
@@ -299,13 +313,22 @@ def quiz(mode: str, position: int) -> str:
         # ils sont mis de côté pour l'écran de fin de partie, qui les révèle
         # tous ensemble dans une animation dédiée (voir templates/quiz/termine.html).
         if current_user.is_authenticated:
-            for gained in (fragment_result, challenge_fragment_result, streak_bonus_fragment_result):
+            for gained in (fragment_result, day_completed_fragment_result, streak_bonus_fragment_result):
                 if gained is not None:
                     add_run_fragment_result(session, mode, fragment_result_payload(current_user, gained))
 
         correct_answer_text = None if is_correct else format_correct_answer(
             question,
             alternate_answer=character_answer(question) if character_mode else None,
+        )
+
+        # Les mini-missions complétées et le bonus de série sont annoncés
+        # tout de suite (comme les badges) : contrairement aux fragments, ils
+        # ne concernent pas la collection et n'ont pas besoin d'attendre
+        # l'écran de fin.
+        completed_missions_info = [describe_challenge(mission) for mission in completed_missions]
+        streak_bonus_info = (
+            {"streak": current_user.current_streak} if reached_streak_bonus else None
         )
 
         if question.mode == "chronologie":
@@ -323,7 +346,9 @@ def quiz(mode: str, position: int) -> str:
                 "give_up": True,
                 "new_badges": new_badges,
                 "correct_answer": correct_answer_text,
-                "completed_challenge": completed_challenge is not None,
+                "completed_missions": completed_missions_info,
+                "day_completed": day_just_completed,
+                "streak_bonus": streak_bonus_info,
             }
 
         return {
@@ -331,7 +356,9 @@ def quiz(mode: str, position: int) -> str:
             "give_up": True,
             "new_badges": new_badges,
             "correct_answer": correct_answer_text,
-            "completed_challenge": completed_challenge is not None,
+            "completed_missions": completed_missions_info,
+            "day_completed": day_just_completed,
+            "streak_bonus": streak_bonus_info,
         }
 
     scrambled_title = None

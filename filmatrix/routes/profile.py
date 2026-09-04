@@ -7,14 +7,12 @@ from filmatrix.extensions import db
 from filmatrix.catalog import AVATARS, AVATAR_RING_COLORS
 from filmatrix.models import Attempt, User
 from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
-from filmatrix.services.badges import BADGES, next_objective
+from filmatrix.services.badges import BADGES
 from filmatrix.services.friends import friend_cards, get_friends_list, get_friendship_between
 from filmatrix.services.levels import calculate_level
 from filmatrix.services.shop import TITLES
 from filmatrix.services.collection import get_album_summaries
-from filmatrix.services.daily_challenges import describe_challenge, get_or_create_daily_challenge
-from filmatrix.models import DailyChallenge
-from datetime import date
+from filmatrix.services.daily_challenges import describe_daily_missions
 
 
 bp = Blueprint("profile", __name__)
@@ -57,30 +55,8 @@ def profile() -> str:
         equipped_title_name = TITLES.get(current_user.equipped_title, {}).get("name")
 
     album_summaries = get_album_summaries(current_user)
-    objective = next_objective(current_user)
 
-    today_challenge = get_or_create_daily_challenge(current_user)
-    challenge_info = describe_challenge(today_challenge)
-
-    challenge_history = (
-        DailyChallenge.query.filter_by(user_id=current_user.id, completed_at=None)
-        .filter(DailyChallenge.challenge_date < date.today())
-        .order_by(DailyChallenge.challenge_date.desc())
-        .limit(0)
-        .all()
-    )
-    # On veut l'historique de TOUS les défis passés, complétés ou non :
-    challenge_history = (
-        DailyChallenge.query.filter_by(user_id=current_user.id)
-        .filter(DailyChallenge.challenge_date < date.today())
-        .order_by(DailyChallenge.challenge_date.desc())
-        .limit(14)
-        .all()
-    )
-    challenge_history_info = [
-        {**describe_challenge(challenge), "date": challenge.challenge_date}
-        for challenge in challenge_history
-    ]
+    missions_info = describe_daily_missions(current_user)
 
     return render_template(
         "profile/profil.html",
@@ -92,10 +68,8 @@ def profile() -> str:
         all_badges=all_badges,
         equipped_title_name=equipped_title_name,
         album_summaries=album_summaries,
-        objective=objective,
         avatar_ring_color=AVATAR_RING_COLORS.get(current_user.avatar, "#22d3ee"),
-        challenge=challenge_info,
-        challenge_history=challenge_history_info,
+        daily_missions=missions_info,
         current_streak=current_user.current_streak,
     )
 

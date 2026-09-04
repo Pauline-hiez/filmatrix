@@ -284,13 +284,19 @@ class Album(db.Model):
 
 
 class DailyChallenge(db.Model):
-    """Représente le défi quotidien assigné à un joueur pour une date donnée."""
+    """Représente une mini-mission quotidienne assignée à un joueur pour une
+    date donnée. Un joueur en a plusieurs par jour (voir slot) : chacune sa
+    propre ligne, pour garder une progression indépendante par mission."""
 
     __tablename__ = "daily_challenges"
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     challenge_date = db.Column(db.Date, nullable=False)
+    # Position de cette mission parmi celles du jour (0, 1, 2...) : distingue
+    # les lignes d'un même joueur à une même date, une fois qu'il y en a
+    # plusieurs par jour plutôt qu'une seule.
+    slot = db.Column(db.Integer, nullable=False, default=0)
     challenge_type = db.Column(db.String(50), nullable=False)
     target_value = db.Column(db.Integer, nullable=False)
     target_mode = db.Column(db.String(50), nullable=True)
@@ -301,4 +307,6 @@ class DailyChallenge(db.Model):
     user = db.relationship("User", backref="daily_challenges")
     target_tag = db.relationship("Tag")
 
-    __table_args__ = (db.UniqueConstraint("user_id", "challenge_date", name="uq_user_challenge_date"),)
+    __table_args__ = (
+        db.UniqueConstraint("user_id", "challenge_date", "slot", name="uq_user_challenge_date_slot"),
+    )
