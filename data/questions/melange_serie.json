@@ -4,9 +4,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Friends"
     },
@@ -35,9 +33,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Breaking Bad"
     },
@@ -70,9 +66,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Game of Thrones"
     },
@@ -117,9 +111,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/1Tcv90k3MzWKsq1zJbxVlsT7YXr.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Kaamelott"
     },
@@ -160,9 +152,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/56v2KjBlU4XaOv9rVYEQypROD7P.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Stranger Things"
     },
@@ -207,9 +197,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Sherlock"
     },
@@ -246,9 +234,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Dexter"
     },
@@ -285,9 +271,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/yUOFocKDW7MCC5isx4FK8A68QFp.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Lost"
     },
@@ -328,9 +312,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/y9ekzkPFmWSqUU3Kj0wHmYUM8qu.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Narcos"
     },
@@ -363,9 +345,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rX5hvSRB2k4YoIvRg6Zky52rWk0.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Westworld"
     },
@@ -402,9 +382,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/ixgFmf1X59PUZam2qbAfskx2gQr.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Severance"
     },
@@ -445,9 +423,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/bcdUYUFk8GdpZJPiSAas9UeocLH.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Succession"
     },
@@ -480,9 +456,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/3jDXL4Xvj3AzDOF6UH1xeyHW8MH.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Dark"
     },
@@ -527,9 +501,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Arcane"
     },
@@ -574,9 +546,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/aY7zv2pfk9H0QxaaL3PBjvalbKQ.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Lupin"
     },
@@ -613,9 +583,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/3URK0z9PzpVNJrGE7XOuyy6KFzk.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Chernobyl"
     },
@@ -644,9 +612,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/tMRdEsMg9MyXAkcufK9YJEeIaNW.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Seinfeld"
     },
@@ -675,9 +641,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/d7cH4zt3xoqRQnLqYXMPOrUz5k3.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Columbo"
     },
@@ -714,9 +678,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/13kblIK8DnxMurcRDkeyy2sGR7v.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Vikings"
     },
@@ -753,9 +715,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/aatG9iVAUL7U7OyFEmupESpOrD2.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Ozark"
     },
@@ -788,9 +748,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/391ixi0wVbFtFLQnOy8ZncWv2io.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Homeland"
     },
@@ -823,9 +781,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/lpDVJuIro21gtMj9iXMFKHuroZN.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Mindhunter"
     },
@@ -858,9 +814,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/dZklTql88IDOmkC3JAYQSTgyK6f.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Twin Peaks"
     },
@@ -893,9 +847,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/dg3OindVAGZBjlT3xYKqIAdukPL.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Black Mirror"
     },
@@ -936,9 +888,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rYlIRj9NA945UuYohw9jUbDEbts.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Fringe"
     },
@@ -1008,9 +958,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/bwSmgmd90hCWwqOKQYTEraeOZhJ.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Shogun"
     },
@@ -1039,9 +987,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/mez2Z3WqlPKNXpi7mWoiiE5guE9.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Euphoria"
     },
@@ -1070,9 +1016,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Scrubs"
     },
@@ -1101,9 +1045,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/1xRfgONYmK3T6FSmbtcuo8eyxVt.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Community"
     },
@@ -1132,9 +1074,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/3UviYOlhn8EgXMBuiT6MnUuo1w9.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "South Park"
     },
@@ -1167,9 +1107,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/jIArNHIekrCSVgdMbKPAXpPY03Y.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Les Simpson"
     },
@@ -1202,9 +1140,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/si3OheCrSpEyK2JUtZOThsZPUR4.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Malcolm"
     },
@@ -1233,9 +1169,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/2meX1nMdScFOoV4370rqHWKmXhY.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Squid Game"
     },
@@ -1276,9 +1210,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/6TSJRc77dDOesKzcNqkz0KeXdLz.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "American Horror Story"
     },
@@ -1319,9 +1251,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/mAXOCbZzvmDa6PCh5dcIPOB51Qc.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Lucifer"
     },
@@ -1358,9 +1288,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Peaky Blinders"
     },
@@ -1393,9 +1321,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/9xIwhzgBoTejiN1zv9VRHUKkpBt.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Famille d'abord"
     },
@@ -1432,9 +1358,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/fiQQt9Y9wBi8qthevNnz1RyOm5p.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "La Flamme"
     },
@@ -1463,9 +1387,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/a89SLEtX9AsooDEHOXKoSvj9BRG.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Le Flambeau"
     },
@@ -1494,9 +1416,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/aUSTj1kif2dqt65POwHrcyjhXRg.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Notre belle famille"
     },
@@ -1529,9 +1449,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/ueZFcwAUvkjyAB9beaiqJyg0M8H.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Charmed"
     },
@@ -1576,9 +1494,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/qt3NbzjWRconY6KRGaczte6DmAF.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Bates Motel"
     },
@@ -1615,9 +1531,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/nlDBlCtorM7nx130wYnfR5ZmyLX.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Young Sheldon"
     },
@@ -1654,9 +1568,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/82D01BlixH1JD0BCQoERabDjp7h.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "The Middle"
     },
@@ -1685,9 +1597,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/959IFVeGqz2M6qGvQ1RxN2r6Mq6.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "New Girl"
     },
@@ -1716,9 +1626,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/5s9XHTB9SLPdg3mNU6BlSLnZ9Qq.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Shameless"
     },
@@ -1751,9 +1659,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rwYvhVv0vwbulMwxOfEsuAr1JrT.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "The Big Bang Theory"
     },
@@ -1782,9 +1688,7 @@
     "mode": "film_melange",
     "content_type": "serie",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rf2uHKzPniVL5LvSVxg5ACxv4cS.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "That '70s Show"
     },

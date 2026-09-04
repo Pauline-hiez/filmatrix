@@ -1015,6 +1015,23 @@
             object-fit: cover;
         }
 
+        /* Icône de repli pour les modes où le titre est la réponse à deviner
+           (citation, devinette, blindtest...) : un badge centré, pas une
+           bannière large — l'icône est un petit visuel transparent, pas une
+           photo à cadrer en cover (voir question_image_url, services/questions.py). */
+        .game-question-icon {
+            width: 5.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .game-question-icon img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 18px rgb(0 0 0 / 0.4));
+        }
+
         .game-report {
             display: flex;
             justify-content: flex-end;

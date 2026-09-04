@@ -4,9 +4,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Avatar"
     },
@@ -31,9 +29,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Le Roi Lion"
     },
@@ -62,9 +58,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Titanic"
     },
@@ -89,9 +83,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Inception"
     },
@@ -116,9 +108,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Matrix"
     },
@@ -139,9 +129,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Gladiator"
     },
@@ -170,9 +158,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Parasite"
     },
@@ -201,9 +187,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Le Parrain"
     },
@@ -228,9 +212,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Interstellar"
     },
@@ -259,9 +241,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/qxGmHvmjlBlH5WZOhdHEHAjHaMB.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Ratatouille"
     },
@@ -294,9 +274,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Jurassic Park"
     },
@@ -317,9 +295,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Pulp Fiction"
     },
@@ -348,9 +324,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/87wqeMeUeMRLjsE1IWNKJcPlpuC.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Casablanca"
     },
@@ -379,9 +353,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rnQyWw68dPHPRtvSWMtLSueXf05.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Amadeus"
     },
@@ -414,9 +386,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Alien"
     },
@@ -449,9 +419,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/AdKA2F1SzYPhSZdEbjH1Zh75UVQ.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Shining"
     },
@@ -480,9 +448,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/ffdqHMWkh1h9MABwIfbfRJhgFW6.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Terminator"
     },
@@ -515,9 +481,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/1m1c5gIWWkb1FEC9lzsoXHhhs7b.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Braveheart"
     },
@@ -554,9 +518,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Forrest Gump"
     },
@@ -589,9 +551,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/bacOuUnRBoAO1NjMfsAGX2EKRrS.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Rocky"
     },
@@ -616,9 +576,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/mufF1aYvwdpKerhq5R1YrVcbJLY.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Psychose"
     },
@@ -651,9 +609,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/q6OGlZ1KMEb14AC8KbPCxyNOal6.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Intouchables"
     },
@@ -682,9 +638,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/wbQa0EnWUyRzQ5d1pHLNRlmsCUP.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Whiplash"
     },
@@ -717,9 +671,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/neeNHeXjMF5fXoCJRsOmkNGC7q.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Oppenheimer"
     },
@@ -748,9 +700,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/h3HsfV8Kn9Sz2QWUYYdP5ya23hx.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Dune"
     },
@@ -783,9 +733,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/g7CHF8gTLGooTbP4GznIGwaqAGL.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Coco"
     },
@@ -822,9 +770,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/7Wev9JMo6R5XAfz2KDvXb7oPMmy.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Memento"
     },
@@ -853,9 +799,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/i5H7zusQGsysGQ8i6P361Vnr0n2.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Seven"
     },
@@ -888,9 +832,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/1esAE8sLJRWWFsLLeh5r3g2WanI.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Barbie"
     },
@@ -923,9 +865,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/a2n6bKD7qhCPCAEALgsAhWOAQcc.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Gravity"
     },
@@ -958,9 +898,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Fight Club"
     },
@@ -989,9 +927,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/1J28PJOkusMN5Ab9Q3oF310e11k.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Le Grand Bleu"
     },
@@ -1024,9 +960,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/eWYrrdCKd4bjOKB9DB0HtRUhI1o.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Les Choristes"
     },
@@ -1059,9 +993,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/viGCwLxupyoaLsa6hrnu1gYrB0B.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "La Haine"
     },
@@ -1086,9 +1018,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Bohemian Rhapsody"
     },
@@ -1117,9 +1047,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/vlrRGSoCpoSoVzX9Y1JS6rni3Ym.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Aline"
     },
@@ -1156,9 +1084,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/lAvf5zzyOgTZmpRBRJFa7IVVqCK.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Wayne's World"
     },
@@ -1187,9 +1113,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/hkAVgWvAMmM8tj9CDEvGqMdNQBE.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Ted"
     },
@@ -1222,9 +1146,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/cUqXHZtnptgvyAE1hN47Wsf3ami.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Projet X"
     },
@@ -1278,9 +1200,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/dF6GNQ0TnZkr1t4wBt36Xc0Pccd.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Hostel"
     },
@@ -1305,9 +1225,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/qVGpxnjrGlHaSTCqTQI6viBDSfp.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Ça"
     },
@@ -1344,9 +1262,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/xcjJ5khg2yzOa282mza39Lbrm7j.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "L'Exorciste"
     },
@@ -1400,9 +1316,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/8iZjnNSIH4teZERl0VjUeHHVrec.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Simetierre"
     },
@@ -1427,9 +1341,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/rUAn3Ul1tL7JXMjZ951UOI3F0UA.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Misery"
     },
@@ -1458,9 +1370,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/gJbTXKNTL6O7r7PzF6ZRkJGBlPp.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Hérédité"
     },
@@ -1493,9 +1403,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Midsommar"
     },
@@ -1528,9 +1436,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/5oaMV2q0qzxkIW2ukU3lldLu5q2.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "American Psycho"
     },
@@ -1563,9 +1469,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Retour vers le futur"
     },
@@ -1602,9 +1506,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Star Wars"
     },
@@ -1641,9 +1543,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/fbxQ44VRdM2PVzHSNajUseUteem.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Harry Potter"
     },
@@ -1676,9 +1576,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/ok4ot3YbfDYZcINXf91JUfq3maB.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Saw"
     },
@@ -1715,9 +1613,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/yVBQ65YBYZ9UhzJ4NGdRgeXtyTL.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Hunger Games"
     },
@@ -1758,9 +1654,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/z9DFGaWj4G4kZUWLZ6ESs1NP1Fp.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "American Pie"
     },
@@ -1830,9 +1724,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/8zLS8p1tRyWFLRFfmgQq0j5WE6z.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "La Momie"
     },
@@ -1869,9 +1761,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/5UX6M0aEphiW6Xmy5rpYX75glbo.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Gremlins"
     },
@@ -1945,9 +1835,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/sHI9xlFRWCJ38AIIfOqnGjuEvXz.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Halloween"
     },
@@ -2038,9 +1926,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Scream"
     },
@@ -2077,9 +1963,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/naNXYdBzTEb1KwOdi1RbBkM9Zv1.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Terrifier"
     },
@@ -2162,9 +2046,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/3zCPI4JFc54xvLaJ71oI2KoP3az.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Zodiac"
     },
@@ -2197,9 +2079,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/hJ5R9d6QuH3tzr8L8neZZTuzNXm.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Blade Runner"
     },
@@ -2232,9 +2112,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/fj0hwDJEOOHllRim2BMt5L7tbjf.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Léon"
     },
@@ -2267,9 +2145,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "Quel film se cache derrière cette image ?",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Alien"
     },
@@ -2302,9 +2178,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "Quel film se cache derrière cette image ?",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Les Visiteurs"
     },
@@ -2337,9 +2211,7 @@
     "mode": "film_melange",
     "content_type": "film",
     "prompt": "Quel film se cache derrière cette image ?",
-    "payload": {
-      "question_image_url": "https://image.tmdb.org/t/p/w500/i5H7zusQGsysGQ8i6P361Vnr0n2.jpg"
-    },
+    "payload": {},
     "correct_answer": {
       "title": "Seven"
     },

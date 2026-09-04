@@ -154,10 +154,18 @@
                 <span class="game-pill">⏱ {{ level.label }}</span>
             </div>
 
-            {% if question.mode == "qcm" and question_image_url %}
+            {% if question.mode in ["qcm", "vrai_faux"] and question_image_url %}
             <div class="game-question-media" aria-label="Affiche de l’œuvre concernée">
                 <img src="{{ question_image_url }}" alt="Affiche de {{ content_label }}" loading="eager" referrerpolicy="no-referrer"
                      onerror="this.parentElement.hidden=true;">
+            </div>
+            {% elif question_image_url %}
+            {# Modes où le titre est la réponse à deviner : jamais une vraie
+               affiche (voir question_image_url dans services/questions.py),
+               seulement l'icône générique du mode, en badge plutôt qu'en
+               bannière large. #}
+            <div class="game-question-icon" aria-hidden="true">
+                <img src="{{ question_image_url }}" alt="" loading="eager">
             </div>
             {% endif %}
 

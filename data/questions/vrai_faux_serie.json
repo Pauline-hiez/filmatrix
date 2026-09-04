@@ -6452,7 +6452,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Friends, Chandler travaille dans la paléontologie.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/m3Jev59mJLyUp5bXhY5SVfIBZI0.jpg"
+    },
     "correct_answer": {
       "value": false
     },
@@ -6481,7 +6483,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans The Office, Michael Scott dirige la succursale de Scranton.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/mLyW3UTgi2lsMdtueYODcfAB9Ku.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -6510,7 +6514,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Walter White est professeur de chimie au début de Breaking Bad.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -6547,7 +6553,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dexter Morgan travaille comme expert en traces de sang.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/nS5ZSmrX92lu1GYAlXZye1mkDfd.jpg"
+    },
     "correct_answer": {
       "value": true
     },
@@ -6584,7 +6592,9 @@
     "mode": "vrai_faux",
     "content_type": "serie",
     "prompt": "Dans Sherlock, John Watson est médecin militaire avant de rencontrer Sherlock Holmes.",
-    "payload": {},
+    "payload": {
+      "question_image_url": "https://image.tmdb.org/t/p/w500/8rvLEmdI4gLrMO1rLqbNdnNcPFE.jpg"
+    },
     "correct_answer": {
       "value": true
     },

@@ -1520,7 +1520,8 @@
         "Aliens, le retour",
         "Alien 3",
         "Alien: La Résurrection"
-      ]
+      ],
+      "question_image_url": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
     },
     "correct_answer": {
       "order": [

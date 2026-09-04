@@ -803,7 +803,42 @@ def test_qcm_options_are_shuffled(client, app):
 
 
 def test_qcm_adds_an_existing_work_poster_to_an_option(client, app):
-    """Une option correspondant à une œuvre déjà illustrée doit afficher sa vignette."""
+    """Si les quatre options correspondent à une œuvre déjà illustrée, leurs
+    vignettes doivent toutes s'afficher (tout ou rien : voir shuffle_options)."""
+    with app.app_context():
+        titles = ["Joker", "Autre", "Encore", "Dernier"]
+        posters = [
+            Question(
+                mode="devinette_affiche",
+                content_type="film",
+                prompt="",
+                payload={"poster_url": f"https://images.example/{title.lower()}.jpg"},
+                correct_answer={"film": title},
+                requires_account=False,
+            )
+            for title in titles
+        ]
+        qcm = Question(
+            mode="qcm",
+            content_type="film",
+            prompt="Quel film ?",
+            payload={"options": titles},
+            correct_answer={"index": 0},
+            requires_account=False,
+        )
+        db.session.add_all([*posters, qcm])
+        db.session.commit()
+
+    page = client.get("/quiz/qcm/1").get_data(as_text=True)
+
+    for title in titles:
+        assert f"https://images.example/{title.lower()}.jpg" in page
+    assert 'class="game-answer-image"' in page
+
+
+def test_qcm_partial_option_images_render_as_text_only(client, app):
+    """Si une seule option sur quatre a une image, aucune ne doit s'afficher :
+    un mélange texte/image rend la question bancale (voir shuffle_options)."""
     with app.app_context():
         poster = Question(
             mode="devinette_affiche",
@@ -826,8 +861,8 @@ def test_qcm_adds_an_existing_work_poster_to_an_option(client, app):
 
     page = client.get("/quiz/qcm/1").get_data(as_text=True)
 
-    assert "https://images.example/joker.jpg" in page
-    assert 'class="game-answer-image"' in page
+    assert "https://images.example/joker.jpg" not in page
+    assert 'class="game-answer-image"' not in page
 
 
 def test_non_qcm_work_images_are_not_rendered(client, app):
@@ -860,6 +895,42 @@ def test_non_qcm_work_images_are_not_rendered(client, app):
 
     assert "https://images.example/film.jpg" not in page
     assert 'class="game-question-media"' not in page
+
+
+def test_citation_shows_the_mode_icon_as_a_badge(client, app):
+    """Citation ne peut jamais montrer l'affiche réelle (le titre est la
+    réponse à deviner) : elle affiche l'icône générique du mode, en petit
+    badge et non en bannière comme qcm/vrai_faux."""
+    with app.app_context():
+        question = Question(
+            mode="citation",
+            content_type="film",
+            prompt="«I'll be back.» De quel film vient cette réplique ?",
+            payload={"question_image_url": "https://images.example/terminator-answer.jpg"},
+            correct_answer={"film": "Terminator"},
+            requires_account=False,
+        )
+        db.session.add(question)
+        db.session.commit()
+        question_id = question.id
+
+    with client.session_transaction() as session:
+        session["run"] = {
+            "mode": "citation",
+            "correct": 0,
+            "answered": [],
+            "xp": 0,
+            "coins": 0,
+            "questions": [question_id],
+            "filters": {},
+        }
+
+    page = client.get("/quiz/citation/1").get_data(as_text=True)
+
+    assert "https://images.example/terminator-answer.jpg" not in page
+    assert 'class="game-question-media"' not in page
+    assert 'class="game-question-icon"' in page
+    assert "images/icones/citation.png" in page
 
 
 def test_qcm_falls_back_to_a_catalogued_work_poster(client, app):
@@ -945,9 +1016,9 @@ def test_qcm_uses_explicit_option_images(client, app):
                 "options": ["A", "B", "C", "D"],
                 "option_images": [
                     "https://images.example/a.jpg",
-                    None,
+                    "https://images.example/b.jpg",
                     "https://images.example/c.jpg",
-                    None,
+                    "https://images.example/d.jpg",
                 ],
             },
             correct_answer={"index": 0},

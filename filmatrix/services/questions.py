@@ -8,12 +8,12 @@ Elles ne dépendent que du modèle et de la session, leur place est ici.
 import random
 import unicodedata
 
-from flask import session
+from flask import session, url_for
 from flask_login import current_user
 from sqlalchemy import func
 
 from filmatrix.extensions import db
-from filmatrix.game_modes import MIX_MODE_SLUG
+from filmatrix.game_modes import MIX_MODE_SLUG, mode_image_icon
 from filmatrix.models import Character, Question, Tag, question_tags
 from filmatrix.services.character_answers import CHARACTER_ANSWERS
 from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
@@ -420,23 +420,41 @@ def shuffle_options(
         (index, option_label(option), option_image_url(question, index, option))
         for index, option in enumerate(question.payload["options"])
     ]
+
+    # Tout ou rien : une image ne provient parfois que d'une correspondance
+    # opportuniste (ex. un seul des quatre personnages a déjà un portrait
+    # dans la collection). Un mélange d'options illustrées et de texte nu
+    # rend la question bancale, donc on repasse tout en texte plutôt que
+    # d'afficher une illustration partielle.
+    if not all(image_url for _, _, image_url in options):
+        options = [(index, label, None) for index, label, _ in options]
+
     (shuffler or random).shuffle(options)
 
     return options
 
 
-def question_image_url(question) -> str | None:
-    """Retourne l'affiche de contexte d'une question QCM uniquement.
+# Modes où le titre de l'œuvre est déjà connu du joueur — donné dans
+# l'énoncé (vrai_faux) ou visible parmi les choix affichés (qcm) — et dont
+# l'affiche réelle peut donc illustrer la question sans rien révéler.
+# Tout autre mode retombe sur l'icône générique du mode (mode_image_icon) :
+# citation, devinette, film_melange et blindtest demandent justement de
+# deviner l'œuvre, leur affiche réelle spoilerait la réponse ; casting,
+# devinette_affiche et emoji ont déjà leur propre image comme mécanique de
+# jeu et n'ont besoin de rien de plus ici.
+POSTER_SAFE_MODES = {"qcm", "vrai_faux"}
 
-    Les modes Casting et Devinette doivent conserver leurs propres indices et
-    ne doivent jamais recevoir l'affiche de l'œuvre à deviner. L'URL enrichie
-    est prioritaire. Pour une ancienne question sans champ
-    d'image, on réutilise une affiche déjà enregistrée dans n'importe quel
-    mode, lorsque le titre apparaît explicitement dans l'énoncé. Aucun appel
-    réseau n'est effectué pendant le rendu d'une partie.
+
+def question_image_url(question) -> str | None:
+    """Retourne l'image de contexte d'une question, sans jamais révéler la réponse.
+
+    Aucun appel réseau n'est effectué pendant le rendu d'une partie : tout
+    vient du payload déjà enrichi (scripts/enrich_question_images.py), d'une
+    correspondance locale entre questions, ou de l'icône statique du mode.
     """
-    if question.mode != "qcm":
-        return None
+    if question.mode not in POSTER_SAFE_MODES:
+        icon_file = mode_image_icon(question.mode)
+        return url_for("static", filename=f"images/icones/{icon_file}") if icon_file else None
 
     payload = question.payload or {}
     direct_url = payload.get("question_image_url") or payload.get("poster_url")
@@ -465,8 +483,10 @@ def question_image_url(question) -> str | None:
         if candidates:
             return max(candidates, key=lambda candidate: candidate[0])[1]
 
-    # Les modes qui ont déjà une œuvre comme réponse peuvent utiliser son
-    # affiche, même lorsque le titre n'est pas répété dans l'énoncé.
+    # Ici, contrairement au bloc précédent, on ne vérifie plus que le titre
+    # apparaît dans l'énoncé : cela ne reste sûr que parce qu'on est déjà
+    # dans POSTER_SAFE_MODES (qcm, vrai_faux), jamais dans un mode où le
+    # titre est la réponse à deviner.
     answer = question.correct_answer or {}
     title = answer.get("film") or answer.get("title")
     if title:

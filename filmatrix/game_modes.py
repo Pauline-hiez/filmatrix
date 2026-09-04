@@ -26,6 +26,7 @@ GAME_MODES = [
         "how": "Un extrait de bande originale se lance. Tape le titre du film ou de la série qu'il accompagne.",
         "icon": "♪",
         "accent": "#60a5fa",
+        "image_icon": "blindtest.png",
     },
     {
         "slug": "devinette_affiche",
@@ -42,6 +43,7 @@ GAME_MODES = [
         "how": "Une réplique restée célèbre s'affiche. Retrouve l'œuvre d'où elle sort.",
         "icon": "❝",
         "accent": "#fbbf24",
+        "image_icon": "citation.png",
     },
     {
         "slug": "casting",
@@ -82,6 +84,7 @@ GAME_MODES = [
         "how": "Un premier indice, puis un autre à chaque erreur. Plus tu trouves tôt, plus c'est fort.",
         "icon": "◎",
         "accent": "#fb923c",
+        "image_icon": "devinette.png",
     },
     {
         "slug": "vrai_faux",
@@ -100,6 +103,22 @@ GAME_MODES = [
         "accent": "#fb7185",
     },
 ]
+
+# Icône de repli pour les modes dont le titre EST la réponse à deviner
+# (citation, devinette, film_melange, blindtest) : ces questions ne peuvent
+# jamais afficher l'affiche réelle de l'œuvre en en-tête sans spoiler la
+# réponse (voir question_image_url dans services/questions.py), donc on
+# illustre avec l'icône générique du mode à la place. Un mode encore sans
+# icône dédiée (static/images/icones/) reste simplement sans illustration.
+MODE_IMAGE_ICONS = {
+    entry["slug"]: entry["image_icon"] for entry in GAME_MODES if entry.get("image_icon")
+}
+
+
+def mode_image_icon(mode: str) -> str | None:
+    """Renvoie le nom de fichier de l'icône de repli pour ce mode, ou None."""
+    return MODE_IMAGE_ICONS.get(mode)
+
 
 # Les modes ouverts au multijoueur. Le mix n'y figure pas : un duel tire ses
 # leurres parmi les autres questions du même mode (cf. services/multiplayer.py),

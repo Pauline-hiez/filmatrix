@@ -5,6 +5,14 @@ les images déjà présentes dans les données, puis interroge TMDB avec un cach
 Une question générale (par exemple « quel film a gagné l'Oscar en 2020 ? ») n'est
 pas enrichie lorsqu'aucune œuvre unique ne peut être identifiée.
 
+Certains modes (citation, devinette, film_melange, blindtest, devinette_affiche,
+casting, emoji) demandent au joueur de deviner l'œuvre elle-même : la réponse
+correcte (``correct_answer``) ne doit alors JAMAIS servir de candidat, sous
+peine d'illustrer la question avec l'affiche de sa propre réponse. Ces modes
+n'affichent d'ailleurs pas ce champ (voir question_image_url dans
+filmatrix/services/questions.py, qui retombe sur une icône de mode générique
+pour eux) : ce script ne les enrichit donc plus du tout.
+
 Usage:
     python -m scripts.enrich_question_images
 """
@@ -184,25 +192,44 @@ def image_for_title(title: str, content_type: str, cache: dict, local_images: di
     return image
 
 
+# Modes où l'œuvre elle-même est la réponse à deviner : jamais illustrés par
+# ce script, quelle que soit la source envisagée pour l'image (voir le
+# docstring du module).
+SPOILER_RISK_MODES = {
+    "citation",
+    "devinette",
+    "film_melange",
+    "blindtest",
+    "devinette_affiche",
+    "casting",
+    "emoji",
+}
+
+
 def enrich_question(
     question: dict,
     titles: set[str],
     local_images: dict[str, str],
     cache: dict,
 ) -> bool:
+    mode = question.get("mode")
+    if mode in SPOILER_RISK_MODES:
+        return False
+
     payload = question.setdefault("payload", {})
     if payload.get("question_image_url") or payload.get("poster_url"):
         return False
 
     content_type = question.get("content_type", "film")
     answer = question.get("correct_answer") or {}
-    mode = question.get("mode")
 
+    # Titre de la réponse comme candidat : sûr uniquement parce que ces modes
+    # (qcm, vrai_faux, chronologie...) ne demandent jamais de deviner l'œuvre
+    # elle-même — voir SPOILER_RISK_MODES ci-dessus pour les modes exclus.
     candidates: list[str] = []
-    if mode != "qcm":
-        answer_title = answer.get("film") or answer.get("title")
-        if isinstance(answer_title, str):
-            candidates.append(answer_title)
+    answer_title = answer.get("film") or answer.get("title")
+    if isinstance(answer_title, str):
+        candidates.append(answer_title)
 
     candidates.extend(prompt_title_candidates(question.get("prompt", ""), titles))
 
