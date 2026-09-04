@@ -8,7 +8,7 @@ from filmatrix.extensions import db
 from filmatrix.models import Album, Character, UserCharacter, Question
 from filmatrix.models import Tag
 from filmatrix.catalog_rarities import humanize_tag_name
-from filmatrix.services.puzzle import get_puzzle_grid
+from filmatrix.services.puzzle import get_puzzle_grid, puzzle_columns
 
 
 # Poids de spécificité des types de tags : un album lié à un univers est
@@ -168,10 +168,12 @@ def fragment_result_payload(user, fragment_result: tuple[Character, bool] | None
         "frame_x": character.frame_x,
         "frame_y": character.frame_y,
         "frame_scale": character.frame_scale,
-        # Grille puzzle 3x3 : on envoie l'état après le gain et la liste des cases
-        # qui viennent d'être révélées, pour animer la case dans le toast.
+        # Grille puzzle : autant de cases que de fragments requis (voir
+        # puzzle.py). On envoie l'état après le gain, la liste des cases qui
+        # viennent d'être révélées, et le nombre de colonnes pour l'affichage.
         "puzzle_grid": grid_now,
         "puzzle_new_cells": new_cells,
+        "puzzle_columns": puzzle_columns(len(grid_now)),
     }
 
 def get_album_summaries(user) -> list[dict]:

@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if fragment_results %}
+{# Scène plein écran des fragments gagnés pendant la partie : jamais montrée
+   pendant le jeu, seulement ici, une fois la partie terminée (voir
+   static/js/fragment_reveal.js). #}
+<div id="fragment-overlay" class="fragment-overlay" role="dialog" aria-modal="true" aria-label="Fragments obtenus">
+    <div class="fragment-overlay-rails" aria-hidden="true"></div>
+    <div id="fragment-stage" class="fragment-stage"></div>
+    <p class="fragment-overlay-hint">Touche l'écran pour continuer</p>
+</div>
+<script type="application/json" id="fragment-results-data">{{ fragment_results | tojson }}</script>
+<script src="{{ url_for('static', filename='js/fragment_reveal.js') }}"></script>
+{% endif %}
 <div class="mx-auto max-w-xl">
     <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-12 text-center sm:px-10 sm:py-16">
         <span class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 text-3xl text-cyan-400">

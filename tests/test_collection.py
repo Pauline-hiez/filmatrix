@@ -260,7 +260,10 @@ def test_fragment_result_payload_exposes_progress(app):
         assert payload["progress_percent"] == 20
         assert payload["saga_name"] == "Harry Potter"
         assert "image_x" in payload and "frame_scale" in payload
-        assert len(payload["puzzle_grid"]) == 9
+        # La grille colle au vrai nombre de fragments requis (5 ici), pas à
+        # un 3x3 fixe : voir puzzle.py, grid_size_for.
+        assert len(payload["puzzle_grid"]) == 5
+        assert payload["puzzle_columns"] == 3
         assert payload["character_id"] == character.id
         assert payload["puzzle_new_cells"]  # au moins une case vient d'être révélée
 

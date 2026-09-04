@@ -1,32 +1,42 @@
-{# Grille puzzle 3×3, sans répétition de l'image.
+{# Grille puzzle, sans répétition de l'image.
 
    L'image est posée UNE fois derrière toute la grille (background cover,
    centrée) : elle est recadrée une seule fois, donc continue d'une case à
-   l'autre. Par-dessus, 9 cellules en surimpression découpent la grille :
-   - case révélée  -> cellule transparente, on voit le pan de l'image ;
-   - case cachée   -> cellule opaque avec un « ? ».
-   L'image étant derrière, les cases révélées non adjacentes forment bien un
-   puzzle à trous, et jamais une image dupliquée.
+   l'autre. Par-dessus, des pièces en surimpression découpent la grille :
+   - pièce révélée -> transparente, on voit le pan de l'image, juste cernée
+     d'un léger liseré lumineux (.puzzle-piece--revealed, voir base.html) ;
+   - pièce cachée  -> verre dépoli sombre qui laisse à peine deviner l'image
+     (.puzzle-piece--hidden), avec un « ? » discret.
+   Chaque pièce a une silhouette hexagonale irrégulière (6 variantes
+   cycliques .puzzle-piece--v0..v5, plusieurs coins entaillés) plutôt qu'un
+   rectangle net, pour donner l'air d'un vrai fragment plutôt que d'une
+   grille posée par-dessus l'image.
+
+   Le nombre de cases suit le vrai nombre de fragments requis par le
+   personnage (voir puzzle.py, grid_size_for) : un commun (3 fragments) a une
+   grille à 3 cases, un légendaire (8) une grille à 8 cases, etc. La classe
+   Tailwind grid-cols-N ne peut pas être générée dynamiquement (elle serait
+   purgée au build, cf. base.html) : le nombre de colonnes passe donc en
+   style inline.
 
    image_url   : image du personnage (chemin ou URL, passé par image_src)
-   revealed    : liste de 9 booléens (cellules déjà révélées)
-   gap_class   : classes d'écart entre les cases (défaut : gap-0.5)
+   revealed    : liste de booléens (cellules déjà révélées), une par fragment requis
+   columns     : nombre de colonnes de la grille (voir puzzle.py, puzzle_columns)
+   gap_class   : classes d'écart entre les cases (défaut : gap-1, pour bien séparer les pièces)
    cell_class  : classes complémentaires sur chaque cellule
    reveal_cell : index d'une cellule à animer (mise en évidence)
 #}
-{% macro puzzle_grid(image_url, revealed, gap_class="gap-0.5", cell_class="", reveal_cell=None) %}
+{% macro puzzle_grid(image_url, revealed, columns=3, gap_class="gap-1", cell_class="", reveal_cell=None) %}
 <div class="relative w-full aspect-square overflow-hidden rounded-lg bg-slate-950">
     <div class="absolute inset-0 bg-cover bg-center"
          style="background-image: url('{{ image_url }}'); background-repeat: no-repeat;"></div>
-    <div class="absolute inset-0 grid grid-cols-3 grid-rows-3 {{ gap_class }}">
+    <div class="absolute inset-0 grid {{ gap_class }}"
+         style="grid-template-columns: repeat({{ columns }}, 1fr); grid-auto-rows: 1fr;">
         {% for is_revealed in revealed %}
-        <div class="relative overflow-hidden {{ cell_class }}
+        <div class="puzzle-piece puzzle-piece--v{{ loop.index0 % 6 }} {{ 'puzzle-piece--revealed' if is_revealed else 'puzzle-piece--hidden' }} {{ cell_class }}
                     {% if reveal_cell is not none and loop.index0 == reveal_cell %}fragment-new-cell{% endif %}">
             {% if not is_revealed %}
-            {# Cellule totalement opaque : l'image ne doit jamais se deviner
-               à travers une case non gagnée. Le fond opaque masque tout. #}
-            <div class="absolute inset-0 bg-slate-800"></div>
-            <span class="absolute inset-0 flex items-center justify-center text-slate-600">?</span>
+            <span class="puzzle-piece-glyph text-xs">?</span>
             {% endif %}
         </div>
         {% endfor %}

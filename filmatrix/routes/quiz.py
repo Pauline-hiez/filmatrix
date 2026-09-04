@@ -48,8 +48,10 @@ from filmatrix.services.questions import (
 from filmatrix.services.score import (
     QUESTIONS_PER_RUN,
     RUN_LENGTH_PRESETS,
+    add_run_fragment_result,
     mark_run_fragment_awarded,
     read_run,
+    read_run_fragment_results,
     record_answer,
     resolve_run_length,
     run_fragment_awarded,
@@ -169,7 +171,11 @@ def quiz(mode: str, position: int) -> str:
     )
 
     if question is None:
-        return render_template("quiz/termine.html", score=read_run(session, mode))
+        return render_template(
+            "quiz/termine.html",
+            score=read_run(session, mode),
+            fragment_results=read_run_fragment_results(session, mode),
+        )
 
     # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
     # session expirée — on retombe sur ce que les filtres permettent.
@@ -289,6 +295,14 @@ def quiz(mode: str, position: int) -> str:
 
                 db.session.commit()
 
+        # Les fragments gagnés ne sont pas renvoyés tout de suite au client :
+        # ils sont mis de côté pour l'écran de fin de partie, qui les révèle
+        # tous ensemble dans une animation dédiée (voir templates/quiz/termine.html).
+        if current_user.is_authenticated:
+            for gained in (fragment_result, challenge_fragment_result, streak_bonus_fragment_result):
+                if gained is not None:
+                    add_run_fragment_result(session, mode, fragment_result_payload(current_user, gained))
+
         correct_answer_text = None if is_correct else format_correct_answer(
             question,
             alternate_answer=character_answer(question) if character_mode else None,
@@ -309,10 +323,7 @@ def quiz(mode: str, position: int) -> str:
                 "give_up": True,
                 "new_badges": new_badges,
                 "correct_answer": correct_answer_text,
-                "fragment_result": fragment_result_payload(current_user, fragment_result),
                 "completed_challenge": completed_challenge is not None,
-                "challenge_fragment_result": fragment_result_payload(current_user, challenge_fragment_result),
-                "streak_bonus_fragment_result": fragment_result_payload(current_user, streak_bonus_fragment_result),
             }
 
         return {
@@ -320,10 +331,7 @@ def quiz(mode: str, position: int) -> str:
             "give_up": True,
             "new_badges": new_badges,
             "correct_answer": correct_answer_text,
-            "fragment_result": fragment_result_payload(current_user, fragment_result),
             "completed_challenge": completed_challenge is not None,
-            "challenge_fragment_result": fragment_result_payload(current_user, challenge_fragment_result),
-            "streak_bonus_fragment_result": fragment_result_payload(current_user, streak_bonus_fragment_result),
         }
 
     scrambled_title = None

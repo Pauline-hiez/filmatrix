@@ -268,9 +268,8 @@ if (raritySelect && fragmentsInput && autoFragmentsCheckbox) {
 // ---- Cadre de rareté : l'aperçu utilise le cadre de la rareté choisie ----
 
 // Miroir JS de RARITY_FRAME_IMAGES (filmatrix/catalog_rarities.py).
-// commun = pas de cadre (l'image s'affiche nue).
 const RARITY_FRAME_IMAGES = {
-    commun: null,
+    commun: "rarete0.png",
     rare: "rarete1.png",
     epique: "rarete2.png",
     legendaire: "rarete3.png",

@@ -38,120 +38,6 @@ function showBadgeNotification(badge) {
     }, 3000);
 }
 
-const FRAGMENT_RARITY_LABELS = {
-    commun: "Commun",
-    rare: "Rare",
-    epique: "Épique",
-    legendaire: "Légendaire",
-    mythique: "Mythique",
-};
-
-function assetUrl(url) {
-    if (!url) return "";
-    if (/^https?:\/\//i.test(url)) return url;
-    return "/static/" + url;
-}
-
-// Animation de la case qui vient d'être révélée dans le toast.
-function ensureFragmentRevealStyle() {
-    if (document.getElementById("fragment-reveal-style")) {
-        return;
-    }
-    const style = document.createElement("style");
-    style.id = "fragment-reveal-style";
-    style.textContent = `
-        @keyframes fragmentCellReveal {
-            0% { opacity: 0; transform: scale(0.3); filter: brightness(2.2); }
-            55% { opacity: 1; transform: scale(1.18); }
-            100% { opacity: 1; transform: scale(1); filter: brightness(1); }
-        }
-        .fragment-cell-reveal { animation: fragmentCellReveal 0.65s ease-out; }
-        @keyframes fragmentGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
-            40% { box-shadow: 0 0 10px 2px rgba(34, 211, 238, 0.7); }
-        }
-        .fragment-new-cell { animation: fragmentCellReveal 0.65s ease-out, fragmentGlow 0.9s ease-out; }
-    `;
-    document.head.appendChild(style);
-}
-
-function buildPuzzleCells(fragmentResult, imageUrl) {
-    // Vraie découpe puzzle : l'image est posée UNE fois (couvre la grille),
-    // puis 9 cellules viennent par-dessus, transparentes si révélées ou
-    // opaques avec un « ? » sinon. L'image ne se répète jamais case à case.
-    const grid = fragmentResult.puzzle_grid || [];
-    const newCells = fragmentResult.puzzle_new_cells || [];
-
-    const imageBackdrop = imageUrl
-        ? `<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('${imageUrl}');background-repeat:no-repeat;"></div>`
-        : "";
-
-    function cellClass(index) {
-        return newCells.indexOf(index) !== -1 ? "fragment-new-cell" : "";
-    }
-
-    if (!grid.length) {
-        return imageBackdrop;
-    }
-
-    const cellsHtml = grid.map(function (revealed, index) {
-        const extra = cellClass(index);
-        if (revealed) {
-            return `<div class="relative overflow-hidden ${extra}"></div>`;
-        }
-        return `<div class="relative overflow-hidden ${extra}">
-            <div class="absolute inset-0 bg-slate-800"></div>
-            <span class="absolute inset-0 flex items-center justify-center text-[0.6rem] text-slate-600">?</span>
-        </div>`;
-    }).join("");
-
-    return `${imageBackdrop}<div class="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-px">${cellsHtml}</div>`;
-}
-
-function showFragmentNotification(fragmentResult) {
-    const title = fragmentResult.just_unlocked ? "Personnage débloqué !" : "Fragment obtenu";
-    const icon = fragmentResult.just_unlocked ? "🎉" : "🧩";
-    const rarity = FRAGMENT_RARITY_LABELS[fragmentResult.rarity] || fragmentResult.rarity || "";
-
-    const imageUrl = assetUrl(fragmentResult.image_url);
-    const progress = fragmentResult.progress_percent || 0;
-    const sagaName = fragmentResult.saga_name || "";
-    ensureFragmentRevealStyle();
-
-    const puzzleCells = buildPuzzleCells(fragmentResult, imageUrl);
-
-    const notification = document.createElement("div");
-    notification.className =
-        "fixed top-4 left-1/2 -translate-x-1/2 z-50 flex cursor-pointer items-center gap-3 rounded-xl border border-cyan-400 bg-slate-900 px-4 py-3 shadow-2xl transition-opacity duration-500 max-w-sm";
-    notification.setAttribute("role", "status");
-    notification.addEventListener("click", function () {
-        window.location.href = "/collection";
-    });
-    notification.innerHTML = `
-        <div class="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-slate-700 bg-slate-950">
-            ${puzzleCells}
-        </div>
-        <div class="min-w-0 flex-1">
-            <p class="text-sm font-bold text-cyan-400">${icon} ${title}</p>
-            <p class="truncate text-sm font-semibold text-slate-100">${fragmentResult.character_name}</p>
-            <p class="truncate text-xs text-slate-500">${sagaName}${sagaName && rarity ? " · " : ""}${rarity}</p>
-            <div class="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
-                <div class="h-1.5 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500" style="width:${progress}%"></div>
-            </div>
-            <p class="mt-0.5 text-[0.65rem] text-slate-500">${fragmentResult.fragments}/${fragmentResult.fragments_required} fragments</p>
-        </div>
-    `;
-
-    document.body.appendChild(notification);
-
-    setTimeout(function () {
-        notification.style.opacity = "0";
-        setTimeout(function () {
-            notification.remove();
-        }, 500);
-    }, 3500);
-}
-
 function showAnswerFeedback(isCorrect, correctAnswer) {
     const feedback = document.getElementById("answer-feedback");
     const label = document.getElementById("answer-feedback-label");
@@ -266,10 +152,6 @@ document.querySelectorAll(".answer-button").forEach(function (button) {
                 });
             }
 
-            if (result.fragment_result) {
-                showFragmentNotification(result.fragment_result);
-            }
-
             goToNextQuestion();
         }
     });
@@ -324,10 +206,6 @@ if (document.getElementById("riddle-submit")) {
                     result.new_badges.forEach(function (badge) {
                         showBadgeNotification(badge);
                     });
-                }
-
-                if (result.fragment_result) {
-                    showFragmentNotification(result.fragment_result);
                 }
 
                 showAnswerFeedback(result.is_correct, result.correct_answer);
@@ -409,10 +287,6 @@ if (riddleButton) {
             result.new_badges.forEach(function (badge) {
                 showBadgeNotification(badge);
             });
-        }
-
-        if (result.fragment_result) {
-            showFragmentNotification(result.fragment_result);
         }
 
         setTimeout(function () {

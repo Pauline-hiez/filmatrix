@@ -65,6 +65,27 @@ def mark_run_fragment_awarded(store, mode: str) -> None:
     store[SESSION_KEY] = run
 
 
+def add_run_fragment_result(store, mode: str, payload: dict) -> None:
+    """Met de côté un gain de fragment pour l'écran de fin de partie.
+
+    Les fragments ne sont révélés qu'à la fin d'une partie, jamais pendant
+    (voir templates/quiz/termine.html) : plutôt que d'être renvoyés tout de
+    suite au client, ils s'accumulent ici au fil des questions."""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return
+    run.setdefault("fragment_results", []).append(payload)
+    store[SESSION_KEY] = run
+
+
+def read_run_fragment_results(store, mode: str) -> list[dict]:
+    """Retourne les gains de fragments accumulés pendant la partie en cours."""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return []
+    return run.get("fragment_results", [])
+
+
 def run_question_id(store, mode: str, position: int, filters: dict | None = None) -> int | None:
     """Retourne l'id de la question tirée pour cette position, ou None
 

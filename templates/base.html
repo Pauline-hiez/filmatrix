@@ -57,6 +57,341 @@
             pointer-events: none;
         }
 
+        /* Déblocage de fragment : pellicule qui balaie la vignette, flash de
+           clap, puis le nouveau fragment s'emboîte ("CLAC") dans la grille
+           puzzle. Partagé par la scène plein écran de fin de partie
+           (static/js/fragment_reveal.js, templates/quiz/termine.html) et la
+           grille de la page collection (puzzle_grid.html), qui appliquent
+           toutes deux .fragment-new-cell à la case qui vient d'apparaître. */
+        @keyframes fragmentClapFlash {
+            0% { opacity: 0.85; }
+            100% { opacity: 0; }
+        }
+        .fragment-clap-flash {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            background: #f8fafc;
+            pointer-events: none;
+            animation: fragmentClapFlash 0.2s ease-out forwards;
+        }
+
+        @keyframes fragmentFilmstripSweep {
+            0% { transform: translate(-130%, -20%) rotate(-20deg); opacity: 0; }
+            12% { opacity: 1; }
+            78% { opacity: 1; }
+            100% { transform: translate(230%, 20%) rotate(-20deg); opacity: 0; }
+        }
+        .fragment-filmstrip {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 46%;
+            height: 160%;
+            margin-top: -80%;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(15, 23, 42, 0.95) 0,
+                    rgba(15, 23, 42, 0.95) 10%,
+                    transparent 10%,
+                    transparent 16%
+                ),
+                linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7));
+            background-size: 100% 16%, 100% 100%;
+            box-shadow: 0 0 12px 2px rgba(34, 211, 238, 0.35);
+            animation: fragmentFilmstripSweep 0.6s cubic-bezier(0.3, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fragmentSnapIn {
+            0% { opacity: 0; transform: scale(1.9) rotate(14deg); filter: brightness(2.2); }
+            55% { opacity: 1; transform: scale(0.88) rotate(-3deg); filter: brightness(1.7); }
+            78% { transform: scale(1.06) rotate(1deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); filter: brightness(1); }
+        }
+        .fragment-new-cell {
+            animation: fragmentSnapIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            animation-delay: 0.45s;
+        }
+        /* Reflet qui balaie la pièce juste après qu'elle s'est emboîtée,
+           comme une surface qui accroche la lumière en se mettant en place. */
+        .fragment-new-cell::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+            background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.6) 48%, transparent 66%);
+            background-size: 240% 240%;
+            background-position: -80% -80%;
+            mix-blend-mode: screen;
+            animation: fragmentShineSweep 0.65s ease-out 0.55s both;
+        }
+        @keyframes fragmentShineSweep {
+            0% { background-position: -80% -80%; opacity: 0; }
+            12% { opacity: 1; }
+            100% { background-position: 160% 160%; opacity: 0; }
+        }
+
+        /* Pièces de puzzle : silhouette hexagonale irrégulière (6 variantes
+           cycliques, v0-v5 — plusieurs coins entaillés, pas juste un) plutôt
+           qu'une grille bien nette, légère ombre portée pour donner du
+           relief, liseré lumineux sur les bords, et les cases encore cachées
+           laissent deviner l'image en transparence givrée plutôt qu'un aplat
+           opaque. Partagé par la grille de la collection (puzzle_grid.html)
+           et la scène de fin de partie (fragment_reveal.js). */
+        .puzzle-piece {
+            position: relative;
+            overflow: hidden;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+        }
+        .puzzle-piece--v0 { clip-path: polygon(14% 0%, 100% 0%, 100% 76%, 86% 100%, 0% 100%, 0% 18%); }
+        .puzzle-piece--v1 { clip-path: polygon(0% 12%, 18% 0%, 100% 0%, 100% 84%, 82% 100%, 0% 100%); }
+        .puzzle-piece--v2 { clip-path: polygon(0% 0%, 84% 0%, 100% 16%, 100% 100%, 16% 100%, 0% 80%); }
+        .puzzle-piece--v3 { clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 14% 100%, 0% 82%, 0% 16%); }
+        .puzzle-piece--v4 { clip-path: polygon(0% 0%, 100% 0%, 100% 72%, 88% 100%, 18% 100%, 0% 82%); }
+        .puzzle-piece--v5 { clip-path: polygon(20% 0%, 86% 0%, 100% 20%, 100% 100%, 14% 100%, 0% 14%); }
+
+        .puzzle-piece--revealed {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 0 0 1px rgba(34, 211, 238, 0.1);
+        }
+
+        .puzzle-piece--hidden {
+            background:
+                radial-gradient(120% 140% at 30% 20%, rgba(71, 85, 105, 0.4), transparent 60%),
+                rgba(2, 6, 23, 0.72);
+            backdrop-filter: blur(6px) saturate(70%);
+            -webkit-backdrop-filter: blur(6px) saturate(70%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+                inset 0 0 16px rgba(0, 0, 0, 0.5);
+        }
+        .puzzle-piece--hidden::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(155deg, rgba(148, 163, 184, 0.14), transparent 55%);
+            pointer-events: none;
+        }
+        .puzzle-piece-glyph {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(203, 213, 225, 0.6);
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+        }
+
+        /* Pulsation de bordure (couleur de rareté injectée via --frag-glow)
+           quand le personnage vient d'être complété. */
+        @keyframes fragmentUnlockPulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--frag-glow, rgba(167, 139, 250, 0.6)); }
+            50% { box-shadow: 0 0 24px 5px var(--frag-glow, rgba(167, 139, 250, 0.6)); }
+        }
+        .fragment-unlock-pulse {
+            animation: fragmentUnlockPulse 1s ease-in-out 0.9s 3;
+        }
+
+        @keyframes fragmentUnlockPop {
+            0% { transform: scale(0.9); }
+            55% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        .fragment-unlock-pop {
+            animation: fragmentUnlockPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.85s both;
+        }
+
+        /* Remplissage animé de la barre de progression : la largeur de départ
+           (avant le fragment) est posée en inline style, puis JS bascule sur
+           la largeur finale une frame plus tard pour déclencher la transition. */
+        .fragment-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #22d3ee, #8b5cf6);
+            transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 0.45s;
+        }
+
+        /* ---- Scène plein écran de fin de partie (fragment_reveal.js) ---- */
+        /* Le gain de fragment n'interrompt jamais une partie en cours : il
+           n'est révélé qu'une fois la partie terminée, dans une mise en scène
+           centrale façon projection, plutôt qu'en toast pendant le jeu. */
+
+        .fragment-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 2rem 1.25rem;
+            text-align: center;
+            background: radial-gradient(120% 100% at 50% 18%, rgba(30, 41, 59, 0.6), rgba(2, 6, 23, 0.96) 68%);
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            cursor: pointer;
+        }
+        .fragment-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* Rails de pellicule décoratifs sur les bords de l'écran, pour ancrer
+           la scène dans l'univers cinéma même hors de la carte elle-même. */
+        .fragment-overlay-rails {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.55;
+            background:
+                repeating-linear-gradient(to bottom, rgba(15, 23, 42, 0.9) 0, rgba(15, 23, 42, 0.9) 8%, transparent 8%, transparent 16%) left / 3.2vw 100% no-repeat,
+                repeating-linear-gradient(to bottom, rgba(15, 23, 42, 0.9) 0, rgba(15, 23, 42, 0.9) 8%, transparent 8%, transparent 16%) right / 3.2vw 100% no-repeat;
+        }
+
+        .fragment-stage {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+            z-index: 1;
+            max-width: 22rem;
+        }
+
+        .fragment-card {
+            position: relative;
+            width: min(58vw, 240px);
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 1rem;
+            border: 2px solid var(--frag-border, #64748b);
+            background: #020617;
+            box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.75);
+        }
+
+        @keyframes fragmentBurstPulse {
+            0% { opacity: 0; transform: scale(0.4); }
+            40% { opacity: 0.85; }
+            100% { opacity: 0; transform: scale(1.7); }
+        }
+        .fragment-burst {
+            position: absolute;
+            inset: -25%;
+            z-index: 0;
+            border-radius: 9999px;
+            background: radial-gradient(circle, var(--frag-glow, rgba(167, 139, 250, 0.6)) 0%, transparent 70%);
+            filter: blur(8px);
+            animation: fragmentBurstPulse 1.5s ease-out both;
+            pointer-events: none;
+        }
+
+        @keyframes fragmentTremble {
+            0%, 100% { transform: translate(0, 0) rotate(0); }
+            20% { transform: translate(-2px, 1.5px) rotate(-0.5deg); }
+            40% { transform: translate(2px, -1.5px) rotate(0.5deg); }
+            60% { transform: translate(-1.5px, 2px) rotate(-0.4deg); }
+            80% { transform: translate(1.5px, -2px) rotate(0.4deg); }
+        }
+        .fragment-stage-tremble {
+            animation: fragmentTremble 0.5s ease-in-out 2;
+        }
+
+        .fragment-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+        }
+        @keyframes fragmentParticleFloat {
+            0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+            18% { opacity: 1; }
+            100% { opacity: 0; transform: translate(var(--dx, 0), -110px) scale(1); }
+        }
+        .fragment-particle {
+            position: absolute;
+            bottom: 6%;
+            border-radius: 999px;
+            animation: fragmentParticleFloat 1.7s ease-out both;
+            animation-delay: var(--p-delay, 0s);
+            box-shadow: 0 0 6px 1px currentColor;
+        }
+
+        @keyframes fragmentStagePop {
+            0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .fragment-stage-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin: 0.35rem 0 0;
+            animation: fragmentStagePop 0.4s ease-out 0.5s both;
+        }
+        .fragment-stage-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 0;
+            animation: fragmentStagePop 0.4s ease-out 0.58s both;
+        }
+        .fragment-stage-sub {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            animation: fragmentStagePop 0.4s ease-out 0.64s both;
+        }
+        .fragment-stage-bar-track {
+            margin-top: 0.4rem;
+            height: 0.4rem;
+            width: min(58vw, 240px);
+            overflow: hidden;
+            border-radius: 999px;
+            background: #1e293b;
+        }
+        .fragment-stage-count {
+            margin: 0.2rem 0 0;
+            font-size: 0.72rem;
+            color: #64748b;
+        }
+        .fragment-overlay-hint {
+            position: absolute;
+            bottom: 1.5rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #475569;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fragment-filmstrip,
+            .fragment-clap-flash,
+            .fragment-new-cell,
+            .fragment-new-cell::after,
+            .fragment-unlock-pulse,
+            .fragment-unlock-pop,
+            .fragment-burst,
+            .fragment-stage-tremble,
+            .fragment-particle,
+            .fragment-stage-title,
+            .fragment-stage-name,
+            .fragment-stage-sub {
+                animation: none !important;
+            }
+        }
+
         /* Voile sombre + poussière d'étoiles à poser par-dessus une image de
            fond décorative (habillage) pour l'assourdir, façon ciel nocturne
            brumeux. z-index 1 : entre l'image (0) et le contenu (10). */

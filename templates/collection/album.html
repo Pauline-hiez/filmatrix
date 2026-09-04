@@ -29,7 +29,7 @@
                 ) }}
             {% else %}
                 <div class="mb-2">
-                    {{ puzzle_grid(character.image_url | image_src, character.puzzle_grid, reveal_cell=character.puzzle_new_cell) }}
+                    {{ puzzle_grid(character.image_url | image_src, character.puzzle_grid, columns=character.puzzle_columns, reveal_cell=character.puzzle_new_cell) }}
                 </div>
             {% endif %}
 

@@ -169,11 +169,16 @@ def test_a_run_awards_only_one_fragment(client, app):
 
     client.post("/connexion", data={"email": "chasseur@filmatrix.fr", "password": "Azerty1!"})
     client.get("/quiz/qcm/1?level=moyen")
-    first = client.post("/quiz/qcm/1?level=moyen", data={"answer": "0"}).get_json()
-    second = client.post("/quiz/qcm/2?level=moyen", data={"answer": "0"}).get_json()
+    client.post("/quiz/qcm/1?level=moyen", data={"answer": "0"})
+    client.post("/quiz/qcm/2?level=moyen", data={"answer": "0"})
 
-    assert first["fragment_result"] is not None
-    assert second["fragment_result"] is None
+    # Les fragments gagnés ne sont plus renvoyés dans la réponse JSON de
+    # chaque question : ils s'accumulent en session pour l'écran de fin de
+    # partie (voir add_run_fragment_result). Un seul gain doit s'y trouver.
+    with client.session_transaction() as sess:
+        fragment_results = sess["run"]["fragment_results"]
+
+    assert len(fragment_results) == 1
 
 
 def test_a_new_run_resets_the_previous_score(client, app):

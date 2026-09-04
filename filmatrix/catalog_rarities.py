@@ -60,11 +60,10 @@ def fragments_for_rarity(rarity: str, fallback: int = 5) -> int:
 
 
 # Cadre décoratif appliqué sur l'image de chaque personnage, selon sa rareté
-# (static/images/cadres/). Le commun n'en a pas : son image s'affiche nue.
-# Source unique : la macro de rendu (character_frame.html), la preview admin
-# (JS) et le toast de fragment (quiz.js) lisent ce mapping.
+# (static/images/cadres/). Source unique : la macro de rendu
+# (character_frame.html) et la preview admin (JS) lisent ce mapping.
 RARITY_FRAME_IMAGES = {
-    "commun": None,
+    "commun": "rarete0.png",
     "rare": "rarete1.png",
     "epique": "rarete2.png",
     "legendaire": "rarete3.png",
