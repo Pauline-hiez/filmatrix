@@ -88,8 +88,17 @@ def save_character_image(uploaded_file):
         raise ValueError("Échec de l'envoi de l'image vers le stockage. Réessaie.") from error
 
 
+def openmoji_hex_to_unicode(code: str) -> str:
+    """Convertit un hexcode OpenMoji (ex: "1F3AC", ou "1F1EB-1F1F7" pour un
+    drapeau) en l'emoji Unicode réel qu'il représente."""
+    try:
+        return "".join(chr(int(part, 16)) for part in code.split("-") if part)
+    except ValueError:
+        return ""
+
+
 @bp.route("/admin/questions")
-@login_required 
+@login_required
 @admin_required
 def admin_questions_list() -> str:
     """Affiche la liste de toutes les questions, groupées par mode pour l'admin"""
@@ -116,7 +125,31 @@ def admin_questions_list() -> str:
             thumb = options[0] if options else None
         if not thumb:
             thumb = payload.get("admin_reference_image")
+        if not thumb:
+            # Dernier recours pour emoji : une question créée/pas encore
+            # enrichie n'a pas encore d'admin_reference_image (voir
+            # ADMIN_REFERENCE_MODES, scripts/enrich_question_images.py) -
+            # mieux vaut son premier indice OpenMoji que l'icône générique du
+            # mode, en attendant.
+            visuals = payload.get("visuals") or []
+            if visuals and visuals[0].get("value"):
+                thumb = f"https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{visuals[0]['value']}.svg"
         thumbnails[question.id] = thumb
+
+    # "Texte affiché" (question.prompt) est un champ libre, indépendant des
+    # indices réellement choisis (payload.visuals) - éditer les emojis dans
+    # la modale ne le met jamais à jour tout seul. Sans ce libellé calculé à
+    # part, la liste continuait donc d'afficher l'ancien texte après avoir
+    # modifié les emojis, ce qui donnait l'impression que rien n'était
+    # enregistré.
+    emoji_visuals_text = {
+        question.id: "".join(
+            openmoji_hex_to_unicode(item.get("value", ""))
+            for item in (question.payload or {}).get("visuals", [])
+        )
+        for question in all_questions
+        if question.mode == "emoji"
+    }
 
     # Statistiques réelles : nombre de réponses et taux de réussite.
     stats_rows = (
@@ -147,6 +180,7 @@ def admin_questions_list() -> str:
             questions_by_mode=questions_by_mode,
             total_count=len(all_questions),
             thumbnails=thumbnails,
+            emoji_visuals_text=emoji_visuals_text,
             question_stats=question_stats,
             mode_meta=mode_meta,
             active_admin_section="questions"
@@ -198,11 +232,15 @@ def admin_questions_edit(question_id: int) -> str:
     """Affiche le formulaire de modification (GET) ou applique les changements (POST)"""
     question = Question.query.get_or_404(question_id)
 
+    is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+
     if request.method == "POST":
         try:
             payload = json.loads(request.form["payload"])
             correct_answer = json.loads(request.form["correct_answer"])
         except json.JSONDecodeError:
+            if is_ajax:
+                return {"success": False, "error": "Le payload ou la réponse correcte n'est pas un JSON valide."}, 400
             flash("Le payload ou la réponse correcte n'est pas un JSON valide.")
             return render_template("admin/question_form.html", question=question)
 
@@ -219,6 +257,14 @@ def admin_questions_edit(question_id: int) -> str:
         question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
 
         db.session.commit()
+
+        # Modifiée depuis la modale : la page /admin/questions sous-jacente
+        # n'a pas bougé, inutile d'y renaviguer (et de perdre le scroll, le
+        # filtre de recherche, la section en cours...) - le JS raccroche
+        # juste la ligne à jour à la place de l'ancienne (voir
+        # admin_question_modal.js).
+        if is_ajax:
+            return {"success": True}
 
         flash("Question modifiée avec succès.")
         return redirect(url_for("admin.admin_questions_list"))

@@ -116,12 +116,19 @@
                 {% for question in questions %}
                 {% set meta = mode_meta.get(mode, {}) %}
                 {% set answers, success_rate = question_stats.get(question.id, (0, None)) %}
+                {# emoji : question.prompt (« Texte affiché ») est un champ libre qui ne
+                   suit pas les indices réellement choisis (payload.visuals) - modifier
+                   les emojis dans la modale ne le met jamais à jour tout seul. Sans ce
+                   libellé calculé côté serveur à partir des vrais indices, la liste
+                   continuait d'afficher l'ancien texte après une modification. #}
+                {% set emoji_text = emoji_visuals_text.get(question.id) if mode == 'emoji' else none %}
+                {% set display_label = emoji_text if emoji_text else (question.prompt if question.prompt else question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)'))) %}
                 <tr class="question-row border-t border-cyan-400/10 hover:bg-slate-900/40"
                     id="question-row-{{ question.id }}"
-                    data-search-text="{{ question.prompt }} {{ question.mode }} {{ question.correct_answer.get('film', '') }} {{ question.correct_answer.get('title', '') }}"
+                    data-search-text="{{ display_label }} {{ question.prompt }} {{ question.mode }} {{ question.correct_answer.get('film', '') }} {{ question.correct_answer.get('title', '') }}"
                     data-mode="{{ mode }}"
                     data-created-index="{{ loop.index }}"
-                    data-display-text="{{ question.prompt if question.prompt else question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}">
+                    data-display-text="{{ display_label }}">
                     {# Question / contenu #}
                     <td class="px-3 py-2">
                         <div class="flex items-center gap-3">
@@ -134,7 +141,7 @@
                             {% endif %}
                             <div class="min-w-0">
                                 <p class="max-w-md truncate font-medium text-slate-200">
-                                    {% if question.prompt %}{{ question.prompt }}{% else %}{{ question.correct_answer.get('film', question.correct_answer.get('title', '(sans texte affiché)')) }}{% endif %}
+                                    {{ display_label }}
                                 </p>
                                 <p class="mt-0.5 text-xs text-slate-500">ID {{ question.id }} · {{ mode_labels.get(mode, mode) }}</p>
                             </div>

@@ -40,11 +40,66 @@
         }
     }
 
+    // Raccroche la ligne modifiée à jour à la place de l'ancienne plutôt que
+    // de renaviguer vers /admin/questions : sur cette page, avec beaucoup de
+    // questions à corriger d'affilée, revenir en haut de la liste à chaque
+    // sauvegarde faisait perdre le défilement et la section en cours.
+    async function refreshRow(questionId) {
+        const response = await fetch(window.location.pathname + window.location.search);
+        const html = await response.text();
+        const freshDocument = new DOMParser().parseFromString(html, "text/html");
+        const freshRow = freshDocument.getElementById(`question-row-${questionId}`);
+        const currentRow = document.getElementById(`question-row-${questionId}`);
+        if (!freshRow || !currentRow) return;
+        // Met à jour la ligne en place (contenu + attributs de recherche)
+        // plutôt que de la remplacer : admin_questions_search.js capture ses
+        // lignes une fois au chargement (allRows) - un nouveau nœud sortirait
+        // de son suivi et échapperait ensuite à la recherche/pagination.
+        currentRow.innerHTML = freshRow.innerHTML;
+        currentRow.setAttribute("data-search-text", freshRow.getAttribute("data-search-text") || "");
+        currentRow.setAttribute("data-display-text", freshRow.getAttribute("data-display-text") || "");
+    }
+
+    async function submitForm(form) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton) submitButton.disabled = true;
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            });
+            const data = await response.json();
+            if (!data.success) {
+                alert(data.error || "La question n'a pas pu être enregistrée.");
+                return;
+            }
+            const match = form.action.match(/\/admin\/questions\/(\d+)\/modifier/);
+            if (match) await refreshRow(match[1]);
+            closeModal();
+        } catch (error) {
+            alert("La question n'a pas pu être enregistrée.");
+        } finally {
+            if (submitButton) submitButton.disabled = false;
+        }
+    }
+
     document.querySelectorAll(".question-edit-button").forEach((button) => {
         button.addEventListener("click", () => openModal(button));
     });
     closeButton?.addEventListener("click", closeModal);
     content.addEventListener("click", (event) => { if (event.target.closest("[data-modal-cancel]")) closeModal(); });
+    // Écouteur délégué sur #question-edit-content plutôt que sur le <form>
+    // directement : ce dernier est réinjecté à chaque ouverture, mais son
+    // parent, lui, ne change jamais. Se déclenche après le script du
+    // formulaire (admin_question_form.js) qui a déjà rempli les champs
+    // cachés (payload, correct_answer...) au moment de la remontée (bubble)
+    // de l'événement jusqu'ici.
+    content.addEventListener("submit", (event) => {
+        if (event.target.id !== "question-form") return;
+        event.preventDefault();
+        submitForm(event.target);
+    });
     modal.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
     document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !modal.classList.contains("hidden")) closeModal(); });
 })();

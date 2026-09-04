@@ -255,6 +255,237 @@ def test_editing_a_citation_question_preserves_its_reference_image(client, app):
         assert refreshed.payload["admin_reference_image"] == "https://images.example/terminator-admin.jpg"
 
 
+# ---- Codes emoji (payload.visuals) : la modale ET le formulaire pleine
+# page doivent pré-remplir la zone de texte, sans quoi rouvrir une question
+# emoji pour la modifier repart d'une liste vide -----------------------------
+
+def create_emoji_question() -> Question:
+    question = Question(
+        mode="emoji",
+        prompt="🎬🏰👑",
+        payload={"visuals": [
+            {"type": "openmoji", "value": "1F3AC"},
+            {"type": "openmoji", "value": "1F3F0"},
+            {"type": "openmoji", "value": "1F451"},
+        ]},
+        correct_answer={"film": "The Lion King"},
+        requires_account=False,
+    )
+    db.session.add(question)
+    db.session.commit()
+    return question
+
+
+def test_emoji_question_appears_in_the_question_list_thumbnail(client, app):
+    """emoji n'a ni affiche ni admin_reference_image : sans ce repli, la
+    vignette de la liste retombait sur l'icône générique du mode plutôt que
+    sur l'un des indices réellement choisis pour cette question."""
+    with app.app_context():
+        create_admin()
+        question = create_emoji_question()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    page = client.get("/admin/questions").get_data(as_text=True)
+
+    assert f'id="question-row-{question_id}"' in page
+    assert "1F3AC.svg" in page
+
+
+def test_emoji_question_list_label_reflects_the_actual_visuals_not_the_stale_prompt(client, app):
+    """question.prompt (« Texte affiché ») est un champ libre, indépendant de
+    payload.visuals : modifier les emojis dans la modale ne le met jamais à
+    jour tout seul. Sans un libellé recalculé depuis les vrais indices, la
+    liste continuait d'afficher l'ancien texte après avoir changé les
+    emojis, ce qui donnait l'impression qu'aucune modification n'était
+    enregistrée."""
+    with app.app_context():
+        create_admin()
+        question = create_emoji_question()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    import json
+
+    client.post(
+        f"/admin/questions/{question_id}/modifier",
+        data={
+            "mode": "emoji",
+            "content_type": "film",
+            "prompt": "🎬🏰👑",
+            "payload": json.dumps({"visuals": [{"type": "openmoji", "value": "1F1EB-1F1F7"}]}),
+            "correct_answer": json.dumps({"film": "The Lion King"}),
+        },
+    )
+
+    page = client.get("/admin/questions").get_data(as_text=True)
+
+    assert f'data-display-text="🇫🇷"' in page
+    # question.prompt garde bien "🎬🏰👑" tel quel en base (champ libre, jamais
+    # recalculé) - mais ce n'est plus lui que la liste utilise comme libellé.
+    assert 'data-display-text="🎬🏰👑"' not in page
+
+
+def test_modal_edit_form_exposes_emoji_codes(client, app):
+    with app.app_context():
+        create_admin()
+        question = create_emoji_question()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    page = client.get(
+        f"/admin/questions/{question_id}/modifier",
+        headers={"X-Requested-With": "XMLHttpRequest"},
+    ).get_data(as_text=True)
+
+    assert "1F3AC\n1F3F0\n1F451" in page
+
+
+def test_fallback_full_page_form_also_exposes_emoji_codes(client, app):
+    """Même bug potentiel que pour les images : le formulaire de secours ne
+    partage pas le même gabarit que la modale, donc pas automatiquement le
+    même pré-remplissage."""
+    with app.app_context():
+        create_admin()
+        question = create_emoji_question()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    page = client.get(f"/admin/questions/{question_id}/modifier").get_data(as_text=True)
+
+    assert "1F3AC\n1F3F0\n1F451" in page
+
+
+def test_editing_an_emoji_question_preserves_all_its_codes(client, app):
+    """Bout en bout : le JS joint désormais les codes avec un vrai saut de
+    ligne (\\n, pas le texte littéral \\\\n) avant l'envoi — ce test simule
+    ce qu'il soumet et vérifie que les 3 codes survivent, pas seulement le
+    premier."""
+    with app.app_context():
+        create_admin()
+        question = create_emoji_question()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    import json
+
+    client.post(
+        f"/admin/questions/{question_id}/modifier",
+        data={
+            "mode": "emoji",
+            "content_type": "film",
+            "prompt": "🎬🏰👑",
+            "payload": json.dumps({"visuals": [
+                {"type": "openmoji", "value": "1F3AC"},
+                {"type": "openmoji", "value": "1F3F0"},
+                {"type": "openmoji", "value": "1F451"},
+            ]}),
+            "correct_answer": json.dumps({"film": "The Lion King"}),
+        },
+    )
+
+    with app.app_context():
+        refreshed = Question.query.get(question_id)
+        assert len(refreshed.payload["visuals"]) == 3
+        assert [v["value"] for v in refreshed.payload["visuals"]] == ["1F3AC", "1F3F0", "1F451"]
+
+
+# ---- Édition depuis la modale : rester sur la liste plutôt que de renaviguer
+# -----------------------------------------------------------------------------
+
+def test_ajax_edit_returns_json_instead_of_redirecting(client, app):
+    """La modale intercepte l'envoi du formulaire et raccroche la ligne à
+    jour sur place (voir admin_question_modal.js) : ça suppose que le
+    serveur, prévenu par l'en-tête XMLHttpRequest, réponde par un petit JSON
+    plutôt que par une redirection vers /admin/questions - sans quoi le JS
+    recevrait du HTML de redirection à la place du succès/échec attendu."""
+    with app.app_context():
+        create_admin()
+        question = create_vrai_faux_with_image()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    import json
+
+    response = client.post(
+        f"/admin/questions/{question_id}/modifier",
+        headers={"X-Requested-With": "XMLHttpRequest"},
+        data={
+            "mode": "vrai_faux",
+            "content_type": "film",
+            "prompt": "Le film Titanic est sorti en 1997. (corrigé)",
+            "payload": json.dumps({"question_image_url": "https://images.example/titanic.jpg"}),
+            "correct_answer": json.dumps({"value": True}),
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.get_json() == {"success": True}
+
+
+def test_ajax_edit_with_invalid_json_returns_a_json_error(client, app):
+    with app.app_context():
+        create_admin()
+        question = create_vrai_faux_with_image()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    import json
+
+    response = client.post(
+        f"/admin/questions/{question_id}/modifier",
+        headers={"X-Requested-With": "XMLHttpRequest"},
+        data={
+            "mode": "vrai_faux",
+            "content_type": "film",
+            "prompt": "peu importe",
+            "payload": "{ceci n'est pas du json}",
+            "correct_answer": json.dumps({"value": True}),
+        },
+    )
+
+    assert response.status_code == 400
+    body = response.get_json()
+    assert body["success"] is False
+    assert body["error"]
+
+
+def test_non_ajax_edit_still_redirects_to_the_questions_list(client, app):
+    """Le formulaire de secours en pleine page (sans JS/AJAX) n'a personne
+    pour raccrocher une ligne à la volée : il doit garder l'ancien
+    comportement (redirection), sans quoi il resterait bloqué sur la
+    modale ou recevrait du JSON brut à afficher."""
+    with app.app_context():
+        create_admin()
+        question = create_vrai_faux_with_image()
+        question_id = question.id
+
+    login_admin(client, "adminquiz@filmatrix.fr")
+
+    import json
+
+    response = client.post(
+        f"/admin/questions/{question_id}/modifier",
+        data={
+            "mode": "vrai_faux",
+            "content_type": "film",
+            "prompt": "peu importe",
+            "payload": json.dumps({"question_image_url": "https://images.example/titanic.jpg"}),
+            "correct_answer": json.dumps({"value": True}),
+        },
+    )
+
+    assert response.status_code == 302
+    assert response.headers["Location"].endswith("/admin/questions")
+
+
 def test_admin_reference_image_never_leaks_to_the_player_facing_render(app):
     """Filet de sécurité : même présent en payload, admin_reference_image ne
     doit jamais être ce que question_image_url() renvoie pour un joueur —

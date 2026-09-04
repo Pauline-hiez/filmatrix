@@ -183,10 +183,13 @@
                             {# Le dépôt GitHub d'origine (branche master) reste toujours synchronisé
                                avec le catalogue de métadonnées, contrairement au paquet npm
                                @svgmoji/openmoji qui est figé à une ancienne version d'OpenMoji et
-                               répond 404 sur les emojis ajoutés depuis (ex. 1FAE0). #}
+                               répond 404 sur les emojis ajoutés depuis (ex. 1FAE0). jsDelivr (CDN
+                               devant ce dépôt) reste un service tiers : un aléa réseau ou une
+                               limite de débit isolée ne doit pas casser un indice pour un joueur -
+                               un second essai direct sur GitHub avant d'abandonner. #}
                             <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ item.value }}.svg"
                                  alt="" class="emoji-visual" loading="eager" referrerpolicy="no-referrer"
-                                 onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+                                 onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/{{ item.value }}.svg';}else{this.hidden=true;this.nextElementSibling.hidden=false;}">
                             <span class="emoji-fallback" hidden>{{ question.prompt }}</span>
                             {% else %}
                             <span class="emoji-fallback">{{ item.value }}</span>

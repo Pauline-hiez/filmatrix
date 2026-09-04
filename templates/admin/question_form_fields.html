@@ -65,6 +65,7 @@
     {% if question.mode == 'emoji' %}
     {% set emoji_codes = payload.get('visuals', []) | map(attribute='value') | list %}
     <div class="mode-fields flex flex-col gap-2" data-mode="emoji">
+        {{ admin_reference_preview(payload) }}
         <label class="block text-sm text-slate-400">Film ou série à trouver</label>
         <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}">
         <div>
@@ -76,11 +77,12 @@
             </div>
             <button type="button" id="emoji-picker-toggle" class="mt-2 text-xs font-bold text-cyan-400 hover:text-cyan-300">Afficher tous les emojis</button>
             <label class="mt-2 block text-xs text-slate-500">Indices sélectionnés</label>
-            <textarea class="emoji-visual-codes w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100" rows="1" placeholder="Clique sur les icônes ci-dessus">{{ emoji_codes | join('\n') }}</textarea>
+            <textarea class="emoji-visual-codes w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100" rows="3" placeholder="Clique sur les icônes ci-dessus">{{ emoji_codes | join('\n') }}</textarea>
         </div>
         <div class="emoji-admin-preview flex flex-wrap justify-center gap-2">
             {% for code in emoji_codes %}
-            <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ code }}.svg" alt="" class="h-8 w-8 object-contain">
+            <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ code }}.svg" alt="" class="h-8 w-8 object-contain"
+                 onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/{{ code }}.svg';}">
             {% endfor %}
         </div>
     </div>

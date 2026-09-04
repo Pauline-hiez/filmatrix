@@ -256,10 +256,14 @@ def enrich_question(
     return False
 
 
-# Les seuls modes "devine l'œuvre" qui n'ont aujourd'hui strictement aucun
-# visuel côté admin : casting (photos d'acteurs), devinette_affiche (l'affiche
-# elle-même) et emoji (aperçu des indices) ont déjà de quoi se repérer.
-ADMIN_REFERENCE_MODES = {"citation", "devinette", "film_melange", "blindtest"}
+# casting (photos d'acteurs) et devinette_affiche (l'affiche elle-même) sont
+# les seuls modes "devine l'œuvre" qui n'ont besoin de rien de plus : leur
+# visuel de jeu identifie déjà l'œuvre pour l'admin. emoji en a longtemps été
+# exclu pour la même raison supposée (l'aperçu des indices dans la modale),
+# mais les emojis seuls ne suffisent pas à reconnaître l'œuvre d'un coup
+# d'œil dans la liste des questions - il lui faut la même affiche que les
+# autres modes de ce groupe.
+ADMIN_REFERENCE_MODES = {"citation", "devinette", "film_melange", "blindtest", "emoji"}
 
 
 def enrich_admin_reference_image(

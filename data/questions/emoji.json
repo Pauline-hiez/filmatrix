@@ -18,7 +18,8 @@
           "type": "openmoji",
           "value": "1F30D"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
     },
     "correct_answer": {
       "film": "Le Roi Lion"
@@ -58,7 +59,8 @@
           "type": "openmoji",
           "value": "1F9D1"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pEEI5mMoyZrbapzWC6vB6UmesDW.jpg"
     },
     "correct_answer": {
       "film": "Spider-Man"
@@ -102,7 +104,8 @@
           "type": "openmoji",
           "value": "1F494"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
     },
     "correct_answer": {
       "film": "Titanic"
@@ -142,7 +145,8 @@
           "type": "openmoji",
           "value": "1F9EC"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
     },
     "correct_answer": {
       "film": "Jurassic Park"
@@ -178,7 +182,8 @@
           "type": "openmoji",
           "value": "1F30A"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/8zR2vXoXfdlknEYjfHvCbb1rJbI.jpg"
     },
     "correct_answer": {
       "film": "Le Monde de Nemo"
@@ -226,7 +231,8 @@
           "type": "openmoji",
           "value": "1F1EB-1F1F7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/iFcWBdTPeHQDS3OQxBcH3QaYXYv.jpg"
     },
     "correct_answer": {
       "film": "Ratatouille"
@@ -274,7 +280,8 @@
           "type": "openmoji",
           "value": "26C4"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/nnQLuzh2H6tSk1U0Zyu0ju16FXU.jpg"
     },
     "correct_answer": {
       "film": "La Reine des neiges"
@@ -386,7 +393,8 @@
           "type": "openmoji",
           "value": "1F308"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/k55kMEPkxGej70udPcVNqhTiwBz.jpg"
     },
     "correct_answer": {
       "film": "Là-haut"
@@ -434,7 +442,8 @@
           "type": "openmoji",
           "value": "1F7E9"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
     },
     "correct_answer": {
       "film": "Matrix"
@@ -474,7 +483,8 @@
           "type": "openmoji",
           "value": "1F30B"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
     },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
@@ -526,7 +536,8 @@
           "type": "openmoji",
           "value": "1F1EC-1F1E7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/fbxQ44VRdM2PVzHSNajUseUteem.jpg"
     },
     "correct_answer": {
       "film": "Harry Potter"
@@ -578,7 +589,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
     },
     "correct_answer": {
       "film": "Les Dents de la mer"
@@ -634,7 +646,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg"
     },
     "correct_answer": {
       "film": "Interstellar"
@@ -686,7 +699,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/rlay2M5QYvi6igbGcFjq8jxeusY.jpg"
     },
     "correct_answer": {
       "film": "Joker"
@@ -738,7 +752,8 @@
           "type": "openmoji",
           "value": "1F3C3"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5cfUTKtLYJx8WcTRJII4JRnlg6p.jpg"
     },
     "correct_answer": {
       "film": "Rocky"
@@ -782,7 +797,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
     },
     "correct_answer": {
       "film": "Alien"
@@ -834,7 +850,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tR4PU2wRPzGKmF665lE5wULGb3X.jpg"
     },
     "correct_answer": {
       "film": "Charlie et la chocolaterie"
@@ -890,7 +907,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
     },
     "correct_answer": {
       "film": "Retour vers le futur"
@@ -946,7 +964,8 @@
           "type": "openmoji",
           "value": "1F1F0-1F1F7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/9FiRluXOwGJZhb1BPSvJYO7SB7y.jpg"
     },
     "correct_answer": {
       "film": "Dernier train pour Busan"
@@ -998,7 +1017,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/q9txj8DtFyX6M4CEi2N4CmjGMMO.jpg"
     },
     "correct_answer": {
       "film": "Apollo 13"
@@ -1102,7 +1122,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/lzF8b44dAvXFagQnB1UZa2AF87q.jpg"
     },
     "correct_answer": {
       "film": "Psychose"
@@ -1154,7 +1175,8 @@
           "type": "openmoji",
           "value": "1F1EF-1F1F5"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/4y5AUH8oN9iRP1oRymxIgXkvWqy.jpg"
     },
     "correct_answer": {
       "film": "Les Sept Samouraïs"
@@ -1202,7 +1224,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/nlPCdZlHtRNcF6C9hzUH4ebmV1w.jpg"
     },
     "correct_answer": {
       "film": "La La Land"
@@ -1250,7 +1273,8 @@
           "type": "openmoji",
           "value": "1F1F0-1F1F7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
     },
     "correct_answer": {
       "film": "Parasite"
@@ -1306,7 +1330,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg"
     },
     "correct_answer": {
       "film": "Le Silence des agneaux"
@@ -1358,7 +1383,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qVGpxnjrGlHaSTCqTQI6viBDSfp.jpg"
     },
     "correct_answer": {
       "film": "Ça"
@@ -1410,7 +1436,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dQIQZbJXn1pflQw3nwvXLJX0dHa.jpg"
     },
     "correct_answer": {
       "film": "Le Loup de Wall Street"
@@ -1458,7 +1485,8 @@
           "type": "openmoji",
           "value": "1F396"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vI05JxU356MciaQeYHjXlqfjQe0.jpg"
     },
     "correct_answer": {
       "film": "Le Pianiste"
@@ -1506,7 +1534,8 @@
           "type": "openmoji",
           "value": "1F1FA-1F1F8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
     },
     "correct_answer": {
       "film": "Gladiator"
@@ -1554,7 +1583,8 @@
           "type": "openmoji",
           "value": "1F1EC-1F1E7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
     },
     "correct_answer": {
       "film": "Bohemian Rhapsody"
@@ -1598,7 +1628,8 @@
           "type": "openmoji",
           "value": "1F33F"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/iN6WZnetgrf2gnS4bMdCDZLDkar.jpg"
     },
     "correct_answer": {
       "film": "Bob Marley: One Love"
@@ -1646,7 +1677,8 @@
           "type": "openmoji",
           "value": "1F1E8-1F1E6"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/2v21n2RwbcMagYjcWDYT6rrFdMJ.jpg"
     },
     "correct_answer": {
       "film": "Aline"
@@ -1698,7 +1730,8 @@
           "type": "openmoji",
           "value": "1F690"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/lAvf5zzyOgTZmpRBRJFa7IVVqCK.jpg"
     },
     "correct_answer": {
       "film": "Wayne's World"
@@ -1746,7 +1779,8 @@
           "type": "openmoji",
           "value": "1F631"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/ih2xVgeMS8R5WUetYE8Mr9hVTlB.jpg"
     },
     "correct_answer": {
       "film": "Maman, j'ai raté l'avion !"
@@ -1806,7 +1840,8 @@
           "type": "openmoji",
           "value": "1F602"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/wSm5McaHSAyOx4gGRYdlDHzj00y.jpg"
     },
     "correct_answer": {
       "film": "Austin Powers"
@@ -1858,7 +1893,8 @@
           "type": "openmoji",
           "value": "1F602"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
     },
     "correct_answer": {
       "film": "Les Visiteurs"
@@ -1906,7 +1942,8 @@
           "type": "openmoji",
           "value": "1F37A"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hkAVgWvAMmM8tj9CDEvGqMdNQBE.jpg"
     },
     "correct_answer": {
       "film": "Ted"
@@ -1958,7 +1995,8 @@
           "type": "openmoji",
           "value": "1F4A5"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/6DoM52IhBrMgz2w1x1FkbYQfXBp.jpg"
     },
     "correct_answer": {
       "film": "Projet X"
@@ -2042,7 +2080,8 @@
           "type": "openmoji",
           "value": "1F631"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pbQac6oD2RtHVNrVD9QaY1QgRQk.jpg"
     },
     "correct_answer": {
       "film": "Hostel"
@@ -2082,7 +2121,8 @@
           "type": "openmoji",
           "value": "1F6B8"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qVGpxnjrGlHaSTCqTQI6viBDSfp.jpg"
     },
     "correct_answer": {
       "film": "Ça"
@@ -2134,7 +2174,8 @@
           "type": "openmoji",
           "value": "1F64F"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/xcjJ5khg2yzOa282mza39Lbrm7j.jpg"
     },
     "correct_answer": {
       "film": "L'Exorciste"
@@ -2218,7 +2259,8 @@
           "type": "openmoji",
           "value": "1F525"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/j4TVuhvQoVtyLA7daTpGqNycaBI.jpg"
     },
     "correct_answer": {
       "film": "La Maison de cire"
@@ -2266,7 +2308,8 @@
           "type": "openmoji",
           "value": "1F697"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pJukqzxJxkkGlzCuNvHe66C4ce5.jpg"
     },
     "correct_answer": {
       "film": "Simetierre"
@@ -2306,7 +2349,8 @@
           "type": "openmoji",
           "value": "1F528"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vRJEpqZ3BX7N2SzAidQONcsrZsQ.jpg"
     },
     "correct_answer": {
       "film": "Misery"
@@ -2350,7 +2394,8 @@
           "type": "openmoji",
           "value": "1F628"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/gJbTXKNTL6O7r7PzF6ZRkJGBlPp.jpg"
     },
     "correct_answer": {
       "film": "Hérédité"
@@ -2398,7 +2443,8 @@
           "type": "openmoji",
           "value": "1F490"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
     },
     "correct_answer": {
       "film": "Midsommar"
@@ -2446,7 +2492,8 @@
           "type": "openmoji",
           "value": "1F631"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hUZbZj7yb16tokai802DmawqUxE.jpg"
     },
     "correct_answer": {
       "film": "The Descent"
@@ -2490,7 +2537,8 @@
           "type": "openmoji",
           "value": "1FA9E"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/2DWqsx0vafGcfytSIwhtL5nI1uV.jpg"
     },
     "correct_answer": {
       "film": "American Psycho"
@@ -2538,7 +2586,8 @@
           "type": "openmoji",
           "value": "1F3E0"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
     },
     "correct_answer": {
       "film": "Fight Club"
@@ -2634,7 +2683,8 @@
           "type": "openmoji",
           "value": "2642"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
     },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
@@ -2686,7 +2736,8 @@
           "type": "openmoji",
           "value": "1F550"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
     },
     "correct_answer": {
       "film": "Retour vers le futur"
@@ -2738,7 +2789,8 @@
           "type": "openmoji",
           "value": "1F30C"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
     },
     "correct_answer": {
       "film": "Star Wars"
@@ -2794,7 +2846,8 @@
           "type": "openmoji",
           "value": "1F989"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/fbxQ44VRdM2PVzHSNajUseUteem.jpg"
     },
     "correct_answer": {
       "film": "Harry Potter"
@@ -2846,7 +2899,8 @@
           "type": "openmoji",
           "value": "1F99C"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jFmc6zbnx6mSoxejECYvdi3IHIs.jpg"
     },
     "correct_answer": {
       "film": "Pirates des Caraïbes"
@@ -2898,7 +2952,8 @@
           "type": "openmoji",
           "value": "1F9E9"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/3fhUaMnlY72GGuBlzEeKA4brZAb.jpg"
     },
     "correct_answer": {
       "film": "Saw"
@@ -2954,7 +3009,8 @@
           "type": "openmoji",
           "value": "1F9B2"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dt9K3vjV6nIttECni7EfXLysDa2.jpg"
     },
     "correct_answer": {
       "film": "X-Men"
@@ -3006,7 +3062,8 @@
           "type": "openmoji",
           "value": "1F33E"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/wSvsjqyRWk5xku9yEUNZYFwUF87.jpg"
     },
     "correct_answer": {
       "film": "Hunger Games"
@@ -3062,7 +3119,8 @@
           "type": "openmoji",
           "value": "2728"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/gCFDozeckKAWsaGWL5f190gZRnq.jpg"
     },
     "correct_answer": {
       "film": "Men in Black"
@@ -3114,7 +3172,8 @@
           "type": "openmoji",
           "value": "1F3D9"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pEEI5mMoyZrbapzWC6vB6UmesDW.jpg"
     },
     "correct_answer": {
       "film": "Spider-Man"
@@ -3166,7 +3225,8 @@
           "type": "openmoji",
           "value": "1F407"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
     },
     "correct_answer": {
       "film": "Matrix"
@@ -3214,7 +3274,8 @@
           "type": "openmoji",
           "value": "1F633"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/OP7JhCmGQuDnm1TpPf2DtqCt7W.jpg"
     },
     "correct_answer": {
       "film": "American Pie"
@@ -3262,7 +3323,8 @@
           "type": "openmoji",
           "value": "1F3DB"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/2kpPVHLvkHfsc9uurzmEB1PoC6R.jpg"
     },
     "correct_answer": {
       "film": "Astérix et Obélix : Mission Cléopâtre"
@@ -3358,7 +3420,8 @@
           "type": "openmoji",
           "value": "1F915"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dGOwVbGN5eJlgAnFwGRaANnyZMF.jpg"
     },
     "correct_answer": {
       "film": "Very Bad Trip"
@@ -3402,7 +3465,8 @@
           "type": "openmoji",
           "value": "26A1"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
     },
     "correct_answer": {
       "film": "Jurassic Park"
@@ -3502,7 +3566,8 @@
           "type": "openmoji",
           "value": "1FA78"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/1nOVVjbf8ucbeLmIlK5D2kCQQST.jpg"
     },
     "correct_answer": {
       "film": "Piège de cristal"
@@ -3554,7 +3619,8 @@
           "type": "openmoji",
           "value": "1F42B"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dBpXYbHLOEd7e1P3RXpwipgAkaN.jpg"
     },
     "correct_answer": {
       "film": "La Momie"
@@ -3650,7 +3716,8 @@
           "type": "openmoji",
           "value": "1F319"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5DmmWDmfEeqeXREEfV0M5AMzfNK.jpg"
     },
     "correct_answer": {
       "film": "Gremlins"
@@ -3702,7 +3769,8 @@
           "type": "openmoji",
           "value": "1F52B"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/txWTVoO9VltSsEghOoxdn8y6UqK.jpg"
     },
     "correct_answer": {
       "film": "James Bond"
@@ -3806,7 +3874,8 @@
           "type": "openmoji",
           "value": "1F95A"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
     },
     "correct_answer": {
       "film": "Alien"
@@ -3906,7 +3975,8 @@
           "type": "openmoji",
           "value": "1F576"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oShNrYScpLBi4pyOjytPy9BerRr.jpg"
     },
     "correct_answer": {
       "film": "Terminator"
@@ -3958,7 +4028,8 @@
           "type": "openmoji",
           "value": "1F4AA"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5cfUTKtLYJx8WcTRJII4JRnlg6p.jpg"
     },
     "correct_answer": {
       "film": "Rocky"
@@ -4002,7 +4073,8 @@
           "type": "openmoji",
           "value": "1F608"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/ltpNNLbaW4Zr1QZP6d6W8qDpBfU.jpg"
     },
     "correct_answer": {
       "film": "American Nightmare"
@@ -4054,7 +4126,8 @@
           "type": "openmoji",
           "value": "1F4F7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/mmyqYYJTMtCBlUNr0JAp5R59X8H.jpg"
     },
     "correct_answer": {
       "film": "Insidious"
@@ -4102,7 +4175,8 @@
           "type": "openmoji",
           "value": "1F319"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/sHI9xlFRWCJ38AIIfOqnGjuEvXz.jpg"
     },
     "correct_answer": {
       "film": "Halloween"
@@ -4150,7 +4224,8 @@
           "type": "openmoji",
           "value": "1F634"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/sZvNC2uA7wASIVs8jUd4t5GO5Rl.jpg"
     },
     "correct_answer": {
       "film": "Freddy, les griffes de la nuit"
@@ -4250,7 +4325,8 @@
           "type": "openmoji",
           "value": "1F631"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/bntAvXObNU0cmLLWwHB61DtQZWk.jpg"
     },
     "correct_answer": {
       "film": "Evil Dead"
@@ -4342,7 +4418,8 @@
           "type": "openmoji",
           "value": "1F3DA"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/u61noSAr4IGVostCNbVApRXC4FZ.jpg"
     },
     "correct_answer": {
       "film": "Massacre à la tronçonneuse"
@@ -4430,7 +4507,8 @@
           "type": "openmoji",
           "value": "1F6A4"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
     },
     "correct_answer": {
       "film": "Les Dents de la mer"
@@ -4482,7 +4560,8 @@
           "type": "openmoji",
           "value": "1F4DE"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
     },
     "correct_answer": {
       "film": "Scream"
@@ -4534,7 +4613,8 @@
           "type": "openmoji",
           "value": "1F52A"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/gIComZ1TfZdWmuD4L4mJ8sEv0km.jpg"
     },
     "correct_answer": {
       "film": "Scary Movie"
@@ -4578,7 +4658,8 @@
           "type": "openmoji",
           "value": "1F92B"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/mLKQtg75oAx3L5prBuzfr7zWQBw.jpg"
     },
     "correct_answer": {
       "film": "Souviens-toi... l'été dernier"
@@ -4630,7 +4711,8 @@
           "type": "openmoji",
           "value": "1F52A"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/mtH0tdL2O1Qw2gyNnW9sm4FLEbr.jpg"
     },
     "correct_answer": {
       "film": "Détour mortel"
@@ -4678,7 +4760,8 @@
           "type": "openmoji",
           "value": "1F3AA"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dEUHJSevpMZ0p7pxQzVMfnUkVLm.jpg"
     },
     "correct_answer": {
       "film": "Terrifier"
@@ -4722,7 +4805,8 @@
           "type": "openmoji",
           "value": "1F694"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg"
     },
     "correct_answer": {
       "film": "Le Silence des agneaux"
@@ -4810,7 +4894,8 @@
           "type": "openmoji",
           "value": "1F3AC"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/b62t5xsAMGZ2LOLbD0l85xQE3tr.jpg"
     },
     "correct_answer": {
       "film": "Reservoir Dogs"
@@ -4898,7 +4983,8 @@
           "type": "openmoji",
           "value": "2753"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/nK3cJaUWx1iaQ9Cs08JPtZqVzQ6.jpg"
     },
     "correct_answer": {
       "film": "Memento"
@@ -4942,7 +5028,8 @@
           "type": "openmoji",
           "value": "1F4E6"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/to6jUaLJonMuKW2YovtWfQKtLYP.jpg"
     },
     "correct_answer": {
       "film": "Seven"
@@ -4990,7 +5077,8 @@
           "type": "openmoji",
           "value": "1F50D"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7srXLwv88f1GGLE9quJBw7ZgxJD.jpg"
     },
     "correct_answer": {
       "film": "Zodiac"
@@ -5038,7 +5126,8 @@
           "type": "openmoji",
           "value": "1F680"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/l8CES84JndFlNfBNMxdLRYaLvI6.jpg"
     },
     "correct_answer": {
       "film": "Alien, le huitième passager"
@@ -5082,7 +5171,8 @@
           "type": "openmoji",
           "value": "1F451"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
     },
     "correct_answer": {
       "film": "Gladiator"
@@ -5130,7 +5220,8 @@
           "type": "openmoji",
           "value": "1F5FD"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/iyHQrfNsjZlfHJ8hyhNi0yAFnZa.jpg"
     },
     "correct_answer": {
       "film": "Taxi Driver"
@@ -5174,7 +5265,8 @@
           "type": "openmoji",
           "value": "2694"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/w2FB25izMMWDoVckloSej0ctDJ2.jpg"
     },
     "correct_answer": {
       "film": "Alice au pays des merveilles"
@@ -5226,7 +5318,8 @@
           "type": "openmoji",
           "value": "1F90D"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tMCj9KY70NasF2KsiXWpg0m7smK.jpg"
     },
     "correct_answer": {
       "film": "Edward aux mains d'argent"
@@ -5370,7 +5463,8 @@
           "type": "openmoji",
           "value": "1F3C6"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/c8lQpZWiRgv671BPu9bgzuFkveC.jpg"
     },
     "correct_answer": {
       "film": "La Forme de l'eau"
@@ -5418,7 +5512,8 @@
           "type": "openmoji",
           "value": "1F1EC-1F1E7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/bpzGLrQC5nXvU3wrLtp1TDIKYX9.jpg"
     },
     "correct_answer": {
       "film": "Le Labyrinthe de Pan"
@@ -5466,7 +5561,8 @@
           "type": "openmoji",
           "value": "1F333"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7s3ekiDpic8NxDjwdLdOYDIX8Pe.jpg"
     },
     "correct_answer": {
       "film": "Sixième Sens"
@@ -5514,7 +5610,8 @@
           "type": "openmoji",
           "value": "1F309"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/bUDD5bfF5EHzBwPhL9iJeZuHjVE.jpg"
     },
     "correct_answer": {
       "film": "Lost in Translation"
@@ -5562,7 +5659,8 @@
           "type": "openmoji",
           "value": "1F1EB-1F1F7"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/efqJtlo5J1hBNFmbwyjyAR9Mpr2.jpg"
     },
     "correct_answer": {
       "film": "Léon"
@@ -5610,7 +5708,8 @@
           "type": "openmoji",
           "value": "1F48A"
         }
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/8nx8sttha1Zidt73SbNncVfSwqk.jpg"
     },
     "correct_answer": {
       "film": "Le Cinquième Élément"

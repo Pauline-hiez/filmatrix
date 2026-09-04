@@ -121,23 +121,45 @@ function renderEmojiPicker() {
         return matchesCategory && matchesQuery;
     });
     const items = query || showAllEmojis ? matchingItems : matchingItems.slice(0, 48);
+    const selectedCodes = linesToArray(emojiCodesField ? emojiCodesField.value : "");
     items.forEach(function (item) {
+        const isSelected = selectedCodes.includes(item.code);
         const button = document.createElement("button");
         button.type = "button";
-        button.title = item.name;
+        button.title = isSelected ? `${item.name} (cliquer pour retirer)` : item.name;
         button.dataset.code = item.code;
-        button.className = "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-700 bg-slate-900 p-1 transition hover:border-cyan-400 hover:bg-slate-800";
+        button.className = "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border p-1 transition hover:border-cyan-400 hover:bg-slate-800 " + (
+            isSelected ? "border-cyan-400 bg-cyan-400/10 ring-1 ring-cyan-400/60" : "border-slate-700 bg-slate-900"
+        );
         // Le paquet npm @svgmoji/openmoji est figé à une ancienne version du jeu
         // d'icônes OpenMoji : les emojis ajoutés depuis y renvoient un 404 (ex.
         // 1FAE0, « visage qui fond »). Le dépôt GitHub d'origine, à la branche
         // master, est la même source que le catalogue de métadonnées : toujours
         // synchronisé, vérifié à 0 échec sur les 4565 entrées du catalogue.
-        button.innerHTML = `<img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/${item.code}.svg" alt="${item.name}" class="h-7 w-7 object-contain">`;
+        // jsDelivr (CDN devant ce dépôt) reste malgré tout un service tiers : une
+        // grille en affiche jusqu'à ~48 d'un coup, et une requête isolée qui
+        // échoue (limite de débit, aléa réseau) ne doit pas laisser une icône
+        // cassée - un second essai direct sur GitHub avant d'abandonner.
+        const image = document.createElement("img");
+        image.src = `https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/${item.code}.svg`;
+        image.alt = item.name;
+        image.className = "h-7 w-7 object-contain";
+        image.addEventListener("error", function retryOnGitHub() {
+            image.removeEventListener("error", retryOnGitHub);
+            image.src = `https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/${item.code}.svg`;
+        }, { once: true });
+        button.appendChild(image);
         button.addEventListener("click", function () {
             const codes = linesToArray(emojiCodesField.value);
-            if (!codes.includes(item.code)) codes.push(item.code);
-            emojiCodesField.value = codes.join("\\n");
+            const existingIndex = codes.indexOf(item.code);
+            if (existingIndex === -1) {
+                codes.push(item.code);
+            } else {
+                codes.splice(existingIndex, 1);
+            }
+            emojiCodesField.value = codes.join("\n");
             emojiCodesField.dispatchEvent(new Event("input"));
+            renderEmojiPicker();
         });
         emojiPicker.appendChild(button);
     });
@@ -222,14 +244,39 @@ if (emojiCodesField) {
         const preview = document.querySelector(".emoji-admin-preview");
         preview.innerHTML = "";
         linesToArray(emojiCodesField.value).forEach(function (code) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.title = "Cliquer pour retirer";
+            button.className = "group relative flex h-8 w-8 items-center justify-center";
             const image = document.createElement("img");
             image.src = `https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/${code.toUpperCase()}.svg`;
             image.referrerPolicy = "no-referrer";
             image.alt = "";
-            image.className = "h-8 w-8 object-contain";
-            preview.appendChild(image);
+            image.className = "h-8 w-8 object-contain transition group-hover:opacity-30";
+            // Même filet que dans la grille du sélecteur (renderEmojiPicker) : un
+            // second essai sur GitHub directement avant d'abandonner.
+            image.addEventListener("error", function retryOnGitHub() {
+                image.removeEventListener("error", retryOnGitHub);
+                image.src = `https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/${code.toUpperCase()}.svg`;
+            }, { once: true });
+            const removeHint = document.createElement("span");
+            removeHint.className = "pointer-events-none absolute inset-0 hidden items-center justify-center text-sm font-bold text-red-400 group-hover:flex";
+            removeHint.textContent = "×";
+            button.append(image, removeHint);
+            button.addEventListener("click", function () {
+                const codes = linesToArray(emojiCodesField.value);
+                codes.splice(codes.indexOf(code), 1);
+                emojiCodesField.value = codes.join("\n");
+                emojiCodesField.dispatchEvent(new Event("input"));
+                renderEmojiPicker();
+            });
+            preview.appendChild(button);
         });
     });
+    // Remplace tout de suite l'aperçu Jinja statique (juste des <img>, sans
+    // interaction) par la version JS cliquable ci-dessus, sans attendre une
+    // première modification côté admin.
+    emojiCodesField.dispatchEvent(new Event("input"));
 }
 
 function renderSavedAudioOptions(fieldsGroup) {
@@ -368,10 +415,14 @@ function buildPayloadAndAnswer(mode) {
         const film = activeGroup.querySelector(".film-answer").value;
         const codes = linesToArray(activeGroup.querySelector(".emoji-visual-codes").value)
             .map(function (value) { return value.toUpperCase(); });
-        return {
-            payload: { visuals: codes.map(function (value) {
+        const payload = Object.assign(
+            { visuals: codes.map(function (value) {
                 return { type: "openmoji", value: value };
             }) },
+            adminReferencePayload(activeGroup)
+        );
+        return {
+            payload: payload,
             correct_answer: { film: film },
         };
     }
