@@ -2,9 +2,15 @@
 
 Le sélecteur de jeu proposait « etats-unis », « annees-1980 », « tom-hanks »… :
 des tags créés par import avec leur slug au lieu de leur nom lisible. Ce script
-les renomme (etats-unis -> États-Unis, annees-1980 -> Années 1980,
-tom-hanks -> Tom Hanks) sans toucher aux valeurs slug utilisées en interne
-(tag.slug est recalculé, l'identifiant ne change pas).
+corrige la valeur stockée en base (etats-unis -> États-Unis, tom-hanks ->
+Tom Hanks), pour de bon plutôt qu'à chaque affichage.
+
+Depuis, l'affichage lui-même passe aussi par la même humanisation
+(filmatrix.catalog_rarities.humanize_tag_name, appliquée en direct par les
+gabarits joueur) : ce script reste utile pour nettoyer les valeurs stockées
+(admin, exports...), mais n'est plus la seule protection contre un slug
+affiché tel quel — y compris sur un environnement où il n'aurait jamais
+tourné (ex. la base de production).
 
 Idempotent : relancer ce script ne change plus rien.
 
@@ -12,7 +18,6 @@ Idempotent : relancer ce script ne change plus rien.
 """
 import re
 import sys
-import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -21,55 +26,11 @@ from sqlalchemy.exc import IntegrityError
 
 from wsgi import app
 
+from filmatrix.catalog_rarities import humanize_tag_name
 from filmatrix.extensions import db
 from filmatrix.models import Tag
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)+$")
-
-# Sigles et particularités qui ne suivent pas la règle « capitaliser chaque mot ».
-SPECIAL = {
-    "usa": "USA",
-    "uk": "Royaume-Uni",
-    "hbo": "HBO",
-    "bbc": "BBC",
-    "wwe": "WWE",
-    "disney": "Disney",
-}
-
-
-def humanize(slug: str) -> str:
-    """etats-unis -> États-Unis ; annees-1980 -> Années 1980 ; tom-hanks -> Tom Hanks."""
-    words = []
-    for part in slug.split("-"):
-        if part in SPECIAL:
-            words.append(SPECIAL[part])
-        elif part.isdigit():
-            words.append(part)
-        else:
-            words.append(part.capitalize())
-    name = " ".join(words)
-
-    # Recollages et accents usuels du catalogue (mots géographiques,
-    # temporels, traits d'union des pays).
-    fixes = {
-        r"\bEtats Unis\b": "États-Unis",
-        r"\bRoyaume Uni\b": "Royaume-Uni",
-        r"\bNouvelle Zelande\b": "Nouvelle-Zélande",
-        r"\bCoree Du Sud\b": "Corée du Sud",
-        r"\bCoree du Sud\b": "Corée du Sud",
-        r"\bScience Fiction\b": "Science-fiction",
-        r"\bCinema General\b": "Cinéma général",
-        r"\bAnnees\b": "Années",
-        r"\bFunes\b": "Funès",
-        r"\bGuillermo Del Toro\b": "Guillermo del Toro",
-        r"\bM Night\b": "M. Night",
-        r"\bRobert De Niro\b": "Robert De Niro",
-    }
-    for pattern, replacement in fixes.items():
-        name = re.sub(pattern, replacement, name)
-    # Particules en minuscule sauf en début de nom (déjà capitalisé).
-    name = re.sub(r"(?<=\S)\s(De|Du|La|Le)\b", lambda m: " " + m.group(1).lower(), name)
-    return name
 
 
 def main() -> None:
@@ -83,7 +44,7 @@ def main() -> None:
         for tag in tags:
             if not SLUG_RE.match(tag.name):
                 continue
-            new_name = humanize(tag.name)
+            new_name = humanize_tag_name(tag.name)
             if new_name in taken:
                 print(f"  ignoré {tag.name!r} -> {new_name!r} (collision)")
                 continue

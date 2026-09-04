@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, url_for
 
-from filmatrix.catalog_rarities import frame_image_for_rarity
+from filmatrix.catalog_rarities import frame_image_for_rarity, humanize_tag_name
 from filmatrix.extensions import db, login_manager, migrate, socketio
 from filmatrix.models import User
 from filmatrix.realtime.events import register_socket_events
@@ -114,6 +114,13 @@ def create_app(database_uri: str | None = None) -> Flask:
     # character_card et le formulaire admin l'utilisent pour choisir le
     # cadre décoratif de chaque personnage (commun = pas de cadre).
     app.jinja_env.globals["frame_image_for_rarity"] = frame_image_for_rarity
+
+    # Un tag peut rester stocké en slug (etats-unis, tom-hanks) tant que
+    # scripts/humanize_tag_slugs.py n'a pas tourné sur cet environnement —
+    # notamment en production, qui a sa propre base. Exposée aux gabarits
+    # joueur, cette fonction humanise à l'affichage plutôt que de dépendre
+    # d'une donnée toujours propre.
+    app.jinja_env.globals["humanize_tag_name"] = humanize_tag_name
 
     @app.context_processor
     def inject_notifications():

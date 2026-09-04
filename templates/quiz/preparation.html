@@ -113,7 +113,7 @@
                                 class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
                             <option value="">Tous les genres</option>
                             {% for tag in genre_tags %}
-                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ humanize_tag_name(tag.name) }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -144,10 +144,10 @@
                                 class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
                             <option value="">Tous les univers</option>
                             {% for tag in shown_univers_tags %}
-                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ humanize_tag_name(tag.name) }}</option>
                             {% endfor %}
                             {% for tag in hidden_univers_tags %}
-                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %} hidden>{{ tag.name }}</option>
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %} hidden>{{ humanize_tag_name(tag.name) }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -174,7 +174,7 @@
                             <label for="tag-{{ tag_type }}" class="mb-1 block text-xs font-bold uppercase tracking-widest text-slate-500">{{ label }}</label>
                             <select id="tag-{{ tag_type }}" data-tag-filter data-combobox class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
                                 <option value="">{{ empty_label }}</option>
-                                {% for tag in typed_tags %}<option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ tag.name }}</option>{% endfor %}
+                                {% for tag in typed_tags %}<option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ humanize_tag_name(tag.name) }}</option>{% endfor %}
                             </select>
                         </div>
                         {% endfor %}
