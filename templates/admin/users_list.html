@@ -36,9 +36,10 @@
                 data-search-text="{{ user.username }} {{ user.email }}">
                 <td class="px-3 py-2 font-bold">
                     <span class="flex items-center gap-2">
-                        <span class="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-950">
+                        <a href="{{ url_for('profile.profile') if user.id == current_user.id else url_for('profile.public_profile', user_id=user.id) }}"
+                           class="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-950 transition hover:border-cyan-400">
                             {{ avatar_img(user.avatar) }}
-                        </span>
+                        </a>
                         {{ user.username }}
                     </span>
                 </td>

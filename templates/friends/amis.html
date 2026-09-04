@@ -64,9 +64,10 @@
             {% for friendship in received_requests %}
             <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
                 <span class="flex items-center gap-2">
-                    <span class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-950">
+                    <a href="{{ url_for('profile.public_profile', user_id=friendship.requester.id) }}"
+                       class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-950 transition hover:border-cyan-400">
                         {{ avatar_img(friendship.requester.avatar) }}
-                    </span>
+                    </a>
                     {{ player_link(friendship.requester.id, friendship.requester.username) }}
                 </span>
                 <div class="flex gap-2">
@@ -90,9 +91,10 @@
             {% for friendship in sent_requests %}
             <div class="flex items-center justify-between bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
                 <span class="flex items-center gap-2">
-                    <span class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-950">
+                    <a href="{{ url_for('profile.public_profile', user_id=friendship.receiver.id) }}"
+                       class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-950 transition hover:border-cyan-400">
                         {{ avatar_img(friendship.receiver.avatar) }}
-                    </span>
+                    </a>
                     {{ player_link(friendship.receiver.id, friendship.receiver.username) }}
                 </span>
                 <div class="flex items-center gap-2">

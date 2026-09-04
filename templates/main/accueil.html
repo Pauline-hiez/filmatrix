@@ -219,9 +219,16 @@
                         <span class="w-5 shrink-0 text-center font-bold {% if loop.index <= 3 %}text-amber-400{% else %}text-slate-500{% endif %}">
                             {{ loop.index }}
                         </span>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('profile.profile') if is_me else url_for('profile.public_profile', user_id=player.id) }}"
+                           class="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900 transition hover:border-cyan-400">
+                            {{ avatar_img(player.avatar) }}
+                        </a>
+                        {% else %}
                         <span class="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900">
                             {{ avatar_img(player.avatar) }}
                         </span>
+                        {% endif %}
                         <span class="min-w-0 flex-1 truncate {% if is_me %}text-cyan-300 font-bold{% else %}text-slate-200{% endif %}">
                             {{ player_link(player.id, player.username) }}
                         </span>

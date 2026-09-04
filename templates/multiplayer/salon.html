@@ -245,7 +245,7 @@
     }
 
     .invite-duel__player { min-width: 0; }
-    .invite-duel__avatar { width: 4.2rem; height: 4.2rem; margin: 0 auto .3rem; overflow: hidden; border: 2px solid #22d3ee; border-radius: 9999px; background: #020617; box-shadow: 0 0 18px rgb(34 211 238 / .3); }
+    .invite-duel__avatar { display: block; width: 4.2rem; height: 4.2rem; margin: 0 auto .3rem; overflow: hidden; border: 2px solid #22d3ee; border-radius: 9999px; background: #020617; box-shadow: 0 0 18px rgb(34 211 238 / .3); }
     .invite-duel__avatar--opponent { border-color: #8b5cf6; box-shadow: 0 0 18px rgb(139 92 246 / .3); }
     .invite-duel__avatar img { width: 100%; height: 100%; object-fit: cover; }
     .invite-duel__name { overflow: hidden; color: #f8fafc; font-size: .84rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
@@ -489,20 +489,20 @@
         <img src="{{ url_for('static', filename='images/habillage/24.png') }}" alt="" class="invite-scene__featured invite-scene__featured--right {{ 'invite-scene__featured--host' if is_host else '' }}">
         <section class="invite-card {{ 'invite-card--host' if is_host else 'invite-card--guest' }}" style="--invite-background: url('{{ url_for('static', filename='images/habillage/24.png') }}');">
             {% if is_host %}
-                <div class="invite-card__avatar">{{ avatar_img(game_session.guest.avatar) }}</div>
+                <a href="{{ url_for('profile.public_profile', user_id=game_session.guest.id) }}" class="invite-card__avatar">{{ avatar_img(game_session.guest.avatar) }}</a>
                 <p class="invite-label"><span>⌛</span> Défi en attente</p>
                 <h1 class="invite-title">Invitation envoyée à</h1>
                 <p class="invite-player">{{ game_session.guest.username }}</p>
 
                 <div class="invite-duel">
                     <div class="invite-duel__player">
-                        <div class="invite-duel__avatar">{{ avatar_img(game_session.host.avatar) }}</div>
+                        <a href="{{ url_for('profile.profile') }}" class="invite-duel__avatar">{{ avatar_img(game_session.host.avatar) }}</a>
                         <p class="invite-duel__name">{{ game_session.host.username }}</p>
                         <p class="invite-duel__role">Hôte</p>
                     </div>
                     <span class="invite-duel__vs">VS</span>
                     <div class="invite-duel__player">
-                        <div class="invite-duel__avatar invite-duel__avatar--opponent">{{ avatar_img(game_session.guest.avatar) }}</div>
+                        <a href="{{ url_for('profile.public_profile', user_id=game_session.guest.id) }}" class="invite-duel__avatar invite-duel__avatar--opponent">{{ avatar_img(game_session.guest.avatar) }}</a>
                         <p class="invite-duel__name">{{ game_session.guest.username }}</p>
                         <p class="invite-duel__role">Adversaire</p>
                     </div>
@@ -519,7 +519,7 @@
                 <p class="invite-note">Le duel commencera dès que ton adversaire aura accepté l'invitation.</p>
                 <form method="POST" action="{{ url_for('multiplayer.cancel_game_invitation', game_session_id=game_session.id) }}" class="mt-5"><button type="submit" class="rounded-lg border border-cyan-400/50 px-8 py-2.5 text-sm font-bold text-cyan-400 transition hover:bg-cyan-400/10">×&nbsp; Annuler</button></form>
             {% else %}
-                <div class="invite-card__avatar">{{ avatar_img(game_session.host.avatar) }}</div>
+                <a href="{{ url_for('profile.public_profile', user_id=game_session.host.id) }}" class="invite-card__avatar">{{ avatar_img(game_session.host.avatar) }}</a>
                 <p class="invite-label"><span>✉</span> Invitation reçue</p>
                 <p class="invite-player">{{ game_session.host.username }}</p>
                 <p class="invite-subtitle">t'invite à jouer !</p>

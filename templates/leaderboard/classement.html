@@ -57,9 +57,16 @@
                         {% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}
                     </span>
 
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('profile.profile') if is_me else url_for('profile.public_profile', user_id=result.user_id) }}"
+                       class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-slate-900 transition hover:brightness-110" style="border-color: {{ tier_accent }}">
+                        {{ avatar_img(result.avatar) }}
+                    </a>
+                    {% else %}
                     <span class="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-slate-900" style="border-color: {{ tier_accent }}">
                         {{ avatar_img(result.avatar) }}
                     </span>
+                    {% endif %}
 
                     <div class="relative z-10 min-w-0 flex-1">
                         <div class="flex flex-wrap items-center gap-2">
@@ -125,9 +132,10 @@
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Ma position</h2>
                     <p class="mt-2 text-4xl font-extrabold text-cyan-400">{{ my_rank }}{{ "er" if my_rank == 1 else "e" }}</p>
 
-                    <span class="mx-auto mt-3 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-cyan-400 bg-slate-900">
+                    <a href="{{ url_for('profile.profile') }}"
+                       class="mx-auto mt-3 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-cyan-400 bg-slate-900 transition hover:brightness-110">
                         {{ avatar_img(my_entry.avatar) }}
-                    </span>
+                    </a>
                     <p class="mt-2 font-bold text-slate-100">{{ my_entry.username }}</p>
                     <span class="mt-1 inline-block rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2 py-0.5 text-xs font-bold text-cyan-400">
                         Niveau {{ my_entry.level }}
