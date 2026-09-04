@@ -100,7 +100,10 @@ def admin_questions_list() -> str:
         questions_by_mode.setdefault(question.mode, []).append(question)
 
     # Vignette de la table : la première image utile de la payload (affiche,
-    # image de question, photo d'acteur ou option illustrée).
+    # image de question, photo d'acteur ou option illustrée). admin_reference_image
+    # en dernier recours : jamais montrée aux joueurs (citation/devinette/
+    # film_melange/blindtest n'ont sinon aucune image), mais utile ici pour
+    # se repérer d'un coup d'œil dans la liste.
     thumbnails = {}
     for question in all_questions:
         payload = question.payload or {}
@@ -111,6 +114,8 @@ def admin_questions_list() -> str:
         if not thumb:
             options = payload.get("option_images") or []
             thumb = options[0] if options else None
+        if not thumb:
+            thumb = payload.get("admin_reference_image")
         thumbnails[question.id] = thumb
 
     # Statistiques réelles : nombre de réponses et taux de réussite.
@@ -294,6 +299,34 @@ def admin_api_poster() -> dict:
         return {"success": False, "error": "Film introuvable."}
 
     poster_url = build_image_url(result.get("backdrop_path"))
+    return {"success": True, "poster_url": poster_url, "official_title": result["title"]}
+
+@bp.route("/admin/api/recherche-jaquette")
+@login_required
+@admin_required
+def admin_api_movie_poster() -> dict:
+    """Récupère l'affiche officielle (jaquette, avec le titre) TMDB d'un film
+    ou d'une série.
+
+    À ne pas confondre avec recherche-affiche ci-dessus : celle-ci prend le
+    backdrop (image de plateau, sans titre) précisément pour ne rien
+    spoiler en devinette-affiche. Ici au contraire le titre est déjà connu
+    (qcm, vrai_faux) ou l'image ne sert qu'à l'admin (citation, devinette,
+    film_melange) : la vraie jaquette, plus reconnaissable, convient mieux."""
+    movie_id = request.args.get("movie_id", type=int)
+    content_type = request.args.get("content_type", "film")
+
+    result = None
+    if movie_id:
+        result = get_tv_show_by_id(movie_id) if content_type == "serie" else get_movie_by_id(movie_id)
+
+    if result is None:
+        return {"success": False, "error": "Film introuvable."}
+
+    poster_url = build_image_url(result.get("poster_path"))
+    if not poster_url:
+        return {"success": False, "error": "Aucune affiche disponible pour ce titre."}
+
     return {"success": True, "poster_url": poster_url, "official_title": result["title"]}
 
 @bp.route("/admin/api/recherche-casting")

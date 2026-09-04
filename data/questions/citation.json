@@ -4,7 +4,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"I'll be back.\" — De quel film vient cette réplique culte ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oShNrYScpLBi4pyOjytPy9BerRr.jpg"
+    },
     "correct_answer": {
       "film": "Terminator"
     },
@@ -29,7 +31,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"Que la Force soit avec toi.\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "film": "Star Wars"
     },
@@ -58,7 +62,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"La vie, c'est comme une boîte de chocolats.\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
+    },
     "correct_answer": {
       "film": "Forrest Gump"
     },
@@ -87,7 +93,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"Je suis le roi du monde !\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
+    },
     "correct_answer": {
       "film": "Titanic"
     },
@@ -112,7 +120,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"Je vais lui faire une offre qu'il ne pourra pas refuser.\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
+    },
     "correct_answer": {
       "film": "Le Parrain"
     },
@@ -137,7 +147,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"Houston, nous avons un problème.\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/q9txj8DtFyX6M4CEi2N4CmjGMMO.jpg"
+    },
     "correct_answer": {
       "film": "Apollo 13"
     },
@@ -162,7 +174,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"C'est à moi que tu parles ?\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/iyHQrfNsjZlfHJ8hyhNi0yAFnZa.jpg"
+    },
     "correct_answer": {
       "film": "Taxi Driver"
     },
@@ -187,7 +201,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"Jusqu'ici tout va bien.\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/gfdhSzPyAWtAizqs4ytc0MwOlQg.jpg"
+    },
     "correct_answer": {
       "film": "La Haine"
     },
@@ -237,7 +253,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "\"Carpe diem. Cueillez le jour.\" — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oHBdsvdlPhzkJZOfax7Oy3X5mm7.jpg"
+    },
     "correct_answer": {
       "film": "Le Cercle des poètes disparus"
     },
@@ -258,7 +276,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Toto, j'ai l'impression que nous ne sommes plus au Kansas. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jBIVN3Ot73d4eGlL34T3jI5W0au.jpg"
+    },
     "correct_answer": {
       "film": "Le Magicien d'Oz"
     },
@@ -291,7 +311,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Vous voulez la vérité ? Vous ne pouvez pas supporter la vérité ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vsjxwIGaA8GP79pgtv6dqRhRsPu.jpg"
+    },
     "correct_answer": {
       "film": "Des hommes d'honneur"
     },
@@ -316,7 +338,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Dites bonjour à mon petit ami ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/9gp0H9EG8XVFtDk3s6IJZd97bEY.jpg"
+    },
     "correct_answer": {
       "film": "Scarface"
     },
@@ -349,7 +373,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« E.T. téléphone maison. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5jl5sfhTeAlp60rM9GxoDA2dmX9.jpg"
+    },
     "correct_answer": {
       "film": "E.T. l'extra-terrestre"
     },
@@ -382,7 +408,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Je vois des gens morts. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7s3ekiDpic8NxDjwdLdOYDIX8Pe.jpg"
+    },
     "correct_answer": {
       "film": "Sixième Sens"
     },
@@ -415,7 +443,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Mon précieux. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
+    },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
@@ -452,7 +482,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Hakuna Matata. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
+    },
     "correct_answer": {
       "film": "Le Roi Lion"
     },
@@ -530,7 +562,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« La vie trouve toujours un chemin. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
+    },
     "correct_answer": {
       "film": "Jurassic Park"
     },
@@ -563,7 +597,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Franchement, ma chère, c'est le cadet de mes soucis. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/z5cBuLqlIho5k6rIqjOVIKbwvg6.jpg"
+    },
     "correct_answer": {
       "film": "Autant en emporte le vent"
     },
@@ -596,7 +632,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Here's Johnny! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/AdKA2F1SzYPhSZdEbjH1Zh75UVQ.jpg"
+    },
     "correct_answer": {
       "film": "Shining"
     },
@@ -625,7 +663,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« On ne laisse pas Bébé dans un coin. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/osfBQ18P0y3pwT5qVuhdPk8btbj.jpg"
+    },
     "correct_answer": {
       "film": "Dirty Dancing"
     },
@@ -658,7 +698,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Continue à nager. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/8zR2vXoXfdlknEYjfHvCbb1rJbI.jpg"
+    },
     "correct_answer": {
       "film": "Le Monde de Nemo"
     },
@@ -691,7 +733,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« J'adore l'odeur du napalm au petit matin. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/scaiAT7I2KZ2GAeMvoU6Ro1515J.jpg"
+    },
     "correct_answer": {
       "film": "Apocalypse Now"
     },
@@ -720,7 +764,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Que trépasse si je faiblis ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
+    },
     "correct_answer": {
       "film": "Les Visiteurs"
     },
@@ -749,7 +795,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Les cons, ça ose tout. C'est même à ça qu'on les reconnaît. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dqYig2GxgICQdK3KTS7f8yPl4Pm.jpg"
+    },
     "correct_answer": {
       "film": "Les Tontons flingueurs"
     },
@@ -778,7 +826,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Ils pourront nous prendre nos vies, mais ils ne nous prendront jamais notre liberté ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/cteCb7HgeNmx8aeu5drpTb7N8fB.jpg"
+    },
     "correct_answer": {
       "film": "Braveheart"
     },
@@ -844,7 +894,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« La première règle du Fight Club, c'est qu'on ne parle pas du Fight Club. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
+    },
     "correct_answer": {
       "film": "Fight Club"
     },
@@ -873,7 +925,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Un Anneau pour les gouverner tous, un Anneau pour les trouver, un Anneau pour les amener tous et dans les ténèbres les lier. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
+    },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
@@ -910,7 +964,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Vous ne passerez pas ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
+    },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
     },
@@ -947,7 +1003,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Non, je suis ton père. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "film": "Star Wars"
     },
@@ -984,7 +1042,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Aidez-moi, Obi-Wan Kenobi, vous êtes mon seul espoir. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "film": "Star Wars"
     },
@@ -1021,7 +1081,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Harry, tu es un sorcier. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/fbxQ44VRdM2PVzHSNajUseUteem.jpg"
+    },
     "correct_answer": {
       "film": "Harry Potter"
     },
@@ -1054,7 +1116,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Il n'y a pas de cuillère. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
+    },
     "correct_answer": {
       "film": "Matrix"
     },
@@ -1087,7 +1151,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Tu flotteras aussi... » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qVGpxnjrGlHaSTCqTQI6viBDSfp.jpg"
+    },
     "correct_answer": {
       "film": "Ça"
     },
@@ -1124,7 +1190,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Je ne suis pas raciste, j'ai un ami noir. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vxcqpokAB2bn2PzG3g4kFsL5h7V.jpg"
+    },
     "correct_answer": {
       "film": "OSS 117 : Le Caire, nid d'espions"
     },
@@ -1165,7 +1233,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Il va nous falloir un plus gros bateau. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
+    },
     "correct_answer": {
       "film": "Les Dents de la mer"
     },
@@ -1202,7 +1272,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Bond. James Bond. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/txWTVoO9VltSsEghOoxdn8y6UqK.jpg"
+    },
     "correct_answer": {
       "film": "James Bond"
     },
@@ -1268,7 +1340,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« J'ai mangé son foie avec des fèves et un bon Chianti. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg"
+    },
     "correct_answer": {
       "film": "Le Silence des agneaux"
     },
@@ -1301,7 +1375,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Hasta la vista, baby. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/mRtFOHF93zW4kTp4JOYrH71vxBh.jpg"
+    },
     "correct_answer": {
       "film": "Terminator 2 : Le Jugement dernier"
     },
@@ -1338,7 +1414,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Pas de femmes, pas d'enfants. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/efqJtlo5J1hBNFmbwyjyAR9Mpr2.jpg"
+    },
     "correct_answer": {
       "film": "Léon"
     },
@@ -1371,7 +1449,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Ils appellent ça le Royal Cheese. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
+    },
     "correct_answer": {
       "film": "Pulp Fiction"
     },
@@ -1404,7 +1484,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Qu'est-ce qu'il y a dans la boîte ?! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/to6jUaLJonMuKW2YovtWfQKtLYP.jpg"
+    },
     "correct_answer": {
       "film": "Seven"
     },
@@ -1437,7 +1519,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Père d'un fils assassiné, mari d'une femme assassinée, et je me vengerai, dans cette vie ou dans l'autre. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
+    },
     "correct_answer": {
       "film": "Gladiator"
     },
@@ -1470,7 +1554,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« J'ai vu des choses que vous, humains, ne croiriez pas... » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hJ5R9d6QuH3tzr8L8neZZTuzNXm.jpg"
+    },
     "correct_answer": {
       "film": "Blade Runner"
     },
@@ -1503,7 +1589,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Yippee-ki-yay, pauvre con ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/1nOVVjbf8ucbeLmIlK5D2kCQQST.jpg"
+    },
     "correct_answer": {
       "film": "Piège de cristal"
     },
@@ -1565,7 +1653,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Quel est ton film d'horreur préféré ? » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
+    },
     "correct_answer": {
       "film": "Scream"
     },
@@ -1602,7 +1692,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Bas les pattes, sale garce ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/uafMg29wVV4XvxPS59s8nBBbP4i.jpg"
+    },
     "correct_answer": {
       "film": "Aliens, le retour"
     },
@@ -1639,7 +1731,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Là où on va, on n'a pas besoin de route. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
+    },
     "correct_answer": {
       "film": "Retour vers le futur"
     },
@@ -1676,7 +1770,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Nom de Zeus ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
+    },
     "correct_answer": {
       "film": "Retour vers le futur"
     },
@@ -1713,7 +1809,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Bienvenue... à Jurassic Park. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
+    },
     "correct_answer": {
       "film": "Jurassic Park"
     },
@@ -1783,7 +1881,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Ils sont fous ces Romains ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/2kpPVHLvkHfsc9uurzmEB1PoC6R.jpg"
+    },
     "correct_answer": {
       "film": "Astérix et Obélix : Mission Cléopâtre"
     },
@@ -1812,7 +1912,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Pourquoi si sérieux ? » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pyNXnq8QBWoK3b37RS6C3axwUOy.jpg"
+    },
     "correct_answer": {
       "film": "The Dark Knight : Le Chevalier noir"
     },
@@ -1849,7 +1951,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Garde la monnaie, sale bête ! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/ih2xVgeMS8R5WUetYE8Mr9hVTlB.jpg"
+    },
     "correct_answer": {
       "film": "Maman, j'ai raté l'avion !"
     },
@@ -1886,7 +1990,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Que les probabilités soient toujours en votre faveur. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/wSvsjqyRWk5xku9yEUNZYFwUF87.jpg"
+    },
     "correct_answer": {
       "film": "Hunger Games"
     },
@@ -1927,7 +2033,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Tu veux jouer à un jeu ? » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/3fhUaMnlY72GGuBlzEeKA4brZAb.jpg"
+    },
     "correct_answer": {
       "film": "Saw"
     },
@@ -1964,7 +2072,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Quel est ton film d'horreur favori ? » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
+    },
     "correct_answer": {
       "film": "Scream"
     },
@@ -2001,7 +2111,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Ils sont ici. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7lUGWlBinGqm82KESkLr8lC1FK3.jpg"
+    },
     "correct_answer": {
       "film": "Poltergeist"
     },
@@ -2030,7 +2142,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« On ne met pas Bébé dans un coin. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/osfBQ18P0y3pwT5qVuhdPk8btbj.jpg"
+    },
     "correct_answer": {
       "film": "Dirty Dancing"
     },
@@ -2067,7 +2181,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Je suis ton père... » — De quel film vient cette réplique parodiée dans de nombreuses comédies ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
+    },
     "correct_answer": {
       "film": "Star Wars"
     },
@@ -2104,7 +2220,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Qu'y a-t-il dans la boîte ?! » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/to6jUaLJonMuKW2YovtWfQKtLYP.jpg"
+    },
     "correct_answer": {
       "film": "Seven"
     },
@@ -2141,7 +2259,9 @@
     "mode": "citation",
     "content_type": "film",
     "prompt": "« Je vois des personnes mortes. » — De quel film vient cette réplique ?",
-    "payload": {},
+    "payload": {
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7s3ekiDpic8NxDjwdLdOYDIX8Pe.jpg"
+    },
     "correct_answer": {
       "film": "Sixième Sens"
     },

@@ -300,6 +300,17 @@ function linesToArray(textareaValue) {
         });
 }
 
+// Repère interne (jamais montré aux joueurs, voir templates/partials/
+// admin_reference_image.html) : ce hidden ne fait que le faire voyager tel
+// quel jusqu'ici, il ne se modifie pas depuis ce formulaire. Sans ça, il
+// disparaîtrait au prochain enregistrement comme question_image_url l'était
+// avant pour qcm/vrai_faux (payload reconstruit de zéro à chaque envoi).
+function adminReferencePayload(activeGroup) {
+    const field = activeGroup.querySelector(".admin-reference-image");
+    const value = field ? field.value : "";
+    return value ? { admin_reference_image: value } : {};
+}
+
 function buildPayloadAndAnswer(mode) {
     const activeGroup = document.querySelector(`.mode-fields[data-mode="${mode}"]`);
 
@@ -311,8 +322,25 @@ function buildPayloadAndAnswer(mode) {
         );
         const selectedRadio = activeGroup.querySelector(".qcm-radio:checked");
         const correctIndex = selectedRadio ? parseInt(selectedRadio.value) : 0;
+        // L'affiche de contexte et les images par option ne se modifient pas
+        // depuis ce formulaire (posées par l'enrichissement TMDB) : ces deux
+        // hidden ne font que les faire voyager telles quelles jusqu'ici,
+        // sans quoi elles disparaîtraient à chaque enregistrement.
+        const payload = { options: options };
+        const questionImageUrl = activeGroup.querySelector(".question-image-url").value;
+        if (questionImageUrl) {
+            payload.question_image_url = questionImageUrl;
+        }
+        const optionImages = Array.from(activeGroup.querySelectorAll(".qcm-option-image")).map(
+            function (input) {
+                return input.value || null;
+            }
+        );
+        if (optionImages.some(function (url) { return url; })) {
+            payload.option_images = optionImages;
+        }
         return {
-            payload: { options: options },
+            payload: payload,
             correct_answer: { index: correctIndex },
         };
     }
@@ -320,15 +348,20 @@ function buildPayloadAndAnswer(mode) {
     if (mode === "vrai_faux") {
         const selectedRadio = activeGroup.querySelector('input[name="vf_correct"]:checked');
         const value = selectedRadio ? selectedRadio.value === "true" : true;
+        const payload = {};
+        const questionImageUrl = activeGroup.querySelector(".question-image-url").value;
+        if (questionImageUrl) {
+            payload.question_image_url = questionImageUrl;
+        }
         return {
-            payload: {},
+            payload: payload,
             correct_answer: { value: value },
         };
     }
 
     if (mode === "citation") {
         const film = activeGroup.querySelector(".film-answer").value;
-        return { payload: {}, correct_answer: { film: film } };
+        return { payload: adminReferencePayload(activeGroup), correct_answer: { film: film } };
     }
 
     if (mode === "emoji") {
@@ -346,7 +379,7 @@ function buildPayloadAndAnswer(mode) {
     if (mode === "film_melange") {
         const title = activeGroup.querySelector(".film-melange-title").value;
         return {
-            payload: {},
+            payload: adminReferencePayload(activeGroup),
             correct_answer: { title: title },
         };
     }
@@ -355,7 +388,7 @@ function buildPayloadAndAnswer(mode) {
         const film = activeGroup.querySelector(".film-answer").value;
         const hints = linesToArray(activeGroup.querySelector(".riddle-hints").value);
         return {
-            payload: { hints: hints },
+            payload: Object.assign({ hints: hints }, adminReferencePayload(activeGroup)),
             correct_answer: { film: film },
         };
     }
@@ -385,7 +418,10 @@ function buildPayloadAndAnswer(mode) {
         const optionsField = activeGroup.querySelector(".audio-options-json");
         const audioOptions = optionsField && optionsField.value ? JSON.parse(optionsField.value) : [];
         return {
-            payload: { audio_url: audioUrl, audio_options: audioOptions },
+            payload: Object.assign(
+                { audio_url: audioUrl, audio_options: audioOptions },
+                adminReferencePayload(activeGroup)
+            ),
             correct_answer: { film: film },
         };
     }
@@ -560,7 +596,7 @@ async function selectMovie(movie, target, fieldsGroup) {
         if (data.success) {
             fieldsGroup.querySelector(".poster-url").value = data.poster_url;
             const preview = document.getElementById("poster-preview");
-            preview.innerHTML = `<img src="${data.poster_url}" class="w-full max-w-xs rounded-lg border border-cyan-400/30">`;
+            preview.innerHTML = `<img src="${data.poster_url}" class="w-40 rounded-lg border border-cyan-400/30">`;
         } else {
             alert(data.error);
         }
@@ -618,6 +654,41 @@ async function selectMovie(movie, target, fieldsGroup) {
         } else {
             alert(data.error);
         }
+
+        // Blindtest n'a pas de recherche séparée pour son repère interne (voir
+        // question_form_fields.html, show_search=false) : la même recherche,
+        // faite pour l'extrait audio, l'attache directement au passage.
+        applyPosterField(movie, fieldsGroup, ".admin-reference-image", ".admin-reference-preview", "border-amber-400/30");
+    }
+
+    if (target === "question-image") {
+        await applyPosterField(movie, fieldsGroup, ".question-image-url", ".question-image-preview", "border-cyan-400/30");
+    }
+
+    if (target === "admin-reference") {
+        await applyPosterField(movie, fieldsGroup, ".admin-reference-image", ".admin-reference-preview", "border-amber-400/30");
+    }
+}
+
+// Affiche officielle (jaquette, avec le titre) TMDB, posée sur un champ
+// caché + son aperçu — mutualisé entre l'image de contexte (qcm/vrai_faux)
+// et le repère interne (citation/devinette/film_melange/blindtest). Ignoré
+// silencieusement en cas d'échec quand appelé en tâche de fond (blindtest) :
+// l'audio, lui, a déjà été traité avec son propre message d'erreur.
+async function applyPosterField(movie, fieldsGroup, fieldSelector, previewSelector, borderClass) {
+    const field = fieldsGroup.querySelector(fieldSelector);
+    if (!field) return;
+
+    const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
+    const response = await fetch(`/admin/api/recherche-jaquette?movie_id=${movie.id}&content_type=${contentType}`);
+    const data = await response.json();
+
+    if (!data.success) return;
+
+    field.value = data.poster_url;
+    const preview = fieldsGroup.querySelector(previewSelector);
+    if (preview) {
+        preview.innerHTML = `<img src="${data.poster_url}" class="w-40 rounded-lg border ${borderClass}">`;
     }
 }
 

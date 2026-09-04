@@ -9,7 +9,8 @@
         "Ce film est sorti en 1997.",
         "Il raconte le naufrage d'un paquebot légendaire.",
         "Le film est réalisé par James Cameron."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg"
     },
     "correct_answer": {
       "film": "Titanic"
@@ -40,7 +41,8 @@
         "Ce film est sorti en 1993.",
         "Il met en scène des dinosaures recréés grâce à l'ADN.",
         "Le film est réalisé par Steven Spielberg."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/o7LzVmlOSYc3EspyVMC9bsTTARc.jpg"
     },
     "correct_answer": {
       "film": "Jurassic Park"
@@ -67,7 +69,8 @@
         "Ce film est sorti en 1999.",
         "Le personnage principal découvre que le monde qui l'entoure est une simulation.",
         "Le héros est interprété par Keanu Reeves."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tlm8UkiQsitc8rSuIAscQDCnP8d.jpg"
     },
     "correct_answer": {
       "film": "Matrix"
@@ -94,7 +97,8 @@
         "Ce film est sorti en 2001.",
         "Une communauté entreprend un long voyage pour détruire un puissant anneau.",
         "Il est réalisé par Peter Jackson."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/oiwc338EoBgS4sEI2ixAny4KQKg.jpg"
     },
     "correct_answer": {
       "film": "Le Seigneur des Anneaux"
@@ -129,7 +133,8 @@
         "Ce film d'animation Disney est sorti en 1994.",
         "L'histoire se déroule dans la savane africaine.",
         "Le jeune héros s'appelle Simba."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/q00H8EqULYSK74lgevMkhmGGLHn.jpg"
     },
     "correct_answer": {
       "film": "Le Roi Lion"
@@ -164,7 +169,8 @@
         "Ce film est sorti en 1985.",
         "Une DeLorean sert de machine à voyager dans le temps.",
         "Le héros s'appelle Marty McFly."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg"
     },
     "correct_answer": {
       "film": "Retour vers le futur"
@@ -199,7 +205,8 @@
         "Ce film est sorti en 1994.",
         "Le héros traverse l'histoire américaine sans jamais en mesurer la portée.",
         "Tom Hanks a reçu l'Oscar du meilleur acteur pour ce rôle."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg"
     },
     "correct_answer": {
       "film": "Forrest Gump"
@@ -234,7 +241,8 @@
         "Ce film est sorti en 1972.",
         "Il suit une famille mafieuse italo-américaine à New York.",
         "Marlon Brando y incarne le patriarche."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg"
     },
     "correct_answer": {
       "film": "Le Parrain"
@@ -265,7 +273,8 @@
         "Ce film est sorti en 1994.",
         "Le récit est raconté dans le désordre.",
         "Quentin Tarantino l'a réalisé."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg"
     },
     "correct_answer": {
       "film": "Pulp Fiction"
@@ -300,7 +309,8 @@
         "Ce film est sorti en 1979.",
         "L'action se déroule à bord du vaisseau Nostromo.",
         "Ridley Scott l'a réalisé."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg"
     },
     "correct_answer": {
       "film": "Alien"
@@ -327,7 +337,8 @@
         "Ce film est sorti en 2000.",
         "Le héros est un général romain réduit en esclavage.",
         "Russell Crowe y tient le rôle principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
     },
     "correct_answer": {
       "film": "Gladiator"
@@ -362,7 +373,8 @@
         "Ce film est sorti en 2014.",
         "Des astronautes traversent un trou de ver pour sauver l'humanité.",
         "Christopher Nolan l'a réalisé."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5XNQBqnBwPA9yT0jZ0p3s8bbLh0.jpg"
     },
     "correct_answer": {
       "film": "Interstellar"
@@ -397,7 +409,8 @@
         "Ce film a reçu la Palme d'or en 2019.",
         "Il oppose deux familles coréennes, l'une riche, l'autre pauvre.",
         "Bong Joon-ho l'a réalisé."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg"
     },
     "correct_answer": {
       "film": "Parasite"
@@ -432,7 +445,8 @@
         "Ce film d'animation japonais est sorti en 2001.",
         "Une fillette travaille dans des bains publics peuplés d'esprits.",
         "Hayao Miyazaki l'a réalisé."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dyJvKsNs2KP8qQnAXbRwDjblViy.jpg"
     },
     "correct_answer": {
       "film": "Le Voyage de Chihiro"
@@ -467,7 +481,8 @@
         "Ce film en noir et blanc est sorti en 1942.",
         "L'action se déroule au Maroc pendant la Seconde Guerre mondiale.",
         "Humphrey Bogart y tient un bar et retrouve Ingrid Bergman."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5tVekU5MvJjws4MDr3lXYL8tLjf.jpg"
     },
     "correct_answer": {
       "film": "Casablanca"
@@ -502,7 +517,8 @@
         "Ce film d'horreur est sorti en 1980.",
         "Une famille passe l'hiver seule dans un grand hôtel de montagne désert.",
         "Il est réalisé par Stanley Kubrick, avec Jack Nicholson."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/AdKA2F1SzYPhSZdEbjH1Zh75UVQ.jpg"
     },
     "correct_answer": {
       "film": "Shining"
@@ -537,7 +553,8 @@
         "Ce thriller est sorti en 1991.",
         "Une jeune recrue du FBI consulte un tueur en série pour en traquer un autre.",
         "Jodie Foster et Anthony Hopkins y ont tous deux remporté un Oscar."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg"
     },
     "correct_answer": {
       "film": "Le Silence des agneaux"
@@ -576,7 +593,8 @@
         "Ce film est sorti en 1975.",
         "Une station balnéaire est terrorisée par un grand requin blanc.",
         "Il est réalisé par Steven Spielberg."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/i1yf91svRHX45l9BXL8rVFzLoPH.jpg"
     },
     "correct_answer": {
       "film": "Les Dents de la mer"
@@ -615,7 +633,8 @@
         "Ce film est sorti en 1982.",
         "Un enfant cache une créature venue d'ailleurs chez lui et l'aide à rentrer.",
         "Il est réalisé par Steven Spielberg."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5jl5sfhTeAlp60rM9GxoDA2dmX9.jpg"
     },
     "correct_answer": {
       "film": "E.T. l'extra-terrestre"
@@ -654,7 +673,8 @@
         "Ce film français est sorti en 2011.",
         "Il raconte la rencontre entre un aristocrate tétraplégique et son aide à domicile.",
         "François Cluzet et Omar Sy en tiennent les rôles principaux."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/q6OGlZ1KMEb14AC8KbPCxyNOal6.jpg"
     },
     "correct_answer": {
       "film": "Intouchables"
@@ -689,7 +709,8 @@
         "Ce film français est sorti en 2001.",
         "Une jeune serveuse de Montmartre décide de faire le bonheur des autres en secret.",
         "Audrey Tautou y tient le rôle-titre, sous la direction de Jean-Pierre Jeunet."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tdXtLG6L1QMwrv0MNdW6B9IwC8B.jpg"
     },
     "correct_answer": {
       "film": "Le Fabuleux Destin d'Amélie Poulain"
@@ -724,7 +745,8 @@
         "Ce film est sorti en 2014.",
         "Un jeune batteur de jazz est poussé à bout par un professeur tyrannique.",
         "J. K. Simmons y a remporté l'Oscar du meilleur second rôle."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/wbQa0EnWUyRzQ5d1pHLNRlmsCUP.jpg"
     },
     "correct_answer": {
       "film": "Whiplash"
@@ -763,7 +785,8 @@
         "Ce film est sorti en 1982.",
         "Un policier traque des androïdes dans un Los Angeles pluvieux et surpeuplé.",
         "Il est réalisé par Ridley Scott, avec Harrison Ford."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hJ5R9d6QuH3tzr8L8neZZTuzNXm.jpg"
     },
     "correct_answer": {
       "film": "Blade Runner"
@@ -802,7 +825,8 @@
         "Ce film est sorti en 2015.",
         "Une immense poursuite dans le désert oppose un convoi à un tyran nommé Immortan Joe.",
         "Charlize Theron y incarne Furiosa, aux côtés de Tom Hardy."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/uT895WNwm0aIJRtGizcQhrejWUo.jpg"
     },
     "correct_answer": {
       "film": "Mad Max: Fury Road"
@@ -841,7 +865,8 @@
         "Ce film en noir et blanc est sorti en 1993.",
         "Un industriel allemand sauve plus d'un millier de Juifs pendant la Seconde Guerre mondiale.",
         "Il a valu à Steven Spielberg son premier Oscar de meilleur réalisateur."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/fLRbv1fGQD0OCPWkFy7PI2sESLj.jpg"
     },
     "correct_answer": {
       "film": "La Liste de Schindler"
@@ -880,7 +905,8 @@
         "Ce film d'animation est sorti en 2017.",
         "Un jeune garçon passionné de musique se retrouve au pays des morts.",
         "Il s'inspire de la fête mexicaine du Día de Muertos."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/g7CHF8gTLGooTbP4GznIGwaqAGL.jpg"
     },
     "correct_answer": {
       "film": "Coco"
@@ -923,7 +949,8 @@
         "Ce film sud-coréen est sorti en 2003.",
         "Un homme est enfermé quinze ans sans explication, puis relâché sans raison.",
         "Il est réalisé par Park Chan-wook."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/u0Ct3708zXaoJCkF65bLfenQmhM.jpg"
     },
     "correct_answer": {
       "film": "Old Boy"
@@ -958,7 +985,8 @@
         "Ce film japonais en noir et blanc est sorti en 1954.",
         "Des villageois engagent des guerriers pour les défendre contre des bandits.",
         "Il est réalisé par Akira Kurosawa."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/4y5AUH8oN9iRP1oRymxIgXkvWqy.jpg"
     },
     "correct_answer": {
       "film": "Les Sept Samouraïs"
@@ -994,7 +1022,8 @@
         "Il retrace l'ascension d'un groupe de rock britannique.",
         "Il se conclut par la reconstitution du concert du Live Aid.",
         "Rami Malek y incarne le chanteur du groupe, casque et moustache compris."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/dcvbs8z0GEXslC1kCT77x19XDeR.jpg"
     },
     "correct_answer": {
       "film": "Bohemian Rhapsody"
@@ -1030,7 +1059,8 @@
         "Elle transpose librement la vie d'une chanteuse québécoise.",
         "Sa réalisatrice y tient aussi le rôle principal.",
         "Le titre est le simple prénom de l'héroïne."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/2v21n2RwbcMagYjcWDYT6rrFdMJ.jpg"
     },
     "correct_answer": {
       "film": "Aline"
@@ -1074,7 +1104,8 @@
         "Deux amis animent une émission de télévision depuis un sous-sol.",
         "Ils headbanguent ensemble sur une chanson de Queen dans leur voiture.",
         "Mike Myers y tient le rôle principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/lAvf5zzyOgTZmpRBRJFa7IVVqCK.jpg"
     },
     "correct_answer": {
       "film": "Wayne's World"
@@ -1110,7 +1141,8 @@
         "Un enfant est oublié par sa famille au moment de partir en vacances.",
         "Il doit défendre sa maison contre deux cambrioleurs maladroits.",
         "L'enfant s'appelle Kevin McCallister."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/ih2xVgeMS8R5WUetYE8Mr9hVTlB.jpg"
     },
     "correct_answer": {
       "film": "Maman, j'ai raté l'avion !"
@@ -1154,7 +1186,8 @@
         "Un agent secret des années 1960 est cryogénisé puis réveillé des décennies plus tard.",
         "Son ennemi juré se fait appeler le Docteur Denfer.",
         "Mike Myers y tient le double rôle principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/wSm5McaHSAyOx4gGRYdlDHzj00y.jpg"
     },
     "correct_answer": {
       "film": "Austin Powers"
@@ -1194,7 +1227,8 @@
         "Un chevalier et son écuyer sont projetés du Moyen Âge à notre époque.",
         "L'écuyer se prénomme Jacquouille.",
         "Jean Reno et Christian Clavier en tiennent les rôles principaux."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
     },
     "correct_answer": {
       "film": "Les Visiteurs"
@@ -1234,7 +1268,8 @@
         "Un ours en peluche prend vie à la suite d'un vœu d'enfance.",
         "Devenu adulte, son propriétaire doit choisir entre lui et sa compagne.",
         "L'ours donne son nom au titre du film."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hkAVgWvAMmM8tj9CDEvGqMdNQBE.jpg"
     },
     "correct_answer": {
       "film": "Ted"
@@ -1274,7 +1309,8 @@
         "Une fête d'anniversaire dégénère largement au-delà de ce qui était prévu.",
         "Elle se déroule pendant l'absence des parents d'un des adolescents.",
         "Le film est tourné en found footage, caméra à l'épaule."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/6DoM52IhBrMgz2w1x1FkbYQfXBp.jpg"
     },
     "correct_answer": {
       "film": "Projet X"
@@ -1342,7 +1378,8 @@
         "De jeunes routards sont attirés dans une auberge d'Europe de l'Est.",
         "L'établissement dissimule un réseau de tourisme criminel.",
         "Il est réalisé par Eli Roth."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pbQac6oD2RtHVNrVD9QaY1QgRQk.jpg"
     },
     "correct_answer": {
       "film": "Hostel"
@@ -1374,7 +1411,8 @@
         "Un clown maléfique ressurgit tous les vingt-sept ans dans une petite ville du Maine.",
         "Un groupe d'enfants se surnomme le Club des Ratés.",
         "Il est adapté d'un roman de Stephen King."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/qVGpxnjrGlHaSTCqTQI6viBDSfp.jpg"
     },
     "correct_answer": {
       "film": "Ça"
@@ -1418,7 +1456,8 @@
         "Une fillette est possédée par une entité démoniaque.",
         "Sa mère fait appel à deux prêtres pour un rite d'exorcisme.",
         "Il est considéré comme l'un des films d'horreur les plus culte du cinéma."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/xcjJ5khg2yzOa282mza39Lbrm7j.jpg"
     },
     "correct_answer": {
       "film": "L'Exorciste"
@@ -1486,7 +1525,8 @@
         "Un cimetière indien permet de ramener les morts à la vie, mais transformés.",
         "Un enfant renversé par un camion en est la victime centrale.",
         "Il est adapté d'un roman de Stephen King."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/pJukqzxJxkkGlzCuNvHe66C4ce5.jpg"
     },
     "correct_answer": {
       "film": "Simetierre"
@@ -1518,7 +1558,8 @@
         "Un écrivain victime d'un accident de voiture est recueilli par une admiratrice.",
         "Celle-ci le retient prisonnier pour qu'il réécrive la fin de son roman.",
         "Kathy Bates y a remporté l'Oscar de la meilleure actrice."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/vRJEpqZ3BX7N2SzAidQONcsrZsQ.jpg"
     },
     "correct_answer": {
       "film": "Misery"
@@ -1554,7 +1595,8 @@
         "Une famille est hantée par le passé occulte de sa grand-mère.",
         "Une miniaturiste construit des dioramas de sa propre maison.",
         "Il est réalisé par Ari Aster."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/gJbTXKNTL6O7r7PzF6ZRkJGBlPp.jpg"
     },
     "correct_answer": {
       "film": "Hérédité"
@@ -1594,7 +1636,8 @@
         "Un couple américain assiste à un festival scandinave qui se déroule en plein jour.",
         "La fête a lieu en Suède et ne revient que tous les quatre-vingt-dix ans.",
         "Il est réalisé par Ari Aster."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/aAM3cQmYGjjLQ24m0F0RWfjKQ57.jpg"
     },
     "correct_answer": {
       "film": "Midsommar"
@@ -1634,7 +1677,8 @@
         "Un groupe de spéléologues, exclusivement féminin, explore un réseau de grottes.",
         "Elles s'y retrouvent piégées avec des créatures souterraines.",
         "Le titre évoque leur progression vers les profondeurs."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hUZbZj7yb16tokai802DmawqUxE.jpg"
     },
     "correct_answer": {
       "film": "The Descent"
@@ -1670,7 +1714,8 @@
         "Un golden boy de Wall Street mène une double vie de tueur.",
         "Il est obsédé par les cartes de visite de ses collègues.",
         "Christian Bale y incarne Patrick Bateman."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/2DWqsx0vafGcfytSIwhtL5nI1uV.jpg"
     },
     "correct_answer": {
       "film": "American Psycho"
@@ -1710,7 +1755,8 @@
         "Un employé insomniaque fonde un club de combat clandestin avec un inconnu charismatique.",
         "La première règle du club est de ne jamais en parler.",
         "Il est réalisé par David Fincher."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/c6OLXfKAk5BKeR6broC8pYiCquX.jpg"
     },
     "correct_answer": {
       "film": "Fight Club"
@@ -1786,7 +1832,8 @@
         "Il ne faut surtout pas nourrir la petite créature après minuit.",
         "Mouillée, elle se multiplie de façon incontrôlable.",
         "Les créatures maléfiques qui en naissent donnent leur nom au titre."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5DmmWDmfEeqeXREEfV0M5AMzfNK.jpg"
     },
     "correct_answer": {
       "film": "Gremlins"
@@ -1906,7 +1953,8 @@
         "Des braqueurs se voient attribuer des noms de couleurs pour préserver l'anonymat.",
         "Le casse qui ouvre le film n'est jamais montré à l'écran.",
         "Il s'agit du premier long métrage de Quentin Tarantino."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/b62t5xsAMGZ2LOLbD0l85xQE3tr.jpg"
     },
     "correct_answer": {
       "film": "Reservoir Dogs"
@@ -1942,7 +1990,8 @@
         "Deux policiers enquêtent sur une série de meurtres inspirés des péchés capitaux.",
         "Le twist final tient dans le contenu d'une boîte en carton.",
         "Il est réalisé par David Fincher."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/to6jUaLJonMuKW2YovtWfQKtLYP.jpg"
     },
     "correct_answer": {
       "film": "Seven"
@@ -1982,7 +2031,8 @@
         "Il retrace l'enquête sur un tueur en série qui n'a jamais été identifié.",
         "L'affaire a réellement secoué la région de San Francisco dans les années 1970.",
         "Il est réalisé par David Fincher."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7srXLwv88f1GGLE9quJBw7ZgxJD.jpg"
     },
     "correct_answer": {
       "film": "Zodiac"
@@ -2022,7 +2072,8 @@
         "Un policier traque des androïdes presque indiscernables des humains.",
         "L'action se déroule dans un Los Angeles pluvieux et surpeuplé.",
         "Il est réalisé par Ridley Scott."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/hJ5R9d6QuH3tzr8L8neZZTuzNXm.jpg"
     },
     "correct_answer": {
       "film": "Blade Runner"
@@ -2062,7 +2113,8 @@
         "Un général romain déchu devient gladiateur pour se venger de l'empereur.",
         "Il se présente en arène en énonçant son nom complet.",
         "Russell Crowe y tient le rôle principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jhk6D8pim3yaByu1801kMoxXFaX.jpg"
     },
     "correct_answer": {
       "film": "Gladiator"
@@ -2102,7 +2154,8 @@
         "Un tueur à gages new-yorkais recueille une adolescente dont la famille a été assassinée.",
         "Il lui enseigne son métier tout en s'attachant à elle.",
         "Il est réalisé par Luc Besson."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/efqJtlo5J1hBNFmbwyjyAR9Mpr2.jpg"
     },
     "correct_answer": {
       "film": "Léon"
@@ -2141,7 +2194,8 @@
         "Un hôtel isolé devient le théâtre d'événements surnaturels.",
         "Un écrivain s'y installe avec sa famille.",
         "Les jumelles et la chambre 237 sont devenues célèbres."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/AdKA2F1SzYPhSZdEbjH1Zh75UVQ.jpg"
     },
     "correct_answer": {
       "film": "Shining"
@@ -2219,7 +2273,8 @@
         "Une jeune femme reçoit des appels inquiétants.",
         "Une cassette vidéo est au cœur de l'intrigue.",
         "Une fille aux cheveux noirs sort d'un puits."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/jydY2aLoblqrZR1bnK3pVBAxGtP.jpg"
     },
     "correct_answer": {
       "film": "Ring"
@@ -2258,7 +2313,8 @@
         "Un groupe d'amis est traqué par un tueur masqué.",
         "Le tueur appelle souvent ses victimes.",
         "Le film commence par une conversation au sujet des films d'horreur."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/4w6nQYAY0eb7B0VVRDXilXcgAUV.jpg"
     },
     "correct_answer": {
       "film": "Scream"
@@ -2301,7 +2357,8 @@
         "Une famille voyage dans une région désertique.",
         "Des habitants monstrueux vivent à proximité.",
         "Le film est un remake produit par Wes Craven."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/41oCubeJ4tkEI7r8QZmUTbChFRX.jpg"
     },
     "correct_answer": {
       "film": "La Colline a des yeux"
@@ -2340,7 +2397,8 @@
         "Deux hommes venus du Moyen Âge arrivent à l'époque moderne.",
         "Un serviteur porte un nom très reconnaissable.",
         "Jean Reno et Christian Clavier sont en tête d'affiche."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/tH7GoWIooWdKwF4GTUuIVc3pnnN.jpg"
     },
     "correct_answer": {
       "film": "Les Visiteurs"
@@ -2379,7 +2437,8 @@
         "Un homme revit sans cesse la même journée.",
         "Une fête traditionnelle est au centre du récit.",
         "Bill Murray joue le personnage principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/49ThJPqijvMmBCPuwVK2FDayi0N.jpg"
     },
     "correct_answer": {
       "film": "Un jour sans fin"
@@ -2422,7 +2481,8 @@
         "Un éditeur invite des personnes considérées comme originales.",
         "Un invité fabrique des maquettes en allumettes.",
         "Le personnage s'appelle François Pignon."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7ukFDHExWul2Zz3L0OH8CaZCp2Z.jpg"
     },
     "correct_answer": {
       "film": "Le Dîner de cons"
@@ -2457,7 +2517,8 @@
         "Un employé de banque découvre un objet surnaturel.",
         "L'objet transforme son comportement et son apparence.",
         "Jim Carrey tient le rôle principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/5OBK9sksRSyrwrcMtxpdxql75Sw.jpg"
     },
     "correct_answer": {
       "film": "The Mask"
@@ -2504,7 +2565,8 @@
         "Deux inspecteurs enquêtent sur une série de crimes.",
         "Les crimes renvoient aux sept péchés capitaux.",
         "David Fincher réalise le film."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/to6jUaLJonMuKW2YovtWfQKtLYP.jpg"
     },
     "correct_answer": {
       "film": "Seven"
@@ -2547,7 +2609,8 @@
         "Le héros enquête sur la mort de sa femme.",
         "Il ne peut plus créer de nouveaux souvenirs.",
         "Le récit joue avec l'ordre des événements."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/nK3cJaUWx1iaQ9Cs08JPtZqVzQ6.jpg"
     },
     "correct_answer": {
       "film": "Memento"
@@ -2586,7 +2649,8 @@
         "Une disparition bouleverse un couple.",
         "La presse et l'opinion publique s'en mêlent.",
         "David Fincher adapte un roman de Gillian Flynn."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/7xkJ1ACu40BjzLHVPRILWjFvW7.jpg"
     },
     "correct_answer": {
       "film": "Gone Girl"
@@ -2629,7 +2693,8 @@
         "Un marshal arrive sur une île isolée.",
         "Un établissement psychiatrique y accueille des criminels.",
         "Leonardo DiCaprio tient le rôle principal."
-      ]
+      ],
+      "admin_reference_image": "https://image.tmdb.org/t/p/w500/fQ0vGVTtxjCdAJnxwPZ88O3Wzrh.jpg"
     },
     "correct_answer": {
       "film": "Shutter Island"

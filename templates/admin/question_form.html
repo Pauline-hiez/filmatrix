@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% from "partials/admin_reference_image.html" import admin_reference_preview, question_image_preview %}
 <div class="max-w-2xl mx-auto mt-8" data-question-form-container>
     {% set payload = question.payload if question else {} %}
     {% set answer = question.correct_answer if question else {} %}
@@ -45,28 +46,39 @@
 
         <!-- QCM -->
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="qcm">
+            {{ question_image_preview(payload) }}
             <p class="text-sm text-slate-400">4 options, coche la bonne réponse :</p>
+            {% set options = payload.get('options', []) %}
+            {% set option_images = payload.get('option_images', []) %}
             {% for i in range(4) %}
             <div class="flex items-center gap-2">
-                <input type="radio" name="qcm_correct_index" value="{{ i }}" class="qcm-radio">
-                <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Option {{ i + 1 }}">
+                <input type="radio" name="qcm_correct_index" value="{{ i }}" class="qcm-radio" {% if answer.get('index') == i %}checked{% endif %}>
+                <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                       value="{{ options[i] if i < options|length else '' }}" placeholder="Option {{ i + 1 }}">
+                {% set option_image = option_images[i] if i < option_images|length else none %}
+                <input type="hidden" class="qcm-option-image" value="{{ option_image or '' }}">
+                {% if option_image %}
+                <img src="{{ option_image }}" class="h-10 w-10 shrink-0 rounded-lg border border-cyan-400/30 object-cover" title="Image de cette option (posée par l'enrichissement TMDB)">
+                {% endif %}
             </div>
             {% endfor %}
         </div>
 
         <!-- Vrai / Faux -->
         <div class="mode-fields hidden flex flex-col gap-2" data-mode="vrai_faux">
+            {{ question_image_preview(payload) }}
             <p class="text-sm text-slate-400">L'affirmation (dans le champ "Texte affiché" ci-dessus) est :</p>
             <label class="flex items-center gap-2 text-sm">
-                <input type="radio" name="vf_correct" value="true"> Vraie
+                <input type="radio" name="vf_correct" value="true" {% if answer.get('value') == true %}checked{% endif %}> Vraie
             </label>
             <label class="flex items-center gap-2 text-sm">
-                <input type="radio" name="vf_correct" value="false"> Fausse
+                <input type="radio" name="vf_correct" value="false" {% if answer.get('value') == false %}checked{% endif %}> Fausse
             </label>
         </div>
 
         <!-- Citation / Emoji / Film mélangé / Devinette-affiche / Casting / Blind Test : juste un titre à retrouver -->
-        <div class="mode-fields hidden" data-mode="citation">
+        <div class="mode-fields hidden flex flex-col gap-2" data-mode="citation">
+            {{ admin_reference_preview(payload) }}
             <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
             <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}">
         </div>
@@ -93,13 +105,15 @@
             </div>
             <div class="emoji-admin-preview flex flex-wrap justify-center gap-2"></div>
         </div>
-        <div class="mode-fields hidden" data-mode="film_melange">
+        <div class="mode-fields hidden flex flex-col gap-2" data-mode="film_melange">
+            {{ admin_reference_preview(payload) }}
             <label class="block text-sm text-slate-400 mb-1">Titre du film (sera mélangé automatiquement)</label>
-            <input type="text" class="film-melange-title w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            <input type="text" class="film-melange-title w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('title', '') }}">
         </div>
 
         <!-- Devinette : indices progressifs -->
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="devinette">
+            {{ admin_reference_preview(payload) }}
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
                 <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}">
@@ -119,10 +133,12 @@
             </div>
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
-                <input type="hidden" class="poster-url">
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
+                <input type="hidden" class="poster-url" value="{{ payload.get('poster_url', '') }}">
             </div>
-            <div id="poster-preview"></div>
+            <div id="poster-preview">
+                {% if payload.get('poster_url') %}<img src="{{ payload.get('poster_url') }}" class="w-40 rounded-lg border border-cyan-400/30">{% endif %}
+            </div>
         </div>
 
         <!-- Casting -->
@@ -134,14 +150,19 @@
             </div>
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
-                <input type="hidden" class="actor-photos-hidden">
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
+                <input type="hidden" class="actor-photos-hidden" value='{{ payload.get("actor_photos", []) | tojson }}'>
             </div>
-            <div id="cast-preview" class="flex gap-2"></div>
+            <div id="cast-preview" class="flex gap-2">
+                {% for photo_url in payload.get('actor_photos', []) %}
+                <img src="{{ photo_url }}" class="w-16 h-24 object-cover rounded-lg border border-cyan-400/30">
+                {% endfor %}
+            </div>
         </div>
 
         <!-- Blind Test -->
         <div class="mode-fields hidden flex flex-col gap-3" data-mode="blindtest">
+            {{ admin_reference_preview(payload, show_search=false) }}
             <div class="relative">
                 <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
                 <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="audio" placeholder="Tape le titre du film...">
@@ -149,7 +170,7 @@
             </div>
             <div>
                 <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
-                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" readonly>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
                 <input type="hidden" class="audio-url" value="{{ payload.get('audio_url', '') }}">
                 <input type="hidden" class="audio-options-json" value='{{ payload.get("audio_options", []) | tojson }}'>
             </div>

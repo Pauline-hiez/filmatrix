@@ -1,0 +1,49 @@
+{# Champs de recherche/aperçu d'image pour le formulaire admin, réutilisant
+   la même recherche TMDB que devinette-affiche/casting/blindtest (voir
+   admin_question_form.js, selectMovie). Deux usages distincts :
+
+   - question_image_preview : image de contexte pour qcm/vrai_faux
+     (payload.question_image_url), montrée aux joueurs — sûr puisque le
+     titre y est déjà connu (énoncé ou choix visibles).
+   - admin_reference_preview : repère interne pour citation/devinette/
+     film_melange (payload.admin_reference_image), JAMAIS montré aux
+     joueurs (question_image_url, filmatrix/services/questions.py, ne
+     connaît pas cette clé) — uniquement pour se repérer en éditant.
+
+   Le hidden fait toujours voyager la valeur telle quelle jusqu'au prochain
+   enregistrement, sans quoi elle serait effacée (payload reconstruit de
+   zéro à l'envoi, voir buildPayloadAndAnswer). #}
+
+{% macro question_image_preview(payload) %}
+<div class="relative">
+    <label class="mb-0.5 block text-xs text-slate-400">Image de contexte (affiche du film cité, optionnelle)</label>
+    <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100"
+           data-target="question-image" placeholder="Rechercher un film ou une série...">
+    <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+</div>
+<input type="hidden" class="question-image-url" value="{{ payload.get('question_image_url', '') }}">
+<div class="question-image-preview">
+    {% if payload.get('question_image_url') %}
+    <img src="{{ payload.get('question_image_url') }}" class="w-40 rounded-lg border border-cyan-400/30">
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro admin_reference_preview(payload, show_search=true) %}
+{% if show_search %}
+<div class="relative">
+    <label class="mb-0.5 flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-amber-400">
+        🔒 Repère interne <span class="font-normal normal-case text-slate-500">— jamais visible des joueurs</span>
+    </label>
+    <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100"
+           data-target="admin-reference" placeholder="Rechercher un film ou une série pour s'y repérer...">
+    <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+</div>
+{% endif %}
+<input type="hidden" class="admin-reference-image" value="{{ payload.get('admin_reference_image', '') }}">
+<div class="admin-reference-preview">
+    {% if payload.get('admin_reference_image') %}
+    <img src="{{ payload.get('admin_reference_image') }}" class="w-40 rounded-lg border border-amber-400/30">
+    {% endif %}
+</div>
+{% endmacro %}

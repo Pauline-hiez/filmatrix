@@ -7,11 +7,20 @@ pas enrichie lorsqu'aucune œuvre unique ne peut être identifiée.
 
 Certains modes (citation, devinette, film_melange, blindtest, devinette_affiche,
 casting, emoji) demandent au joueur de deviner l'œuvre elle-même : la réponse
-correcte (``correct_answer``) ne doit alors JAMAIS servir de candidat, sous
-peine d'illustrer la question avec l'affiche de sa propre réponse. Ces modes
-n'affichent d'ailleurs pas ce champ (voir question_image_url dans
-filmatrix/services/questions.py, qui retombe sur une icône de mode générique
-pour eux) : ce script ne les enrichit donc plus du tout.
+correcte (``correct_answer``) ne doit alors JAMAIS servir de candidat pour
+``question_image_url``, sous peine d'illustrer la question avec l'affiche de
+sa propre réponse. Ces modes n'affichent d'ailleurs pas ce champ (voir
+question_image_url dans filmatrix/services/questions.py, qui retombe sur une
+icône de mode générique pour eux) : enrich_question ne les touche jamais.
+
+Un second passage (enrich_admin_reference_image) ajoute malgré tout une image
+à quatre de ces modes (citation, devinette, film_melange, blindtest — les
+seuls sans aucun visuel admin aujourd'hui, contrairement à casting/
+devinette_affiche/emoji qui ont déjà leur propre aperçu), mais sous une clé
+volontairement différente : ``payload.admin_reference_image``. Le rendu
+joueur ne lit jamais cette clé (question_image_url ne la connaît pas) : elle
+n'existe que pour aider un·e admin à se repérer visuellement en éditant la
+question, jamais montrée en jeu.
 
 Usage:
     python -m scripts.enrich_question_images
@@ -247,24 +256,69 @@ def enrich_question(
     return False
 
 
+# Les seuls modes "devine l'œuvre" qui n'ont aujourd'hui strictement aucun
+# visuel côté admin : casting (photos d'acteurs), devinette_affiche (l'affiche
+# elle-même) et emoji (aperçu des indices) ont déjà de quoi se repérer.
+ADMIN_REFERENCE_MODES = {"citation", "devinette", "film_melange", "blindtest"}
+
+
+def enrich_admin_reference_image(
+    question: dict,
+    local_images: dict[str, str],
+    cache: dict,
+) -> bool:
+    """Ajoute une image de repère interne à un des ADMIN_REFERENCE_MODES.
+
+    Utiliser le titre de la réponse est ici sans risque — contrairement à
+    enrich_question, qui l'exclut justement pour ces modes — puisque cette
+    image n'est stockée que pour l'admin (clé admin_reference_image) et
+    n'est jamais lue par le rendu joueur.
+    """
+    mode = question.get("mode")
+    if mode not in ADMIN_REFERENCE_MODES:
+        return False
+
+    payload = question.setdefault("payload", {})
+    if payload.get("admin_reference_image"):
+        return False
+
+    content_type = question.get("content_type", "film")
+    answer = question.get("correct_answer") or {}
+    title = answer.get("film") or answer.get("title")
+    if not isinstance(title, str) or not title:
+        return False
+
+    image = image_for_title(title, content_type, cache, local_images)
+    if image:
+        payload["admin_reference_image"] = image
+        return True
+
+    return False
+
+
 def main() -> None:
     titles = collect_titles()
     local_images = known_images()
     cache: dict = {}
     total = 0
+    total_admin = 0
 
     for path in FILES:
         questions = json.loads(path.read_text(encoding="utf-8"))
         changed = sum(enrich_question(question, titles, local_images, cache) for question in questions)
-        if changed:
+        changed_admin = sum(
+            enrich_admin_reference_image(question, local_images, cache) for question in questions
+        )
+        if changed or changed_admin:
             path.write_text(
                 json.dumps(questions, ensure_ascii=False, indent=2) + "\n",
                 encoding="utf-8",
             )
         total += changed
-        print(f"{path.name}: {changed} image(s) ajoutée(s)")
+        total_admin += changed_admin
+        print(f"{path.name}: {changed} image(s) joueur ajoutée(s), {changed_admin} repère(s) admin ajouté(s)")
 
-    print(f"Total: {total} question(s) enrichie(s)")
+    print(f"Total: {total} image(s) joueur, {total_admin} repère(s) admin ajoutés")
     print(f"Recherches TMDB mises en cache: {len(cache)}")
 
 
