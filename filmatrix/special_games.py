@@ -19,9 +19,6 @@ SPECIAL_GAMES = [
             "le décor."
         ),
         "ticket_cost": 1,
-        # Scène Mystère n'est pas encore développé : la carte reste visible
-        # (le joueur doit voir les deux jeux dès maintenant) mais son bouton
-        # est désactivé plutôt que de mener vers une route qui n'existe pas.
         "available": True,
     },
     {
@@ -34,7 +31,7 @@ SPECIAL_GAMES = [
             "choisissez celle qui correspond à la bonne œuvre."
         ),
         "ticket_cost": 1,
-        "available": False,
+        "available": True,
     },
 ]
 

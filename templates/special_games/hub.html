@@ -223,8 +223,8 @@
                     {% if game.slug == "cache-cine" %}
                     <span>🎯 {{ active_scene_count }} scène{{ "s" if active_scene_count != 1 else "" }} disponible{{ "s" if active_scene_count != 1 else "" }}</span>
                     <span>🕹️ Facile à Expert</span>
-                    {% else %}
-                    <span>🔎 Indices progressifs</span>
+                    {% elif game.slug == "scene-mystere" %}
+                    <span>🔎 {{ active_case_count }} cas{{ " disponible" if active_case_count == 1 else " disponibles" }}</span>
                     <span>🕹️ Facile à Expert</span>
                     {% endif %}
                     <span>🏆 Récompenses exclusives</span>
@@ -239,7 +239,7 @@
                     <span>Accomplissez des missions pour en obtenir.</span>
                 </div>
                 {% else %}
-                <form method="POST" action="{{ url_for('special_games.cache_cine_start') }}">
+                <form method="POST" action="{{ url_for('special_games.cache_cine_start' if game.slug == 'cache-cine' else 'special_games.scene_mystere_start') }}">
                     <button type="submit" class="play-button">
                         JOUER
                         <img src="{{ url_for('static', filename='images/habillage/ticket-or.png') }}" alt="" class="h-4 w-auto">

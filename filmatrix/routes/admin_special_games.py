@@ -1,4 +1,4 @@
-"""Administration des Jeux Spéciaux : scènes et zones de Cache-Ciné.
+"""Administration des Jeux Spéciaux : Cache-Ciné et Scène Mystère.
 
 Fichier séparé de routes/admin.py (déjà volumineux) plutôt que d'y ajouter
 encore une section : même garde d'accès (@admin_required), même pattern de
@@ -18,7 +18,13 @@ from flask_login import login_required
 
 from filmatrix.extensions import db
 from filmatrix.integrations.storage import upload_special_game_image
-from filmatrix.models import CacheCineReference, CacheCineScene
+from filmatrix.models import (
+    CacheCineReference,
+    CacheCineScene,
+    MysteryCase,
+    MysteryOption,
+    MysteryZone,
+)
 from filmatrix.permissions import admin_required
 from filmatrix.routes.admin import _admin_nav_counts
 
@@ -28,11 +34,12 @@ bp = Blueprint("admin_special_games", __name__)
 @bp.context_processor
 def _inject_admin_counts() -> dict:
     """Réutilise les compteurs de la nav admin existante (routes/admin.py)
-    et y ajoute celui des scènes Cache-Ciné, pour que la barre latérale
-    partagée (templates/admin/base_admin.html) fonctionne aussi sur les
-    pages de ce blueprint."""
+    et y ajoute ceux des Jeux Spéciaux, pour que la barre latérale partagée
+    (templates/admin/base_admin.html) fonctionne aussi sur les pages de ce
+    blueprint."""
     context = _admin_nav_counts()
     context["admin_counts"]["cache_cine"] = db.session.query(CacheCineScene.id).count()
+    context["admin_counts"]["scene_mystere"] = db.session.query(MysteryCase.id).count()
     return context
 
 
@@ -41,11 +48,12 @@ SCENE_IMAGE_MAX_BYTES = 8 * 1024 * 1024
 DIFFICULTIES = ["facile", "moyen", "difficile", "expert"]
 
 
-def save_scene_image(uploaded_file):
-    """Envoie l'image d'une scène Cache-Ciné sur le stockage cloud (Cloudflare R2).
+def _save_special_game_image(uploaded_file, subfolder: str):
+    """Envoie une image de Jeu Spécial sur le stockage cloud (Cloudflare R2).
 
     Même logique que save_character_image (routes/admin.py) : le disque local
-    du serveur ne survit pas aux déploiements.
+    du serveur ne survit pas aux déploiements. subfolder distingue Cache-Ciné
+    de Scène Mystère dans le bucket.
     """
     if not uploaded_file or not uploaded_file.filename:
         return None
@@ -60,7 +68,7 @@ def save_scene_image(uploaded_file):
         raise ValueError("L'image ne doit pas dépasser 8 Mo.")
     uploaded_file.seek(0)
 
-    filename = f"cache-cine/{uuid4().hex}.{extension}"
+    filename = f"{subfolder}/{uuid4().hex}.{extension}"
     try:
         return upload_special_game_image(uploaded_file, filename, uploaded_file.mimetype)
     except KeyError as error:
@@ -69,6 +77,16 @@ def save_scene_image(uploaded_file):
     except (BotoCoreError, ClientError) as error:
         current_app.logger.exception("Upload R2 : échec de l'envoi vers le stockage")
         raise ValueError("Échec de l'envoi de l'image vers le stockage. Réessaie.") from error
+
+
+def save_scene_image(uploaded_file):
+    """Envoie l'image d'une scène Cache-Ciné sur le stockage cloud."""
+    return _save_special_game_image(uploaded_file, "cache-cine")
+
+
+def save_mystery_scene_image(uploaded_file):
+    """Envoie l'image d'une scène Scène Mystère sur le stockage cloud."""
+    return _save_special_game_image(uploaded_file, "scene-mystere")
 
 
 @bp.route("/admin/jeux-speciaux/cache-cine")
@@ -186,3 +204,147 @@ def admin_cache_cine_delete(scene_id: int) -> str:
 
     flash("Scène supprimée.")
     return redirect(url_for("admin_special_games.admin_cache_cine_list"))
+
+
+@bp.route("/admin/jeux-speciaux/scene-mystere")
+@login_required
+@admin_required
+def admin_scene_mystere_list() -> str:
+    """Affiche la liste des cas Scène Mystère."""
+    cases = MysteryCase.query.order_by(MysteryCase.created_at.desc()).all()
+    zone_counts = {case.id: MysteryZone.query.filter_by(case_id=case.id).count() for case in cases}
+
+    return render_template(
+        "admin/scene_mystere_list.html",
+        cases=cases,
+        zone_counts=zone_counts,
+        active_admin_section="scene_mystere",
+    )
+
+
+def _delete_case_zones(case_id: int) -> None:
+    """Supprime toutes les zones d'un cas et leurs options (les options
+    n'ont pas de suppression en cascade automatique via bulk delete)."""
+    zone_ids = [zone.id for zone in MysteryZone.query.filter_by(case_id=case_id).all()]
+    if zone_ids:
+        MysteryOption.query.filter(MysteryOption.zone_id.in_(zone_ids)).delete(synchronize_session=False)
+    MysteryZone.query.filter_by(case_id=case_id).delete()
+
+
+@bp.route("/admin/jeux-speciaux/scene-mystere/nouveau", methods=["GET", "POST"])
+@login_required
+@admin_required
+def admin_scene_mystere_new() -> str:
+    """Affiche le formulaire de création ou de modification d'un cas Scène Mystère."""
+    case_id = request.args.get("case_id", type=int)
+    case = MysteryCase.query.get(case_id) if case_id else None
+
+    if request.method == "POST":
+        if case is None:
+            case = MysteryCase()
+            db.session.add(case)
+
+        case.difficulty = request.form.get("difficulty", "moyen")
+        case.is_active = request.form.get("is_active") == "on"
+        try:
+            case.time_limit_seconds = int(request.form.get("time_limit_seconds", 240))
+        except (TypeError, ValueError):
+            case.time_limit_seconds = 240
+
+        uploaded_image = request.files.get("image_file")
+        if uploaded_image and uploaded_image.filename:
+            try:
+                case.image_url = save_mystery_scene_image(uploaded_image)
+            except ValueError as error:
+                db.session.rollback()
+                flash(str(error))
+                return render_template(
+                    "admin/scene_mystere_form.html", case=case, difficulties=DIFFICULTIES, existing_zones=[]
+                )
+
+        # Les zones (chacune avec son indice et ses options imbriqués) sont
+        # entièrement redéfinies à chaque sauvegarde plutôt que diffées,
+        # comme les références Cache-Ciné : l'éditeur visuel
+        # (static/js/admin_scene_mystere_zones.js) envoie déjà la liste
+        # complète et à jour dans un seul champ caché JSON.
+        try:
+            zones_data = json.loads(request.form.get("zones_json", "[]"))
+        except (TypeError, ValueError):
+            zones_data = []
+
+        if case.id is not None:
+            _delete_case_zones(case.id)
+        db.session.flush()
+
+        for order_index, entry in enumerate(zones_data):
+            clue_text = (entry.get("clue_text") or "").strip()
+            if not clue_text:
+                continue
+
+            zone = MysteryZone(
+                case_id=case.id,
+                pos_x=float(entry.get("pos_x", 0)),
+                pos_y=float(entry.get("pos_y", 0)),
+                width=float(entry.get("width", 10)),
+                height=float(entry.get("height", 10)),
+                clue_text=clue_text,
+                order_index=order_index,
+            )
+            db.session.add(zone)
+            db.session.flush()
+
+            for option_index, option_entry in enumerate(entry.get("options") or []):
+                label = (option_entry.get("label") or "").strip()
+                if not label:
+                    continue
+                db.session.add(
+                    MysteryOption(
+                        zone_id=zone.id,
+                        label=label,
+                        is_correct=bool(option_entry.get("is_correct")),
+                        order_index=option_index,
+                    )
+                )
+
+        db.session.commit()
+
+        flash("Cas modifié avec succès." if case_id else "Cas créé avec succès.")
+        return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
+
+    existing_zones = []
+    if case is not None:
+        zones = MysteryZone.query.filter_by(case_id=case.id).order_by(MysteryZone.order_index).all()
+        existing_zones = [
+            {
+                "pos_x": zone.pos_x,
+                "pos_y": zone.pos_y,
+                "width": zone.width,
+                "height": zone.height,
+                "clue_text": zone.clue_text,
+                "options": [
+                    {"label": option.label, "is_correct": option.is_correct}
+                    for option in MysteryOption.query.filter_by(zone_id=zone.id)
+                    .order_by(MysteryOption.order_index)
+                    .all()
+                ],
+            }
+            for zone in zones
+        ]
+
+    return render_template(
+        "admin/scene_mystere_form.html", case=case, difficulties=DIFFICULTIES, existing_zones=existing_zones
+    )
+
+
+@bp.route("/admin/jeux-speciaux/scene-mystere/<int:case_id>/supprimer", methods=["POST"])
+@login_required
+@admin_required
+def admin_scene_mystere_delete(case_id: int) -> str:
+    """Supprime un cas Scène Mystère et tout son contenu."""
+    case = MysteryCase.query.get_or_404(case_id)
+    _delete_case_zones(case.id)
+    db.session.delete(case)
+    db.session.commit()
+
+    flash("Cas supprimé.")
+    return redirect(url_for("admin_special_games.admin_scene_mystere_list"))

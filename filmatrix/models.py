@@ -350,3 +350,57 @@ class CacheCineReference(db.Model):
     order_index = db.Column(db.Integer, nullable=False, default=0)
 
     scene = db.relationship("CacheCineScene", backref="references")
+
+
+class MysteryCase(db.Model):
+    """Représente un cas du jeu spécial Scène Mystère : une image de décor
+    truffée d'une dizaine de références. Chaque référence (MysteryZone) pose
+    sa propre question ; le joueur les résout une par une jusqu'à épuiser
+    l'image. Contenu créé par un admin."""
+
+    __tablename__ = "mystery_cases"
+
+    id = db.Column(db.Integer, primary_key=True)
+    image_url = db.Column(db.String(255), nullable=True)
+    difficulty = db.Column(db.String(20), nullable=False, default="moyen")
+    time_limit_seconds = db.Column(db.Integer, nullable=False, default=240)
+    is_active = db.Column(db.Boolean, nullable=False, default=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
+class MysteryZone(db.Model):
+    """Représente une référence cachée sur l'image d'un cas Scène Mystère :
+    une zone cliquable (position en % de l'image, comme CacheCineReference)
+    avec son propre indice, résolue via son propre QCM (MysteryOption).
+    Contrairement à Cache-Ciné, chaque zone porte sa question — il n'y a pas
+    de "décoy" au niveau du cas, chaque zone est une cible légitime dans son
+    propre tour de jeu."""
+
+    __tablename__ = "mystery_zones"
+
+    id = db.Column(db.Integer, primary_key=True)
+    case_id = db.Column(db.Integer, db.ForeignKey("mystery_cases.id"), nullable=False)
+    pos_x = db.Column(db.Float, nullable=False, default=0)
+    pos_y = db.Column(db.Float, nullable=False, default=0)
+    width = db.Column(db.Float, nullable=False, default=10)
+    height = db.Column(db.Float, nullable=False, default=10)
+    clue_text = db.Column(db.String(255), nullable=False)
+    order_index = db.Column(db.Integer, nullable=False, default=0)
+
+    case = db.relationship("MysteryCase", backref="zones")
+
+
+class MysteryOption(db.Model):
+    """Représente une option du QCM d'une zone Scène Mystère précise. Une
+    seule par zone porte is_correct=True — c'est elle qui nomme l'œuvre
+    représentée par cette référence."""
+
+    __tablename__ = "mystery_options"
+
+    id = db.Column(db.Integer, primary_key=True)
+    zone_id = db.Column(db.Integer, db.ForeignKey("mystery_zones.id"), nullable=False)
+    label = db.Column(db.String(100), nullable=False)
+    is_correct = db.Column(db.Boolean, nullable=False, default=False)
+    order_index = db.Column(db.Integer, nullable=False, default=0)
+
+    zone = db.relationship("MysteryZone", backref="options")

@@ -23,6 +23,11 @@ TITLES = {
         "price": None,
         "exclusive": True,
     },
+    "maitre_du_mystere": {
+        "name": "🎭 Maître du Mystère",
+        "price": None,
+        "exclusive": True,
+    },
 }
 
 def owns_title(user, title_code: str) -> bool:

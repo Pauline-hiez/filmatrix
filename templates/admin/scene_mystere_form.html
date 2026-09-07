@@ -1,0 +1,92 @@
+{% extends "admin/base_admin.html" %}
+
+{% block admin_content %}
+<style>
+    /* Surligne en vert l'option dont le radio "bonne réponse" est coché,
+       pour qu'on voie tout de suite laquelle est actuellement désignée sans
+       avoir à chercher le petit rond rempli parmi les 4. */
+    #sm-zone-list .sm-option-row {
+        border-radius: .4rem;
+        border: 1px solid transparent;
+        padding: .25rem .4rem;
+        transition: border-color .15s ease, background .15s ease;
+    }
+    #sm-zone-list .sm-option-row:has(input:checked) {
+        border-color: rgba(52, 211, 153, .55);
+        background: rgba(52, 211, 153, .1);
+    }
+</style>
+<div class="max-w-3xl">
+    <div class="mb-6 flex items-center justify-between gap-3">
+        <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Scène Mystère</p>
+            <h2 class="mt-1 text-xl">{{ "Modifier le cas" if case else "Nouveau cas" }}</h2>
+        </div>
+        <a href="{{ url_for('admin_special_games.admin_scene_mystere_list') }}" class="text-sm text-slate-400 hover:text-cyan-400">← Retour</a>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data"
+          action="{{ url_for('admin_special_games.admin_scene_mystere_new', case_id=case.id) if case else url_for('admin_special_games.admin_scene_mystere_new') }}"
+          class="flex flex-col gap-5">
+
+        <div class="grid grid-cols-3 gap-4">
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Difficulté</label>
+                <select name="difficulty" data-combobox class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                    {% for level in difficulties %}
+                    <option value="{{ level }}" {% if case and case.difficulty == level %}selected{% endif %}>{{ level | capitalize }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Temps disponible (secondes)</label>
+                <input type="number" name="time_limit_seconds" min="30" max="900"
+                       value="{{ case.time_limit_seconds if case else 240 }}"
+                       class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+            </div>
+            <div class="flex items-end">
+                <label class="flex items-center gap-2 text-sm text-slate-300">
+                    <input type="checkbox" name="is_active" {% if not case or case.is_active %}checked{% endif %} class="accent-cyan-400">
+                    Cas actif (peut être tiré en partie)
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Image de la scène</label>
+            {% if case and case.image_url %}
+            <img src="{{ case.image_url | image_src }}" alt="" class="mb-2 max-h-40 rounded-lg border border-slate-800">
+            <p class="mb-2 text-xs text-slate-500">Sélectionne un nouveau fichier pour la remplacer (les zones ci-dessous resteront alignées sur l'ancienne image tant que tu ne l'as pas changée).</p>
+            {% endif %}
+            <input type="file" name="image_file" accept="image/png,image/jpeg,image/webp,image/gif"
+                   class="block w-full cursor-pointer rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-2 text-sm text-slate-300 file:mr-3 file:rounded file:border-0 file:bg-cyan-400 file:px-3 file:py-1 file:font-bold file:text-slate-950">
+            <p class="mt-1 text-xs text-slate-500">PNG, JPG, WEBP ou GIF · 8 Mo maximum</p>
+        </div>
+
+        {% if case and case.image_url %}
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Références ({{ existing_zones | length }} · une dizaine recommandée)</label>
+            <p class="mb-2 text-xs text-slate-500">Clique-glisse sur l'image pour dessiner une zone. Chaque zone devient une question indépendante : donne-lui son indice, ses 4 options de réponse, et coche le rond à gauche de la bonne (elle se surligne en vert).</p>
+            <div id="sm-zone-editor" class="relative inline-block w-full select-none">
+                <img src="{{ case.image_url | image_src }}" alt="" id="sm-editor-image" class="w-full rounded-lg border border-cyan-400/30" draggable="false">
+            </div>
+            <div id="sm-zone-list" class="mt-3 flex flex-col gap-3"></div>
+            <input type="hidden" name="zones_json" id="sm-zones-json">
+        </div>
+        {% else %}
+        <p class="rounded-lg border border-dashed border-slate-700 px-3 py-4 text-center text-xs text-slate-500">
+            Enregistre d'abord le cas avec son image : tu pourras ensuite y placer les zones.
+        </p>
+        {% endif %}
+
+        <button type="submit" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition mt-2">
+            {{ "Enregistrer les modifications" if case else "Créer le cas" }}
+        </button>
+    </form>
+</div>
+
+{% if case and case.image_url %}
+<script type="application/json" id="sm-existing-zones">{{ existing_zones | tojson }}</script>
+<script src="{{ url_for('static', filename='js/admin_scene_mystere_zones.js') }}"></script>
+{% endif %}
+{% endblock %}

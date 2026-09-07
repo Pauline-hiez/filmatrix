@@ -43,6 +43,12 @@ BADGES = {
         "icon": "🎖️",
         "exclusive": True,
     },
+    "devin_du_cinema": {
+        "name": "Devin du Cinéma",
+        "description": "Identifier une Scène Mystère au tout premier indice.",
+        "icon": "🔮",
+        "exclusive": True,
+    },
 }
 
 def has_badge(user, badge_code: str) -> bool:
