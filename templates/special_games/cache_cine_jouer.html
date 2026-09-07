@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .cc-page .cc-topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+        border: 1px solid rgba(251, 191, 36, .3);
+        border-radius: 1rem;
+        background: rgba(2, 6, 23, .7);
+        padding: .85rem 1.1rem;
+    }
+
+    .cc-page .cc-stat {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        font-weight: 800;
+        font-size: .95rem;
+        color: #f8fafc;
+    }
+
+    .cc-page .cc-timer--low { color: #fb7185; }
+
+    .cc-page .cc-stage {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.25rem;
+        border: 1px solid rgba(251, 191, 36, .25);
+        background: #020617;
+        box-shadow: 0 25px 60px -25px rgba(2, 6, 23, .8);
+        cursor: crosshair;
+        transition: box-shadow .15s ease;
+    }
+
+    .cc-page .cc-stage.cc-miss-flash {
+        box-shadow: inset 0 0 0 4px rgba(248, 113, 113, .75), 0 25px 60px -25px rgba(2, 6, 23, .8);
+    }
+
+    .cc-page .cc-stage img {
+        display: block;
+        width: 100%;
+        height: auto;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    .cc-page .cc-zone {
+        position: absolute;
+        border-radius: .4rem;
+        border: 1px solid transparent;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .cc-page .cc-zone--found {
+        border-color: rgba(52, 211, 153, .85);
+        background: rgba(52, 211, 153, .18);
+        box-shadow: 0 0 0 3px rgba(52, 211, 153, .35);
+        pointer-events: none;
+    }
+
+    @keyframes cc-zone-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, .8); }
+        100% { box-shadow: 0 0 0 22px rgba(52, 211, 153, 0); }
+    }
+
+    .cc-page .cc-zone--just-found {
+        animation: cc-zone-pulse .7s ease-out;
+    }
+
+    .cc-page .cc-toast {
+        position: absolute;
+        left: 50%;
+        top: 1rem;
+        transform: translateX(-50%);
+        z-index: 5;
+        border-radius: .6rem;
+        padding: .5rem 1rem;
+        font-size: .82rem;
+        font-weight: 800;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .cc-page .cc-toast.is-visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(4px);
+    }
+
+    .cc-page .cc-toast--found { background: rgba(52, 211, 153, .92); color: #022c22; }
+    .cc-page .cc-toast--miss { background: rgba(248, 113, 113, .92); color: #450a0a; }
+
+    .cc-page .cc-checklist {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+    }
+
+    .cc-page .cc-checklist li {
+        display: flex;
+        align-items: center;
+        gap: .55rem;
+        border-radius: .6rem;
+        border: 1px solid rgba(148, 163, 184, .18);
+        background: rgba(15, 23, 42, .55);
+        padding: .55rem .75rem;
+        font-size: .85rem;
+        color: #cbd5e1;
+        transition: border-color .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .cc-page .cc-checklist li.is-found {
+        border-color: rgba(52, 211, 153, .5);
+        background: rgba(52, 211, 153, .1);
+        color: #6ee7b7;
+    }
+
+    .cc-page .cc-check {
+        font-weight: 900;
+    }
+</style>
+
+<div class="cc-page mx-auto flex max-w-5xl flex-col gap-4">
+    <div class="cc-topbar">
+        <div>
+            <p class="text-xs font-extrabold uppercase tracking-widest text-amber-400">🔎 Cache-Ciné</p>
+            <h1 class="text-lg font-extrabold text-slate-100">{{ scene.title }}</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="cc-stat" id="cc-found-count">🎯 {{ found_reference_ids | length }}/{{ references | length }}</span>
+            <span class="cc-stat" id="cc-timer">⏱️ {{ "%02d:%02d" | format(scene.time_limit_seconds // 60, scene.time_limit_seconds % 60) }}</span>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
+        <div class="cc-stage" id="cc-stage">
+            <div class="cc-toast" id="cc-toast"></div>
+            <img src="{{ scene.image_url | image_src }}" alt="{{ scene.title }}" id="cc-image" draggable="false">
+            {% for reference in references %}
+            <button type="button" class="cc-zone {% if reference.id in found_reference_ids %}cc-zone--found{% endif %}"
+                    data-reference-id="{{ reference.id }}"
+                    style="left:{{ reference.pos_x }}%; top:{{ reference.pos_y }}%; width:{{ reference.width }}%; height:{{ reference.height }}%;"
+                    aria-label="Zone cachée"></button>
+            {% endfor %}
+        </div>
+
+        <div>
+            <p class="mb-2 text-xs font-extrabold uppercase tracking-widest text-slate-500">Références à trouver</p>
+            <ul class="cc-checklist" id="cc-checklist">
+                {% for reference in references %}
+                <li data-reference-id="{{ reference.id }}" class="{% if reference.id in found_reference_ids %}is-found{% endif %}">
+                    <span class="cc-check">{{ "✓" if reference.id in found_reference_ids else "☐" }}</span>
+                    <span class="cc-title">{{ reference.title }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form id="cc-finish-form" method="POST" action="{{ url_for('special_games.cache_cine_finish') }}" class="hidden"></form>
+
+<script type="application/json" id="cache-cine-config">
+{
+    "clickUrl": {{ url_for('special_games.cache_cine_click') | tojson }},
+    "timeLimitSeconds": {{ scene.time_limit_seconds | tojson }},
+    "totalReferences": {{ references | length | tojson }},
+    "foundCount": {{ found_reference_ids | length | tojson }}
+}
+</script>
+<script src="{{ url_for('static', filename='js/cache_cine.js') }}"></script>
+
+{% endblock %}

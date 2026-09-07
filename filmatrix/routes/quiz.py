@@ -22,6 +22,7 @@ from filmatrix.services.daily_challenges import (
 )
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
+from filmatrix.services.notifications import create_notification
 from filmatrix.services.levels import (
     BLINDTEST_DURATION,
     DEFAULT_LEVEL,
@@ -306,8 +307,20 @@ def quiz(mode: str, position: int) -> str:
                     streak_bonus_fragment_result = award_guaranteed_fragment(
                         current_user, minimum_rarity=["rare", "epique", "legendaire", "mythique"]
                     )
+                    # Ressource des Jeux Spéciaux (filmatrix/special_games.py) :
+                    # même palier que le fragment rare garanti ci-dessus, pour
+                    # un rythme hebdomadaire naturel sans nouveau système de
+                    # mission dédié (voir services/daily_challenges.py).
+                    current_user.golden_tickets += 1
 
                 db.session.commit()
+
+                if reached_streak_bonus:
+                    create_notification(
+                        current_user,
+                        "🎟️ Tu as gagné un Ticket d'Or pour ta série de connexion !",
+                        link=url_for("special_games.hub"),
+                    )
 
         # Les fragments gagnés ne sont pas renvoyés tout de suite au client :
         # ils sont mis de côté pour l'écran de fin de partie, qui les révèle

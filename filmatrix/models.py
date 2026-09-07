@@ -45,6 +45,11 @@ class User(db.Model, UserMixin):
     last_fragment_earned_at = db.Column(db.DateTime, nullable=True)
     current_streak = db.Column(db.Integer, nullable=False, default=0)
     last_streak_date = db.Column(db.Date, nullable=True)
+    # Ressource des Jeux Spéciaux (catégorie à part des modes classiques,
+    # voir filmatrix/special_games.py) : consommée au lancement d'une partie,
+    # jamais achetable, gagnée au palier de série de connexion
+    # (STREAK_BONUS_THRESHOLD, services/daily_challenges.py).
+    golden_tickets = db.Column(db.Integer, nullable=False, default=0)
 
     def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"
@@ -310,3 +315,38 @@ class DailyChallenge(db.Model):
     __table_args__ = (
         db.UniqueConstraint("user_id", "challenge_date", "slot", name="uq_user_challenge_date_slot"),
     )
+
+
+class CacheCineScene(db.Model):
+    """Représente un décor du jeu spécial Cache-Ciné : une illustration dans
+    laquelle plusieurs références cinématographiques (CacheCineReference)
+    sont cachées. Contenu créé par un admin, pas par un joueur."""
+
+    __tablename__ = "cache_cine_scenes"
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    image_url = db.Column(db.String(255), nullable=True)
+    difficulty = db.Column(db.String(20), nullable=False, default="moyen")
+    time_limit_seconds = db.Column(db.Integer, nullable=False, default=120)
+    is_active = db.Column(db.Boolean, nullable=False, default=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
+class CacheCineReference(db.Model):
+    """Représente une référence cachée dans une scène Cache-Ciné : une zone
+    rectangulaire cliquable (position et taille en % de l'image, pour rester
+    responsive) associée au titre de l'œuvre à retrouver."""
+
+    __tablename__ = "cache_cine_references"
+
+    id = db.Column(db.Integer, primary_key=True)
+    scene_id = db.Column(db.Integer, db.ForeignKey("cache_cine_scenes.id"), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
+    pos_x = db.Column(db.Float, nullable=False, default=0)
+    pos_y = db.Column(db.Float, nullable=False, default=0)
+    width = db.Column(db.Float, nullable=False, default=10)
+    height = db.Column(db.Float, nullable=False, default=10)
+    order_index = db.Column(db.Integer, nullable=False, default=0)
+
+    scene = db.relationship("CacheCineScene", backref="references")

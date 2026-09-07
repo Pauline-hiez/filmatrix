@@ -1362,7 +1362,8 @@
     {% if current_user.is_authenticated %}
         {% set nav_links = nav_links + [
             ("friends.friends_list", "Amis", false),
-            ("shop.shop", "Boutique", false)
+            ("shop.shop", "Boutique", false),
+            ("special_games.hub", "Jeux Spéciaux", false)
         ] %}
         {% if current_user.is_admin %}
             {% set nav_links = nav_links + [("admin.admin_questions_list", "Admin", true)] %}
@@ -1407,6 +1408,15 @@
                     <span class="flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-1 text-sm font-bold text-amber-400">
                         🪙 {{ current_user.coins }}
                     </span>
+
+                    {# Ressource des Jeux Spéciaux (filmatrix/special_games.py) : toujours
+                       visible, comme les pièces, pour rappeler qu'elle s'accumule même
+                       quand le joueur ne pense pas à aller la dépenser. #}
+                    <a href="{{ url_for('special_games.hub') }}"
+                       class="hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-yellow-400/40 bg-yellow-400/10 px-2.5 py-1 text-sm font-bold text-yellow-400 shadow-[0_0_14px_-4px_rgba(250,204,21,0.65)] transition hover:border-yellow-300 sm:flex">
+                        <img src="{{ url_for('static', filename='images/habillage/ticket-or.png') }}" alt="" class="h-4 w-auto">
+                        {{ current_user.golden_tickets }}
+                    </a>
 
                     <div class="relative">
                         <button id="notification-bell" class="relative flex h-8 w-8 items-center justify-center rounded-full text-slate-300 transition hover:bg-slate-900 hover:text-cyan-400" aria-label="Notifications">

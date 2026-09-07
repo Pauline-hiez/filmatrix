@@ -34,6 +34,15 @@ BADGES = {
         "description": "10 bonnes réponses en mode Citations.",
         "icon": "📚",
     },
+    # Récompense des Jeux Spéciaux (filmatrix/services/special_games.py) :
+    # jamais attribué par check_and_award_badges, "exclusive" sert juste à
+    # l'affichage profil ("Obtenu uniquement dans les Jeux Spéciaux").
+    "oeil_cinephile": {
+        "name": "Œil de Cinéphile",
+        "description": "Trouver toutes les références sans erreur en Cache-Ciné.",
+        "icon": "🎖️",
+        "exclusive": True,
+    },
 }
 
 def has_badge(user, badge_code: str) -> bool:

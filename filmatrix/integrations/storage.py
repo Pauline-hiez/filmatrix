@@ -39,3 +39,13 @@ def upload_character_image(file_obj, filename: str, content_type: str | None) ->
     extra_args = {"ContentType": content_type} if content_type else {}
     _client().upload_fileobj(file_obj, bucket, key, ExtraArgs=extra_args)
     return f"{_env('R2_PUBLIC_URL').rstrip('/')}/{key}"
+
+
+def upload_special_game_image(file_obj, filename: str, content_type: str | None) -> str:
+    """Envoie une image de Jeu Spécial (ex. une scène Cache-Ciné) vers R2 et
+    renvoie son URL publique complète."""
+    bucket = _env("R2_BUCKET_NAME")
+    key = f"special-games/{filename}"
+    extra_args = {"ContentType": content_type} if content_type else {}
+    _client().upload_fileobj(file_obj, bucket, key, ExtraArgs=extra_args)
+    return f"{_env('R2_PUBLIC_URL').rstrip('/')}/{key}"

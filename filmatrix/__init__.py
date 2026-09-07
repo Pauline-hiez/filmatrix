@@ -16,6 +16,7 @@ from filmatrix.models import User
 from filmatrix.realtime.events import register_socket_events
 from filmatrix.routes import (
     admin,
+    admin_special_games,
     auth,
     collection,
     friends,
@@ -26,6 +27,7 @@ from filmatrix.routes import (
     profile,
     quiz,
     shop,
+    special_games,
 )
 from filmatrix.services.notifications import get_unread_count
 
@@ -45,6 +47,8 @@ BLUEPRINTS = (
     notifications.bp,
     admin.bp,
     collection.bp,
+    special_games.bp,
+    admin_special_games.bp,
 )
 
 

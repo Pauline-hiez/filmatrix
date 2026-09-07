@@ -16,6 +16,10 @@ def shop() -> str:
     """Affiche la boutique de titres avec le statut d'achat pour chacun"""
     shop_titles = []
     for code, info in TITLES.items():
+        # Titres exclusifs des Jeux Spéciaux (price=None) : jamais en vente,
+        # uniquement gagnés en jeu — absents de la boutique.
+        if info["price"] is None:
+            continue
         shop_titles.append(
             {
                 "code": code,
