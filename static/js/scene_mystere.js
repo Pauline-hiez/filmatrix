@@ -78,15 +78,20 @@
     function showQcm(options) {
         awaitingAnswer = true;
         qcmOptionsEl.innerHTML = "";
-        options.forEach(function (option, index) {
+        // Aucune option pré-cochée : le joueur doit en choisir une lui-même,
+        // pas se voir suggérer une réponse par défaut avant même d'avoir
+        // réfléchi. Le bouton Valider reste désactivé jusqu'au premier choix.
+        options.forEach(function (option) {
             const label = document.createElement("label");
             label.className = "sm-qcm-option";
             label.innerHTML =
-                '<input type="radio" name="sm-qcm-choice" value="' + option.id + '" class="accent-amber-400"' +
-                (index === 0 ? " checked" : "") + '><span></span>';
+                '<input type="radio" name="sm-qcm-choice" value="' + option.id + '" class="accent-amber-400"><span></span>';
             label.querySelector("span").textContent = option.label;
             qcmOptionsEl.appendChild(label);
         });
+        if (qcmSubmitButton) {
+            qcmSubmitButton.disabled = true;
+        }
         cluePanel.classList.add("sm-hidden");
         qcmPanel.classList.remove("sm-hidden");
     }
@@ -141,6 +146,12 @@
                 // Le clic n'a pas pu être validé (réseau) : le joueur peut
                 // simplement recliquer, aucun état local n'a changé.
             });
+    });
+
+    qcmOptionsEl.addEventListener("change", function (event) {
+        if (event.target.name === "sm-qcm-choice" && qcmSubmitButton) {
+            qcmSubmitButton.disabled = false;
+        }
     });
 
     if (qcmSubmitButton) {
