@@ -218,6 +218,75 @@
             transition-delay: 0.45s;
         }
 
+        /* Paquet cadeau : première étape de la révélation (fragment_reveal.js,
+           playGiftBox), avant la carte de fragment habituelle. Illustration
+           static/images/habillage/cadeau1.png, qui rebondit et lance un halo
+           (coloré par rareté) en boucle infinie tant que le joueur n'a pas
+           cliqué — aucun minuteur ne l'ouvre tout seul, contrairement au
+           reste de la scène (wait()). Le clic ajoute .is-opening (le paquet
+           grossit puis se referme sur lui-même dans un flash) puis
+           playStage() prend le relais pour l'effet "le fragment sort du
+           paquet" (flash, pellicule, pièce qui s'emboîte avec rebond). */
+        @keyframes giftboxBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(-1.5deg); }
+        }
+        @keyframes giftboxGlowPulse {
+            0%, 100% { opacity: 0.35; transform: scale(0.92); }
+            50% { opacity: 0.8; transform: scale(1.08); }
+        }
+        .fragment-giftbox {
+            position: relative;
+            width: min(58vw, 220px);
+            aspect-ratio: 1 / 1;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            animation: giftboxBounce 1.7s ease-in-out infinite;
+        }
+        .fragment-giftbox-glow {
+            position: absolute;
+            inset: -15%;
+            z-index: 0;
+            border-radius: 9999px;
+            background: radial-gradient(circle, var(--frag-glow, rgba(167, 139, 250, 0.6)) 0%, transparent 70%);
+            filter: blur(10px);
+            animation: giftboxGlowPulse 1.7s ease-in-out infinite;
+        }
+        .fragment-giftbox-img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 16px var(--frag-glow, rgba(167, 139, 250, 0.5)));
+        }
+        .fragment-giftbox-flash {
+            position: absolute;
+            inset: -10%;
+            z-index: 2;
+            border-radius: 9999px;
+            background: #f8fafc;
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes giftboxPop {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            35% { transform: scale(1.14) rotate(3deg); opacity: 1; }
+            100% { transform: scale(0.55) rotate(-8deg); opacity: 0; }
+        }
+        .fragment-giftbox.is-opening {
+            animation: none;
+        }
+        .fragment-giftbox.is-opening .fragment-giftbox-glow {
+            animation: fragmentBurstPulse 0.5s ease-out both;
+        }
+        .fragment-giftbox.is-opening .fragment-giftbox-img {
+            animation: giftboxPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .fragment-giftbox.is-opening .fragment-giftbox-flash {
+            animation: fragmentClapFlash 0.25s ease-out 0.16s forwards;
+        }
+
         /* ---- Scène plein écran de fin de partie (fragment_reveal.js) ---- */
         /* Le gain de fragment n'interrompt jamais une partie en cours : il
            n'est révélé qu'une fois la partie terminée, dans une mise en scène
@@ -387,7 +456,12 @@
             .fragment-particle,
             .fragment-stage-title,
             .fragment-stage-name,
-            .fragment-stage-sub {
+            .fragment-stage-sub,
+            .fragment-giftbox,
+            .fragment-giftbox-glow,
+            .fragment-giftbox.is-opening .fragment-giftbox-glow,
+            .fragment-giftbox.is-opening .fragment-giftbox-img,
+            .fragment-giftbox.is-opening .fragment-giftbox-flash {
                 animation: none !important;
             }
         }

@@ -133,6 +133,48 @@
         });
     }
 
+    // Contrairement à wait(), aucun minuteur ne fait avancer le paquet cadeau
+    // tout seul : il reste en boucle (rebond + halo, voir base.html) jusqu'à
+    // ce que le joueur clique dessus.
+    function waitForClick() {
+        return new Promise(function (resolve) {
+            skipCurrentStage = function () {
+                skipCurrentStage = null;
+                resolve();
+            };
+        });
+    }
+
+    async function playGiftBox(result) {
+        const rarityKey = result.rarity;
+        const rarityLabel = FRAGMENT_RARITY_LABELS[rarityKey] || rarityKey || "";
+        const colors = FRAGMENT_RARITY_COLORS[rarityKey] || FRAGMENT_RARITY_COLORS.commun;
+
+        overlay.style.setProperty("--frag-glow", colors.glow);
+
+        stage.innerHTML = `
+            <div class="fragment-giftbox" style="--frag-glow:${colors.glow}">
+                <div class="fragment-giftbox-glow"></div>
+                <img class="fragment-giftbox-img" src="/static/images/habillage/cadeau1.png" alt="" />
+                <div class="fragment-giftbox-flash"></div>
+            </div>
+            <p class="fragment-stage-title" style="color:${colors.text}">🎁 Un fragment t'attend</p>
+            <p class="fragment-stage-sub">${rarityLabel}</p>
+        `;
+
+        await waitForClick();
+
+        // Couvercle qui s'envole + corps qui se rétracte (base.html,
+        // .fragment-giftbox.is-opening) avant de laisser la place à la carte
+        // de fragment habituelle, qui prend le relais pour l'effet "le
+        // fragment sort du paquet" (flash, pellicule, pièce qui s'emboîte).
+        const box = stage.querySelector(".fragment-giftbox");
+        if (box) {
+            box.classList.add("is-opening");
+        }
+        await wait(380);
+    }
+
     async function playStage(result) {
         const justUnlocked = result.just_unlocked;
         const rarityKey = result.rarity;
@@ -188,6 +230,7 @@
     async function run() {
         overlay.classList.add("is-visible");
         for (let i = 0; i < results.length; i++) {
+            await playGiftBox(results[i]);
             await playStage(results[i]);
         }
         overlay.classList.remove("is-visible");
