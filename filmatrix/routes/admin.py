@@ -17,6 +17,7 @@ from filmatrix.catalog import REPORT_REASON
 from filmatrix.catalog_rarities import fragments_for_rarity
 from filmatrix.game_modes import GAME_MODES
 from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character, question_tags
+from filmatrix.services.notifications import create_notification
 from filmatrix.services.tags import merge_tag_into
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.storage import upload_character_image
@@ -470,6 +471,7 @@ def admin_users_list() -> str:
                 "total_xp": user.total_xp,
                 "coins": user.coins,
                 "correct_count": correct_count,
+                "golden_tickets": user.golden_tickets,
             }
         )
 
@@ -493,6 +495,36 @@ def admin_toggle_admin(user_id: int) -> str:
     db.session.commit()
 
     flash(f"Statut administrateur de {user.username} mis à jour.")
+    return redirect(url_for("admin.admin_users_list"))
+
+@bp.route("/admin/utilisateurs/<int:user_id>/tickets", methods=["POST"])
+@login_required
+@admin_required
+def admin_grant_tickets(user_id: int) -> str:
+    """Offre un lot de Tickets d'Or à un utilisateur (test, geste commercial,
+    compensation...). Seul chemin d'obtention hors jeu — volontairement
+    manuel, pas de distribution automatique en masse depuis cet écran."""
+    user = User.query.get_or_404(user_id)
+
+    try:
+        amount = int(request.form.get("amount", ""))
+    except (TypeError, ValueError):
+        amount = 0
+
+    if amount <= 0:
+        flash("Indique un nombre de Tickets d'Or positif.")
+        return redirect(url_for("admin.admin_users_list"))
+
+    user.golden_tickets += amount
+    db.session.commit()
+
+    create_notification(
+        user,
+        f"🎟️ Un administrateur t'a offert {amount} Ticket{'s' if amount > 1 else ''} d'Or !",
+        link=url_for("special_games.hub"),
+    )
+
+    flash(f"{amount} Ticket{'s' if amount > 1 else ''} d'Or offert{'s' if amount > 1 else ''} à {user.username}.")
     return redirect(url_for("admin.admin_users_list"))
 
 @bp.route("/admin/utilisateurs/<int:user_id>/supprimer", methods=["POST"])

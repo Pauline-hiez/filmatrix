@@ -36,3 +36,13 @@ SPECIAL_GAMES = [
 ]
 
 SPECIAL_GAMES_BY_SLUG = {game["slug"]: game for game in SPECIAL_GAMES}
+
+# Second chemin d'obtention d'un Ticket d'Or, en plus de la série de connexion
+# de 7 jours (STREAK_BONUS_THRESHOLD, services/daily_challenges.py) : un
+# ticket tous les N bonnes réponses cumulées, tous modes classiques confondus
+# (voir routes/quiz.py). Récompense le volume de jeu plutôt que la régularité
+# quotidienne — pensé pour les joueurs qui enchaînent des sessions plutôt que
+# de jouer un peu chaque jour. 150 ≈ 15 parties (QUESTIONS_PER_RUN = 10,
+# services/score.py) : largement atteignable en jouant régulièrement, sans
+# inonder les joueurs très actifs de tickets en plus de ceux de la série.
+CORRECT_ANSWERS_PER_TICKET = 150

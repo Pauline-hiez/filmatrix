@@ -48,8 +48,14 @@ class User(db.Model, UserMixin):
     # Ressource des Jeux Spéciaux (catégorie à part des modes classiques,
     # voir filmatrix/special_games.py) : consommée au lancement d'une partie,
     # jamais achetable, gagnée au palier de série de connexion
-    # (STREAK_BONUS_THRESHOLD, services/daily_challenges.py).
+    # (STREAK_BONUS_THRESHOLD, services/daily_challenges.py) et tous les
+    # CORRECT_ANSWERS_PER_TICKET bonnes réponses (filmatrix/special_games.py).
     golden_tickets = db.Column(db.Integer, nullable=False, default=0)
+    # Compteur cumulatif, tous modes et toutes questions confondus (y compris
+    # les répétitions) : source du second chemin d'obtention d'un Ticket
+    # d'Or, indépendant de la série de connexion — récompense le volume de
+    # jeu plutôt que la régularité quotidienne.
+    total_correct_answers = db.Column(db.Integer, nullable=False, default=0)
 
     def set_password(self, password: str) -> None:
         "Hash le mot de passe fourni et le stocke (jamais en clair)"

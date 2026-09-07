@@ -1,7 +1,50 @@
 {% extends "admin/base_admin.html" %}
 {% from "partials/avatar.html" import avatar_img %}
 
+{# Icônes d'action, une couleur dédiée par action (voir style néon plus bas) :
+   même technique que .admin-nav-item--active de la sidebar (halo box-shadow +
+   drop-shadow sur le SVG), mais une couleur par icône plutôt qu'un cyan fixe. #}
+{% set action_icons = {
+    "ticket": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="9" y1="6" x2="9" y2="18" stroke-dasharray="2 2.5"/><circle cx="15.5" cy="12" r="1.5"/></svg>',
+    "trash": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>',
+} %}
+
 {% block admin_content %}
+<style>
+    /* Pastille néon par action : teinte légère au repos (couleur propre à
+       l'action, via --icon-color), halo lumineux au survol/focus — même
+       principe que .admin-nav-item--active (input.css), généralisé à
+       n'importe quelle couleur plutôt qu'un cyan fixe. */
+    .admin-icon-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.85rem;
+        height: 1.85rem;
+        border-radius: .5rem;
+        color: var(--icon-color);
+        background: color-mix(in srgb, var(--icon-color) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--icon-color) 30%, transparent);
+        transition: background .15s ease, border-color .15s ease;
+    }
+    .admin-icon-action svg { width: 1rem; height: 1rem; }
+    .admin-icon-action:hover,
+    .admin-icon-action:focus-visible {
+        background: color-mix(in srgb, var(--icon-color) 22%, transparent);
+        border-color: color-mix(in srgb, var(--icon-color) 60%, transparent);
+        box-shadow: 0 0 14px -3px var(--icon-color);
+    }
+    .admin-icon-action:hover svg,
+    .admin-icon-action:focus-visible svg {
+        filter: drop-shadow(0 0 4px var(--icon-color));
+    }
+    .admin-action-divider {
+        width: 1px;
+        align-self: stretch;
+        background: rgba(148, 163, 184, .18);
+    }
+</style>
+
 <h2 class="text-xl mb-6">Utilisateurs ({{ users | length }})</h2>
 
 <div class="flex flex-col sm:flex-row gap-3 mb-6">
@@ -26,6 +69,7 @@
                 <th class="px-3 py-2">XP</th>
                 <th class="px-3 py-2">Pièces</th>
                 <th class="px-3 py-2">Bonnes réponses</th>
+                <th class="px-3 py-2">🎟️ Tickets</th>
                 <th class="px-3 py-2">Statut</th>
                 <th class="px-3 py-2"></th>
             </tr>
@@ -47,6 +91,7 @@
                 <td class="px-3 py-2 text-slate-400">{{ user.total_xp }}</td>
                 <td class="px-3 py-2 text-slate-400">{{ user.coins }}</td>
                 <td class="px-3 py-2 text-slate-400">{{ user.correct_count }}</td>
+                <td class="px-3 py-2 font-bold text-amber-400">{{ user.golden_tickets }}</td>
                 <td class="px-3 py-2">
                     {% if user.is_admin %}
                         <span class="text-amber-400 text-xs font-bold">Admin</span>
@@ -55,15 +100,37 @@
                     {% endif %}
                 </td>
                 <td class="px-3 py-2">
-                    <div class="flex gap-2 justify-end">
-                        <form method="POST" action="{{ url_for('admin.admin_toggle_admin', user_id=user.id) }}">
-                            <button type="submit" class="text-slate-300 hover:text-cyan-400 transition text-xs">
-                                {% if user.is_admin %}Retirer admin{% else %}Promouvoir{% endif %}
+                    <div class="flex flex-wrap items-center justify-end gap-2">
+                        <form method="POST" action="{{ url_for('admin.admin_grant_tickets', user_id=user.id) }}"
+                              class="flex items-center gap-1">
+                            <input type="number" name="amount" value="5" min="1" max="1000" required
+                                   aria-label="Nombre de Tickets d'Or à offrir"
+                                   class="w-12 rounded border border-amber-400/30 bg-slate-900 px-1 py-1 text-xs text-slate-100">
+                            <button type="submit" class="admin-icon-action" style="--icon-color:#fbbf24"
+                                    title="Offrir des Tickets d'Or" aria-label="Offrir des Tickets d'Or">
+                                {{ action_icons.ticket | safe }}
                             </button>
                         </form>
+
+                        <span class="admin-action-divider" aria-hidden="true"></span>
+
+                        <form method="POST" action="{{ url_for('admin.admin_toggle_admin', user_id=user.id) }}">
+                            {% set admin_title = "Retirer les droits administrateur" if user.is_admin else "Promouvoir administrateur" %}
+                            <button type="submit" class="admin-icon-action" style="--icon-color:#22d3ee"
+                                    title="{{ admin_title }}" aria-label="{{ admin_title }}">
+                                {# Bouclier plein (déjà admin, l'action retire) ou juste
+                                   le contour (pas encore admin, l'action promeut) : l'icône
+                                   reflète l'état actuel en plus de l'action au clic. #}
+                                <svg viewBox="0 0 24 24" stroke="currentColor" fill="{{ 'currentColor' if user.is_admin else 'none' }}" fill-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </button>
+                        </form>
+
                         <form method="POST" action="{{ url_for('admin.admin_delete_user', user_id=user.id) }}"
                               onsubmit="return confirm('Supprimer definitivement ce compte et tout son historique ?');">
-                            <button type="submit" class="text-red-400 hover:text-red-300 transition text-xs">Supprimer</button>
+                            <button type="submit" class="admin-icon-action" style="--icon-color:#f87171"
+                                    title="Supprimer le compte" aria-label="Supprimer le compte">
+                                {{ action_icons.trash | safe }}
+                            </button>
                         </form>
                     </div>
                 </td>

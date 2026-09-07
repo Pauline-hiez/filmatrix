@@ -7,6 +7,7 @@ from filmatrix.extensions import db
 from filmatrix.catalog import REPORT_REASON
 from filmatrix.models import Attempt, Report, Tag, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
+from filmatrix.special_games import CORRECT_ANSWERS_PER_TICKET
 from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.character_answers import character_answer
 from filmatrix.services.collection import (
@@ -240,6 +241,7 @@ def quiz(mode: str, position: int) -> str:
         day_completed_fragment_result = None
         streak_bonus_fragment_result = None
         reached_streak_bonus = False
+        reached_correct_answers_ticket = False
 
         if current_user.is_authenticated:
             already_answered_correctly = Attempt.query.filter_by(
@@ -254,6 +256,17 @@ def quiz(mode: str, position: int) -> str:
                 is_correct=is_correct,
             )
             db.session.add(attempt)
+
+            # Second chemin d'obtention d'un Ticket d'Or (le premier étant la
+            # série de connexion de 7 jours, plus bas) : le volume de bonnes
+            # réponses, répétitions comprises, tous modes confondus — pas
+            # limité aux premières réussites comme l'XP juste en dessous, qui
+            # elle ne récompense que la maîtrise d'une question inédite.
+            if is_correct:
+                current_user.total_correct_answers += 1
+                if current_user.total_correct_answers % CORRECT_ANSWERS_PER_TICKET == 0:
+                    current_user.golden_tickets += 1
+                    reached_correct_answers_ticket = True
 
             if is_correct and not already_answered_correctly:
                 earned_xp = xp_for_level(level)
@@ -275,6 +288,13 @@ def quiz(mode: str, position: int) -> str:
                         mark_run_fragment_awarded(session, mode)
 
             db.session.commit()
+
+            if reached_correct_answers_ticket:
+                create_notification(
+                    current_user,
+                    f"🎟️ Tu as gagné un Ticket d'Or pour tes {current_user.total_correct_answers} bonnes réponses !",
+                    link=url_for("special_games.hub"),
+                )
 
             new_badge_codes = check_and_award_badges(current_user)
             db.session.commit()
