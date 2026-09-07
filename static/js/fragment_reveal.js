@@ -55,8 +55,15 @@
         // posée UNE fois derrière, puis des pièces par-dessus : transparentes
         // et cernées d'un liseré si révélées (.puzzle-piece--revealed), en
         // verre dépoli sombre sinon (.puzzle-piece--hidden). Chaque pièce a
-        // une silhouette hexagonale irrégulière (.puzzle-piece--v0..v5, cf.
-        // base.html) pour ne pas ressembler à une grille posée sur l'image.
+        // une vraie silhouette de puzzle (languettes/creux qui s'emboîtent),
+        // appliquée après coup par applyPuzzleClipPaths() une fois ce HTML
+        // inséré dans le DOM — un clip-path ne peut pas être posé sur une
+        // chaîne de caractères, seulement sur un élément réel.
+        //
+        // La pièce tout juste gagnée (puzzle_new_cells) est déjà marquée
+        // "revealed" côté serveur, mais on la couvre volontairement ici avec
+        // .puzzle-piece--pending : c'est le joueur qui doit cliquer dessus
+        // pour la retirer et découvrir l'image (voir playStage ci-dessous).
         const grid = result.puzzle_grid || [];
         const newCells = result.puzzle_new_cells || [];
 
@@ -64,21 +71,17 @@
             ? `<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('${imageUrl}');background-repeat:no-repeat;"></div>`
             : "";
 
-        function cellClass(index) {
-            return newCells.indexOf(index) !== -1 ? "fragment-new-cell" : "";
-        }
-
         if (!grid.length) {
             return imageBackdrop;
         }
 
         const cellsHtml = grid.map(function (revealed, index) {
-            const extra = cellClass(index);
-            const variant = "puzzle-piece--v" + (index % 6);
-            if (revealed) {
-                return `<div class="puzzle-piece puzzle-piece--revealed ${variant} ${extra}"></div>`;
+            const isNew = newCells.indexOf(index) !== -1;
+            if (revealed && !isNew) {
+                return `<div class="puzzle-piece puzzle-piece--revealed"></div>`;
             }
-            return `<div class="puzzle-piece puzzle-piece--hidden ${variant} ${extra}">
+            const pendingClass = isNew ? " puzzle-piece--pending" : "";
+            return `<div class="puzzle-piece puzzle-piece--hidden${pendingClass}">
                 <span class="puzzle-piece-glyph text-sm">?</span>
             </div>`;
         }).join("");
@@ -86,10 +89,57 @@
         // Autant de cases que de fragments requis (voir puzzle.py côté
         // serveur, grid_size_for) : commun = 3 cases, légendaire = 8, etc.
         // On retombe sur une grille carrée si le serveur n'a pas fourni le
-        // nombre de colonnes (anciens payloads en cache).
+        // nombre de colonnes (anciens payloads en cache). gap:0 volontaire :
+        // les languettes des pièces doivent chevaucher la case voisine.
         const columns = result.puzzle_columns || Math.ceil(Math.sqrt(grid.length));
 
-        return `${imageBackdrop}<div class="absolute inset-0 grid" style="z-index:1;gap:4px;grid-template-columns:repeat(${columns},1fr);grid-auto-rows:1fr;">${cellsHtml}</div>`;
+        return `${imageBackdrop}<div class="fragment-puzzle-grid absolute inset-0 grid" style="z-index:1;gap:0;grid-template-columns:repeat(${columns},1fr);grid-auto-rows:1fr;">${cellsHtml}</div>`;
+    }
+
+    // Découpe les pièces tout juste insérées dans le DOM (voir buildPuzzleCells
+    // ci-dessus) en vraies silhouettes de puzzle, avec le même seed (id du
+    // personnage) que la grille utilisée sur la page collection — la pièce a
+    // ainsi exactement la même forme aux deux endroits.
+    function applyPuzzleClipPaths(result) {
+        if (!window.FilmatrixPuzzle || !result.puzzle_grid || !result.puzzle_grid.length) {
+            return;
+        }
+        window.FilmatrixPuzzle.applyToGrid(stage, {
+            cols: result.puzzle_columns || Math.ceil(Math.sqrt(result.puzzle_grid.length)),
+            seed: result.character_id,
+        });
+    }
+
+    // Petit éclat de particules positionné exactement sur la pièce qui vient
+    // d'apparaître (contrairement à renderParticles ci-dessous, qui remplit
+    // toute la carte et ne joue qu'au déblocage complet du personnage) : un
+    // retour visuel immédiat à CHAQUE fragment gagné, même les intermédiaires.
+    function buildCellSparkles(result, color) {
+        const grid = result.puzzle_grid || [];
+        const newCells = result.puzzle_new_cells || [];
+        if (!grid.length || !newCells.length) {
+            return "";
+        }
+        const columns = result.puzzle_columns || Math.ceil(Math.sqrt(grid.length));
+        const rows = Math.ceil(grid.length / columns);
+        const cellIndex = newCells[0];
+        const row = Math.floor(cellIndex / columns);
+        const col = cellIndex % columns;
+        const centerLeft = ((col + 0.5) / columns) * 100;
+        const centerTop = ((row + 0.5) / rows) * 100;
+
+        let sparkles = "";
+        const count = 7;
+        for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+            const distance = 22 + Math.random() * 14;
+            const sx = Math.round(Math.cos(angle) * distance);
+            const sy = Math.round(Math.sin(angle) * distance);
+            const size = 3 + Math.round(Math.random() * 3);
+            const delay = (Math.random() * 0.15).toFixed(2);
+            sparkles += `<span class="fragment-cell-sparkle" style="left:${centerLeft}%; top:${centerTop}%; --sx:${sx}px; --sy:${sy}px; width:${size}px; height:${size}px; color:${color}; background:${color}; animation-delay:${0.45 + Number(delay)}s;"></span>`;
+        }
+        return `<div class="fragment-cell-sparkles">${sparkles}</div>`;
     }
 
     function renderParticles(count, color) {
@@ -175,6 +225,21 @@
         await wait(380);
     }
 
+    // Attend un clic précisément sur la pièce en attente (et pas ailleurs
+    // sur la scène) : stopPropagation empêche ce clic de remonter jusqu'au
+    // gestionnaire global de l'overlay (qui gère lui le "cliquer pour passer
+    // à la suite" des autres étapes), donc rien ne se produit tant que le
+    // joueur n'a pas visé la bonne pièce.
+    function waitForPieceClick(piece) {
+        return new Promise(function (resolve) {
+            piece.addEventListener("click", function onPieceClick(event) {
+                event.stopPropagation();
+                piece.removeEventListener("click", onPieceClick);
+                resolve();
+            });
+        });
+    }
+
     async function playStage(result) {
         const justUnlocked = result.just_unlocked;
         const rarityKey = result.rarity;
@@ -195,34 +260,97 @@
 
         overlay.style.setProperty("--frag-glow", colors.glow);
 
+        // Tant que la pièce n'a pas été retirée, on ne sait pas encore si
+        // c'est LE fragment qui complète le personnage : le titre reste
+        // neutre, tout comme le compteur qui affiche encore l'ancien total.
         stage.innerHTML = `
-            <div class="fragment-card ${justUnlocked ? "fragment-stage-tremble" : ""}" style="--frag-border:${colors.border}">
+            <div class="fragment-card" style="--frag-border:${colors.border}">
                 <div class="fragment-burst"></div>
                 ${puzzleCells}
-                <div class="fragment-filmstrip"></div>
-                <div class="fragment-clap-flash"></div>
-                ${justUnlocked ? `<div class="fragment-particles">${renderParticles(colors.particles, colors.glow)}</div>` : ""}
             </div>
-            <p class="fragment-stage-title" style="color:${colors.text}">
-                ${justUnlocked ? "🎬 Personnage débloqué !" : "🧩 Fragment obtenu"}
-            </p>
+            <p class="fragment-stage-title" style="color:${colors.text}">🧩 Trouve la pièce qui brille</p>
             <p class="fragment-stage-name">${result.character_name}</p>
             <p class="fragment-stage-sub">${result.saga_name ? result.saga_name + " · " : ""}${rarityLabel}</p>
             <div class="fragment-stage-bar-track">
                 <div class="fragment-bar-fill" style="width:${progressBefore}%"></div>
             </div>
-            <p class="fragment-stage-count">${result.fragments}/${result.fragments_required} fragments</p>
+            <p class="fragment-stage-count">${fragmentsBefore}/${result.fragments_required} fragments</p>
         `;
 
-        // Décalé d'une frame : il faut que le navigateur peigne d'abord la
-        // largeur de départ avant de basculer sur la largeur finale, sinon
-        // la transition CSS de .fragment-bar-fill ne se déclenche pas.
-        requestAnimationFrame(function () {
-            const bar = stage.querySelector(".fragment-bar-fill");
-            if (bar) {
-                bar.style.width = progress + "%";
+        applyPuzzleClipPaths(result);
+
+        const card = stage.querySelector(".fragment-card");
+        const pendingPiece = stage.querySelector(".puzzle-piece--pending");
+        const titleEl = stage.querySelector(".fragment-stage-title");
+        const barTrack = stage.querySelector(".fragment-stage-bar-track");
+        const bar = stage.querySelector(".fragment-bar-fill");
+        const countEl = stage.querySelector(".fragment-stage-count");
+        const hint = overlay.querySelector(".fragment-overlay-hint");
+
+        function revealFragment() {
+            if (titleEl) {
+                titleEl.textContent = justUnlocked ? "🎬 Personnage débloqué !" : "🧩 Fragment obtenu";
             }
-        });
+            if (countEl) {
+                countEl.textContent = result.fragments + "/" + result.fragments_required + " fragments";
+                countEl.classList.add("fragment-count-pop");
+            }
+            if (barTrack) {
+                barTrack.classList.add("fragment-bar-pulse");
+            }
+            // Décalé d'une frame : il faut que le navigateur peigne d'abord
+            // la largeur de départ avant de basculer sur la largeur finale,
+            // sinon la transition CSS de .fragment-bar-fill ne se déclenche
+            // pas.
+            requestAnimationFrame(function () {
+                if (bar) {
+                    bar.style.width = progress + "%";
+                }
+            });
+        }
+
+        if (pendingPiece) {
+            const originalHint = hint ? hint.textContent : "";
+            if (hint) {
+                hint.textContent = "Touche la pièce qui brille pour la révéler";
+            }
+
+            await waitForPieceClick(pendingPiece);
+
+            if (hint) {
+                hint.textContent = originalHint;
+            }
+
+            // La pièce "s'enlève" : on bascule son habillage de couverte à
+            // transparente, ce qui laisse apparaître l'image posée en
+            // arrière-plan de la grille — puis on rejoue par-dessus les
+            // mêmes effets qu'avant (pellicule, flash, reflet, étincelles)
+            // pour que le retrait ait le même impact visuel qu'un déblocage
+            // automatique.
+            pendingPiece.classList.remove("puzzle-piece--pending", "puzzle-piece--hidden");
+            pendingPiece.classList.add("puzzle-piece--revealed", "fragment-new-cell");
+            pendingPiece.innerHTML = "";
+
+            if (justUnlocked && card) {
+                card.classList.add("fragment-stage-tremble");
+            }
+            if (card) {
+                card.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="fragment-filmstrip"></div>
+                     <div class="fragment-clap-flash"></div>
+                     ${buildCellSparkles(result, colors.text)}
+                     ${justUnlocked ? `<div class="fragment-particles">${renderParticles(colors.particles, colors.glow)}</div>` : ""}`
+                );
+            }
+
+            revealFragment();
+        } else {
+            // Pas de pièce en attente (grille absente du payload, ancien
+            // cache navigateur, etc.) : on retombe sur l'affichage
+            // entièrement automatique d'avant.
+            revealFragment();
+        }
 
         await wait(justUnlocked ? 3400 : 2000);
     }

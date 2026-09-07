@@ -11,6 +11,7 @@
     <p class="fragment-overlay-hint">Touche l'écran pour continuer</p>
 </div>
 <script type="application/json" id="fragment-results-data">{{ fragment_results | tojson }}</script>
+<script src="{{ url_for('static', filename='js/puzzle_pieces.js') }}"></script>
 <script src="{{ url_for('static', filename='js/fragment_reveal.js') }}"></script>
 {% endif %}
 <div class="mx-auto max-w-xl">
