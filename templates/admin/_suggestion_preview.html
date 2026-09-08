@@ -1,0 +1,138 @@
+{# Aperçu en lecture seule d'une suggestion, avec le contenu réel (image,
+   casting, extrait audio...) plutôt que le seul "Texte affiché" - souvent
+   vide pour les modes dont la réponse est un média (devinette-affiche,
+   casting, blindtest), d'où ce complément à la colonne Aperçu de la liste. #}
+{% set mode_accents = {
+    "qcm": "#22d3ee",
+    "vrai_faux": "#2dd4bf",
+    "citation": "#fbbf24",
+    "emoji": "#c084fc",
+    "film_melange": "#a78bfa",
+    "chronologie": "#38bdf8",
+    "devinette": "#fb923c",
+    "devinette_affiche": "#34d399",
+    "casting": "#f472b6",
+    "blindtest": "#60a5fa"
+} %}
+{% set mode_labels = {
+    "qcm": "Quiz",
+    "vrai_faux": "Vrai / Faux",
+    "citation": "Citations",
+    "emoji": "Emoji Quiz",
+    "film_melange": "Titre mélangé",
+    "chronologie": "Chronologie",
+    "devinette": "Devinette",
+    "devinette_affiche": "Image à deviner",
+    "casting": "Casting",
+    "blindtest": "Blind Test"
+} %}
+{% set difficulty_colors = {"facile": "#34d399", "moyen": "#fbbf24", "difficile": "#f87171"} %}
+{% set payload = submission.payload %}
+{% set answer = submission.correct_answer %}
+
+<div class="flex flex-col gap-4 text-sm text-slate-200">
+    <div class="flex flex-wrap items-center gap-2">
+        <span class="admin-type-badge" style="--badge-accent: {{ mode_accents.get(submission.mode, '#22d3ee') }}">{{ mode_labels.get(submission.mode, submission.mode) }}</span>
+        <span class="admin-type-badge" style="--badge-accent: {{ difficulty_colors.get(submission.difficulty, '#94a3b8') }}">{{ submission.difficulty | capitalize }}</span>
+        <span class="rounded-full border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs text-slate-400">{{ "Série" if submission.content_type == "serie" else "Film" }}</span>
+    </div>
+
+    <div>
+        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Texte affiché</p>
+        <p class="font-bold text-slate-100">{{ submission.prompt or "(aucun)" }}</p>
+    </div>
+
+    {% if submission.mode == 'qcm' %}
+    <div>
+        <p class="mb-1.5 text-xs font-bold uppercase tracking-widest text-slate-500">Options</p>
+        <div class="flex flex-col gap-1.5">
+            {% for option in payload.get('options', []) %}
+            <div class="flex items-center gap-2 rounded-lg border px-3 py-2 {% if loop.index0 == answer.get('index') %}border-emerald-400/50 bg-emerald-400/10{% else %}border-slate-800 bg-slate-950/40{% endif %}">
+                <span class="{% if loop.index0 == answer.get('index') %}text-emerald-400{% else %}text-transparent{% endif %}">✓</span>
+                <span>{{ option }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% elif submission.mode == 'vrai_faux' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Réponse : </span><strong>{{ "Vrai" if answer.get('value') else "Faux" }}</strong></p>
+
+    {% elif submission.mode == 'devinette' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film à trouver : </span><strong>{{ answer.get('film', '') }}</strong></p>
+    {% if payload.get('hints') %}
+    <div>
+        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Indices</p>
+        <ol class="list-inside list-decimal text-slate-300">
+            {% for hint in payload.get('hints', []) %}<li>{{ hint }}</li>{% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+
+    {% elif submission.mode in ('citation', 'film_melange') %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">{{ "Titre" if submission.mode == "film_melange" else "Film à trouver" }} : </span><strong>{{ answer.get('title') or answer.get('film', '') }}</strong></p>
+
+    {% elif submission.mode == 'devinette_affiche' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film : </span><strong>{{ answer.get('film', '') }}</strong></p>
+    {% if payload.get('poster_url') %}
+    <img src="{{ payload.get('poster_url') }}" class="w-full max-w-xs rounded-lg border border-cyan-400/30">
+    {% else %}
+    <p class="text-xs italic text-slate-500">Aucune image fournie.</p>
+    {% endif %}
+
+    {% elif submission.mode == 'casting' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film : </span><strong>{{ answer.get('film', '') }}</strong></p>
+    {% if payload.get('actor_photos') %}
+    <div class="flex flex-wrap gap-2">
+        {% for photo_url in payload.get('actor_photos', []) %}
+        <img src="{{ photo_url }}" class="h-28 w-20 rounded-lg border border-cyan-400/30 object-cover">
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-xs italic text-slate-500">Aucune photo fournie.</p>
+    {% endif %}
+
+    {% elif submission.mode == 'blindtest' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film : </span><strong>{{ answer.get('film', '') }}</strong></p>
+    {% if payload.get('audio_url') %}
+    <audio controls preload="none" class="w-full" src="{{ payload.get('audio_url') }}"></audio>
+    {% else %}
+    <p class="text-xs italic text-slate-500">Aucun extrait audio fourni.</p>
+    {% endif %}
+
+    {% elif submission.mode == 'chronologie' %}
+    <div>
+        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Ordre chronologique (du plus ancien au plus récent)</p>
+        <ol class="list-inside list-decimal text-slate-300">
+            {% for film in answer.get('order', []) %}<li>{{ film }}</li>{% endfor %}
+        </ol>
+    </div>
+
+    {% elif submission.mode == 'emoji' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film ou série à trouver : </span><strong>{{ answer.get('film', '') }}</strong></p>
+    {% set emoji_codes = payload.get('visuals', []) | map(attribute='value') | list %}
+    {% if emoji_codes %}
+    <div class="flex flex-wrap justify-start gap-2">
+        {% for code in emoji_codes %}
+        <img src="https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@master/color/svg/{{ code }}.svg" alt="" class="h-8 w-8 object-contain"
+             onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/{{ code }}.svg';}">
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-xs italic text-slate-500">Aucun emoji fourni.</p>
+    {% endif %}
+    {% endif %}
+
+    {% if submission.tags %}
+    <div>
+        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Tags</p>
+        <div class="flex flex-wrap gap-1.5">
+            {% for tag in submission.tags %}<span class="rounded-full bg-slate-800/80 px-2 py-0.5 text-xs text-slate-300">{{ tag.name }}</span>{% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div>
+        <p class="text-xs text-slate-500">Proposée par <strong class="text-slate-300">{{ submission.user.username }}</strong> le {{ submission.created_at.strftime("%d/%m/%Y") }}</p>
+    </div>
+</div>

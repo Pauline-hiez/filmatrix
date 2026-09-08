@@ -121,6 +121,65 @@ class Report(db.Model):
     user = db.relationship("User", backref="reports")
     question = db.relationship("Question", backref="reports")
 
+submission_tags = db.Table(
+    "submission_tags",
+    db.Column("submission_id", db.Integer, db.ForeignKey("question_submissions.id"), primary_key=True),
+    db.Column("tag_id", db.Integer, db.ForeignKey("tags.id"), primary_key=True),
+)
+
+submission_reviewed_tags = db.Table(
+    "submission_reviewed_tags",
+    db.Column("submission_id", db.Integer, db.ForeignKey("question_submissions.id"), primary_key=True),
+    db.Column("tag_id", db.Integer, db.ForeignKey("tags.id"), primary_key=True),
+)
+
+class QuestionSubmission(db.Model):
+    """Représente une question proposée par un joueur, en attente de revue admin.
+
+    Séparée de Question (plutôt qu'un statut dessus) pour qu'il soit
+    structurellement impossible qu'un contenu non approuvé fuite dans
+    build_question_query / le tirage de parties, appelés depuis de
+    nombreux endroits.
+    """
+
+    __tablename__ = "question_submissions"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    status = db.Column(db.String(20), nullable=False, default="pending")  # pending | approved | rejected
+
+    # Champs originaux soumis par le joueur - jamais modifiés après coup,
+    # même si un admin corrige avant publication (voir reviewed_*).
+    mode = db.Column(db.String(50), nullable=False)
+    prompt = db.Column(db.Text, nullable=False)
+    payload = db.Column(db.JSON, nullable=False)
+    correct_answer = db.Column(db.JSON, nullable=False)
+    content_type = db.Column(db.String(10), nullable=False, default="film")
+    difficulty = db.Column(db.String(20), nullable=False, default="moyen")
+
+    # Retouches admin avant publication (approbation avec modifications) :
+    # champs distincts pour que l'historique du joueur montre toujours ce
+    # qu'il a réellement soumis, jamais une version modifiée en silence.
+    was_edited_by_admin = db.Column(db.Boolean, nullable=False, default=False)
+    reviewed_prompt = db.Column(db.Text, nullable=True)
+    reviewed_payload = db.Column(db.JSON, nullable=True)
+    reviewed_correct_answer = db.Column(db.JSON, nullable=True)
+    reviewed_content_type = db.Column(db.String(10), nullable=True)
+    reviewed_difficulty = db.Column(db.String(20), nullable=True)
+
+    rejection_reason = db.Column(db.String(200), nullable=True)
+
+    question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=True)
+    reviewed_by_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    reviewed_at = db.Column(db.DateTime, nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship("User", foreign_keys=[user_id], backref="question_submissions")
+    reviewed_by = db.relationship("User", foreign_keys=[reviewed_by_id])
+    question = db.relationship("Question")
+    tags = db.relationship("Tag", secondary=submission_tags)
+    reviewed_tags = db.relationship("Tag", secondary=submission_reviewed_tags)
+
 class Friendship(db.Model):
     """Représente une relation d'amitié entre deux utilisateurs"""
 

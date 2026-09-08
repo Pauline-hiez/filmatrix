@@ -56,6 +56,14 @@
         @apply border-red-500/30 text-red-400 hover:border-red-400 hover:bg-red-500/10;
     }
 
+    .admin-action-btn--approve {
+        @apply border-emerald-500/30 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/10;
+    }
+
+    .admin-action-btn--view {
+        @apply border-slate-600/40 text-slate-300 hover:border-slate-400 hover:bg-slate-700/20;
+    }
+
     /* Mini-barre de taux de réussite dans la colonne Stats. */
     .admin-rate-track {
         @apply h-1.5 w-16 overflow-hidden rounded-full bg-slate-800;

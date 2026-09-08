@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set mode_labels = {
+    "qcm": "Quiz",
+    "vrai_faux": "Vrai / Faux",
+    "citation": "Citations",
+    "emoji": "Emoji Quiz",
+    "film_melange": "Titre mélangé",
+    "chronologie": "Chronologie",
+    "devinette": "Devinette",
+    "devinette_affiche": "Image à deviner",
+    "casting": "Casting",
+    "blindtest": "Blind Test"
+} %}
+<div class="max-w-2xl mx-auto mt-8">
+    <h2 class="text-xl mb-6">Mes suggestions</h2>
+
+    <section class="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-cyan-400/20 bg-slate-900/70 p-4 sm:p-5">
+        <p class="text-sm text-slate-300">
+            {% if remaining > 0 %}
+            Il te reste <strong class="text-cyan-400">{{ remaining }}</strong> suggestion{{ 's' if remaining > 1 }} cette semaine.
+            {% else %}
+            Tu as atteint la limite de {{ weekly_limit }} suggestions cette semaine. Réessaie dans quelques jours.
+            {% endif %}
+        </p>
+        <button type="button" class="suggestion-new-button rounded-lg bg-cyan-400 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-cyan-300"
+                data-edit-url="{{ url_for('suggestions.new_suggestion') }}">
+            + Suggérer une question
+        </button>
+    </section>
+
+    {% if submissions %}
+    <div class="flex flex-col gap-2">
+        {% for submission in submissions %}
+        <div class="flex items-center justify-between gap-3 bg-slate-900 border border-cyan-400/30 rounded-lg px-4 py-3">
+            <div class="min-w-0">
+                <p class="truncate text-sm font-medium text-slate-200">{{ submission.prompt or "(sans texte affiché)" }}</p>
+                <p class="mt-0.5 text-xs text-slate-500">
+                    {{ mode_labels.get(submission.mode, submission.mode) }} · {{ submission.difficulty | capitalize }}
+                </p>
+            </div>
+            <div class="shrink-0 text-right">
+                {% if submission.status == "pending" %}
+                <span class="rounded-full bg-amber-400/10 px-2.5 py-1 text-xs font-bold text-amber-400">En attente</span>
+                {% elif submission.status == "approved" %}
+                <span class="rounded-full bg-emerald-400/10 px-2.5 py-1 text-xs font-bold text-emerald-400">Approuvée</span>
+                {% if submission.was_edited_by_admin %}
+                <p class="mt-1 text-[11px] text-slate-500">Modifiée par l'équipe avant publication</p>
+                {% endif %}
+                {% else %}
+                <span class="rounded-full bg-red-400/10 px-2.5 py-1 text-xs font-bold text-red-400">Rejetée</span>
+                {% if submission.rejection_reason %}
+                <p class="mt-1 max-w-[220px] text-[11px] text-slate-500">{{ submission.rejection_reason }}</p>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-sm text-slate-500">Tu n'as encore proposé aucune question.</p>
+    {% endif %}
+</div>
+
+<div id="suggestion-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="suggestion-modal-title">
+    <div class="suggestion-modal-dialog max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-cyan-400/30 bg-slate-950 p-4 shadow-2xl sm:p-5">
+        <div class="mb-3 flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <div><p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Suggestion</p><h2 id="suggestion-modal-title" class="mt-0.5 text-lg font-extrabold text-slate-100">Suggérer une question</h2></div>
+            <button type="button" id="suggestion-modal-close" class="rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Fermer">✕</button>
+        </div>
+        <div id="suggestion-modal-content"><p class="py-12 text-center text-slate-400">Chargement…</p></div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/suggestion_modal.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "admin/base_admin.html" %}
+
+{% set mode_labels = {
+    "qcm": "Quiz",
+    "vrai_faux": "Vrai / Faux",
+    "citation": "Citations",
+    "emoji": "Emoji Quiz",
+    "film_melange": "Titre mélangé",
+    "chronologie": "Chronologie",
+    "devinette": "Devinette",
+    "devinette_affiche": "Image à deviner",
+    "casting": "Casting",
+    "blindtest": "Blind Test"
+} %}
+
+{% block admin_content %}
+<h2 class="text-xl mb-6">Suggestions de questions ({{ submissions | length }})</h2>
+
+{% if submissions %}
+<div class="overflow-x-auto rounded-lg border border-cyan-400/30">
+    <table class="w-full text-sm">
+        <thead>
+            <tr class="bg-slate-900 text-slate-400 text-left">
+                <th class="px-3 py-2">Joueur</th>
+                <th class="px-3 py-2">Mode</th>
+                <th class="px-3 py-2">Aperçu</th>
+                <th class="px-3 py-2">Difficulté</th>
+                <th class="px-3 py-2">Statut</th>
+                <th class="px-3 py-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+            <tr id="suggestion-row-{{ submission.id }}" class="border-t border-cyan-400/10 hover:bg-slate-900/50 {% if submission.status != 'pending' %}opacity-60{% endif %}">
+                <td class="px-3 py-2 text-slate-300">{{ submission.user.username }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ mode_labels.get(submission.mode, submission.mode) }}</td>
+                <td class="px-3 py-2 max-w-xs truncate text-slate-300">{{ submission.prompt or "(sans texte affiché)" }}</td>
+                <td class="px-3 py-2 text-slate-400">{{ submission.difficulty | capitalize }}</td>
+                <td class="px-3 py-2">
+                    {% if submission.status == "pending" %}
+                        <span class="text-amber-400 text-xs font-bold">En attente</span>
+                    {% elif submission.status == "approved" %}
+                        <span class="text-emerald-400 text-xs font-bold">Approuvée</span>
+                        {% if submission.was_edited_by_admin %}
+                        <p class="text-[11px] text-slate-500">Modifiée</p>
+                        {% endif %}
+                    {% else %}
+                        <span class="text-red-400 text-xs font-bold">Rejetée</span>
+                        {% if submission.rejection_reason %}
+                        <p class="max-w-[180px] text-[11px] text-slate-500">{{ submission.rejection_reason }}</p>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td class="px-3 py-2">
+                        <div class="flex items-center justify-end gap-1.5">
+                            <button type="button" class="suggestion-preview-button admin-action-btn admin-action-btn--view"
+                                    data-preview-url="{{ url_for('admin.admin_suggestions_preview', submission_id=submission.id) }}"
+                                    aria-label="Voir" title="Voir">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                            {% if submission.status == "pending" %}
+                            <form method="POST" action="{{ url_for('admin.admin_suggestions_approve', submission_id=submission.id) }}">
+                                <button type="submit" class="admin-action-btn admin-action-btn--approve" aria-label="Approuver" title="Approuver">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"/></svg>
+                                </button>
+                            </form>
+                            <button type="button" class="suggestion-review-button admin-action-btn admin-action-btn--edit"
+                                    data-edit-url="{{ url_for('admin.admin_suggestions_review_form', submission_id=submission.id) }}"
+                                    aria-label="Modifier puis approuver" title="Modifier puis approuver">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                                </button>
+                            {# Le motif du refus ne doit s'afficher que si l'admin choisit
+                               explicitement de rejeter - <details> révèle le formulaire au
+                               clic sur l'icône, sans JS ni case toujours ouverte. #}
+                            <details class="suggestion-reject-details">
+                                <summary class="admin-action-btn admin-action-btn--delete list-none cursor-pointer" aria-label="Rejeter" title="Rejeter">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                </summary>
+                                <form method="POST" action="{{ url_for('admin.admin_suggestions_reject', submission_id=submission.id) }}"
+                                      class="mt-1.5 flex items-center justify-end gap-1.5">
+                                    <textarea name="reason" maxlength="200" rows="1" required placeholder="Motif du refus..."
+                                              class="w-40 rounded-lg border border-cyan-400/30 bg-slate-900 px-2 py-1 text-xs text-slate-100 placeholder-slate-500"></textarea>
+                                    <button type="submit" class="admin-action-btn admin-action-btn--delete" aria-label="Confirmer le refus" title="Confirmer le refus">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </button>
+                                </form>
+                            </details>
+                            {% elif submission.status == "approved" and submission.question_id %}
+                            <a href="{{ url_for('admin.admin_questions_edit', question_id=submission.question_id) }}"
+                               class="admin-action-btn admin-action-btn--edit" aria-label="Voir la question créée" title="Voir la question créée">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            </a>
+                            {% endif %}
+                        </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="text-slate-500">Aucune suggestion pour le moment.</p>
+{% endif %}
+
+<div id="suggestion-preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="suggestion-preview-title">
+    <div class="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-cyan-400/30 bg-slate-950 p-4 shadow-2xl sm:p-5">
+        <div class="mb-3 flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <div><p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Aperçu</p><h2 id="suggestion-preview-title" class="mt-0.5 text-lg font-extrabold text-slate-100">Suggestion de question</h2></div>
+            <button type="button" id="suggestion-preview-close" class="rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Fermer">✕</button>
+        </div>
+        <div id="suggestion-preview-content"><p class="py-12 text-center text-slate-400">Chargement…</p></div>
+    </div>
+</div>
+
+<div id="suggestion-review-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="suggestion-review-title">
+    <div class="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-cyan-400/30 bg-slate-950 p-4 shadow-2xl sm:p-5">
+        <div class="mb-3 flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+            <div><p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Administration</p><h2 id="suggestion-review-title" class="mt-0.5 text-lg font-extrabold text-slate-100">Modifier puis approuver</h2></div>
+            <button type="button" id="suggestion-review-close" class="rounded-lg px-3 py-2 text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Fermer">✕</button>
+        </div>
+        <div id="suggestion-review-content"><p class="py-12 text-center text-slate-400">Chargement…</p></div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/admin_suggestion_preview_modal.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin_suggestion_review_modal.js') }}"></script>
+{% endblock %}

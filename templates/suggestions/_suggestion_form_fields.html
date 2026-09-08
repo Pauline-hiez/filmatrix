@@ -1,0 +1,255 @@
+{# Formulaire de suggestion d'une question par un joueur : reprend le corps du
+   formulaire de création admin (templates/admin/question_form.html), sans la
+   case "Réservée aux comptes" (jamais exposée au joueur, cf. plan). Les id/
+   classes sont identiques à celles utilisées par admin_question_form.js, qui
+   sait donc initialiser ce formulaire sans modification (voir data-api-prefix
+   ci-dessous, qui bascule ses appels TMDB vers /suggestions/api). #}
+{% from "partials/admin_reference_image.html" import admin_reference_preview, question_image_preview %}
+<div class="max-w-2xl mx-auto" data-question-form-container>
+    <h2 class="text-xl mb-6">Suggérer une question</h2>
+
+    {% if remaining <= 0 %}
+    <p class="mb-4 rounded-lg border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-300">
+        Tu as atteint la limite de {{ weekly_limit }} suggestions cette semaine. Réessaie dans quelques jours.
+    </p>
+    {% endif %}
+
+    <form method="POST" id="question-form" data-api-prefix="/suggestions/api"
+          action="{{ url_for('suggestions.new_suggestion') }}" class="flex flex-col gap-4">
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Mode</label>
+            <select id="mode-select" name="mode" required data-combobox
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="">-- Choisir un mode --</option>
+                <option value="qcm">Quiz (QCM)</option>
+                <option value="vrai_faux">Vrai / Faux</option>
+                <option value="citation">Citations</option>
+                <option value="emoji">Emoji Quiz</option>
+                <option value="film_melange">Film mélangé</option>
+                <option value="chronologie">Chronologie</option>
+                <option value="devinette">Devinette</option>
+                <option value="devinette_affiche">Devinette-affiche</option>
+                <option value="casting">Casting</option>
+                <option value="blindtest">Blind Test</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Type d'œuvre</label>
+            <select id="content-type-select" name="content_type" data-combobox
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="film" selected>Film</option>
+                <option value="serie">Série</option>
+            </select>
+            <p class="mt-1 text-xs text-slate-500">Défini automatiquement selon l'œuvre choisie dans la recherche TMDB, modifiable ici.</p>
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Difficulté</label>
+            <select name="difficulty" data-combobox
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="facile">Facile</option>
+                <option value="moyen" selected>Moyen</option>
+                <option value="difficile">Difficile</option>
+            </select>
+        </div>
+
+        <div id="field-group-prompt">
+            <label class="block text-sm text-slate-400 mb-1">Texte affiché (question / réplique / emojis...)</label>
+            <input type="text" name="prompt" value=""
+                   class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+        </div>
+
+        <!-- QCM -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="qcm">
+            {{ question_image_preview({}) }}
+            <p class="text-sm text-slate-400">4 options, coche la bonne réponse :</p>
+            {% for i in range(4) %}
+            <div class="flex items-center gap-2">
+                <input type="radio" name="qcm_correct_index" value="{{ i }}" class="qcm-radio">
+                <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                       value="" placeholder="Option {{ i + 1 }}">
+                <input type="hidden" class="qcm-option-image" value="">
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Vrai / Faux -->
+        <div class="mode-fields hidden flex flex-col gap-2" data-mode="vrai_faux">
+            {{ question_image_preview({}) }}
+            <p class="text-sm text-slate-400">L'affirmation (dans le champ "Texte affiché" ci-dessus) est :</p>
+            <label class="flex items-center gap-2 text-sm">
+                <input type="radio" name="vf_correct" value="true"> Vraie
+            </label>
+            <label class="flex items-center gap-2 text-sm">
+                <input type="radio" name="vf_correct" value="false"> Fausse
+            </label>
+        </div>
+
+        <!-- Citation / Emoji / Film mélangé / Devinette-affiche / Casting / Blind Test : juste un titre à retrouver -->
+        <div class="mode-fields hidden flex flex-col gap-2" data-mode="citation">
+            {{ admin_reference_preview({}) }}
+            <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="">
+        </div>
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="emoji">
+            {{ admin_reference_preview({}) }}
+            <label class="block text-sm text-slate-400">Film ou série à trouver</label>
+            <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="">
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Choisir les indices visuels</label>
+                <div id="emoji-picker-categories" class="mb-2 flex flex-wrap gap-1.5"></div>
+                <input type="search" class="emoji-picker-search w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Rechercher un emoji : château, argent..." autocomplete="off">
+                <div id="emoji-picker" class="emoji-picker mt-2 flex max-h-40 flex-wrap content-start items-center justify-start gap-1.5 overflow-y-auto rounded-lg border border-slate-800 bg-slate-950/60 p-2" aria-label="Bibliothèque OpenMoji">
+                    <p class="w-full py-2 text-center text-xs text-slate-500">Chargement…</p>
+                </div>
+                <button type="button" id="emoji-picker-toggle" class="mt-2 text-xs font-bold text-cyan-400 hover:text-cyan-300">Afficher tous les emojis</button>
+                <p class="mt-1 text-xs text-slate-500">Le catalogue complet est chargé localement après l'exécution du script d'installation.</p>
+                <label class="mt-2 block text-xs text-slate-500">Indices sélectionnés</label>
+                <textarea class="emoji-visual-codes w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-sm text-slate-100" rows="3" placeholder="Clique sur les icônes ci-dessus"></textarea>
+                <p class="mt-1 text-xs text-slate-500">Clique une icône pour l'ajouter. Le champ reste éditable.</p>
+            </div>
+            <div class="emoji-admin-preview flex flex-wrap justify-center gap-2"></div>
+        </div>
+        <div class="mode-fields hidden flex flex-col gap-2" data-mode="film_melange">
+            {{ admin_reference_preview({}) }}
+            <label class="block text-sm text-slate-400 mb-1">Titre du film (sera mélangé automatiquement)</label>
+            <input type="text" class="film-melange-title w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="">
+        </div>
+
+        <!-- Devinette : indices progressifs -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="devinette">
+            {{ admin_reference_preview({}) }}
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Film à trouver</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="">
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Indices (un par ligne, du plus vague au plus précis)</label>
+                <textarea class="riddle-hints w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" rows="4"></textarea>
+            </div>
+        </div>
+
+        <!-- Devinette-affiche -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="devinette_affiche">
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="poster" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="" readonly>
+                <input type="hidden" class="poster-url" value="">
+            </div>
+            <div id="poster-preview"></div>
+        </div>
+
+        <!-- Casting -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="casting">
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="casting" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="" readonly>
+                <input type="hidden" class="actor-photos-hidden" value="[]">
+            </div>
+            <div id="cast-preview" class="flex gap-2"></div>
+        </div>
+
+        <!-- Blind Test -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="blindtest">
+            {{ admin_reference_preview({}, show_search=false) }}
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="audio" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="" readonly>
+                <input type="hidden" class="audio-url" value="">
+                <input type="hidden" class="audio-options-json" value="[]">
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Terme de recherche musical (optionnel, ex: compositeur)</label>
+                <input type="text" class="audio-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Laisse vide pour une recherche automatique">
+            </div>
+            <div id="audio-preview" class="flex flex-col gap-2"></div>
+        </div>
+
+        <!-- Chronologie -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="chronologie">
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Films dans le BON ordre chronologique (un par ligne, du plus ancien au plus récent)</label>
+                <textarea class="chronology-order w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" rows="4"></textarea>
+                <p class="text-xs text-slate-500 mt-1">L'ordre affiché au joueur sera automatiquement mélangé à partir de cette liste.</p>
+            </div>
+        </div>
+
+        {% set univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
+        <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-4" data-tag-picker="univers">
+            <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <label class="text-sm text-slate-300">Univers</label>
+                <span class="text-xs text-slate-500">{{ univers_tags|length }} disponibles</span>
+            </div>
+            <div class="tag-picker-chips mb-2 flex flex-wrap gap-2"></div>
+            <div class="relative">
+                <input type="search" class="tag-picker-input w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none"
+                       placeholder="Rechercher un univers..." autocomplete="off">
+                <div class="tag-picker-dropdown absolute z-10 mt-1 hidden max-h-56 w-full overflow-y-auto rounded-lg border border-cyan-400/30 bg-slate-950"></div>
+            </div>
+            <div class="tag-picker-options hidden">
+                {% for tag in univers_tags %}
+                <label>
+                    <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox">
+                    <span>{{ tag.name }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-4">
+            <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <label class="text-sm text-slate-300">Tags</label>
+                <span id="selected-tags-count" class="text-xs text-slate-500">0 sélectionné</span>
+            </div>
+            <input type="search" id="tag-search" placeholder="Rechercher un tag..." autocomplete="off"
+                   class="mb-3 w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none">
+            <div id="tag-groups" class="flex flex-col gap-2">
+                {% for tag_type, label in [("genre", "Genres"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+                {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
+                {% if typed_tags %}
+                <details class="tag-group rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2" {% if tag_type == "genre" %}open{% endif %}>
+                    <summary class="cursor-pointer list-none text-sm font-bold text-slate-300">
+                        <span class="flex items-center justify-between">{{ label }} <span class="text-xs font-normal text-slate-500">{{ typed_tags|length }}</span></span>
+                    </summary>
+                    <div class="tag-options mt-2 grid max-h-52 gap-2 overflow-y-auto pr-1 sm:grid-cols-2" data-group-label="{{ label|lower }}">
+                        {% for tag in typed_tags %}
+                        <label class="tag-option flex min-w-0 items-center gap-2 rounded-lg border border-cyan-400/20 bg-slate-950/60 px-2.5 py-2 text-xs cursor-pointer hover:border-cyan-400/60" data-tag-name="{{ tag.name|lower }}">
+                            <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox shrink-0">
+                            <span class="truncate">{{ tag.name }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </details>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Champs cachés remplis automatiquement par le JS avant envoi -->
+        <input type="hidden" name="visuals" id="visuals-input">
+        <input type="hidden" name="payload" id="payload-input">
+        <input type="hidden" name="correct_answer" id="correct-answer-input">
+        <button type="submit" {% if remaining <= 0 %}disabled{% endif %}
+                class="bg-cyan-400 hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-40 text-slate-950 font-bold py-2 rounded-lg transition mt-2">
+            {% if remaining <= 0 %}Limite hebdomadaire atteinte{% else %}Envoyer ma suggestion{% endif %}
+        </button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/admin_question_form.js') }}"></script>

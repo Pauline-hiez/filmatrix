@@ -29,6 +29,7 @@ from filmatrix.routes import (
     quiz,
     shop,
     special_games,
+    suggestions,
 )
 from filmatrix.services.chat import unread_total as get_unread_chat_count
 from filmatrix.services.notifications import get_unread_count
@@ -52,6 +53,7 @@ BLUEPRINTS = (
     collection.bp,
     special_games.bp,
     admin_special_games.bp,
+    suggestions.bp,
 )
 
 

@@ -1,6 +1,7 @@
 """Administration : questions, utilisateurs, signalements et thèmes."""
 
 import json
+from datetime import datetime
 from pathlib import Path
 from uuid import uuid4
 
@@ -16,7 +17,7 @@ from filmatrix.permissions import admin_required
 from filmatrix.catalog import REPORT_REASON
 from filmatrix.catalog_rarities import fragments_for_rarity
 from filmatrix.game_modes import GAME_MODES
-from filmatrix.models import Album, Attempt, Question, Report, Tag, User, Character, question_tags
+from filmatrix.models import Album, Attempt, Question, QuestionSubmission, Report, Tag, User, Character, question_tags
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.tags import merge_tag_into
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
@@ -46,6 +47,9 @@ def _admin_nav_counts() -> dict:
             "users": db.session.query(func.count(User.id)).scalar(),
             "reports": db.session.query(func.count(Report.id))
             .filter(Report.is_resolved.is_(False))
+            .scalar(),
+            "suggestions": db.session.query(func.count(QuestionSubmission.id))
+            .filter(QuestionSubmission.status == "pending")
             .scalar(),
             "tags": db.session.query(func.count(Tag.id)).scalar(),
             "characters": db.session.query(func.count(Character.id)).scalar(),
@@ -282,6 +286,10 @@ def admin_questions_edit(question_id: int) -> str:
 def admin_questions_delete(question_id: int) -> str:
     """Supprime une question"""
     question = Question.query.get_or_404(question_id)
+    # La suggestion à l'origine de cette question (s'il y en a une) reste en
+    # base comme trace permanente : seul son lien vers la question, qui va
+    # disparaître, est retiré.
+    QuestionSubmission.query.filter_by(question_id=question.id).update({"question_id": None})
     db.session.delete(question)
     db.session.commit()
 
@@ -573,6 +581,175 @@ def admin_reports_list() -> str:
                 reports=reports_data,
                 active_admin_section="reports",
             )
+
+@bp.route("/admin/suggestions")
+@login_required
+@admin_required
+def admin_suggestions_list() -> str:
+    """Affiche la file des suggestions de questions à traiter, en attente d'abord"""
+    all_submissions = QuestionSubmission.query.order_by(
+        case((QuestionSubmission.status == "pending", 0), else_=1),
+        QuestionSubmission.created_at.desc(),
+    ).all()
+
+    return render_template(
+        "admin/suggestions_list.html",
+        submissions=all_submissions,
+        active_admin_section="suggestions",
+    )
+
+@bp.route("/admin/suggestions/<int:submission_id>/apercu")
+@login_required
+@admin_required
+def admin_suggestions_preview(submission_id: int) -> str:
+    """Aperçu en lecture seule d'une suggestion (image, casting, audio...),
+    utile pour les modes dont le "Texte affiché" seul ne dit rien (ex.
+    devinette-affiche)."""
+    submission = QuestionSubmission.query.get_or_404(submission_id)
+    is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+    template = "admin/suggestion_preview_modal.html" if is_ajax else "admin/suggestion_preview.html"
+    return render_template(template, submission=submission, active_admin_section="suggestions")
+
+@bp.route("/admin/suggestions/<int:submission_id>/approuver", methods=["POST"])
+@login_required
+@admin_required
+def admin_suggestions_approve(submission_id: int) -> str:
+    """Approuve une suggestion telle quelle : crée la question jouable correspondante"""
+    submission = QuestionSubmission.query.get_or_404(submission_id)
+
+    question = Question(
+        mode=submission.mode,
+        prompt=submission.prompt,
+        payload=submission.payload,
+        correct_answer=submission.correct_answer,
+        requires_account=False,
+        content_type=submission.content_type,
+        difficulty=submission.difficulty,
+    )
+    question.tags = submission.tags
+    db.session.add(question)
+    db.session.flush()
+
+    submission.status = "approved"
+    submission.question_id = question.id
+    submission.was_edited_by_admin = False
+    submission.reviewed_by_id = current_user.id
+    submission.reviewed_at = datetime.utcnow()
+    db.session.commit()
+
+    create_notification(
+        submission.user,
+        "✅ Ta suggestion de question a été approuvée et est maintenant en jeu !",
+        link=url_for("suggestions.my_suggestions"),
+    )
+
+    flash("Suggestion approuvée.")
+    return redirect(url_for("admin.admin_suggestions_list"))
+
+@bp.route("/admin/suggestions/<int:submission_id>/modifier", methods=["GET", "POST"])
+@login_required
+@admin_required
+def admin_suggestions_review_form(submission_id: int) -> str:
+    """Affiche le formulaire de revue (GET) ou approuve avec les modifications (POST)
+
+    Contrairement à l'édition normale d'une question, ce formulaire ne fait
+    jamais que "sauvegarder" : le soumettre approuve la suggestion avec le
+    contenu qu'il porte, éventuellement retouché par l'admin."""
+    submission = QuestionSubmission.query.get_or_404(submission_id)
+    is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+
+    if request.method == "POST":
+        try:
+            payload = json.loads(request.form["payload"])
+            correct_answer = json.loads(request.form["correct_answer"])
+        except json.JSONDecodeError:
+            error = "Le payload ou la réponse correcte n'est pas un JSON valide."
+            if is_ajax:
+                return {"success": False, "error": error}, 400
+            flash(error)
+            return redirect(url_for("admin.admin_suggestions_list"))
+
+        prompt = request.form["prompt"]
+        if submission.mode == "emoji":
+            payload.setdefault("visuals", json.loads(request.form.get("visuals", "[]")))
+
+        content_type = request.form.get("content_type", submission.content_type)
+        difficulty = request.form.get("difficulty", submission.difficulty)
+        selected_tag_ids = request.form.getlist("tags")
+        reviewed_tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
+
+        # Les champs originaux du joueur (submission.prompt, .payload...) ne
+        # sont jamais réécrits : les retouches vivent dans les colonnes
+        # reviewed_* dédiées (voir QuestionSubmission dans models.py), pour
+        # que son historique montre toujours ce qu'il a réellement soumis.
+        submission.reviewed_prompt = prompt
+        submission.reviewed_payload = payload
+        submission.reviewed_correct_answer = correct_answer
+        submission.reviewed_content_type = content_type
+        submission.reviewed_difficulty = difficulty
+        submission.reviewed_tags = reviewed_tags
+        submission.was_edited_by_admin = True
+
+        question = Question(
+            mode=submission.mode,
+            prompt=prompt,
+            payload=payload,
+            correct_answer=correct_answer,
+            requires_account=False,
+            content_type=content_type,
+            difficulty=difficulty,
+        )
+        question.tags = reviewed_tags
+        db.session.add(question)
+        db.session.flush()
+
+        submission.status = "approved"
+        submission.question_id = question.id
+        submission.reviewed_by_id = current_user.id
+        submission.reviewed_at = datetime.utcnow()
+        db.session.commit()
+
+        create_notification(
+            submission.user,
+            "✅ Ta suggestion a été approuvée, avec quelques ajustements de l'équipe avant publication.",
+            link=url_for("suggestions.my_suggestions"),
+        )
+
+        if is_ajax:
+            return {"success": True}
+        flash("Suggestion approuvée avec modifications.")
+        return redirect(url_for("admin.admin_suggestions_list"))
+
+    all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+    template = "admin/suggestion_review_modal.html" if is_ajax else "admin/suggestion_review.html"
+    return render_template(template, submission=submission, all_tags=all_tags, active_admin_section="suggestions")
+
+@bp.route("/admin/suggestions/<int:submission_id>/rejeter", methods=["POST"])
+@login_required
+@admin_required
+def admin_suggestions_reject(submission_id: int) -> str:
+    """Rejette une suggestion avec un motif visible par le joueur"""
+    submission = QuestionSubmission.query.get_or_404(submission_id)
+    reason = request.form.get("reason", "").strip()
+
+    if not reason:
+        flash("Un motif est nécessaire pour rejeter une suggestion.")
+        return redirect(url_for("admin.admin_suggestions_list"))
+
+    submission.status = "rejected"
+    submission.rejection_reason = reason
+    submission.reviewed_by_id = current_user.id
+    submission.reviewed_at = datetime.utcnow()
+    db.session.commit()
+
+    create_notification(
+        submission.user,
+        f"❌ Ta suggestion de question a été refusée : {reason}",
+        link=url_for("suggestions.my_suggestions"),
+    )
+
+    flash("Suggestion rejetée.")
+    return redirect(url_for("admin.admin_suggestions_list"))
 
 @bp.route("/admin/tags")
 @login_required

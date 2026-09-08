@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
 from filmatrix.catalog import AVATARS, AVATAR_RING_COLORS
-from filmatrix.models import Attempt, User
+from filmatrix.models import Attempt, QuestionSubmission, User
 from filmatrix.game_modes import GAME_MODES, MULTIPLAYER_MODES
 from filmatrix.services.badges import BADGES
 from filmatrix.services.friends import friend_cards, get_friends_list, get_friendship_between
@@ -13,6 +13,7 @@ from filmatrix.services.levels import calculate_level
 from filmatrix.services.shop import TITLES
 from filmatrix.services.collection import get_album_summaries
 from filmatrix.services.daily_challenges import describe_daily_missions
+from filmatrix.services.suggestions import remaining_weekly_quota
 
 
 bp = Blueprint("profile", __name__)
@@ -58,6 +59,8 @@ def profile() -> str:
 
     missions_info = describe_daily_missions(current_user)
 
+    suggestions_count = QuestionSubmission.query.filter_by(user_id=current_user.id).count()
+
     return render_template(
         "profile/profil.html",
         friends=friend_cards(get_friends_list(current_user.id)),
@@ -71,6 +74,8 @@ def profile() -> str:
         avatar_ring_color=AVATAR_RING_COLORS.get(current_user.avatar, "#22d3ee"),
         daily_missions=missions_info,
         current_streak=current_user.current_streak,
+        suggestions_remaining=remaining_weekly_quota(current_user),
+        suggestions_count=suggestions_count,
     )
 
 @bp.route("/profil/modifier", methods=["GET", "POST"])

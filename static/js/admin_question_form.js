@@ -11,6 +11,13 @@ const form = document.getElementById("question-form");
 const tagSearch = document.getElementById("tag-search");
 const tagCount = document.getElementById("selected-tags-count");
 if (!form || !modeSelect) return;
+// Ce script sert aussi bien le formulaire admin que la modale de suggestion
+// de question par un joueur (static/js/suggestion_modal.js) : seul le
+// préfixe des appels TMDB change d'un contexte à l'autre. Porté par le
+// <form> lui-même (et non un <div> englobant) car c'est le seul élément
+// réinjecté tel quel dans une modale - voir admin_question_modal.js /
+// suggestion_modal.js, qui n'y recopient que #question-form.
+const API_PREFIX = form.dataset.apiPrefix || "/admin/api";
 const OPENMOJI_CATALOG_URL = "/static/assets/openmoji-catalog.json";
 const OPENMOJI_REMOTE_URL = "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/data/openmoji.json";
 let OPENMOJI_CATALOG = [];
@@ -527,7 +534,7 @@ document.querySelectorAll(".movie-search-input").forEach(function (searchInput) 
 
         searchDebounceTimer = setTimeout(async function () {
             const response = await fetch(
-                `/admin/api/recherche-film?query=${encodeURIComponent(query)}`
+                `${API_PREFIX}/recherche-film?query=${encodeURIComponent(query)}`
             );
             const data = await response.json();
 
@@ -617,7 +624,7 @@ if (savedContentType && savedContentType.value) {
 }
 
 async function autoTagGenres(movieId, contentType) {
-    const response = await fetch(`/admin/api/genres-tmdb?movie_id=${movieId}&content_type=${contentType}`);
+    const response = await fetch(`${API_PREFIX}/genres-tmdb?movie_id=${movieId}&content_type=${contentType}`);
     const data = await response.json();
     const genres = (data.genres || []);
 
@@ -641,7 +648,7 @@ async function selectMovie(movie, target, fieldsGroup) {
 
     if (target === "poster") {
         const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
-        const response = await fetch(`/admin/api/recherche-affiche?movie_id=${movie.id}&content_type=${contentType}`);
+        const response = await fetch(`${API_PREFIX}/recherche-affiche?movie_id=${movie.id}&content_type=${contentType}`);
         const data = await response.json();
 
         if (data.success) {
@@ -655,7 +662,7 @@ async function selectMovie(movie, target, fieldsGroup) {
 
     if (target === "casting") {
         const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
-        const response = await fetch(`/admin/api/recherche-casting?movie_id=${movie.id}&content_type=${contentType}`);
+        const response = await fetch(`${API_PREFIX}/recherche-casting?movie_id=${movie.id}&content_type=${contentType}`);
         const data = await response.json();
 
         if (data.success) {
@@ -682,7 +689,7 @@ async function selectMovie(movie, target, fieldsGroup) {
             params.set("search_term", searchTerm);
         }
 
-        const response = await fetch(`/admin/api/recherche-audio?${params.toString()}`);
+        const response = await fetch(`${API_PREFIX}/recherche-audio?${params.toString()}`);
         const data = await response.json();
 
         if (data.success) {
@@ -731,7 +738,7 @@ async function applyPosterField(movie, fieldsGroup, fieldSelector, previewSelect
     if (!field) return;
 
     const contentType = (fieldsGroup && fieldsGroup.dataset.contentType) || "film";
-    const response = await fetch(`/admin/api/recherche-jaquette?movie_id=${movie.id}&content_type=${contentType}`);
+    const response = await fetch(`${API_PREFIX}/recherche-jaquette?movie_id=${movie.id}&content_type=${contentType}`);
     const data = await response.json();
 
     if (!data.success) return;
