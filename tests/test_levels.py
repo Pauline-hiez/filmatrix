@@ -33,7 +33,7 @@ def test_unknown_level_falls_back_on_default():
     assert xp_for_level(None) == 20
 
 
-def create_question(app, mode="qcm"):
+def create_question(app, mode="qcm", difficulty="moyen"):
     """Crée une question simple dans la base de test"""
     with app.app_context():
         db.session.add(
@@ -43,24 +43,23 @@ def create_question(app, mode="qcm"):
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
                 requires_account=False,
+                difficulty=difficulty,
             )
         )
         db.session.commit()
 
 
-def test_timer_sent_to_the_page_follows_the_chosen_level(client, app):
-    """La barre de temps doit porter la durée du niveau demandé dans l'URL"""
-    create_question(app)
+def test_timer_follows_the_question_difficulty_not_a_url_level(client, app):
+    """La barre de temps suit la difficulté de la question tirée ; un vieux ?level= est ignoré"""
+    create_question(app, difficulty="facile")
 
-    assert b'data-duration="22"' in client.get("/quiz/qcm/1?level=facile").data
-    assert b'data-duration="12"' in client.get("/quiz/qcm/1?level=difficile").data
-    # Sans niveau dans l'URL, on retombe sur le niveau par défaut.
-    assert b'data-duration="16"' in client.get("/quiz/qcm/1").data
+    assert b'data-duration="22"' in client.get("/quiz/qcm/1").data
+    assert b'data-duration="22"' in client.get("/quiz/qcm/1?level=difficile").data
 
 
-def test_reward_follows_the_chosen_level_not_the_question(client, app):
-    """Une même question doit rapporter davantage en difficile qu'en facile"""
-    create_question(app)
+def test_reward_follows_the_question_difficulty(client, app):
+    """Une question difficile rapporte plus, même avec un ?level= périmé dans l'URL"""
+    create_question(app, difficulty="difficile")
 
     with app.app_context():
         player = User(username="Joueuse", email="joueuse@filmatrix.fr")
@@ -69,13 +68,21 @@ def test_reward_follows_the_chosen_level_not_the_question(client, app):
         db.session.commit()
 
     client.post("/connexion", data={"email": "joueuse@filmatrix.fr", "password": "Azerty1!"})
-    client.post("/quiz/qcm/1?level=difficile", data={"answer": "0"})
+    client.post("/quiz/qcm/1?level=facile", data={"answer": "0"})
 
     with app.app_context():
         player = User.query.filter_by(username="Joueuse").first()
-        # La question est enregistrée en "facile", elle ne décide plus de rien.
+        # La question est enregistrée en "difficile" : c'est elle qui décide, pas ?level=.
         assert player.total_xp == 30
         assert player.coins == 6
+
+
+def test_question_defaults_to_moyen_difficulty(app):
+    """Une question créée sans difficulté explicite retombe sur moyen, comme le backfill de migration"""
+    create_question(app)
+
+    with app.app_context():
+        assert Question.query.first().difficulty == "moyen"
 
 
 def create_tagged_question(app, mode, tag_name, count=None):

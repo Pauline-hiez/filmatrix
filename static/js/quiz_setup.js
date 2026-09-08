@@ -1,8 +1,8 @@
 const startButton = document.getElementById("start-game");
 const availabilityText = document.getElementById("availability-text");
 const contentTypeSelect = document.getElementById("content-type");
+const difficultySelect = document.getElementById("difficulty-filter");
 const tagFilterSelects = document.querySelectorAll("[data-tag-filter]");
-const levelButtons = document.querySelectorAll("#level-choices [data-level]");
 const lengthButtons = document.querySelectorAll("#run-length-choices [data-length]");
 const rewardXp = document.getElementById("reward-xp");
 const rewardCoins = document.getElementById("reward-coins");
@@ -28,11 +28,11 @@ function currentFilterParams() {
         params.set("content_type", contentTypeSelect.value);
     }
 
-    return params;
-}
+    if (difficultySelect.value) {
+        params.set("difficulty", difficultySelect.value);
+    }
 
-function activeLevelButton() {
-    return document.querySelector("#level-choices [data-level].is-active") || levelButtons[0];
+    return params;
 }
 
 function activeLengthButton() {
@@ -49,28 +49,54 @@ function setActive(buttons, clicked) {
 }
 
 // Récompense et durée annoncées ne viennent d'aucune requête serveur : tout
-// est déjà connu du navigateur (xp/pièces/durée posés en data-* par le
-// template, longueur choisie juste à côté), donc calculé sur place.
+// est déjà connu du navigateur (xp/pièces/durée posés en data-* sur les
+// options du filtre de difficulté, longueur choisie juste à côté).
+// Sans difficulté choisie, les questions tirées peuvent être faciles comme
+// difficiles : on annonce alors une fourchette (XP/pièces) et une moyenne
+// (temps, déjà présenté comme approximatif via "Environ").
 function updateRewardsAndEstimate() {
-    const level = activeLevelButton();
     const length = activeLengthButton();
-    if (!level || !length) {
+    if (!length) {
         return;
     }
 
     const runLength = parseInt(length.dataset.length, 10);
-    const xpPerAnswer = parseInt(level.dataset.xp, 10);
-    const coinsPerAnswer = parseInt(level.dataset.coins, 10);
-    const durationPerQuestion = parseInt(level.dataset.duration, 10);
+    const selectedOption = difficultySelect.options[difficultySelect.selectedIndex];
+
+    if (difficultySelect.value && selectedOption) {
+        const xpPerAnswer = parseInt(selectedOption.dataset.xp, 10);
+        const coinsPerAnswer = parseInt(selectedOption.dataset.coins, 10);
+        const durationPerQuestion = parseInt(selectedOption.dataset.duration, 10);
+
+        if (rewardXp) {
+            rewardXp.textContent = `Jusqu'à ${runLength * xpPerAnswer} XP`;
+        }
+        if (rewardCoins) {
+            rewardCoins.textContent = `Jusqu'à ${runLength * coinsPerAnswer} pièces`;
+        }
+        if (timeEstimate) {
+            const minutes = Math.max(1, Math.round((runLength * durationPerQuestion) / 60));
+            timeEstimate.textContent = `Environ ${minutes} min`;
+        }
+        return;
+    }
+
+    const difficultyOptions = Array.from(difficultySelect.options).filter(function (option) {
+        return option.value;
+    });
+    const xpValues = difficultyOptions.map(function (option) { return parseInt(option.dataset.xp, 10); });
+    const coinsValues = difficultyOptions.map(function (option) { return parseInt(option.dataset.coins, 10); });
+    const durationValues = difficultyOptions.map(function (option) { return parseInt(option.dataset.duration, 10); });
 
     if (rewardXp) {
-        rewardXp.textContent = `Jusqu'à ${runLength * xpPerAnswer} XP`;
+        rewardXp.textContent = `${runLength * Math.min(...xpValues)} - ${runLength * Math.max(...xpValues)} XP`;
     }
     if (rewardCoins) {
-        rewardCoins.textContent = `Jusqu'à ${runLength * coinsPerAnswer} pièces`;
+        rewardCoins.textContent = `${runLength * Math.min(...coinsValues)} - ${runLength * Math.max(...coinsValues)} pièces`;
     }
     if (timeEstimate) {
-        const minutes = Math.max(1, Math.round((runLength * durationPerQuestion) / 60));
+        const avgDuration = durationValues.reduce(function (a, b) { return a + b; }, 0) / durationValues.length;
+        const minutes = Math.max(1, Math.round((runLength * avgDuration) / 60));
         timeEstimate.textContent = `Environ ${minutes} min`;
     }
 }
@@ -150,6 +176,11 @@ function refreshAvailability() {
 
 contentTypeSelect.addEventListener("change", refreshAvailability);
 
+difficultySelect.addEventListener("change", function () {
+    refreshAvailability();
+    updateRewardsAndEstimate();
+});
+
 if (universSelect) {
     universSelect.addEventListener("change", function () {
         updateModeVisibility();
@@ -159,13 +190,6 @@ if (universSelect) {
 
 tagFilterSelects.forEach(function (select) {
     select.addEventListener("change", refreshAvailability);
-});
-
-levelButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        setActive(levelButtons, button);
-        updateRewardsAndEstimate();
-    });
 });
 
 lengthButtons.forEach(function (button) {
@@ -204,13 +228,12 @@ if (universSelect && universSelect.querySelector("option[hidden][selected]")) {
 
 startButton.addEventListener("click", function () {
     const mode = startButton.dataset.mode;
-    const level = activeLevelButton();
     const length = activeLengthButton();
     const params = currentFilterParams();
 
-    // Niveau et longueur suivent ensuite le joueur d'une question à l'autre,
-    // puisque quiz.js conserve la query string en changeant de position.
-    params.set("level", level.dataset.level);
+    // Le filtre de difficulté (dans currentFilterParams) et la longueur
+    // suivent ensuite le joueur d'une question à l'autre, puisque quiz.js
+    // conserve la query string en changeant de position.
     params.set("questions", length.dataset.length);
 
     window.location.href = `/quiz/${mode}/1?${params.toString()}`;

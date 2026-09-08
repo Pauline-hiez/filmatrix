@@ -62,7 +62,7 @@
                 Manche {{ position }} / {{ total_questions }}
             </span>
             <span class="hidden rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-400 sm:inline-flex">
-                {{ level.label }}
+                {{ difficulty.label }}
             </span>
         </div>
     </div>
@@ -148,10 +148,10 @@
 
             <div class="game-pill-row">
                 <span class="game-pill">{{ content_label|capitalize }}</span>
-                {# "Niveau" règle le temps de réponse (et donc les gains), pas la
-                   difficulté des questions elles-mêmes : l'horloge évite toute
-                   confusion avec un pill qui décrirait le contenu de la question. #}
-                <span class="game-pill">⏱ {{ level.label }}</span>
+                {# La difficulté de CETTE question fixe son propre chrono et ses
+                   propres gains (Question.difficulty + services/levels.py) : ce
+                   n'est plus un réglage choisi par le joueur avant la partie. #}
+                <span class="game-pill">⏱ {{ difficulty.label }}</span>
             </div>
 
             {% if question.mode in ["qcm", "vrai_faux"] and question_image_url %}

@@ -83,7 +83,7 @@ def test_fragment_awarded_flag_is_per_run():
     assert run_fragment_awarded(store, "citation") is False
 
 
-def create_questions(app, count):
+def create_questions(app, count, difficulty="moyen"):
     """Crée des questions QCM dont la bonne réponse est toujours l'option 0"""
     with app.app_context():
         for index in range(count):
@@ -93,6 +93,7 @@ def create_questions(app, count):
                     prompt=f"Question {index}",
                     payload={"options": ["A", "B"]},
                     correct_answer={"index": 0},
+                    difficulty=difficulty,
                 )
             )
         db.session.commit()
@@ -102,12 +103,12 @@ def test_end_screen_shows_the_score_of_the_run(client, app):
     """L'écran de fin doit afficher le score de la partie qui vient de s'achever"""
     create_questions(app, 3)
 
-    client.get("/quiz/qcm/1?level=moyen")
-    client.post("/quiz/qcm/1?level=moyen", data={"answer": "0"})
-    client.post("/quiz/qcm/2?level=moyen", data={"answer": "1"})
-    client.post("/quiz/qcm/3?level=moyen", data={"answer": "0"})
+    client.get("/quiz/qcm/1")
+    client.post("/quiz/qcm/1", data={"answer": "0"})
+    client.post("/quiz/qcm/2", data={"answer": "1"})
+    client.post("/quiz/qcm/3", data={"answer": "0"})
 
-    end_screen = client.get("/quiz/qcm/4?level=moyen").data
+    end_screen = client.get("/quiz/qcm/4").data
 
     assert b"Ton score" in end_screen
     assert b"2" in end_screen
@@ -116,7 +117,7 @@ def test_end_screen_shows_the_score_of_the_run(client, app):
 
 def test_end_screen_shows_the_xp_earned_during_the_run(client, app):
     """Un joueur connecté doit voir ce que la partie lui a rapporté"""
-    create_questions(app, 2)
+    create_questions(app, 2, difficulty="difficile")
 
     with app.app_context():
         player = User(username="Joueuse", email="joueuse@filmatrix.fr")
@@ -125,13 +126,13 @@ def test_end_screen_shows_the_xp_earned_during_the_run(client, app):
         db.session.commit()
 
     client.post("/connexion", data={"email": "joueuse@filmatrix.fr", "password": "Azerty1!"})
-    client.get("/quiz/qcm/1?level=difficile")
-    client.post("/quiz/qcm/1?level=difficile", data={"answer": "0"})
-    client.post("/quiz/qcm/2?level=difficile", data={"answer": "0"})
+    client.get("/quiz/qcm/1")
+    client.post("/quiz/qcm/1", data={"answer": "0"})
+    client.post("/quiz/qcm/2", data={"answer": "0"})
 
-    end_screen = client.get("/quiz/qcm/3?level=difficile").data
+    end_screen = client.get("/quiz/qcm/3").data
 
-    # Deux bonnes réponses en difficile : 2 x 30 XP et 2 x 6 pièces.
+    # Deux questions difficiles répondues correctement : 2 x 30 XP et 2 x 6 pièces.
     assert "+ 60 XP".encode() in end_screen
     assert "+ 12 pièces".encode() in end_screen
 
@@ -168,9 +169,9 @@ def test_a_run_awards_only_one_fragment(client, app):
         db.session.commit()
 
     client.post("/connexion", data={"email": "chasseur@filmatrix.fr", "password": "Azerty1!"})
-    client.get("/quiz/qcm/1?level=moyen")
-    client.post("/quiz/qcm/1?level=moyen", data={"answer": "0"})
-    client.post("/quiz/qcm/2?level=moyen", data={"answer": "0"})
+    client.get("/quiz/qcm/1")
+    client.post("/quiz/qcm/1", data={"answer": "0"})
+    client.post("/quiz/qcm/2", data={"answer": "0"})
 
     # Les fragments gagnés ne sont plus renvoyés dans la réponse JSON de
     # chaque question : ils s'accumulent en session pour l'écran de fin de

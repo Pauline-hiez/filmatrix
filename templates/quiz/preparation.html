@@ -85,6 +85,13 @@
                     </button>
                     {% endfor %}
                 </div>
+                {% if not current_user.is_authenticated %}
+                <p class="mt-2.5 text-xs leading-relaxed text-slate-500">
+                    🔒 Aperçu invité : {{ run_length_presets.keys() | first }} questions gratuites pour découvrir ce mode.
+                    <a href="{{ url_for('auth.login') }}" class="font-bold text-cyan-400 hover:underline">Connecte-toi</a>
+                    pour jouer des parties complètes.
+                </p>
+                {% endif %}
             </section>
 
             <section class="setup-panel">
@@ -185,25 +192,24 @@
 
             <section class="setup-panel">
                 <p class="setup-panel-title">Difficulté</p>
-                {# Le niveau fixe le chrono et les gains, cf. src/levels.py. #}
-                <div class="setup-choice-grid" id="level-choices">
-                    {% set level_colors = {"facile": "#34d399", "moyen": "#fbbf24", "difficile": "#f87171"} %}
+                {# La difficulté n'est plus un réglage du joueur : c'est un filtre sur
+                   les questions tirées. Chrono et gains suivent la difficulté propre
+                   à chaque question (Question.difficulty + services/levels.py). #}
+                <select id="difficulty-filter" data-combobox
+                        class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                    <option value="" {% if not difficulty %}selected{% endif %}>Toutes les difficultés</option>
                     {% for code, level in levels.items() %}
-                    <button type="button" data-level="{{ code }}" data-duration="{{ level.duration }}" data-xp="{{ level.xp }}" data-coins="{{ level.coins }}"
-                            style="--choice-color: {{ level_colors.get(code, mode.accent) }}"
-                            class="setup-choice-card {% if code == default_level %}is-active{% endif %}">
-                        <strong>{{ level.label }}</strong>
-                        <span>{{ level.duration }} s · +{{ level.xp }} XP</span>
-                    </button>
+                    <option value="{{ code }}" data-duration="{{ level.duration }}" data-xp="{{ level.xp }}" data-coins="{{ level.coins }}"
+                            {% if difficulty == code %}selected{% endif %}>
+                        {{ level.label }} · {{ level.duration }} s · +{{ level.xp }} XP
+                    </option>
                     {% endfor %}
-                </div>
+                </select>
                 <p class="mt-2 text-xs leading-snug text-slate-500">
                     {% if mode.slug == "blindtest" %}
-                    Le blind test garde toujours {{ blindtest_duration }} s (le temps d'écouter l'extrait) ; le niveau ne change que les gains.
-                    {% elif mode.slug == "mixte" %}
-                    Plus le niveau est élevé, moins tu as de temps pour répondre (sauf blind test, toujours {{ blindtest_duration }} s), et plus une bonne réponse rapporte.
+                    Le blind test garde toujours {{ blindtest_duration }} s (le temps d'écouter l'extrait), quelle que soit la difficulté de la question tirée ; seuls les gains varient.
                     {% else %}
-                    Plus le niveau est élevé, moins tu as de temps pour répondre, et plus une bonne réponse rapporte.
+                    Chaque question a sa propre difficulté, qui fixe son temps de réponse et ses gains. Filtre ici pour ne tirer que des questions faciles, moyennes ou difficiles.
                     {% endif %}
                 </p>
             </section>

@@ -26,7 +26,6 @@ from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.levels import (
     BLINDTEST_DURATION,
-    DEFAULT_LEVEL,
     LEVELS,
     calculate_level,
     coins_for_level,
@@ -49,10 +48,12 @@ from filmatrix.services.questions import (
     reachable_content_types,
     reachable_tag_ids,
     resolve_content_type,
+    resolve_difficulty_filter,
     run_filters,
     shuffle_options,
 )
 from filmatrix.services.score import (
+    GUEST_PREVIEW_LENGTH,
     QUESTIONS_PER_RUN,
     RUN_LENGTH_PRESETS,
     add_run_fragment_result,
@@ -68,6 +69,18 @@ from filmatrix.services.score import (
 
 
 bp = Blueprint("quiz", __name__)
+
+
+def _effective_run_length(raw_value: str | int | None) -> int:
+    """Résout la longueur de partie demandée, plafonnée pour un visiteur
+
+    Un visiteur non connecté peut choisir n'importe quel format en
+    manipulant l'URL : le plafond doit donc s'appliquer ici, pas seulement
+    être suggéré par l'écran de préparation."""
+    chosen = resolve_run_length(raw_value)
+    if not current_user.is_authenticated:
+        return min(chosen, GUEST_PREVIEW_LENGTH)
+    return chosen
 
 
 @bp.route("/quiz/<mode>")
@@ -90,7 +103,8 @@ def quiz_setup(mode: str) -> str:
 
     content_type = resolve_content_type(request.args.get("content_type"))
     selected_tag_ids = request.args.getlist("tag_id", type=int)
-    chosen_run_length = resolve_run_length(request.args.get("questions"))
+    difficulty = resolve_difficulty_filter(request.args.get("difficulty"))
+    chosen_run_length = _effective_run_length(request.args.get("questions"))
 
     # Ces modes reposent sur un média ou une représentation qui n'est pas
     # compatible avec un univers filtré. On bascule vers le QCM plutôt que de
@@ -110,8 +124,17 @@ def quiz_setup(mode: str) -> str:
     # ne compte que le jouable : un visiteur ne doit pas se voir promettre
     # des questions réservées aux comptes.
     available = playable_question_query(
-        mode, content_type=content_type, tag_ids=selected_tag_ids
+        mode, content_type=content_type, tag_ids=selected_tag_ids, difficulty=difficulty
     ).count()
+
+    # Un visiteur non connecté n'a qu'un seul format possible (l'aperçu) : pas
+    # la peine de lui proposer un choix entre trois durées qui aboutissent
+    # toutes au même plafond.
+    displayed_presets = (
+        RUN_LENGTH_PRESETS
+        if current_user.is_authenticated
+        else {GUEST_PREVIEW_LENGTH: "Aperçu"}
+    )
 
     return render_template(
             "quiz/preparation.html",
@@ -119,14 +142,14 @@ def quiz_setup(mode: str) -> str:
             all_modes=GAME_MODES,
             question_count=available,
             run_length=min(chosen_run_length, available),
-            run_length_presets=RUN_LENGTH_PRESETS,
+            run_length_presets=displayed_presets,
             chosen_run_length=chosen_run_length,
             content_type=content_type,
             selected_tag_ids=selected_tag_ids,
             all_tags=available_tags,
             all_univers_tags=all_univers_tags,
             levels=LEVELS,
-            default_level=DEFAULT_LEVEL,
+            difficulty=difficulty,
             blindtest_duration=BLINDTEST_DURATION,
         )
 
@@ -140,17 +163,18 @@ def quiz_availability(mode: str) -> dict:
     mèneraient à zéro question, sans recharger la page."""
     content_type = resolve_content_type(request.args.get("content_type"))
     tag_ids = request.args.getlist("tag_id", type=int)
-    chosen_run_length = resolve_run_length(request.args.get("questions"))
+    difficulty = resolve_difficulty_filter(request.args.get("difficulty"))
+    chosen_run_length = _effective_run_length(request.args.get("questions"))
 
-    available = playable_question_query(mode, content_type=content_type, tag_ids=tag_ids).count()
-    default_reachable, reachable_by_type = reachable_tag_ids(mode, content_type, tag_ids)
+    available = playable_question_query(mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty).count()
+    default_reachable, reachable_by_type = reachable_tag_ids(mode, content_type, tag_ids, difficulty=difficulty)
 
     return {
         "available": available,
         "run_length": min(chosen_run_length, available),
         "default_reachable_tag_ids": default_reachable,
         "reachable_tag_ids_by_type": reachable_by_type,
-        "reachable_content_types": reachable_content_types(mode, tag_ids),
+        "reachable_content_types": reachable_content_types(mode, tag_ids, difficulty=difficulty),
     }
 
 @bp.route("/quiz/<mode>/<int:position>", methods=["GET", "POST"])
@@ -158,8 +182,8 @@ def quiz(mode: str, position: int) -> str:
     """Affiche une question (GET) ou traite la réponse envoyée (POST)."""
     tag_ids = request.args.getlist("tag_id", type=int)
     content_type = resolve_content_type(request.args.get("content_type"))
-    level = resolve_level(request.args.get("level"))
-    chosen_run_length = resolve_run_length(request.args.get("questions"))
+    difficulty = resolve_difficulty_filter(request.args.get("difficulty"))
+    chosen_run_length = _effective_run_length(request.args.get("questions"))
 
     # Le tirage doit précéder la recherche de la question : c'est lui qui
     # décide quelle question occupe la position 1.
@@ -168,13 +192,13 @@ def quiz(mode: str, position: int) -> str:
             session,
             mode,
             question_ids=draw_run_questions(
-                mode, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
+                mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length
             ),
-            filters=run_filters(content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length),
+            filters=run_filters(content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length),
         )
 
     question = find_question(
-        mode, position, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
+        mode, position, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length
     )
 
     if question is None:
@@ -187,10 +211,14 @@ def quiz(mode: str, position: int) -> str:
     # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
     # session expirée — on retombe sur ce que les filtres permettent.
     total_questions = run_length(
-        session, mode, run_filters(content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length)
+        session, mode, run_filters(content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length)
     ) or count_run_questions(
-        mode, content_type=content_type, tag_ids=tag_ids, total_questions=chosen_run_length
+        mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length
     )
+
+    # Chaque question porte sa propre difficulté : c'est elle, pas un réglage
+    # choisi par le joueur, qui fixe le chrono et les gains de CETTE question.
+    question_difficulty = resolve_level(question.difficulty)
 
     selected_universe = (
         bool(tag_ids)
@@ -269,8 +297,8 @@ def quiz(mode: str, position: int) -> str:
                     reached_correct_answers_ticket = True
 
             if is_correct and not already_answered_correctly:
-                earned_xp = xp_for_level(level)
-                earned_coins = coins_for_level(level)
+                earned_xp = xp_for_level(question_difficulty)
+                earned_coins = coins_for_level(question_difficulty)
                 current_user.total_xp += earned_xp
                 current_user.coins += earned_coins
                 attempt.earned_xp = earned_xp
@@ -428,8 +456,8 @@ def quiz(mode: str, position: int) -> str:
             scrambled_title=scrambled_title,
             options=options,
             report_reasons=REPORT_REASON,
-            level=LEVELS[level],
-            duration=duration_for(level, question.mode),
+            difficulty=LEVELS[question_difficulty],
+            duration=duration_for(question_difficulty, question.mode),
             position=position,
             total_questions=total_questions,
             is_mix=is_mix,

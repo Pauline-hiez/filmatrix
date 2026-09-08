@@ -38,6 +38,16 @@
             <p class="mt-1 text-xs text-slate-500">Défini automatiquement selon l'œuvre choisie dans la recherche TMDB, modifiable ici.</p>
         </div>
 
+        <div>
+            <label class="block text-sm text-slate-400 mb-1">Difficulté</label>
+            <select name="difficulty" data-combobox
+                    class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100">
+                <option value="facile" {% if question and question.difficulty == 'facile' %}selected{% endif %}>Facile</option>
+                <option value="moyen" {% if not question or question.difficulty == 'moyen' %}selected{% endif %}>Moyen</option>
+                <option value="difficile" {% if question and question.difficulty == 'difficile' %}selected{% endif %}>Difficile</option>
+            </select>
+        </div>
+
         <div id="field-group-prompt">
             <label class="block text-sm text-slate-400 mb-1">Texte affiché (question / réplique / emojis...)</label>
             <input type="text" name="prompt" value="{{ question.prompt if question else '' }}"

@@ -70,7 +70,7 @@ def mode_tags(mode: str) -> list[Tag]:
 
 
 def reachable_tag_ids(
-    mode: str, content_type: str | None, selected_tag_ids: list[int]
+    mode: str, content_type: str | None, selected_tag_ids: list[int], difficulty: str | None = None
 ) -> tuple[list[int], dict[str, list[int]]]:
     """Calcule, pour les filtres actifs, les tags qui garderaient au moins
     une question s'ils étaient ajoutés à la sélection
@@ -88,7 +88,9 @@ def reachable_tag_ids(
         remaining = [tag_id for tag_id in selected_tag_ids if tag_id != excluding]
         question_ids = [
             row.id
-            for row in playable_question_query(mode, content_type=content_type, tag_ids=remaining)
+            for row in playable_question_query(
+                mode, content_type=content_type, tag_ids=remaining, difficulty=difficulty
+            )
             .with_entities(Question.id)
             .all()
         ]
@@ -119,12 +121,12 @@ def reachable_tag_ids(
     return sorted(default), {tag_type: sorted(ids) for tag_type, ids in by_type.items()}
 
 
-def reachable_content_types(mode: str, selected_tag_ids: list[int]) -> list[str]:
+def reachable_content_types(mode: str, selected_tag_ids: list[int], difficulty: str | None = None) -> list[str]:
     """Types de contenu (film, série) qui garderaient au moins une question
     avec les tags actifs, sans contrainte de type de contenu — le pendant de
     reachable_tag_ids() pour le sélecteur Films / Séries."""
     rows = (
-        playable_question_query(mode, tag_ids=selected_tag_ids)
+        playable_question_query(mode, tag_ids=selected_tag_ids, difficulty=difficulty)
         .with_entities(Question.content_type)
         .distinct()
         .all()
@@ -154,11 +156,22 @@ def resolve_content_type(value: str | None) -> str:
     aliases = {"film": "film", "films": "film", "serie": "serie", "série": "serie", "series": "serie", "séries": "serie"}
     return aliases.get((value or "").strip().lower(), "")
 
+def resolve_difficulty_filter(value: str | None) -> str:
+    """Normalise le filtre de difficulté de l'écran de préparation
+
+    Contrairement à resolve_level() (services/levels.py), qui doit toujours
+    retomber sur une valeur concrète pour sanitizer la difficulté d'une
+    question, une valeur absente ou invalide ici doit rester vide : « aucun
+    filtre », pas « filtre sur moyen »."""
+    from filmatrix.services.levels import LEVELS
+    return value if value in LEVELS else ""
+
 def build_question_query(
     mode: str,
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    difficulty: str | None = None,
 ):
     """Construit la requête des questions jouables pour un mode et ses filtres
 
@@ -197,6 +210,9 @@ def build_question_query(
     if content_type:
         query = query.filter_by(content_type=content_type)
 
+    if difficulty:
+        query = query.filter_by(difficulty=difficulty)
+
     return query.order_by(Question.id)
 
 def playable_question_query(
@@ -204,13 +220,14 @@ def playable_question_query(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    difficulty: str | None = None,
 ):
     """Restreint aux questions que le joueur peut réellement jouer
 
     Une question réservée aux comptes renverrait un visiteur vers la page de
     connexion en pleine partie, sa progression perdue : elle n'a rien à faire
     ni dans le tirage, ni dans les compteurs qu'on lui annonce"""
-    query = build_question_query(mode, tag_id, content_type, tag_ids)
+    query = build_question_query(mode, tag_id, content_type, tag_ids, difficulty)
 
     if not current_user.is_authenticated:
         query = query.filter_by(requires_account=False)
@@ -222,6 +239,7 @@ def count_run_questions(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    difficulty: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ) -> int:
     """Retourne le nombre de questions que comptera la partie
@@ -230,13 +248,14 @@ def count_run_questions(
     RUN_LENGTH_CHOICES sur l'écran de préparation), sauf si les filtres du
     joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
     servir"""
-    available = playable_question_query(mode, tag_id, content_type, tag_ids).count()
+    available = playable_question_query(mode, tag_id, content_type, tag_ids, difficulty).count()
     return min(total_questions, available)
 
 def run_filters(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    difficulty: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ) -> dict:
     """Décrit les réglages d'une partie, sous une forme rangeable en session
@@ -244,7 +263,12 @@ def run_filters(
     total_questions y figure : une partie de 5 questions et une de 20 lancées
     avec les mêmes filtres ne doivent pas partager le même tirage en session."""
     normalized_tag_ids = tag_ids if tag_ids is not None else ([tag_id] if tag_id else [])
-    return {"tag_ids": normalized_tag_ids, "content_type": content_type, "total_questions": total_questions}
+    return {
+        "tag_ids": normalized_tag_ids,
+        "content_type": content_type,
+        "difficulty": difficulty,
+        "total_questions": total_questions,
+    }
 
 DRAW_HISTORY_KEY = "draw_history"
 
@@ -274,6 +298,7 @@ def draw_run_questions(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    difficulty: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ) -> list[int]:
     """Tire au sort les questions d'une nouvelle partie, en évitant de resservir
@@ -283,10 +308,10 @@ def draw_run_questions(
     ne se ressemblent pas, mais à l'intérieur d'une partie l'ordre ne bouge
     plus, sans quoi avancer d'une question en ramènerait une déjà posée"""
     pool_ids = [
-        row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids).all()
+        row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids, difficulty).all()
     ]
     target_size = min(total_questions, len(pool_ids))
-    filters = run_filters(tag_id, content_type, tag_ids, total_questions)
+    filters = run_filters(tag_id, content_type, tag_ids, difficulty, total_questions)
 
     # Utilise une clé unique pour ce mode et ces filtres
     history_key = _draw_history_key(mode, filters)
@@ -316,6 +341,7 @@ def find_question(
     tag_id: int | None = None,
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
+    difficulty: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ):
     """Cherche la question à une position donnée, parmi celles d'un mode, tag et type de contenu
@@ -325,7 +351,7 @@ def find_question(
     if position < 1 or position > total_questions:
         return None
 
-    filters = run_filters(tag_id, content_type, tag_ids, total_questions)
+    filters = run_filters(tag_id, content_type, tag_ids, difficulty, total_questions)
     question_id = run_question_id(session, mode, position, filters)
 
     if question_id is not None:
@@ -334,7 +360,7 @@ def find_question(
     # Aucun tirage en session : lien direct vers une question, session
     # expirée ou navigation manuelle. On sert alors l'ordre stable par id,
     # plutôt que de refuser la question au joueur.
-    query = build_question_query(mode, tag_id, content_type, tag_ids)
+    query = build_question_query(mode, tag_id, content_type, tag_ids, difficulty)
 
     return query.offset(position - 1).limit(1).first()
 

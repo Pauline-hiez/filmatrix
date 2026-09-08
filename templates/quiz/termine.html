@@ -21,12 +21,21 @@
         </span>
 
         <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            {% if current_user.is_authenticated %}
             Quiz
             <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">terminé</span> !
+            {% else %}
+            Aperçu
+            <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">terminé</span> !
+            {% endif %}
         </h1>
 
         <p class="mt-3 text-slate-300">
+            {% if current_user.is_authenticated %}
             Tu es allé au bout de ta partie.
+            {% else %}
+            Tu as testé ce mode : connecte-toi pour continuer à jouer, débloquer tous les modes et sauvegarder ta progression.
+            {% endif %}
         </p>
 
         {# Score de la partie qui vient de s'achever, suivi en session (cf. src/score.py).
@@ -61,22 +70,31 @@
         {% endif %}
 
         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            {% if current_user.is_authenticated %}
             <a href="{{ url_for('main.modes') }}"
                class="rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
                 Choisir un autre mode
             </a>
-            {% if current_user.is_authenticated %}
             <a href="{{ url_for('profile.profile') }}"
                class="rounded-lg border border-slate-600 px-6 py-3 font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
                 Voir mon profil
             </a>
             {% else %}
-            <a href="{{ url_for('main.home') }}"
+            <a href="{{ url_for('auth.register') }}"
+               class="rounded-lg bg-cyan-400 px-6 py-3 font-bold text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300">
+                Créer un compte
+            </a>
+            <a href="{{ url_for('auth.login') }}"
                class="rounded-lg border border-slate-600 px-6 py-3 font-bold text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400">
-                Retour à l'accueil
+                Se connecter
             </a>
             {% endif %}
         </div>
+        {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('main.modes') }}" class="mt-4 inline-block text-xs text-slate-500 transition hover:text-cyan-400">
+            Essayer un autre mode en aperçu →
+        </a>
+        {% endif %}
     </section>
 </div>
 {% endblock %}

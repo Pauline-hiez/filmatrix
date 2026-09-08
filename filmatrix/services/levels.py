@@ -1,8 +1,9 @@
-"""Niveaux de jeu : ils fixent le temps de réponse et les récompenses.
+"""Difficultés de question : elles fixent le temps de réponse et les récompenses.
 
-Le niveau est choisi par le joueur avant la partie, sur la page des modes. Il
-ne dépend plus de la difficulté enregistrée sur chaque question : plus le
-niveau monte, moins le joueur a de temps, et plus une bonne réponse rapporte.
+La difficulté est un attribut de chaque Question (voir filmatrix/models.py),
+pas un réglage choisi par le joueur : c'est elle qui décide du chrono et des
+gains d'une question donnée, tirée avec elle. Plus elle est élevée, moins le
+joueur a de temps pour répondre, et plus une bonne réponse rapporte.
 """
 
 LEVELS = {
@@ -19,10 +20,11 @@ BLINDTEST_DURATION = 30
 
 
 def resolve_level(raw_level: str | None) -> str:
-    """Retourne un niveau valide, en repliant sur le niveau par défaut
+    """Retourne une difficulté valide, en repliant sur la difficulté par défaut
 
-    Le niveau arrive par l'URL : il peut être absent (lien direct vers une
-    question) ou fantaisiste, on ne lui fait donc jamais confiance"""
+    Sanitize la difficulté portée par une Question (colonne NOT NULL, mais en
+    théorie corruptible) : une valeur absente ou fantaisiste ne doit jamais
+    faire planter le calcul du chrono ou des gains."""
     if raw_level in LEVELS:
         return raw_level
     return DEFAULT_LEVEL

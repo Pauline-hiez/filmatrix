@@ -182,7 +182,7 @@ def test_protected_question_accessible_when_logged_in(client, app):
     assert response.status_code == 200
     assert b"Question prot" in response.data
 
-def create_test_question(app, mode="qcm"):
+def create_test_question(app, mode="qcm", difficulty="moyen"):
     """Crée une question test non protégée, dans la base de test"""
     with app.app_context():
         question = Question(
@@ -191,16 +191,18 @@ def create_test_question(app, mode="qcm"):
                 payload={"option": 0},
                 correct_answer={"index": 0},
                 requires_account=False,
+                difficulty=difficulty,
             )
         db.session.add(question)
         db.session.commit()
 
 def test_xp_awarded_only_once_per_question(client, app):
     """L'XP ne doit être gagnée qu'à la première bonne réponse d'une question donnée"""
-    create_test_question(app)
+    create_test_question(app, difficulty="facile")
     create_user_and_login(client, app)
 
-    # L'XP dépend désormais du niveau choisi par le joueur, porté par l'URL.
+    # L'XP dépend désormais de la difficulté de la question, pas d'un ?level=
+    # d'URL (conservé ici en trop pour vérifier qu'il est sans effet).
     client.post("/quiz/qcm/1?level=facile", data={"answer": "0"})
 
     with app.app_context():
@@ -335,7 +337,7 @@ def test_setup_screen_offers_the_game_settings(client, app):
     assert b'id="tag-univers"' in response.data
     assert b'id="tag-pays"' in response.data
     assert b'id="tag-epoque"' in response.data
-    assert b'id="level-choices"' in response.data
+    assert b'id="difficulty-filter"' in response.data
     assert "Lancer la partie".encode() in response.data
 
 
@@ -440,6 +442,9 @@ def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, a
         db.session.commit()
         tag_id = tag.id
 
+    # Connecté : un visiteur n'a droit qu'à l'aperçu (3 questions), ce test
+    # porte sur le format complet annoncé sur l'écran de préparation.
+    create_user_and_login(client, app)
     response = client.get(f"/quiz/citation?content_type=serie&tag_id={tag_id}")
     page = response.get_data(as_text=True)
 
@@ -477,6 +482,9 @@ def test_setup_screen_combines_independent_theme_filters(client, app):
         db.session.commit()
         comedy_id, friends_id = comedy.id, friends.id
 
+    # Connecté : un visiteur n'a droit qu'à l'aperçu (3 questions), ce test
+    # porte sur le format complet annoncé sur l'écran de préparation.
+    create_user_and_login(client, app)
     response = client.get(f"/quiz/citation?content_type=serie&tag_id={comedy_id}&tag_id={friends_id}")
     page = response.get_data(as_text=True)
 
@@ -533,6 +541,9 @@ def create_questions(app, count, mode="qcm"):
 def test_quiz_shows_progress_within_the_run(client, app):
     """Chaque question doit indiquer où en est le joueur et ce qu'il lui reste"""
     create_questions(app, 12)
+    # Connecté : un visiteur n'a droit qu'à l'aperçu (3 questions), ce test
+    # porte sur une partie complète de 10 questions.
+    create_user_and_login(client, app)
 
     response = client.get("/quiz/qcm/3")
 
@@ -578,6 +589,9 @@ def test_quiz_progress_announces_the_last_question(client, app):
 def test_setup_screen_announces_the_run_length(client, app):
     """L'écran de préparation doit annoncer la longueur d'une partie"""
     create_questions(app, 12)
+    # Connecté : un visiteur n'a droit qu'à l'aperçu (3 questions), ce test
+    # porte sur le format complet.
+    create_user_and_login(client, app)
 
     response = client.get("/quiz/qcm")
 
@@ -598,6 +612,9 @@ def question_ids_of_a_run(client, mode="qcm", length=10):
 def test_each_run_draws_a_different_question_order(client, app):
     """Deux parties du même mode ne doivent pas dérouler les mêmes questions"""
     create_questions(app, 30)
+    # Connecté : un visiteur n'a droit qu'à l'aperçu (3 questions), ce test
+    # porte sur une partie complète de 10 questions.
+    create_user_and_login(client, app)
 
     runs = {tuple(question_ids_of_a_run(client)) for _ in range(5)}
 
@@ -607,6 +624,7 @@ def test_each_run_draws_a_different_question_order(client, app):
 def test_a_run_never_repeats_the_same_question(client, app):
     """Le tirage ne doit pas servir deux fois la même question dans une partie"""
     create_questions(app, 30)
+    create_user_and_login(client, app)
 
     ids = question_ids_of_a_run(client)
 
@@ -616,6 +634,7 @@ def test_a_run_never_repeats_the_same_question(client, app):
 def test_the_question_order_holds_during_the_run(client, app):
     """Avancer puis revenir sur une question doit retrouver la même"""
     create_questions(app, 30)
+    create_user_and_login(client, app)
 
     ids = question_ids_of_a_run(client)
     # On relit sans repasser par la position 1, qui relance volontairement une partie.
@@ -756,6 +775,9 @@ def test_the_draw_respects_the_content_filter(client, app):
             )
         db.session.commit()
 
+    # Connecté : un visiteur n'a droit qu'à l'aperçu (3 questions), ce test
+    # relit jusqu'à la position 6.
+    create_user_and_login(client, app)
     ids = [
         re.search(r'data-question-id="(\d+)"', client.get(f"/quiz/qcm/{p}?content_type=serie").get_data(as_text=True)).group(1)
         for p in range(1, 7)
@@ -773,9 +795,11 @@ def test_the_draw_spares_a_visitor_the_account_only_questions(client, app):
     with app.app_context():
         protected = {q.id for q in Question.query.filter_by(requires_account=True)}
 
+    # Un visiteur non connecté n'a droit qu'à l'aperçu (GUEST_PREVIEW_LENGTH
+    # questions), pas à une partie complète de 10.
     drawn = set()
     for _ in range(10):
-        drawn |= {int(i) for i in question_ids_of_a_run(client)}
+        drawn |= {int(i) for i in question_ids_of_a_run(client, length=3)}
 
     assert not (drawn & protected)
 

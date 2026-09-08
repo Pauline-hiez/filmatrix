@@ -112,6 +112,7 @@
                     <th class="px-3 py-2.5">Question / contenu</th>
                     <th class="px-3 py-2.5">Type</th>
                     <th class="px-3 py-2.5">Tags</th>
+                    <th class="px-3 py-2.5">Difficulté</th>
                     <th class="px-3 py-2.5">Accès</th>
                     <th class="px-3 py-2.5">Stats</th>
                     <th class="px-3 py-2.5 text-right">Actions</th>
@@ -163,6 +164,13 @@
                             {% for tag in question.tags[:2] %}<span class="rounded-full bg-slate-800/80 px-2 py-0.5 text-[11px] text-slate-400">{{ tag.name }}</span>{% endfor %}
                             {% if question.tags|length > 2 %}<span class="text-[11px] text-slate-500">+{{ question.tags|length - 2 }}</span>{% endif %}
                         </div>
+                    </td>
+                    {# Difficulté #}
+                    <td class="px-3 py-2">
+                        {% set difficulty_colors = {"facile": "#34d399", "moyen": "#fbbf24", "difficile": "#f87171"} %}
+                        <span class="admin-type-badge" style="--badge-accent: {{ difficulty_colors.get(question.difficulty, '#94a3b8') }}">
+                            {{ question.difficulty | capitalize }}
+                        </span>
                     </td>
                     {# Accès #}
                     <td class="px-3 py-2">

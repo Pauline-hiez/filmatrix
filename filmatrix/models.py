@@ -24,6 +24,7 @@ class Question(db.Model):
     correct_answer = db.Column(db.JSON, nullable=False)
     requires_account = db.Column(db.Boolean, nullable=False, default=False)
     content_type = db.Column(db.String(10), nullable=False, default="film")
+    difficulty = db.Column(db.String(20), nullable=False, default="moyen")
 
 class User(db.Model, UserMixin):
     """Représente un compte joueur"""

@@ -15,6 +15,13 @@ SESSION_KEY = "run"
 QUESTIONS_PER_RUN = 10
 RUN_LENGTH_PRESETS = {5: "Rapide", 10: "Classique", 20: "Challenge"}
 
+# Un visiteur non connecté peut tester n'importe quel mode, mais seulement sur
+# ces quelques questions : de quoi se faire une idée du jeu sans pouvoir
+# jouer une partie complète sans compte. Passé ce nombre, find_question()
+# renvoie None comme en fin de partie normale, et termine.html prend le
+# relais avec l'invitation à se connecter.
+GUEST_PREVIEW_LENGTH = 3
+
 
 def resolve_run_length(raw_value: str | int | None) -> int:
     """Valide la longueur de partie demandée, ou retombe sur le format par défaut

@@ -15,6 +15,16 @@
     <input type="hidden" name="content_type" class="content-type-hidden" value="{{ question.content_type }}">
 
     <div>
+        <label class="block text-sm text-slate-400 mb-0.5">Difficulté</label>
+        <select name="difficulty" data-combobox
+                class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100">
+            <option value="facile" {% if question.difficulty == 'facile' %}selected{% endif %}>Facile</option>
+            <option value="moyen" {% if question.difficulty == 'moyen' %}selected{% endif %}>Moyen</option>
+            <option value="difficile" {% if question.difficulty == 'difficile' %}selected{% endif %}>Difficile</option>
+        </select>
+    </div>
+
+    <div>
         <label class="block text-sm text-slate-400 mb-0.5">Texte affiché (question / réplique / emojis...)</label>
         <input type="text" name="prompt" value="{{ question.prompt }}"
                class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100">

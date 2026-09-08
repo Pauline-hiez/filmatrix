@@ -2,7 +2,13 @@
 
 from filmatrix.extensions import db
 from filmatrix.models import Character, Question, Tag
-from filmatrix.services.questions import question_image_url, shuffle_options
+from filmatrix.services.questions import (
+    playable_question_query,
+    question_image_url,
+    resolve_difficulty_filter,
+    run_filters,
+    shuffle_options,
+)
 
 
 def create_tag(name: str = "Friends") -> Tag:
@@ -186,3 +192,34 @@ def test_question_image_url_shows_real_poster_for_vrai_faux(app):
         db.session.commit()
 
         assert question_image_url(vrai_faux_question) == "https://images.example/titanic.jpg"
+
+
+def test_playable_question_query_filters_by_difficulty(app):
+    """Un filtre de difficulté ne doit renvoyer que les questions qui le portent"""
+    with app.test_request_context():
+        easy = Question(
+            mode="qcm", prompt="Facile", payload={"options": ["A", "B"]},
+            correct_answer={"index": 0}, difficulty="facile",
+        )
+        hard = Question(
+            mode="qcm", prompt="Difficile", payload={"options": ["A", "B"]},
+            correct_answer={"index": 0}, difficulty="difficile",
+        )
+        db.session.add_all([easy, hard])
+        db.session.commit()
+
+        facile_only = playable_question_query("qcm", difficulty="facile").all()
+
+        assert facile_only == [easy]
+
+
+def test_run_filters_includes_difficulty():
+    """Le filtre de difficulté doit faire partie de la clé de partie en session"""
+    assert run_filters(difficulty="facile")["difficulty"] == "facile"
+
+
+def test_resolve_difficulty_filter_falls_back_to_no_filter_not_moyen():
+    """Un filtre absent ou invalide doit rester vide (aucun filtre), pas retomber sur moyen"""
+    assert resolve_difficulty_filter(None) == ""
+    assert resolve_difficulty_filter("legendaire") == ""
+    assert resolve_difficulty_filter("facile") == "facile"

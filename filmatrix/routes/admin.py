@@ -212,6 +212,7 @@ def admin_questions_new() -> str:
             correct_answer=correct_answer,
             requires_account=request.form.get("requires_account") == "on",
             content_type=request.form.get("content_type", "film"),
+            difficulty=request.form.get("difficulty", "moyen"),
         )
 
         selected_tag_ids = request.form.getlist("tags")
@@ -253,6 +254,7 @@ def admin_questions_edit(question_id: int) -> str:
         question.correct_answer = correct_answer
         question.requires_account = request.form.get("requires_account") == "on"
         question.content_type = request.form.get("content_type", question.content_type)
+        question.difficulty = request.form.get("difficulty", question.difficulty)
 
         selected_tag_ids = request.form.getlist("tags")
         question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
