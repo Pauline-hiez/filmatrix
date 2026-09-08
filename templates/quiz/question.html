@@ -148,10 +148,10 @@
 
             <div class="game-pill-row">
                 <span class="game-pill">{{ content_label|capitalize }}</span>
-                {# La difficulté de CETTE question fixe son propre chrono et ses
-                   propres gains (Question.difficulty + services/levels.py) : ce
-                   n'est plus un réglage choisi par le joueur avant la partie. #}
-                <span class="game-pill">⏱ {{ difficulty.label }}</span>
+                {# La difficulté de CETTE question fixe ses gains (XP/pièces),
+                   pas son chrono : le temps de réponse dépend uniquement du
+                   mode de jeu (Question.difficulty + services/levels.py). #}
+                <span class="game-pill">★ {{ difficulty.label }}</span>
             </div>
 
             {% if question.mode in ["qcm", "vrai_faux"] and question_image_url %}

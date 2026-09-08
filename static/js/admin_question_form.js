@@ -623,6 +623,121 @@ if (savedContentType && savedContentType.value) {
     });
 }
 
+// Casting : le nom d'un acteur n'est connu que pour les candidats fraîchement
+// cherchés sur TMDB (payload.actor_photos, une fois enregistré, ne garde que
+// l'URL) - cette table retient les noms vus pendant la session pour les
+// afficher tant qu'ils sont disponibles, sans empêcher l'affichage d'une
+// photo déjà enregistrée dont le nom est inconnu.
+const castActorNames = {};
+
+function currentCastPhotos(fieldsGroup) {
+    const hidden = fieldsGroup.querySelector(".actor-photos-hidden");
+    try {
+        return JSON.parse(hidden.value || "[]");
+    } catch (error) {
+        return [];
+    }
+}
+
+// Photos actuellement retenues pour la question, chacune avec un bouton pour
+// la retirer individuellement - c'est ce qui permet de corriger une seule
+// photo erronée sans perdre les autres ni tout re-rechercher.
+function renderCastPreview(fieldsGroup) {
+    const hidden = fieldsGroup.querySelector(".actor-photos-hidden");
+    const photos = currentCastPhotos(fieldsGroup);
+    const preview = document.getElementById("cast-preview");
+    if (!preview) return;
+
+    preview.innerHTML = photos.length
+        ? photos.map(function (url) {
+            const name = castActorNames[url];
+            return `
+                <div class="flex flex-col items-center gap-1">
+                    <div class="relative">
+                        <img src="${url}" class="h-24 w-16 rounded-lg border border-cyan-400/30 object-cover">
+                        <button type="button" class="cast-photo-remove absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full border border-red-400/60 bg-slate-950 text-[10px] text-red-400 hover:bg-red-500/20" data-photo-url="${url}" aria-label="Retirer cette photo" title="Retirer cette photo">✕</button>
+                    </div>
+                    ${name ? `<span class="w-16 truncate text-center text-[10px] text-slate-400">${name}</span>` : ""}
+                </div>
+            `;
+        }).join("")
+        : '<p class="text-xs italic text-slate-500">Aucune photo sélectionnée.</p>';
+
+    preview.querySelectorAll(".cast-photo-remove").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const remaining = currentCastPhotos(fieldsGroup).filter(function (url) {
+                return url !== button.dataset.photoUrl;
+            });
+            hidden.value = JSON.stringify(remaining);
+            renderCastPreview(fieldsGroup);
+            updateCastCandidateStyles(fieldsGroup);
+        });
+    });
+}
+
+// Surligne, parmi les candidats affichés après une recherche, ceux qui font
+// déjà partie de la sélection actuelle.
+function updateCastCandidateStyles(fieldsGroup) {
+    const selected = currentCastPhotos(fieldsGroup);
+    const box = document.getElementById("cast-candidates");
+    if (!box) return;
+    box.querySelectorAll(".cast-candidate-toggle").forEach(function (button) {
+        const isSelected = selected.indexOf(button.dataset.photoUrl) !== -1;
+        button.classList.toggle("border-cyan-400", isSelected);
+        button.classList.toggle("bg-cyan-400/10", isSelected);
+    });
+}
+
+// Candidats trouvés lors d'une recherche TMDB (jusqu'à 10 acteurs, avec leur
+// nom) : cliquer en ajoute ou retire un individuellement de la sélection,
+// plutôt que d'écraser toute la photothèque déjà choisie.
+function renderCastCandidates(fieldsGroup, candidates) {
+    candidates.forEach(function (candidate) {
+        castActorNames[candidate.photo_url] = candidate.name;
+    });
+
+    const box = document.getElementById("cast-candidates");
+    if (!box) return;
+
+    box.innerHTML = candidates.map(function (candidate) {
+        return `
+            <button type="button" class="cast-candidate-toggle flex flex-col items-center gap-1 rounded-lg border border-slate-700 bg-slate-950/60 p-1.5 transition hover:border-cyan-400/60" data-photo-url="${candidate.photo_url}">
+                <img src="${candidate.photo_url}" class="h-16 w-12 rounded object-cover">
+                <span class="w-14 truncate text-center text-[10px] text-slate-300">${candidate.name}</span>
+            </button>
+        `;
+    }).join("");
+
+    box.classList.remove("hidden");
+
+    box.querySelectorAll(".cast-candidate-toggle").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const hidden = fieldsGroup.querySelector(".actor-photos-hidden");
+            const current = currentCastPhotos(fieldsGroup);
+            const url = button.dataset.photoUrl;
+            const index = current.indexOf(url);
+            if (index === -1) {
+                current.push(url);
+            } else {
+                current.splice(index, 1);
+            }
+            hidden.value = JSON.stringify(current);
+            renderCastPreview(fieldsGroup);
+            updateCastCandidateStyles(fieldsGroup);
+        });
+    });
+
+    updateCastCandidateStyles(fieldsGroup);
+}
+
+// Pré-remplissage : une question casting déjà enregistrée n'affiche au
+// départ que des <img> nues (rendues côté serveur) - on les rend
+// interactives (bouton de retrait) dès le chargement du script.
+const castFieldsGroupOnLoad = document.querySelector('.mode-fields[data-mode="casting"]');
+if (castFieldsGroupOnLoad) {
+    renderCastPreview(castFieldsGroupOnLoad);
+}
+
 async function autoTagGenres(movieId, contentType) {
     const response = await fetch(`${API_PREFIX}/genres-tmdb?movie_id=${movieId}&content_type=${contentType}`);
     const data = await response.json();
@@ -666,15 +781,7 @@ async function selectMovie(movie, target, fieldsGroup) {
         const data = await response.json();
 
         if (data.success) {
-            fieldsGroup.querySelector(".actor-photos-hidden").value = JSON.stringify(
-                data.actor_photos
-            );
-            const preview = document.getElementById("cast-preview");
-            preview.innerHTML = data.actor_photos
-                .map(function (url) {
-                    return `<img src="${url}" class="w-16 h-24 object-cover rounded-lg border border-cyan-400/30">`;
-                })
-                .join("");
+            renderCastCandidates(fieldsGroup, data.cast || []);
         } else {
             alert(data.error);
         }

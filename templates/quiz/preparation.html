@@ -192,25 +192,21 @@
 
             <section class="setup-panel">
                 <p class="setup-panel-title">Difficulté</p>
-                {# La difficulté n'est plus un réglage du joueur : c'est un filtre sur
-                   les questions tirées. Chrono et gains suivent la difficulté propre
-                   à chaque question (Question.difficulty + services/levels.py). #}
-                <select id="difficulty-filter" data-combobox
+                {# La difficulté ne fixe plus que les gains (XP/pièces) : le
+                   chrono, lui, est fixe par mode de jeu, indépendant de la
+                   difficulté de la question tirée (services/levels.py). #}
+                <select id="difficulty-filter" data-combobox data-mode-duration="{{ mode_duration }}"
                         class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
-                    <option value="" {% if not difficulty %}selected{% endif %}>Toutes les difficultés</option>
+                    <option value="" {% if not difficulty %}selected{% endif %}>Mixte (toutes les difficultés)</option>
                     {% for code, level in levels.items() %}
-                    <option value="{{ code }}" data-duration="{{ level.duration }}" data-xp="{{ level.xp }}" data-coins="{{ level.coins }}"
+                    <option value="{{ code }}" data-xp="{{ level.xp }}" data-coins="{{ level.coins }}"
                             {% if difficulty == code %}selected{% endif %}>
-                        {{ level.label }} · {{ level.duration }} s · +{{ level.xp }} XP
+                        {{ level.label }} · +{{ level.xp }} XP
                     </option>
                     {% endfor %}
                 </select>
                 <p class="mt-2 text-xs leading-snug text-slate-500">
-                    {% if mode.slug == "blindtest" %}
-                    Le blind test garde toujours {{ blindtest_duration }} s (le temps d'écouter l'extrait), quelle que soit la difficulté de la question tirée ; seuls les gains varient.
-                    {% else %}
-                    Chaque question a sa propre difficulté, qui fixe son temps de réponse et ses gains. Filtre ici pour ne tirer que des questions faciles, moyennes ou difficiles.
-                    {% endif %}
+                    ⏱ {{ mode_duration }} s par question dans ce mode, quelle que soit la difficulté. Filtre ici pour ne tirer que des questions faciles, moyennes ou difficiles — ou choisis Mixte pour une partie équilibrée entre les trois, avec des gains qui varient question par question.
                 </p>
             </section>
 

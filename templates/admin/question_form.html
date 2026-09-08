@@ -170,10 +170,17 @@
                 <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
                 <input type="hidden" class="actor-photos-hidden" value='{{ payload.get("actor_photos", []) | tojson }}'>
             </div>
-            <div id="cast-preview" class="flex gap-2">
-                {% for photo_url in payload.get('actor_photos', []) %}
-                <img src="{{ photo_url }}" class="w-16 h-24 object-cover rounded-lg border border-cyan-400/30">
-                {% endfor %}
+            <div>
+                <p class="mb-1 text-xs text-slate-500">Photos retenues pour la question (✕ pour en retirer une)</p>
+                <div id="cast-preview" class="flex flex-wrap gap-2">
+                    {% for photo_url in payload.get('actor_photos', []) %}
+                    <img src="{{ photo_url }}" class="w-16 h-24 object-cover rounded-lg border border-cyan-400/30">
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <p class="mb-1 text-xs text-slate-500">Acteurs trouvés sur TMDB — clique pour ajouter/retirer</p>
+                <div id="cast-candidates" class="hidden flex flex-wrap gap-2"></div>
             </div>
         </div>
 

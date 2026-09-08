@@ -293,6 +293,25 @@ def _draw_history_key(mode: str, filters: dict) -> str:
     return f"draw_history:{mode}:{filters_key}"
 
 
+def _draw_from_pool(pool_ids: list[int], recent_ids: list[int], target_size: int) -> list[int]:
+    """Tire target_size ids dans pool_ids, en évitant recent_ids quand le pool
+    en laisse assez pour compléter le tirage sans eux"""
+    candidates = [qid for qid in pool_ids if qid not in recent_ids]
+    if len(candidates) < target_size:
+        candidates = list(pool_ids)
+
+    candidates = list(candidates)
+    random.shuffle(candidates)
+    return candidates[:target_size]
+
+
+def _split_evenly(total: int, parts: int) -> list[int]:
+    """Répartit total en parts aussi égales que possible (le reste va aux
+    premières parts) : ex. _split_evenly(10, 3) -> [4, 3, 3]"""
+    base, remainder = divmod(total, parts)
+    return [base + 1 if index < remainder else base for index in range(parts)]
+
+
 def draw_run_questions(
     mode: str,
     tag_id: int | None = None,
@@ -306,30 +325,51 @@ def draw_run_questions(
 
     Le tirage a lieu une seule fois, au lancement : deux parties du même mode
     ne se ressemblent pas, mais à l'intérieur d'une partie l'ordre ne bouge
-    plus, sans quoi avancer d'une question en ramènerait une déjà posée"""
-    pool_ids = [
-        row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids, difficulty).all()
-    ]
-    target_size = min(total_questions, len(pool_ids))
-    filters = run_filters(tag_id, content_type, tag_ids, difficulty, total_questions)
+    plus, sans quoi avancer d'une question en ramènerait une déjà posée.
 
-    # Utilise une clé unique pour ce mode et ces filtres
+    Sans difficulté choisie (mode Mixte), le tirage n'est pas un simple
+    hasard sur tout le lot - qui pourrait par chance ne renvoyer presque que
+    des questions faciles - mais une répartition égale entre facile, moyen
+    et difficile, complétée par les difficultés restantes si l'une d'elles
+    manque de questions disponibles pour ce mode et ces filtres."""
+    filters = run_filters(tag_id, content_type, tag_ids, difficulty, total_questions)
     history_key = _draw_history_key(mode, filters)
     recent_ids = session.get(history_key, [])
-    
-    # Une question a pu disparaître du JSON depuis le dernier tirage.
-    recent_ids = [qid for qid in recent_ids if qid in pool_ids]
 
-    candidates = [qid for qid in pool_ids if qid not in recent_ids]
-    if len(candidates) < target_size:
-        # Pas assez d'inédit pour composer une partie complète : la mémoire
-        # récente a fait le tour du lot, on la vide plutôt que d'imposer une
-        # partie incomplète alors que des questions restent jouables.
-        recent_ids = []
-        candidates = pool_ids
+    if difficulty:
+        pool_ids = [
+            row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids, difficulty).all()
+        ]
+        recent_ids = [qid for qid in recent_ids if qid in pool_ids]
+        drawn = _draw_from_pool(pool_ids, recent_ids, min(total_questions, len(pool_ids)))
+    else:
+        from filmatrix.services.levels import LEVELS
 
-    random.shuffle(candidates)
-    drawn = candidates[:target_size]
+        levels = list(LEVELS)
+        shares = _split_evenly(total_questions, len(levels))
+
+        bucket_pools = {
+            level: [row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids, level).all()]
+            for level in levels
+        }
+        all_pool_ids = [qid for pool in bucket_pools.values() for qid in pool]
+        recent_ids = [qid for qid in recent_ids if qid in all_pool_ids]
+
+        drawn = []
+        for level, share in zip(levels, shares):
+            drawn.extend(_draw_from_pool(bucket_pools[level], recent_ids, min(share, len(bucket_pools[level]))))
+
+        # Une difficulté trop peu fournie n'a pas pu donner sa part entière :
+        # on comble avec ce qu'il reste ailleurs, toutes difficultés
+        # confondues, plutôt que de promettre moins que ce qu'un tirage non
+        # équilibré aurait permis.
+        shortfall = total_questions - len(drawn)
+        if shortfall > 0:
+            already_drawn = set(drawn)
+            leftover_pool = [qid for qid in all_pool_ids if qid not in already_drawn]
+            drawn.extend(_draw_from_pool(leftover_pool, recent_ids, min(shortfall, len(leftover_pool))))
+
+        random.shuffle(drawn)
 
     session[history_key] = (recent_ids + drawn)[-DRAW_HISTORY_LIMIT:]
 

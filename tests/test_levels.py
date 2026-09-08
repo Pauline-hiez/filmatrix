@@ -5,11 +5,11 @@ from filmatrix.services.levels import coins_for_level, duration_for, resolve_lev
 from filmatrix.models import Question, User
 
 
-def test_higher_level_leaves_less_time():
-    """Plus le niveau monte, moins le joueur a de temps pour répondre"""
-    assert duration_for("facile", "qcm") == 22
-    assert duration_for("moyen", "qcm") == 16
-    assert duration_for("difficile", "qcm") == 12
+def test_duration_depends_on_mode_not_difficulty():
+    """Le chrono est fixe par mode de jeu, jamais par la difficulté de la question"""
+    assert duration_for("qcm") == 15
+    assert duration_for("chronologie") == 25
+    assert duration_for("blindtest") == 30
 
 
 def test_higher_level_pays_more():
@@ -19,17 +19,15 @@ def test_higher_level_pays_more():
     assert (xp_for_level("difficile"), coins_for_level("difficile")) == (30, 6)
 
 
-def test_blindtest_keeps_its_own_duration():
-    """Le blindtest garde 30 secondes quel que soit le niveau choisi"""
-    for level in ["facile", "moyen", "difficile"]:
-        assert duration_for(level, "blindtest") == 30
+def test_unknown_mode_falls_back_on_a_default_duration():
+    """Un mode inconnu ne doit pas faire planter le calcul du chrono"""
+    assert duration_for("mode-inexistant") == 16
 
 
 def test_unknown_level_falls_back_on_default():
-    """Un niveau absent ou fantaisiste dans l'URL ne doit pas faire planter la partie"""
+    """Un niveau absent ou fantaisiste ne doit pas faire planter la partie"""
     assert resolve_level(None) == "moyen"
     assert resolve_level("legendaire") == "moyen"
-    assert duration_for("legendaire", "qcm") == 16
     assert xp_for_level(None) == 20
 
 
@@ -49,12 +47,37 @@ def create_question(app, mode="qcm", difficulty="moyen"):
         db.session.commit()
 
 
-def test_timer_follows_the_question_difficulty_not_a_url_level(client, app):
-    """La barre de temps suit la difficulté de la question tirée ; un vieux ?level= est ignoré"""
+def test_timer_follows_the_mode_not_the_question_difficulty(client, app):
+    """La barre de temps suit le mode de jeu, pas la difficulté de la question tirée"""
     create_question(app, difficulty="facile")
 
-    assert b'data-duration="22"' in client.get("/quiz/qcm/1").data
-    assert b'data-duration="22"' in client.get("/quiz/qcm/1?level=difficile").data
+    assert b'data-duration="15"' in client.get("/quiz/qcm/1").data
+    # Un vieux ?level= d'URL (ancien système) reste sans effet.
+    assert b'data-duration="15"' in client.get("/quiz/qcm/1?level=difficile").data
+
+
+def test_duration_is_identical_across_difficulties_for_the_same_mode(client, app):
+    """Une question facile et une question difficile du même mode ont le même chrono"""
+    create_question(app, mode="vrai_faux", difficulty="facile")
+
+    with app.app_context():
+        db.session.add(
+            Question(
+                mode="vrai_faux",
+                prompt="Autre question de test niveau",
+                payload={"options": ["A", "B"]},
+                correct_answer={"index": 0},
+                requires_account=False,
+                difficulty="difficile",
+            )
+        )
+        db.session.commit()
+
+    first = client.get("/quiz/vrai_faux/1").data
+    second = client.get("/quiz/vrai_faux/2").data
+
+    assert b'data-duration="12"' in first
+    assert b'data-duration="12"' in second
 
 
 def test_reward_follows_the_question_difficulty(client, app):

@@ -390,7 +390,11 @@ def admin_api_movie_poster() -> dict:
 @login_required
 @admin_required
 def admin_api_cast() -> dict:
-    """Récupère les photos des principaux acteurs pour un film ou une série"""
+    """Récupère les acteurs principaux (nom + photo) pour un film ou une série
+
+    Renvoie plusieurs candidats (pas seulement les 3 retenus par défaut) avec
+    leur nom, pour que l'admin puisse repérer et corriger une photo mal
+    attribuée sans devoir tout re-rechercher à l'aveugle."""
     movie_id = request.args.get("movie_id", type=int)
     content_type = request.args.get("content_type", "film")
 
@@ -405,14 +409,15 @@ def admin_api_cast() -> dict:
         return {"success": False, "error": "Film introuvable."}
 
     if content_type == "serie":
-        cast = get_tv_show_cast(result["id"], limit=3)
+        cast = get_tv_show_cast(result["id"], limit=10)
     else:
-        cast = get_movie_cast(result["id"], limit=3)
+        cast = get_movie_cast(result["id"], limit=10)
 
-    actor_photos = [
-        build_image_url(actor["profile_path"]) for actor in cast if actor["profile_path"]
+    candidates = [
+        {"name": actor["name"], "photo_url": build_image_url(actor["profile_path"])}
+        for actor in cast if actor["profile_path"]
     ]
-    return {"success": True, "actor_photos": actor_photos, "official_title": result["title"]}
+    return {"success": True, "cast": candidates, "official_title": result["title"]}
 
 @bp.route("/admin/api/recherche-personnages")
 @login_required

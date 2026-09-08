@@ -49,11 +49,12 @@ function setActive(buttons, clicked) {
 }
 
 // Récompense et durée annoncées ne viennent d'aucune requête serveur : tout
-// est déjà connu du navigateur (xp/pièces/durée posés en data-* sur les
-// options du filtre de difficulté, longueur choisie juste à côté).
-// Sans difficulté choisie, les questions tirées peuvent être faciles comme
-// difficiles : on annonce alors une fourchette (XP/pièces) et une moyenne
-// (temps, déjà présenté comme approximatif via "Environ").
+// est déjà connu du navigateur (xp/pièces posés en data-* sur les options du
+// filtre de difficulté, durée fixe du mode posée sur le select lui-même,
+// longueur choisie juste à côté). Le chrono ne dépend plus de la difficulté
+// (services/levels.py) : son estimation est donc la même quel que soit le
+// filtre de difficulté choisi. Sans difficulté précise (Mixte), les gains
+// varient en revanche question par question : on annonce une fourchette.
 function updateRewardsAndEstimate() {
     const length = activeLengthButton();
     if (!length) {
@@ -61,22 +62,24 @@ function updateRewardsAndEstimate() {
     }
 
     const runLength = parseInt(length.dataset.length, 10);
+    const modeDuration = parseInt(difficultySelect.dataset.modeDuration, 10);
+
+    if (timeEstimate) {
+        const minutes = Math.max(1, Math.round((runLength * modeDuration) / 60));
+        timeEstimate.textContent = `Environ ${minutes} min`;
+    }
+
     const selectedOption = difficultySelect.options[difficultySelect.selectedIndex];
 
     if (difficultySelect.value && selectedOption) {
         const xpPerAnswer = parseInt(selectedOption.dataset.xp, 10);
         const coinsPerAnswer = parseInt(selectedOption.dataset.coins, 10);
-        const durationPerQuestion = parseInt(selectedOption.dataset.duration, 10);
 
         if (rewardXp) {
             rewardXp.textContent = `Jusqu'à ${runLength * xpPerAnswer} XP`;
         }
         if (rewardCoins) {
             rewardCoins.textContent = `Jusqu'à ${runLength * coinsPerAnswer} pièces`;
-        }
-        if (timeEstimate) {
-            const minutes = Math.max(1, Math.round((runLength * durationPerQuestion) / 60));
-            timeEstimate.textContent = `Environ ${minutes} min`;
         }
         return;
     }
@@ -86,18 +89,12 @@ function updateRewardsAndEstimate() {
     });
     const xpValues = difficultyOptions.map(function (option) { return parseInt(option.dataset.xp, 10); });
     const coinsValues = difficultyOptions.map(function (option) { return parseInt(option.dataset.coins, 10); });
-    const durationValues = difficultyOptions.map(function (option) { return parseInt(option.dataset.duration, 10); });
 
     if (rewardXp) {
         rewardXp.textContent = `${runLength * Math.min(...xpValues)} - ${runLength * Math.max(...xpValues)} XP`;
     }
     if (rewardCoins) {
         rewardCoins.textContent = `${runLength * Math.min(...coinsValues)} - ${runLength * Math.max(...coinsValues)} pièces`;
-    }
-    if (timeEstimate) {
-        const avgDuration = durationValues.reduce(function (a, b) { return a + b; }, 0) / durationValues.length;
-        const minutes = Math.max(1, Math.round((runLength * avgDuration) / 60));
-        timeEstimate.textContent = `Environ ${minutes} min`;
     }
 }
 

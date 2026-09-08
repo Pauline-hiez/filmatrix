@@ -1,22 +1,38 @@
-"""Difficultés de question : elles fixent le temps de réponse et les récompenses.
+"""Difficultés de question : elles fixent les récompenses.
 
 La difficulté est un attribut de chaque Question (voir filmatrix/models.py),
-pas un réglage choisi par le joueur : c'est elle qui décide du chrono et des
-gains d'une question donnée, tirée avec elle. Plus elle est élevée, moins le
-joueur a de temps pour répondre, et plus une bonne réponse rapporte.
+pas un réglage choisi par le joueur : plus elle est élevée, plus une bonne
+réponse rapporte. Le temps de réponse, lui, ne dépend PAS de la difficulté
+de la question — seulement du mode de jeu (voir MODE_DURATIONS) : un QCM
+facile et un QCM difficile laissent exactement le même temps, ce qui change
+c'est le gain en cas de bonne réponse.
 """
 
 LEVELS = {
-    "facile": {"label": "Facile", "duration": 22, "xp": 10, "coins": 2},
-    "moyen": {"label": "Moyen", "duration": 16, "xp": 20, "coins": 4},
-    "difficile": {"label": "Difficile", "duration": 12, "xp": 30, "coins": 6},
+    "facile": {"label": "Facile", "xp": 10, "coins": 2},
+    "moyen": {"label": "Moyen", "xp": 20, "coins": 4},
+    "difficile": {"label": "Difficile", "xp": 30, "coins": 6},
 }
 
 DEFAULT_LEVEL = "moyen"
 
-# Le blindtest garde une durée fixe : il faut d'abord écouter l'extrait musical,
-# un chrono de 12 secondes ne laisserait pas le temps de reconnaître le film.
-BLINDTEST_DURATION = 30
+# Chrono fixe par mode de jeu, indépendant de la difficulté de la question
+# tirée : chaque mode demande un effort différent au joueur (lire une
+# réplique, ordonner une chronologie, écouter un extrait...), ce qui justifie
+# des durées différentes, mais toujours les mêmes pour un mode donné.
+MODE_DURATIONS = {
+    "qcm": 15,
+    "vrai_faux": 12,
+    "citation": 20,
+    "emoji": 20,
+    "film_melange": 20,
+    "chronologie": 25,
+    "devinette": 20,
+    "devinette_affiche": 15,
+    "casting": 15,
+    "blindtest": 30,
+}
+DEFAULT_MODE_DURATION = 16
 
 
 def resolve_level(raw_level: str | None) -> str:
@@ -24,17 +40,15 @@ def resolve_level(raw_level: str | None) -> str:
 
     Sanitize la difficulté portée par une Question (colonne NOT NULL, mais en
     théorie corruptible) : une valeur absente ou fantaisiste ne doit jamais
-    faire planter le calcul du chrono ou des gains."""
+    faire planter le calcul des gains."""
     if raw_level in LEVELS:
         return raw_level
     return DEFAULT_LEVEL
 
 
-def duration_for(level: str, mode: str) -> int:
-    """Retourne le temps de réponse accordé pour une question, en secondes"""
-    if mode == "blindtest":
-        return BLINDTEST_DURATION
-    return LEVELS[resolve_level(level)]["duration"]
+def duration_for(mode: str) -> int:
+    """Retourne le temps de réponse fixe accordé pour ce mode de jeu, en secondes"""
+    return MODE_DURATIONS.get(mode, DEFAULT_MODE_DURATION)
 
 
 def xp_for_level(level: str) -> int:

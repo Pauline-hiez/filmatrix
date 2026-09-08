@@ -25,7 +25,6 @@ from filmatrix.services.engine import check_answer, convert_answer, scramble_tit
 from filmatrix.services.friends import friend_cards, get_friends_list
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.levels import (
-    BLINDTEST_DURATION,
     LEVELS,
     calculate_level,
     coins_for_level,
@@ -150,7 +149,7 @@ def quiz_setup(mode: str) -> str:
             all_univers_tags=all_univers_tags,
             levels=LEVELS,
             difficulty=difficulty,
-            blindtest_duration=BLINDTEST_DURATION,
+            mode_duration=duration_for(mode),
         )
 
 @bp.route("/quiz/<mode>/disponibilite")
@@ -457,7 +456,7 @@ def quiz(mode: str, position: int) -> str:
             options=options,
             report_reasons=REPORT_REASON,
             difficulty=LEVELS[question_difficulty],
-            duration=duration_for(question_difficulty, question.mode),
+            duration=duration_for(question.mode),
             position=position,
             total_questions=total_questions,
             is_mix=is_mix,
