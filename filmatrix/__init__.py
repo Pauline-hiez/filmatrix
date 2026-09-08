@@ -18,6 +18,7 @@ from filmatrix.routes import (
     admin,
     admin_special_games,
     auth,
+    chat,
     collection,
     friends,
     leaderboard,
@@ -29,6 +30,7 @@ from filmatrix.routes import (
     shop,
     special_games,
 )
+from filmatrix.services.chat import unread_total as get_unread_chat_count
 from filmatrix.services.notifications import get_unread_count
 
 load_dotenv()
@@ -45,6 +47,7 @@ BLUEPRINTS = (
     shop.bp,
     leaderboard.bp,
     notifications.bp,
+    chat.bp,
     admin.bp,
     collection.bp,
     special_games.bp,
@@ -135,5 +138,15 @@ def create_app(database_uri: str | None = None) -> Flask:
             return {"unread_notifications_count": get_unread_count(current_user.id)}
 
         return {"unread_notifications_count": 0}
+
+    @app.context_processor
+    def inject_chat_badge():
+        """Rend le nombre de messages non lus disponible dans tous les gabarits (badge de la bulle)."""
+        from flask_login import current_user
+
+        if current_user.is_authenticated:
+            return {"unread_chat_count": get_unread_chat_count(current_user.id)}
+
+        return {"unread_chat_count": 0}
 
     return app

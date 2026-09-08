@@ -148,6 +148,26 @@ class Notification(db.Model):
 
     user = db.relationship("User", backref="notifications")
 
+class ChatMessage(db.Model):
+    """Représente un message échangé en direct entre deux amis.
+
+    Pas de table Conversation séparée : une conversation 1-à-1 est
+    entièrement identifiée par la paire (sender_id, recipient_id), comme
+    Friendship l'est déjà pour la relation d'amitié elle-même.
+    """
+
+    __tablename__ = "chat_messages"
+
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    recipient_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    body = db.Column(db.String(1000), nullable=False)
+    is_read = db.Column(db.Boolean, nullable=False, default=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, index=True)
+
+    sender = db.relationship("User", foreign_keys=[sender_id], backref="sent_chat_messages")
+    recipient = db.relationship("User", foreign_keys=[recipient_id], backref="received_chat_messages")
+
 class GameSession(db.Model):
     """Représente une partie multijoueur 1v1 en mode rapidité"""
 

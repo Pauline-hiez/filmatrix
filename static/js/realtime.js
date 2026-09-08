@@ -77,7 +77,10 @@ function showToast(data) {
     if (!container) {
         container = document.createElement("div");
         container.id = "toast-container";
-        container.className = "fixed bottom-4 right-4 z-50 flex flex-col gap-2";
+        // bottom-20 (pas bottom-4) : la bulle de messagerie (chat_widget.html)
+        // occupe maintenant ce même coin bas-droite, un toast à bottom-4
+        // s'afficherait donc pile dessus.
+        container.className = "fixed bottom-20 right-4 z-50 flex flex-col gap-2";
         document.body.appendChild(container);
     }
 

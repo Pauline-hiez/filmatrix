@@ -75,6 +75,17 @@
                 </div>
                 <a href="{{ url_for('friends.friends_list') }}" class="mt-3 block text-xs text-slate-500 transition hover:text-cyan-400">Gérer mes amis →</a>
             </section>
+
+            <section class="game-side-card">
+                <p class="game-sidebar-label">Statut</p>
+                <p class="flex items-center gap-2 text-sm text-slate-300"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Partie en cours</p>
+                <p class="mt-2 text-xs text-slate-500">Les résultats se mettent à jour dès qu'un joueur répond.</p>
+                <form method="POST" action="{{ url_for('multiplayer.leave_game', game_session_id=game_session.id) }}" class="mt-4">
+                    <button type="submit" class="w-full rounded-lg border border-red-400/30 px-3 py-2 text-xs font-bold text-red-300 transition hover:border-red-400 hover:bg-red-400/10 hover:text-red-200">
+                        Quitter la partie
+                    </button>
+                </form>
+            </section>
         </aside>
 
         <div class="game-main-zone">
@@ -248,25 +259,8 @@
                 </div>
             </section>
 
-            <section class="game-side-card">
-                <p class="game-sidebar-label">Le duel</p>
-                <p class="text-sm leading-relaxed text-slate-300">La même question est affichée aux deux joueurs. Le premier à trouver la bonne réponse marque le point.</p>
-                <div class="mt-4 game-progress-track" role="progressbar" aria-valuenow="{{ game_session.current_question_index + 1 }}" aria-valuemin="1" aria-valuemax="{{ total_questions }}" aria-label="Manche {{ game_session.current_question_index + 1 }} sur {{ total_questions }}">
-                    {% for step in range(1, total_questions + 1) %}
-                    <span class="{% if step <= game_session.current_question_index + 1 %}accent-bar{% else %}bg-slate-800{% endif %}"></span>
-                    {% endfor %}
-                </div>
-            </section>
-
-            <section class="game-side-card">
-                <p class="game-sidebar-label">Statut</p>
-                <p class="flex items-center gap-2 text-sm text-slate-300"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Partie en cours</p>
-                <p class="mt-2 text-xs text-slate-500">Les résultats se mettent à jour dès qu'un joueur répond.</p>
-                <form method="POST" action="{{ url_for('multiplayer.leave_game', game_session_id=game_session.id) }}" class="mt-4">
-                    <button type="submit" class="w-full rounded-lg border border-red-400/30 px-3 py-2 text-xs font-bold text-red-300 transition hover:border-red-400 hover:bg-red-400/10 hover:text-red-200">
-                        Quitter la partie
-                    </button>
-                </form>
+            <section class="game-side-card" id="chat-embed-slot" data-opponent-id="{{ opponent.id }}">
+                <p class="game-sidebar-label">Chat</p>
             </section>
         </aside>
     </div>
@@ -274,4 +268,17 @@
 
 <script src="{{ url_for('static', filename='js/audio_player.js') }}"></script>
 <script src="{{ url_for('static', filename='js/multiplayer_game.js') }}"></script>
+<script>
+    // La bulle globale (templates/partials/chat_widget.html) est déplacée
+    // dans cette carte de la sidebar et forcée ouverte sur l'adversaire
+    // (forcément un ami, le multijoueur l'exige déjà) : pendant un duel, le
+    // joueur doit pouvoir discuter sans quitter la partie ni chercher la
+    // bulle flottante.
+    document.addEventListener("DOMContentLoaded", function () {
+        var slot = document.getElementById("chat-embed-slot");
+        if (slot && window.FilmatrixChat) {
+            window.FilmatrixChat.embedIn(slot, Number(slot.dataset.opponentId));
+        }
+    });
+</script>
 {% endblock %}

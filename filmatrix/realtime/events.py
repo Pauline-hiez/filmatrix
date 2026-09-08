@@ -4,8 +4,9 @@ from flask_login import current_user
 from flask_socketio import join_room, emit
 
 from filmatrix.extensions import db
+from filmatrix.services import chat as chat_service
 from filmatrix.services.engine import check_answer, convert_answer
-from filmatrix.models import GameAnswer, GameSession
+from filmatrix.models import GameAnswer, GameSession, User
 
 _online_users: set[int] = set()
 from filmatrix.services.multiplayer import finalize_game, get_ordered_questions, live_scores
@@ -37,6 +38,37 @@ def register_socket_events(socketio):
         """Renvoie l'état courant après le chargement du client."""
         if current_user.is_authenticated:
             emit("presence_snapshot", {"user_ids": list(_online_users)})
+
+    @socketio.on("send_chat_message")
+    def handle_send_chat_message(data):
+        """Envoie un message de chat à un ami, en temps réel.
+
+        Toute la messagerie transite ici (pas de route POST dédiée) : les
+        erreurs (pas ami, message vide/trop long) sont renvoyées uniquement
+        à l'appelant via chat_error, jamais diffusées.
+        """
+        if not current_user.is_authenticated:
+            return
+
+        recipient = User.query.get(data.get("to_user_id"))
+        if recipient is None:
+            emit("chat_error", {"error": "Destinataire introuvable."})
+            return
+
+        try:
+            chat_service.send_message(current_user, recipient, data.get("body", ""))
+        except ValueError as error:
+            emit("chat_error", {"error": str(error)})
+
+    @socketio.on("mark_chat_read")
+    def handle_mark_chat_read(data):
+        """Marque comme lus les messages reçus d'un ami (ouverture du fil)."""
+        if not current_user.is_authenticated:
+            return
+
+        friend_id = data.get("friend_id")
+        if friend_id is not None:
+            chat_service.mark_conversation_read(current_user.id, friend_id)
 
     @socketio.on("join_game")
     def handle_join_game(data):

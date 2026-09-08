@@ -1603,6 +1603,8 @@
     </footer>
 
     <script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
+    {% include "partials/chat_widget.html" %}
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
     {# Sélecteurs enrichis : moteur FlyonUI (vendored) + pont vers les <select>
        data-combobox. Chargé une fois pour toutes les pages, avant les blocs
        scripts des templates enfants. #}

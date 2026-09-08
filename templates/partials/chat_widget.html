@@ -1,0 +1,455 @@
+{# Bulle de messagerie flottante, globale (incluse une fois depuis base.html,
+   visible sur toutes les pages y compris pendant une partie multijoueur —
+   c'est la même page/gabarit, donc aucune intégration spécifique au
+   multijoueur n'est nécessaire). Une seule bulle (pas une par ami, façon
+   Messenger) qui ouvre un panneau : liste des amis avec dernier message et
+   badge de non-lus, puis le fil de discussion d'un ami après un clic dessus.
+   Envoi et réception en temps réel via Socket.IO (static/js/chat.js),
+   chargement initial (liste + historique) via les routes JSON de
+   filmatrix/routes/chat.py. Volontairement en bas à GAUCHE : le conteneur
+   de toasts de realtime.js (#toast-container) occupe déjà le bas-droite. #}
+{% if current_user.is_authenticated %}
+<style>
+    .chat-widget {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 40;
+    }
+
+    /* Fond quasi noir + liseré fin à faible opacité (comme la cloche de
+       notifications, posée sur la nav claire) se fondait complètement dans
+       le fond très sombre de la page en bas d'écran — repéré par un
+       utilisateur qui ne voyait "aucune bulle" alors qu'elle était bien là
+       (position/z-index confirmés au débogage). Dégradé cyan franc + halo
+       pulsé pour un vrai point d'appel visuel, cohérent avec le reste de
+       l'identité de la page (accent cyan). */
+    .chat-bubble {
+        position: relative;
+        display: flex;
+        height: 3.5rem;
+        width: 3.5rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, #22d3ee, #0e7490);
+        border: 2px solid rgba(224, 250, 255, 0.7);
+        box-shadow: 0 10px 30px -12px rgba(2, 6, 23, 0.85), 0 0 0 4px rgba(34, 211, 238, 0.12);
+        font-size: 1.5rem;
+        transition: transform .15s ease;
+        animation: chatBubbleGlow 2.6s ease-in-out infinite;
+    }
+
+    .chat-bubble:hover {
+        transform: translateY(-2px) scale(1.04);
+    }
+
+    @keyframes chatBubbleGlow {
+        0%, 100% { box-shadow: 0 10px 30px -12px rgba(2, 6, 23, 0.85), 0 0 10px 2px rgba(34, 211, 238, 0.35); }
+        50% { box-shadow: 0 10px 30px -12px rgba(2, 6, 23, 0.85), 0 0 22px 7px rgba(34, 211, 238, 0.65); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .chat-bubble { animation: none; }
+    }
+
+    .chat-badge {
+        position: absolute;
+        right: -0.15rem;
+        top: -0.15rem;
+        display: flex;
+        height: 1.15rem;
+        min-width: 1.15rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background: #ef4444;
+        padding: 0 .25rem;
+        font-size: .65rem;
+        font-weight: 800;
+        color: #fff;
+    }
+
+    .chat-panel {
+        position: absolute;
+        right: 0;
+        bottom: calc(100% + .75rem);
+        display: flex;
+        width: min(88vw, 22rem);
+        height: min(70vh, 30rem);
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 1rem;
+        border: 1px solid rgba(34, 211, 238, 0.4);
+        background: #0f172a;
+        box-shadow: 0 25px 60px -25px rgba(2, 6, 23, 0.9);
+    }
+
+    .chat-panel.hidden { display: none; }
+
+    .chat-panel-header {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: .5rem;
+        border-bottom: 1px solid rgba(148, 163, 184, .15);
+        padding: .75rem .9rem;
+    }
+
+    .chat-back, .chat-close {
+        display: flex;
+        height: 1.75rem;
+        width: 1.75rem;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border-radius: .5rem;
+        color: #94a3b8;
+        transition: background .15s ease, color .15s ease;
+    }
+
+    .chat-back:hover, .chat-close:hover {
+        background: rgba(148, 163, 184, .12);
+        color: #e2e8f0;
+    }
+
+    .chat-back.hidden { display: none; }
+
+    .chat-invite {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: .3rem;
+        border-radius: .5rem;
+        border: 1px solid rgba(34, 211, 238, .35);
+        background: rgba(34, 211, 238, .1);
+        padding: .3rem .55rem;
+        font-size: .72rem;
+        font-weight: 700;
+        color: #67e8f9;
+        white-space: nowrap;
+        transition: border-color .15s ease, background .15s ease;
+    }
+
+    .chat-invite:hover {
+        border-color: rgba(34, 211, 238, .7);
+        background: rgba(34, 211, 238, .18);
+    }
+
+    .chat-invite.hidden { display: none; }
+
+    .chat-bubble-msg a {
+        color: #67e8f9;
+        text-decoration: underline;
+    }
+
+    .chat-panel-title {
+        flex: 1;
+        font-size: .85rem;
+        font-weight: 800;
+        color: #f1f5f9;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chat-friend-list {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .chat-friend-list.hidden { display: none; }
+
+    .chat-friend-item {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: .6rem;
+        border-bottom: 1px solid rgba(148, 163, 184, .08);
+        padding: .6rem .9rem;
+        text-align: left;
+        transition: background .15s ease;
+    }
+
+    .chat-friend-item:hover { background: rgba(148, 163, 184, .08); }
+
+    /* Pas d'overflow:hidden ici : la pastille de présence déborde
+       volontairement de 1px sur le bord de l'avatar (ci-dessous), un
+       overflow sur ce conteneur la découperait à moitié. Le cercle de
+       l'avatar lui-même vient du border-radius posé directement sur <img>. */
+    .chat-friend-avatar {
+        position: relative;
+        flex-shrink: 0;
+        height: 2.25rem;
+        width: 2.25rem;
+    }
+
+    .chat-friend-avatar img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 9999px;
+        border: 1px solid rgba(34, 211, 238, .25);
+    }
+
+    .chat-friend-avatar .presence-dot {
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+        height: .55rem;
+        width: .55rem;
+        border-radius: 9999px;
+        border: 2px solid #0f172a;
+    }
+
+    /* display:flex manquant ici faisait tenir le pseudo et l'aperçu sur la
+       même ligne, collés l'un à l'autre (deux <span> inline sans espace
+       entre eux) au lieu de s'empiler comme prévu (pseudo en gras au-dessus,
+       aperçu discret en dessous — voir .chat-friend-preview et sa
+       margin-top). */
+    .chat-friend-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-friend-name {
+        font-size: .82rem;
+        font-weight: 700;
+        color: #e2e8f0;
+    }
+
+    .chat-friend-preview {
+        margin-top: .1rem;
+        font-size: .74rem;
+        color: #64748b;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chat-friend-item.has-unread .chat-friend-preview {
+        color: #cbd5e1;
+        font-weight: 600;
+    }
+
+    .chat-friend-unread {
+        flex-shrink: 0;
+        display: flex;
+        height: 1.1rem;
+        min-width: 1.1rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background: #22d3ee;
+        padding: 0 .3rem;
+        font-size: .65rem;
+        font-weight: 800;
+        color: #022c22;
+    }
+
+    .chat-empty {
+        padding: 1.25rem .9rem;
+        text-align: center;
+        font-size: .8rem;
+        color: #64748b;
+    }
+
+    .chat-thread {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        flex-direction: column;
+    }
+
+    .chat-thread.hidden { display: none; }
+
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+        padding: .75rem .9rem;
+    }
+
+    .chat-bubble-msg {
+        max-width: 78%;
+        border-radius: .8rem;
+        padding: .45rem .7rem;
+        font-size: .82rem;
+        line-height: 1.4;
+        word-break: break-word;
+    }
+
+    .chat-bubble-msg.is-mine {
+        align-self: flex-end;
+        background: rgba(34, 211, 238, .18);
+        border: 1px solid rgba(34, 211, 238, .35);
+        color: #e2e8f0;
+        border-bottom-right-radius: .2rem;
+    }
+
+    .chat-bubble-msg.is-theirs {
+        align-self: flex-start;
+        background: rgba(148, 163, 184, .12);
+        border: 1px solid rgba(148, 163, 184, .18);
+        color: #e2e8f0;
+        border-bottom-left-radius: .2rem;
+    }
+
+    .chat-form {
+        position: relative;
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: .4rem;
+        border-top: 1px solid rgba(148, 163, 184, .15);
+        padding: .6rem .7rem;
+    }
+
+    .chat-input {
+        flex: 1;
+        /* Sans ça, un <input> garde son min-width intrinsèque (~170-190px
+           selon le navigateur) même avec flex:1 : dans une colonne de
+           sidebar étroite (mode embarqué, .chat-widget--embedded), la ligne
+           dépassait alors sa boîte et le bouton d'envoi se faisait couper
+           par l'overflow:hidden de .chat-panel. */
+        min-width: 0;
+        border-radius: .6rem;
+        border: 1px solid rgba(148, 163, 184, .25);
+        background: #020617;
+        padding: .5rem .7rem;
+        font-size: .82rem;
+        color: #e2e8f0;
+    }
+
+    .chat-input:focus { outline: none; border-color: rgba(34, 211, 238, .6); }
+
+    .chat-emoji-button, .chat-send {
+        display: flex;
+        height: 2.1rem;
+        width: 2.1rem;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border-radius: .6rem;
+        font-size: 1rem;
+        transition: background .15s ease;
+    }
+
+    .chat-emoji-button { color: #94a3b8; }
+    .chat-emoji-button:hover { background: rgba(148, 163, 184, .12); }
+
+    .chat-send {
+        background: #22d3ee;
+        color: #022c22;
+        font-weight: 800;
+    }
+    .chat-send:hover { background: #67e8f9; }
+
+    .chat-emoji-picker {
+        position: absolute;
+        right: .6rem;
+        bottom: calc(100% + .4rem);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: .15rem;
+        border-radius: .6rem;
+        border: 1px solid rgba(148, 163, 184, .25);
+        background: #0f172a;
+        padding: .5rem;
+        box-shadow: 0 15px 30px -15px rgba(2, 6, 23, .9);
+    }
+
+    .chat-emoji-picker.hidden { display: none; }
+
+    .chat-emoji-option {
+        display: flex;
+        height: 1.9rem;
+        width: 1.9rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: .4rem;
+        font-size: 1.05rem;
+        transition: background .15s ease;
+    }
+
+    .chat-emoji-option:hover { background: rgba(148, 163, 184, .15); }
+
+    @media (max-width: 480px) {
+        .chat-widget { right: .5rem; bottom: .5rem; }
+        .chat-panel { width: 92vw; }
+    }
+
+    /* Déplacé dans une carte de page (voir chat.js, window.FilmatrixChat.embedIn
+       — utilisé par multiplayer/partie.html pendant un duel) : la bulle
+       flottante devient un panneau fixe, toujours ouvert, dans la mise en
+       page de la carte plutôt qu'un popover. Bordure/fond/ombre du panneau
+       retirés pour ne pas dupliquer le cadre de la carte qui l'accueille
+       (.game-side-card) ; le padding gauche/droite aussi, pour aligner le
+       contenu sur les bords de cette carte. */
+    .chat-widget--embedded {
+        position: static;
+    }
+
+    .chat-widget--embedded .chat-bubble,
+    .chat-widget--embedded .chat-close {
+        display: none;
+    }
+
+    .chat-widget--embedded .chat-panel {
+        position: static;
+        width: 100%;
+        height: 24rem;
+        margin-top: .6rem;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .chat-widget--embedded .chat-panel-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .chat-widget--embedded .chat-friend-list,
+    .chat-widget--embedded .chat-messages,
+    .chat-widget--embedded .chat-form {
+        padding-left: 0;
+        padding-right: 0;
+    }
+</style>
+
+<div id="chat-widget" class="chat-widget" data-current-user-id="{{ current_user.id }}">
+    <button type="button" id="chat-bubble" class="chat-bubble" aria-label="Messagerie">
+        💬
+        {% if unread_chat_count > 0 %}
+        <span id="chat-badge" class="chat-badge">{{ unread_chat_count if unread_chat_count < 10 else "9+" }}</span>
+        {% endif %}
+    </button>
+
+    <div id="chat-panel" class="chat-panel hidden">
+        <div class="chat-panel-header">
+            <button type="button" id="chat-back" class="chat-back hidden" aria-label="Retour à la liste">←</button>
+            <p id="chat-panel-title" class="chat-panel-title">Messagerie</p>
+            <button type="button" id="chat-invite" class="chat-invite hidden">🎮 Inviter</button>
+            <button type="button" id="chat-close" class="chat-close" aria-label="Fermer">✕</button>
+        </div>
+
+        <div id="chat-friend-list" class="chat-friend-list"></div>
+
+        <div id="chat-thread" class="chat-thread hidden">
+            <div id="chat-messages" class="chat-messages"></div>
+            <form id="chat-form" class="chat-form" autocomplete="off">
+                <input type="text" id="chat-input" class="chat-input" maxlength="1000" placeholder="Écris un message…">
+                <button type="button" id="chat-emoji-button" class="chat-emoji-button" aria-label="Insérer un emoji">🙂</button>
+                <button type="submit" class="chat-send" aria-label="Envoyer">➤</button>
+                <div id="chat-emoji-picker" class="chat-emoji-picker hidden"></div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
