@@ -178,8 +178,14 @@
     /* Sous 768px (seuil où la grille repasse en 1 colonne, cf. le
        md:grid-cols-[2fr_1fr] plus bas) : l'indice/QCM — l'action principale
        du joueur, contrairement à la checklist secondaire de Cache-Ciné —
-       devient une feuille fixée en bas d'écran, toujours atteignable sans
-       défiler, pendant que le minuteur reste épinglé en haut. */
+       devient une feuille collée en bas de la carte (position:sticky, pas
+       fixed — un fixed avec une réservation à taille fixe (46vh, pensée
+       pour le pire cas où le QCM à 4 options est affiché) laissait un grand
+       vide au-dessus dès que seul l'indice, plus court, était affiché ; la
+       hauteur dispo est recalculée dynamiquement par JS, voir
+       scene_mystere.js/fitStageHeight, à chaque fois que la feuille change
+       de contenu (indice <-> QCM), pour que l'image utilise vraiment tout
+       l'espace libre). */
     @media (max-width: 767px) {
         .sm-page .sm-topbar {
             position: sticky;
@@ -188,9 +194,7 @@
         }
 
         .sm-page .sm-sidebar {
-            position: fixed;
-            left: 0;
-            right: 0;
+            position: sticky;
             bottom: 0;
             z-index: 20;
             max-height: 46vh;
@@ -199,11 +203,12 @@
             padding-bottom: calc(.85rem + env(safe-area-inset-bottom));
             background: rgba(2, 6, 23, .97);
             border-top: 1px solid rgba(251, 191, 36, .35);
+            border-radius: .75rem;
             box-shadow: 0 -20px 40px -20px rgba(0, 0, 0, .6);
         }
 
-        /* La feuille fixe joue déjà le rôle de carte : évite un cadre dans
-           le cadre en dépouillant les panneaux qu'elle contient. */
+        /* La feuille joue déjà le rôle de carte : évite un cadre dans le
+           cadre en dépouillant les panneaux qu'elle contient. */
         .sm-page .sm-sidebar .sm-panel {
             border: none;
             background: transparent;
@@ -216,10 +221,6 @@
 
         .sm-page .sm-qcm-submit {
             padding: .8rem;
-        }
-
-        .sm-page {
-            padding-bottom: 46vh;
         }
     }
 </style>

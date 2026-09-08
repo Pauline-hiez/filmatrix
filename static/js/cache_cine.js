@@ -24,6 +24,29 @@
     const foundEl = document.getElementById("cc-found-count");
     const toastEl = document.getElementById("cc-toast");
     const checklist = document.getElementById("cc-checklist");
+    const image = document.getElementById("cc-image");
+
+    // Sous 768px, l'image doit remplir tout l'espace libre entre le
+    // minuteur et la checklist (voir cache_cine_jouer.html) plutôt que de
+    // se contenter d'un plafond fixe (min(60vh,560px)) qui laissait un vide
+    // quand l'image réelle était plus petite que ce plafond. .cc-stage
+    // reste dimensionnée exactement sur l'image rendue (fit-content) : les
+    // zones, positionnées en % de .cc-stage, doivent toujours correspondre
+    // pixel pour pixel à l'image, donc c'est l'image qu'on redimensionne
+    // (via max-height en px), jamais la scène elle-même.
+    function fitStageHeight() {
+        if (!image || window.innerWidth >= 768) {
+            if (image) image.style.maxHeight = "";
+            return;
+        }
+        const stageTop = stage.getBoundingClientRect().top;
+        const checklistHeight = checklist ? checklist.getBoundingClientRect().height : 0;
+        const available = window.innerHeight - stageTop - checklistHeight - 16;
+        image.style.maxHeight = Math.max(available, 160) + "px";
+    }
+    window.addEventListener("resize", fitStageHeight);
+    window.addEventListener("orientationchange", fitStageHeight);
+    fitStageHeight();
 
     function formatTime(seconds) {
         const clamped = Math.max(seconds, 0);
@@ -109,6 +132,11 @@
                         item.classList.add("is-found");
                         const check = item.querySelector(".cc-check");
                         if (check) check.textContent = "✓";
+                        // Déplacée en fin de liste : les références encore à
+                        // trouver restent groupées au début, plus faciles à
+                        // repérer d'un coup d'œil (surtout dans la bande
+                        // mobile qui se scrolle horizontalement).
+                        checklist.appendChild(item);
                     }
 
                     if (foundCount >= total) {

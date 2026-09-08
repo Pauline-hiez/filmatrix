@@ -155,9 +155,12 @@
 
     /* Sous 768px (seuil où la grille repasse en 1 colonne, cf. le
        md:grid-cols-[2fr_1fr] plus bas) : la checklist devient une bande de
-       pastilles fixée en bas d'écran, toujours atteignable sans défiler,
-       pendant que le minuteur reste épinglé en haut — l'image reste le
-       centre de l'attention entre les deux. */
+       pastilles collée en bas de la carte (position:sticky, pas fixed — un
+       fixed réserve un espace fixe indépendant de la taille réelle de
+       l'image, ce qui laissait un grand vide entre l'image et la bande
+       quand l'image ne remplissait pas cet espace ; la hauteur dispo est
+       recalculée dynamiquement par JS, voir cache_cine.js/fitStageHeight,
+       pour que l'image utilise vraiment tout l'espace libre). */
     @media (max-width: 767px) {
         .cc-page .cc-topbar {
             position: sticky;
@@ -170,9 +173,7 @@
         }
 
         .cc-page .cc-checklist {
-            position: fixed;
-            left: 0;
-            right: 0;
+            position: sticky;
             bottom: 0;
             z-index: 20;
             flex-direction: row;
@@ -184,16 +185,13 @@
             padding-bottom: calc(.65rem + env(safe-area-inset-bottom));
             background: rgba(2, 6, 23, .97);
             border-top: 1px solid rgba(251, 191, 36, .35);
+            border-radius: .75rem;
             box-shadow: 0 -16px 30px -20px rgba(0, 0, 0, .6);
         }
 
         .cc-page .cc-checklist li {
             flex: 0 0 auto;
             white-space: nowrap;
-        }
-
-        .cc-page {
-            padding-bottom: 4.5rem;
         }
     }
 </style>
