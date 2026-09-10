@@ -1,8 +1,10 @@
 """Tests de la logique métier de collection de personnages (fragments, déblocage)."""
 
+from datetime import datetime, timedelta
+
 from filmatrix.catalog_rarities import RARITY_FRAGMENT_COSTS, fragments_for_rarity
 from filmatrix.extensions import db
-from filmatrix.models import Album, Character, Tag, User, Question
+from filmatrix.models import Album, Character, Tag, User, UserCharacter, Question
 from filmatrix.services.collection import (
     add_fragments,
     award_fragment_for_question,
@@ -327,6 +329,138 @@ def test_get_album_summaries_reports_progress(app):
         assert summary["unlocked_count"] == 1
         assert summary["total_count"] == 2
         assert summary["image_url"] == unlocked.image_url
+
+
+def test_summary_exposes_the_uploaded_album_cover_when_set(app):
+    """L'image de couverture uploadée côté admin (Album.image_url) doit être
+    relayée telle quelle, indépendamment de la progression du joueur"""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag)
+        album = create_test_album("Album Test", [tag], [character])
+        album.image_url = "albums/cover.jpg"
+        db.session.commit()
+
+        summary = get_album_summaries(user)[0]
+        assert summary["cover_image_url"] == "albums/cover.jpg"
+
+
+def test_summary_cover_is_none_when_no_admin_upload(app):
+    """Sans image de couverture uploadée, le champ reste None (le template
+    retombe alors sur le personnage vedette ou le puzzle en cours)"""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag)
+        create_test_album("Album Test", [tag], [character])
+        db.session.commit()
+
+        summary = get_album_summaries(user)[0]
+        assert summary["cover_image_url"] is None
+
+
+def test_only_started_hides_albums_with_no_progress(app):
+    """only_started=True ne doit garder que les albums entamés (personnage
+    débloqué OU fragments en cours), pas les albums jamais touchés"""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+
+        untouched_character = create_test_character(tag, name="Bilbo", fragments_required=3)
+        create_test_album("Jamais entamé", [tag], [untouched_character])
+
+        in_progress_tag = create_test_tag(name="En cours")
+        in_progress_character = create_test_character(in_progress_tag, name="Sam", fragments_required=5)
+        create_test_album("En cours", [in_progress_tag], [in_progress_character])
+        add_fragments(user, in_progress_character, 2)
+        db.session.commit()
+
+        summaries = get_album_summaries(user, only_started=True)
+        assert [summary["name"] for summary in summaries] == ["En cours"]
+        assert summaries[0]["unlocked_count"] == 0
+        assert summaries[0]["in_progress"] is True
+
+
+def test_summary_flags_a_fully_unlocked_album_as_complete(app):
+    """Un album dont tous les personnages sont débloqués doit être marqué complet"""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, fragments_required=1)
+        create_test_album("Complet", [tag], [character])
+
+        add_fragments(user, character, 1)
+        db.session.commit()
+
+        summary = get_album_summaries(user)[0]
+        assert summary["is_complete"] is True
+        assert summary["unlocked_count"] == summary["total_count"]
+
+
+def test_summary_marks_a_recent_fragment_as_new(app):
+    """Un fragment gagné à l'instant doit afficher le badge "nouveau" ;
+    un fragment ancien ne doit plus le déclencher"""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, fragments_required=5)
+        create_test_album("Album Test", [tag], [character])
+
+        add_fragments(user, character, 1)
+        db.session.commit()
+
+        assert get_album_summaries(user)[0]["is_new"] is True
+
+        progress = UserCharacter.query.filter_by(user_id=user.id, character_id=character.id).first()
+        progress.last_fragment_at = datetime.utcnow() - timedelta(days=7)
+        db.session.commit()
+
+        assert get_album_summaries(user)[0]["is_new"] is False
+
+
+def test_summary_exposes_a_teaser_puzzle_grid_for_an_in_progress_character(app):
+    """Un personnage en cours (pas encore débloqué) doit fournir une grille
+    puzzle d'aperçu (comme la page collection/album.html), sans que l'album
+    soit considéré comme débloqué pour autant"""
+    with app.app_context():
+        user = create_test_user()
+        tag = create_test_tag()
+        character = create_test_character(tag, fragments_required=5)
+        character.image_url = "personnages/test.jpg"
+        create_test_album("Album Test", [tag], [character])
+
+        add_fragments(user, character, 2)
+        db.session.commit()
+
+        summary = get_album_summaries(user, only_started=True)[0]
+        assert summary["unlocked_count"] == 0
+        assert summary["image_url"] is None
+        assert summary["teaser_image_url"] == "personnages/test.jpg"
+        assert summary["teaser_character_id"] == character.id
+        assert summary["teaser_puzzle_grid"].count(True) == 2
+        assert len(summary["teaser_puzzle_grid"]) == 5
+
+
+def test_only_started_sorts_by_completion_percentage_descending(app):
+    """Les albums entamés doivent apparaître du plus avancé au moins avancé"""
+    with app.app_context():
+        user = create_test_user()
+
+        barely_tag = create_test_tag(name="A peine commencé")
+        barely_character = create_test_character(barely_tag, fragments_required=10)
+        create_test_album("A peine commencé", [barely_tag], [barely_character])
+        add_fragments(user, barely_character, 1)
+
+        almost_tag = create_test_tag(name="Presque fini")
+        almost_character = create_test_character(almost_tag, fragments_required=10)
+        create_test_album("Presque fini", [almost_tag], [almost_character])
+        add_fragments(user, almost_character, 9)
+
+        db.session.commit()
+
+        summaries = get_album_summaries(user, only_started=True)
+        assert [summary["name"] for summary in summaries] == ["Presque fini", "A peine commencé"]
 
 
 def test_rarity_fragment_costs_ladder_is_ordered():

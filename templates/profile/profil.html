@@ -4,6 +4,7 @@
 {% from "partials/friends_grid.html" import friends_grid with context %}
 {% from "partials/avatar.html" import avatar_img %}
 {% from "partials/character_frame.html" import character_card %}
+{% from "partials/puzzle_grid.html" import puzzle_grid %}
 
 {% set labels = {
     "qcm": "Quiz",
@@ -138,7 +139,9 @@
                                  style="width: {{ mission.progress_percentage }}%"></div>
                         </div>
                     </div>
-                    {% if not mission.is_completed %}
+                    {% if mission.is_completed %}
+                    <span class="shrink-0 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-wider text-emerald-400">Complété</span>
+                    {% else %}
                     <a href="{{ mission.play_url }}" class="shrink-0 text-lg font-bold text-cyan-400 transition hover:text-cyan-300" title="Jouer" aria-label="Jouer à cette mission">
                         →
                     </a>
@@ -159,19 +162,19 @@
     {# Quatre indicateurs globaux, glanés une fois pour toutes plutôt que
        répétés dans chaque carte plus bas. #}
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div class="rounded-xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+        <div class="rounded-xl border border-cyan-400/30 bg-slate-900/60 p-4 text-center transition hover:shadow-[0_0_20px_-10px_rgba(34,211,238,0.7)]">
             <p class="text-2xl font-extrabold text-cyan-400">{{ correct_count }}/{{ total_count }}</p>
             <p class="mt-1 text-xs uppercase tracking-wider text-slate-500">Réponses justes</p>
         </div>
-        <div class="rounded-xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+        <div class="rounded-xl border border-emerald-400/30 bg-slate-900/60 p-4 text-center transition hover:shadow-[0_0_20px_-10px_rgba(52,211,153,0.7)]">
             <p class="text-2xl font-extrabold text-emerald-400">{{ (correct_count / total_count * 100) | round(0) if total_count else 0 }}%</p>
             <p class="mt-1 text-xs uppercase tracking-wider text-slate-500">Précision</p>
         </div>
-        <div class="rounded-xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+        <div class="rounded-xl border border-amber-400/30 bg-slate-900/60 p-4 text-center transition hover:shadow-[0_0_20px_-10px_rgba(251,191,36,0.7)]">
             <p class="text-2xl font-extrabold text-amber-400">{{ current_user.coins }}</p>
             <p class="mt-1 text-xs uppercase tracking-wider text-slate-500">Pièces</p>
         </div>
-        <div class="rounded-xl border border-cyan-400/20 bg-slate-900/60 p-4 text-center">
+        <div class="rounded-xl border border-violet-400/30 bg-slate-900/60 p-4 text-center transition hover:shadow-[0_0_20px_-10px_rgba(167,139,250,0.7)]">
             <p class="text-2xl font-extrabold text-violet-400">{{ earned_count }}/{{ all_badges | length }}</p>
             <p class="mt-1 text-xs uppercase tracking-wider text-slate-500">Succès</p>
         </div>
@@ -185,7 +188,7 @@
         </div>
         <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {% for badge in all_badges %}
-            <div class="rounded-xl border p-3 text-center {% if badge.earned %}border-cyan-400/40 bg-cyan-400/5{% else %}border-slate-800 bg-slate-950/40 opacity-50{% endif %}">
+            <div class="rounded-xl border p-3 text-center transition {% if badge.earned %}border-cyan-400/40 bg-cyan-400/5 hover:border-cyan-400 hover:shadow-[0_0_18px_-10px_rgba(34,211,238,0.8)]{% else %}border-slate-800 bg-slate-950/40 opacity-50{% endif %}">
                 <span class="text-2xl {% if not badge.earned %}grayscale{% endif %}">{{ badge.icon }}</span>
                 <p class="mt-1 truncate text-xs font-bold text-slate-100">{{ badge.name }}</p>
                 <p class="mt-0.5 text-[0.65rem] leading-snug text-slate-500">{{ badge.description }}</p>
@@ -203,7 +206,7 @@
             {% if friends %}
             <div class="grid gap-3 sm:grid-cols-2">
                 {% for friend in friends %}
-                <div class="flex flex-col items-center gap-2 rounded-xl border border-slate-800 bg-slate-950/40 p-3 text-center">
+                <div class="flex flex-col items-center gap-2 rounded-xl border border-slate-800 bg-slate-950/40 p-3 text-center transition hover:border-cyan-400/40">
                     <a href="{{ url_for('profile.public_profile', user_id=friend.id) }}" class="flex flex-col items-center gap-2">
                         <span class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900">
                             {{ avatar_img(friend.avatar) }}
@@ -240,12 +243,37 @@
                 <a href="{{ url_for('collection.collection_album', album_id=album.album_id) }}"
                    class="relative block w-28 shrink-0 self-start transition"
                    style="scroll-snap-align: start;">
+                    {% if album.cover_image_url %}
+                    {# Photo de couverture uploadée côté admin (voir
+                       admin/album_form.html) : passe devant le personnage
+                       vedette/puzzle, c'est une affiche de la franchise, pas
+                       le portrait d'un personnage précis à révéler. #}
+                    <div class="relative w-full overflow-hidden rounded-lg bg-slate-950 {{ 'ring-2 ring-amber-400/80' if album.is_complete }}"
+                         style="aspect-ratio: 912 / 1112;">
+                        <img src="{{ album.cover_image_url | image_src }}" alt=""
+                             class="absolute inset-0 h-full w-full object-cover">
+                    </div>
+                    {% elif album.unlocked_count > 0 %}
                     {{ character_card(
                         album.image_url,
                         album.image_x, album.image_y, album.image_scale,
                         album.frame_x, album.frame_y, album.frame_scale,
-                        unlocked=(album.unlocked_count > 0), rarity=album.rarity
+                        unlocked=true, rarity=album.rarity,
+                        classes=("ring-2 ring-amber-400/80" if album.is_complete else "")
                     ) }}
+                    {% else %}
+                    {{ puzzle_grid(
+                        album.teaser_image_url | image_src,
+                        album.teaser_puzzle_grid,
+                        character_id=album.teaser_character_id,
+                        columns=album.teaser_puzzle_columns
+                    ) }}
+                    {% endif %}
+                    {% if album.is_complete %}
+                    <span class="absolute right-1.5 top-1.5 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 text-xs font-bold text-slate-950 shadow" title="Album complet">✓</span>
+                    {% elif album.is_new %}
+                    <span class="absolute right-1.5 top-1.5 z-10 flex h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_2px_rgba(34,211,238,0.7)]" title="Nouveau fragment"></span>
+                    {% endif %}
                     <div class="absolute inset-x-0 bottom-0 rounded-b-lg bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-2">
                         <p class="truncate text-xs font-bold text-slate-100">{{ album.name }}</p>
                         <p class="text-[0.65rem] text-slate-400">{{ album.unlocked_count }} / {{ album.total_count }}</p>
@@ -254,7 +282,7 @@
                 {% endfor %}
             </div>
             {% else %}
-            <p class="text-sm text-slate-500">Aucun album pour le moment.</p>
+            <p class="text-sm text-slate-500">Réponds à des questions pour débloquer tes premiers personnages !</p>
             {% endif %}
         </section>
     </div>

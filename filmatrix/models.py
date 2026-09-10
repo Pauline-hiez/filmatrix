@@ -324,6 +324,7 @@ class UserCharacter(db.Model):
     character_id = db.Column(db.Integer, db.ForeignKey("characters.id"), nullable=False)
     fragments = db.Column(db.Integer, nullable=False, default=0)
     unlocked_at = db.Column(db.DateTime, nullable=True)
+    last_fragment_at = db.Column(db.DateTime, nullable=True)
 
     user = db.relationship("User", backref="character_progress")
     character = db.relationship("Character")

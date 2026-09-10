@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from "partials/character_frame.html" import character_card %}
+{% from "partials/puzzle_grid.html" import puzzle_grid %}
 
 {% block content %}
 <div class="max-w-5xl mx-auto mt-8">
@@ -9,12 +11,45 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for album in albums %}
         <a href="{{ url_for('collection.collection_album', album_id=album.album_id) }}"
-           class="block rounded-xl border border-cyan-400/30 hover:border-cyan-400 bg-slate-900/60 p-5 transition">
-            <h3 class="font-bold text-lg mb-1">{{ album.name }}</h3>
-            <p class="text-sm text-slate-400 mb-3">{{ album.unlocked_count }} / {{ album.total_count }} personnages</p>
-            <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                <div class="bg-cyan-400 h-2 rounded-full"
-                     style="width: {{ (album.unlocked_count / album.total_count * 100) | round(1) }}%"></div>
+           class="block overflow-hidden rounded-xl border border-cyan-400/30 hover:border-cyan-400 bg-slate-900/60 transition">
+            <div class="relative">
+                {% if album.cover_image_url %}
+                {# Photo de couverture uploadée côté admin : affiche de la
+                   franchise, pas le portrait d'un personnage précis. #}
+                <div class="w-full overflow-hidden {{ 'ring-2 ring-amber-400/80' if album.is_complete }}" style="aspect-ratio: 912 / 1112;">
+                    <img src="{{ album.cover_image_url | image_src }}" alt="" class="h-full w-full object-cover">
+                </div>
+                {% elif album.unlocked_count > 0 %}
+                {{ character_card(
+                    album.image_url,
+                    album.image_x, album.image_y, album.image_scale,
+                    album.frame_x, album.frame_y, album.frame_scale,
+                    unlocked=true, rarity=album.rarity,
+                    classes=("ring-2 ring-amber-400/80" if album.is_complete else "")
+                ) }}
+                {% elif album.in_progress %}
+                {{ puzzle_grid(
+                    album.teaser_image_url | image_src,
+                    album.teaser_puzzle_grid,
+                    character_id=album.teaser_character_id,
+                    columns=album.teaser_puzzle_columns
+                ) }}
+                {% else %}
+                {{ character_card(none, 0, 0, 100, 0, 0, 100, unlocked=false) }}
+                {% endif %}
+                {% if album.is_complete %}
+                <span class="absolute right-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 text-xs font-bold text-slate-950 shadow" title="Album complet">✓</span>
+                {% elif album.is_new %}
+                <span class="absolute right-2 top-2 z-10 flex h-3 w-3 rounded-full bg-cyan-400 shadow-[0_0_8px_2px_rgba(34,211,238,0.7)]" title="Nouveau fragment"></span>
+                {% endif %}
+            </div>
+            <div class="p-5">
+                <h3 class="font-bold text-lg mb-1">{{ album.name }}</h3>
+                <p class="text-sm text-slate-400 mb-3">{{ album.unlocked_count }} / {{ album.total_count }} personnages</p>
+                <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                    <div class="bg-cyan-400 h-2 rounded-full"
+                         style="width: {{ (album.unlocked_count / album.total_count * 100) | round(1) }}%"></div>
+                </div>
             </div>
         </a>
         {% endfor %}

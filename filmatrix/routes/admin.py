@@ -21,7 +21,7 @@ from filmatrix.models import Album, Attempt, Question, QuestionSubmission, Repor
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.tags import merge_tag_into
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
-from filmatrix.integrations.storage import upload_character_image
+from filmatrix.integrations.storage import upload_album_image, upload_character_image
 from filmatrix.integrations.tmdb import (
     build_image_url,
     genre_ids_to_tags,
@@ -85,6 +85,36 @@ def save_character_image(uploaded_file):
     filename = f"{uuid4().hex}.{extension}"
     try:
         return upload_character_image(uploaded_file, filename, uploaded_file.mimetype)
+    except KeyError as error:
+        current_app.logger.exception("Upload R2 : variable d'environnement manquante (%s)", error)
+        raise ValueError("Stockage d'images non configuré (variable manquante).") from error
+    except (BotoCoreError, ClientError) as error:
+        current_app.logger.exception("Upload R2 : échec de l'envoi vers le stockage")
+        raise ValueError("Échec de l'envoi de l'image vers le stockage. Réessaie.") from error
+
+
+def save_album_image(uploaded_file):
+    """Envoie une image de couverture d'album sur le stockage cloud (Cloudflare R2).
+
+    Mêmes contraintes et le même filet d'erreurs que save_character_image :
+    même mécanisme de stockage, seule la destination (préfixe R2) diffère.
+    """
+    if not uploaded_file or not uploaded_file.filename:
+        return None
+
+    original_name = secure_filename(uploaded_file.filename)
+    extension = Path(original_name).suffix.lower().lstrip(".")
+    if extension not in CHARACTER_IMAGE_EXTENSIONS:
+        raise ValueError("Format d'image non accepté. Utilise PNG, JPG, WEBP ou GIF.")
+
+    uploaded_file.seek(0, 2)
+    if uploaded_file.tell() > CHARACTER_IMAGE_MAX_BYTES:
+        raise ValueError("L'image ne doit pas dépasser 5 Mo.")
+    uploaded_file.seek(0)
+
+    filename = f"{uuid4().hex}.{extension}"
+    try:
+        return upload_album_image(uploaded_file, filename, uploaded_file.mimetype)
     except KeyError as error:
         current_app.logger.exception("Upload R2 : variable d'environnement manquante (%s)", error)
         raise ValueError("Stockage d'images non configuré (variable manquante).") from error
@@ -1041,6 +1071,23 @@ def admin_albums_new() -> str:
         album.characters = Character.query.filter(
             Character.id.in_(selected_character_ids)
         ).all()
+
+        uploaded_image = request.files.get("image_file")
+        if uploaded_image and uploaded_image.filename:
+            try:
+                album.image_url = save_album_image(uploaded_image)
+            except ValueError as error:
+                db.session.rollback()
+                flash(str(error))
+                all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+                characters = Character.query.order_by(Character.name).all()
+                return render_template(
+                    "admin/album_form.html",
+                    album=album,
+                    all_tags=all_tags,
+                    characters=characters,
+                    suggestions=[],
+                )
 
         db.session.commit()
         flash("Album modifié avec succès." if album_id else "Album créé avec succès.")

@@ -269,7 +269,7 @@
                 ${puzzleCells}
             </div>
             <p class="fragment-stage-title" style="color:${colors.text}">🧩 Trouve la pièce qui brille</p>
-            <p class="fragment-stage-name">${result.character_name}</p>
+            <p class="fragment-stage-name">???</p>
             <p class="fragment-stage-sub">${result.saga_name ? result.saga_name + " · " : ""}${rarityLabel}</p>
             <div class="fragment-stage-bar-track">
                 <div class="fragment-bar-fill" style="width:${progressBefore}%"></div>
@@ -282,6 +282,7 @@
         const card = stage.querySelector(".fragment-card");
         const pendingPiece = stage.querySelector(".puzzle-piece--pending");
         const titleEl = stage.querySelector(".fragment-stage-title");
+        const nameEl = stage.querySelector(".fragment-stage-name");
         const barTrack = stage.querySelector(".fragment-stage-bar-track");
         const bar = stage.querySelector(".fragment-bar-fill");
         const countEl = stage.querySelector(".fragment-stage-count");
@@ -290,6 +291,12 @@
         function revealFragment() {
             if (titleEl) {
                 titleEl.textContent = justUnlocked ? "🎬 Personnage débloqué !" : "🧩 Fragment obtenu";
+            }
+            // Le nom ne se dévoile que lorsque le personnage est
+            // complètement révélé (tous ses fragments réunis) - un fragment
+            // isolé ne doit pas spoiler qui se cache derrière le puzzle.
+            if (nameEl) {
+                nameEl.textContent = justUnlocked ? result.character_name : "???";
             }
             if (countEl) {
                 countEl.textContent = result.fragments + "/" + result.fragments_required + " fragments";

@@ -1,6 +1,6 @@
 """Logique métier de la collection de personnages : fragments et déblocage."""
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import random
 
@@ -26,6 +26,11 @@ TAG_TYPE_SPECIFICITY = {
 }
 
 
+# Fenêtre pendant laquelle un album affiche le badge "Nouveau" dans l'aperçu
+# profil, après le dernier fragment gagné dessus.
+NEW_FRAGMENT_WINDOW = timedelta(hours=48)
+
+
 def get_or_create_progress(user, character: Character) -> UserCharacter:
     """Récupère la progression d'un joueur sur un personnage, ou la crée si absente."""
     progress = UserCharacter.query.filter_by(
@@ -45,6 +50,7 @@ def add_fragments(user, character: Character, amount: int) -> bool:
 
     was_unlocked = progress.unlocked_at is not None
     progress.fragments = min(progress.fragments + amount, character.fragments_required)
+    progress.last_fragment_at = datetime.utcnow()
 
     if not was_unlocked and progress.fragments >= character.fragments_required:
         progress.unlocked_at = datetime.utcnow()
@@ -176,8 +182,13 @@ def fragment_result_payload(user, fragment_result: tuple[Character, bool] | None
         "puzzle_columns": puzzle_columns(len(grid_now)),
     }
 
-def get_album_summaries(user) -> list[dict]:
-    """Renvoie un résumé de progression pour chaque album publié."""
+def get_album_summaries(user, only_started: bool = False) -> list[dict]:
+    """Renvoie un résumé de progression pour chaque album publié.
+
+    only_started=True ne renvoie que les albums où le joueur a déjà gagné au
+    moins un fragment (personnage débloqué ou en cours) - utilisé pour
+    l'aperçu de la page profil, qui ne doit pas lister des albums jamais
+    entamés (voir la page collection complète pour ceux-là)."""
     albums = (
         Album.query.filter_by(is_published=True)
         .order_by(Album.sort_order, Album.name)
@@ -191,39 +202,97 @@ def get_album_summaries(user) -> list[dict]:
             continue
 
         character_ids = [character.id for character in characters]
-        unlocked_ids = {
-            row.character_id
-            for row in UserCharacter.query.filter(
-                UserCharacter.user_id == user.id,
-                UserCharacter.character_id.in_(character_ids),
-                UserCharacter.unlocked_at.isnot(None),
-            ).all()
-        }
+        progress_rows = UserCharacter.query.filter(
+            UserCharacter.user_id == user.id,
+            UserCharacter.character_id.in_(character_ids),
+        ).all()
+        unlocked_ids = {row.character_id for row in progress_rows if row.unlocked_at is not None}
+        started_rows = [row for row in progress_rows if row.fragments > 0 or row.unlocked_at is not None]
+        in_progress_rows = [row for row in progress_rows if row.fragments > 0 and row.unlocked_at is None]
+        in_progress = bool(in_progress_rows)
+
+        if only_started and not unlocked_ids and not in_progress:
+            continue
 
         featured_character = next(
             (character for character in characters if character.id in unlocked_ids),
-            characters[0],
+            None,
         )
+        teaser_character = None
+        teaser_fragments = 0
+        if featured_character is None and in_progress_rows:
+            most_advanced_row = max(in_progress_rows, key=lambda row: row.fragments)
+            teaser_character = next(
+                (character for character in characters if character.id == most_advanced_row.character_id),
+                None,
+            )
+            teaser_fragments = most_advanced_row.fragments
+        display_character = featured_character or teaser_character or characters[0]
+
+        # Personnage en cours (pas encore débloqué) : même rendu puzzle que la
+        # page collection/album.html, plutôt qu'un flou artificiel qui pouvait
+        # passer pour un bug d'affichage - seules les cases déjà gagnées
+        # laissent deviner un bout de l'image.
+        teaser_puzzle_grid = None
+        teaser_puzzle_columns = None
+        if teaser_character is not None:
+            teaser_puzzle_grid = get_puzzle_grid(
+                teaser_character.id, teaser_fragments, teaser_character.fragments_required
+            )
+            teaser_puzzle_columns = puzzle_columns(len(teaser_puzzle_grid))
+
+        last_fragment_at = max(
+            (row.last_fragment_at for row in started_rows if row.last_fragment_at),
+            default=None,
+        )
+        is_new = (
+            last_fragment_at is not None
+            and datetime.utcnow() - last_fragment_at < NEW_FRAGMENT_WINDOW
+        )
+
+        # Fraction de fragments gagnés sur le total requis par l'album, plus
+        # fine que unlocked_count/total_count pour trier les albums entamés :
+        # deux personnages à 1/10 et 9/10 fragments sont tous deux "0 débloqué".
+        fragments_by_character = {row.character_id: row.fragments for row in progress_rows}
+        total_fragments = sum(
+            character.fragments_required if character.id in unlocked_ids
+            else fragments_by_character.get(character.id, 0)
+            for character in characters
+        )
+        total_required = sum(character.fragments_required for character in characters)
+        progress_fraction = total_fragments / total_required if total_required else 0
 
         summaries.append(
             {
                 "album_id": album.id,
                 "name": album.name,
                 "description": album.description,
-                "image_url": featured_character.image_url if featured_character.id in unlocked_ids else None,
+                "cover_image_url": album.image_url,
+                "image_url": display_character.image_url if featured_character is not None else None,
+                "teaser_image_url": display_character.image_url if teaser_character is not None else None,
+                "teaser_character_id": teaser_character.id if teaser_character is not None else None,
+                "teaser_puzzle_grid": teaser_puzzle_grid,
+                "teaser_puzzle_columns": teaser_puzzle_columns,
                 "unlocked_count": len(unlocked_ids),
                 "total_count": len(characters),
+                "in_progress": in_progress,
+                "is_complete": len(unlocked_ids) == len(characters),
+                "is_new": is_new,
+                "progress_fraction": progress_fraction,
                 # Réglages de cadrage du personnage vedette, pour un rendu
                 # identique dans le profil et la collection.
-                "image_x": featured_character.image_x,
-                "image_y": featured_character.image_y,
-                "image_scale": featured_character.image_scale,
-                "frame_x": featured_character.frame_x,
-                "frame_y": featured_character.frame_y,
-                "frame_scale": featured_character.frame_scale,
-                "rarity": featured_character.rarity,
+                "image_x": display_character.image_x,
+                "image_y": display_character.image_y,
+                "image_scale": display_character.image_scale,
+                "frame_x": display_character.frame_x,
+                "frame_y": display_character.frame_y,
+                "frame_scale": display_character.frame_scale,
+                "rarity": display_character.rarity,
             }
         )
+
+    if only_started:
+        summaries.sort(key=lambda summary: summary["progress_fraction"], reverse=True)
 
     return summaries
 

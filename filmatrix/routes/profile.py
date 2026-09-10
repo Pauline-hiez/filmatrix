@@ -55,7 +55,7 @@ def profile() -> str:
     if current_user.equipped_title:
         equipped_title_name = TITLES.get(current_user.equipped_title, {}).get("name")
 
-    album_summaries = get_album_summaries(current_user)
+    album_summaries = get_album_summaries(current_user, only_started=True)
 
     missions_info = describe_daily_missions(current_user)
 
