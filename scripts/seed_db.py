@@ -1,4 +1,17 @@
-"""Script d'import : lit tous les fichiers de data/questions/ et remplit la base de données"""
+"""DÉSACTIVÉ - script d'import historique : lit data/questions/*.json (le jeu
+de questions d'origine, avant la revue complète passée par le système de
+suggestions/validation admin) et l'insère/upsert en base.
+
+Ce script a pollué la production : lancé automatiquement à chaque déploiement
+(voir build.sh, corrigé depuis), il réimportait par-dessus les questions
+fraîchement curées un lot obsolète, SANS JAMAIS renseigner `difficulty` (ni à
+la création ni à la mise à jour) - d'où des milliers de doublons tous
+retombés sur la valeur par défaut "moyen". Le contenu de data/questions/ n'est
+plus la source de vérité : c'est désormais la table Question elle-même,
+alimentée par l'admin via le système de suggestions.
+
+Le garde-fou ci-dessous empêche toute exécution contre une base non-locale
+(SQLite) : à ne lever qu'en connaissance de cause, jamais contre la prod."""
 
 import json
 from pathlib import Path
@@ -22,6 +35,15 @@ def import_questions() -> None:
     imported_ids: set[int] = set()
 
     with app.app_context():
+        database_uri = app.config["SQLALCHEMY_DATABASE_URI"]
+        if not database_uri.startswith("sqlite"):
+            raise SystemExit(
+                "Ce script est désactivé contre une base non-locale (voir le "
+                "docstring en tête de fichier) - la base ciblée n'est pas du "
+                "SQLite local. Si tu sais exactement ce que tu fais, retire "
+                "ce garde-fou temporairement."
+            )
+
         tag_aliases = {
             "com" + "�" + "die": "comédie",
             "comédie": "comédie",
