@@ -3,12 +3,16 @@
 {% from "partials/puzzle_grid.html" import puzzle_grid %}
 
 {% block content %}
-<div class="max-w-5xl mx-auto mt-8">
+<div class="max-w-6xl mx-auto mt-8">
     <h1 class="text-2xl font-bold mb-2">Ma Collection</h1>
     <p class="text-slate-400 text-sm mb-8">Collectionne tes personnages et complète les albums que tu aimes !</p>
 
     {% if albums %}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {# grid-cols en auto-fill plutôt que des paliers sm/lg fixes : les cartes
+       restent compactes (max ~11rem) et le nombre de colonnes s'ajuste tout
+       seul à la largeur disponible, sans jamais les laisser s'étirer en
+       pleine largeur comme avant (elles prenaient toute la hauteur de page). #}
+    <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));">
         {% for album in albums %}
         <a href="{{ url_for('collection.collection_album', album_id=album.album_id) }}"
            class="block overflow-hidden rounded-xl border border-cyan-400/30 hover:border-cyan-400 bg-slate-900/60 transition">
@@ -45,11 +49,11 @@
                 <span class="absolute right-2 top-2 z-10 flex h-3 w-3 rounded-full bg-cyan-400 shadow-[0_0_8px_2px_rgba(34,211,238,0.7)]" title="Nouveau fragment"></span>
                 {% endif %}
             </div>
-            <div class="p-5">
-                <h3 class="font-bold text-lg mb-1">{{ album.name }}</h3>
-                <p class="text-sm text-slate-400 mb-3">{{ album.unlocked_count }} / {{ album.total_count }} personnages</p>
-                <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                    <div class="bg-cyan-400 h-2 rounded-full"
+            <div class="p-3">
+                <h3 class="truncate font-bold text-sm mb-0.5">{{ album.name }}</h3>
+                <p class="text-xs text-slate-400 mb-2">{{ album.unlocked_count }} / {{ album.total_count }} personnages</p>
+                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                    <div class="bg-cyan-400 h-1.5 rounded-full"
                          style="width: {{ (album.unlocked_count / album.total_count * 100) | round(1) }}%"></div>
                 </div>
             </div>
