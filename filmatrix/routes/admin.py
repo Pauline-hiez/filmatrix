@@ -1072,6 +1072,10 @@ def admin_albums_new() -> str:
             Character.id.in_(selected_character_ids)
         ).all()
 
+        album.image_x = float(request.form.get("image_x", 0))
+        album.image_y = float(request.form.get("image_y", 0))
+        album.image_scale = float(request.form.get("image_scale", 100))
+
         uploaded_image = request.files.get("image_file")
         if uploaded_image and uploaded_image.filename:
             try:

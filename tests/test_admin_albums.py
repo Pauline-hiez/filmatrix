@@ -99,6 +99,39 @@ def test_album_cover_image_upload_surfaces_storage_failure(client, app):
         assert Album.query.filter_by(name="Album sans stockage").first() is None
 
 
+def test_album_cover_crop_settings_are_persisted(client, app):
+    """Les curseurs de recadrage (admin/album_form.html) doivent être
+    enregistrés comme pour le cadrage des portraits de personnage."""
+    with app.app_context():
+        create_admin()
+
+    login_admin(client)
+
+    with patch(
+        "filmatrix.routes.admin.upload_album_image",
+        return_value="https://pub-xxxx.r2.dev/albums/fake.png",
+    ):
+        response = client.post(
+            "/admin/albums/nouveau",
+            data={
+                "name": "Harry Potter",
+                "sort_order": 0,
+                "image_file": (io.BytesIO(b"contenu"), "hp.png"),
+                "image_x": "-15",
+                "image_y": "8",
+                "image_scale": "125",
+            },
+            content_type="multipart/form-data",
+        )
+    assert response.status_code == 302
+
+    with app.app_context():
+        album = Album.query.filter_by(name="Harry Potter").first()
+        assert album.image_x == -15
+        assert album.image_y == 8
+        assert album.image_scale == 125
+
+
 def test_creating_an_album_without_a_cover_image_leaves_it_empty(client, app):
     """Le flux existant (aucun fichier envoyé) ne doit pas être cassé par le nouveau champ."""
     with app.app_context():

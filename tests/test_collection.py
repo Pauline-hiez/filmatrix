@@ -340,10 +340,16 @@ def test_summary_exposes_the_uploaded_album_cover_when_set(app):
         character = create_test_character(tag)
         album = create_test_album("Album Test", [tag], [character])
         album.image_url = "albums/cover.jpg"
+        album.image_x = -12
+        album.image_y = 5
+        album.image_scale = 130
         db.session.commit()
 
         summary = get_album_summaries(user)[0]
         assert summary["cover_image_url"] == "albums/cover.jpg"
+        assert summary["cover_image_x"] == -12
+        assert summary["cover_image_y"] == 5
+        assert summary["cover_image_scale"] == 130
 
 
 def test_summary_cover_is_none_when_no_admin_upload(app):

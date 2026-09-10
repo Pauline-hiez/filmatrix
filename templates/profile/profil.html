@@ -251,7 +251,8 @@
                     <div class="relative w-full overflow-hidden rounded-lg bg-slate-950 {{ 'ring-2 ring-amber-400/80' if album.is_complete }}"
                          style="aspect-ratio: 912 / 1112;">
                         <img src="{{ album.cover_image_url | image_src }}" alt=""
-                             class="absolute inset-0 h-full w-full object-cover">
+                             class="absolute object-cover"
+                             style="width: {{ album.cover_image_scale }}%; height: {{ album.cover_image_scale }}%; left: {{ 50 + album.cover_image_x - album.cover_image_scale / 2 }}%; top: {{ 50 + album.cover_image_y - album.cover_image_scale / 2 }}%;">
                     </div>
                     {% elif album.unlocked_count > 0 %}
                     {{ character_card(
