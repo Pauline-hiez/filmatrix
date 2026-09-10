@@ -100,6 +100,52 @@ def test_reward_follows_the_question_difficulty(client, app):
         assert player.coins == 6
 
 
+def test_answer_reports_level_up_when_xp_crosses_the_threshold(client, app):
+    """Le résumé de fin de partie signale le nouveau niveau quand l'XP gagnée
+    fait franchir un palier - plus la réponse JSON de la question elle-même,
+    puisque rien n'est plus annoncé avant la fin de la partie (voir
+    services/run_rewards.py)."""
+    create_question(app, difficulty="difficile")
+
+    with app.app_context():
+        # Palier niveau 1 -> 2 à 100 XP (calculate_level) : 90 + 30 (difficile) = 120.
+        player = User(username="Joueuse", email="joueuse@filmatrix.fr", total_xp=90)
+        player.set_password("Azerty1!")
+        db.session.add(player)
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "joueuse@filmatrix.fr", "password": "Azerty1!"})
+    client.get("/quiz/qcm/1")
+    # Une seule question dans cette partie : cette réponse est aussi la
+    # dernière, ce qui déclenche la finalisation tout de suite.
+    client.post("/quiz/qcm/1", data={"answer": "0"})
+
+    with client.session_transaction() as sess:
+        reveal = sess["run"]["reveal"]
+
+    assert reveal["level_up"] == {"previous": 1, "new": 2}
+
+
+def test_answer_reports_no_level_up_when_staying_in_the_same_level(client, app):
+    """Une bonne réponse qui ne franchit aucun palier ne doit pas signaler de niveau"""
+    create_question(app, difficulty="facile")
+
+    with app.app_context():
+        player = User(username="Joueur", email="joueur2@filmatrix.fr", total_xp=0)
+        player.set_password("Azerty1!")
+        db.session.add(player)
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "joueur2@filmatrix.fr", "password": "Azerty1!"})
+    client.get("/quiz/qcm/1")
+    client.post("/quiz/qcm/1", data={"answer": "0"})
+
+    with client.session_transaction() as sess:
+        reveal = sess["run"]["reveal"]
+
+    assert reveal["level_up"] is None
+
+
 def test_question_defaults_to_moyen_difficulty(app):
     """Une question créée sans difficulté explicite retombe sur moyen, comme le backfill de migration"""
     create_question(app)

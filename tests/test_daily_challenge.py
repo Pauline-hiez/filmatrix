@@ -529,8 +529,10 @@ def start_run_session(client, question_id: int, mode: str = "qcm") -> None:
 
 
 def test_completing_a_mission_is_announced_in_the_answer_response(client, app):
-    """La réponse JSON qui complète une mini-mission doit la lister dans
-    completed_missions, pour la notification affichée pendant la partie."""
+    """Une mini-mission complétée doit apparaître dans le résumé de fin de
+    partie (session["run"]["reveal"]) - plus dans la réponse JSON de chaque
+    question, puisque rien n'est plus annoncé avant que la partie ne soit
+    terminée (voir services/run_rewards.py)."""
     with app.app_context():
         user = create_test_user("Complet")
         force_mission(user, "total_count", slot=0, target_value=1)
@@ -542,11 +544,16 @@ def test_completing_a_mission_is_announced_in_the_answer_response(client, app):
     login(client, "complet@filmatrix.fr")
     start_run_session(client, question_id)
 
-    result = client.post("/quiz/qcm/1", data={"answer": "0"}).get_json()
+    # Une seule question dans cette partie : cette réponse est aussi la
+    # dernière, ce qui déclenche la finalisation tout de suite.
+    client.post("/quiz/qcm/1", data={"answer": "0"})
 
-    assert len(result["completed_missions"]) == 1
-    assert result["completed_missions"][0]["is_completed"] is True
-    assert result["day_completed"] is False
+    with client.session_transaction() as sess:
+        reveal = sess["run"]["reveal"]
+
+    assert len(reveal["completed_missions"]) == 1
+    assert reveal["completed_missions"][0]["is_completed"] is True
+    assert reveal["day_completed"] is False
 
 
 def test_incomplete_mission_progress_is_not_announced(client, app):
@@ -562,11 +569,14 @@ def test_incomplete_mission_progress_is_not_announced(client, app):
     login(client, "incomplet@filmatrix.fr")
     start_run_session(client, question_id)
 
-    result = client.post("/quiz/qcm/1", data={"answer": "0"}).get_json()
+    client.post("/quiz/qcm/1", data={"answer": "0"})
 
-    assert result["completed_missions"] == []
-    assert result["day_completed"] is False
-    assert result["streak_bonus"] is None
+    with client.session_transaction() as sess:
+        reveal = sess["run"]["reveal"]
+
+    assert reveal["completed_missions"] == []
+    assert reveal["day_completed"] is False
+    assert reveal["streak_bonus"] is None
 
 
 def test_completing_a_mission_awards_coins_immediately(client, app):
@@ -627,11 +637,14 @@ def test_day_completed_and_streak_bonus_announced_together(client, app):
     login(client, "serie@filmatrix.fr")
     start_run_session(client, question_id)
 
-    result = client.post("/quiz/qcm/1", data={"answer": "0"}).get_json()
+    client.post("/quiz/qcm/1", data={"answer": "0"})
 
-    assert len(result["completed_missions"]) == 3
-    assert result["day_completed"] is True
-    assert result["streak_bonus"] == {"streak": STREAK_BONUS_THRESHOLD}
+    with client.session_transaction() as sess:
+        reveal = sess["run"]["reveal"]
+
+    assert len(reveal["completed_missions"]) == 3
+    assert reveal["day_completed"] is True
+    assert reveal["streak_bonus"] == {"streak": STREAK_BONUS_THRESHOLD}
 
 
 def test_profile_page_shows_daily_missions(client, app):

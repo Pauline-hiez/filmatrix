@@ -553,9 +553,134 @@
             .fragment-giftbox-glow,
             .fragment-giftbox.is-opening .fragment-giftbox-glow,
             .fragment-giftbox.is-opening .fragment-giftbox-img,
-            .fragment-giftbox.is-opening .fragment-giftbox-flash {
+            .fragment-giftbox.is-opening .fragment-giftbox-flash,
+            .level-up-overlay,
+            .level-up-overlay.is-leaving,
+            .level-up-confetti-piece,
+            .level-up-card,
+            .level-up-ring-number.is-swapping {
                 animation: none !important;
             }
+        }
+
+        /* Passage de niveau (static/js/run_reveal.js, showLevelUpAnimation),
+           affiché sur l'écran de fin de partie : voile plein écran + carte
+           centrale + confettis, plutôt qu'un simple toast - un niveau gagné
+           est un temps fort, il mérite une vraie mise en scène. */
+        .level-up-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.18), rgba(2, 6, 23, 0.55) 70%);
+            opacity: 0;
+            animation: levelUpOverlayFadeIn 0.4s ease-out forwards;
+        }
+        .level-up-overlay.is-leaving {
+            animation: levelUpOverlayFadeOut 0.5s ease-in forwards;
+        }
+        @keyframes levelUpOverlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes levelUpOverlayFadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .level-up-confetti-piece {
+            position: absolute;
+            top: -5%;
+            left: var(--x, 50%);
+            width: var(--size, 8px);
+            height: calc(var(--size, 8px) * 0.4);
+            background: var(--color, #22d3ee);
+            opacity: 0.95;
+            border-radius: 1px;
+            animation: levelUpConfettiFall var(--duration, 2.6s) var(--delay, 0s) ease-in forwards;
+        }
+        @keyframes levelUpConfettiFall {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            8% { opacity: 1; }
+            100% { transform: translate(var(--dx, 40px), 108vh) rotate(var(--spin, 540deg)); opacity: 0.9; }
+        }
+
+        .level-up-card {
+            position: relative;
+            text-align: center;
+            padding: 2rem 2.75rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(34, 211, 238, 0.5);
+            background: linear-gradient(160deg, rgba(15, 23, 42, 0.92), rgba(30, 27, 75, 0.92));
+            box-shadow: 0 0 60px rgba(34, 211, 238, 0.35), 0 0 120px rgba(167, 139, 250, 0.25);
+            animation: levelUpCardPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+        }
+        @keyframes levelUpCardPop {
+            0% { opacity: 0; transform: scale(0.6) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .level-up-card-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Anneau qui se remplit d'un tour complet (0 à 100%, piloté en JS via
+           --level-pct par run_reveal.js) avant que le chiffre ne bascule -
+           même mécanisme de disque conique que le chrono en jeu
+           (.game-timer-ring, templates/quiz/question.html), pour rester dans
+           le même langage visuel plutôt que d'inventer un nouveau composant. */
+        .level-up-ring {
+            position: relative;
+            display: flex;
+            width: 9rem;
+            height: 9rem;
+            margin: 1.1rem auto;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background: conic-gradient(#22d3ee calc(var(--level-pct, 0) * 1%), rgb(51 65 85 / 0.6) 0);
+            box-shadow: 0 0 30px -6px rgba(34, 211, 238, 0.7);
+        }
+        .level-up-ring::before {
+            content: "";
+            position: absolute;
+            inset: 0.5rem;
+            border-radius: 9999px;
+            background: rgb(2 6 23 / 0.92);
+        }
+        .level-up-ring-number {
+            position: relative;
+            z-index: 1;
+            font-size: 3.25rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #f8fafc;
+            text-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+        }
+        .level-up-ring-number.is-swapping {
+            animation: levelUpNumberSwap 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes levelUpNumberSwap {
+            0% { transform: scale(1); }
+            35% { transform: scale(0.5) rotate(-8deg); opacity: 0.3; }
+            70% { transform: scale(1.25) rotate(4deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .level-up-card-sub {
+            margin-top: 0.35rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
         }
 
         /* Voile sombre + poussière d'étoiles à poser par-dessus une image de

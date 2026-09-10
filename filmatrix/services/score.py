@@ -55,6 +55,16 @@ def start_run(store, mode: str, question_ids: list[int] | None = None, filters: 
         "filters": filters or {},
         "current_streak": 0,
         "fragment_awarded": False,
+        # Rien de ce qui est gagné pendant la partie n'est écrit en base au
+        # fil de l'eau : ces listes accumulent ce qu'il faudra appliquer
+        # d'un coup à la fin (filmatrix/services/run_rewards.py). Une partie
+        # abandonnée ne les voit jamais consommées - start_run() écrase tout
+        # à la partie suivante, ce qui suffit à tout annuler.
+        "pending_attempts": [],
+        "fragment_candidates": [],
+        "fragment_results": [],
+        "finalized": False,
+        "reveal": None,
     }
 
 def run_fragment_awarded(store, mode: str) -> bool:
@@ -127,11 +137,15 @@ def run_length(store, mode: str, filters: dict | None = None) -> int | None:
 
 def record_answer(
     store, mode: str, question_id: int, is_correct: bool, xp: int = 0, coins: int = 0
-) -> None:
+) -> bool:
     """Ajoute une réponse au score de la partie en cours
 
     Une même question n'est comptée qu'une fois : recharger la page pour
-    répondre à nouveau ne doit pas gonfler le total"""
+    répondre à nouveau ne doit pas gonfler le total. Retourne True si cet
+    appel vient réellement d'enregistrer une nouvelle réponse (False pour un
+    doublon), pour que l'appelant sache s'il doit mettre en file les
+    récompenses de cette question (voir queue_pending_attempt) - sans quoi
+    rejouer la même requête empilerait deux fois le même Attempt en attente."""
     run = store.get(SESSION_KEY)
 
     if run is None or run["mode"] != mode:
@@ -139,7 +153,7 @@ def record_answer(
         run = store[SESSION_KEY]
 
     if question_id in run["answered"]:
-        return
+        return False
 
     run["answered"].append(question_id)
     if is_correct:
@@ -153,6 +167,63 @@ def record_answer(
     # Réaffectation nécessaire : la session Flask ne détecte pas la modification
     # d'un dictionnaire imbriqué, et ne renverrait pas le cookie mis à jour.
     store[SESSION_KEY] = run
+    return True
+
+
+def queue_pending_attempt(
+    store, mode: str, question_id: int, is_correct: bool, earned_xp: int, current_run_streak: int
+) -> None:
+    """Met en attente les données nécessaires pour créer l'Attempt de cette
+    question, sans l'écrire en base tout de suite (voir run_rewards.py)"""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return
+    run.setdefault("pending_attempts", []).append(
+        {
+            "question_id": question_id,
+            "is_correct": is_correct,
+            "earned_xp": earned_xp,
+            "current_run_streak": current_run_streak,
+        }
+    )
+    store[SESSION_KEY] = run
+
+
+def queue_fragment_candidate(store, mode: str, question_id: int, character_name: str | None) -> None:
+    """Met en attente une question éligible à un fragment personnel, sans le
+    tirer tout de suite - un seul candidat aboutira, à la finalisation"""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return
+    run.setdefault("fragment_candidates", []).append(
+        {"question_id": question_id, "character_name": character_name}
+    )
+    store[SESSION_KEY] = run
+
+
+def mark_run_finalized(store, mode: str) -> None:
+    """Marque la partie en cours comme finalisée : ses récompenses ont été
+    appliquées, un rechargement de l'écran de fin ne doit pas les recréditer"""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return
+    run["finalized"] = True
+    store[SESSION_KEY] = run
+
+
+def is_run_finalized(store, mode: str) -> bool:
+    """Indique si la partie en cours a déjà été finalisée"""
+    run = store.get(SESSION_KEY)
+    return bool(run and run.get("mode") == mode and run.get("finalized", False))
+
+
+def read_run_reveal(store, mode: str) -> dict | None:
+    """Retourne le résumé des récompenses de fin de partie (passage de
+    niveau, badges, mini-missions, série) une fois la partie finalisée"""
+    run = store.get(SESSION_KEY)
+    if run is None or run.get("mode") != mode:
+        return None
+    return run.get("reveal")
 
 
 def read_run(store, mode: str) -> dict | None:

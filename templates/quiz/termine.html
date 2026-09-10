@@ -14,6 +14,14 @@
 <script src="{{ url_for('static', filename='js/puzzle_pieces.js') }}"></script>
 <script src="{{ url_for('static', filename='js/fragment_reveal.js') }}"></script>
 {% endif %}
+{% if reveal %}
+{# Badges, mini-missions, série et passage de niveau ne sont plus annoncés en
+   cours de partie (tout peut être perdu si le joueur quitte, voir
+   services/run_rewards.py) : ils sont révélés ici, une fois la partie
+   effectivement terminée, comme les fragments juste au-dessus. #}
+<script type="application/json" id="run-reveal-data">{{ reveal | tojson }}</script>
+<script src="{{ url_for('static', filename='js/run_reveal.js') }}"></script>
+{% endif %}
 <div class="mx-auto max-w-xl">
     <section class="hero-glow relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 px-6 py-12 text-center sm:px-10 sm:py-16">
         <span class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 text-3xl text-cyan-400">

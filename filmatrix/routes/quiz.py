@@ -7,23 +7,10 @@ from filmatrix.extensions import db
 from filmatrix.catalog import REPORT_REASON
 from filmatrix.models import Attempt, Report, Tag, User
 from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG
-from filmatrix.special_games import CORRECT_ANSWERS_PER_TICKET
-from filmatrix.services.badges import BADGES, check_and_award_badges
 from filmatrix.services.character_answers import character_answer
-from filmatrix.services.collection import (
-    award_fragment_for_question,
-    award_guaranteed_fragment,
-    fragment_result_payload,
-)
-from filmatrix.services.daily_challenges import (
-    MISSION_COIN_REWARD,
-    describe_challenge,
-    update_missions_progress,
-    update_streak_on_completion,
-)
 from filmatrix.services.engine import check_answer, convert_answer, scramble_title
 from filmatrix.services.friends import friend_cards, get_friends_list
-from filmatrix.services.notifications import create_notification
+from filmatrix.services.run_rewards import finalize_run_rewards
 from filmatrix.services.levels import (
     LEVELS,
     calculate_level,
@@ -55,13 +42,13 @@ from filmatrix.services.score import (
     GUEST_PREVIEW_LENGTH,
     QUESTIONS_PER_RUN,
     RUN_LENGTH_PRESETS,
-    add_run_fragment_result,
-    mark_run_fragment_awarded,
+    queue_fragment_candidate,
+    queue_pending_attempt,
     read_run,
     read_run_fragment_results,
+    read_run_reveal,
     record_answer,
     resolve_run_length,
-    run_fragment_awarded,
     run_length,
     start_run,
 )
@@ -201,10 +188,16 @@ def quiz(mode: str, position: int) -> str:
     )
 
     if question is None:
+        # Filet de sécurité : si la dernière réponse n'a pas pu finaliser la
+        # partie (ex. lien direct vers cette position), ce GET s'en charge -
+        # idempotent si finalize_run_rewards() a déjà tout appliqué.
+        if current_user.is_authenticated:
+            finalize_run_rewards(current_user, session, mode)
         return render_template(
             "quiz/termine.html",
             score=read_run(session, mode),
             fragment_results=read_run_fragment_results(session, mode),
+            reveal=read_run_reveal(session, mode),
         )
 
     # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
@@ -259,16 +252,9 @@ def quiz(mode: str, position: int) -> str:
                     "was_timeout": is_timeout,
                 }
 
-        new_badges = []
         earned_xp = 0
         earned_coins = 0
-        fragment_result = None
-        completed_missions = []
-        day_just_completed = False
-        day_completed_fragment_result = None
-        streak_bonus_fragment_result = None
-        reached_streak_bonus = False
-        reached_correct_answers_ticket = False
+        already_answered_correctly = False
 
         if current_user.is_authenticated:
             already_answered_correctly = Attempt.query.filter_by(
@@ -277,118 +263,39 @@ def quiz(mode: str, position: int) -> str:
                 is_correct=True,
             ).first() is not None
 
-            attempt = Attempt(
-                user_id=current_user.id,
-                question_id=question.id,
-                is_correct=is_correct,
-            )
-            db.session.add(attempt)
-
-            # Second chemin d'obtention d'un Ticket d'Or (le premier étant la
-            # série de connexion de 7 jours, plus bas) : le volume de bonnes
-            # réponses, répétitions comprises, tous modes confondus — pas
-            # limité aux premières réussites comme l'XP juste en dessous, qui
-            # elle ne récompense que la maîtrise d'une question inédite.
-            if is_correct:
-                current_user.total_correct_answers += 1
-                if current_user.total_correct_answers % CORRECT_ANSWERS_PER_TICKET == 0:
-                    current_user.golden_tickets += 1
-                    reached_correct_answers_ticket = True
-
             if is_correct and not already_answered_correctly:
                 earned_xp = xp_for_level(question_difficulty)
                 earned_coins = coins_for_level(question_difficulty)
-                current_user.total_xp += earned_xp
-                current_user.coins += earned_coins
-                attempt.earned_xp = earned_xp
-
-                # Le fragment est lié à l'univers de la question : une citation
-                # connue vise directement le personnage qui l'a prononcée, les
-                # autres modes tirent un personnage de la franchise. Un seul
-                # fragment par partie, pour garder la collection motivante.
-                if not run_fragment_awarded(session, mode):
-                    character_name = character_answer(question) if character_mode else None
-                    fragment_result = award_fragment_for_question(
-                        current_user, question, character_name=character_name
-                    )
-                    if fragment_result is not None:
-                        mark_run_fragment_awarded(session, mode)
-
-            db.session.commit()
-
-            if reached_correct_answers_ticket:
-                create_notification(
-                    current_user,
-                    f"🎟️ Tu as gagné un Ticket d'Or pour tes {current_user.total_correct_answers} bonnes réponses !",
-                    link=url_for("special_games.hub"),
-                )
-
-            new_badge_codes = check_and_award_badges(current_user)
-            db.session.commit()
-
-            new_badges = [BADGES[code] for code in new_badge_codes]
 
         # record_answer doit s'exécuter avant la lecture de current_streak :
         # c'est lui qui met la série à jour avec la réponse qu'on vient de
         # traiter. La lire avant refléterait l'état d'avant cette réponse.
-        record_answer(session, mode, question.id, is_correct, earned_xp, earned_coins)
+        was_new = record_answer(session, mode, question.id, is_correct, earned_xp, earned_coins)
 
-        if current_user.is_authenticated:
+        # Rien de ce qui est gagné pendant la partie n'est écrit en base tout
+        # de suite : tout est mis en file ici (XP, pièces, Attempt, candidat
+        # à un fragment) et appliqué d'un coup par finalize_run_rewards(),
+        # seulement si la partie va jusqu'à son terme - une partie abandonnée
+        # ne doit rien laisser derrière elle (voir services/run_rewards.py).
+        if current_user.is_authenticated and was_new:
             current_run_streak = session.get("run", {}).get("current_streak", 0)
-            completed_missions, day_just_completed = update_missions_progress(
-                current_user, question, is_correct, current_run_streak=current_run_streak
-            )
+            queue_pending_attempt(session, mode, question.id, is_correct, earned_xp, current_run_streak)
+            if is_correct and not already_answered_correctly:
+                character_name = character_answer(question) if character_mode else None
+                queue_fragment_candidate(session, mode, question.id, character_name)
 
-            # Chaque mini-mission complétée donne des pièces tout de suite.
-            # Le fragment garanti et l'avancée de série, eux, attendent que
-            # les trois missions du jour soient toutes complétées : voir
-            # update_missions_progress.
-            if completed_missions:
-                current_user.coins += MISSION_COIN_REWARD * len(completed_missions)
-
-            if day_just_completed:
-                day_completed_fragment_result = award_guaranteed_fragment(current_user)
-
-                reached_streak_bonus = update_streak_on_completion(current_user)
-                if reached_streak_bonus:
-                    streak_bonus_fragment_result = award_guaranteed_fragment(
-                        current_user, minimum_rarity=["rare", "epique", "legendaire", "mythique"]
-                    )
-                    # Ressource des Jeux Spéciaux (filmatrix/special_games.py) :
-                    # même palier que le fragment rare garanti ci-dessus, pour
-                    # un rythme hebdomadaire naturel sans nouveau système de
-                    # mission dédié (voir services/daily_challenges.py).
-                    current_user.golden_tickets += 1
-
-                db.session.commit()
-
-                if reached_streak_bonus:
-                    create_notification(
-                        current_user,
-                        "🎟️ Tu as gagné un Ticket d'Or pour ta série de connexion !",
-                        link=url_for("special_games.hub"),
-                    )
-
-        # Les fragments gagnés ne sont pas renvoyés tout de suite au client :
-        # ils sont mis de côté pour l'écran de fin de partie, qui les révèle
-        # tous ensemble dans une animation dédiée (voir templates/quiz/termine.html).
-        if current_user.is_authenticated:
-            for gained in (fragment_result, day_completed_fragment_result, streak_bonus_fragment_result):
-                if gained is not None:
-                    add_run_fragment_result(session, mode, fragment_result_payload(current_user, gained))
+            # La dernière question répondue déclenche la finalisation tout de
+            # suite, plutôt que de dépendre uniquement du GET suivant qui
+            # affiche termine.html : si l'onglet se ferme juste après cette
+            # réponse, les récompenses sont déjà appliquées (ce GET reste
+            # inoffensif à appeler ensuite, finalize_run_rewards() est
+            # idempotente une fois la partie marquée finalisée).
+            if position == total_questions:
+                finalize_run_rewards(current_user, session, mode)
 
         correct_answer_text = None if is_correct else format_correct_answer(
             question,
             alternate_answer=character_answer(question) if character_mode else None,
-        )
-
-        # Les mini-missions complétées et le bonus de série sont annoncés
-        # tout de suite (comme les badges) : contrairement aux fragments, ils
-        # ne concernent pas la collection et n'ont pas besoin d'attendre
-        # l'écran de fin.
-        completed_missions_info = [describe_challenge(mission) for mission in completed_missions]
-        streak_bonus_info = (
-            {"streak": current_user.current_streak} if reached_streak_bonus else None
         )
 
         if question.mode == "chronologie":
@@ -404,21 +311,13 @@ def quiz(mode: str, position: int) -> str:
                 "is_correct": is_correct,
                 "position_results": position_results,
                 "give_up": True,
-                "new_badges": new_badges,
                 "correct_answer": correct_answer_text,
-                "completed_missions": completed_missions_info,
-                "day_completed": day_just_completed,
-                "streak_bonus": streak_bonus_info,
             }
 
         return {
             "is_correct": is_correct,
             "give_up": True,
-            "new_badges": new_badges,
             "correct_answer": correct_answer_text,
-            "completed_missions": completed_missions_info,
-            "day_completed": day_just_completed,
-            "streak_bonus": streak_bonus_info,
         }
 
     scrambled_title = None
