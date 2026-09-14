@@ -86,10 +86,13 @@
                                 </form>
                             </details>
                             {% elif submission.status == "approved" and submission.question_id %}
-                            <a href="{{ url_for('admin.admin_questions_edit', question_id=submission.question_id) }}"
-                               class="admin-action-btn admin-action-btn--edit" aria-label="Voir la question créée" title="Voir la question créée">
+                            <button type="button"
+                                    class="question-edit-button admin-action-btn admin-action-btn--edit"
+                                    data-question-id="{{ submission.question_id }}"
+                                    data-edit-url="{{ url_for('admin.admin_questions_edit', question_id=submission.question_id) }}"
+                                    aria-label="Voir la question créée" title="Voir la question créée">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                            </a>
+                            </button>
                             {% endif %}
                         </div>
                 </td>
@@ -123,4 +126,5 @@
 </div>
 <script src="{{ url_for('static', filename='js/admin_suggestion_preview_modal.js') }}"></script>
 <script src="{{ url_for('static', filename='js/admin_suggestion_review_modal.js') }}"></script>
+{% include "admin/_question_edit_modal.html" %}
 {% endblock %}

@@ -16,6 +16,7 @@ from filmatrix.services.puzzle import get_puzzle_grid, puzzle_columns
 TAG_TYPE_SPECIFICITY = {
     "univers": 4,
     "genre": 3,
+    "theme": 3,
     "realisateur": 2,
     "acteur": 2,
     "studio": 2,

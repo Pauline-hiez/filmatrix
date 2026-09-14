@@ -177,8 +177,15 @@ class QuestionSubmission(db.Model):
     user = db.relationship("User", foreign_keys=[user_id], backref="question_submissions")
     reviewed_by = db.relationship("User", foreign_keys=[reviewed_by_id])
     question = db.relationship("Question")
-    tags = db.relationship("Tag", secondary=submission_tags)
-    reviewed_tags = db.relationship("Tag", secondary=submission_reviewed_tags)
+    # backref indispensable : sans lui, Tag n'a aucune connaissance de ces
+    # deux tables d'association, et supprimer un Tag via l'ORM (admin_tags_delete)
+    # laisse des lignes orphelines ici sans jamais lever d'erreur (incident réel -
+    # Question.tags et Album.tags ont ce même besoin, satisfait chez eux par un
+    # backref déjà en place).
+    tags = db.relationship("Tag", secondary=submission_tags, backref=db.backref("submissions", lazy="dynamic"))
+    reviewed_tags = db.relationship(
+        "Tag", secondary=submission_reviewed_tags, backref=db.backref("reviewed_by_submissions", lazy="dynamic")
+    )
 
 class Friendship(db.Model):
     """Représente une relation d'amitié entre deux utilisateurs"""
@@ -283,12 +290,18 @@ question_tags = db.Table(
 )
 
 class Tag(db.Model):
-    """Représente un tag de thème (genre) ou d'univers, applicable à des questions."""
+    """Représente un tag de thème (genre) ou d'univers, applicable à des questions.
+
+    Le nom est unique PAR TYPE, pas globalement : "Halloween" peut exister à
+    la fois comme univers (la franchise de films) et comme thème (la période/
+    l'ambiance), ce sont deux tags distincts qui portent volontairement le
+    même nom."""
 
     __tablename__ = "tags"
+    __table_args__ = (db.UniqueConstraint("name", "tag_type", name="uq_tags_name_tag_type"),)
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False, unique=True)
+    name = db.Column(db.String(50), nullable=False)
     tag_type = db.Column(db.String(20), nullable=False)
 
     questions = db.relationship("Question", secondary=question_tags, backref="tags")

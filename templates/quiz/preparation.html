@@ -126,6 +126,22 @@
                     </div>
                     </div>
 
+                    {% set theme_tags = all_tags | selectattr("tag_type", "equalto", "theme") | list %}
+                    {% if theme_tags %}
+                    <div>
+                        <label for="tag-theme" class="mb-0.5 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            🎃 Thème
+                        </label>
+                        <select id="tag-theme" data-tag-filter data-combobox
+                                class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                            <option value="">Tous les thèmes</option>
+                            {% for tag in theme_tags %}
+                            <option value="{{ tag.id }}" {% if tag.id in selected_tag_ids %}selected{% endif %}>{{ humanize_tag_name(tag.name) }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+
                     {% set shown_univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
                     {% set shown_univers_ids = shown_univers_tags | map(attribute="id") | list %}
                     {% set hidden_univers_tags = all_univers_tags | rejectattr("id", "in", shown_univers_ids) | list %}

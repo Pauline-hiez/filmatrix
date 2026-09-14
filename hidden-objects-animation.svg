@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">La salle des animations — illustration d'objets cachés</title>
+  <desc id="desc">Une salle de projection fantastique remplie d'objets inspirés des dessins animés et films d'animation.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="0.58" stop-color="#312e81"/>
+      <stop offset="1" stop-color="#17133d"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#312e81"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="curtain" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#7f1d1d"/>
+      <stop offset="0.48" stop-color="#dc2626"/>
+      <stop offset="1" stop-color="#581c87"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fff7ad"/>
+      <stop offset="0.45" stop-color="#facc15"/>
+      <stop offset="1" stop-color="#a16207"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0.8" y2="1">
+      <stop stop-color="#b45309"/>
+      <stop offset="1" stop-color="#451a03"/>
+    </linearGradient>
+    <radialGradient id="lampGlow">
+      <stop stop-color="#fde68a" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#fbbf24" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dy="12"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.42"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="18"/></filter>
+    <pattern id="rug" width="90" height="90" patternUnits="userSpaceOnUse">
+      <rect width="90" height="90" fill="#4c1d95"/>
+      <path d="M0 45L45 0L90 45L45 90Z" fill="none" stroke="#a78bfa" stroke-opacity=".24" stroke-width="4"/>
+      <circle cx="45" cy="45" r="6" fill="#fbbf24" opacity=".5"/>
+    </pattern>
+  </defs>
+
+  <!-- Décor général -->
+  <rect width="1600" height="1000" fill="url(#wall)"/>
+  <ellipse cx="790" cy="325" rx="520" ry="280" fill="#818cf8" opacity=".08" filter="url(#softGlow)"/>
+  <rect y="700" width="1600" height="300" fill="url(#floor)"/>
+  <path d="M0 720 Q800 650 1600 720 L1600 1000H0Z" fill="url(#rug)" opacity=".62"/>
+
+  <!-- Rideaux -->
+  <path d="M0 0H245 Q305 245 230 545 Q180 690 0 720Z" fill="url(#curtain)"/>
+  <path d="M1600 0H1355 Q1295 245 1370 545 Q1420 690 1600 720Z" fill="url(#curtain)"/>
+  <path d="M0 0H220M1600 0H1380" stroke="#fbbf24" stroke-width="18" opacity=".8"/>
+  <path d="M92 0 Q175 260 90 660M180 0 Q255 250 170 610M1508 0 Q1425 260 1510 660M1420 0 Q1345 250 1430 610" fill="none" stroke="#fecaca" stroke-opacity=".18" stroke-width="22"/>
+
+  <!-- Écran de cinéma -->
+  <g filter="url(#shadow)">
+    <rect x="410" y="86" width="780" height="430" rx="20" fill="#0b102e" stroke="#facc15" stroke-width="9"/>
+    <rect x="442" y="118" width="716" height="366" rx="10" fill="#fef3c7"/>
+    <path d="M442 430 Q610 305 760 388 T1158 300V484H442Z" fill="#f59e0b" opacity=".72"/>
+    <path d="M442 365 Q615 245 790 345 T1158 220V484H442Z" fill="#fb7185" opacity=".55"/>
+    <circle cx="1006" cy="196" r="58" fill="#fde68a" opacity=".9"/>
+    <path d="M505 377 Q600 240 697 375 Q790 470 887 333 Q982 205 1085 360" fill="none" stroke="#4338ca" stroke-width="26" opacity=".76"/>
+    <text x="800" y="145" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" letter-spacing="7" fill="#312e81" opacity=".8">ANIMATION PALACE</text>
+  </g>
+  <path d="M560 520V610M1040 520V610" stroke="#facc15" stroke-width="14"/>
+
+  <!-- Étagère gauche -->
+  <g filter="url(#shadow)">
+    <rect x="150" y="300" width="235" height="390" rx="10" fill="url(#wood)" stroke="#fbbf24" stroke-width="7"/>
+    <path d="M165 410H370M165 520H370M165 610H370" stroke="#fbbf24" stroke-width="11"/>
+    <!-- pomme rouge -->
+    <path d="M215 385 C178 350 194 315 229 324 C257 331 263 365 247 391 C237 407 224 404 215 385Z" fill="#dc2626"/>
+    <path d="M229 327 Q230 304 251 292" fill="none" stroke="#451a03" stroke-width="8"/>
+    <path d="M241 312 Q275 294 286 319 Q259 331 241 312Z" fill="#65a30d"/>
+    <!-- lampe magique -->
+    <path d="M285 474 Q305 438 343 461 L357 487 Q355 526 322 532 Q282 525 285 474Z" fill="url(#gold)"/>
+    <path d="M285 476 Q255 459 238 475 Q259 505 291 502" fill="none" stroke="#facc15" stroke-width="13"/>
+    <path d="M345 475 Q380 454 381 479 Q367 496 351 496" fill="none" stroke="#facc15" stroke-width="13"/>
+    <path d="M316 452 Q296 421 326 406 Q353 422 331 452" fill="#a78bfa" opacity=".75"/>
+    <!-- étoile dorée / badge -->
+    <path d="M255 567 l9 23 25 1-20 15 7 24-21-13-22 13 8-24-20-15 25-1Z" fill="url(#gold)"/>
+    <!-- petit coquillage -->
+    <path d="M184 648 Q215 599 246 648 Q218 675 184 648Z" fill="#fbcfe8" stroke="#be185d" stroke-width="5"/>
+    <path d="M196 645L215 613M211 653L227 615M228 654L238 629" stroke="#be185d" stroke-width="3"/>
+  </g>
+
+  <!-- Étagère droite -->
+  <g filter="url(#shadow)">
+    <rect x="1215" y="300" width="235" height="390" rx="10" fill="url(#wood)" stroke="#fbbf24" stroke-width="7"/>
+    <path d="M1230 410H1435M1230 520H1435M1230 610H1435" stroke="#fbbf24" stroke-width="11"/>
+    <!-- pantoufle de verre -->
+    <path d="M1280 378 Q1293 345 1322 360 L1381 402 Q1393 414 1376 423 L1308 414 Q1275 407 1280 378Z" fill="#bae6fd" fill-opacity=".78" stroke="#e0f2fe" stroke-width="7"/>
+    <path d="M1302 411 Q1337 430 1380 421" fill="none" stroke="#38bdf8" stroke-width="5"/>
+    <!-- bobine -->
+    <circle cx="1340" cy="475" r="43" fill="#2563eb" stroke="#93c5fd" stroke-width="7"/>
+    <circle cx="1340" cy="475" r="13" fill="#1e1b4b"/>
+    <path d="M1315 445L1367 505M1367 445L1315 505" stroke="#bfdbfe" stroke-width="7" opacity=".8"/>
+    <!-- roue / rouet -->
+    <circle cx="1320" cy="575" r="40" fill="none" stroke="#fbbf24" stroke-width="9"/>
+    <circle cx="1320" cy="575" r="8" fill="#fbbf24"/>
+    <path d="M1320 535V615M1280 575H1360M1292 547L1348 603M1348 547L1292 603" stroke="#fbbf24" stroke-width="5"/>
+    <path d="M1365 615L1402 622" stroke="#fbbf24" stroke-width="9"/>
+  </g>
+
+  <!-- Table centrale -->
+  <g filter="url(#shadow)">
+    <path d="M390 720 Q800 665 1210 720 L1150 820 Q800 860 450 820Z" fill="url(#wood)" stroke="#f59e0b" stroke-width="8"/>
+    <path d="M475 812L425 1000M1125 812L1175 1000" stroke="#451a03" stroke-width="28"/>
+    <path d="M560 790 Q800 750 1040 790" fill="none" stroke="#fbbf24" stroke-width="4" opacity=".7"/>
+    <!-- vase + fleur -->
+    <path d="M686 737 Q700 686 735 686 Q770 686 784 737 L768 774 H702Z" fill="#0ea5e9" stroke="#bae6fd" stroke-width="5"/>
+    <path d="M735 688V600" stroke="#65a30d" stroke-width="9"/>
+    <path d="M735 627 Q694 599 699 570 Q738 574 745 610 Q776 572 802 592 Q792 630 745 639Z" fill="#ec4899"/>
+    <!-- objet nez en bois -->
+    <path d="M842 742 Q870 695 929 708 Q965 718 956 743 Q944 766 887 765Z" fill="#c2410c" stroke="#7c2d12" stroke-width="6"/>
+    <path d="M856 730 Q885 717 916 728" fill="none" stroke="#fb923c" stroke-width="5"/>
+    <!-- petit œuf de dragon -->
+    <path d="M1000 764 Q974 733 1000 700 Q1028 670 1057 700 Q1082 735 1055 764Z" fill="#22c55e" stroke="#bbf7d0" stroke-width="5"/>
+    <path d="M1007 716L1052 738M1003 741L1040 756M1021 692L1064 719" stroke="#166534" stroke-width="5"/>
+  </g>
+
+  <!-- Sol : tapis + objets discrets -->
+  <!-- ficelle de ballon -->
+  <path d="M287 840 Q330 755 300 670 Q276 600 325 570" fill="none" stroke="#fef3c7" stroke-width="4"/>
+  <path d="M324 580 C285 547 290 493 336 478 C382 493 386 547 339 580Z" fill="#ef4444" stroke="#fecaca" stroke-width="5"/>
+  <!-- chaussure rouge -->
+  <path d="M1190 887 Q1230 861 1270 883 L1332 916 Q1353 929 1332 944 H1187 Q1161 928 1190 887Z" fill="#dc2626" stroke="#fecaca" stroke-width="6"/>
+  <path d="M1189 931H1336" stroke="#7f1d1d" stroke-width="9"/>
+  <!-- clé dorée -->
+  <g transform="translate(245 870) rotate(-22)">
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#facc15" stroke-width="9"/>
+    <path d="M18 12L95 72M72 54L89 39M84 66L101 51" stroke="#facc15" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <!-- poisson-jouet -->
+  <path d="M1360 820 Q1400 780 1450 820 Q1400 860 1360 820Z" fill="#38bdf8" stroke="#bae6fd" stroke-width="5"/>
+  <path d="M1360 820L1334 790V850Z" fill="#0ea5e9" stroke="#bae6fd" stroke-width="5"/>
+  <circle cx="1418" cy="814" r="5" fill="#0f172a"/>
+
+  <!-- Lumières -->
+  <g>
+    <circle cx="805" cy="592" r="180" fill="url(#lampGlow)" opacity=".45"/>
+    <path d="M764 585 Q800 565 836 585 L821 640 Q800 656 779 640Z" fill="#fbbf24" stroke="#fef3c7" stroke-width="6"/>
+    <path d="M778 580 Q800 545 822 580" fill="none" stroke="#fbbf24" stroke-width="9"/>
+  </g>
+  <g fill="#fde68a">
+    <circle cx="330" cy="90" r="5"/><circle cx="1270" cy="115" r="5"/><circle cx="1180" cy="180" r="4"/><circle cx="380" cy="210" r="4"/><circle cx="1450" cy="250" r="5"/>
+  </g>
+</svg>

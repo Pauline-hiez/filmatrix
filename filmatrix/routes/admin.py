@@ -123,6 +123,24 @@ def save_album_image(uploaded_file):
         raise ValueError("Échec de l'envoi de l'image vers le stockage. Réessaie.") from error
 
 
+def dedupe_tags(tags):
+    """Déduplique une liste de Tag par id, en conservant l'ordre.
+
+    submission.tags peut contenir un id de tag en double si deux noms ont
+    fini par pointer vers le même Tag (ex. rapprochement insensible à la
+    casse fait ailleurs) : affecter une telle liste à question.tags ferait
+    échouer l'insertion dans question_tags (contrainte unique sur
+    (question_id, tag_id)), comme rencontré une fois sur une suggestion
+    importée en lot."""
+    seen_ids = set()
+    deduped = []
+    for tag in tags:
+        if tag.id not in seen_ids:
+            seen_ids.add(tag.id)
+            deduped.append(tag)
+    return deduped
+
+
 def openmoji_hex_to_unicode(code: str) -> str:
     """Convertit un hexcode OpenMoji (ex: "1F3AC", ou "1F1EB-1F1F7" pour un
     drapeau) en l'emoji Unicode réel qu'il représente."""
@@ -661,7 +679,7 @@ def admin_suggestions_approve(submission_id: int) -> str:
         content_type=submission.content_type,
         difficulty=submission.difficulty,
     )
-    question.tags = submission.tags
+    question.tags = dedupe_tags(submission.tags)
     db.session.add(question)
     db.session.flush()
 
@@ -711,7 +729,7 @@ def admin_suggestions_review_form(submission_id: int) -> str:
         content_type = request.form.get("content_type", submission.content_type)
         difficulty = request.form.get("difficulty", submission.difficulty)
         selected_tag_ids = request.form.getlist("tags")
-        reviewed_tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
+        reviewed_tags = dedupe_tags(Tag.query.filter(Tag.id.in_(selected_tag_ids)).all())
 
         # Les champs originaux du joueur (submission.prompt, .payload...) ne
         # sont jamais réécrits : les retouches vivent dans les colonnes
@@ -811,19 +829,22 @@ def admin_tags_new() -> str:
     """Crée un nouveau tag"""
     name = request.form.get("name", "").strip()
     tag_type = request.form.get("tag_type", "genre")
-    allowed_types = {"genre", "univers", "pays", "epoque", "annee", "realisateur", "acteur", "studio", "autre"}
+    allowed_types = {"genre", "univers", "theme", "pays", "epoque", "annee", "realisateur", "acteur", "studio", "autre"}
     if tag_type not in allowed_types:
         tag_type = "autre"
 
     if name:
-        existing = Tag.query.filter(func.lower(Tag.name) == name.lower()).first()
+        # Le nom est unique PAR TYPE, pas globalement (voir Tag dans
+        # models.py) : "Halloween" peut exister à la fois comme univers et
+        # comme thème, ce n'est un doublon que dans le même type.
+        existing = Tag.query.filter(func.lower(Tag.name) == name.lower(), Tag.tag_type == tag_type).first()
         if existing is None:
             new_tag = Tag(name=name, tag_type=tag_type)
             db.session.add(new_tag)
             db.session.commit()
             flash(f"Tag '{name}' crée.")
         else:
-            flash("Ce tag existe déjà.")
+            flash("Ce tag existe déjà dans ce type.")
     return redirect(url_for("admin.admin_tags_list"))
 
 @bp.route("/admin/tags/<int:tag_id>/renommer", methods=["POST"])
@@ -838,9 +859,11 @@ def admin_tags_rename(tag_id: int) -> str:
         flash("Le nom ne peut pas être vide.")
         return redirect(url_for("admin.admin_tags_list"))
 
-    existing = Tag.query.filter(func.lower(Tag.name) == name.lower(), Tag.id != tag.id).first()
+    existing = Tag.query.filter(
+        func.lower(Tag.name) == name.lower(), Tag.tag_type == tag.tag_type, Tag.id != tag.id
+    ).first()
     if existing is not None:
-        flash("Ce tag existe déjà.")
+        flash("Ce tag existe déjà dans ce type.")
         return redirect(url_for("admin.admin_tags_list"))
 
     tag.name = name
@@ -863,8 +886,9 @@ def admin_tags_merge() -> str:
 
     keeper = Tag.query.get_or_404(keeper_id)
     dup = Tag.query.get_or_404(dup_id)
-    if keeper.tag_type != "univers" or dup.tag_type != "univers":
-        flash("La fusion n'est disponible que pour les tags univers.")
+    mergeable_types = {"univers", "theme"}
+    if keeper.tag_type not in mergeable_types or dup.tag_type != keeper.tag_type:
+        flash("La fusion n'est disponible qu'entre deux tags univers, ou deux tags thème.")
         return redirect(url_for("admin.admin_tags_list"))
 
     merge_tag_into(keeper, dup)
