@@ -51,7 +51,18 @@
             }
         });
 
-        audio.addEventListener("play", function () { setPlaying(true); });
+        let hasStartedPlaying = false;
+        audio.addEventListener("play", function () {
+            setPlaying(true);
+            if (!hasStartedPlaying) {
+                hasStartedPlaying = true;
+                // Signale à quiz.js que l'extrait joue vraiment : le chrono de
+                // réponse attend ce signal plutôt que de démarrer au chargement
+                // de la page, pour ne pas grignoter le temps de réponse pendant
+                // que l'audio charge.
+                player.dispatchEvent(new CustomEvent("audio-player:started", { bubbles: true }));
+            }
+        });
         audio.addEventListener("pause", function () { setPlaying(false); });
         audio.addEventListener("ended", function () {
             setPlaying(false);

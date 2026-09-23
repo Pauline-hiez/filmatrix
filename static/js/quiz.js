@@ -149,36 +149,61 @@ function updateTimerDisplay(percentage) {
 
 let timerInterval;
 
-if (document.getElementById("riddle-submit")) {
-    timerInterval = setInterval(function () {
-        remainingTime -= 1;
-        const percentage = (remainingTime / TOTAL_DURATION) * 100;
-        setTimerPercentage(percentage);
-        updateTimerDisplay(percentage);
+function startTimer() {
+    if (document.getElementById("riddle-submit")) {
+        timerInterval = setInterval(function () {
+            remainingTime -= 1;
+            const percentage = (remainingTime / TOTAL_DURATION) * 100;
+            setTimerPercentage(percentage);
+            updateTimerDisplay(percentage);
 
-        if (remainingTime <= 0) {
-            document.getElementById("riddle-submit").click();
+            if (remainingTime <= 0) {
+                document.getElementById("riddle-submit").click();
+            }
+        }, 1000);
+    } else {
+        timerInterval = setInterval(function () {
+            remainingTime -= 1;
+            const percentage = (remainingTime / TOTAL_DURATION) * 100;
+            setTimerPercentage(percentage);
+            updateTimerDisplay(percentage);
+
+            if (remainingTime <= 0) {
+                (async function () {
+                    const result = await sendAnswer("timeout=true");
+                    if (!result) {
+                        return;
+                    }
+
+                    showAnswerFeedback(result.is_correct, result.correct_answer);
+                    goToNextQuestion();
+                })();
+            }
+        }, 1000);
+    }
+}
+
+// Blindtest/dialogue : le chrono ne doit pas grignoter le temps de réponse
+// pendant que l'extrait charge ou attend un clic (autoplay bloqué par le
+// navigateur) - il démarre au premier "play" réel du lecteur plutôt qu'au
+// chargement de la page. Filet de sécurité à 5s pour ne pas laisser un
+// joueur repousser indéfiniment en ne cliquant jamais play, et vérification
+// de alreadyAnswered au cas où la réponse aurait déjà été envoyée entre
+// temps (ex. un joueur qui répond très vite sans attendre l'extrait).
+const audioPlayerElement = document.querySelector("[data-audio-player]");
+if (audioPlayerElement) {
+    let timerStarted = false;
+    function startTimerOnce() {
+        if (timerStarted || alreadyAnswered) {
+            return;
         }
-    }, 1000);
+        timerStarted = true;
+        startTimer();
+    }
+    document.addEventListener("audio-player:started", startTimerOnce, { once: true });
+    setTimeout(startTimerOnce, 5000);
 } else {
-    timerInterval = setInterval(function () {
-        remainingTime -= 1;
-        const percentage = (remainingTime / TOTAL_DURATION) * 100;
-        setTimerPercentage(percentage);
-        updateTimerDisplay(percentage);
-
-        if (remainingTime <= 0) {
-            (async function () {
-                const result = await sendAnswer("timeout=true");
-                if (!result) {
-                    return;
-                }
-
-                showAnswerFeedback(result.is_correct, result.correct_answer);
-                goToNextQuestion();
-            })();
-        }
-    }, 1000);
+    startTimer();
 }
 
 const chronologyFilms = document.querySelectorAll(".chronology-film");

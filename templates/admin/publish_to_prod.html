@@ -1,0 +1,100 @@
+{% extends "admin/base_admin.html" %}
+{% from "partials/question_content_preview.html" import question_content_preview %}
+
+{% block admin_content %}
+<div class="flex flex-col gap-4">
+    <div>
+        <h1 class="text-xl font-bold text-slate-100">Publier vers la production</h1>
+        <p class="mt-1 text-sm text-slate-400">
+            Questions créées en local, absentes de la base de production. Rien n'est
+            supprimé ni modifié côté prod : seules les questions cochées ci-dessous
+            y seront ajoutées.
+        </p>
+    </div>
+
+    {% if error %}
+    <p class="rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+        Impossible de contacter la production : {{ error }}
+    </p>
+    {% elif not publishable %}
+    <p class="rounded-lg border border-slate-700 bg-slate-900/50 px-4 py-3 text-sm text-slate-400">
+        Rien à publier : toutes les questions locales éligibles existent déjà en production.
+    </p>
+    {% else %}
+    <form method="POST" class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+            <button type="button" id="publish-select-all" class="text-xs font-bold text-cyan-400 hover:text-cyan-300">Tout sélectionner</button>
+            <span class="text-xs text-slate-600">·</span>
+            <button type="button" id="publish-select-none" class="text-xs font-bold text-cyan-400 hover:text-cyan-300">Tout désélectionner</button>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            {% for question in publishable %}
+            <details class="rounded-lg border border-slate-700 bg-slate-950/60 hover:border-cyan-400/40">
+                <summary class="flex cursor-pointer list-none items-center gap-3 px-3 py-2">
+                    {# stopPropagation : le <summary> englobe toute la ligne pour
+                       agrandir la zone cliquable, mais cocher/décocher plusieurs
+                       questions de suite ne doit pas rouvrir/refermer le détail
+                       à chaque clic. #}
+                    <input type="checkbox" name="question_ids" value="{{ question.id }}" checked
+                           class="publish-checkbox h-4 w-4 shrink-0 accent-cyan-400" onclick="event.stopPropagation()">
+                    <span class="shrink-0 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">{{ question.mode }}</span>
+                    <span class="min-w-0 flex-1 truncate text-sm text-slate-200">{{ question.correct_answer.get('film', '') }}</span>
+                    <span class="shrink-0 text-xs text-cyan-400">Détails</span>
+                </summary>
+                <div class="border-t border-slate-800 px-3 py-3">
+                    {{ question_content_preview(
+                        question.mode,
+                        question.prompt,
+                        question.payload,
+                        question.correct_answer,
+                        question.difficulty,
+                        question.content_type,
+                        question.tags
+                    ) }}
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+
+        <button type="submit" id="publish-submit"
+                class="self-start rounded-lg bg-cyan-400 px-5 py-2 font-bold text-slate-950 transition hover:bg-cyan-300">
+            Publier {{ publishable|length }} question{{ 's' if publishable|length > 1 else '' }}
+        </button>
+    </form>
+    {% endif %}
+</div>
+
+<script>
+    (function () {
+        const selectAll = document.getElementById("publish-select-all");
+        const selectNone = document.getElementById("publish-select-none");
+        const submitButton = document.getElementById("publish-submit");
+        if (!selectAll) return;
+
+        function checkboxes() {
+            return document.querySelectorAll(".publish-checkbox");
+        }
+
+        function updateSubmitLabel() {
+            const count = document.querySelectorAll(".publish-checkbox:checked").length;
+            submitButton.textContent = `Publier ${count} question${count > 1 ? "s" : ""}`;
+            submitButton.disabled = count === 0;
+            submitButton.classList.toggle("opacity-40", count === 0);
+            submitButton.classList.toggle("cursor-not-allowed", count === 0);
+        }
+
+        selectAll.addEventListener("click", function () {
+            checkboxes().forEach(function (cb) { cb.checked = true; });
+            updateSubmitLabel();
+        });
+        selectNone.addEventListener("click", function () {
+            checkboxes().forEach(function (cb) { cb.checked = false; });
+            updateSubmitLabel();
+        });
+        checkboxes().forEach(function (cb) {
+            cb.addEventListener("change", updateSubmitLabel);
+        });
+    })();
+</script>
+{% endblock %}

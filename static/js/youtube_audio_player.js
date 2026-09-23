@@ -65,6 +65,8 @@
 
         duration.textContent = formatTime(clipDuration);
 
+        let hasStartedPlaying = false;
+
         function setPlaying(playing) {
             container.classList.toggle("is-playing", playing);
             playIcon.hidden = playing;
@@ -137,6 +139,14 @@
                     if (event.data === YT.PlayerState.PLAYING) {
                         setPlaying(true);
                         startPolling(player);
+                        if (!hasStartedPlaying) {
+                            hasStartedPlaying = true;
+                            // Signale à quiz.js que l'extrait joue vraiment : le
+                            // chrono de réponse attend ce signal plutôt que de
+                            // démarrer au chargement de la page (voir le
+                            // commentaire équivalent dans audio_player.js).
+                            container.dispatchEvent(new CustomEvent("audio-player:started", { bubbles: true }));
+                        }
                     } else if (event.data === YT.PlayerState.PAUSED) {
                         setPlaying(false);
                         stopPolling();

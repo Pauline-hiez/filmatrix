@@ -20,6 +20,7 @@ from filmatrix.game_modes import GAME_MODES
 from filmatrix.models import Album, Attempt, Question, QuestionSubmission, Report, Tag, User, Character, question_tags
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.tags import merge_tag_into
+from filmatrix.services.prod_sync import find_publishable_questions, publish_questions
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.storage import upload_album_image, upload_character_image
@@ -344,6 +345,43 @@ def admin_questions_delete(question_id: int) -> str:
 
     flash("Question supprimée.")
     return redirect(url_for("admin.admin_questions_list"))
+
+@bp.route("/admin/publier-prod", methods=["GET", "POST"])
+@login_required
+@admin_required
+def admin_publish_to_prod() -> str:
+    """Publie vers la base de production les questions créées en local qui n'y
+    sont pas encore (voir filmatrix/services/prod_sync.py : le déploiement ne
+    touche jamais au contenu, seulement au code et au schéma)."""
+    if request.method == "POST":
+        question_ids = [int(raw_id) for raw_id in request.form.getlist("question_ids")]
+        if not question_ids:
+            flash("Aucune question sélectionnée.")
+            return redirect(url_for("admin.admin_publish_to_prod"))
+
+        try:
+            result = publish_questions(question_ids)
+        except Exception as exc:
+            flash(f"Échec de la publication : {exc}")
+            return redirect(url_for("admin.admin_publish_to_prod"))
+
+        count = len(result["inserted"])
+        flash(f"{count} question{'s' if count > 1 else ''} publiée{'s' if count > 1 else ''} en production.")
+        return redirect(url_for("admin.admin_publish_to_prod"))
+
+    error = None
+    try:
+        publishable = find_publishable_questions()
+    except Exception as exc:
+        publishable = []
+        error = str(exc)
+
+    return render_template(
+        "admin/publish_to_prod.html",
+        publishable=publishable,
+        error=error,
+        active_admin_section="publish_prod",
+    )
 
 @bp.route("/admin/api/recherche-film")
 @login_required
