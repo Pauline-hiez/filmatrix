@@ -190,6 +190,23 @@ def test_a_free_text_mode_offers_choices_in_a_duel(client, app):
     assert "<audio" in page
 
 
+def test_dialogue_duel_renders_the_youtube_player(client, app):
+    """Le dialogue n'a jamais de source iTunes : contrairement au blindtest,
+    la page doit monter le lecteur YouTube (pas de <audio>)."""
+    game_id = create_duel(
+        app,
+        "dialogue",
+        payload={"source": "youtube", "youtube_id": "dQw4w9WgXcQ", "start": 0, "end": 30},
+        correct_answer={"film": "Inception"},
+    )
+    login(client, "hote@filmatrix.fr")
+
+    page = client.get(f"/multijoueur/{game_id}/jouer").get_data(as_text=True)
+
+    assert "data-youtube-mount" in page
+    assert "<audio" not in page
+
+
 def test_both_players_get_the_same_choices_in_the_same_order(client, app):
     """La course doit être loyale : mêmes propositions, même ordre des deux côtés"""
     game_id = create_duel(

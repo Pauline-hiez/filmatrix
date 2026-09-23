@@ -31,6 +31,7 @@
                 <option value="devinette_affiche">Devinette-affiche</option>
                 <option value="casting">Casting</option>
                 <option value="blindtest">Blind Test</option>
+                <option value="dialogue">Dialogue</option>
             </select>
         </div>
 
@@ -186,6 +187,80 @@
                 <input type="text" class="audio-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Laisse vide pour une recherche automatique">
             </div>
             <div id="audio-preview" class="flex flex-col gap-2"></div>
+
+            <div class="border-t border-slate-700 pt-2 mt-1">
+                <button type="button" class="youtube-search-button text-sm px-3 py-1.5 rounded-lg border border-red-400/40 text-red-300 hover:bg-red-400/10">
+                    Chercher sur YouTube (extrait introuvable ou insatisfaisant sur iTunes)
+                </button>
+                <div id="youtube-preview" class="flex flex-col gap-2 mt-2"></div>
+                <div id="youtube-selected" class="hidden flex flex-col gap-2 mt-2 rounded-lg border border-red-400/30 bg-slate-950/60 p-2">
+                    <div id="youtube-embed-preview" class="w-full aspect-video rounded-lg"></div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <label class="text-xs text-slate-400">Début (s)</label>
+                        <input type="number" min="0" class="youtube-start w-20 bg-slate-900 border border-cyan-400/30 rounded-lg px-2 py-1 text-slate-100" value="0">
+                        <button type="button" class="youtube-mark-start-button text-xs px-2 py-1 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800">
+                            Marquer ce moment
+                        </button>
+                        <label class="text-xs text-slate-400">Fin (s)</label>
+                        <input type="number" min="0" class="youtube-end w-20 bg-slate-900 border border-cyan-400/30 rounded-lg px-2 py-1 text-slate-100" value="30">
+                        <button type="button" class="youtube-mark-end-button text-xs px-2 py-1 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800">
+                            Marquer ce moment
+                        </button>
+                        <button type="button" class="youtube-preview-clip-button text-xs px-2 py-1 rounded-lg border border-red-400/40 text-red-300 hover:bg-red-400/10">
+                            Prévisualiser l'extrait
+                        </button>
+                        <button type="button" class="youtube-preview-full-button text-xs px-2 py-1 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800">
+                            Voir la vidéo entière
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dialogue : uniquement YouTube (aucune source équivalente à iTunes
+             pour les répliques), la recherche sert juste à trouver une vidéo
+             candidate, le repérage du bon passage reste manuel -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="dialogue">
+            {{ admin_reference_preview({}, show_search=false) }}
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Rechercher le film (TMDB)</label>
+                <input type="text" class="movie-search-input w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" data-target="dialogue" placeholder="Tape le titre du film...">
+                <div class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Film sélectionné</label>
+                <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" value="" readonly>
+                <input type="hidden" class="dialogue-youtube-id" value="">
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-1">Réplique recherchée (optionnel, précise le texte pour affiner)</label>
+                <input type="text" class="dialogue-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100" placeholder="Laisse vide pour chercher « titre du film extrait VF »">
+            </div>
+            <button type="button" class="dialogue-youtube-search-button self-start text-sm px-3 py-1.5 rounded-lg border border-indigo-400/40 text-indigo-300 hover:bg-indigo-400/10">
+                Chercher une vidéo sur YouTube
+            </button>
+            <div id="dialogue-youtube-preview" class="flex flex-col gap-2"></div>
+            <div id="dialogue-youtube-selected" class="hidden flex flex-col gap-2 rounded-lg border border-indigo-400/30 bg-slate-950/60 p-2">
+                <div id="dialogue-youtube-embed-preview" class="w-full aspect-video rounded-lg"></div>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <label class="text-xs text-slate-400">Début (s)</label>
+                    <input type="number" min="0" class="dialogue-youtube-start w-20 bg-slate-900 border border-cyan-400/30 rounded-lg px-2 py-1 text-slate-100" value="0">
+                    <button type="button" class="dialogue-youtube-mark-start-button text-xs px-2 py-1 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800">
+                        Marquer ce moment
+                    </button>
+                    <label class="text-xs text-slate-400">Fin (s)</label>
+                    <input type="number" min="0" class="dialogue-youtube-end w-20 bg-slate-900 border border-cyan-400/30 rounded-lg px-2 py-1 text-slate-100" value="30">
+                    <button type="button" class="dialogue-youtube-mark-end-button text-xs px-2 py-1 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800">
+                        Marquer ce moment
+                    </button>
+                    <button type="button" class="dialogue-youtube-preview-clip-button text-xs px-2 py-1 rounded-lg border border-indigo-400/40 text-indigo-300 hover:bg-indigo-400/10">
+                        Prévisualiser l'extrait
+                    </button>
+                    <button type="button" class="dialogue-youtube-preview-full-button text-xs px-2 py-1 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800">
+                        Voir la vidéo entière
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- Chronologie -->

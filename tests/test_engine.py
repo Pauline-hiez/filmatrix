@@ -241,4 +241,24 @@ def test_blindtest_wrong_answer():
     question = make_blindtest_question()
     assert check_answer(question, "Titanic") is False
 
+def make_dialogue_question() -> Question:
+    """Fabrique une question dialogue de test"""
+    return Question(
+        id=11,
+        mode="dialogue",
+        prompt="",
+        payload={"source": "youtube", "youtube_id": "dQw4w9WgXcQ", "start": 10, "end": 40},
+        correct_answer={"film": "Le Parrain"},
+        )
+
+def test_dialogue_correct_answer_case_insensitive():
+    """Une réponse correcte est acceptée, quelle que soit la casse"""
+    question = make_dialogue_question()
+    assert check_answer(question, "le parrain") is True
+
+def test_dialogue_wrong_answer():
+    """Une réponse incorrecte doit retourner False"""
+    question = make_dialogue_question()
+    assert check_answer(question, "Titanic") is False
+
 

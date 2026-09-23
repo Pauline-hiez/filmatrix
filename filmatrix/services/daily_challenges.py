@@ -35,6 +35,7 @@ MISSION_COIN_REWARD = 15
 AVAILABLE_MODES = [
         "qcm", "vrai_faux", "citation", "emoji", "film_melange",
         "chronologie", "devinette", "devinette_affiche", "casting", "blindtest",
+        "dialogue",
     ]
 
 def _daily_random(today: date) -> random.Random:
@@ -46,11 +47,28 @@ def _daily_random(today: date) -> random.Random:
     return random.Random(today.toordinal())
 
 
+def _eligible_saga_tags() -> list[Tag]:
+    """Univers ayant assez de questions pour porter une mission saga_count.
+
+    Tri explicite : la liste doit être dans le même ordre pour tout le monde,
+    sinon le même index de rng.choice désignerait une saga différente selon
+    l'ordre renvoyé par la base."""
+    saga_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.id).all()
+    return [
+        tag for tag in saga_tags
+        if Question.query.filter(Question.tags.contains(tag)).count() >= SAGA_COUNT_TARGET
+    ]
+
+
 def _build_mission_spec(challenge_type: str, rng: random.Random) -> dict:
     """Calcule mode/saga/objectif ciblés pour un type de mission donné.
 
     Séparé de la génération du jour pour rester appelable une fois par type
-    choisi, sans dupliquer la logique par mission."""
+    choisi, sans dupliquer la logique par mission. Suppose que l'appelant n'a
+    choisi "saga_count" que s'il existe au moins un univers éligible (voir
+    get_or_create_daily_missions) : contrairement à une ancienne version, ce
+    type ne se retransforme plus en "total_count" en cours de route, ce qui
+    pouvait dupliquer un type déjà tiré par ailleurs le même jour."""
     target_mode = None
     target_tag_id = None
     target_value = TOTAL_COUNT_TARGET
@@ -61,24 +79,9 @@ def _build_mission_spec(challenge_type: str, rng: random.Random) -> dict:
     elif challenge_type == "streak_count":
         target_value = STREAK_COUNT_TARGET
     elif challenge_type == "saga_count":
-        # Tri explicite : la liste doit être dans le même ordre pour tout le
-        # monde, sinon le même index de rng.choice désignerait une saga
-        # différente selon l'ordre renvoyé par la base.
-        saga_tags = Tag.query.filter_by(tag_type="univers").order_by(Tag.id).all()
-        eligible_tags = [
-                tag for tag in saga_tags
-                if Question.query.filter(Question.tags.contains(tag)).count() >= SAGA_COUNT_TARGET
-            ]
-        if eligible_tags:
-            chosen_tag = rng.choice(eligible_tags)
-            target_tag_id = chosen_tag.id
-            target_value = SAGA_COUNT_TARGET
-        else:
-            # Pas assez de sagas avec suffisamment de questions : on retombe
-            # sur une mission générique plutôt que de générer un objectif
-            # impossible.
-            challenge_type = "total_count"
-            target_value = TOTAL_COUNT_TARGET
+        chosen_tag = rng.choice(_eligible_saga_tags())
+        target_tag_id = chosen_tag.id
+        target_value = SAGA_COUNT_TARGET
 
     return {
         "challenge_type": challenge_type,
@@ -106,8 +109,15 @@ def get_or_create_daily_missions(user) -> list[DailyChallenge]:
     rng = _daily_random(today)
     # 3 types distincts parmi les 4 disponibles : jamais deux missions sur le
     # même critère le même jour (ex. deux fois "total_count"), qui feraient
-    # doublon plutôt que d'apporter de la variété.
-    chosen_types = rng.sample(CHALLENGE_TYPES, MISSIONS_PER_DAY)
+    # doublon plutôt que d'apporter de la variété. "saga_count" est exclu du
+    # tirage s'il n'existe aucun univers jouable ce jour-là - le retirer ici,
+    # avant le tirage, garantit les 3 types distincts par construction (une
+    # ancienne version le retransformait en "total_count" après coup, ce qui
+    # pouvait dupliquer un type déjà tiré par ailleurs).
+    available_types = list(CHALLENGE_TYPES)
+    if not _eligible_saga_tags():
+        available_types.remove("saga_count")
+    chosen_types = rng.sample(available_types, MISSIONS_PER_DAY)
 
     missions = []
     for slot, challenge_type in enumerate(chosen_types):
@@ -252,7 +262,7 @@ def describe_challenge(challenge: DailyChallenge) -> dict:
         "qcm": "Quiz", "vrai_faux": "Vrai / Faux", "citation": "Citations",
         "emoji": "Emoji Quiz", "film_melange": "Film mélangé", "chronologie": "Chronologie",
         "devinette": "Devinette", "devinette_affiche": "Devinette-affiche",
-        "casting": "Casting", "blindtest": "Blind Test",
+        "casting": "Casting", "blindtest": "Blind Test", "dialogue": "Dialogue",
     }
 
     template = CHALLENGE_LABELS.get(challenge.challenge_type, "Mini-mission")

@@ -343,7 +343,7 @@ def test_setup_screen_offers_the_game_settings(client, app):
 
 def test_mix_with_a_universe_excludes_answer_revealing_modes(client, app):
     """Le Mix ne doit pas afficher de mode qui révèle déjà l'œuvre choisie."""
-    incompatible_modes = ["devinette_affiche", "casting", "emoji", "blindtest", "film_melange"]
+    incompatible_modes = ["devinette_affiche", "casting", "emoji", "blindtest", "film_melange", "dialogue"]
 
     with app.app_context():
         universe = Tag(name="Kaamelott", tag_type="univers")
@@ -574,6 +574,17 @@ def test_quiz_progress_follows_a_short_mode(client, app):
     assert response.status_code == 200
     assert b"/ 3" in response.data
     assert "Encore 2 questions".encode() in response.data
+
+
+def test_dialogue_mode_shows_the_free_text_answer_field(client, app):
+    """Régression : le mode dialogue avait été oublié de la liste des modes
+    affichant un champ de réponse libre, rendant la question injouable."""
+    create_questions(app, 1, mode="dialogue")
+
+    response = client.get("/quiz/dialogue/1")
+
+    assert response.status_code == 200
+    assert b'id="free-text-answer"' in response.data
 
 
 def test_quiz_progress_announces_the_last_question(client, app):

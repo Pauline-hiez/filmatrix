@@ -11,6 +11,7 @@ from filmatrix.extensions import db
 from filmatrix.models import QuestionSubmission, Tag
 from filmatrix.services.suggestions import WEEKLY_SUBMISSION_LIMIT, remaining_weekly_quota
 from filmatrix.integrations.itunes import search_soundtrack_previews
+from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.tmdb import (
     build_image_url,
     genre_ids_to_tags,
@@ -223,3 +224,29 @@ def suggestions_api_audio() -> dict:
         return {"success": False, "error": "Aucun extrait audio trouvé."}
 
     return {"success": True, "audio_options": previews, "audio_url": previews[0]["audio_url"]}
+
+@bp.route("/suggestions/api/recherche-audio-youtube")
+@login_required
+def suggestions_api_audio_youtube() -> dict:
+    """Vidéos YouTube candidates pour un film (miroir de admin_api_audio_youtube)"""
+    title = request.args.get("title", "")
+    search_term = request.args.get("search_term") or f"{title} soundtrack"
+    videos = search_videos(search_term, limit=6)
+
+    if not videos:
+        return {"success": False, "error": "Aucune vidéo trouvée."}
+
+    return {"success": True, "video_options": videos}
+
+@bp.route("/suggestions/api/recherche-dialogue-youtube")
+@login_required
+def suggestions_api_dialogue_youtube() -> dict:
+    """Vidéos YouTube candidates pour une réplique (miroir de admin_api_dialogue_youtube)"""
+    title = request.args.get("title", "")
+    search_term = request.args.get("search_term") or f"{title} extrait VF"
+    videos = search_videos(search_term, limit=6)
+
+    if not videos:
+        return {"success": False, "error": "Aucune vidéo trouvée."}
+
+    return {"success": True, "video_options": videos}

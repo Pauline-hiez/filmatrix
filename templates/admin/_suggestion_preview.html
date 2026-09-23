@@ -12,7 +12,8 @@
     "devinette": "#fb923c",
     "devinette_affiche": "#34d399",
     "casting": "#f472b6",
-    "blindtest": "#60a5fa"
+    "blindtest": "#60a5fa",
+    "dialogue": "#818cf8"
 } %}
 {% set mode_labels = {
     "qcm": "Quiz",
@@ -24,7 +25,8 @@
     "devinette": "Devinette",
     "devinette_affiche": "Image à deviner",
     "casting": "Casting",
-    "blindtest": "Blind Test"
+    "blindtest": "Blind Test",
+    "dialogue": "Dialogue"
 } %}
 {% set difficulty_colors = {"facile": "#34d399", "moyen": "#fbbf24", "difficile": "#f87171"} %}
 {% set payload = submission.payload %}
@@ -94,10 +96,20 @@
 
     {% elif submission.mode == 'blindtest' %}
     <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film : </span><strong>{{ answer.get('film', '') }}</strong></p>
-    {% if payload.get('audio_url') %}
+    {% if payload.get('source') == 'youtube' and payload.get('youtube_id') %}
+    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/{{ payload.get('youtube_id') }}?start={{ payload.get('start', 0) }}&end={{ payload.get('end', 30) }}" allow="autoplay" frameborder="0"></iframe>
+    {% elif payload.get('audio_url') %}
     <audio controls preload="none" class="w-full" src="{{ payload.get('audio_url') }}"></audio>
     {% else %}
     <p class="text-xs italic text-slate-500">Aucun extrait audio fourni.</p>
+    {% endif %}
+
+    {% elif submission.mode == 'dialogue' %}
+    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Film : </span><strong>{{ answer.get('film', '') }}</strong></p>
+    {% if payload.get('youtube_id') %}
+    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/{{ payload.get('youtube_id') }}?start={{ payload.get('start', 0) }}&end={{ payload.get('end', 30) }}" allow="autoplay" frameborder="0"></iframe>
+    {% else %}
+    <p class="text-xs italic text-slate-500">Aucune vidéo fournie.</p>
     {% endif %}
 
     {% elif submission.mode == 'chronologie' %}
