@@ -8,13 +8,13 @@
     "qcm": "Quiz", "vrai_faux": "Vrai / Faux", "citation": "Citations",
     "emoji": "Emoji Quiz", "film_melange": "Film mélangé", "chronologie": "Chronologie",
     "devinette": "Devinette", "devinette_affiche": "Devinette-affiche",
-    "casting": "Casting", "blindtest": "Blind Test"
+    "casting": "Casting", "blindtest": "Blind Test", "dialogue": "Dialogue"
 } %}
 {% set accents = {
     "qcm": "#22d3ee", "vrai_faux": "#2dd4bf", "citation": "#fbbf24",
     "emoji": "#c084fc", "film_melange": "#a78bfa", "chronologie": "#38bdf8",
     "devinette": "#fb923c", "devinette_affiche": "#34d399",
-    "casting": "#f472b6", "blindtest": "#60a5fa"
+    "casting": "#f472b6", "blindtest": "#60a5fa", "dialogue": "#818cf8"
 } %}
 {% set earned_count = all_badges | selectattr("earned") | list | length %}
 {% set progress = (level_info.xp_in_current_level / level_info.xp_for_next_level * 100) | round(1) %}

@@ -87,16 +87,34 @@
                 const elapsed = Math.max(player.getCurrentTime() - start, 0);
                 current.textContent = formatTime(elapsed);
                 seek.value = Math.min((elapsed / clipDuration) * 100, 100);
+
+                // Le paramètre "end" de l'API YouTube est peu fiable combiné à
+                // "start" : il coupe parfois la lecture bien avant l'instant
+                // prévu, sans qu'on puisse s'y fier. On gère donc l'arrêt
+                // nous-mêmes ici plutôt que de le laisser à la vidéo.
+                if (elapsed >= clipDuration) {
+                    player.pauseVideo();
+                    player.seekTo(start, true);
+                    setPlaying(false);
+                    stopPolling();
+                    current.textContent = formatTime(0);
+                    seek.value = 0;
+                }
             }, 250);
         }
 
+        // Taille interne réaliste (200x113) plutôt que quasi nulle : un lecteur
+        // trop petit peut être considéré "non visible" par YouTube (règles de
+        // visibilité anti-fraude publicitaire) et voir sa lecture coupée après
+        // quelques secondes, peu importe la durée demandée. Le rendu reste
+        // invisible pour le joueur grâce au conteneur .audio-player__youtube-mount
+        // (1px, overflow: hidden) qui écrase tout débordement.
         const player = new YT.Player(mount, {
-            width: "2",
-            height: "2",
+            width: "200",
+            height: "113",
             videoId: videoId,
             playerVars: {
                 start: start,
-                end: end,
                 controls: 0,
                 disablekb: 1,
                 modestbranding: 1,

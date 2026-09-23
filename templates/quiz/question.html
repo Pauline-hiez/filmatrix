@@ -232,6 +232,9 @@
                la lecture. En blind test pur, l'autoplay reste : le joueur sait déjà à
                quoi s'attendre en choisissant ce mode. #}
             {{ audio_player(question.payload, autoplay=not is_mix) }}
+        {% elif question.mode == "dialogue" %}
+            <p class="mb-3 text-sm text-slate-400">Écoute la réplique et devine {{ "la série" if question.content_type == "serie" else "le film" }} :</p>
+            {{ audio_player(question.payload, autoplay=not is_mix) }}
         {% endif %}
 
         {# Indices progressifs, réservés au mode devinette. #}
@@ -312,7 +315,7 @@
                     Valider
                 </button>
 
-            {% elif question.mode in ["citation", "emoji", "film_melange", "casting", "blindtest", "devinette_affiche"] %}
+            {% elif question.mode in ["citation", "emoji", "film_melange", "casting", "blindtest", "devinette_affiche", "dialogue"] %}
                 {{ answer_field() }}
             {% endif %}
         </div>

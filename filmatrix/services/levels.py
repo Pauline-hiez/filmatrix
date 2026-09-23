@@ -31,6 +31,7 @@ MODE_DURATIONS = {
     "devinette_affiche": 15,
     "casting": 15,
     "blindtest": 30,
+    "dialogue": 30,
 }
 DEFAULT_MODE_DURATION = 16
 

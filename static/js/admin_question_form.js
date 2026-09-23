@@ -316,16 +316,108 @@ function selectItunesSource(fieldsGroup) {
     if (selected) selected.classList.add("hidden");
 }
 
-// Recharge l'aperçu embarqué sur la plage début/fin actuellement saisie, pour
-// que l'admin entende exactement l'extrait qui sera joué (pas la vidéo depuis
-// 0:00). Rappelée à chaque ajustement des champs, pas juste à la sélection.
+function loadYoutubeIframeApi() {
+    return new Promise(function (resolve) {
+        if (window.YT && window.YT.Player) {
+            resolve();
+            return;
+        }
+        const previousCallback = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = function () {
+            if (previousCallback) previousCallback();
+            resolve();
+        };
+        if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+            const tag = document.createElement("script");
+            tag.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(tag);
+        }
+    });
+}
+
+// Lecteur pilotable de l'aperçu admin (contrôles YouTube natifs conservés,
+// contrairement au lecteur du jeu) : permet aux boutons "Marquer ce moment"
+// de lire la position exacte de lecture via getCurrentTime(), pour ne plus
+// avoir à convertir des minutes en secondes à la main. Une seule instance par
+// bloc de mode, réutilisée (cueVideoById) plutôt que recréée à chaque appel.
+function ensurePreviewPlayer(fieldsGroup, mount, videoId) {
+    return loadYoutubeIframeApi().then(function () {
+        // Chaque appelant charge lui-même la bonne vidéo/plage juste après
+        // (loadVideoById) : pas besoin de préparer quoi que ce soit ici quand
+        // le lecteur existe déjà, juste le renvoyer.
+        if (fieldsGroup._previewPlayer) {
+            return fieldsGroup._previewPlayer;
+        }
+        return new Promise(function (resolve) {
+            const player = new YT.Player(mount, {
+                videoId: videoId,
+                playerVars: { rel: 0 },
+                events: {
+                    onReady: function () {
+                        fieldsGroup._previewPlayer = player;
+                        resolve(player);
+                    },
+                },
+            });
+        });
+    });
+}
+
+// Remplit le champ visé avec la position de lecture actuelle du lecteur
+// d'aperçu, arrondie à la seconde.
+const CLIP_DURATION_SECONDS = 30;
+
+// Marquer le début fixe systématiquement la fin 30s plus tard, et vice versa :
+// l'extrait dure toujours 30s, l'admin n'a jamais à recalculer l'autre borne
+// lui-même. Le champ marqué en dernier fait foi ; les deux restent modifiables
+// à la main ensuite si 30s ne convient pas pour un cas précis.
+function markYoutubeStart(fieldsGroup, startField, endField) {
+    const player = fieldsGroup._previewPlayer;
+    if (!player) {
+        alert("Charge d'abord la vidéo (sélectionne-la, ou clique sur \"Voir la vidéo entière\").");
+        return;
+    }
+    const start = Math.floor(player.getCurrentTime());
+    startField.value = start;
+    endField.value = start + CLIP_DURATION_SECONDS;
+}
+
+function markYoutubeEnd(fieldsGroup, startField, endField) {
+    const player = fieldsGroup._previewPlayer;
+    if (!player) {
+        alert("Charge d'abord la vidéo (sélectionne-la, ou clique sur \"Voir la vidéo entière\").");
+        return;
+    }
+    const end = Math.floor(player.getCurrentTime());
+    endField.value = end;
+    startField.value = Math.max(end - CLIP_DURATION_SECONDS, 0);
+}
+
+// Recharge l'aperçu sur la plage début/fin actuellement saisie, pour vérifier
+// l'extrait exact avant de sauvegarder. Appelé uniquement sur demande (bouton
+// "Prévisualiser l'extrait") : le restreindre automatiquement à chaque
+// sélection ou frappe empêcherait de regarder le reste de la vidéo pour
+// repérer la bonne scène, ce qui est justement le but de cet aperçu.
 function refreshYoutubeEmbedPreview(fieldsGroup) {
     const videoId = fieldsGroup.querySelector(".youtube-id").value;
     if (!videoId) return;
     const start = parseInt(fieldsGroup.querySelector(".youtube-start").value) || 0;
-    const end = parseInt(fieldsGroup.querySelector(".youtube-end").value) || start + 30;
-    const embed = fieldsGroup.querySelector("#youtube-embed-preview");
-    embed.src = `https://www.youtube.com/embed/${videoId}?start=${start}&end=${end}`;
+    const end = parseInt(fieldsGroup.querySelector(".youtube-end").value) || start + CLIP_DURATION_SECONDS;
+    const mount = fieldsGroup.querySelector("#youtube-embed-preview");
+    ensurePreviewPlayer(fieldsGroup, mount, videoId).then(function (player) {
+        player.loadVideoById({ videoId: videoId, startSeconds: start, endSeconds: end });
+    });
+}
+
+// Vidéo complète, librement navigable avec les contrôles YouTube normaux :
+// c'est l'état par défaut après une sélection, pour repérer la bonne scène.
+function showFullYoutubeVideo(fieldsGroup) {
+    const videoId = fieldsGroup.querySelector(".youtube-id").value;
+    if (!videoId) return;
+    const mount = fieldsGroup.querySelector("#youtube-embed-preview");
+    ensurePreviewPlayer(fieldsGroup, mount, videoId).then(function (player) {
+        player.loadVideoById(videoId);
+    });
 }
 
 function selectYoutubeVideo(fieldsGroup, video) {
@@ -336,8 +428,8 @@ function selectYoutubeVideo(fieldsGroup, video) {
     const startField = fieldsGroup.querySelector(".youtube-start");
     const endField = fieldsGroup.querySelector(".youtube-end");
     if (!startField.value) startField.value = 0;
-    if (!endField.value) endField.value = 30;
-    refreshYoutubeEmbedPreview(fieldsGroup);
+    if (!endField.value) endField.value = CLIP_DURATION_SECONDS;
+    showFullYoutubeVideo(fieldsGroup);
     selected.classList.remove("hidden");
     selected.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
@@ -380,6 +472,84 @@ async function searchYoutubeAudio(fieldsGroup) {
     });
 }
 
+// Équivalents dialogue des trois fonctions ci-dessus : mode 100% YouTube dès
+// le départ (pas de bascule iTunes/YouTube ni de source à distinguer), avec
+// ses propres classes/ids pour ne jamais entrer en collision avec ceux du
+// blindtest quand les deux blocs coexistent dans la même page.
+function refreshDialogueEmbedPreview(fieldsGroup) {
+    const videoId = fieldsGroup.querySelector(".dialogue-youtube-id").value;
+    if (!videoId) return;
+    const start = parseInt(fieldsGroup.querySelector(".dialogue-youtube-start").value) || 0;
+    const end = parseInt(fieldsGroup.querySelector(".dialogue-youtube-end").value) || start + CLIP_DURATION_SECONDS;
+    const mount = fieldsGroup.querySelector("#dialogue-youtube-embed-preview");
+    ensurePreviewPlayer(fieldsGroup, mount, videoId).then(function (player) {
+        player.loadVideoById({ videoId: videoId, startSeconds: start, endSeconds: end });
+    });
+}
+
+// Vidéo complète, librement navigable : état par défaut après sélection, pour
+// repérer la bonne réplique avant de figer début/fin (voir le commentaire
+// équivalent sur showFullYoutubeVideo, côté blindtest).
+function showFullDialogueVideo(fieldsGroup) {
+    const videoId = fieldsGroup.querySelector(".dialogue-youtube-id").value;
+    if (!videoId) return;
+    const mount = fieldsGroup.querySelector("#dialogue-youtube-embed-preview");
+    ensurePreviewPlayer(fieldsGroup, mount, videoId).then(function (player) {
+        player.loadVideoById(videoId);
+    });
+}
+
+function selectDialogueVideo(fieldsGroup, video) {
+    fieldsGroup.querySelector(".dialogue-youtube-id").value = video.youtube_id;
+
+    const selected = fieldsGroup.querySelector("#dialogue-youtube-selected");
+    const startField = fieldsGroup.querySelector(".dialogue-youtube-start");
+    const endField = fieldsGroup.querySelector(".dialogue-youtube-end");
+    if (!startField.value) startField.value = 0;
+    if (!endField.value) endField.value = CLIP_DURATION_SECONDS;
+    showFullDialogueVideo(fieldsGroup);
+    selected.classList.remove("hidden");
+    selected.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+async function searchDialogueVideos(fieldsGroup) {
+    const filmTitle = fieldsGroup.querySelector(".film-answer").value;
+    if (!filmTitle) {
+        alert("Sélectionne d'abord un film via la recherche TMDB ci-dessus.");
+        return;
+    }
+    const searchTermField = fieldsGroup.querySelector(".dialogue-search-term");
+    const searchTerm = searchTermField ? searchTermField.value : "";
+
+    const params = new URLSearchParams({ title: filmTitle });
+    if (searchTerm) {
+        params.set("search_term", searchTerm);
+    }
+
+    const response = await fetch(`${API_PREFIX}/recherche-dialogue-youtube?${params.toString()}`);
+    const data = await response.json();
+
+    const preview = fieldsGroup.querySelector("#dialogue-youtube-preview");
+    if (!data.success) {
+        preview.innerHTML = "";
+        alert(data.error);
+        return;
+    }
+
+    preview.innerHTML = data.video_options.map(function (video, index) {
+        return `<label class="flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-950/60 p-2 hover:border-indigo-400/60">
+            <input type="radio" name="dialogue-youtube-choice" value="${index}">
+            <img src="${video.thumbnail_url}" class="w-16 h-12 object-cover rounded">
+            <span class="min-w-0 flex-1"><span class="block truncate text-sm text-slate-100">${video.label}</span><span class="block truncate text-xs text-slate-500">${video.channel}</span></span>
+        </label>`;
+    }).join("");
+    preview.querySelectorAll('input[name="dialogue-youtube-choice"]').forEach(function (radio) {
+        radio.addEventListener("change", function () {
+            selectDialogueVideo(fieldsGroup, data.video_options[parseInt(radio.value)]);
+        });
+    });
+}
+
 function showFieldsForMode(mode) {
     if (mode === "emoji" && emojiPicker) {
         emojiPicker.classList.remove("hidden");
@@ -413,13 +583,86 @@ if (youtubeSearchButton) {
     youtubeSearchButton.addEventListener("click", function () {
         searchYoutubeAudio(blindtestGroup);
     });
-    blindtestGroup.querySelectorAll(".youtube-start, .youtube-end").forEach(function (field) {
-        field.addEventListener("change", function () {
+    const blindtestPreviewClip = blindtestGroup.querySelector(".youtube-preview-clip-button");
+    const blindtestPreviewFull = blindtestGroup.querySelector(".youtube-preview-full-button");
+    const blindtestMarkStart = blindtestGroup.querySelector(".youtube-mark-start-button");
+    const blindtestMarkEnd = blindtestGroup.querySelector(".youtube-mark-end-button");
+    if (blindtestPreviewClip) {
+        blindtestPreviewClip.addEventListener("click", function () {
             refreshYoutubeEmbedPreview(blindtestGroup);
         });
-    });
+    }
+    if (blindtestPreviewFull) {
+        blindtestPreviewFull.addEventListener("click", function () {
+            showFullYoutubeVideo(blindtestGroup);
+        });
+    }
+    if (blindtestMarkStart) {
+        blindtestMarkStart.addEventListener("click", function () {
+            markYoutubeStart(
+                blindtestGroup,
+                blindtestGroup.querySelector(".youtube-start"),
+                blindtestGroup.querySelector(".youtube-end")
+            );
+        });
+    }
+    if (blindtestMarkEnd) {
+        blindtestMarkEnd.addEventListener("click", function () {
+            markYoutubeEnd(
+                blindtestGroup,
+                blindtestGroup.querySelector(".youtube-start"),
+                blindtestGroup.querySelector(".youtube-end")
+            );
+        });
+    }
+    // Vidéo déjà choisie (édition d'une question existante) : charge le
+    // lecteur tout de suite pour que "Marquer ce moment" fonctionne sans
+    // devoir d'abord cliquer sur "Voir la vidéo entière".
     if (blindtestGroup.querySelector(".youtube-id").value) {
-        refreshYoutubeEmbedPreview(blindtestGroup);
+        showFullYoutubeVideo(blindtestGroup);
+    }
+}
+
+const dialogueSearchButton = document.querySelector(".dialogue-youtube-search-button");
+if (dialogueSearchButton) {
+    const dialogueGroup = document.querySelector('.mode-fields[data-mode="dialogue"]');
+    dialogueSearchButton.addEventListener("click", function () {
+        searchDialogueVideos(dialogueGroup);
+    });
+    const dialoguePreviewClip = dialogueGroup.querySelector(".dialogue-youtube-preview-clip-button");
+    const dialoguePreviewFull = dialogueGroup.querySelector(".dialogue-youtube-preview-full-button");
+    const dialogueMarkStart = dialogueGroup.querySelector(".dialogue-youtube-mark-start-button");
+    const dialogueMarkEnd = dialogueGroup.querySelector(".dialogue-youtube-mark-end-button");
+    if (dialoguePreviewClip) {
+        dialoguePreviewClip.addEventListener("click", function () {
+            refreshDialogueEmbedPreview(dialogueGroup);
+        });
+    }
+    if (dialoguePreviewFull) {
+        dialoguePreviewFull.addEventListener("click", function () {
+            showFullDialogueVideo(dialogueGroup);
+        });
+    }
+    if (dialogueMarkStart) {
+        dialogueMarkStart.addEventListener("click", function () {
+            markYoutubeStart(
+                dialogueGroup,
+                dialogueGroup.querySelector(".dialogue-youtube-start"),
+                dialogueGroup.querySelector(".dialogue-youtube-end")
+            );
+        });
+    }
+    if (dialogueMarkEnd) {
+        dialogueMarkEnd.addEventListener("click", function () {
+            markYoutubeEnd(
+                dialogueGroup,
+                dialogueGroup.querySelector(".dialogue-youtube-start"),
+                dialogueGroup.querySelector(".dialogue-youtube-end")
+            );
+        });
+    }
+    if (dialogueGroup.querySelector(".dialogue-youtube-id").value) {
+        showFullDialogueVideo(dialogueGroup);
     }
 }
 
@@ -505,6 +748,20 @@ function buildPayloadAndAnswer(mode) {
     if (mode === "citation") {
         const film = activeGroup.querySelector(".film-answer").value;
         return { payload: adminReferencePayload(activeGroup), correct_answer: { film: film } };
+    }
+
+    if (mode === "dialogue") {
+        const film = activeGroup.querySelector(".film-answer").value;
+        const payload = Object.assign(
+            {
+                source: "youtube",
+                youtube_id: activeGroup.querySelector(".dialogue-youtube-id").value,
+                start: parseInt(activeGroup.querySelector(".dialogue-youtube-start").value) || 0,
+                end: parseInt(activeGroup.querySelector(".dialogue-youtube-end").value) || 10,
+            },
+            adminReferencePayload(activeGroup)
+        );
+        return { payload: payload, correct_answer: { film: film } };
     }
 
     if (mode === "emoji") {
@@ -928,6 +1185,13 @@ async function selectMovie(movie, target, fieldsGroup) {
         // Blindtest n'a pas de recherche séparée pour son repère interne (voir
         // question_form_fields.html, show_search=false) : la même recherche,
         // faite pour l'extrait audio, l'attache directement au passage.
+        applyPosterField(movie, fieldsGroup, ".admin-reference-image", ".admin-reference-preview", "border-amber-400/30");
+    }
+
+    if (target === "dialogue") {
+        await searchDialogueVideos(fieldsGroup);
+        // Même principe que pour l'audio du blindtest : la recherche TMDB
+        // vaut aussi repère interne, pas de recherche séparée pour lui.
         applyPosterField(movie, fieldsGroup, ".admin-reference-image", ".admin-reference-preview", "border-amber-400/30");
     }
 

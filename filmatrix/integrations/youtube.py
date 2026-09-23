@@ -1,4 +1,8 @@
-"""Fonctions d'accès à l'API YouTube Data pour rechercher des extraits audio"""
+"""Fonctions d'accès à l'API YouTube Data pour rechercher des vidéos candidates
+
+Utilisé en repli pour le blindtest (musique introuvable sur iTunes) et pour le
+mode dialogue (aucune source équivalente à iTunes n'existe pour les répliques :
+YouTube est la seule source, dès le départ)."""
 
 import os
 
@@ -12,7 +16,7 @@ def get_api_key() -> str:
     return os.environ["YOUTUBE_API_KEY"]
 
 
-def search_soundtrack_videos(search_term: str, limit: int = 6) -> list[dict]:
+def search_videos(search_term: str, limit: int = 6) -> list[dict]:
     """Renvoie plusieurs vidéos candidates avec leur titre et leur chaîne.
 
     Contrairement à iTunes, YouTube ne fournit pas d'extrait prédécoupé :

@@ -4,7 +4,7 @@
 {# Écran de préparation : le joueur règle sa partie avant que le chrono ne démarre.
    C'est le seul point d'entrée vers une partie, depuis l'accueil comme depuis
    la page des modes. Le formulaire est traduit en URL par quiz_setup.js. #}
-{% set incompatible_universe_modes = ["devinette_affiche", "casting", "emoji", "blindtest", "film_melange"] %}
+{% set incompatible_universe_modes = ["devinette_affiche", "casting", "emoji", "blindtest", "film_melange", "dialogue"] %}
 {% set universe_state = namespace(selected=false) %}
 {% for tag in all_univers_tags %}
     {% if tag.id in selected_tag_ids %}{% set universe_state.selected = true %}{% endif %}

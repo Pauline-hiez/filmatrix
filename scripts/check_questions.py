@@ -31,6 +31,7 @@ SHAPE = {
     "devinette_affiche": (["poster_url"], ["film"]),
     "casting":           (["actor_photos"], ["film"]),
     "blindtest":         (["audio_url"], ["film"]),
+    "dialogue":          ([], ["film"]),
 }
 # Modes dont l'énoncé doit à lui seul désigner l'œuvre (l'écran de jeu
 # n'affiche que `prompt`, jamais les tags).

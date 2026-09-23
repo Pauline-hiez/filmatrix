@@ -95,6 +95,14 @@ GAME_MODES = [
         "accent": "#2dd4bf",
     },
     {
+        "slug": "dialogue",
+        "name": "Dialogue",
+        "description": "Reconnais un film à un extrait de dialogue.",
+        "how": "Un extrait audio de dialogue se lance. Tape le titre du film ou de la série dont il est tiré.",
+        "icon": "💬",
+        "accent": "#818cf8",
+    },
+    {
         "slug": MIX_MODE_SLUG,
         "name": "Mix",
         "description": "Tous les modes mélangés, dans la même partie.",

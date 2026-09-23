@@ -21,7 +21,7 @@ from filmatrix.models import Album, Attempt, Question, QuestionSubmission, Repor
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.tags import merge_tag_into
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
-from filmatrix.integrations.youtube import search_soundtrack_videos
+from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.storage import upload_album_image, upload_character_image
 from filmatrix.integrations.tmdb import (
     build_image_url,
@@ -522,7 +522,25 @@ def admin_api_audio_youtube() -> dict:
     """Recherche plusieurs vidéos YouTube candidates pour un film sélectionné."""
     title = request.args.get("title", "")
     search_term = request.args.get("search_term") or f"{title} soundtrack"
-    videos = search_soundtrack_videos(search_term, limit=6)
+    videos = search_videos(search_term, limit=6)
+
+    if not videos:
+        return {"success": False, "error": "Aucune vidéo trouvée."}
+
+    return {"success": True, "video_options": videos}
+
+@bp.route("/admin/api/recherche-dialogue-youtube")
+@login_required
+@admin_required
+def admin_api_dialogue_youtube() -> dict:
+    """Recherche plusieurs vidéos YouTube candidates pour une réplique de film.
+
+    "extrait VF" plutôt que "soundtrack" (repli du blindtest) : sans ce
+    repère, la recherche remonte surtout des bandes-annonces en anglais,
+    inexploitables pour un jeu qui se joue en français."""
+    title = request.args.get("title", "")
+    search_term = request.args.get("search_term") or f"{title} extrait VF"
+    videos = search_videos(search_term, limit=6)
 
     if not videos:
         return {"success": False, "error": "Aucune vidéo trouvée."}

@@ -27,6 +27,7 @@ INCOMPATIBLE_MIX_MODES_FOR_UNIVERSE = {
     "emoji",
     "blindtest",
     "film_melange",
+    "dialogue",
 }
 
 # En dessous de ce nombre de questions (toutes comptées sur l'ensemble du
@@ -632,7 +633,7 @@ def answer_placeholder(
     if character_mode and question.mode == "citation":
         return "Nom du personnage..."
     if is_mix and question.mode in {
-        "citation", "devinette", "devinette_affiche", "casting", "blindtest",
+        "citation", "devinette", "devinette_affiche", "casting", "blindtest", "dialogue",
     }:
         return f"Titre {content_title_phrase(question)}..."
     return "Titre du film..."

@@ -14,6 +14,7 @@ const incompatibleUniverseModes = new Set([
     "emoji",
     "blindtest",
     "film_melange",
+    "dialogue",
 ]);
 
 function currentFilterParams() {

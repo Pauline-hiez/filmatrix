@@ -171,6 +171,9 @@
                     {% elif question.mode == "blindtest" %}
                         <p class="mb-3 text-center text-sm text-slate-400">Écoute l'extrait :</p>
                         {{ audio_player(question.payload, autoplay=true) }}
+                    {% elif question.mode == "dialogue" %}
+                        <p class="mb-3 text-center text-sm text-slate-400">Écoute la réplique :</p>
+                        {{ audio_player(question.payload, autoplay=true) }}
                     {% elif question.mode == "devinette" %}
                         <div class="mb-5 flex flex-col gap-2">
                             {% for hint in question.payload.hints %}

@@ -95,7 +95,7 @@ def quiz_setup(mode: str) -> str:
     # Ces modes reposent sur un média ou une représentation qui n'est pas
     # compatible avec un univers filtré. On bascule vers le QCM plutôt que de
     # laisser l'utilisateur préparer une partie qui ne pourra pas être servie.
-    incompatible_universe_modes = {"devinette_affiche", "casting", "emoji", "blindtest", "film_melange"}
+    incompatible_universe_modes = {"devinette_affiche", "casting", "emoji", "blindtest", "film_melange", "dialogue"}
     has_selected_universe = bool(
         selected_tag_ids
         and any(tag.id in selected_tag_ids for tag in all_univers_tags)

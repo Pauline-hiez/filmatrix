@@ -39,7 +39,7 @@ def check_answer(
         case "film_melange":
             return fuzzy_match(user_response, question.correct_answer["title"])
 
-        case "citation" | "emoji" | "devinette" | "devinette_affiche" | "casting" | "blindtest":
+        case "citation" | "emoji" | "devinette" | "devinette_affiche" | "casting" | "blindtest" | "dialogue":
             answer = expected_answer or question.correct_answer["film"]
             return fuzzy_match(user_response, answer)
 
@@ -60,7 +60,7 @@ def convert_answer(mode: str, raw_value: str) -> Any:
     if mode == "chronologie":
         return raw_value.split("|")
     if mode in ("citation", "emoji", "film_melange", "devinette",
-                "devinette_affiche", "casting", "blindtest"):
+                "devinette_affiche", "casting", "blindtest", "dialogue"):
         return raw_value
 
     raise ValueError(f"Mode inconnu : {mode}")
