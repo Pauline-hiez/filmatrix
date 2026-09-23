@@ -1,12 +1,18 @@
 {# Lecteur audio personnalisé partagé par le solo et le multijoueur. Le véritable
-   élément audio reste présent pour la compatibilité, tandis que les contrôles
-   visibles sont pilotés par static/js/audio_player.js. #}
-{% macro audio_player(audio_url, autoplay=false) %}
-<div class="audio-player" data-audio-player data-autoplay="{{ 'true' if autoplay else 'false' }}">
+   élément audio (ou, pour une source YouTube, le mount du lecteur IFrame)
+   reste présent mais visuellement masqué, tandis que les contrôles visibles
+   sont pilotés par static/js/audio_player.js (source iTunes) ou
+   static/js/youtube_audio_player.js (source YouTube) selon data-audio-source. #}
+{% macro audio_player(payload, autoplay=false) %}
+<div class="audio-player" data-audio-player data-audio-source="{{ payload.get('source', 'itunes') }}" data-autoplay="{{ 'true' if autoplay else 'false' }}">
+    {% if payload.get('source') == 'youtube' %}
+    <div class="audio-player__youtube-mount" data-youtube-mount data-youtube-id="{{ payload.get('youtube_id', '') }}" data-youtube-start="{{ payload.get('start', 0) }}" data-youtube-end="{{ payload.get('end', 30) }}"></div>
+    {% else %}
     <audio class="audio-player__native" preload="metadata" {% if autoplay %}autoplay{% endif %}>
-        <source src="{{ audio_url }}" type="audio/mp4">
+        <source src="{{ payload.get('audio_url', '') }}" type="audio/mp4">
         Ton navigateur ne supporte pas la lecture audio.
     </audio>
+    {% endif %}
 
     <div class="audio-player__visual">
         <button type="button" class="audio-player__toggle" data-audio-toggle aria-label="Lire l'extrait">

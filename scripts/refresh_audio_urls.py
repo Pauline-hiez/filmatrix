@@ -21,6 +21,9 @@ def refresh_broken_urls() -> None:
         blindtest_questions = Question.query.filter_by(mode="blindtest").all()
 
         for question in blindtest_questions:
+            if question.payload.get("source", "itunes") != "itunes":
+                continue
+
             current_url = question.payload["audio_url"]
             film_title = question.correct_answer["film"]
 

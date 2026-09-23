@@ -181,12 +181,30 @@
             <input type="text" class="film-answer w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" value="{{ answer.get('film', '') }}" readonly>
             <input type="hidden" class="audio-url" value="{{ payload.get('audio_url', '') }}">
             <input type="hidden" class="audio-options-json" value='{{ payload.get("audio_options", []) | tojson }}'>
+            <input type="hidden" class="audio-source" value="{{ payload.get('source', 'itunes') }}">
+            <input type="hidden" class="youtube-id" value="{{ payload.get('youtube_id', '') }}">
         </div>
         <div>
             <label class="block text-sm text-slate-400 mb-0.5">Terme de recherche musical (optionnel, ex: compositeur)</label>
             <input type="text" class="audio-search-term w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100" placeholder="Laisse vide pour une recherche automatique">
         </div>
         <div id="audio-preview" class="flex flex-col gap-2"></div>
+
+        <div class="border-t border-slate-700 pt-2 mt-1">
+            <button type="button" class="youtube-search-button text-sm px-3 py-1.5 rounded-lg border border-red-400/40 text-red-300 hover:bg-red-400/10">
+                Chercher sur YouTube (extrait introuvable ou insatisfaisant sur iTunes)
+            </button>
+            <div id="youtube-preview" class="flex flex-col gap-2 mt-2"></div>
+            <div id="youtube-selected" class="{{ '' if payload.get('source') == 'youtube' else 'hidden' }} flex flex-col gap-2 mt-2 rounded-lg border border-red-400/30 bg-slate-950/60 p-2">
+                <iframe id="youtube-embed-preview" class="w-full aspect-video rounded-lg" src="{{ 'https://www.youtube.com/embed/' + payload.get('youtube_id', '') if payload.get('youtube_id') else '' }}" allow="autoplay" frameborder="0"></iframe>
+                <div class="flex items-center gap-2">
+                    <label class="text-xs text-slate-400">Début (s)</label>
+                    <input type="number" min="0" class="youtube-start w-20 bg-slate-900 border border-cyan-400/30 rounded-lg px-2 py-1 text-slate-100" value="{{ payload.get('start', 0) }}">
+                    <label class="text-xs text-slate-400">Fin (s)</label>
+                    <input type="number" min="0" class="youtube-end w-20 bg-slate-900 border border-cyan-400/30 rounded-lg px-2 py-1 text-slate-100" value="{{ payload.get('end', 30) }}">
+                </div>
+            </div>
+        </div>
     </div>
     {% endif %}
 

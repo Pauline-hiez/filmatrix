@@ -170,7 +170,7 @@
                         </div>
                     {% elif question.mode == "blindtest" %}
                         <p class="mb-3 text-center text-sm text-slate-400">Écoute l'extrait :</p>
-                        {{ audio_player(question.payload.audio_url, autoplay=true) }}
+                        {{ audio_player(question.payload, autoplay=true) }}
                     {% elif question.mode == "devinette" %}
                         <div class="mb-5 flex flex-col gap-2">
                             {% for hint in question.payload.hints %}
@@ -267,6 +267,7 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/audio_player.js') }}"></script>
+<script src="{{ url_for('static', filename='js/youtube_audio_player.js') }}"></script>
 <script src="{{ url_for('static', filename='js/multiplayer_game.js') }}"></script>
 <script>
     // La bulle globale (templates/partials/chat_widget.html) est déplacée

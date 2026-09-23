@@ -231,7 +231,7 @@
                (salle d'attente...). Le lecteur reste là, mais c'est au joueur de lancer
                la lecture. En blind test pur, l'autoplay reste : le joueur sait déjà à
                quoi s'attendre en choisissant ce mode. #}
-            {{ audio_player(question.payload.audio_url, autoplay=not is_mix) }}
+            {{ audio_player(question.payload, autoplay=not is_mix) }}
         {% endif %}
 
         {# Indices progressifs, réservés au mode devinette. #}
@@ -404,5 +404,6 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/audio_player.js') }}"></script>
+<script src="{{ url_for('static', filename='js/youtube_audio_player.js') }}"></script>
 <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
 {% endblock %}

@@ -303,6 +303,79 @@ function renderSavedAudioOptions(fieldsGroup) {
     preview.querySelectorAll('input[name="audio-choice"]').forEach(function (radio) {
         radio.addEventListener("change", function () {
             fieldsGroup.querySelector(".audio-url").value = options[parseInt(radio.value)].audio_url;
+            selectItunesSource(fieldsGroup);
+        });
+    });
+}
+
+// Bascule le mode source vers iTunes : masque l'aperçu YouTube éventuellement
+// choisi juste avant, sans effacer le youtube-id (l'admin peut y revenir).
+function selectItunesSource(fieldsGroup) {
+    fieldsGroup.querySelector(".audio-source").value = "itunes";
+    const selected = fieldsGroup.querySelector("#youtube-selected");
+    if (selected) selected.classList.add("hidden");
+}
+
+// Recharge l'aperçu embarqué sur la plage début/fin actuellement saisie, pour
+// que l'admin entende exactement l'extrait qui sera joué (pas la vidéo depuis
+// 0:00). Rappelée à chaque ajustement des champs, pas juste à la sélection.
+function refreshYoutubeEmbedPreview(fieldsGroup) {
+    const videoId = fieldsGroup.querySelector(".youtube-id").value;
+    if (!videoId) return;
+    const start = parseInt(fieldsGroup.querySelector(".youtube-start").value) || 0;
+    const end = parseInt(fieldsGroup.querySelector(".youtube-end").value) || start + 30;
+    const embed = fieldsGroup.querySelector("#youtube-embed-preview");
+    embed.src = `https://www.youtube.com/embed/${videoId}?start=${start}&end=${end}`;
+}
+
+function selectYoutubeVideo(fieldsGroup, video) {
+    fieldsGroup.querySelector(".audio-source").value = "youtube";
+    fieldsGroup.querySelector(".youtube-id").value = video.youtube_id;
+
+    const selected = fieldsGroup.querySelector("#youtube-selected");
+    const startField = fieldsGroup.querySelector(".youtube-start");
+    const endField = fieldsGroup.querySelector(".youtube-end");
+    if (!startField.value) startField.value = 0;
+    if (!endField.value) endField.value = 30;
+    refreshYoutubeEmbedPreview(fieldsGroup);
+    selected.classList.remove("hidden");
+    selected.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+async function searchYoutubeAudio(fieldsGroup) {
+    const filmTitle = fieldsGroup.querySelector(".film-answer").value;
+    if (!filmTitle) {
+        alert("Sélectionne d'abord un film via la recherche TMDB ci-dessus.");
+        return;
+    }
+    const searchTermField = fieldsGroup.querySelector(".audio-search-term");
+    const searchTerm = searchTermField ? searchTermField.value : "";
+
+    const params = new URLSearchParams({ title: filmTitle });
+    if (searchTerm) {
+        params.set("search_term", searchTerm);
+    }
+
+    const response = await fetch(`${API_PREFIX}/recherche-audio-youtube?${params.toString()}`);
+    const data = await response.json();
+
+    const preview = fieldsGroup.querySelector("#youtube-preview");
+    if (!data.success) {
+        preview.innerHTML = "";
+        alert(data.error);
+        return;
+    }
+
+    preview.innerHTML = data.video_options.map(function (video, index) {
+        return `<label class="flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-950/60 p-2 hover:border-red-400/60">
+            <input type="radio" name="youtube-choice" value="${index}">
+            <img src="${video.thumbnail_url}" class="w-16 h-12 object-cover rounded">
+            <span class="min-w-0 flex-1"><span class="block truncate text-sm text-slate-100">${video.label}</span><span class="block truncate text-xs text-slate-500">${video.channel}</span></span>
+        </label>`;
+    }).join("");
+    preview.querySelectorAll('input[name="youtube-choice"]').forEach(function (radio) {
+        radio.addEventListener("change", function () {
+            selectYoutubeVideo(fieldsGroup, data.video_options[parseInt(radio.value)]);
         });
     });
 }
@@ -331,6 +404,22 @@ if (modeSelect.value) {
     showFieldsForMode(modeSelect.value);
     if (modeSelect.value === "blindtest") {
         renderSavedAudioOptions(document.querySelector('.mode-fields[data-mode="blindtest"]'));
+    }
+}
+
+const youtubeSearchButton = document.querySelector(".youtube-search-button");
+if (youtubeSearchButton) {
+    const blindtestGroup = document.querySelector('.mode-fields[data-mode="blindtest"]');
+    youtubeSearchButton.addEventListener("click", function () {
+        searchYoutubeAudio(blindtestGroup);
+    });
+    blindtestGroup.querySelectorAll(".youtube-start, .youtube-end").forEach(function (field) {
+        field.addEventListener("change", function () {
+            refreshYoutubeEmbedPreview(blindtestGroup);
+        });
+    });
+    if (blindtestGroup.querySelector(".youtube-id").value) {
+        refreshYoutubeEmbedPreview(blindtestGroup);
     }
 }
 
@@ -472,14 +561,28 @@ function buildPayloadAndAnswer(mode) {
 
     if (mode === "blindtest") {
         const film = activeGroup.querySelector(".film-answer").value;
-        const audioUrl = activeGroup.querySelector(".audio-url").value;
-        const optionsField = activeGroup.querySelector(".audio-options-json");
-        const audioOptions = optionsField && optionsField.value ? JSON.parse(optionsField.value) : [];
+        const source = activeGroup.querySelector(".audio-source").value || "itunes";
+
+        let audioPayload;
+        if (source === "youtube") {
+            audioPayload = {
+                source: "youtube",
+                youtube_id: activeGroup.querySelector(".youtube-id").value,
+                start: parseInt(activeGroup.querySelector(".youtube-start").value) || 0,
+                end: parseInt(activeGroup.querySelector(".youtube-end").value) || 30,
+            };
+        } else {
+            const optionsField = activeGroup.querySelector(".audio-options-json");
+            const audioOptions = optionsField && optionsField.value ? JSON.parse(optionsField.value) : [];
+            audioPayload = {
+                source: "itunes",
+                audio_url: activeGroup.querySelector(".audio-url").value,
+                audio_options: audioOptions,
+            };
+        }
+
         return {
-            payload: Object.assign(
-                { audio_url: audioUrl, audio_options: audioOptions },
-                adminReferencePayload(activeGroup)
-            ),
+            payload: Object.assign(audioPayload, adminReferencePayload(activeGroup)),
             correct_answer: { film: film },
         };
     }
@@ -810,10 +913,12 @@ async function selectMovie(movie, target, fieldsGroup) {
                     <audio controls preload="none" src="${option.audio_url}" class="h-8 max-w-[15rem]"></audio>
                 </label>`;
             }).join("");
+            fieldsGroup.querySelector(".audio-source").value = "itunes";
             preview.querySelectorAll('input[name="audio-choice"]').forEach(function (radio) {
                 radio.addEventListener("change", function () {
                     const selected = data.audio_options[parseInt(radio.value)];
                     fieldsGroup.querySelector(".audio-url").value = selected.audio_url;
+                    selectItunesSource(fieldsGroup);
                 });
             });
         } else {
