@@ -1,0 +1,18 @@
+{# 3 atouts du jeu, sous le formulaire de connexion/inscription (voir
+   partials/auth_hero.html pour le logo/accroche au-dessus). #}
+<section class="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+    {% for title, text, image, accent, glow in [
+        ("Défie les joueurs", "Affronte des joueurs du monde entier et grimpe dans les classements.", "17.png", "#22d3ee", "#d18d47"),
+        ("Gagne des récompenses", "Collectionne des personnages, badges et autres trésors cinématographiques.", "16.png", "#c084fc", "#8e4121"),
+        ("Des jeux variés", "Blind Test, Quiz, Devinettes, Citations... Il y en a pour tous les cinéphiles !", "14.png", "#fbbf24", "#6349a5"),
+    ] %}
+    <div style="--accent: {{ accent }}" class="accent-card flex flex-col items-center gap-2 rounded-2xl border bg-slate-900/60 px-4 py-5 text-center">
+        <span style="--glow: {{ glow }}" class="img-glow relative inline-block h-14 w-14">
+            <img src="{{ url_for('static', filename='images/habillage/' ~ image) }}" alt="" aria-hidden="true"
+                 class="h-full w-full object-contain drop-shadow-lg">
+        </span>
+        <p class="font-bold" style="color: var(--accent)">{{ title }}</p>
+        <p class="text-xs leading-relaxed text-slate-400">{{ text }}</p>
+    </div>
+    {% endfor %}
+</section>

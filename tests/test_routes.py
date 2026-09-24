@@ -24,6 +24,7 @@ def test_register_creates_account(client):
                 "username": "TestUser",
                 "email": "test@filmatrix.fr",
                 "password": "Azerty1!",
+                "password_confirm": "Azerty1!",
                 },
                 follow_redirects=True,
         )
@@ -45,6 +46,7 @@ def test_register_rejects_duplicate_username_and_suggests_an_available_one(clien
             "username": "cinephile",
             "email": "new@filmatrix.fr",
             "password": "Azerty1!",
+            "password_confirm": "Azerty1!",
         },
     )
 
@@ -69,6 +71,7 @@ def test_register_rejects_duplicate_username_regardless_of_case(client, app):
             "username": "pops",
             "email": "pops2@filmatrix.fr",
             "password": "Azerty1!",
+            "password_confirm": "Azerty1!",
         },
     )
 
@@ -136,6 +139,45 @@ def test_register_rejects_invalid_password(client):
                 },
         )
     assert b"ne respecte pas les r" in response.data
+
+def test_register_rejects_mismatched_password_confirmation(client, app):
+    """La confirmation doit correspondre exactement au mot de passe choisi"""
+    response = client.post(
+            "/inscription",
+            data={
+                "username": "TestUser3",
+                "email": "test3@filmatrix.fr",
+                "password": "Azerty1!",
+                "password_confirm": "Azerty2!",
+                },
+        )
+    assert "ne correspondent pas".encode() in response.data
+    with app.app_context():
+        assert User.query.filter_by(email="test3@filmatrix.fr").first() is None
+
+def test_login_with_remember_checked_sets_a_persistent_cookie(client, app):
+    """« Se souvenir de moi » coché doit poser un cookie remember_token"""
+    with app.app_context():
+        user = User(username="Fidele", email="fidele@filmatrix.fr")
+        user.set_password("Azerty1!")
+        db.session.add(user)
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "fidele@filmatrix.fr", "password": "Azerty1!", "remember": "on"})
+
+    assert client.get_cookie("remember_token") is not None
+
+def test_login_without_remember_does_not_set_a_persistent_cookie(client, app):
+    """Sans la case cochée, aucun cookie de connexion persistante n'est posé"""
+    with app.app_context():
+        user = User(username="Passager", email="passager@filmatrix.fr")
+        user.set_password("Azerty1!")
+        db.session.add(user)
+        db.session.commit()
+
+    client.post("/connexion", data={"email": "passager@filmatrix.fr", "password": "Azerty1!"})
+
+    assert client.get_cookie("remember_token") is None
 
 def create_user_and_login(client, app):
     """Crée un utilisateur de test et le connecte via le client de test"""

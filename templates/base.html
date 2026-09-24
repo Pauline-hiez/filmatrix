@@ -1783,12 +1783,12 @@
                         Déconnexion
                     </a>
                 {% else %}
-                    <a href="{{ url_for('auth.login') }}"
-                       class="hidden sm:block whitespace-nowrap rounded-lg px-3 py-1.5 text-sm text-slate-300 transition hover:bg-slate-900 hover:text-cyan-400">
+                    <a href="{{ url_for('auth.login') }}" data-auth-open="login"
+                       class="auth-nav-login hidden sm:block whitespace-nowrap rounded-lg border border-cyan-400/40 bg-slate-950/60 px-3 py-1.5 text-sm font-semibold text-cyan-300 shadow-[0_0_12px_-4px_rgba(34,211,238,0.7)] transition hover:border-cyan-300 hover:bg-cyan-400/10 hover:text-cyan-200">
                         Connexion
                     </a>
-                    <a href="{{ url_for('auth.register') }}"
-                       class="whitespace-nowrap rounded-lg bg-cyan-400 px-3 py-1.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
+                    <a href="{{ url_for('auth.register') }}" data-auth-open="register"
+                       class="auth-nav-register whitespace-nowrap rounded-lg border border-violet-400/50 bg-gradient-to-r from-violet-500/90 to-purple-600/90 px-3 py-1.5 text-sm font-bold text-slate-100 shadow-[0_0_14px_-4px_rgba(167,139,250,0.8)] transition hover:border-violet-300 hover:from-violet-400 hover:to-purple-500">
                         Inscription
                     </a>
                 {% endif %}
@@ -1813,8 +1813,8 @@
                 {{ nav_link('auth.logout', 'Déconnexion', false, block=true) }}
             {% else %}
                 {{ nav_link('auth.login', 'Connexion', false, block=true) }}
-                <a href="{{ url_for('auth.register') }}"
-                   class="mt-1 w-fit rounded-lg bg-cyan-400 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-cyan-300">
+                <a href="{{ url_for('auth.register') }}" data-auth-open="register"
+                   class="auth-nav-register mt-1 w-fit rounded-lg border border-violet-400/50 bg-gradient-to-r from-violet-500/90 to-purple-600/90 px-4 py-2 text-sm font-bold text-slate-100 shadow-[0_0_14px_-4px_rgba(167,139,250,0.8)] transition hover:border-violet-300 hover:from-violet-400 hover:to-purple-500">
                     Inscription
                 </a>
             {% endif %}
@@ -1853,5 +1853,20 @@
     <script src="{{ url_for('static', filename='js/vendor/combobox.js') }}"></script>
     <script src="{{ url_for('static', filename='js/fx_combobox.js') }}"></script>
     {% block scripts %}{% endblock %}
+
+    {# Modale d'authentification : conteneur vide, rempli en AJAX par
+       static/js/auth_modal.js quand un lien [data-auth-open] est cliqué.
+       Sans JS, les liens de la navbar restent de vraies navigations. #}
+    <div id="auth-modal-overlay"
+         class="hidden fixed inset-0 z-[90] flex items-center justify-center overflow-y-auto bg-slate-950/80 p-4 opacity-0 backdrop-blur-sm transition-opacity duration-200">
+        <div data-auth-panel
+             class="auth-modal-panel relative w-full max-w-md rounded-2xl border border-cyan-400/25 bg-slate-950/95 shadow-[0_0_60px_-12px_rgba(34,211,238,0.45)]">
+            {# Pas de croix ici : chaque fragment (_connexion_form / _inscription_form)
+               fournit la sienne en haut à droite de la carte — une seule croix,
+               qui reste fonctionnelle sur les pages complètes (lien vers l'accueil). #}
+            <div id="auth-modal-content"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/auth_modal.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{# Logo + accroche, partagés par connexion.html et inscription.html. Séparé
+   des 3 cartes d'atouts (partials/auth_features.html) pour pouvoir placer le
+   formulaire entre les deux, comme dans le modèle d'origine. #}
+<div class="mx-auto mb-8 max-w-2xl text-center">
+    <img src="{{ url_for('static', filename='images/site/filmatrix-logo.png') }}" alt="Filmatrix"
+         class="mx-auto h-24 w-auto object-contain sm:h-28">
+    <h1 class="mt-2 text-2xl font-extrabold sm:text-3xl">
+        Rejoins l'univers du
+        <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">cinéma et des séries</span>
+    </h1>
+    <p class="mt-2 text-slate-400">Joue, défie les autres et collectionne des récompenses uniques !</p>
+</div>

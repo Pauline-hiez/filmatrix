@@ -1,0 +1,111 @@
+{# Carte d'inscription, seule : réutilisée telle quelle par inscription.html
+   (page complète, secours sans JS / accès direct par URL) et par la modale
+   (static/js/auth_modal.js, qui la charge en AJAX). Le clic sur le pseudo
+   suggéré est géré en délégation par auth_modal.js (site entier, fonctionne
+   donc ici comme dans la modale) plutôt qu'un <script> inline, qui ne
+   s'exécuterait pas une fois injecté via innerHTML. #}
+<div class="relative mx-auto max-w-md">
+    {# Clap + pop-corn + pellicule (11.png) posée SUR le bord supérieur droit
+       de la carte, miroir de la bobine de la connexion (cf. maquette) : elle
+       repose sur la carte et dépasse vers le haut/droite, la croix reste
+       libre. pointer-events-none : jamais de clic bloqué. #}    {# Halo lumineux DERRIÈRE la carte (même principe que la connexion) :
+       posé avant la carte dans le DOM, il ne reste visible qu'autour du coin
+       supérieur droit, jamais sur les champs. L'image est dans un calque
+       séparé au-dessus (z-20). #}
+    <span aria-hidden="true"
+          class="pointer-events-none absolute -top-14 right-0 hidden aspect-[269/215] w-36 scale-150 select-none sm:block sm:-right-10 sm:-top-20 sm:w-48"
+          style="background: radial-gradient(closest-side, rgba(167, 139, 250, 0.45), rgba(167, 139, 250, 0.12) 60%, transparent 78%)"></span>
+    <span class="pointer-events-none absolute -top-12 right-0 z-20 hidden select-none sm:block sm:-right-10 sm:-top-20">
+        <img src="{{ url_for('static', filename='images/habillage/11.png') }}" alt="" aria-hidden="true" draggable="false"
+             class="block w-36 select-none sm:w-48">
+    </span>
+    <div style="--accent: #a78bfa"
+         class="accent-card relative overflow-hidden rounded-2xl border bg-slate-900/80 p-6 shadow-[0_0_30px_-10px_rgba(167,139,250,0.5)] sm:p-8">
+
+        <a href="{{ url_for('main.home') }}" aria-label="Fermer" data-modal-close
+           class="absolute right-4 top-4 z-30 flex h-8 w-8 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-800 hover:text-slate-200">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </a>
+
+        <div class="relative z-30 flex items-center gap-4">
+            <span class="accent-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            </span>
+            <div>
+                <h2 class="text-xl font-bold text-slate-100">Créer un compte</h2>
+                <p class="text-sm text-slate-400">Rejoins la communauté Filmatrix !</p>
+            </div>
+        </div>
+
+        {% if error %}
+        <p class="mt-4 rounded-lg border border-red-400/30 bg-red-400/10 px-3 py-2 text-sm text-red-300">{{ error }}</p>
+        {% endif %}
+
+        {% if username_suggestion %}
+        <div class="mt-4 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-sm text-amber-200">
+            Pseudo disponible suggéré :
+            <button type="button" id="use-username-suggestion" data-suggestion="{{ username_suggestion }}" class="font-bold text-amber-300 underline hover:text-amber-200">{{ username_suggestion }}</button>
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('auth.register') }}" id="register-form" autocomplete="off" class="mt-6 flex flex-col gap-4">
+            <div>
+                <label class="mb-1 block text-sm text-slate-400">Pseudo</label>
+                <div class="relative">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <input type="text" id="register-username" name="username" value="{{ username }}" required placeholder="Choisis ton pseudo" autocomplete="off"
+                           class="w-full rounded-lg border border-violet-400/30 bg-slate-950 py-2 pl-10 pr-3 text-slate-100 placeholder-slate-500 transition focus:border-violet-400 focus:outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="mb-1 block text-sm text-slate-400">Adresse e-mail</label>
+                <div class="relative">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <input type="email" name="email" value="{{ email }}" required placeholder="Entrez votre adresse e-mail" autocomplete="off"
+                           class="w-full rounded-lg border border-violet-400/30 bg-slate-950 py-2 pl-10 pr-3 text-slate-100 placeholder-slate-500 transition focus:border-violet-400 focus:outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="mb-1 block text-sm text-slate-400">Mot de passe</label>
+                <div class="relative">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="register-password" name="password" required placeholder="Créez un mot de passe" autocomplete="new-password"
+                           class="w-full rounded-lg border border-violet-400/30 bg-slate-950 py-2 pl-10 pr-10 text-slate-100 placeholder-slate-500 transition focus:border-violet-400 focus:outline-none">
+                    <button type="button" data-toggle-password="register-password" aria-label="Afficher le mot de passe"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-slate-300">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                </div>
+                <p class="mt-1 text-xs text-slate-500">8 caractères min., 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial.</p>
+            </div>
+
+            <div>
+                <label class="mb-1 block text-sm text-slate-400">Confirmer le mot de passe</label>
+                <div class="relative">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="register-password-confirm" name="password_confirm" required placeholder="Confirmez votre mot de passe" autocomplete="new-password"
+                           class="w-full rounded-lg border border-violet-400/30 bg-slate-950 py-2 pl-10 pr-10 text-slate-100 placeholder-slate-500 transition focus:border-violet-400 focus:outline-none">
+                    <button type="button" data-toggle-password="register-password-confirm" aria-label="Afficher le mot de passe"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 transition hover:text-slate-300">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit"
+                    class="mt-2 flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-violet-500 to-purple-600 py-2.5 font-bold text-slate-100 shadow-[0_0_20px_-4px_rgba(167,139,250,0.6)] transition hover:brightness-110">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                Créer mon compte
+            </button>
+        </form>
+
+        <p class="mt-5 text-center text-sm text-slate-400">
+            Déjà un compte ?
+            <a href="{{ url_for('auth.login') }}" data-auth-switch="login" class="font-bold text-violet-400 hover:text-violet-300">Se connecter</a>
+        </p>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/auth_form.js') }}"></script>
