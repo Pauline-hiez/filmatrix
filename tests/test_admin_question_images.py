@@ -35,7 +35,6 @@ def create_qcm_with_images() -> Question:
             "option_images": ["https://images.example/a.jpg", None, "https://images.example/c.jpg", None],
         },
         correct_answer={"index": 0},
-        requires_account=False,
     )
     db.session.add(question)
     db.session.commit()
@@ -48,7 +47,6 @@ def create_vrai_faux_with_image() -> Question:
         prompt="Le film Titanic est sorti en 1997.",
         payload={"question_image_url": "https://images.example/titanic.jpg"},
         correct_answer={"value": True},
-        requires_account=False,
     )
     db.session.add(question)
     db.session.commit()
@@ -186,7 +184,6 @@ def create_citation_with_reference() -> Question:
         prompt="«I'll be back.» De quel film vient cette réplique ?",
         payload={"admin_reference_image": "https://images.example/terminator-admin.jpg"},
         correct_answer={"film": "Terminator"},
-        requires_account=False,
     )
     db.session.add(question)
     db.session.commit()
@@ -269,7 +266,6 @@ def create_emoji_question() -> Question:
             {"type": "openmoji", "value": "1F451"},
         ]},
         correct_answer={"film": "The Lion King"},
-        requires_account=False,
     )
     db.session.add(question)
     db.session.commit()

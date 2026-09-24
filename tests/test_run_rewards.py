@@ -29,7 +29,6 @@ def create_questions(app, count: int, mode: str = "qcm") -> list[int]:
                 prompt=f"Question {index}",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
-                requires_account=False,
                 difficulty="moyen",
             )
             db.session.add(question)

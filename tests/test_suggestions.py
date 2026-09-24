@@ -149,7 +149,6 @@ def test_approve_creates_playable_question_with_tags(client, app):
         question = Question.query.get(submission.question_id)
         assert question.prompt == "Question taguée"
         assert question.difficulty == "difficile"
-        assert question.requires_account is False
         assert [tag.id for tag in question.tags] == [tag_id]
 
 

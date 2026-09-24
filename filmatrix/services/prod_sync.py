@@ -90,14 +90,13 @@ def publish_questions(question_ids: list[int]) -> dict:
         for question in questions:
             cur.execute(
                 """INSERT INTO questions
-                   (mode, prompt, payload, correct_answer, requires_account, content_type, difficulty)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id""",
+                   (mode, prompt, payload, correct_answer, content_type, difficulty)
+                   VALUES (%s, %s, %s, %s, %s, %s) RETURNING id""",
                 (
                     question.mode,
                     question.prompt,
                     psycopg2.extras.Json(question.payload),
                     psycopg2.extras.Json(question.correct_answer),
-                    question.requires_account,
                     question.content_type,
                     question.difficulty,
                 ),

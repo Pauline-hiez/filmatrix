@@ -36,7 +36,6 @@ def create_test_questions(mode: str, count: int) -> None:
             prompt=f"Question de test {i}",
             payload={"options": ["A", "B"]},
             correct_answer={"index": 0},
-            requires_account=False,
         )
         db.session.add(question)
     db.session.commit()

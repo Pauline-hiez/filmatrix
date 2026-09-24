@@ -30,7 +30,6 @@ def generate_poster_question(title: str, content_type: str = "film") -> dict:
         "prompt": "",
         "payload": {"poster_url": poster_url},
         "correct_answer": {"film": result["title"]},
-        "requires_account": False,
     }
 
 
@@ -55,7 +54,6 @@ def generate_casting_question(title: str, content_type: str = "film") -> dict:
         "prompt": "",
         "payload": {"actor_photos": actor_photos},
         "correct_answer": {"film": result["title"]},
-        "requires_account": False,
     }
 
 

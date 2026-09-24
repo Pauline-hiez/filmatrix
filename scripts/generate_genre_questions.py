@@ -15,7 +15,7 @@ def make(i, mode, content_type, prompt, payload, answer, genres, univers=None, p
     if univers: tags.append(tag(univers, "univers"))
     if pays: tags.append(tag(pays, "pays"))
     if epoque: tags.append(tag(epoque, "epoque"))
-    return {"id": i, "mode": mode, "content_type": content_type, "prompt": prompt, "payload": payload, "correct_answer": answer, "requires_account": False, "tags": tags}
+    return {"id": i, "mode": mode, "content_type": content_type, "prompt": prompt, "payload": payload, "correct_answer": answer, "tags": tags}
 
 COMEDY = [
 make(61000,"qcm","film","Dans Les Visiteurs, qui interprète Godefroy de Montmirail ?",{"options":["Jean Reno","Christian Clavier","Gérard Depardieu","Thierry Lhermitte"]},{"index":0},["comédie","fantasy"],univers="Les Visiteurs",pays="france",epoque="annees-1990"),

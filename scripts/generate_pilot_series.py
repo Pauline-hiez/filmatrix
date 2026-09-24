@@ -117,6 +117,6 @@ for filename, (mode, key) in FILES.items():
                 category, payload, answer = "anecdote", {}, {"film": answer_text}
             else:
                 category, prompt, payload, answer = "anecdote", "", {}, {"title": item}
-            records.append({"id": question_id, "mode": mode, "category": category, "content_type": "serie", "difficulty": "facile" if item_index < 5 else "moyen", "prompt": prompt, "payload": payload, "correct_answer": answer, "requires_account": False, "tags": tags})
+            records.append({"id": question_id, "mode": mode, "category": category, "content_type": "serie", "difficulty": "facile" if item_index < 5 else "moyen", "prompt": prompt, "payload": payload, "correct_answer": answer, "tags": tags})
     (BASE / filename).write_text(json.dumps(records, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(filename, len(records))

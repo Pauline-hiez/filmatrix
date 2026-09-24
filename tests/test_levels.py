@@ -40,7 +40,6 @@ def create_question(app, mode="qcm", difficulty="moyen"):
                 prompt="Question de test niveau",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
-                requires_account=False,
                 difficulty=difficulty,
             )
         )
@@ -67,7 +66,6 @@ def test_duration_is_identical_across_difficulties_for_the_same_mode(client, app
                 prompt="Autre question de test niveau",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
-                requires_account=False,
                 difficulty="difficile",
             )
         )

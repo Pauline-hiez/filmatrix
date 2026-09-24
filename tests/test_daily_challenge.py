@@ -38,7 +38,6 @@ def create_test_question(mode: str = "qcm", tags: list[Tag] | None = None) -> Qu
             prompt="Question de test",
             payload={},
             correct_answer={"film": "Test"},
-            requires_account=False,
         )
     if tags:
         question.tags = tags
@@ -508,7 +507,6 @@ def create_playable_qcm() -> Question:
         prompt="Question test",
         payload={"options": ["Bonne", "Mauvaise"]},
         correct_answer={"index": 0},
-        requires_account=False,
     )
     db.session.add(question)
     db.session.commit()
@@ -627,7 +625,6 @@ def test_day_completed_and_streak_bonus_announced_together(client, app):
             prompt="Question test",
             payload={"options": ["Bonne", "Mauvaise"]},
             correct_answer={"index": 0},
-            requires_account=False,
         )
         question.tags = [tag]
         db.session.add(question)

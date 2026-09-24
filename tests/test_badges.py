@@ -21,7 +21,6 @@ def create_test_question(mode: str = "qcm") -> Question:
         prompt="Question de test",
         payload={"options": ["A", "B"]},
         correct_answer={"index": 0},
-        requires_account=False,
     )
     db.session.add(question)
     db.session.commit()

@@ -9,7 +9,6 @@ import random
 import unicodedata
 
 from flask import session, url_for
-from flask_login import current_user
 from sqlalchemy import func
 
 from filmatrix.extensions import db
@@ -223,17 +222,13 @@ def playable_question_query(
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
 ):
-    """Restreint aux questions que le joueur peut réellement jouer
+    """Requêtes des questions que le joueur peut réellement jouer
 
-    Une question réservée aux comptes renverrait un visiteur vers la page de
-    connexion en pleine partie, sa progression perdue : elle n'a rien à faire
-    ni dans le tirage, ni dans les compteurs qu'on lui annonce"""
-    query = build_question_query(mode, tag_id, content_type, tag_ids, difficulty)
-
-    if not current_user.is_authenticated:
-        query = query.filter_by(requires_account=False)
-
-    return query
+    Alias de build_question_query : toutes les questions d'un mode sont
+    jouables par tout le monde (plus de distinction "réservée aux comptes"),
+    mais le nom reste utile pour marquer, aux points d'appel, qu'il s'agit
+    bien du tirage réel d'une partie plutôt que d'un usage générique."""
+    return build_question_query(mode, tag_id, content_type, tag_ids, difficulty)
 
 def count_run_questions(
     mode: str,

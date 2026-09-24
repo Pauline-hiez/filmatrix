@@ -150,47 +150,14 @@ def create_user_and_login(client, app):
             data={"email": "joueur@filmatrix.fr", "password": "Azerty1!"},
         )
 
-def create_protected_question(app):
-    """Crée une question réservée aux comptes, dans la base de test"""
-    with app.app_context():
-        question = Question(
-                mode="qcm",
-                prompt="Question protégée de test",
-                payload={"options": ["A", "B"]},
-                correct_answer={"index": 0},
-                requires_account=True,
-            )
-        db.session.add(question)
-        db.session.commit()
-
-def test_protected_question_redirects_when_logged_out(client, app):
-    """Un visiteur non connecté doit être redirigé vers la connexion"""
-    create_protected_question(app)
-
-    response = client.get("/quiz/qcm/1")
-
-    assert response.status_code == 302
-    assert "/connexion" in response.location
-
-def test_protected_question_accessible_when_logged_in(client, app):
-    """Un utilisateur connecté doit pouvoir accèder à la question protégée"""
-    create_protected_question(app)
-    create_user_and_login(client, app)
-
-    response = client.get("/quiz/qcm/1")
-
-    assert response.status_code == 200
-    assert b"Question prot" in response.data
-
 def create_test_question(app, mode="qcm", difficulty="moyen"):
-    """Crée une question test non protégée, dans la base de test"""
+    """Crée une question de test, dans la base de test"""
     with app.app_context():
         question = Question(
                 mode=mode,
                 prompt="Question de test XP",
                 payload={"option": 0},
                 correct_answer={"index": 0},
-                requires_account=False,
                 difficulty=difficulty,
             )
         db.session.add(question)
@@ -236,7 +203,6 @@ def test_leaderboard_shows_all_players_sorted_by_xp(client, app):
                 prompt="Question de test classement",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
-                requires_account=False,
             )
         db.session.add(question)
         db.session.commit()
@@ -364,7 +330,6 @@ def test_mix_with_a_universe_excludes_answer_revealing_modes(client, app):
                     if mode == "citation"
                     else {"film": "Kaamelott"}
                 ),
-                requires_account=False,
             )
             question.tags.append(universe)
             db.session.add(question)
@@ -396,7 +361,6 @@ def test_mix_with_a_universe_excludes_unattributed_citations(client, app):
             prompt="Citation attribuée",
             payload={},
             correct_answer={"film": "Friends", "character": "Chandler Bing"},
-            requires_account=False,
         )
         mapped.tags.append(universe)
         db.session.add(mapped)
@@ -407,7 +371,6 @@ def test_mix_with_a_universe_excludes_unattributed_citations(client, app):
             prompt="Citation non attribuée",
             payload={},
             correct_answer={"film": "Friends"},
-            requires_account=False,
         )
         unmapped.tags.append(universe)
         db.session.add(unmapped)
@@ -435,7 +398,7 @@ def test_setup_screen_keeps_selected_tag_and_counts_filtered_questions(client, a
         for index in range(20):
             question = Question(
                 mode="citation", content_type="serie", prompt=f"Une réplique culte {index}",
-                payload={}, correct_answer={"film": "Kaamelott"}, requires_account=False,
+                payload={}, correct_answer={"film": "Kaamelott"},
             )
             question.tags.append(tag)
             db.session.add(question)
@@ -465,17 +428,17 @@ def test_setup_screen_combines_independent_theme_filters(client, app):
         comedy = Tag(name="comédie", tag_type="genre")
         friends = Tag(name="friends", tag_type="univers")
 
-        matching = Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"}, requires_account=False)
+        matching = Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"})
         matching.tags.extend([comedy, friends])
         db.session.add(matching)
 
         for index in range(19):
-            friends_only = Question(mode="citation", content_type="serie", prompt=f"Friends {index}", payload={}, correct_answer={"film": "Friends"}, requires_account=False)
+            friends_only = Question(mode="citation", content_type="serie", prompt=f"Friends {index}", payload={}, correct_answer={"film": "Friends"})
             friends_only.tags.append(friends)
             db.session.add(friends_only)
 
         for index in range(4):
-            genre_only = Question(mode="citation", content_type="serie", prompt=f"Autre {index}", payload={}, correct_answer={"film": "Autre"}, requires_account=False)
+            genre_only = Question(mode="citation", content_type="serie", prompt=f"Autre {index}", payload={}, correct_answer={"film": "Autre"})
             genre_only.tags.append(comedy)
             db.session.add(genre_only)
 
@@ -532,7 +495,6 @@ def create_questions(app, count, mode="qcm"):
                     prompt=f"Question de test {number}",
                     payload={"options": ["A", "B"]},
                     correct_answer={"index": 0},
-                    requires_account=False,
                 )
             )
         db.session.commit()
@@ -672,7 +634,6 @@ def test_citation_with_selected_universe_asks_for_character(client, app):
                 "film": "Game of Thrones",
                 "character": "Daenerys Targaryen",
             },
-            requires_account=False,
         )
         question.tags.append(universe)
         db.session.add(question)
@@ -707,7 +668,6 @@ def test_citation_without_universe_keeps_title_answer(client, app):
                 prompt="« Dracarys ! » — De quelle série vient cette réplique ?",
                 payload={},
                 correct_answer={"film": "Game of Thrones"},
-                requires_account=False,
             )
         )
         db.session.commit()
@@ -726,7 +686,6 @@ def test_mix_adapts_citation_wording_to_a_series(client, app):
                 prompt="« Réplique test » — De quel film vient cette réplique ?",
                 payload={},
                 correct_answer={"film": "Friends"},
-                requires_account=False,
             )
         )
         db.session.commit()
@@ -747,7 +706,6 @@ def test_mix_adapts_riddle_wording_to_a_series(client, app):
                 prompt="Quelle série se cache derrière ces indices ?",
                 payload={"hints": ["Indice de test"]},
                 correct_answer={"film": "Stranger Things"},
-                requires_account=False,
             )
         )
         db.session.commit()
@@ -761,7 +719,7 @@ def test_mix_adapts_riddle_wording_to_a_series(client, app):
 def test_question_displays_its_content_type(client, app):
     """Une question doit indiquer clairement s'il s'agit d'un film ou d'une série."""
     with app.app_context():
-        db.session.add(Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"}, requires_account=False))
+        db.session.add(Question(mode="citation", content_type="serie", prompt="Réplique", payload={}, correct_answer={"film": "Friends"}))
         db.session.commit()
 
     response = client.get("/quiz/citation/1")
@@ -781,7 +739,6 @@ def test_the_draw_respects_the_content_filter(client, app):
                     prompt=f"Question {index}",
                     payload={"options": ["A", "B"]},
                     correct_answer={"index": 0},
-                    requires_account=False,
                 )
             )
         db.session.commit()
@@ -798,23 +755,6 @@ def test_the_draw_respects_the_content_filter(client, app):
         assert {Question.query.get(int(i)).content_type for i in ids} == {"serie"}
 
 
-def test_the_draw_spares_a_visitor_the_account_only_questions(client, app):
-    """Un visiteur ne doit pas être éjecté vers la connexion en pleine partie"""
-    create_questions(app, 12)
-    create_protected_question(app)
-
-    with app.app_context():
-        protected = {q.id for q in Question.query.filter_by(requires_account=True)}
-
-    # Un visiteur non connecté n'a droit qu'à l'aperçu (GUEST_PREVIEW_LENGTH
-    # questions), pas à une partie complète de 10.
-    drawn = set()
-    for _ in range(10):
-        drawn |= {int(i) for i in question_ids_of_a_run(client, length=3)}
-
-    assert not (drawn & protected)
-
-
 def test_qcm_options_are_shuffled(client, app):
     """L'ordre d'affichage des propositions doit varier d'une partie à l'autre"""
     with app.app_context():
@@ -824,7 +764,6 @@ def test_qcm_options_are_shuffled(client, app):
                 prompt="Seule question du mode",
                 payload={"options": ["A", "B", "C", "D"]},
                 correct_answer={"index": 0},
-                requires_account=False,
             )
         )
         db.session.commit()
@@ -849,7 +788,6 @@ def test_qcm_adds_an_existing_work_poster_to_an_option(client, app):
                 prompt="",
                 payload={"poster_url": f"https://images.example/{title.lower()}.jpg"},
                 correct_answer={"film": title},
-                requires_account=False,
             )
             for title in titles
         ]
@@ -859,7 +797,6 @@ def test_qcm_adds_an_existing_work_poster_to_an_option(client, app):
             prompt="Quel film ?",
             payload={"options": titles},
             correct_answer={"index": 0},
-            requires_account=False,
         )
         db.session.add_all([*posters, qcm])
         db.session.commit()
@@ -881,7 +818,6 @@ def test_qcm_partial_option_images_render_as_text_only(client, app):
             prompt="",
             payload={"poster_url": "https://images.example/joker.jpg"},
             correct_answer={"film": "Joker"},
-            requires_account=False,
         )
         qcm = Question(
             mode="qcm",
@@ -889,7 +825,6 @@ def test_qcm_partial_option_images_render_as_text_only(client, app):
             prompt="Quel film ?",
             payload={"options": ["Joker", "Autre", "Encore", "Dernier"]},
             correct_answer={"index": 0},
-            requires_account=False,
         )
         db.session.add_all([poster, qcm])
         db.session.commit()
@@ -909,7 +844,6 @@ def test_non_qcm_work_images_are_not_rendered(client, app):
             prompt="Devine le film à partir de son casting.",
             payload={"question_image_url": "https://images.example/film.jpg", "actor_photos": []},
             correct_answer={"film": "Un film"},
-            requires_account=False,
         )
         db.session.add(question)
         db.session.commit()
@@ -943,7 +877,6 @@ def test_citation_shows_the_mode_icon_as_a_badge(client, app):
             prompt="«I'll be back.» De quel film vient cette réplique ?",
             payload={"question_image_url": "https://images.example/terminator-answer.jpg"},
             correct_answer={"film": "Terminator"},
-            requires_account=False,
         )
         db.session.add(question)
         db.session.commit()
@@ -977,7 +910,6 @@ def test_qcm_falls_back_to_a_catalogued_work_poster(client, app):
             prompt="",
             payload={"poster_url": "https://images.example/catalogued.jpg"},
             correct_answer={"film": "Joker"},
-            requires_account=False,
         )
         qcm = Question(
             mode="qcm",
@@ -985,7 +917,6 @@ def test_qcm_falls_back_to_a_catalogued_work_poster(client, app):
             prompt="Dans Joker, quel personnage principal est interprété par Joaquin Phoenix ?",
             payload={"options": ["Arthur Fleck", "Bruce Wayne", "Tony Stark", "Peter Parker"]},
             correct_answer={"index": 0},
-            requires_account=False,
         )
         db.session.add_all([poster, qcm])
         db.session.commit()
@@ -1017,7 +948,6 @@ def test_qcm_displays_the_work_poster_in_the_question_block(client, app):
             prompt="Dans Le Cinquième Élément, quelle actrice incarne Leeloo ?",
             payload={"options": ["Milla Jovovich", "Charlize Theron", "Uma Thurman", "Famke Janssen"], "question_image_url": "https://images.example/fifth-element.jpg"},
             correct_answer={"index": 0},
-            requires_account=False,
         )
         db.session.add(qcm)
         db.session.commit()
@@ -1057,7 +987,6 @@ def test_qcm_uses_explicit_option_images(client, app):
                 ],
             },
             correct_answer={"index": 0},
-            requires_account=False,
         )
         db.session.add(qcm)
         db.session.commit()
@@ -1078,7 +1007,6 @@ def test_a_shuffled_option_is_still_judged_correctly(client, app):
                 prompt="Seule question du mode",
                 payload={"options": ["Bonne", "Mauvaise", "Mauvaise", "Mauvaise"]},
                 correct_answer={"index": 0},
-                requires_account=False,
             )
         )
         db.session.commit()

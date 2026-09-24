@@ -264,7 +264,6 @@ def admin_questions_new() -> str:
             prompt=prompt,
             payload=payload,
             correct_answer=correct_answer,
-            requires_account=request.form.get("requires_account") == "on",
             content_type=request.form.get("content_type", "film"),
             difficulty=request.form.get("difficulty", "moyen"),
         )
@@ -306,7 +305,6 @@ def admin_questions_edit(question_id: int) -> str:
             payload.setdefault("visuals", json.loads(request.form.get("visuals", "[]")))
         question.payload = payload
         question.correct_answer = correct_answer
-        question.requires_account = request.form.get("requires_account") == "on"
         question.content_type = request.form.get("content_type", question.content_type)
         question.difficulty = request.form.get("difficulty", question.difficulty)
 
@@ -746,7 +744,6 @@ def admin_suggestions_approve(submission_id: int) -> str:
         prompt=submission.prompt,
         payload=submission.payload,
         correct_answer=submission.correct_answer,
-        requires_account=False,
         content_type=submission.content_type,
         difficulty=submission.difficulty,
     )
@@ -819,7 +816,6 @@ def admin_suggestions_review_form(submission_id: int) -> str:
             prompt=prompt,
             payload=payload,
             correct_answer=correct_answer,
-            requires_account=False,
             content_type=content_type,
             difficulty=difficulty,
         )

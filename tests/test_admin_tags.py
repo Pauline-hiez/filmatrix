@@ -97,7 +97,6 @@ def test_admin_tags_merge_reassigns_questions_characters_and_challenges(client, 
 
         question = Question(
             mode="citation", prompt="Test", payload={}, correct_answer={"film": "Star Wars"},
-            requires_account=False,
         )
         question.tags = [dup]
         db.session.add(question)

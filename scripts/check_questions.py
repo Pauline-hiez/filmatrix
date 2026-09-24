@@ -13,7 +13,7 @@ import json, collections, sys, unicodedata, re
 from pathlib import Path
 
 BASE = Path("data/questions")
-REQUIRED = {"id", "mode", "prompt", "payload", "correct_answer", "requires_account"}
+REQUIRED = {"id", "mode", "prompt", "payload", "correct_answer"}
 FORBIDDEN = {"category", "difficulty"}
 CONTENT = {"film", "serie"}
 TAG_TYPES = {"genre", "univers", "saga", "pays", "epoque", "annee",
@@ -81,8 +81,6 @@ for path in sorted(BASE.glob("*.json")):
             errors.append(f"{tag} : content_type « {ct} » inconnu")
         if "content_type" not in q:
             warnings.append(f"{tag} : content_type implicite")
-        if not isinstance(q["requires_account"], bool):
-            errors.append(f"{tag} : requires_account n'est pas un booléen")
         if q["mode"] not in SHAPE:
             errors.append(f"{tag} : mode « {q['mode']} » inconnu du moteur")
             continue

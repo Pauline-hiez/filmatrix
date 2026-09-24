@@ -1,10 +1,9 @@
 {# Contenu du formulaire de revue chargé en AJAX par admin_suggestion_review_modal.js.
    Copie de admin/question_form_fields.html, adaptée à une QuestionSubmission :
    pré-rempli depuis les champs ORIGINAUX du joueur (jamais reviewed_*, qui
-   n'existent pas encore à ce stade), sans la case "Réservée aux comptes"
-   (jamais exposée aux joueurs, cf. plan). La soumission de ce formulaire
-   approuve la suggestion avec les valeurs (éventuellement modifiées) qu'il
-   contient - ce n'est pas une simple sauvegarde intermédiaire. #}
+   n'existent pas encore à ce stade). La soumission de ce formulaire approuve
+   la suggestion avec les valeurs (éventuellement modifiées) qu'il contient -
+   ce n'est pas une simple sauvegarde intermédiaire. #}
 {% from "partials/admin_reference_image.html" import admin_reference_preview, question_image_preview %}
 {% set payload = submission.payload %}
 {% set answer = submission.correct_answer %}

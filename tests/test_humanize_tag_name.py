@@ -78,7 +78,6 @@ def test_preparation_screen_shows_humanized_tag_names(client, app):
                 prompt=f"Question test {index}",
                 payload={"options": ["A", "B"]},
                 correct_answer={"index": 0},
-                requires_account=False,
             )
             question.tags = [genre_tag, univers_tag]
             db.session.add(question)

@@ -68,7 +68,6 @@ def import_questions() -> None:
                     prompt=data["prompt"],
                     payload=data["payload"],
                     correct_answer=data["correct_answer"],
-                    requires_account=data["requires_account"],
                 )
 
                 # Les tags restent dans la base afin d'être réutilisables par
@@ -80,7 +79,6 @@ def import_questions() -> None:
                     existing_question.prompt = question.prompt
                     existing_question.payload = question.payload
                     existing_question.correct_answer = question.correct_answer
-                    existing_question.requires_account = question.requires_account
                     question = existing_question
                 else:
                     db.session.add(question)

@@ -32,7 +32,6 @@ def generate_blindtest_question(
         "prompt": "",
         "payload": {"audio_url": preview_url},
         "correct_answer": {"film": result["title"]},
-        "requires_account": False,
     }
 
 

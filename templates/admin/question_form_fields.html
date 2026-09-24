@@ -278,11 +278,6 @@
     </div>
     {% endif %}
 
-    <label class="flex items-center gap-2 text-sm text-slate-400">
-        <input type="checkbox" name="requires_account" {% if question.requires_account %}checked{% endif %}>
-        Réservée aux comptes
-    </label>
-
     {% set univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
     <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3" data-tag-picker="univers">
         <div class="mb-2 flex flex-wrap items-center justify-between gap-2">

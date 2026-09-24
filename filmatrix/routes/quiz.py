@@ -225,10 +225,6 @@ def quiz(mode: str, position: int) -> str:
         and character_answer(question) is not None
     )
 
-    if question.requires_account and not current_user.is_authenticated:
-        flash("Connecte-toi pour accéder à cette question.")
-        return redirect(url_for("auth.login"))
-
     if request.method == "POST":
         is_timeout = request.form.get("timeout") == "true"
 

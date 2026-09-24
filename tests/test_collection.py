@@ -123,7 +123,6 @@ def create_test_question(tags: list[Tag] | None = None) -> Question:
         prompt="Question de test",
         payload={},
         correct_answer={"film": "Test"},
-        requires_account=False,
     )
     if tags:
         question.tags = tags
