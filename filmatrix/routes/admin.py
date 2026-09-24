@@ -9,7 +9,7 @@ from botocore.exceptions import BotoCoreError, ClientError
 from sqlalchemy import case, func
 from werkzeug.utils import secure_filename
 
-from flask import Blueprint, current_app, flash, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
 
 from filmatrix.extensions import db
@@ -20,7 +20,15 @@ from filmatrix.game_modes import GAME_MODES
 from filmatrix.models import Album, Attempt, Question, QuestionSubmission, Report, Tag, User, Character, question_tags
 from filmatrix.services.notifications import create_notification
 from filmatrix.services.tags import merge_tag_into
-from filmatrix.services.prod_sync import find_publishable_questions, publish_questions
+from filmatrix.services.prod_sync import (
+    find_publishable_cache_cine_scenes,
+    find_publishable_mystery_cases,
+    find_publishable_questions,
+    is_local_environment,
+    publish_cache_cine_scenes,
+    publish_mystery_cases,
+    publish_questions,
+)
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.storage import upload_album_image, upload_character_image
@@ -42,7 +50,9 @@ bp = Blueprint("admin", __name__)
 
 @bp.context_processor
 def _admin_nav_counts() -> dict:
-    """Compteurs affichés à côté de chaque entrée du menu admin."""
+    """Compteurs affichés à côté de chaque entrée du menu admin, et signaux
+    d'affichage conditionnel (ex: "Publier vers la prod", absent une fois
+    déployé - voir prod_sync.is_local_environment)."""
     return {
         "admin_counts": {
             "questions": db.session.query(func.count(Question.id)).scalar(),
@@ -56,7 +66,8 @@ def _admin_nav_counts() -> dict:
             "tags": db.session.query(func.count(Tag.id)).scalar(),
             "characters": db.session.query(func.count(Character.id)).scalar(),
             "albums": db.session.query(func.count(Album.id)).scalar(),
-        }
+        },
+        "can_publish_to_prod": is_local_environment(),
     }
 
 
@@ -348,35 +359,65 @@ def admin_questions_delete(question_id: int) -> str:
 @login_required
 @admin_required
 def admin_publish_to_prod() -> str:
-    """Publie vers la base de production les questions créées en local qui n'y
-    sont pas encore (voir filmatrix/services/prod_sync.py : le déploiement ne
-    touche jamais au contenu, seulement au code et au schéma)."""
+    """Publie vers la base de production le contenu créé en local qui n'y est
+    pas encore : questions, scènes Cache-Ciné, cas Scène Mystère (voir
+    filmatrix/services/prod_sync.py : le déploiement ne touche jamais au
+    contenu, seulement au code et au schéma)."""
+    if not is_local_environment():
+        # Lien déjà caché du menu (voir _admin_nav_counts) : accès direct par
+        # URL bloqué aussi, publier la prod vers elle-même n'a aucun sens.
+        abort(404)
+
     if request.method == "POST":
         question_ids = [int(raw_id) for raw_id in request.form.getlist("question_ids")]
-        if not question_ids:
-            flash("Aucune question sélectionnée.")
+        scene_ids = [int(raw_id) for raw_id in request.form.getlist("cache_cine_scene_ids")]
+        case_ids = [int(raw_id) for raw_id in request.form.getlist("mystery_case_ids")]
+
+        if not question_ids and not scene_ids and not case_ids:
+            flash("Aucun contenu sélectionné.")
             return redirect(url_for("admin.admin_publish_to_prod"))
 
+        # Les trois publications sont indépendantes (tables distinctes, chacune
+        # déjà atomique via sa propre transaction) : si l'une échoue après que
+        # d'autres ont réussi, on le dit plutôt que de laisser croire à un
+        # échec total - rejouer l'opération republie juste ce qui manque
+        # encore (find_publishable_* ignore déjà ce qui est publié).
+        published_counts = []
         try:
-            result = publish_questions(question_ids)
+            if question_ids:
+                result = publish_questions(question_ids)
+                count = len(result["inserted"])
+                published_counts.append(f"{count} question{'s' if count > 1 else ''}")
+            if scene_ids:
+                result = publish_cache_cine_scenes(scene_ids)
+                count = len(result["inserted"])
+                published_counts.append(f"{count} scène{'s' if count > 1 else ''} Cache-Ciné")
+            if case_ids:
+                result = publish_mystery_cases(case_ids)
+                count = len(result["inserted"])
+                published_counts.append(f"{count} cas Scène Mystère")
         except Exception as exc:
-            flash(f"Échec de la publication : {exc}")
+            done = f" (déjà publié avant l'échec : {', '.join(published_counts)})" if published_counts else ""
+            flash(f"Échec de la publication : {exc}{done}")
             return redirect(url_for("admin.admin_publish_to_prod"))
 
-        count = len(result["inserted"])
-        flash(f"{count} question{'s' if count > 1 else ''} publiée{'s' if count > 1 else ''} en production.")
+        flash(f"Publié en production : {', '.join(published_counts)}.")
         return redirect(url_for("admin.admin_publish_to_prod"))
 
     error = None
     try:
-        publishable = find_publishable_questions()
+        publishable_questions = find_publishable_questions()
+        publishable_scenes = find_publishable_cache_cine_scenes()
+        publishable_cases = find_publishable_mystery_cases()
     except Exception as exc:
-        publishable = []
+        publishable_questions, publishable_scenes, publishable_cases = [], [], []
         error = str(exc)
 
     return render_template(
         "admin/publish_to_prod.html",
-        publishable=publishable,
+        publishable=publishable_questions,
+        publishable_scenes=publishable_scenes,
+        publishable_cases=publishable_cases,
         error=error,
         active_admin_section="publish_prod",
     )

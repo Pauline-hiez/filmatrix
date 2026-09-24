@@ -11,7 +11,7 @@
             {"endpoint": "admin.admin_tags_list", "section": "tags", "label": "Tags", "icon": "tag"},
             {"endpoint": "admin.admin_characters_list", "section": "characters", "label": "Personnages", "icon": "user"},
             {"endpoint": "admin.admin_albums_list", "section": "albums", "label": "Albums", "icon": "book"},
-            {"endpoint": "admin.admin_publish_to_prod", "section": "publish_prod", "label": "Publier vers la prod", "icon": "upload"},
+            {"endpoint": "admin.admin_publish_to_prod", "section": "publish_prod", "label": "Publier vers la prod", "icon": "upload", "local_only": true},
         ],
     },
     {
@@ -47,6 +47,7 @@
                 {{ group.label }}
             </p>
             {% for item in group.entries %}
+            {% if not item.local_only or can_publish_to_prod %}
             <a href="{{ url_for(item.endpoint) }}"
                class="admin-nav-item group flex items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-sm transition
                       {% if active_admin_section == item.section %}
@@ -63,6 +64,7 @@
                 </span>
                 {% endif %}
             </a>
+            {% endif %}
             {% endfor %}
             {% endfor %}
         </nav>

@@ -6,9 +6,9 @@
     <div>
         <h1 class="text-xl font-bold text-slate-100">Publier vers la production</h1>
         <p class="mt-1 text-sm text-slate-400">
-            Questions créées en local, absentes de la base de production. Rien n'est
-            supprimé ni modifié côté prod : seules les questions cochées ci-dessous
-            y seront ajoutées.
+            Contenu créé en local, absent de la base de production. Rien n'est
+            supprimé ni modifié côté prod : seul ce qui est coché ci-dessous y
+            sera ajouté.
         </p>
     </div>
 
@@ -16,26 +16,28 @@
     <p class="rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300">
         Impossible de contacter la production : {{ error }}
     </p>
-    {% elif not publishable %}
+    {% elif not publishable and not publishable_scenes and not publishable_cases %}
     <p class="rounded-lg border border-slate-700 bg-slate-900/50 px-4 py-3 text-sm text-slate-400">
-        Rien à publier : toutes les questions locales éligibles existent déjà en production.
+        Rien à publier : tout le contenu local éligible existe déjà en production.
     </p>
     {% else %}
-    <form method="POST" class="flex flex-col gap-3">
+    <form method="POST" class="flex flex-col gap-5">
         <div class="flex items-center gap-3">
             <button type="button" id="publish-select-all" class="text-xs font-bold text-cyan-400 hover:text-cyan-300">Tout sélectionner</button>
             <span class="text-xs text-slate-600">·</span>
             <button type="button" id="publish-select-none" class="text-xs font-bold text-cyan-400 hover:text-cyan-300">Tout désélectionner</button>
         </div>
 
+        {% if publishable %}
         <div class="flex flex-col gap-2">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Questions ({{ publishable|length }})</p>
             {% for question in publishable %}
             <details class="rounded-lg border border-slate-700 bg-slate-950/60 hover:border-cyan-400/40">
                 <summary class="flex cursor-pointer list-none items-center gap-3 px-3 py-2">
                     {# stopPropagation : le <summary> englobe toute la ligne pour
                        agrandir la zone cliquable, mais cocher/décocher plusieurs
-                       questions de suite ne doit pas rouvrir/refermer le détail
-                       à chaque clic. #}
+                       lignes de suite ne doit pas rouvrir/refermer le détail à
+                       chaque clic. #}
                     <input type="checkbox" name="question_ids" value="{{ question.id }}" checked
                            class="publish-checkbox h-4 w-4 shrink-0 accent-cyan-400" onclick="event.stopPropagation()">
                     <span class="shrink-0 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">{{ question.mode }}</span>
@@ -56,10 +58,75 @@
             </details>
             {% endfor %}
         </div>
+        {% endif %}
+
+        {% if publishable_scenes %}
+        <div class="flex flex-col gap-2">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Cache-Ciné ({{ publishable_scenes|length }})</p>
+            {% for scene in publishable_scenes %}
+            <details class="rounded-lg border border-slate-700 bg-slate-950/60 hover:border-cyan-400/40">
+                <summary class="flex cursor-pointer list-none items-center gap-3 px-3 py-2">
+                    <input type="checkbox" name="cache_cine_scene_ids" value="{{ scene.id }}" checked
+                           class="publish-checkbox h-4 w-4 shrink-0 accent-cyan-400" onclick="event.stopPropagation()">
+                    <span class="shrink-0 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">{{ scene.references|length }} réf.</span>
+                    <span class="min-w-0 flex-1 truncate text-sm text-slate-200">{{ scene.title }}</span>
+                    <span class="shrink-0 text-xs text-cyan-400">Détails</span>
+                </summary>
+                <div class="border-t border-slate-800 px-3 py-3 flex flex-col gap-3 text-sm text-slate-200">
+                    {% if scene.image_url %}
+                    <img src="{{ scene.image_url }}" loading="lazy" class="w-full max-w-md rounded-lg border border-cyan-400/30">
+                    {% endif %}
+                    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Difficulté : </span>{{ scene.difficulty | capitalize }}
+                       <span class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-3">Temps : </span>{{ scene.time_limit_seconds }}s</p>
+                    <div>
+                        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Références cachées</p>
+                        <ol class="list-inside list-decimal text-slate-300">
+                            {% for ref in scene.references|sort(attribute='order_index') %}<li>{{ ref.title }}</li>{% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if publishable_cases %}
+        <div class="flex flex-col gap-2">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Scène Mystère ({{ publishable_cases|length }})</p>
+            {% for case in publishable_cases %}
+            <details class="rounded-lg border border-slate-700 bg-slate-950/60 hover:border-cyan-400/40">
+                <summary class="flex cursor-pointer list-none items-center gap-3 px-3 py-2">
+                    <input type="checkbox" name="mystery_case_ids" value="{{ case.id }}" checked
+                           class="publish-checkbox h-4 w-4 shrink-0 accent-cyan-400" onclick="event.stopPropagation()">
+                    <span class="shrink-0 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">{{ case.zones|length }} zones</span>
+                    <span class="min-w-0 flex-1 truncate text-sm text-slate-200">Cas #{{ case.id }}</span>
+                    <span class="shrink-0 text-xs text-cyan-400">Détails</span>
+                </summary>
+                <div class="border-t border-slate-800 px-3 py-3 flex flex-col gap-3 text-sm text-slate-200">
+                    {% if case.image_url %}
+                    <img src="{{ case.image_url }}" loading="lazy" class="w-full max-w-md rounded-lg border border-cyan-400/30">
+                    {% endif %}
+                    <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Difficulté : </span>{{ case.difficulty | capitalize }}
+                       <span class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-3">Temps : </span>{{ case.time_limit_seconds }}s</p>
+                    <div>
+                        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Zones et réponses</p>
+                        <ol class="list-inside list-decimal text-slate-300">
+                            {% for zone in case.zones|sort(attribute='order_index') %}
+                            <li>{{ zone.clue_text }} —
+                                <strong>{{ (zone.options|selectattr('is_correct')|map(attribute='label')|first) or '(pas de bonne réponse définie)' }}</strong>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+        {% endif %}
 
         <button type="submit" id="publish-submit"
                 class="self-start rounded-lg bg-cyan-400 px-5 py-2 font-bold text-slate-950 transition hover:bg-cyan-300">
-            Publier {{ publishable|length }} question{{ 's' if publishable|length > 1 else '' }}
+            Publier
         </button>
     </form>
     {% endif %}
@@ -78,7 +145,7 @@
 
         function updateSubmitLabel() {
             const count = document.querySelectorAll(".publish-checkbox:checked").length;
-            submitButton.textContent = `Publier ${count} question${count > 1 ? "s" : ""}`;
+            submitButton.textContent = count > 0 ? `Publier (${count})` : "Publier";
             submitButton.disabled = count === 0;
             submitButton.classList.toggle("opacity-40", count === 0);
             submitButton.classList.toggle("cursor-not-allowed", count === 0);
@@ -95,6 +162,7 @@
         checkboxes().forEach(function (cb) {
             cb.addEventListener("change", updateSubmitLabel);
         });
+        updateSubmitLabel();
     })();
 </script>
 {% endblock %}
