@@ -1325,4 +1325,100 @@ document.querySelectorAll("[data-tag-picker]").forEach(function (container) {
 
     renderChips();
 });
+
+// ---- Œuvre associée (Work) : recherche TMDB dédiée, indépendante des
+// recherches par mode ci-dessus (poster/casting/audio/dialogue). Remplit
+// tmdb_id/content_type + un aperçu lecture seule des genres/saga ;
+// get_or_create_work() ne s'exécute qu'à la soumission du formulaire, côté
+// serveur, pour ne pas créer de Work sur une recherche abandonnée.
+const workSearchInput = document.getElementById("work-search-input");
+if (workSearchInput) {
+    const workResultsBox = document.getElementById("work-search-results");
+    const workTmdbIdInput = document.getElementById("work-tmdb-id");
+    const workContentTypeInput = document.getElementById("work-content-type");
+    const workInfoBox = document.getElementById("work-info");
+    const workGenresSpan = document.getElementById("work-genres");
+    const workSagaSpan = document.getElementById("work-saga");
+
+    let workSearchDebounceTimer = null;
+
+    async function showWorkInfo(tmdbId, contentType) {
+        const response = await fetch(
+            `${API_PREFIX}/oeuvre-info?tmdb_id=${tmdbId}&content_type=${contentType}`
+        );
+        const data = await response.json();
+        workGenresSpan.textContent = (data.genres || []).join(", ");
+        workSagaSpan.textContent = data.saga || "—";
+        workInfoBox.classList.remove("hidden");
+    }
+
+    function selectWork(movie) {
+        const contentType = movie.media_type === "serie" ? "serie" : "film";
+        workSearchInput.value = movie.title;
+        workTmdbIdInput.value = movie.id;
+        workContentTypeInput.value = contentType;
+        syncQuestionContentType(null, contentType);
+        showWorkInfo(movie.id, contentType);
+        workResultsBox.classList.add("hidden");
+    }
+
+    function displayWorkSearchResults(movies) {
+        if (movies.length === 0) {
+            workResultsBox.innerHTML = '<p class="text-sm text-slate-500 px-3 py-2">Aucun résultat.</p>';
+            workResultsBox.classList.remove("hidden");
+            return;
+        }
+
+        workResultsBox.innerHTML = "";
+        movies.forEach(function (movie) {
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className =
+                "w-full flex items-center gap-3 px-3 py-2 hover:bg-slate-800 transition text-left";
+
+            const thumbnailHtml = movie.thumbnail_url
+                ? `<img src="${movie.thumbnail_url}" class="w-8 h-12 object-cover rounded">`
+                : `<div class="w-8 h-12 bg-slate-800 rounded flex items-center justify-center text-xs text-slate-500">?</div>`;
+            const isSerie = movie.media_type === "serie";
+            const typeBadge = isSerie
+                ? '<span class="ml-auto shrink-0 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">Série</span>'
+                : '<span class="ml-auto shrink-0 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cyan-300">Film</span>';
+
+            item.innerHTML = `
+                ${thumbnailHtml}
+                <span class="min-w-0 flex-1 truncate text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+                ${typeBadge}
+            `;
+            item.addEventListener("click", function () {
+                selectWork(movie);
+            });
+            workResultsBox.appendChild(item);
+        });
+
+        workResultsBox.classList.remove("hidden");
+    }
+
+    workSearchInput.addEventListener("input", function () {
+        const query = workSearchInput.value.trim();
+        clearTimeout(workSearchDebounceTimer);
+
+        if (query.length < 2) {
+            workResultsBox.classList.add("hidden");
+            workResultsBox.innerHTML = "";
+            return;
+        }
+
+        workSearchDebounceTimer = setTimeout(async function () {
+            const response = await fetch(`${API_PREFIX}/recherche-film?query=${encodeURIComponent(query)}`);
+            const data = await response.json();
+            displayWorkSearchResults(data.results);
+        }, 350);
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!workSearchInput.contains(event.target) && !workResultsBox.contains(event.target)) {
+            workResultsBox.classList.add("hidden");
+        }
+    });
+}
 })();

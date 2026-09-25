@@ -3,6 +3,9 @@ const availabilityText = document.getElementById("availability-text");
 const contentTypeSelect = document.getElementById("content-type");
 const difficultySelect = document.getElementById("difficulty-filter");
 const tagFilterSelects = document.querySelectorAll("[data-tag-filter]");
+const workFilterSelects = document.querySelectorAll("[data-work-filter]");
+const sagaSelect = document.getElementById("saga-filter");
+const genreSelect = document.getElementById("genre-filter");
 const lengthButtons = document.querySelectorAll("#run-length-choices [data-length]");
 const rewardXp = document.getElementById("reward-xp");
 const rewardCoins = document.getElementById("reward-coins");
@@ -31,6 +34,14 @@ function currentFilterParams() {
 
     if (difficultySelect.value) {
         params.set("difficulty", difficultySelect.value);
+    }
+
+    if (sagaSelect && sagaSelect.value) {
+        params.set("saga", sagaSelect.value);
+    }
+
+    if (genreSelect && genreSelect.value) {
+        params.set("genre", genreSelect.value);
     }
 
     return params;
@@ -187,6 +198,13 @@ if (universSelect) {
 }
 
 tagFilterSelects.forEach(function (select) {
+    select.addEventListener("change", refreshAvailability);
+});
+
+// Sagas et genres (Work) n'ont pas de logique de désactivation dynamique
+// (cf. disableUnreachableOptions, réservée aux tags) : seul le compteur de
+// questions disponibles doit se mettre à jour.
+workFilterSelects.forEach(function (select) {
     select.addEventListener("change", refreshAvailability);
 });
 

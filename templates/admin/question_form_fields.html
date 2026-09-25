@@ -14,6 +14,23 @@
        est sélectionné ; conservé tel quel sinon. #}
     <input type="hidden" name="content_type" class="content-type-hidden" value="{{ question.content_type }}">
 
+    {# Œuvre associée : remplace la sélection manuelle des tags saga (univers)
+       et genre - voir la note équivalente dans question_form.html. #}
+    <div class="relative rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3">
+        <label class="block text-sm text-slate-400 mb-0.5">Œuvre associée (TMDB)</label>
+        <input type="text" id="work-search-input" autocomplete="off"
+               class="w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-1.5 text-slate-100"
+               placeholder="Rechercher un film ou une série..."
+               value="{{ question.work.title if question.work else '' }}">
+        <div id="work-search-results" class="movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+        <input type="hidden" name="tmdb_id" id="work-tmdb-id" value="{{ question.work.tmdb_id if question.work else '' }}">
+        <input type="hidden" id="work-content-type" value="{{ question.work.content_type if question.work else '' }}">
+        <div id="work-info" class="mt-2 text-xs text-slate-400 {% if not question.work %}hidden{% endif %}">
+            <p>Genres : <span id="work-genres">{{ question.work.genres | join(', ') if question.work else '' }}</span></p>
+            <p>Saga : <span id="work-saga">{{ question.work.saga if question.work and question.work.saga else '—' }}</span></p>
+        </div>
+    </div>
+
     <div>
         <label class="block text-sm text-slate-400 mb-0.5">Difficulté</label>
         <select name="difficulty" data-combobox
@@ -278,29 +295,6 @@
     </div>
     {% endif %}
 
-    {% set univers_tags = all_tags | selectattr("tag_type", "equalto", "univers") | list %}
-    <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3" data-tag-picker="univers">
-        <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <label class="text-sm text-slate-300">Univers</label>
-            <span class="text-xs text-slate-500">{{ univers_tags|length }} disponibles</span>
-        </div>
-        <div class="tag-picker-chips mb-2 flex flex-wrap gap-2"></div>
-        <div class="relative">
-            <input type="search" class="tag-picker-input w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none"
-                   placeholder="Rechercher un univers..." autocomplete="off">
-            <div class="tag-picker-dropdown absolute z-10 mt-1 hidden max-h-56 w-full overflow-y-auto rounded-lg border border-cyan-400/30 bg-slate-950"></div>
-        </div>
-        <div class="tag-picker-options hidden">
-            {% for tag in univers_tags %}
-            <label>
-                <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox"
-                       {% if tag in question.tags %}checked{% endif %}>
-                <span>{{ tag.name }}</span>
-            </label>
-            {% endfor %}
-        </div>
-    </div>
-
     <div class="rounded-xl border border-cyan-400/20 bg-slate-950/30 p-3">
         <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
             <label class="text-sm text-slate-300">Tags</label>
@@ -309,10 +303,12 @@
         <input type="search" id="tag-search" placeholder="Rechercher un tag..." autocomplete="off"
                class="mb-2 w-full rounded-lg border border-cyan-400/30 bg-slate-900 px-3 py-1.5 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-400 focus:outline-none">
         <div id="tag-groups" class="flex flex-col gap-1.5">
-            {% for tag_type, label in [("genre", "Genres"), ("theme", "Thèmes"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
+            {# Genre et univers viennent désormais de l'œuvre associée (Work) :
+               voir la note équivalente dans question_form.html. #}
+            {% for tag_type, label in [("theme", "Thèmes"), ("pays", "Pays"), ("epoque", "Époques"), ("annee", "Années"), ("realisateur", "Réalisateurs"), ("acteur", "Acteurs"), ("studio", "Studios"), ("autre", "Autres")] %}
             {% set typed_tags = all_tags | selectattr("tag_type", "equalto", tag_type) | list %}
             {% if typed_tags %}
-            <details class="tag-group rounded-lg border border-slate-800 bg-slate-900/50 px-2.5 py-1.5" {% if tag_type == "genre" %}open{% endif %}>
+            <details class="tag-group rounded-lg border border-slate-800 bg-slate-900/50 px-2.5 py-1.5" {% if tag_type == "theme" %}open{% endif %}>
                 <summary class="cursor-pointer list-none text-sm font-bold text-slate-300">
                     <span class="flex items-center justify-between">{{ label }} <span class="text-xs font-normal text-slate-500">{{ typed_tags|length }}</span></span>
                 </summary>

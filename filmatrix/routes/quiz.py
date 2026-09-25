@@ -30,6 +30,8 @@ from filmatrix.services.questions import (
     mode_tags,
     question_display_prompt,
     mode_tags_for_type,
+    mode_sagas,
+    mode_genres,
     playable_question_query,
     reachable_content_types,
     reachable_tag_ids,
@@ -86,10 +88,14 @@ def quiz_setup(mode: str) -> str:
     # des univers reste disponible à part, pour le lien qui les révèle tous.
     available_tags = mode_tags(mode)
     all_univers_tags = mode_tags_for_type(mode, "univers")
+    available_sagas = mode_sagas(mode)
+    available_genres = mode_genres(mode)
 
     content_type = resolve_content_type(request.args.get("content_type"))
     selected_tag_ids = request.args.getlist("tag_id", type=int)
     difficulty = resolve_difficulty_filter(request.args.get("difficulty"))
+    saga = request.args.get("saga") or None
+    genre = request.args.get("genre") or None
     chosen_run_length = _effective_run_length(request.args.get("questions"))
 
     # Ces modes reposent sur un média ou une représentation qui n'est pas
@@ -110,7 +116,7 @@ def quiz_setup(mode: str) -> str:
     # ne compte que le jouable : un visiteur ne doit pas se voir promettre
     # des questions réservées aux comptes.
     available = playable_question_query(
-        mode, content_type=content_type, tag_ids=selected_tag_ids, difficulty=difficulty
+        mode, content_type=content_type, tag_ids=selected_tag_ids, difficulty=difficulty, saga=saga, genre=genre
     ).count()
 
     # Un visiteur non connecté n'a qu'un seul format possible (l'aperçu) : pas
@@ -134,6 +140,10 @@ def quiz_setup(mode: str) -> str:
             selected_tag_ids=selected_tag_ids,
             all_tags=available_tags,
             all_univers_tags=all_univers_tags,
+            all_sagas=available_sagas,
+            all_genres=available_genres,
+            selected_saga=saga,
+            selected_genre=genre,
             levels=LEVELS,
             difficulty=difficulty,
             mode_duration=duration_for(mode),
@@ -150,9 +160,13 @@ def quiz_availability(mode: str) -> dict:
     content_type = resolve_content_type(request.args.get("content_type"))
     tag_ids = request.args.getlist("tag_id", type=int)
     difficulty = resolve_difficulty_filter(request.args.get("difficulty"))
+    saga = request.args.get("saga") or None
+    genre = request.args.get("genre") or None
     chosen_run_length = _effective_run_length(request.args.get("questions"))
 
-    available = playable_question_query(mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty).count()
+    available = playable_question_query(
+        mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, saga=saga, genre=genre
+    ).count()
     default_reachable, reachable_by_type = reachable_tag_ids(mode, content_type, tag_ids, difficulty=difficulty)
 
     return {
@@ -169,6 +183,8 @@ def quiz(mode: str, position: int) -> str:
     tag_ids = request.args.getlist("tag_id", type=int)
     content_type = resolve_content_type(request.args.get("content_type"))
     difficulty = resolve_difficulty_filter(request.args.get("difficulty"))
+    saga = request.args.get("saga") or None
+    genre = request.args.get("genre") or None
     chosen_run_length = _effective_run_length(request.args.get("questions"))
 
     # Le tirage doit précéder la recherche de la question : c'est lui qui
@@ -178,13 +194,18 @@ def quiz(mode: str, position: int) -> str:
             session,
             mode,
             question_ids=draw_run_questions(
-                mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length
+                mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty,
+                saga=saga, genre=genre, total_questions=chosen_run_length
             ),
-            filters=run_filters(content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length),
+            filters=run_filters(
+                content_type=content_type, tag_ids=tag_ids, difficulty=difficulty,
+                saga=saga, genre=genre, total_questions=chosen_run_length
+            ),
         )
 
     question = find_question(
-        mode, position, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length
+        mode, position, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty,
+        saga=saga, genre=genre, total_questions=chosen_run_length
     )
 
     if question is None:
@@ -203,9 +224,13 @@ def quiz(mode: str, position: int) -> str:
     # Le tirage de la partie en cours fait foi ; à défaut — lien direct,
     # session expirée — on retombe sur ce que les filtres permettent.
     total_questions = run_length(
-        session, mode, run_filters(content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length)
+        session, mode, run_filters(
+            content_type=content_type, tag_ids=tag_ids, difficulty=difficulty,
+            saga=saga, genre=genre, total_questions=chosen_run_length
+        )
     ) or count_run_questions(
-        mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty, total_questions=chosen_run_length
+        mode, content_type=content_type, tag_ids=tag_ids, difficulty=difficulty,
+        saga=saga, genre=genre, total_questions=chosen_run_length
     )
 
     # Chaque question porte sa propre difficulté : c'est elle, pas un réglage

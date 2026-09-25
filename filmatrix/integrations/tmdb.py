@@ -120,6 +120,8 @@ def get_movie_by_id(movie_id: int) -> dict | None:
         "poster_path": movie.get("poster_path"),
         "backdrop_path": movie.get("backdrop_path"),
         "genre_ids": [genre["id"] for genre in movie.get("genres", [])],
+        "genres": [genre["name"] for genre in movie.get("genres", [])],
+        "saga": (movie.get("belongs_to_collection") or {}).get("name"),
         }
 
 def search_tv_show(title: str, year: str | None = None) -> dict | None:
@@ -207,6 +209,10 @@ def get_tv_show_by_id(tv_id: int) -> dict | None:
         "poster_path": show.get("poster_path"),
         "backdrop_path": show.get("backdrop_path"),
         "genre_ids": [genre["id"] for genre in show.get("genres", [])],
+        "genres": [genre["name"] for genre in show.get("genres", [])],
+        # TMDB n'a pas d'équivalent direct de belongs_to_collection pour les
+        # séries : pas de saga dans cette première version.
+        "saga": None,
     }
 
 

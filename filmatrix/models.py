@@ -24,6 +24,9 @@ class Question(db.Model):
     correct_answer = db.Column(db.JSON, nullable=False)
     content_type = db.Column(db.String(10), nullable=False, default="film")
     difficulty = db.Column(db.String(20), nullable=False, default="moyen")
+    work_id = db.Column(db.Integer, db.ForeignKey("works.id"), nullable=True)
+
+    work = db.relationship("Work", backref="questions")
 
 class User(db.Model, UserMixin):
     """Représente un compte joueur"""
@@ -304,6 +307,27 @@ class Tag(db.Model):
     tag_type = db.Column(db.String(20), nullable=False)
 
     questions = db.relationship("Question", secondary=question_tags, backref="tags")
+
+
+class Work(db.Model):
+    """Représente une œuvre (film ou série) identifiée par son id TMDB.
+
+    Centralise le classement saga/genre une seule fois par œuvre, plutôt que
+    de le dupliquer sur chaque question qui en parle (cf. Tag, taggé question
+    par question). Genres et saga sont toujours renseignés depuis TMDB, jamais
+    à la main."""
+
+    __tablename__ = "works"
+    __table_args__ = (db.UniqueConstraint("tmdb_id", "content_type", name="uq_work_tmdb"),)
+
+    id = db.Column(db.Integer, primary_key=True)
+    tmdb_id = db.Column(db.Integer, nullable=False)
+    content_type = db.Column(db.String(10), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    poster_url = db.Column(db.String(255), nullable=True)
+    genres = db.Column(db.JSON, nullable=False, default=list)
+    saga = db.Column(db.String(255), nullable=True)
+
 
 class Character(db.Model):
     """Représente un personnage collectionnable, lié à une franchise (tag univers)."""

@@ -175,6 +175,38 @@
                         </select>
                     </div>
 
+                    {# Ces deux sélecteurs viennent de Work (rempli automatiquement
+                       depuis TMDB à la création de chaque question), pas de Tag :
+                       ils s'ajoutent aux filtres genre/univers existants plutôt que
+                       de les remplacer, pour ne rien casser côté univers (mode
+                       personnage des citations, collection de personnages). #}
+                    <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label for="saga-filter" class="mb-0.5 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            🎞️ Saga
+                        </label>
+                        <select id="saga-filter" data-work-filter data-combobox
+                                class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                            <option value="">Toutes les sagas</option>
+                            {% for saga in all_sagas %}
+                            <option value="{{ saga }}" {% if saga == selected_saga %}selected{% endif %}>{{ saga }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="genre-filter" class="mb-0.5 block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            🎬 Genre TMDB
+                        </label>
+                        <select id="genre-filter" data-work-filter data-combobox
+                                class="w-full rounded-lg border border-cyan-400/30 bg-slate-950/70 px-3 py-1.5 text-slate-100 transition focus:border-cyan-400 focus:outline-none">
+                            <option value="">Tous les genres</option>
+                            {% for genre in all_genres %}
+                            <option value="{{ genre }}" {% if genre == selected_genre %}selected{% endif %}>{{ genre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </div>
+
                     <details class="group rounded-xl border border-slate-700/70 bg-slate-950/30 px-3 py-2">
                         <summary class="cursor-pointer list-none text-sm font-bold text-slate-300 marker:hidden">
                             <span class="flex items-center justify-between">

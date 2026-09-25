@@ -32,6 +32,7 @@ from filmatrix.services.prod_sync import (
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.storage import upload_album_image, upload_character_image
+from filmatrix.services.works import get_or_create_work
 from filmatrix.integrations.tmdb import (
     build_image_url,
     genre_ids_to_tags,
@@ -282,6 +283,11 @@ def admin_questions_new() -> str:
         selected_tag_ids = request.form.getlist("tags")
         new_question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
 
+        tmdb_id = request.form.get("tmdb_id", type=int)
+        if tmdb_id:
+            work = get_or_create_work(tmdb_id, new_question.content_type)
+            new_question.work_id = work.id
+
         db.session.add(new_question)
         db.session.commit()
 
@@ -321,6 +327,11 @@ def admin_questions_edit(question_id: int) -> str:
 
         selected_tag_ids = request.form.getlist("tags")
         question.tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
+
+        tmdb_id = request.form.get("tmdb_id", type=int)
+        if tmdb_id:
+            work = get_or_create_work(tmdb_id, question.content_type)
+            question.work_id = work.id
 
         db.session.commit()
 
@@ -462,6 +473,28 @@ def admin_api_genres_tmdb() -> dict:
     movie_genres, tv_genres = get_genre_maps()
     genre_map = tv_genres if content_type == "serie" else movie_genres
     return {"genres": genre_ids_to_tags(result["genre_ids"], genre_map)}
+
+@bp.route("/admin/api/oeuvre-info")
+@login_required
+@admin_required
+def admin_api_work_info() -> dict:
+    """Renvoie les genres et la saga TMDB d'une œuvre, pour affichage en
+    lecture seule dans le formulaire de question, avant sa soumission.
+
+    N'écrit rien en base : la Work n'est créée (get_or_create_work) qu'à la
+    soumission du formulaire, pour ne pas polluer la table avec des
+    recherches abandonnées."""
+    tmdb_id = request.args.get("tmdb_id", type=int)
+    content_type = request.args.get("content_type", "film")
+
+    if not tmdb_id:
+        return {"genres": [], "saga": None}
+
+    details = get_tv_show_by_id(tmdb_id) if content_type == "serie" else get_movie_by_id(tmdb_id)
+    if details is None:
+        return {"genres": [], "saga": None}
+
+    return {"genres": details.get("genres", []), "saga": details.get("saga")}
 
 @bp.route("/admin/api/recherche-affiche")
 @login_required

@@ -87,6 +87,10 @@ def create_app(database_uri: str | None = None) -> Flask:
     )
 
     app.config["SQLALCHEMY_DATABASE_URI"] = resolve_database_uri(database_uri)
+    # Neon (Postgres serverless) ferme les connexions inactives côté serveur :
+    # sans pool_pre_ping, SQLAlchemy peut réutiliser une connexion déjà morte
+    # et lever "SSL connection has been closed unexpectedly" en pleine requête.
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {"pool_pre_ping": True}
     app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
     db.init_app(app)

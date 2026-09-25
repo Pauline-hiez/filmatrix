@@ -13,9 +13,10 @@ from sqlalchemy import func
 
 from filmatrix.extensions import db
 from filmatrix.game_modes import MIX_MODE_SLUG, mode_image_icon
-from filmatrix.models import Character, Question, Tag, question_tags
+from filmatrix.models import Character, Question, Tag, Work, question_tags
 from filmatrix.services.character_answers import CHARACTER_ANSWERS
 from filmatrix.services.score import QUESTIONS_PER_RUN, run_question_id
+from filmatrix.services.works import work_genre_filter
 
 # Ces modes donnent directement un indice de la réponse (image, casting,
 # emojis, extrait audio ou lettres du titre). Avec un univers sélectionné,
@@ -151,6 +152,41 @@ def mode_tags_for_type(mode: str, tag_type: str) -> list[Tag]:
     )
 
 
+def mode_sagas(mode: str) -> list[str]:
+    """Liste les sagas disponibles (Work.saga) pour un mode donné
+
+    Sur le modèle de mode_tags_for_type, mais depuis Work plutôt que Tag : la
+    saga vient de TMDB (belongs_to_collection), plus d'un tag à choisir à la
+    main."""
+    query = db.session.query(Work.saga).join(Question, Question.work_id == Work.id).filter(
+        Work.saga.isnot(None)
+    )
+    if mode != MIX_MODE_SLUG:
+        query = query.filter(Question.mode == mode)
+    return sorted({row.saga for row in query.distinct().all()})
+
+
+def mode_genres(mode: str) -> list[str]:
+    """Liste les genres disponibles (Work.genres) pour un mode donné
+
+    Work.genres est une liste JSON par œuvre (une œuvre a souvent plusieurs
+    genres à la fois) : il faut donc l'aplatir côté Python, une requête SQL ne
+    pouvant pas "distinct" proprement le contenu d'un tableau JSON de façon
+    portable entre SQLite et PostgreSQL."""
+    # Pas de .distinct() ici : le type JSON générique n'a pas d'opérateur
+    # d'égalité sur PostgreSQL (contrairement à SQLite, plus permissif), ce
+    # qui ferait échouer un DISTINCT sur cette colonne en production. Le
+    # dédoublonnage se fait entièrement côté Python ci-dessous.
+    query = db.session.query(Work.genres).join(Question, Question.work_id == Work.id)
+    if mode != MIX_MODE_SLUG:
+        query = query.filter(Question.mode == mode)
+
+    genres: set[str] = set()
+    for row in query.all():
+        genres.update(row.genres or [])
+    return sorted(genres)
+
+
 def resolve_content_type(value: str | None) -> str:
     """Normalise les libellés de contenu utilisés par l'interface."""
     aliases = {"film": "film", "films": "film", "serie": "serie", "série": "serie", "series": "serie", "séries": "serie"}
@@ -172,6 +208,8 @@ def build_question_query(
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
+    saga: str | None = None,
+    genre: str | None = None,
 ):
     """Construit la requête des questions jouables pour un mode et ses filtres
 
@@ -213,6 +251,13 @@ def build_question_query(
     if difficulty:
         query = query.filter_by(difficulty=difficulty)
 
+    if saga or genre:
+        query = query.join(Work, Question.work_id == Work.id)
+        if saga:
+            query = query.filter(Work.saga == saga)
+        if genre:
+            query = query.filter(work_genre_filter(genre))
+
     return query.order_by(Question.id)
 
 def playable_question_query(
@@ -221,6 +266,8 @@ def playable_question_query(
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
+    saga: str | None = None,
+    genre: str | None = None,
 ):
     """Requêtes des questions que le joueur peut réellement jouer
 
@@ -228,7 +275,7 @@ def playable_question_query(
     jouables par tout le monde (plus de distinction "réservée aux comptes"),
     mais le nom reste utile pour marquer, aux points d'appel, qu'il s'agit
     bien du tirage réel d'une partie plutôt que d'un usage générique."""
-    return build_question_query(mode, tag_id, content_type, tag_ids, difficulty)
+    return build_question_query(mode, tag_id, content_type, tag_ids, difficulty, saga, genre)
 
 def count_run_questions(
     mode: str,
@@ -236,6 +283,8 @@ def count_run_questions(
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
+    saga: str | None = None,
+    genre: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ) -> int:
     """Retourne le nombre de questions que comptera la partie
@@ -244,7 +293,7 @@ def count_run_questions(
     RUN_LENGTH_CHOICES sur l'écran de préparation), sauf si les filtres du
     joueur en laissent moins : on ne promet pas un total qu'on ne peut pas
     servir"""
-    available = playable_question_query(mode, tag_id, content_type, tag_ids, difficulty).count()
+    available = playable_question_query(mode, tag_id, content_type, tag_ids, difficulty, saga, genre).count()
     return min(total_questions, available)
 
 def run_filters(
@@ -252,6 +301,8 @@ def run_filters(
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
+    saga: str | None = None,
+    genre: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ) -> dict:
     """Décrit les réglages d'une partie, sous une forme rangeable en session
@@ -263,6 +314,8 @@ def run_filters(
         "tag_ids": normalized_tag_ids,
         "content_type": content_type,
         "difficulty": difficulty,
+        "saga": saga,
+        "genre": genre,
         "total_questions": total_questions,
     }
 
@@ -314,6 +367,8 @@ def draw_run_questions(
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
+    saga: str | None = None,
+    genre: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ) -> list[int]:
     """Tire au sort les questions d'une nouvelle partie, en évitant de resservir
@@ -328,13 +383,14 @@ def draw_run_questions(
     des questions faciles - mais une répartition égale entre facile, moyen
     et difficile, complétée par les difficultés restantes si l'une d'elles
     manque de questions disponibles pour ce mode et ces filtres."""
-    filters = run_filters(tag_id, content_type, tag_ids, difficulty, total_questions)
+    filters = run_filters(tag_id, content_type, tag_ids, difficulty, saga, genre, total_questions)
     history_key = _draw_history_key(mode, filters)
     recent_ids = session.get(history_key, [])
 
     if difficulty:
         pool_ids = [
-            row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids, difficulty).all()
+            row.id
+            for row in playable_question_query(mode, tag_id, content_type, tag_ids, difficulty, saga, genre).all()
         ]
         recent_ids = [qid for qid in recent_ids if qid in pool_ids]
         drawn = _draw_from_pool(pool_ids, recent_ids, min(total_questions, len(pool_ids)))
@@ -345,7 +401,10 @@ def draw_run_questions(
         shares = _split_evenly(total_questions, len(levels))
 
         bucket_pools = {
-            level: [row.id for row in playable_question_query(mode, tag_id, content_type, tag_ids, level).all()]
+            level: [
+                row.id
+                for row in playable_question_query(mode, tag_id, content_type, tag_ids, level, saga, genre).all()
+            ]
             for level in levels
         }
         all_pool_ids = [qid for pool in bucket_pools.values() for qid in pool]
@@ -378,6 +437,8 @@ def find_question(
     content_type: str | None = None,
     tag_ids: list[int] | None = None,
     difficulty: str | None = None,
+    saga: str | None = None,
+    genre: str | None = None,
     total_questions: int = QUESTIONS_PER_RUN,
 ):
     """Cherche la question à une position donnée, parmi celles d'un mode, tag et type de contenu
@@ -387,7 +448,7 @@ def find_question(
     if position < 1 or position > total_questions:
         return None
 
-    filters = run_filters(tag_id, content_type, tag_ids, difficulty, total_questions)
+    filters = run_filters(tag_id, content_type, tag_ids, difficulty, saga, genre, total_questions)
     question_id = run_question_id(session, mode, position, filters)
 
     if question_id is not None:
@@ -396,7 +457,7 @@ def find_question(
     # Aucun tirage en session : lien direct vers une question, session
     # expirée ou navigation manuelle. On sert alors l'ordre stable par id,
     # plutôt que de refuser la question au joueur.
-    query = build_question_query(mode, tag_id, content_type, tag_ids, difficulty)
+    query = build_question_query(mode, tag_id, content_type, tag_ids, difficulty, saga, genre)
 
     return query.offset(position - 1).limit(1).first()
 
