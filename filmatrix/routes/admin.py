@@ -371,7 +371,7 @@ def admin_questions_delete(question_id: int) -> str:
 @admin_required
 def admin_publish_to_prod() -> str:
     """Publie vers la base de production le contenu créé en local qui n'y est
-    pas encore : questions, scènes Cache-Ciné, cas Scène Mystère (voir
+    pas encore : questions, scènes Cache-Ciné, scènes Scène Mystère (voir
     filmatrix/services/prod_sync.py : le déploiement ne touche jamais au
     contenu, seulement au code et au schéma)."""
     if not is_local_environment():
@@ -406,7 +406,7 @@ def admin_publish_to_prod() -> str:
             if case_ids:
                 result = publish_mystery_cases(case_ids)
                 count = len(result["inserted"])
-                published_counts.append(f"{count} cas Scène Mystère")
+                published_counts.append(f"{count} scène{'s' if count > 1 else ''} Scène Mystère")
         except Exception as exc:
             done = f" (déjà publié avant l'échec : {', '.join(published_counts)})" if published_counts else ""
             flash(f"Échec de la publication : {exc}{done}")

@@ -229,6 +229,7 @@
         <div>
             <p class="text-xs font-extrabold uppercase tracking-widest text-amber-400">🎬 Scène Mystère</p>
             <h1 class="text-lg font-extrabold text-slate-100">Observe. Déduis. Trouve le film.</h1>
+            <p class="mt-1 text-xs text-slate-400">💡 Une même œuvre peut se cacher plusieurs fois dans la scène.</p>
         </div>
         <div class="flex items-center gap-4">
             <span class="sm-stat" id="sm-found-count">🎯 {{ found_count }}/{{ total }}</span>
@@ -258,6 +259,19 @@
                 <p class="sm-panel-label">Quelle œuvre est-ce ?</p>
                 <input type="text" id="sm-answer-input" class="sm-answer-input" placeholder="Nom du film ou de la série" autocomplete="off">
                 <button type="button" id="sm-answer-submit" class="sm-answer-submit" disabled>Valider</button>
+            </div>
+
+            {# Liste des titres déjà trouvés, doublons inclus : une même œuvre
+               peut revenir plusieurs fois dans la scène (cf. l'indice dans la
+               barre du haut) - la voir réapparaître ici confirme que ce n'est
+               pas un bug plutôt que de laisser le joueur s'interroger. #}
+            <div class="sm-panel {% if not found_titles %}sm-hidden{% endif %}" id="sm-found-titles-panel">
+                <p class="sm-panel-label">Œuvres trouvées</p>
+                <ul class="flex flex-col gap-1 text-sm text-slate-200" id="sm-found-titles-list">
+                    {% for title in found_titles %}
+                    <li>🎬 {{ title }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

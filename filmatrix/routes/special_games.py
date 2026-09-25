@@ -5,7 +5,7 @@ par les Tickets d'Or (User.golden_tickets) plutôt que toujours accessible.
 Une partie vit en session Flask, comme une partie de quiz classique
 (services/score.py) : pas de table dédiée pour la partie en cours, le ticket
 consommé au lancement suffit à limiter la fréquence de jeu. Seul le meilleur
-score par scène/cas est persisté (CacheCineProgress / MysteryProgress), pour
+score par scène est persisté (CacheCineProgress / MysteryProgress), pour
 l'écran de sélection.
 """
 
@@ -262,8 +262,8 @@ def cache_cine_result() -> str:
 @bp.route("/jeux-speciaux/scene-mystere/cas")
 @login_required
 def scene_mystere_choose() -> str:
-    """Liste les cas Scène Mystère disponibles, avec le meilleur score du
-    joueur sur chacun (templates/special_games/scene_mystere_choisir.html) —
+    """Liste les scènes Scène Mystère disponibles, avec le meilleur score du
+    joueur sur chacune (templates/special_games/scene_mystere_choisir.html) —
     remplace le tirage aléatoire précédent par un choix explicite."""
     game = SPECIAL_GAMES_BY_SLUG["scene-mystere"]
     cases = MysteryCase.query.filter_by(is_active=True).order_by(MysteryCase.created_at.desc()).all()
@@ -286,7 +286,7 @@ def scene_mystere_choose() -> str:
 @bp.route("/jeux-speciaux/scene-mystere/commencer/<int:case_id>", methods=["POST"])
 @login_required
 def scene_mystere_start(case_id: int):
-    """Consomme un Ticket d'Or et lance une partie de Scène Mystère sur le cas choisi."""
+    """Consomme un Ticket d'Or et lance une partie de Scène Mystère sur la scène choisie."""
     game = SPECIAL_GAMES_BY_SLUG["scene-mystere"]
 
     if current_user.golden_tickets < game["ticket_cost"]:
@@ -295,7 +295,7 @@ def scene_mystere_start(case_id: int):
 
     case = MysteryCase.query.filter_by(id=case_id, is_active=True).first()
     if case is None:
-        flash("Ce cas Scène Mystère n'est plus disponible.")
+        flash("Cette scène Scène Mystère n'est plus disponible.")
         return redirect(url_for("special_games.scene_mystere_choose"))
 
     zone_ids = [
@@ -303,7 +303,7 @@ def scene_mystere_start(case_id: int):
         for zone in MysteryZone.query.filter_by(case_id=case.id).order_by(MysteryZone.order_index).all()
     ]
     if not case.image_url or not zone_ids:
-        flash("Ce cas Scène Mystère n'est pas encore prêt à être joué.")
+        flash("Cette scène Scène Mystère n'est pas encore prête à être jouée.")
         return redirect(url_for("special_games.scene_mystere_choose"))
 
     current_user.golden_tickets -= game["ticket_cost"]
@@ -314,12 +314,17 @@ def scene_mystere_start(case_id: int):
         # Aucun ordre imposé : chaque zone est une cible légitime dès le
         # départ (pas de décoy), le joueur clique celles qu'il repère dans
         # l'ordre qui lui plaît. zone_ids sert seulement à borner le total et
-        # à vérifier qu'un zone_id cliqué appartient bien à ce cas.
+        # à vérifier qu'un zone_id cliqué appartient bien à cette scène.
         "zone_ids": zone_ids,
         # Zones déjà résolues (bonne ou mauvaise réponse tapée) : plus
         # cliquables, qu'elles aient été trouvées ou ratées.
         "attempted_zone_ids": [],
         "found_zone_ids": [],
+        # Titres des œuvres déjà trouvées, dans l'ordre - avec doublons : une
+        # même œuvre peut se cacher plusieurs fois dans une scène, cette
+        # liste (affichée côté joueur) rend ça visible plutôt que de laisser
+        # croire à un bug quand le même titre revient.
+        "found_titles": [],
         "mistakes": 0,
         # Zone dont le clic vient d'être validé, en attente de la réponse
         # tapée par le joueur — None tant qu'aucune zone n'a encore été
@@ -342,7 +347,7 @@ def scene_mystere_play() -> str:
     case = MysteryCase.query.get(run["case_id"])
     if case is None:
         session.pop(SM_RUN_SESSION_KEY, None)
-        flash("Ce cas n'existe plus.")
+        flash("Cette scène n'existe plus.")
         return redirect(url_for("special_games.hub"))
 
     zones = MysteryZone.query.filter_by(case_id=case.id).order_by(MysteryZone.order_index).all()
@@ -356,6 +361,7 @@ def scene_mystere_play() -> str:
         # found_count (le score affiché) qui ne compte que les vraies trouvailles.
         resolved_zone_ids=run["attempted_zone_ids"],
         found_count=len(run["found_zone_ids"]),
+        found_titles=run.get("found_titles", []),
         total=len(run["zone_ids"]),
     )
 
@@ -414,9 +420,12 @@ def scene_mystere_answer():
     )
     answer_correct = answer_matches(guess, [answer.text for answer in accepted_answers])
 
+    canonical_label = accepted_answers[0].text if accepted_answers else None
+
     run["attempted_zone_ids"].append(pending_zone_id)
     if answer_correct:
         run["found_zone_ids"].append(pending_zone_id)
+        run.setdefault("found_titles", []).append(canonical_label or guess)
     else:
         run["mistakes"] += 1
 
@@ -429,7 +438,7 @@ def scene_mystere_answer():
     return jsonify(
         {
             "correct": answer_correct,
-            "correct_label": accepted_answers[0].text if accepted_answers else None,
+            "correct_label": canonical_label,
             "done": done,
             "found_count": len(run["found_zone_ids"]),
             "total": total,

@@ -5,7 +5,7 @@
     <div class="mb-6 flex items-center justify-between gap-3">
         <div>
             <p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Scène Mystère</p>
-            <h2 class="mt-1 text-xl">{{ "Modifier le cas" if case else "Nouveau cas" }}</h2>
+            <h2 class="mt-1 text-xl">{{ "Modifier la scène" if case else "Nouvelle scène" }}</h2>
         </div>
         <a href="{{ url_for('admin_special_games.admin_scene_mystere_list') }}" class="text-sm text-slate-400 hover:text-cyan-400">← Retour</a>
     </div>
@@ -32,7 +32,7 @@
             <div class="flex items-end">
                 <label class="flex items-center gap-2 text-sm text-slate-300">
                     <input type="checkbox" name="is_active" {% if not case or case.is_active %}checked{% endif %} class="accent-cyan-400">
-                    Cas actif (peut être tiré en partie)
+                    Scène active (peut être tirée en partie)
                 </label>
             </div>
         </div>
@@ -60,12 +60,12 @@
         </div>
         {% else %}
         <p class="rounded-lg border border-dashed border-slate-700 px-3 py-4 text-center text-xs text-slate-500">
-            Enregistre d'abord le cas avec son image : tu pourras ensuite y placer les zones.
+            Enregistre d'abord la scène avec son image : tu pourras ensuite y placer les zones.
         </p>
         {% endif %}
 
         <button type="submit" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition mt-2">
-            {{ "Enregistrer les modifications" if case else "Créer le cas" }}
+            {{ "Enregistrer les modifications" if case else "Créer la scène" }}
         </button>
     </form>
 </div>

@@ -504,7 +504,7 @@ class CacheCineProgress(db.Model):
 
 
 class MysteryCase(db.Model):
-    """Représente un cas du jeu spécial Scène Mystère : une image de décor
+    """Représente une scène du jeu spécial Scène Mystère : une image de décor
     truffée d'une dizaine de références. Chaque référence (MysteryZone) pose
     sa propre question ; le joueur les résout une par une jusqu'à épuiser
     l'image. Contenu créé par un admin."""
@@ -520,13 +520,13 @@ class MysteryCase(db.Model):
 
 
 class MysteryZone(db.Model):
-    """Représente une référence cachée sur l'image d'un cas Scène Mystère :
+    """Représente une référence cachée sur l'image d'une scène Scène Mystère :
     une zone cliquable (position en % de l'image, comme CacheCineReference).
     Contrairement à Cache-Ciné, le joueur n'a pas de liste de titres à
     chercher : il clique sur ce qu'il repère lui-même dans l'image, puis tape
     le nom de l'œuvre (MysteryAnswer) sans aucun indice fourni. Il n'y a pas
-    de "décoy" au niveau du cas, chaque zone est une cible légitime dans son
-    propre tour de jeu."""
+    de "décoy" : chaque zone est une cible légitime, cliquable dans l'ordre
+    voulu par le joueur (pas de séquence imposée)."""
 
     __tablename__ = "mystery_zones"
 
@@ -559,9 +559,9 @@ class MysteryAnswer(db.Model):
 
 
 class MysteryProgress(db.Model):
-    """Représente le meilleur résultat d'un joueur sur un cas Scène Mystère
-    précis : équivalent de CacheCineProgress, affiché sur l'écran de
-    sélection des cas (templates/special_games/scene_mystere_choisir.html)."""
+    """Représente le meilleur résultat d'un joueur sur une scène Scène
+    Mystère précise : équivalent de CacheCineProgress, affiché sur l'écran de
+    sélection des scènes (templates/special_games/scene_mystere_choisir.html)."""
 
     __tablename__ = "mystery_progress"
     __table_args__ = (db.UniqueConstraint("user_id", "case_id", name="uq_mystery_progress_user_case"),)

@@ -2907,6 +2907,11 @@ video {
   color: rgb(251 191 36 / var(--tw-text-opacity, 1));
 }
 
+.text-amber-500 {
+  --tw-text-opacity: 1;
+  color: rgb(245 158 11 / var(--tw-text-opacity, 1));
+}
+
 .text-cyan-200 {
   --tw-text-opacity: 1;
   color: rgb(165 243 252 / var(--tw-text-opacity, 1));
@@ -3029,16 +3034,8 @@ video {
   color: rgb(100 116 139 / var(--tw-placeholder-opacity, 1));
 }
 
-.accent-amber-400 {
-  accent-color: #fbbf24;
-}
-
 .accent-cyan-400 {
   accent-color: #22d3ee;
-}
-
-.accent-emerald-400 {
-  accent-color: #34d399;
 }
 
 .opacity-0 {

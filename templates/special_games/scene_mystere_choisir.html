@@ -119,7 +119,7 @@
     <div class="choose-topbar">
         <div>
             <a href="{{ url_for('special_games.hub') }}" class="choose-back">← Retour aux Jeux Spéciaux</a>
-            <h1 class="mt-1 text-xl font-extrabold text-slate-100">🎬 {{ game.name }} — Choisis ton cas</h1>
+            <h1 class="mt-1 text-xl font-extrabold text-slate-100">🎬 {{ game.name }} — Choisis ta scène</h1>
         </div>
         <span class="text-sm font-bold text-amber-400">
             {{ current_user.golden_tickets }} Ticket{{ "s" if current_user.golden_tickets != 1 else "" }} d'Or
@@ -135,7 +135,7 @@
             <img src="{{ case.image_url | image_src }}" alt="" class="scene-card__thumb">
             {% endif %}
             <div class="scene-card__body">
-                <h2 class="font-extrabold text-slate-100">Cas #{{ case.id }}</h2>
+                <h2 class="font-extrabold text-slate-100">Scène #{{ case.id }}</h2>
                 <div class="scene-card__meta">
                     <span>🕹️ {{ case.difficulty | capitalize }}</span>
                     <span>🔎 {{ zone_counts.get(case.id, 0) }} référence{{ "s" if zone_counts.get(case.id, 0) != 1 else "" }}</span>
@@ -165,7 +165,7 @@
         {% endfor %}
     </div>
     {% else %}
-    <p class="text-slate-500">Aucun cas Scène Mystère n'est disponible pour le moment.</p>
+    <p class="text-slate-500">Aucune scène Scène Mystère n'est disponible pour le moment.</p>
     {% endif %}
 </div>
 

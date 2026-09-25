@@ -215,16 +215,16 @@ def admin_cache_cine_delete(scene_id: int) -> str:
 @login_required
 @admin_required
 def admin_scene_mystere_list() -> str:
-    """Affiche la liste des cas Scène Mystère."""
+    """Affiche la liste des scènes Scène Mystère."""
     cases = MysteryCase.query.order_by(MysteryCase.created_at.desc()).all()
     zone_counts = {case.id: MysteryZone.query.filter_by(case_id=case.id).count() for case in cases}
 
-    # Le bouton "Publier" par ligne ne doit apparaître que pour un cas pas
+    # Le bouton "Publier" par ligne ne doit apparaître que pour une scène pas
     # encore en prod (comme la page centralisée "Publier vers la prod") : la
     # requête réseau ne se fait qu'en local, jamais sur l'instance déployée
     # elle-même. Une erreur de connexion à la prod ne doit pas empêcher
     # d'afficher la liste, mais ne doit surtout pas non plus se traduire par
-    # un faux "Publié" silencieux (cas vide != cas vérifié) : le gabarit
+    # un faux "Publié" silencieux (ensemble vide != vérifié) : le gabarit
     # distingue donc "pas encore vérifié" de "vérifié, déjà publié".
     publishable_case_ids = set()
     publish_check_failed = False
@@ -245,7 +245,7 @@ def admin_scene_mystere_list() -> str:
 
 
 def _delete_case_zones(case_id: int) -> None:
-    """Supprime toutes les zones d'un cas et leurs réponses acceptées (pas de
+    """Supprime toutes les zones d'une scène et leurs réponses acceptées (pas de
     suppression en cascade automatique via bulk delete)."""
     zone_ids = [zone.id for zone in MysteryZone.query.filter_by(case_id=case_id).all()]
     if zone_ids:
@@ -257,7 +257,7 @@ def _delete_case_zones(case_id: int) -> None:
 @login_required
 @admin_required
 def admin_scene_mystere_new() -> str:
-    """Affiche le formulaire de création ou de modification d'un cas Scène Mystère."""
+    """Affiche le formulaire de création ou de modification d'une scène Scène Mystère."""
     case_id = request.args.get("case_id", type=int)
     case = MysteryCase.query.get(case_id) if case_id else None
 
@@ -319,7 +319,7 @@ def admin_scene_mystere_new() -> str:
 
         db.session.commit()
 
-        flash("Cas modifié avec succès." if case_id else "Cas créé avec succès.")
+        flash("Scène modifiée avec succès." if case_id else "Scène créée avec succès.")
         return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
 
     existing_zones = []
@@ -350,13 +350,13 @@ def admin_scene_mystere_new() -> str:
 @login_required
 @admin_required
 def admin_scene_mystere_delete(case_id: int) -> str:
-    """Supprime un cas Scène Mystère et tout son contenu."""
+    """Supprime une scène Scène Mystère et tout son contenu."""
     case = MysteryCase.query.get_or_404(case_id)
     _delete_case_zones(case.id)
     db.session.delete(case)
     db.session.commit()
 
-    flash("Cas supprimé.")
+    flash("Scène supprimée.")
     return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
 
 
@@ -364,9 +364,10 @@ def admin_scene_mystere_delete(case_id: int) -> str:
 @login_required
 @admin_required
 def admin_scene_mystere_publish(case_id: int) -> str:
-    """Publie un seul cas Scène Mystère vers la prod, depuis sa ligne dans la
-    liste - alternative rapide à la page centralisée "Publier vers la prod"
-    (routes/admin.py) quand on vient de créer ou modifier ce cas précis."""
+    """Publie une seule scène Scène Mystère vers la prod, depuis sa ligne
+    dans la liste - alternative rapide à la page centralisée "Publier vers
+    la prod" (routes/admin.py) quand on vient de créer ou modifier cette
+    scène précise."""
     if not is_local_environment():
         abort(404)
 
@@ -375,7 +376,7 @@ def admin_scene_mystere_publish(case_id: int) -> str:
     try:
         still_publishable = {c.id for c in find_publishable_mystery_cases()}
         if case.id not in still_publishable:
-            flash("Ce cas est déjà publié en production.")
+            flash("Cette scène est déjà publiée en production.")
             return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
 
         publish_mystery_cases([case.id])
@@ -383,5 +384,5 @@ def admin_scene_mystere_publish(case_id: int) -> str:
         flash(f"Échec de la publication : {exc}")
         return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
 
-    flash("Cas publié en production.")
+    flash("Scène publiée en production.")
     return redirect(url_for("admin_special_games.admin_scene_mystere_list"))

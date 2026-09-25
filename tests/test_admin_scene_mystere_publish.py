@@ -51,7 +51,7 @@ def test_publish_button_inserts_the_case_when_still_publishable(client, app):
         )
 
     assert response.status_code == 200
-    assert "Cas publié en production.".encode() in response.data
+    assert "Scène publiée en production.".encode() in response.data
     # find_publishable_mystery_cases est aussi rappelée par la page liste après
     # la redirection (pour ses propres boutons) : au moins un appel suffit ici.
     find_mock.assert_called()
@@ -77,7 +77,7 @@ def test_publish_button_does_not_duplicate_an_already_published_case(client, app
         )
 
     assert response.status_code == 200
-    assert "Ce cas est déjà publié en production.".encode() in response.data
+    assert "Cette scène est déjà publiée en production.".encode() in response.data
     publish_mock.assert_not_called()
 
 

@@ -31,6 +31,21 @@
     const answerSubmitButton = document.getElementById("sm-answer-submit");
     const sidebar = document.querySelector(".sm-sidebar");
     const image = document.getElementById("sm-image");
+    const foundTitlesPanel = document.getElementById("sm-found-titles-panel");
+    const foundTitlesList = document.getElementById("sm-found-titles-list");
+
+    // Doublons volontairement gardés (pas de déduplication) : une même
+    // œuvre peut se cacher plusieurs fois dans la scène, la revoir dans
+    // cette liste est justement ce qui doit rassurer le joueur.
+    function addFoundTitle(title) {
+        if (!title || !foundTitlesList) return;
+        const item = document.createElement("li");
+        item.textContent = "🎬 " + title;
+        foundTitlesList.appendChild(item);
+        if (foundTitlesPanel) {
+            foundTitlesPanel.classList.remove("sm-hidden");
+        }
+    }
 
     // Sous 768px, l'image doit remplir tout l'espace libre entre le
     // minuteur et la feuille idle/réponse (voir scene_mystere_jouer.html)
@@ -201,6 +216,7 @@
 
                 if (data.correct) {
                     showToast("✓ Trouvé !", "found");
+                    addFoundTitle(data.correct_label);
                 } else {
                     showToast("✗ C'était : " + (data.correct_label || "?"), "miss");
                 }

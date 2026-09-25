@@ -1,5 +1,5 @@
 """Publication de contenu créé en local vers la base de production : questions,
-scènes Cache-Ciné et cas Scène Mystère.
+scènes Cache-Ciné et scènes Scène Mystère.
 
 Le déploiement (git push -> Render) ne touche jamais au contenu, seulement au
 code et au schéma de la base (scripts/prepare_db.py ne fait que les
@@ -169,7 +169,7 @@ def find_publishable_cache_cine_scenes() -> list[CacheCineScene]:
 
 
 def find_publishable_mystery_cases() -> list[MysteryCase]:
-    """Cas Scène Mystère locaux absents de la production (même logique que
+    """Scènes Scène Mystère locales absentes de la production (même logique que
     find_publishable_cache_cine_scenes, comparaison par image_url)."""
     candidates = [case for case in MysteryCase.query.order_by(MysteryCase.id).all() if case.image_url]
     if not candidates:
@@ -238,7 +238,7 @@ def publish_cache_cine_scenes(scene_ids: list[int]) -> dict:
 
 
 def publish_mystery_cases(case_ids: list[int]) -> dict:
-    """Publie les cas Scène Mystère demandés, avec leurs zones et réponses acceptées."""
+    """Publie les scènes Scène Mystère demandées, avec leurs zones et réponses acceptées."""
     cases = MysteryCase.query.filter(MysteryCase.id.in_(case_ids)).all()
 
     conn = prod_connection()

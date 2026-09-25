@@ -26,7 +26,7 @@ SCENE_MYSTERE_TITLE_CODE = "maitre_du_mystere"
 RARE_AND_ABOVE = ["rare", "epique", "legendaire", "mythique"]
 
 # Libellé affiché pour chaque palier de performance — partagé entre le calcul
-# des récompenses ci-dessous et l'écran de sélection des scènes/cas
+# des récompenses ci-dessous et l'écran de sélection des scènes
 # (templates/special_games/*_choisir.html), qui affiche le meilleur palier
 # obtenu par le joueur sans avoir à redupliquer ce mapping.
 TIER_LABELS = {

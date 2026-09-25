@@ -106,3 +106,37 @@ def test_a_zone_cannot_be_clicked_twice(client, app):
     second_click = client.post("/jeux-speciaux/scene-mystere/clic", json={"zone_id": zone_id})
 
     assert second_click.get_json()["correct"] is False
+
+
+def test_finding_the_same_title_twice_is_tracked_without_deduplication(client, app):
+    """Deux zones différentes qui acceptent le même titre doivent toutes les
+    deux compter, et le titre doit apparaître deux fois dans found_titles -
+    pas dédupliqué, pour que le joueur voie que ce n'est pas une erreur quand
+    la même œuvre revient (cf. l'indice affiché pendant la partie)."""
+    with app.app_context():
+        create_player()
+        case = MysteryCase(image_url="https://example.com/scene.jpg", time_limit_seconds=240)
+        db.session.add(case)
+        db.session.commit()
+        zone_a = MysteryZone(case_id=case.id, pos_x=0, pos_y=0, width=10, height=10, order_index=0)
+        zone_b = MysteryZone(case_id=case.id, pos_x=50, pos_y=50, width=10, height=10, order_index=1)
+        db.session.add_all([zone_a, zone_b])
+        db.session.commit()
+        db.session.add(MysteryAnswer(zone_id=zone_a.id, text="Harry Potter", order_index=0))
+        db.session.add(MysteryAnswer(zone_id=zone_b.id, text="Harry Potter", order_index=0))
+        db.session.commit()
+        case_id, zone_a_id, zone_b_id = case.id, zone_a.id, zone_b.id
+
+    login(client)
+    client.post(f"/jeux-speciaux/scene-mystere/commencer/{case_id}")
+
+    for zone_id in (zone_a_id, zone_b_id):
+        client.post("/jeux-speciaux/scene-mystere/clic", json={"zone_id": zone_id})
+        response = client.post("/jeux-speciaux/scene-mystere/repondre", json={"guess": "Harry Potter"})
+        assert response.get_json()["correct"] is True
+
+    with client.session_transaction() as sess:
+        assert sess["scene_mystere_run"]["found_titles"] == ["Harry Potter", "Harry Potter"]
+
+    page = client.get("/jeux-speciaux/scene-mystere/jouer").get_data(as_text=True)
+    assert page.count("Harry Potter") == 2
