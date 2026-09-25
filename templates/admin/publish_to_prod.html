@@ -109,12 +109,10 @@
                     <p><span class="text-xs font-bold uppercase tracking-widest text-slate-500">Difficulté : </span>{{ case.difficulty | capitalize }}
                        <span class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-3">Temps : </span>{{ case.time_limit_seconds }}s</p>
                     <div>
-                        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Zones et réponses</p>
+                        <p class="mb-1 text-xs font-bold uppercase tracking-widest text-slate-500">Réponses attendues</p>
                         <ol class="list-inside list-decimal text-slate-300">
                             {% for zone in case.zones|sort(attribute='order_index') %}
-                            <li>{{ zone.clue_text }} —
-                                <strong>{{ (zone.options|selectattr('is_correct')|map(attribute='label')|first) or '(pas de bonne réponse définie)' }}</strong>
-                            </li>
+                            <li><strong>{{ (zone.answers|sort(attribute='order_index')|map(attribute='text')|first) or '(pas de réponse définie)' }}</strong></li>
                             {% endfor %}
                         </ol>
                     </div>

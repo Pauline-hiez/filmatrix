@@ -1,21 +1,6 @@
 {% extends "admin/base_admin.html" %}
 
 {% block admin_content %}
-<style>
-    /* Surligne en vert l'option dont le radio "bonne réponse" est coché,
-       pour qu'on voie tout de suite laquelle est actuellement désignée sans
-       avoir à chercher le petit rond rempli parmi les 4. */
-    #sm-zone-list .sm-option-row {
-        border-radius: .4rem;
-        border: 1px solid transparent;
-        padding: .25rem .4rem;
-        transition: border-color .15s ease, background .15s ease;
-    }
-    #sm-zone-list .sm-option-row:has(input:checked) {
-        border-color: rgba(52, 211, 153, .55);
-        background: rgba(52, 211, 153, .1);
-    }
-</style>
 <div class="max-w-3xl">
     <div class="mb-6 flex items-center justify-between gap-3">
         <div>
@@ -66,7 +51,7 @@
         {% if case and case.image_url %}
         <div>
             <label class="block text-sm text-slate-400 mb-1">Références ({{ existing_zones | length }} · une dizaine recommandée)</label>
-            <p class="mb-2 text-xs text-slate-500">Clique-glisse sur l'image pour dessiner une zone. Chaque zone devient une question indépendante : donne-lui son indice, ses 4 options de réponse, et coche le rond à gauche de la bonne (elle se surligne en vert).</p>
+            <p class="mb-2 text-xs text-slate-500">Clique-glisse sur l'image pour dessiner une zone. Aucun indice n'est donné au joueur : il clique sur ce qu'il repère lui-même puis tape le nom de l'œuvre — renseigne la réponse attendue, et ajoute des alias si l'œuvre a plusieurs titres reconnus. Plusieurs zones peuvent référencer la même œuvre (ex : deux références différentes au même film dans l'image).</p>
             <div id="sm-zone-editor" class="relative inline-block w-full select-none">
                 <img src="{{ case.image_url | image_src }}" alt="" id="sm-editor-image" class="w-full rounded-lg border border-cyan-400/30" draggable="false">
             </div>

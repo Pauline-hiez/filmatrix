@@ -2,9 +2,11 @@
 // (templates/admin/scene_mystere_form.html). Même principe que
 // static/js/admin_cache_cine_zones.js (clique-glisse pour dessiner un
 // rectangle, sérialisation dans un champ caché JSON), mais chaque zone
-// porte ici son propre indice et son propre QCM à 4 options (une question
-// indépendante par référence, plutôt qu'un simple titre ou un radio
-// "correcte" partagé par tout le cas).
+// porte ici sa propre liste de réponses acceptées : le joueur ne reçoit
+// aucun indice, il clique sur ce qu'il repère lui-même puis tape le nom de
+// l'œuvre à la main (pas de QCM) — la première réponse de la liste sert de
+// libellé "canonique" affiché s'il se trompe, les suivantes ne sont que des
+// alias tolérés (titre original, abréviation...).
 
 (function () {
     const editor = document.getElementById("sm-zone-editor");
@@ -24,34 +26,24 @@
         existing = [];
     }
 
-    function emptyOptions() {
-        return [
-            { label: "", is_correct: true },
-            { label: "", is_correct: false },
-            { label: "", is_correct: false },
-            { label: "", is_correct: false },
-        ];
+    function emptyAnswers() {
+        return [""];
     }
 
     let zones = existing.map(function (zone, index) {
-        const options = (zone.options && zone.options.length ? zone.options : emptyOptions()).slice(0, 4);
-        while (options.length < 4) {
-            options.push({ label: "", is_correct: false });
-        }
+        const answers = zone.answers && zone.answers.length ? zone.answers.slice() : emptyAnswers();
         return {
             localId: "z" + index,
             pos_x: zone.pos_x,
             pos_y: zone.pos_y,
             width: zone.width,
             height: zone.height,
-            clue_text: zone.clue_text || "",
-            options: options,
+            answers: answers,
         };
     });
     let nextLocalId = zones.length;
 
     const MIN_SIZE_PERCENT = 1.5;
-    const OPTION_LETTERS = ["A", "B", "C", "D"];
 
     function clamp(value, min, max) {
         return Math.min(Math.max(value, min), max);
@@ -64,8 +56,7 @@
                 pos_y: zone.pos_y,
                 width: zone.width,
                 height: zone.height,
-                clue_text: zone.clue_text,
-                options: zone.options,
+                answers: zone.answers,
             };
         });
         hiddenInput.value = JSON.stringify(payload);
@@ -116,55 +107,48 @@
             header.appendChild(deleteButton);
             card.appendChild(header);
 
-            const clueInput = document.createElement("input");
-            clueInput.type = "text";
-            clueInput.placeholder = "Indice (ex : Trouvez la référence à un film sur des dinosaures)";
-            clueInput.value = zone.clue_text;
-            clueInput.className = "bg-slate-900 border border-cyan-400/30 rounded px-2 py-1.5 text-sm text-slate-100";
-            clueInput.addEventListener("input", function () {
-                zone.clue_text = clueInput.value;
-                syncHiddenInput();
-            });
-            card.appendChild(clueInput);
-
-            const optionsWrap = document.createElement("div");
-            optionsWrap.className = "flex flex-col gap-1.5";
-            zone.options.forEach(function (option, optionIndex) {
-                const row = document.createElement("label");
-                row.className = "sm-option-row flex items-center gap-2 cursor-pointer";
-
-                const radio = document.createElement("input");
-                radio.type = "radio";
-                radio.name = "sm-correct-option-" + zone.localId;
-                radio.className = "accent-emerald-400";
-                radio.checked = option.is_correct;
-                radio.addEventListener("change", function () {
-                    zone.options.forEach(function (item, i) {
-                        item.is_correct = i === optionIndex;
-                    });
-                    syncHiddenInput();
-                });
-
-                const letter = document.createElement("span");
-                letter.className = "w-4 shrink-0 text-xs font-bold text-slate-500";
-                letter.textContent = OPTION_LETTERS[optionIndex];
+            const answersWrap = document.createElement("div");
+            answersWrap.className = "flex flex-col gap-1.5";
+            zone.answers.forEach(function (answer, answerIndex) {
+                const row = document.createElement("div");
+                row.className = "flex items-center gap-2";
 
                 const input = document.createElement("input");
                 input.type = "text";
-                input.placeholder = "Option " + OPTION_LETTERS[optionIndex];
-                input.value = option.label;
+                input.placeholder = answerIndex === 0 ? "Réponse attendue (ex : Jurassic Park)" : "Alias accepté (ex : Jurassic World)";
+                input.value = answer;
                 input.className = "flex-1 bg-slate-900 border border-cyan-400/30 rounded px-2 py-1 text-sm text-slate-100";
                 input.addEventListener("input", function () {
-                    option.label = input.value;
+                    zone.answers[answerIndex] = input.value;
                     syncHiddenInput();
                 });
-
-                row.appendChild(radio);
-                row.appendChild(letter);
                 row.appendChild(input);
-                optionsWrap.appendChild(row);
+
+                if (answerIndex > 0) {
+                    const removeButton = document.createElement("button");
+                    removeButton.type = "button";
+                    removeButton.textContent = "✕";
+                    removeButton.className = "shrink-0 text-red-400 hover:text-red-300 transition";
+                    removeButton.addEventListener("click", function () {
+                        zone.answers.splice(answerIndex, 1);
+                        render();
+                    });
+                    row.appendChild(removeButton);
+                }
+
+                answersWrap.appendChild(row);
             });
-            card.appendChild(optionsWrap);
+            card.appendChild(answersWrap);
+
+            const addAnswerButton = document.createElement("button");
+            addAnswerButton.type = "button";
+            addAnswerButton.textContent = "+ Ajouter un alias accepté";
+            addAnswerButton.className = "self-start text-xs text-cyan-400 hover:text-cyan-300 transition";
+            addAnswerButton.addEventListener("click", function () {
+                zone.answers.push("");
+                render();
+            });
+            card.appendChild(addAnswerButton);
 
             zoneList.appendChild(card);
         });
@@ -236,8 +220,7 @@
             pos_y: pos_y,
             width: Math.min(width, 100 - pos_x),
             height: Math.min(height, 100 - pos_y),
-            clue_text: "",
-            options: emptyOptions(),
+            answers: emptyAnswers(),
         });
         render();
     }

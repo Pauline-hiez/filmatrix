@@ -239,13 +239,11 @@
                     <span>Accomplissez des missions pour en obtenir.</span>
                 </div>
                 {% else %}
-                <form method="POST" action="{{ url_for('special_games.cache_cine_start' if game.slug == 'cache-cine' else 'special_games.scene_mystere_start') }}">
-                    <button type="submit" class="play-button">
-                        JOUER
-                        <img src="{{ url_for('static', filename='images/habillage/ticket-or.png') }}" alt="" class="h-4 w-auto">
-                        {{ game.ticket_cost }}
-                    </button>
-                </form>
+                <a href="{{ url_for('special_games.cache_cine_choose' if game.slug == 'cache-cine' else 'special_games.scene_mystere_choose') }}" class="play-button">
+                    JOUER
+                    <img src="{{ url_for('static', filename='images/habillage/ticket-or.png') }}" alt="" class="h-4 w-auto">
+                    {{ game.ticket_cost }}
+                </a>
                 {% endif %}
             </div>
         </article>

@@ -56,7 +56,7 @@
         {% if scene and scene.image_url %}
         <div>
             <label class="block text-sm text-slate-400 mb-1">Zones cachées ({{ existing_references | length }})</label>
-            <p class="mb-2 text-xs text-slate-500">Clique-glisse sur l'image pour dessiner une zone, puis nomme l'œuvre qu'elle représente.</p>
+            <p class="mb-2 text-xs text-slate-500">Clique-glisse sur l'image pour dessiner une zone, puis nomme l'œuvre qu'elle représente. Plusieurs zones peuvent référencer la même œuvre (ex : deux clins d'œil différents au même film dans le décor).</p>
             <div id="cc-zone-editor" class="relative inline-block w-full select-none">
                 <img src="{{ scene.image_url | image_src }}" alt="" id="cc-editor-image" class="w-full rounded-lg border border-cyan-400/30" draggable="false">
             </div>

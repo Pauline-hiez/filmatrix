@@ -16,7 +16,7 @@ SPECIAL_GAMES = [
         "description": (
             "Explorez une illustration remplie de références "
             "cinématographiques. Retrouvez les films et séries cachés dans "
-            "le décor."
+            "le décor — une même œuvre peut être cachée à plusieurs endroits."
         ),
         "ticket_cost": 1,
         "available": True,
@@ -27,8 +27,9 @@ SPECIAL_GAMES = [
         "icon": "🎬",
         "tagline": "Observez. Déduisez. Trouvez le film.",
         "description": (
-            "Plusieurs scènes vous sont présentées. Analysez les indices et "
-            "choisissez celle qui correspond à la bonne œuvre."
+            "Cliquez sur la référence cachée dans l'image et tapez "
+            "vous-même le nom du film ou de la série qui correspond — une "
+            "même œuvre peut revenir sur plusieurs références."
         ),
         "ticket_cost": 1,
         "available": True,

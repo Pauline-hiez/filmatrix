@@ -122,7 +122,7 @@
         padding: 1rem;
     }
 
-    .sm-page .sm-clue-label {
+    .sm-page .sm-panel-label {
         font-size: .68rem;
         font-weight: 800;
         letter-spacing: .08em;
@@ -131,31 +131,31 @@
         margin-bottom: .4rem;
     }
 
-    .sm-page .sm-clue-text {
+    .sm-page .sm-panel-text {
         color: #f8fafc;
         font-size: 1rem;
         line-height: 1.55;
         font-weight: 600;
     }
 
-    .sm-page .sm-qcm-option {
-        display: flex;
-        align-items: center;
-        gap: .6rem;
+    .sm-page .sm-answer-input {
+        width: 100%;
         border-radius: .6rem;
-        border: 1px solid rgba(148, 163, 184, .2);
+        border: 1px solid rgba(148, 163, 184, .3);
         background: rgba(2, 6, 23, .5);
         padding: .6rem .8rem;
-        cursor: pointer;
-        font-size: .88rem;
-        color: #e2e8f0;
+        font-size: .95rem;
+        color: #f8fafc;
         transition: border-color .15s ease, background .15s ease;
     }
 
-    .sm-page .sm-qcm-option:hover { border-color: rgba(251, 191, 36, .5); }
-    .sm-page .sm-qcm-option:has(input:checked) { border-color: rgba(251, 191, 36, .7); background: rgba(251, 191, 36, .1); }
+    .sm-page .sm-answer-input:focus {
+        outline: none;
+        border-color: rgba(251, 191, 36, .7);
+        background: rgba(251, 191, 36, .1);
+    }
 
-    .sm-page .sm-qcm-submit {
+    .sm-page .sm-answer-submit {
         margin-top: .75rem;
         width: 100%;
         border-radius: .6rem;
@@ -166,9 +166,9 @@
         transition: opacity .15s ease;
     }
 
-    /* Tant qu'aucune option n'est cochée : bouton visiblement inactif,
-       pour ne jamais laisser croire qu'une réponse est déjà sélectionnée. */
-    .sm-page .sm-qcm-submit:disabled {
+    /* Tant que le champ est vide : bouton visiblement inactif, pour ne
+       jamais laisser croire qu'une réponse a déjà été saisie. */
+    .sm-page .sm-answer-submit:disabled {
         opacity: .4;
         cursor: not-allowed;
     }
@@ -176,16 +176,15 @@
     .sm-page .sm-hidden { display: none; }
 
     /* Sous 768px (seuil où la grille repasse en 1 colonne, cf. le
-       md:grid-cols-[2fr_1fr] plus bas) : l'indice/QCM — l'action principale
-       du joueur, contrairement à la checklist secondaire de Cache-Ciné —
-       devient une feuille collée en bas de la carte (position:sticky, pas
-       fixed — un fixed avec une réservation à taille fixe (46vh, pensée
-       pour le pire cas où le QCM à 4 options est affiché) laissait un grand
-       vide au-dessus dès que seul l'indice, plus court, était affiché ; la
-       hauteur dispo est recalculée dynamiquement par JS, voir
-       scene_mystere.js/fitStageHeight, à chaque fois que la feuille change
-       de contenu (indice <-> QCM), pour que l'image utilise vraiment tout
-       l'espace libre). */
+       md:grid-cols-[2fr_1fr] plus bas) : le panneau idle/réponse — l'action
+       principale du joueur, contrairement à la checklist secondaire de
+       Cache-Ciné — devient une feuille collée en bas de la carte
+       (position:sticky, pas fixed — un fixed avec une réservation à taille
+       fixe laissait un grand vide au-dessus dès que seul le message
+       d'attente, plus court, était affiché ; la hauteur dispo est recalculée
+       dynamiquement par JS, voir scene_mystere.js/fitStageHeight, à chaque
+       fois que la feuille change de contenu (attente <-> réponse), pour que
+       l'image utilise vraiment tout l'espace libre). */
     @media (max-width: 767px) {
         .sm-page .sm-topbar {
             position: sticky;
@@ -215,11 +214,11 @@
             padding: 0;
         }
 
-        .sm-page .sm-qcm-option {
+        .sm-page .sm-answer-input {
             padding: .8rem .9rem;
         }
 
-        .sm-page .sm-qcm-submit {
+        .sm-page .sm-answer-submit {
             padding: .8rem;
         }
     }
@@ -250,15 +249,15 @@
         </div>
 
         <div class="sm-sidebar">
-            <div class="sm-panel" id="sm-clue-panel">
-                <p class="sm-clue-label">Indice</p>
-                <p class="sm-clue-text" id="sm-clue-text">{{ current_clue }}</p>
+            <div class="sm-panel" id="sm-idle-panel">
+                <p class="sm-panel-label">À vous de jouer</p>
+                <p class="sm-panel-text">🔍 Cliquez sur une référence cachée dans l'image, sans aucun indice.</p>
             </div>
 
-            <div class="sm-panel sm-hidden" id="sm-qcm-panel">
-                <p class="sm-clue-label">Quelle œuvre est-ce ?</p>
-                <div id="sm-qcm-options" class="flex flex-col gap-2"></div>
-                <button type="button" id="sm-qcm-submit" class="sm-qcm-submit">Valider</button>
+            <div class="sm-panel sm-hidden" id="sm-answer-panel">
+                <p class="sm-panel-label">Quelle œuvre est-ce ?</p>
+                <input type="text" id="sm-answer-input" class="sm-answer-input" placeholder="Nom du film ou de la série" autocomplete="off">
+                <button type="button" id="sm-answer-submit" class="sm-answer-submit" disabled>Valider</button>
             </div>
         </div>
     </div>

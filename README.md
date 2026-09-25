@@ -182,7 +182,7 @@ tests/                          # tests pytest
 - **GameSession** / **GameSessionQuestion** / **GameAnswer** : un duel en temps réel et son déroulé
 - **Character** / **UserCharacter** / **Album** : la collection de personnages à débloquer
 - **DailyChallenge** : mini-missions quotidiennes et série de connexion d'un joueur
-- **CacheCineScene** / **CacheCineReference**, **MysteryCase** / **MysteryZone** / **MysteryOption** : contenu des deux jeux spéciaux
+- **CacheCineScene** / **CacheCineReference**, **MysteryCase** / **MysteryZone** / **MysteryAnswer** : contenu des deux jeux spéciaux
 
 ## Notes
 

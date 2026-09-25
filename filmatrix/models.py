@@ -478,6 +478,31 @@ class CacheCineReference(db.Model):
     scene = db.relationship("CacheCineScene", backref="references")
 
 
+class CacheCineProgress(db.Model):
+    """Représente le meilleur résultat d'un joueur sur une scène Cache-Ciné
+    précise : affiché sur l'écran de sélection des scènes
+    (templates/special_games/cache_cine_choisir.html) pour marquer les
+    scènes déjà jouées. Une ligne par couple joueur/scène, mise à jour
+    seulement quand une nouvelle partie fait mieux que le record existant —
+    le jeu reste librement rejouable, cette ligne ne fait que se souvenir du
+    meilleur score."""
+
+    __tablename__ = "cache_cine_progress"
+    __table_args__ = (db.UniqueConstraint("user_id", "scene_id", name="uq_cache_cine_progress_user_scene"),)
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    scene_id = db.Column(db.Integer, db.ForeignKey("cache_cine_scenes.id"), nullable=False)
+    best_found_count = db.Column(db.Integer, nullable=False, default=0)
+    best_total = db.Column(db.Integer, nullable=False, default=0)
+    best_tier = db.Column(db.String(20), nullable=False, default="echec")
+    times_played = db.Column(db.Integer, nullable=False, default=0)
+    last_played_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship("User", backref="cache_cine_progress")
+    scene = db.relationship("CacheCineScene", backref="progress")
+
+
 class MysteryCase(db.Model):
     """Représente un cas du jeu spécial Scène Mystère : une image de décor
     truffée d'une dizaine de références. Chaque référence (MysteryZone) pose
@@ -496,9 +521,10 @@ class MysteryCase(db.Model):
 
 class MysteryZone(db.Model):
     """Représente une référence cachée sur l'image d'un cas Scène Mystère :
-    une zone cliquable (position en % de l'image, comme CacheCineReference)
-    avec son propre indice, résolue via son propre QCM (MysteryOption).
-    Contrairement à Cache-Ciné, chaque zone porte sa question — il n'y a pas
+    une zone cliquable (position en % de l'image, comme CacheCineReference).
+    Contrairement à Cache-Ciné, le joueur n'a pas de liste de titres à
+    chercher : il clique sur ce qu'il repère lui-même dans l'image, puis tape
+    le nom de l'œuvre (MysteryAnswer) sans aucun indice fourni. Il n'y a pas
     de "décoy" au niveau du cas, chaque zone est une cible légitime dans son
     propre tour de jeu."""
 
@@ -510,23 +536,44 @@ class MysteryZone(db.Model):
     pos_y = db.Column(db.Float, nullable=False, default=0)
     width = db.Column(db.Float, nullable=False, default=10)
     height = db.Column(db.Float, nullable=False, default=10)
-    clue_text = db.Column(db.String(255), nullable=False)
     order_index = db.Column(db.Integer, nullable=False, default=0)
 
     case = db.relationship("MysteryCase", backref="zones")
 
 
-class MysteryOption(db.Model):
-    """Représente une option du QCM d'une zone Scène Mystère précise. Une
-    seule par zone porte is_correct=True — c'est elle qui nomme l'œuvre
-    représentée par cette référence."""
+class MysteryAnswer(db.Model):
+    """Représente un texte de réponse accepté pour une zone Scène Mystère
+    précise : le joueur tape le nom de l'œuvre à la main, la comparaison
+    (services/special_games.py) tolère casse, accents et petites fautes de
+    frappe. Plusieurs lignes par zone permettent d'accepter des alias (titre
+    original, abréviation courante...)."""
 
-    __tablename__ = "mystery_options"
+    __tablename__ = "mystery_answers"
 
     id = db.Column(db.Integer, primary_key=True)
     zone_id = db.Column(db.Integer, db.ForeignKey("mystery_zones.id"), nullable=False)
-    label = db.Column(db.String(100), nullable=False)
-    is_correct = db.Column(db.Boolean, nullable=False, default=False)
+    text = db.Column(db.String(100), nullable=False)
     order_index = db.Column(db.Integer, nullable=False, default=0)
 
-    zone = db.relationship("MysteryZone", backref="options")
+    zone = db.relationship("MysteryZone", backref="answers")
+
+
+class MysteryProgress(db.Model):
+    """Représente le meilleur résultat d'un joueur sur un cas Scène Mystère
+    précis : équivalent de CacheCineProgress, affiché sur l'écran de
+    sélection des cas (templates/special_games/scene_mystere_choisir.html)."""
+
+    __tablename__ = "mystery_progress"
+    __table_args__ = (db.UniqueConstraint("user_id", "case_id", name="uq_mystery_progress_user_case"),)
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    case_id = db.Column(db.Integer, db.ForeignKey("mystery_cases.id"), nullable=False)
+    best_found_count = db.Column(db.Integer, nullable=False, default=0)
+    best_total = db.Column(db.Integer, nullable=False, default=0)
+    best_tier = db.Column(db.String(20), nullable=False, default="echec")
+    times_played = db.Column(db.Integer, nullable=False, default=0)
+    last_played_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship("User", backref="mystery_progress")
+    case = db.relationship("MysteryCase", backref="progress")

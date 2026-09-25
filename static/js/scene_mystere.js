@@ -1,8 +1,9 @@
 // Déroulé d'une partie de Scène Mystère (templates/special_games/scene_mystere_jouer.html).
 // Une image, une dizaine de références : le minuteur et le compteur de
 // références trouvées vivent ici, comme pour Cache-Ciné (static/js/cache_cine.js).
-// La différence : chaque référence exige, en plus du bon clic, une réponse
-// correcte à un petit QCM avant de passer à l'indice suivant.
+// La différence, et l'inverse de Cache-Ciné : pas de liste de titres à
+// chercher ni aucun indice fourni, le joueur clique sur ce qu'il repère
+// lui-même dans l'image puis tape le nom de l'œuvre (pas de QCM).
 
 (function () {
     const configEl = document.getElementById("scene-mystere-config");
@@ -24,21 +25,20 @@
     const timerEl = document.getElementById("sm-timer");
     const foundEl = document.getElementById("sm-found-count");
     const toastEl = document.getElementById("sm-toast");
-    const cluePanel = document.getElementById("sm-clue-panel");
-    const clueTextEl = document.getElementById("sm-clue-text");
-    const qcmPanel = document.getElementById("sm-qcm-panel");
-    const qcmOptionsEl = document.getElementById("sm-qcm-options");
-    const qcmSubmitButton = document.getElementById("sm-qcm-submit");
+    const idlePanel = document.getElementById("sm-idle-panel");
+    const answerPanel = document.getElementById("sm-answer-panel");
+    const answerInput = document.getElementById("sm-answer-input");
+    const answerSubmitButton = document.getElementById("sm-answer-submit");
     const sidebar = document.querySelector(".sm-sidebar");
     const image = document.getElementById("sm-image");
 
     // Sous 768px, l'image doit remplir tout l'espace libre entre le
-    // minuteur et la feuille indice/QCM (voir scene_mystere_jouer.html)
+    // minuteur et la feuille idle/réponse (voir scene_mystere_jouer.html)
     // plutôt que de se contenter d'un plafond fixe (min(60vh,560px)) qui
     // laissait un vide quand l'image réelle était plus petite que ce
-    // plafond. La feuille change de hauteur selon qu'elle affiche l'indice
-    // (court) ou le QCM (plus haut) : on recalcule donc à chaque bascule,
-    // pas seulement au chargement. .sm-stage reste dimensionnée exactement
+    // plafond. La feuille change de hauteur selon qu'elle affiche le
+    // message d'attente ou le champ de réponse : on recalcule donc à chaque
+    // bascule, pas seulement au chargement. .sm-stage reste dimensionnée exactement
     // sur l'image rendue (fit-content) : les zones, positionnées en % de
     // .sm-stage, doivent toujours correspondre pixel pour pixel à l'image,
     // donc c'est l'image qu'on redimensionne (via max-height en px), jamais
@@ -102,33 +102,22 @@
     renderTimer();
     renderFoundCount();
 
-    function showQcm(options) {
+    function showAnswerInput() {
         awaitingAnswer = true;
-        qcmOptionsEl.innerHTML = "";
-        // Aucune option pré-cochée : le joueur doit en choisir une lui-même,
-        // pas se voir suggérer une réponse par défaut avant même d'avoir
-        // réfléchi. Le bouton Valider reste désactivé jusqu'au premier choix.
-        options.forEach(function (option) {
-            const label = document.createElement("label");
-            label.className = "sm-qcm-option";
-            label.innerHTML =
-                '<input type="radio" name="sm-qcm-choice" value="' + option.id + '" class="accent-amber-400"><span></span>';
-            label.querySelector("span").textContent = option.label;
-            qcmOptionsEl.appendChild(label);
-        });
-        if (qcmSubmitButton) {
-            qcmSubmitButton.disabled = true;
+        answerInput.value = "";
+        if (answerSubmitButton) {
+            answerSubmitButton.disabled = true;
         }
-        cluePanel.classList.add("sm-hidden");
-        qcmPanel.classList.remove("sm-hidden");
+        idlePanel.classList.add("sm-hidden");
+        answerPanel.classList.remove("sm-hidden");
         fitStageHeight();
+        answerInput.focus();
     }
 
-    function showClue(text) {
+    function showIdle() {
         awaitingAnswer = false;
-        clueTextEl.textContent = text || "";
-        qcmPanel.classList.add("sm-hidden");
-        cluePanel.classList.remove("sm-hidden");
+        answerPanel.classList.add("sm-hidden");
+        idlePanel.classList.remove("sm-hidden");
         fitStageHeight();
     }
 
@@ -156,7 +145,7 @@
                     setTimeout(function () {
                         zoneEl.classList.remove("sm-zone--just-found");
                     }, 700);
-                    showQcm(data.options || []);
+                    showAnswerInput();
                 } else {
                     const penalty = data.penalty_seconds || 0;
                     timeLeft = Math.max(timeLeft - penalty, 0);
@@ -177,51 +166,66 @@
             });
     });
 
-    qcmOptionsEl.addEventListener("change", function (event) {
-        if (event.target.name === "sm-qcm-choice" && qcmSubmitButton) {
-            qcmSubmitButton.disabled = false;
+    answerInput.addEventListener("input", function () {
+        if (answerSubmitButton) {
+            answerSubmitButton.disabled = answerInput.value.trim() === "";
         }
     });
 
-    if (qcmSubmitButton) {
-        qcmSubmitButton.addEventListener("click", function () {
-            if (finished) return;
+    function submitAnswer() {
+        if (finished) return;
 
-            const checked = qcmOptionsEl.querySelector('input[name="sm-qcm-choice"]:checked');
-            if (!checked) return;
+        const guess = answerInput.value.trim();
+        if (!guess) return;
 
-            qcmSubmitButton.disabled = true;
+        if (answerSubmitButton) {
+            answerSubmitButton.disabled = true;
+        }
 
-            fetch(config.answerUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ option_id: checked.value }),
+        fetch(config.answerUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ guess: guess }),
+        })
+            .then(function (response) {
+                return response.json();
             })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    qcmSubmitButton.disabled = false;
-                    if (finished) return;
+            .then(function (data) {
+                if (answerSubmitButton) {
+                    answerSubmitButton.disabled = false;
+                }
+                if (finished) return;
 
-                    foundCount = data.found_count;
-                    renderFoundCount();
+                foundCount = data.found_count;
+                renderFoundCount();
 
-                    if (data.correct) {
-                        showToast("✓ Trouvé !", "found");
-                    } else {
-                        showToast("✗ C'était : " + (data.correct_label || "?"), "miss");
-                    }
+                if (data.correct) {
+                    showToast("✓ Trouvé !", "found");
+                } else {
+                    showToast("✗ C'était : " + (data.correct_label || "?"), "miss");
+                }
 
-                    if (data.done) {
-                        setTimeout(finishGame, 900);
-                    } else {
-                        showClue(data.next_clue);
-                    }
-                })
-                .catch(function () {
-                    qcmSubmitButton.disabled = false;
-                });
-        });
+                if (data.done) {
+                    setTimeout(finishGame, 900);
+                } else {
+                    showIdle();
+                }
+            })
+            .catch(function () {
+                if (answerSubmitButton) {
+                    answerSubmitButton.disabled = false;
+                }
+            });
+    }
+
+    answerInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && !answerSubmitButton.disabled) {
+            event.preventDefault();
+            submitAnswer();
+        }
+    });
+
+    if (answerSubmitButton) {
+        answerSubmitButton.addEventListener("click", submitAnswer);
     }
 })();

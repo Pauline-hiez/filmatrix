@@ -21,8 +21,8 @@ from filmatrix.integrations.storage import upload_special_game_image
 from filmatrix.models import (
     CacheCineReference,
     CacheCineScene,
+    MysteryAnswer,
     MysteryCase,
-    MysteryOption,
     MysteryZone,
 )
 from filmatrix.permissions import admin_required
@@ -223,11 +223,11 @@ def admin_scene_mystere_list() -> str:
 
 
 def _delete_case_zones(case_id: int) -> None:
-    """Supprime toutes les zones d'un cas et leurs options (les options
-    n'ont pas de suppression en cascade automatique via bulk delete)."""
+    """Supprime toutes les zones d'un cas et leurs réponses acceptées (pas de
+    suppression en cascade automatique via bulk delete)."""
     zone_ids = [zone.id for zone in MysteryZone.query.filter_by(case_id=case_id).all()]
     if zone_ids:
-        MysteryOption.query.filter(MysteryOption.zone_id.in_(zone_ids)).delete(synchronize_session=False)
+        MysteryAnswer.query.filter(MysteryAnswer.zone_id.in_(zone_ids)).delete(synchronize_session=False)
     MysteryZone.query.filter_by(case_id=case_id).delete()
 
 
@@ -262,7 +262,7 @@ def admin_scene_mystere_new() -> str:
                     "admin/scene_mystere_form.html", case=case, difficulties=DIFFICULTIES, existing_zones=[]
                 )
 
-        # Les zones (chacune avec son indice et ses options imbriqués) sont
+        # Les zones (chacune avec ses réponses acceptées imbriquées) sont
         # entièrement redéfinies à chaque sauvegarde plutôt que diffées,
         # comme les références Cache-Ciné : l'éditeur visuel
         # (static/js/admin_scene_mystere_zones.js) envoie déjà la liste
@@ -277,8 +277,8 @@ def admin_scene_mystere_new() -> str:
         db.session.flush()
 
         for order_index, entry in enumerate(zones_data):
-            clue_text = (entry.get("clue_text") or "").strip()
-            if not clue_text:
+            answers = [text for text in ((a or "").strip() for a in (entry.get("answers") or [])) if text]
+            if not answers:
                 continue
 
             zone = MysteryZone(
@@ -287,24 +287,13 @@ def admin_scene_mystere_new() -> str:
                 pos_y=float(entry.get("pos_y", 0)),
                 width=float(entry.get("width", 10)),
                 height=float(entry.get("height", 10)),
-                clue_text=clue_text,
                 order_index=order_index,
             )
             db.session.add(zone)
             db.session.flush()
 
-            for option_index, option_entry in enumerate(entry.get("options") or []):
-                label = (option_entry.get("label") or "").strip()
-                if not label:
-                    continue
-                db.session.add(
-                    MysteryOption(
-                        zone_id=zone.id,
-                        label=label,
-                        is_correct=bool(option_entry.get("is_correct")),
-                        order_index=option_index,
-                    )
-                )
+            for answer_index, text in enumerate(answers):
+                db.session.add(MysteryAnswer(zone_id=zone.id, text=text, order_index=answer_index))
 
         db.session.commit()
 
@@ -320,11 +309,10 @@ def admin_scene_mystere_new() -> str:
                 "pos_y": zone.pos_y,
                 "width": zone.width,
                 "height": zone.height,
-                "clue_text": zone.clue_text,
-                "options": [
-                    {"label": option.label, "is_correct": option.is_correct}
-                    for option in MysteryOption.query.filter_by(zone_id=zone.id)
-                    .order_by(MysteryOption.order_index)
+                "answers": [
+                    answer.text
+                    for answer in MysteryAnswer.query.filter_by(zone_id=zone.id)
+                    .order_by(MysteryAnswer.order_index)
                     .all()
                 ],
             }

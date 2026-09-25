@@ -221,7 +221,8 @@
         </div>
 
         <div>
-            <p class="cc-sidebar-label mb-2 text-xs font-extrabold uppercase tracking-widest text-slate-500">Références à trouver</p>
+            <p class="cc-sidebar-label mb-1 text-xs font-extrabold uppercase tracking-widest text-slate-500">Références à trouver</p>
+            <p class="cc-sidebar-label mb-2 text-xs text-slate-500 normal-case tracking-normal">Une même œuvre peut apparaître plusieurs fois dans la liste.</p>
             <ul class="cc-checklist" id="cc-checklist">
                 {% for reference in references %}
                 <li data-reference-id="{{ reference.id }}" class="{% if reference.id in found_reference_ids %}is-found{% endif %}">

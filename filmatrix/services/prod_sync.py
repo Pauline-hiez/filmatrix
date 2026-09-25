@@ -238,7 +238,7 @@ def publish_cache_cine_scenes(scene_ids: list[int]) -> dict:
 
 
 def publish_mystery_cases(case_ids: list[int]) -> dict:
-    """Publie les cas Scène Mystère demandés, avec leurs zones et options."""
+    """Publie les cas Scène Mystère demandés, avec leurs zones et réponses acceptées."""
     cases = MysteryCase.query.filter(MysteryCase.id.in_(case_ids)).all()
 
     conn = prod_connection()
@@ -258,17 +258,17 @@ def publish_mystery_cases(case_ids: list[int]) -> dict:
             for zone in sorted(case.zones, key=lambda z: z.order_index):
                 cur.execute(
                     """INSERT INTO mystery_zones
-                       (case_id, pos_x, pos_y, width, height, clue_text, order_index)
-                       VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id""",
-                    (new_case_id, zone.pos_x, zone.pos_y, zone.width, zone.height, zone.clue_text, zone.order_index),
+                       (case_id, pos_x, pos_y, width, height, order_index)
+                       VALUES (%s, %s, %s, %s, %s, %s) RETURNING id""",
+                    (new_case_id, zone.pos_x, zone.pos_y, zone.width, zone.height, zone.order_index),
                 )
                 new_zone_id = cur.fetchone()[0]
 
-                for option in sorted(zone.options, key=lambda o: o.order_index):
+                for answer in sorted(zone.answers, key=lambda a: a.order_index):
                     cur.execute(
-                        """INSERT INTO mystery_options (zone_id, label, is_correct, order_index)
-                           VALUES (%s, %s, %s, %s)""",
-                        (new_zone_id, option.label, option.is_correct, option.order_index),
+                        """INSERT INTO mystery_answers (zone_id, text, order_index)
+                           VALUES (%s, %s, %s)""",
+                        (new_zone_id, answer.text, answer.order_index),
                     )
 
             inserted.append({"local_id": case.id, "prod_id": new_case_id})
