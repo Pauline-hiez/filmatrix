@@ -241,7 +241,7 @@
             <div class="sm-toast" id="sm-toast"></div>
             <img src="{{ case.image_url | image_src }}" alt="Scène à observer" id="sm-image" draggable="false">
             {% for zone in zones %}
-            <button type="button" class="sm-zone {% if zone.id in found_zone_ids %}sm-zone--found{% endif %}"
+            <button type="button" class="sm-zone {% if zone.id in resolved_zone_ids %}sm-zone--found{% endif %}"
                     data-zone-id="{{ zone.id }}"
                     style="left:{{ zone.pos_x }}%; top:{{ zone.pos_y }}%; width:{{ zone.width }}%; height:{{ zone.height }}%;"
                     aria-label="Zone cliquable"></button>

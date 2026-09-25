@@ -311,8 +311,14 @@ def scene_mystere_start(case_id: int):
 
     session[SM_RUN_SESSION_KEY] = {
         "case_id": case.id,
-        "order": zone_ids,
-        "current_index": 0,
+        # Aucun ordre imposé : chaque zone est une cible légitime dès le
+        # départ (pas de décoy), le joueur clique celles qu'il repère dans
+        # l'ordre qui lui plaît. zone_ids sert seulement à borner le total et
+        # à vérifier qu'un zone_id cliqué appartient bien à ce cas.
+        "zone_ids": zone_ids,
+        # Zones déjà résolues (bonne ou mauvaise réponse tapée) : plus
+        # cliquables, qu'elles aient été trouvées ou ratées.
+        "attempted_zone_ids": [],
         "found_zone_ids": [],
         "mistakes": 0,
         # Zone dont le clic vient d'être validé, en attente de la réponse
@@ -345,24 +351,29 @@ def scene_mystere_play() -> str:
         "special_games/scene_mystere_jouer.html",
         case=case,
         zones=zones,
-        found_zone_ids=run["found_zone_ids"],
+        # Union des zones trouvées et ratées : les deux ne sont plus
+        # cliquables (une zone ne se tente qu'une fois), contrairement à
+        # found_count (le score affiché) qui ne compte que les vraies trouvailles.
+        resolved_zone_ids=run["attempted_zone_ids"],
         found_count=len(run["found_zone_ids"]),
-        total=len(run["order"]),
+        total=len(run["zone_ids"]),
     )
 
 
 @bp.route("/jeux-speciaux/scene-mystere/clic", methods=["POST"])
 @login_required
 def scene_mystere_click():
-    """Traite le clic du joueur sur une zone pour la question en cours.
+    """Traite le clic du joueur sur une zone de son choix, dans l'ordre qu'il
+    veut : il n'y a pas de décoy, chaque zone pas encore résolue est une
+    cible légitime.
 
-    Bonne zone → mémorise la zone en attente de réponse ; le joueur passe
-    ensuite au champ de réponse libre côté client. Mauvaise zone → petite
-    pénalité, le joueur retente sur la même question (un mauvais clic ne met
-    jamais fin à la partie).
+    Zone valide et pas encore résolue → mémorise la zone en attente de
+    réponse ; le joueur passe ensuite au champ de réponse libre côté client.
+    Sinon (zone déjà résolue, ou id inconnu) → petite pénalité, la partie
+    continue (un clic invalide ne met jamais fin à la partie).
     """
     run = session.get(SM_RUN_SESSION_KEY)
-    if not run or run["current_index"] >= len(run["order"]):
+    if not run or len(run["attempted_zone_ids"]) >= len(run["zone_ids"]):
         return jsonify({"error": "no_run"}), 400
 
     payload = request.get_json(silent=True) or {}
@@ -371,9 +382,9 @@ def scene_mystere_click():
     except (TypeError, ValueError):
         zone_id = None
 
-    target_zone_id = run["order"][run["current_index"]]
+    is_valid_target = zone_id in run["zone_ids"] and zone_id not in run["attempted_zone_ids"]
 
-    if zone_id == target_zone_id:
+    if is_valid_target:
         run["pending_zone_id"] = zone_id
         session[SM_RUN_SESSION_KEY] = run
 
@@ -387,9 +398,9 @@ def scene_mystere_click():
 @bp.route("/jeux-speciaux/scene-mystere/repondre", methods=["POST"])
 @login_required
 def scene_mystere_answer():
-    """Valide la réponse libre tapée par le joueur pour la zone en attente,
-    puis avance à la suivante — bonne réponse ou non, pas de deuxième
-    tentative sur une même zone."""
+    """Valide la réponse libre tapée par le joueur pour la zone en attente —
+    bonne réponse ou non, pas de deuxième tentative sur une même zone, mais
+    les autres zones restent disponibles dans l'ordre voulu par le joueur."""
     run = session.get(SM_RUN_SESSION_KEY)
     if not run or not run.get("pending_zone_id"):
         return jsonify({"error": "no_pending_zone"}), 400
@@ -403,17 +414,17 @@ def scene_mystere_answer():
     )
     answer_correct = answer_matches(guess, [answer.text for answer in accepted_answers])
 
+    run["attempted_zone_ids"].append(pending_zone_id)
     if answer_correct:
         run["found_zone_ids"].append(pending_zone_id)
     else:
         run["mistakes"] += 1
 
     run["pending_zone_id"] = None
-    run["current_index"] += 1
     session[SM_RUN_SESSION_KEY] = run
 
-    total = len(run["order"])
-    done = run["current_index"] >= total
+    total = len(run["zone_ids"])
+    done = len(run["attempted_zone_ids"]) >= total
 
     return jsonify(
         {
@@ -435,7 +446,7 @@ def scene_mystere_finish():
         flash("Aucune partie de Scène Mystère en cours.")
         return redirect(url_for("special_games.hub"))
 
-    total = len(run["order"])
+    total = len(run["zone_ids"])
     found_count = len(run["found_zone_ids"])
 
     rewards = resolve_scene_mystere_rewards(

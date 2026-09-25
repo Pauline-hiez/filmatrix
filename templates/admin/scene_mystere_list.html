@@ -45,6 +45,15 @@
                 <td class="px-3 py-2">
                     <div class="flex justify-end gap-3">
                         <a href="{{ url_for('admin_special_games.admin_scene_mystere_new') }}?case_id={{ case.id }}" class="text-cyan-400 hover:text-cyan-300 transition">Modifier</a>
+                        {% if case.id in publishable_case_ids %}
+                        <form method="POST" action="{{ url_for('admin_special_games.admin_scene_mystere_publish', case_id=case.id) }}" class="flex justify-end">
+                            <button type="submit" class="text-emerald-400 hover:text-emerald-300 transition">Publier</button>
+                        </form>
+                        {% elif publish_check_failed %}
+                        <span class="text-amber-500" title="Connexion à la production impossible, statut inconnu">Vérification impossible</span>
+                        {% elif can_publish_to_prod %}
+                        <span class="text-slate-600" title="Ce cas est déjà en production">Publié</span>
+                        {% endif %}
                         <form method="POST" action="{{ url_for('admin_special_games.admin_scene_mystere_delete', case_id=case.id) }}"
                               onsubmit="return confirm('Supprimer ce cas et tout son contenu ?');" class="flex justify-end">
                             <button type="submit" class="text-red-400 hover:text-red-300 transition">Supprimer</button>

@@ -13,7 +13,7 @@ from uuid import uuid4
 from botocore.exceptions import BotoCoreError, ClientError
 from werkzeug.utils import secure_filename
 
-from flask import Blueprint, current_app, flash, redirect, render_template, request, url_for
+from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, url_for
 from flask_login import login_required
 
 from filmatrix.extensions import db
@@ -27,6 +27,11 @@ from filmatrix.models import (
 )
 from filmatrix.permissions import admin_required
 from filmatrix.routes.admin import _admin_nav_counts
+from filmatrix.services.prod_sync import (
+    find_publishable_mystery_cases,
+    is_local_environment,
+    publish_mystery_cases,
+)
 
 bp = Blueprint("admin_special_games", __name__)
 
@@ -214,10 +219,27 @@ def admin_scene_mystere_list() -> str:
     cases = MysteryCase.query.order_by(MysteryCase.created_at.desc()).all()
     zone_counts = {case.id: MysteryZone.query.filter_by(case_id=case.id).count() for case in cases}
 
+    # Le bouton "Publier" par ligne ne doit apparaître que pour un cas pas
+    # encore en prod (comme la page centralisée "Publier vers la prod") : la
+    # requête réseau ne se fait qu'en local, jamais sur l'instance déployée
+    # elle-même. Une erreur de connexion à la prod ne doit pas empêcher
+    # d'afficher la liste, mais ne doit surtout pas non plus se traduire par
+    # un faux "Publié" silencieux (cas vide != cas vérifié) : le gabarit
+    # distingue donc "pas encore vérifié" de "vérifié, déjà publié".
+    publishable_case_ids = set()
+    publish_check_failed = False
+    if is_local_environment():
+        try:
+            publishable_case_ids = {case.id for case in find_publishable_mystery_cases()}
+        except Exception:
+            publish_check_failed = True
+
     return render_template(
         "admin/scene_mystere_list.html",
         cases=cases,
         zone_counts=zone_counts,
+        publishable_case_ids=publishable_case_ids,
+        publish_check_failed=publish_check_failed,
         active_admin_section="scene_mystere",
     )
 
@@ -335,4 +357,31 @@ def admin_scene_mystere_delete(case_id: int) -> str:
     db.session.commit()
 
     flash("Cas supprimé.")
+    return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
+
+
+@bp.route("/admin/jeux-speciaux/scene-mystere/<int:case_id>/publier", methods=["POST"])
+@login_required
+@admin_required
+def admin_scene_mystere_publish(case_id: int) -> str:
+    """Publie un seul cas Scène Mystère vers la prod, depuis sa ligne dans la
+    liste - alternative rapide à la page centralisée "Publier vers la prod"
+    (routes/admin.py) quand on vient de créer ou modifier ce cas précis."""
+    if not is_local_environment():
+        abort(404)
+
+    case = MysteryCase.query.get_or_404(case_id)
+
+    try:
+        still_publishable = {c.id for c in find_publishable_mystery_cases()}
+        if case.id not in still_publishable:
+            flash("Ce cas est déjà publié en production.")
+            return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
+
+        publish_mystery_cases([case.id])
+    except Exception as exc:
+        flash(f"Échec de la publication : {exc}")
+        return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
+
+    flash("Cas publié en production.")
     return redirect(url_for("admin_special_games.admin_scene_mystere_list"))
