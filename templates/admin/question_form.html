@@ -45,6 +45,7 @@
                 <option value="casting" {% if question and question.mode == 'casting' %}selected{% endif %}>Casting</option>
                 <option value="blindtest" {% if question and question.mode == 'blindtest' %}selected{% endif %}>Blind Test</option>
                 <option value="dialogue" {% if question and question.mode == 'dialogue' %}selected{% endif %}>Dialogue</option>
+                <option value="point_commun" {% if question and question.mode == 'point_commun' %}selected{% endif %}>Point commun</option>
             </select>
         </div>
 
@@ -90,6 +91,34 @@
                 {% if option_image %}
                 <img src="{{ option_image }}" class="h-10 w-10 shrink-0 rounded-lg border border-cyan-400/30 object-cover" title="Image de cette option (posée par l'enrichissement TMDB)">
                 {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Point commun -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="point_commun">
+            <p class="text-sm text-slate-400">Trois œuvres qui partagent un point commun :</p>
+            {% set pc_works = payload.get('works', []) %}
+            {% for i in range(1, 4) %}
+            {% set pc_work = pc_works[i-1] if i <= pc_works|length else none %}
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Œuvre {{ i }}</label>
+                <input type="text" class="point-commun-work-search w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                       placeholder="Rechercher un film ou une série..." autocomplete="off"
+                       value="{{ pc_work.title if pc_work else '' }}">
+                <div class="point-commun-work-results movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+                <input type="hidden" name="work_tmdb_id_{{ i }}" class="point-commun-work-tmdb-id" value="{{ pc_work.tmdb_id if pc_work else '' }}">
+                <input type="hidden" name="work_content_type_{{ i }}" class="point-commun-work-content-type" value="{{ pc_work.content_type if pc_work else 'film' }}">
+            </div>
+            {% endfor %}
+
+            <p class="mt-2 text-sm text-slate-400">4 propositions, coche la bonne :</p>
+            {% set pc_options = payload.get('options', []) %}
+            {% for i in range(4) %}
+            <div class="flex items-center gap-2">
+                <input type="radio" name="point_commun_correct_index" value="{{ i }}" class="qcm-radio" {% if answer.get('index') == i %}checked{% endif %}>
+                <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                       value="{{ pc_options[i] if i < pc_options|length else '' }}" placeholder="Proposition {{ i + 1 }}">
             </div>
             {% endfor %}
         </div>

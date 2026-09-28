@@ -731,6 +731,24 @@ function buildPayloadAndAnswer(mode) {
         };
     }
 
+    if (mode === "point_commun") {
+        // Même lecture que le QCM (options + index de la bonne réponse) :
+        // payload.works n'est PAS construit ici, le serveur l'injecte à la
+        // soumission à partir de work_tmdb_id_1/2/3 (get_or_create_work ne
+        // doit s'exécuter que côté serveur, voir routes/admin.py).
+        const options = Array.from(activeGroup.querySelectorAll(".qcm-option")).map(
+            function (input) {
+                return input.value;
+            }
+        );
+        const selectedRadio = activeGroup.querySelector(".qcm-radio:checked");
+        const correctIndex = selectedRadio ? parseInt(selectedRadio.value) : 0;
+        return {
+            payload: { options: options },
+            correct_answer: { index: correctIndex },
+        };
+    }
+
     if (mode === "vrai_faux") {
         const selectedRadio = activeGroup.querySelector('input[name="vf_correct"]:checked');
         const value = selectedRadio ? selectedRadio.value === "true" : true;
@@ -1421,4 +1439,86 @@ if (workSearchInput) {
         }
     });
 }
+
+// ---- Œuvres du mode Point commun : 3 recherches TMDB indépendantes ----
+// Même esprit que le champ "Œuvre associée" ci-dessus (recherche TMDB, pas
+// de création de Work avant la soumission du formulaire), répété pour
+// chacune des 3 œuvres montrées dans ce mode. Pas d'appel à /oeuvre-info ici
+// : les résultats de recherche portent déjà titre + miniature, suffisant
+// pour l'aperçu (genre/saga ne servent à rien dans ce mode).
+document.querySelectorAll(".point-commun-work-search").forEach(function (searchInput) {
+    const container = searchInput.parentElement;
+    const resultsBox = container.querySelector(".point-commun-work-results");
+    const tmdbIdInput = container.querySelector(".point-commun-work-tmdb-id");
+    const contentTypeInput = container.querySelector(".point-commun-work-content-type");
+
+    let debounceTimer = null;
+
+    function selectWork(movie) {
+        const contentType = movie.media_type === "serie" ? "serie" : "film";
+        searchInput.value = movie.title;
+        tmdbIdInput.value = movie.id;
+        contentTypeInput.value = contentType;
+        resultsBox.classList.add("hidden");
+    }
+
+    function displayResults(movies) {
+        if (movies.length === 0) {
+            resultsBox.innerHTML = '<p class="text-sm text-slate-500 px-3 py-2">Aucun résultat.</p>';
+            resultsBox.classList.remove("hidden");
+            return;
+        }
+
+        resultsBox.innerHTML = "";
+        movies.forEach(function (movie) {
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className =
+                "w-full flex items-center gap-3 px-3 py-2 hover:bg-slate-800 transition text-left";
+
+            const thumbnailHtml = movie.thumbnail_url
+                ? `<img src="${movie.thumbnail_url}" class="w-8 h-12 object-cover rounded">`
+                : `<div class="w-8 h-12 bg-slate-800 rounded flex items-center justify-center text-xs text-slate-500">?</div>`;
+            const isSerie = movie.media_type === "serie";
+            const typeBadge = isSerie
+                ? '<span class="ml-auto shrink-0 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-300">Série</span>'
+                : '<span class="ml-auto shrink-0 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cyan-300">Film</span>';
+
+            item.innerHTML = `
+                ${thumbnailHtml}
+                <span class="min-w-0 flex-1 truncate text-sm text-slate-100">${movie.title} <span class="text-slate-500">(${movie.year})</span></span>
+                ${typeBadge}
+            `;
+            item.addEventListener("click", function () {
+                selectWork(movie);
+            });
+            resultsBox.appendChild(item);
+        });
+
+        resultsBox.classList.remove("hidden");
+    }
+
+    searchInput.addEventListener("input", function () {
+        const query = searchInput.value.trim();
+        clearTimeout(debounceTimer);
+
+        if (query.length < 2) {
+            resultsBox.classList.add("hidden");
+            resultsBox.innerHTML = "";
+            return;
+        }
+
+        debounceTimer = setTimeout(async function () {
+            const response = await fetch(`${API_PREFIX}/recherche-film?query=${encodeURIComponent(query)}`);
+            const data = await response.json();
+            displayResults(data.results);
+        }, 350);
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!searchInput.contains(event.target) && !resultsBox.contains(event.target)) {
+            resultsBox.classList.add("hidden");
+        }
+    });
+});
 })();

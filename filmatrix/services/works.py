@@ -7,7 +7,13 @@ import json
 from sqlalchemy.exc import IntegrityError
 
 from filmatrix.extensions import db
-from filmatrix.integrations.tmdb import build_image_url, get_movie_by_id, get_tv_show_by_id
+from filmatrix.integrations.tmdb import (
+    build_image_url,
+    get_movie_by_id,
+    get_movie_cast,
+    get_tv_show_by_id,
+    get_tv_show_cast,
+)
 from filmatrix.models import Work
 
 
@@ -23,6 +29,7 @@ def get_or_create_work(tmdb_id: int, content_type: str) -> Work:
         return existing
 
     details = get_movie_by_id(tmdb_id) if content_type == "film" else get_tv_show_by_id(tmdb_id)
+    cast = get_movie_cast(tmdb_id) if content_type == "film" else get_tv_show_cast(tmdb_id)
 
     work = Work(
         tmdb_id=tmdb_id,
@@ -31,6 +38,7 @@ def get_or_create_work(tmdb_id: int, content_type: str) -> Work:
         poster_url=build_image_url(details.get("poster_path")),
         genres=details.get("genres", []),
         saga=details.get("saga"),
+        cast=[actor["name"] for actor in cast],
     )
     db.session.add(work)
     try:
@@ -43,6 +51,31 @@ def get_or_create_work(tmdb_id: int, content_type: str) -> Work:
         raise
 
     return work
+
+
+def resolve_point_commun_works(form) -> list[dict] | None:
+    """Résout les 3 œuvres du mode Point commun depuis un formulaire (admin
+    ou suggestion joueur) portant work_tmdb_id_1..3 / work_content_type_1..3,
+    via get_or_create_work - jamais côté client, voir
+    static/js/admin_question_form.js.
+
+    Renvoie None si l'une des 3 n'est pas renseignée : le mode ne peut pas
+    être enregistré sans ses 3 œuvres."""
+    works = []
+    for i in range(1, 4):
+        tmdb_id = form.get(f"work_tmdb_id_{i}", type=int)
+        if not tmdb_id:
+            return None
+        content_type = form.get(f"work_content_type_{i}", "film")
+        work = get_or_create_work(tmdb_id, content_type)
+        works.append({
+            "work_id": work.id,
+            "tmdb_id": work.tmdb_id,
+            "content_type": work.content_type,
+            "title": work.title,
+            "poster_url": work.poster_url,
+        })
+    return works
 
 
 def work_genre_filter(genre_name: str):

@@ -697,7 +697,7 @@ def answer_placeholder(
 
 def format_correct_answer(question, alternate_answer: str | None = None) -> str:
     """Formate la bonne réponse, éventuellement adaptée au contexte de la partie."""
-    if question.mode == "qcm":
+    if question.mode in ("qcm", "point_commun"):
         index = question.correct_answer["index"]
         return option_label(question.payload["options"][index])
     if question.mode == "vrai_faux":

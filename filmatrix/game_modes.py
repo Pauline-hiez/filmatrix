@@ -103,6 +103,14 @@ GAME_MODES = [
         "accent": "#818cf8",
     },
     {
+        "slug": "point_commun",
+        "name": "Point commun",
+        "description": "Trouve ce que ces œuvres ont en commun.",
+        "how": "Trois œuvres s'affichent, quatre propositions en dessous. Une seule décrit leur vrai point commun (saga ou genre).",
+        "icon": "🔗",
+        "accent": "#facc15",
+    },
+    {
         "slug": MIX_MODE_SLUG,
         "name": "Mix",
         "description": "Tous les modes mélangés, dans la même partie.",
@@ -131,5 +139,10 @@ def mode_image_icon(mode: str) -> str | None:
 # Les modes ouverts au multijoueur. Le mix n'y figure pas : un duel tire ses
 # leurres parmi les autres questions du même mode (cf. services/multiplayer.py),
 # ce qui suppose des lignes en base portant réellement ce mode — le mix n'en a
-# aucune, il pioche parmi celles des autres.
-MULTIPLAYER_MODES = [entry["slug"] for entry in GAME_MODES if entry["slug"] != MIX_MODE_SLUG]
+# aucune, il pioche parmi celles des autres. Point commun n'y figure pas non
+# plus pour l'instant : le template de duel (templates/multiplayer/partie.html)
+# n'a pas encore le bloc d'affichage des 3 œuvres (payload.works), le jouer en
+# duel laisserait les options sans le contexte nécessaire pour y répondre.
+MULTIPLAYER_MODES = [
+    entry["slug"] for entry in GAME_MODES if entry["slug"] not in (MIX_MODE_SLUG, "point_commun")
+]

@@ -3,11 +3,24 @@ saga/genre, et script de rattrapage des questions existantes."""
 
 from unittest.mock import patch
 
+import pytest
+
 from filmatrix.extensions import db
 from filmatrix.models import Question, Work
 from filmatrix.services.questions import playable_question_query
 from filmatrix.services.works import get_or_create_work
 from scripts.migrate_questions_to_works import migrate_questions_to_works
+
+
+@pytest.fixture(autouse=True)
+def _no_cast_by_default():
+    """get_or_create_work appelle aussi get_movie_cast/get_tv_show_cast : les
+    tests de ce fichier ne portent pas sur le casting, on le neutralise par
+    défaut (liste vide) plutôt que de le répéter dans chaque test. Un test
+    dédié au casting peut re-patcher localement pour l'écraser."""
+    with patch("filmatrix.services.works.get_movie_cast", return_value=[]), \
+         patch("filmatrix.services.works.get_tv_show_cast", return_value=[]):
+        yield
 
 MOVIE_DETAILS = {
     "id": 550,
@@ -65,6 +78,21 @@ def test_get_or_create_work_fills_saga_from_collection(app):
 
         assert work.saga == "Harry Potter Collection"
         assert work.genres == ["Fantastique", "Aventure"]
+
+
+def test_get_or_create_work_fills_cast_from_credits(app):
+    """Le casting vient d'un appel TMDB séparé (get_movie_cast), pas de la
+    même réponse que genres/saga."""
+    with app.app_context():
+        cast = [
+            {"name": "Brad Pitt", "character": "Tyler Durden", "profile_path": "/bp.jpg"},
+            {"name": "Edward Norton", "character": "Le narrateur", "profile_path": "/en.jpg"},
+        ]
+        with patch("filmatrix.services.works.get_movie_by_id", return_value=MOVIE_DETAILS), \
+             patch("filmatrix.services.works.get_movie_cast", return_value=cast):
+            work = get_or_create_work(550, "film")
+
+        assert work.cast == ["Brad Pitt", "Edward Norton"]
 
 
 def test_filter_by_saga(app):

@@ -20,7 +20,8 @@
     "devinette_affiche": "#34d399",
     "casting": "#f472b6",
     "blindtest": "#60a5fa",
-    "dialogue": "#818cf8"
+    "dialogue": "#818cf8",
+    "point_commun": "#facc15"
 } %}
 {% set mode_labels = {
     "qcm": "Quiz",
@@ -33,7 +34,8 @@
     "devinette_affiche": "Image à deviner",
     "casting": "Casting",
     "blindtest": "Blind Test",
-    "dialogue": "Dialogue"
+    "dialogue": "Dialogue",
+    "point_commun": "Point commun"
 } %}
 {% set difficulty_colors = {"facile": "#34d399", "moyen": "#fbbf24", "difficile": "#f87171"} %}
 
@@ -123,6 +125,32 @@
         <ol class="list-inside list-decimal text-slate-300">
             {% for film in answer.get('order', []) %}<li>{{ film }}</li>{% endfor %}
         </ol>
+    </div>
+
+    {% elif mode == 'point_commun' %}
+    <div>
+        <p class="mb-1.5 text-xs font-bold uppercase tracking-widest text-slate-500">Œuvres montrées</p>
+        <div class="flex flex-wrap gap-3">
+            {% for work in payload.get('works', []) %}
+            <div class="w-16 text-center">
+                {% if work.poster_url %}
+                <img src="{{ work.poster_url }}" loading="lazy" class="mb-1 aspect-[2/3] w-full rounded-lg border border-cyan-400/30 object-cover">
+                {% endif %}
+                <p class="truncate text-[0.65rem] text-slate-400">{{ work.title }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <p class="mb-1.5 text-xs font-bold uppercase tracking-widest text-slate-500">Propositions</p>
+        <div class="flex flex-col gap-1.5">
+            {% for option in payload.get('options', []) %}
+            <div class="flex items-center gap-2 rounded-lg border px-3 py-2 {% if loop.index0 == answer.get('index') %}border-emerald-400/50 bg-emerald-400/10{% else %}border-slate-800 bg-slate-950/40{% endif %}">
+                <span class="{% if loop.index0 == answer.get('index') %}text-emerald-400{% else %}text-transparent{% endif %}">✓</span>
+                <span>{{ option }}</span>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     {% elif mode == 'emoji' %}

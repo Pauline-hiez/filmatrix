@@ -25,8 +25,9 @@ def check_answer(
     Raises: ValueError: si le mode de la question n'est pas géré"""
 
     match question.mode:
-        case "qcm":
-            # Pour un QCM, la bonne réponse est l'index de l'option correcte
+        case "qcm" | "point_commun":
+            # Pour un QCM (et Point commun, qui a le même format de réponse),
+            # la bonne réponse est l'index de l'option correcte
             return user_response == question.correct_answer["index"]
 
         case "vrai_faux":
@@ -53,7 +54,7 @@ def convert_answer(mode: str, raw_value: str) -> Any:
     Le solo poste un formulaire, le multijoueur passe par une websocket, mais
     les deux transmettent du texte : la conversion est la même des deux côtés,
     et n'a donc pas à être réécrite dans chacun"""
-    if mode == "qcm":
+    if mode in ("qcm", "point_commun"):
         return int(raw_value)
     if mode == "vrai_faux":
         return raw_value == "true"

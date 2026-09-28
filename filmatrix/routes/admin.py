@@ -32,7 +32,7 @@ from filmatrix.services.prod_sync import (
 from filmatrix.integrations.itunes import search_soundtrack_previews, search_soundtrack_preview
 from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.storage import upload_album_image, upload_character_image
-from filmatrix.services.works import get_or_create_work
+from filmatrix.services.works import get_or_create_work, resolve_point_commun_works
 from filmatrix.integrations.tmdb import (
     build_image_url,
     genre_ids_to_tags,
@@ -271,6 +271,14 @@ def admin_questions_new() -> str:
             visuals = json.loads(request.form.get("visuals", "[]"))
             payload.setdefault("visuals", visuals)
 
+        if request.form["mode"] == "point_commun":
+            works = resolve_point_commun_works(request.form)
+            if works is None:
+                flash("Sélectionne les 3 œuvres du mode Point commun.")
+                all_tags = Tag.query.order_by(Tag.tag_type, Tag.name).all()
+                return render_template("admin/question_form.html", question=None, all_tags=all_tags)
+            payload["works"] = works
+
         new_question = Question(
             mode=request.form["mode"],
             prompt=prompt,
@@ -320,6 +328,14 @@ def admin_questions_edit(question_id: int) -> str:
         question.prompt = request.form["prompt"]
         if request.form["mode"] == "emoji":
             payload.setdefault("visuals", json.loads(request.form.get("visuals", "[]")))
+        if request.form["mode"] == "point_commun":
+            works = resolve_point_commun_works(request.form)
+            if works is None:
+                if is_ajax:
+                    return {"success": False, "error": "Sélectionne les 3 œuvres du mode Point commun."}, 400
+                flash("Sélectionne les 3 œuvres du mode Point commun.")
+                return render_template("admin/question_form.html", question=question)
+            payload["works"] = works
         question.payload = payload
         question.correct_answer = correct_answer
         question.content_type = request.form.get("content_type", question.content_type)
@@ -867,6 +883,15 @@ def admin_suggestions_review_form(submission_id: int) -> str:
         prompt = request.form["prompt"]
         if submission.mode == "emoji":
             payload.setdefault("visuals", json.loads(request.form.get("visuals", "[]")))
+        if submission.mode == "point_commun":
+            works = resolve_point_commun_works(request.form)
+            if works is None:
+                error = "Sélectionne les 3 œuvres du mode Point commun."
+                if is_ajax:
+                    return {"success": False, "error": error}, 400
+                flash(error)
+                return redirect(url_for("admin.admin_suggestions_list"))
+            payload["works"] = works
 
         content_type = request.form.get("content_type", submission.content_type)
         difficulty = request.form.get("difficulty", submission.difficulty)

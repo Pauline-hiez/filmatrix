@@ -162,14 +162,18 @@ def login(client, email):
 def test_a_duel_can_be_created_in_every_mode(app):
     """Tous les modes annoncés jouables en duel doivent pouvoir en démarrer un
 
-    Seul le mix en est exclu : un duel tire ses leurres parmi les autres
-    questions du même mode, ce qui suppose des lignes en base portant
-    réellement ce mode — le mix n'en a aucune, il pioche parmi celles des
-    autres (cf. game_modes.py)."""
+    Deux exceptions à la liste complète des modes (cf. game_modes.py) :
+    - le mix, dont un duel tirerait ses leurres parmi les autres questions du
+      même mode, ce qui suppose des lignes en base portant réellement ce
+      mode — le mix n'en a aucune, il pioche parmi celles des autres ;
+    - point_commun, dont le template de duel n'affiche pas encore les 3
+      œuvres (payload.works) nécessaires pour répondre - à retirer de cette
+      exception une fois ce template mis à jour."""
     from filmatrix.game_modes import GAME_MODES, MIX_MODE_SLUG, MULTIPLAYER_MODES
 
-    assert {mode["slug"] for mode in GAME_MODES} - {MIX_MODE_SLUG} == set(MULTIPLAYER_MODES)
-    assert MIX_MODE_SLUG not in MULTIPLAYER_MODES
+    excluded_from_multiplayer = {MIX_MODE_SLUG, "point_commun"}
+    assert {mode["slug"] for mode in GAME_MODES} - excluded_from_multiplayer == set(MULTIPLAYER_MODES)
+    assert not excluded_from_multiplayer & set(MULTIPLAYER_MODES)
 
 
 def test_a_free_text_mode_offers_choices_in_a_duel(client, app):

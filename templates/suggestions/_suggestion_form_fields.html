@@ -31,6 +31,7 @@
                 <option value="casting">Casting</option>
                 <option value="blindtest">Blind Test</option>
                 <option value="dialogue">Dialogue</option>
+                <option value="point_commun">Point commun</option>
             </select>
         </div>
 
@@ -70,6 +71,30 @@
                 <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
                        value="" placeholder="Option {{ i + 1 }}">
                 <input type="hidden" class="qcm-option-image" value="">
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Point commun -->
+        <div class="mode-fields hidden flex flex-col gap-3" data-mode="point_commun">
+            <p class="text-sm text-slate-400">Trois œuvres qui partagent un point commun :</p>
+            {% for i in range(1, 4) %}
+            <div class="relative">
+                <label class="block text-sm text-slate-400 mb-1">Œuvre {{ i }}</label>
+                <input type="text" class="point-commun-work-search w-full bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                       placeholder="Rechercher un film ou une série..." autocomplete="off">
+                <div class="point-commun-work-results movie-search-results hidden absolute z-10 w-full bg-slate-900 border border-cyan-400/50 rounded-lg mt-1 max-h-64 overflow-y-auto"></div>
+                <input type="hidden" name="work_tmdb_id_{{ i }}" class="point-commun-work-tmdb-id">
+                <input type="hidden" name="work_content_type_{{ i }}" class="point-commun-work-content-type" value="film">
+            </div>
+            {% endfor %}
+
+            <p class="mt-2 text-sm text-slate-400">4 propositions, coche la bonne :</p>
+            {% for i in range(4) %}
+            <div class="flex items-center gap-2">
+                <input type="radio" name="point_commun_correct_index" value="{{ i }}" class="qcm-radio">
+                <input type="text" class="qcm-option flex-1 bg-slate-900 border border-cyan-400/30 rounded-lg px-3 py-2 text-slate-100"
+                       value="" placeholder="Proposition {{ i + 1 }}">
             </div>
             {% endfor %}
         </div>

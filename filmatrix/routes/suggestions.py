@@ -10,6 +10,7 @@ from flask_login import current_user, login_required
 from filmatrix.extensions import db
 from filmatrix.models import QuestionSubmission, Tag
 from filmatrix.services.suggestions import WEEKLY_SUBMISSION_LIMIT, remaining_weekly_quota
+from filmatrix.services.works import resolve_point_commun_works
 from filmatrix.integrations.itunes import search_soundtrack_previews
 from filmatrix.integrations.youtube import search_videos
 from filmatrix.integrations.tmdb import (
@@ -64,6 +65,19 @@ def new_suggestion() -> str:
         if request.form["mode"] == "emoji":
             visuals = json.loads(request.form.get("visuals", "[]"))
             payload.setdefault("visuals", visuals)
+        if request.form["mode"] == "point_commun":
+            works = resolve_point_commun_works(request.form)
+            if works is None:
+                error = "Sélectionne les 3 œuvres du mode Point commun."
+                if is_ajax:
+                    return {"success": False, "error": error}, 400
+                return render_template(
+                    "suggestions/new_suggestion.html",
+                    all_tags=Tag.query.order_by(Tag.tag_type, Tag.name).all(),
+                    remaining=remaining_weekly_quota(current_user),
+                    weekly_limit=WEEKLY_SUBMISSION_LIMIT,
+                ), 400
+            payload["works"] = works
 
         submission = QuestionSubmission(
             user_id=current_user.id,

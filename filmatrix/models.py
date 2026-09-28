@@ -312,10 +312,10 @@ class Tag(db.Model):
 class Work(db.Model):
     """Représente une œuvre (film ou série) identifiée par son id TMDB.
 
-    Centralise le classement saga/genre une seule fois par œuvre, plutôt que
-    de le dupliquer sur chaque question qui en parle (cf. Tag, taggé question
-    par question). Genres et saga sont toujours renseignés depuis TMDB, jamais
-    à la main."""
+    Centralise le classement saga/genre/casting une seule fois par œuvre,
+    plutôt que de le dupliquer sur chaque question qui en parle (cf. Tag,
+    taggé question par question). Toujours renseigné depuis TMDB, jamais à
+    la main."""
 
     __tablename__ = "works"
     __table_args__ = (db.UniqueConstraint("tmdb_id", "content_type", name="uq_work_tmdb"),)
@@ -327,6 +327,9 @@ class Work(db.Model):
     poster_url = db.Column(db.String(255), nullable=True)
     genres = db.Column(db.JSON, nullable=False, default=list)
     saga = db.Column(db.String(255), nullable=True)
+    # Noms des acteurs principaux (get_movie_cast/get_tv_show_cast, cf.
+    # integrations/tmdb.py), pour le mode Point commun ("acteurs en commun").
+    cast = db.Column(db.JSON, nullable=False, default=list)
 
 
 class Character(db.Model):

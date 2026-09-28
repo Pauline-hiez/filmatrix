@@ -13,9 +13,10 @@ QUESTION_DURATION = 15
 # Nombre de propositions offertes par question en duel.
 CHOICES_PER_QUESTION = 4
 
-# Modes qui composent eux-mêmes leurs réponses : le QCM a ses options en base,
-# le vrai/faux ses deux boutons, et la chronologie attend un ordre, pas un titre.
-MODES_WITHOUT_CHOICES = ("qcm", "vrai_faux", "chronologie")
+# Modes qui composent eux-mêmes leurs réponses : le QCM (et Point commun,
+# même format) ont leurs options en base, le vrai/faux ses deux boutons, et
+# la chronologie attend un ordre, pas un titre.
+MODES_WITHOUT_CHOICES = ("qcm", "point_commun", "vrai_faux", "chronologie")
 
 
 def offers_real_choices(mode: str) -> bool:

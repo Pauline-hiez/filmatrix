@@ -345,7 +345,7 @@ def quiz(mode: str, position: int) -> str:
     if question.mode == "film_melange":
         scrambled_title = scramble_title(question.correct_answer["title"])
 
-    options = shuffle_options(question) if question.mode == "qcm" else None
+    options = shuffle_options(question) if question.mode in ("qcm", "point_commun") else None
 
     sidebar_friends = []
     player_level = None

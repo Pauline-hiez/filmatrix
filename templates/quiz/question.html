@@ -14,7 +14,8 @@
     "devinette": "#fb923c",
     "devinette_affiche": "#34d399",
     "casting": "#f472b6",
-    "blindtest": "#60a5fa"
+    "blindtest": "#60a5fa",
+    "point_commun": "#facc15"
 } %}
 {% set labels = {
     "qcm": "Quiz",
@@ -26,7 +27,8 @@
     "devinette": "Devinette",
     "devinette_affiche": "Devinette-affiche",
     "casting": "Casting",
-    "blindtest": "Blind Test"
+    "blindtest": "Blind Test",
+    "point_commun": "Point commun"
 } %}
 {% set accent = accents.get(question.mode, "#22d3ee") %}
 
@@ -45,7 +47,8 @@
 {% set icons = {
     "qcm": "?", "vrai_faux": "±", "citation": "❝", "emoji": "☺",
     "film_melange": "⤭", "chronologie": "⏱", "devinette": "◎",
-    "devinette_affiche": "▶", "casting": "★", "blindtest": "♪"
+    "devinette_affiche": "▶", "casting": "★", "blindtest": "♪",
+    "point_commun": "🔗"
 } %}
 
 <div class="game-shell" style="--accent: {{ accent }}">
@@ -235,6 +238,19 @@
         {% elif question.mode == "dialogue" %}
             <p class="mb-3 text-sm text-slate-400">Écoute la réplique et devine {{ "la série" if question.content_type == "serie" else "le film" }} :</p>
             {{ audio_player(question.payload, autoplay=not is_mix) }}
+        {% elif question.mode == "point_commun" %}
+            <p class="mb-3 text-sm text-slate-400">Observe ces trois œuvres :</p>
+            <div class="mb-5 grid grid-cols-3 gap-3">
+                {% for work in question.payload.works %}
+                <div class="flex flex-col items-center gap-2 text-center">
+                    {% if work.poster_url %}
+                    <img src="{{ work.poster_url }}" alt="Affiche de {{ work.title }}"
+                         class="aspect-[2/3] w-full rounded-lg border border-cyan-400/30 object-cover">
+                    {% endif %}
+                    <p class="text-xs font-bold leading-snug text-slate-200">{{ work.title }}</p>
+                </div>
+                {% endfor %}
+            </div>
         {% endif %}
 
         {# Indices progressifs, réservés au mode devinette. #}
@@ -246,7 +262,7 @@
         {% endif %}
 
         <div class="game-answer-zone">
-            {% if question.mode == "qcm" %}
+            {% if question.mode in ["qcm", "point_commun"] %}
                 {# L'ordre d'affichage est tiré au sort à chaque question, mais
                    chaque bouton renvoie l'index d'origine de sa proposition :
                    le serveur vérifie la réponse sans rien savoir du mélange. #}

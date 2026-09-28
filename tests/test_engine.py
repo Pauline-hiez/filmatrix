@@ -3,7 +3,7 @@
 import pytest
 
 from filmatrix.services.character_answers import character_answer
-from filmatrix.services.engine import check_answer
+from filmatrix.services.engine import check_answer, convert_answer
 from filmatrix.models import Question
 
 def make_qcm_question() -> Question:
@@ -260,5 +260,36 @@ def test_dialogue_wrong_answer():
     """Une réponse incorrecte doit retourner False"""
     question = make_dialogue_question()
     assert check_answer(question, "Titanic") is False
+
+def make_point_commun_question() -> Question:
+    """Fabrique une question Point commun de test (même format que le QCM)"""
+    return Question(
+        id=12,
+        mode="point_commun",
+        prompt="Quel est le point commun entre ces trois œuvres ?",
+        payload={"options": [
+            "Ils ont tous le genre Horreur en commun",
+            "Ils appartiennent tous à la saga Scream",
+            "Ils ont tous le genre Comédie en commun",
+            "Ils appartiennent tous à la saga Halloween",
+        ]},
+        correct_answer={"index": 1},
+    )
+
+def test_point_commun_correct_answer():
+    """Une réponse Point commun correcte doit renvoyer True (vérification par
+    index, comme le QCM)"""
+    question = make_point_commun_question()
+    assert check_answer(question, 1) is True
+
+def test_point_commun_wrong_answer():
+    """Une réponse Point commun incorrecte doit renvoyer False"""
+    question = make_point_commun_question()
+    assert check_answer(question, 0) is False
+
+def test_convert_answer_treats_point_commun_like_qcm():
+    """La conversion de la valeur postée doit suivre le même chemin que le
+    QCM (index entier), pas le chemin texte libre des autres modes."""
+    assert convert_answer("point_commun", "2") == 2
 
 
