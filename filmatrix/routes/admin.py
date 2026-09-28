@@ -7,6 +7,7 @@ from uuid import uuid4
 
 from botocore.exceptions import BotoCoreError, ClientError
 from sqlalchemy import case, func
+from sqlalchemy.orm import selectinload
 from werkzeug.utils import secure_filename
 
 from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, session, url_for
@@ -169,7 +170,16 @@ def openmoji_hex_to_unicode(code: str) -> str:
 @admin_required
 def admin_questions_list() -> str:
     """Affiche la liste de toutes les questions, groupées par mode pour l'admin"""
-    all_questions = Question.query.order_by(Question.mode, Question.id).all()
+    # selectinload(tags) : question.tags est ensuite lu pour chacune des
+    # ~1700 questions dans le template - sans ça, c'est une requête SQL par
+    # question (N+1), négligeable en local (SQLite) mais très sensible sur
+    # Neon (latence réseau par requête), et la cause principale de la lenteur
+    # de cette page en production.
+    all_questions = (
+        Question.query.options(selectinload(Question.tags))
+        .order_by(Question.mode, Question.id)
+        .all()
+    )
 
     questions_by_mode = {}
     for question in all_questions:
