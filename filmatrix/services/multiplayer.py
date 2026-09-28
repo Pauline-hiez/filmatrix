@@ -3,6 +3,8 @@
 import random
 from datetime import datetime, timedelta
 
+from sqlalchemy.orm import joinedload
+
 from filmatrix.extensions import db
 from filmatrix.models import GameAnswer, GameSession, GameSessionQuestion, Question
 
@@ -79,6 +81,7 @@ def get_ordered_questions(game_session: GameSession) -> list[Question]:
     """Renvoie les questions d'une partie, dans leur ordre défini."""
     session_questions = (
         GameSessionQuestion.query.filter_by(game_session_id=game_session.id)
+        .options(joinedload(GameSessionQuestion.question))
         .order_by(GameSessionQuestion.order_index)
         .all()
     )

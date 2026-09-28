@@ -2,6 +2,7 @@
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
+from sqlalchemy.orm import joinedload
 
 from filmatrix.extensions import db
 from filmatrix.catalog import AVATARS, AVATAR_RING_COLORS
@@ -23,8 +24,13 @@ bp = Blueprint("profile", __name__)
 @login_required
 def profile() -> str:
     """Affiche le score et l'historique du joueur connecté"""
+    # joinedload : attempt.question est lu pour chaque tentative juste après
+    # (attempts_by_mode) - sans ça, une requête SQL par tentative (N+1),
+    # potentiellement des milliers sur un compte actif (voir le même correctif
+    # sur la liste des questions admin, filmatrix/routes/admin.py).
     attempts = (
         Attempt.query.filter_by(user_id=current_user.id)
+        .options(joinedload(Attempt.question))
         .order_by(Attempt.answered_at.desc())
         .all()
     )
@@ -121,7 +127,11 @@ def public_profile(user_id: int) -> str:
     else:
         friendship_state = "request_received"
 
-    attempts = Attempt.query.filter_by(user_id=viewed_user.id).all()
+    attempts = (
+        Attempt.query.filter_by(user_id=viewed_user.id)
+        .options(joinedload(Attempt.question))
+        .all()
+    )
     total_count = len(attempts)
     correct_count = sum(1 for attempt in attempts if attempt.is_correct)
     level_info = calculate_level(viewed_user.total_xp)

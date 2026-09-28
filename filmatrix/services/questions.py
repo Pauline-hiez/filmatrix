@@ -479,13 +479,18 @@ def option_label(option) -> str:
     return str(option)
 
 
-def option_image_url(question, option_index: int, option) -> str | None:
+def option_image_url(question, option_index: int, option, poster_cache: dict | None = None) -> str | None:
     """Résout l'image d'une option QCM sans rendre les images obligatoires.
 
     Priorité aux métadonnées ajoutées directement au QCM, puis aux affiches déjà
     présentes dans les questions `devinette_affiche` du même type de contenu.
     Les noms d'acteurs et de réalisateurs restent donc affichés en texte tant
     qu'aucun portrait n'est réellement fourni par les données.
+
+    poster_cache : dict optionnel partagé entre plusieurs appels (voir
+    shuffle_options, qui appelle cette fonction une fois par option d'un même
+    QCM) pour ne charger le catalogue d'affiches qu'une fois par type de
+    contenu, plutôt qu'à chaque option.
     """
     payload = question.payload or {}
     explicit_images = payload.get("option_images")
@@ -516,9 +521,16 @@ def option_image_url(question, option_index: int, option) -> str | None:
     # Les affiches des modes image constituent le catalogue local d'illustrations
     # des œuvres. On ne fait jamais de recherche réseau pendant l'affichage d'une
     # question, et une réponse sans correspondance conserve son rendu texte.
-    poster_questions = Question.query.filter_by(
-        mode="devinette_affiche", content_type=question.content_type
-    ).all()
+    if poster_cache is None:
+        poster_questions = Question.query.filter_by(
+            mode="devinette_affiche", content_type=question.content_type
+        ).all()
+    else:
+        if question.content_type not in poster_cache:
+            poster_cache[question.content_type] = Question.query.filter_by(
+                mode="devinette_affiche", content_type=question.content_type
+            ).all()
+        poster_questions = poster_cache[question.content_type]
     wanted_key = _media_key(label)
     for poster_question in poster_questions:
         answer = poster_question.correct_answer or {}
@@ -539,8 +551,13 @@ def shuffle_options(
     mélange, le joueur finit par répondre au réflexe. C'est bien l'index
     d'origine qui repart au serveur, la vérification reste donc inchangée.
     """
+    # Un seul dict partagé entre les 4 options : sans lui, chaque option qui
+    # retombe sur le catalogue devinette_affiche (voir option_image_url)
+    # refait le même chargement complet - jusqu'à 4 fois la même requête pour
+    # un seul QCM.
+    poster_cache: dict = {}
     options = [
-        (index, option_label(option), option_image_url(question, index, option))
+        (index, option_label(option), option_image_url(question, index, option, poster_cache))
         for index, option in enumerate(question.payload["options"])
     ]
 
@@ -585,22 +602,32 @@ def question_image_url(question) -> str | None:
         return direct_url
 
     prompt_key = _media_key(question.prompt or "")
+    answer = question.correct_answer or {}
+    title = answer.get("film") or answer.get("title")
+
+    if not prompt_key and not title:
+        return None
+
+    # Un seul chargement, réutilisé pour les deux passes ci-dessous (par
+    # énoncé, puis par titre) : elles filtrent toutes deux sur le même
+    # content_type, inutile de refaire la requête deux fois. Le catalogue ne
+    # se limite pas à devinette-affiche : les enrichissements des citations,
+    # blind tests et devinettes peuvent aussi servir de source à une
+    # ancienne question QCM.
+    illustrated_questions = Question.query.filter_by(
+        content_type=question.content_type
+    ).all()
+
     if prompt_key:
-        # Le catalogue d'affiches ne se limite pas à devinette-affiche : les
-        # enrichissements des citations, blind tests et devinettes peuvent aussi
-        # servir de source à une ancienne question QCM.
-        illustrated_questions = Question.query.filter_by(
-            content_type=question.content_type
-        ).all()
         candidates = []
         for illustrated_question in illustrated_questions:
             illustrated_payload = illustrated_question.payload or {}
             image_url = illustrated_payload.get("question_image_url") or illustrated_payload.get("poster_url")
-            answer = illustrated_question.correct_answer or {}
-            title = answer.get("film") or answer.get("title")
-            if not title or not image_url:
+            illustrated_answer = illustrated_question.correct_answer or {}
+            illustrated_title = illustrated_answer.get("film") or illustrated_answer.get("title")
+            if not illustrated_title or not image_url:
                 continue
-            title_key = _media_key(title)
+            title_key = _media_key(illustrated_title)
             if len(title_key) >= 4 and title_key in prompt_key:
                 candidates.append((len(title_key), image_url))
         if candidates:
@@ -610,13 +637,8 @@ def question_image_url(question) -> str | None:
     # apparaît dans l'énoncé : cela ne reste sûr que parce qu'on est déjà
     # dans POSTER_SAFE_MODES (qcm, vrai_faux), jamais dans un mode où le
     # titre est la réponse à deviner.
-    answer = question.correct_answer or {}
-    title = answer.get("film") or answer.get("title")
     if title:
         wanted_key = _media_key(title)
-        illustrated_questions = Question.query.filter_by(
-            content_type=question.content_type
-        ).all()
         for illustrated_question in illustrated_questions:
             illustrated_payload = illustrated_question.payload or {}
             image_url = illustrated_payload.get("question_image_url") or illustrated_payload.get("poster_url")

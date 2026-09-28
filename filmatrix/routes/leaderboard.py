@@ -7,8 +7,7 @@ from flask_login import current_user
 from sqlalchemy import func
 
 from filmatrix.extensions import db
-from filmatrix.models import Attempt, User
-from filmatrix.services.friends import get_friendship_between
+from filmatrix.models import Attempt, Friendship, User
 from filmatrix.services.levels import calculate_level
 
 
@@ -65,6 +64,19 @@ def leaderboard() -> str:
 
     results = query.all()
 
+    # Une seule requête pour toutes les amitiés du joueur connecté, plutôt
+    # qu'une requête par ligne du classement (N+1 - négligeable avec une
+    # poignée de joueurs, mais grossit avec la base d'utilisateurs puisque
+    # cette page les liste tous).
+    friendship_status_by_user_id = {}
+    if current_user.is_authenticated:
+        my_friendships = Friendship.query.filter(
+            db.or_(Friendship.requester_id == current_user.id, Friendship.receiver_id == current_user.id)
+        ).all()
+        for friendship in my_friendships:
+            other_id = friendship.receiver_id if friendship.requester_id == current_user.id else friendship.requester_id
+            friendship_status_by_user_id[other_id] = friendship.status
+
     leaderboard_entries = []
     for result in results:
         level_info = calculate_level(result.total_xp)
@@ -72,9 +84,7 @@ def leaderboard() -> str:
 
         friendship_status = None
         if current_user.is_authenticated and current_user.id != result.id:
-            friendship = get_friendship_between(current_user.id, result.id)
-            if friendship is not None:
-                friendship_status = friendship.status
+            friendship_status = friendship_status_by_user_id.get(result.id)
 
         leaderboard_entries.append(
                 {

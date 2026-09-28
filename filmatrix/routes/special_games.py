@@ -13,6 +13,7 @@ from datetime import datetime
 
 from flask import Blueprint, flash, jsonify, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_required
+from sqlalchemy import func
 
 from filmatrix.extensions import db
 from filmatrix.models import (
@@ -69,9 +70,12 @@ def cache_cine_choose() -> str:
     remplace le tirage aléatoire précédent par un choix explicite."""
     game = SPECIAL_GAMES_BY_SLUG["cache-cine"]
     scenes = CacheCineScene.query.filter_by(is_active=True).order_by(CacheCineScene.created_at.desc()).all()
-    reference_counts = {
-        scene.id: CacheCineReference.query.filter_by(scene_id=scene.id).count() for scene in scenes
-    }
+    # Une requête groupée plutôt qu'un COUNT par scène (N+1).
+    reference_counts = dict(
+        db.session.query(CacheCineReference.scene_id, func.count(CacheCineReference.id))
+        .group_by(CacheCineReference.scene_id)
+        .all()
+    )
     progress_by_scene_id = {
         progress.scene_id: progress
         for progress in CacheCineProgress.query.filter_by(user_id=current_user.id).all()
@@ -267,7 +271,12 @@ def scene_mystere_choose() -> str:
     remplace le tirage aléatoire précédent par un choix explicite."""
     game = SPECIAL_GAMES_BY_SLUG["scene-mystere"]
     cases = MysteryCase.query.filter_by(is_active=True).order_by(MysteryCase.created_at.desc()).all()
-    zone_counts = {case.id: MysteryZone.query.filter_by(case_id=case.id).count() for case in cases}
+    # Une requête groupée plutôt qu'un COUNT par scène (N+1).
+    zone_counts = dict(
+        db.session.query(MysteryZone.case_id, func.count(MysteryZone.id))
+        .group_by(MysteryZone.case_id)
+        .all()
+    )
     progress_by_case_id = {
         progress.case_id: progress
         for progress in MysteryProgress.query.filter_by(user_id=current_user.id).all()
