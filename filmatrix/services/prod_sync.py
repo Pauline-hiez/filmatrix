@@ -14,16 +14,33 @@ import psycopg2.extras
 
 from filmatrix.models import CacheCineScene, MysteryCase, Question
 
-# Seuls les modes dont la réponse porte un titre de film identifiable
-# ("film" dans correct_answer) peuvent être comparés de façon fiable à la
-# prod pour repérer les doublons. qcm, vrai_faux, chronologie, film_melange
-# et emoji n'ont pas de clé équivalente et restent hors de cet outil - ils
-# passent par data/questions/*.json comme avant.
-PUBLISHABLE_MODES = ("citation", "devinette", "devinette_affiche", "casting", "blindtest", "dialogue")
+# Seuls les modes dont la réponse porte une clé de dédup fiable (un titre de
+# film dans correct_answer, ou pour point_commun le trio d'œuvres de
+# payload.works) peuvent être comparés à la prod pour repérer les doublons.
+# qcm, vrai_faux, chronologie, film_melange et emoji n'ont pas de clé
+# équivalente et restent hors de cet outil - ils passent par
+# data/questions/*.json comme avant.
+PUBLISHABLE_MODES = ("citation", "devinette", "devinette_affiche", "casting", "blindtest", "dialogue", "point_commun")
 
 
 def _film_title(question: Question) -> str | None:
     return (question.correct_answer or {}).get("film")
+
+
+def _work_trio(question: Question) -> tuple[int, ...] | None:
+    """Clé de dédup pour point_commun : les 3 tmdb_id de payload.works, peu
+    importe le libellé des propositions ou leur ordre - même principe que
+    l'idempotence du générateur (scripts/generate_point_commun_questions.py)."""
+    works = (question.payload or {}).get("works")
+    if not works:
+        return None
+    return tuple(sorted(w["tmdb_id"] for w in works))
+
+
+def _dedup_key(question: Question):
+    if question.mode == "point_commun":
+        return _work_trio(question)
+    return _film_title(question)
 
 
 def is_local_environment() -> bool:
@@ -60,7 +77,7 @@ def find_publishable_questions() -> list[Question]:
         for question in Question.query.filter(Question.mode.in_(PUBLISHABLE_MODES))
         .order_by(Question.mode, Question.id)
         .all()
-        if _film_title(question)
+        if _dedup_key(question)
     ]
     if not candidates:
         return []
@@ -70,15 +87,22 @@ def find_publishable_questions() -> list[Question]:
         cur = conn.cursor()
         existing = set()
         for mode in PUBLISHABLE_MODES:
-            cur.execute("SELECT correct_answer->>'film' FROM questions WHERE mode = %s", (mode,))
-            existing.update((mode, film) for (film,) in cur.fetchall())
+            if mode == "point_commun":
+                cur.execute("SELECT payload FROM questions WHERE mode = %s", (mode,))
+                for (payload,) in cur.fetchall():
+                    works = (payload or {}).get("works") or []
+                    if works:
+                        existing.add((mode, tuple(sorted(w["tmdb_id"] for w in works))))
+            else:
+                cur.execute("SELECT correct_answer->>'film' FROM questions WHERE mode = %s", (mode,))
+                existing.update((mode, film) for (film,) in cur.fetchall())
         cur.close()
     finally:
         conn.close()
 
     return [
         question for question in candidates
-        if (question.mode, _film_title(question)) not in existing
+        if (question.mode, _dedup_key(question)) not in existing
     ]
 
 

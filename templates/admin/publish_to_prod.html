@@ -41,7 +41,7 @@
                     <input type="checkbox" name="question_ids" value="{{ question.id }}" checked
                            class="publish-checkbox h-4 w-4 shrink-0 accent-cyan-400" onclick="event.stopPropagation()">
                     <span class="shrink-0 rounded-full bg-slate-800 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">{{ question.mode }}</span>
-                    <span class="min-w-0 flex-1 truncate text-sm text-slate-200">{{ question.correct_answer.get('film', '') }}</span>
+                    <span class="min-w-0 flex-1 truncate text-sm text-slate-200">{{ question.correct_answer.get('film') or question.prompt }}</span>
                     <span class="shrink-0 text-xs text-cyan-400">Détails</span>
                 </summary>
                 <div class="border-t border-slate-800 px-3 py-3">
